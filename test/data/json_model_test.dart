@@ -1,8 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:minik_kalpler/app/constants/peygamberler_kitabi.dart';
 import 'package:minik_kalpler/core/utils/daily_seed.dart';
+import 'package:minik_kalpler/core/utils/turkish_number.dart';
 import 'package:minik_kalpler/core/utils/json_map.dart';
 import 'package:minik_kalpler/data/models/asmaul_husna.dart';
+import 'package:minik_kalpler/data/models/dhikr.dart';
 import 'package:minik_kalpler/data/models/dua.dart';
+import 'package:minik_kalpler/features/games/zikr_collect_logic.dart';
 import 'package:minik_kalpler/data/models/hadith.dart';
 import 'package:minik_kalpler/data/models/interactive_lesson.dart';
 import 'package:minik_kalpler/data/models/lessons.dart';
@@ -22,6 +28,8 @@ void main() {
     });
     expect(verse.ayahId, 1);
     expect(verse.arabic, 'بِسْمِ اللّٰهِ');
+    expect(verse.hasMeal, isTrue);
+    expect(verse.displayPage, 0);
     expect(verse.toJson()['metin']['arapca'], 'بِسْمِ اللّٰهِ');
   });
 
@@ -305,6 +313,89 @@ void main() {
     expect(story.scenes, hasLength(1));
     expect(story.scenes.first.references.first, 'Bakara 2:30');
     expect(story.lessons, contains('Tevbe'));
+  });
+
+  test('Mushaf groups verses by sayfa and keeps JSON page numbers', () {
+    final pages = MushafPageData.group([
+      QuranVerse.fromJson({
+        'ayet_id': 1,
+        'sure_id': 1,
+        'ayet_no': 1,
+        'sayfa': 0,
+        'metin': {'arapca': 'بِسْمِ اللّٰهِ', 'meal': 'Rahmân'},
+      }),
+      QuranVerse.fromJson({
+        'ayet_id': 8,
+        'sure_id': 2,
+        'ayet_no': 1,
+        'sayfa': 1,
+        'metin': {'arapca': 'الم', 'meal': 'Elif Lâm Mîm'},
+      }),
+    ]);
+    expect(pages, hasLength(2));
+    expect(pages.first.displayNumber, 0);
+    expect(pages.first.jsonPage, 0);
+    expect(pages.last.displayNumber, 1);
+    expect(pages.last.jsonPage, 1);
+    expect(pages.last.verses.first.displayPage, 1);
+  });
+
+  test('TurkishNumber writes page labels in Turkish', () {
+    expect(TurkishNumber.words(1), 'bir');
+    expect(TurkishNumber.words(12), 'on iki');
+    expect(TurkishNumber.words(100), 'yüz');
+    expect(TurkishNumber.words(101), 'yüz bir');
+    expect(TurkishNumber.words(604), 'altı yüz dört');
+    expect(TurkishNumber.pageLabel(12), '12. sayfa');
+    expect(TurkishNumber.arabicIndic(12), '١٢');
+  });
+
+  test('Peygamberler kitabı page images are numbered from one', () {
+    expect(
+      PeygamberlerKitabi.pageImage(1),
+      'assets/images/books/peygamberler/page_01.jpg',
+    );
+    expect(
+      PeygamberlerKitabi.pageImage(49),
+      'assets/images/books/peygamberler/page_49.jpg',
+    );
+    expect(PeygamberlerKitabi.chapters.first.page, 9);
+    expect(PeygamberlerKitabi.firstContentPage, 9);
+    expect(
+      PeygamberlerKitabi.pageImage(PeygamberlerKitabi.firstContentPage),
+      'assets/images/books/peygamberler/page_09.jpg',
+    );
+  });
+
+  test('ZikrCollectGame builds rounds from dhikr meanings', () {
+    final catalog = [
+      Dhikr.fromJson({
+        'id': 'a',
+        'title': 'Sübhânallah',
+        'meaning': 'Allah\'ı tenzih ederim.',
+      }),
+      Dhikr.fromJson({
+        'id': 'b',
+        'title': 'Elhamdülillâh',
+        'meaning': 'Hamd Allah\'a mahsustur.',
+      }),
+      Dhikr.fromJson({
+        'id': 'c',
+        'title': 'Allahü Ekber',
+        'meaning': 'Allah en büyüktür.',
+      }),
+    ];
+    final rounds = ZikrCollectGame.build(
+      catalog,
+      choiceCount: 3,
+      random: Random(1),
+    );
+    expect(rounds, hasLength(3));
+    expect(
+      rounds.every((round) => round.choices.any((item) => item.id == round.target.id)),
+      isTrue,
+    );
+    expect(rounds.every((round) => round.choices.length == 3), isTrue);
   });
 
   test('dailySeed stays stable for the same calendar day', () {

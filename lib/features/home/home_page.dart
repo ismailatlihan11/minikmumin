@@ -8,6 +8,7 @@ import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../core/storage/local_progress_store.dart';
+import '../../core/utils/turkish_number.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -52,6 +53,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
       wudu: wudu,
       wuduStepCount: lesson.steps.length,
       continuePoint: await store.getContinue(),
+      mushafBookmark: await store.getMushafBookmarkInfo(),
     );
   }
 
@@ -248,39 +250,47 @@ class _MinikHomePageState extends State<MinikHomePage> {
                     child: Column(
                       children: [
                         Expanded(
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              const columns = 4;
-                              const rows = 2;
-                              const gridGap = 10.0;
-                              final itemWidth =
-                                  (constraints.maxWidth -
-                                          gridGap * (columns - 1)) /
-                                      columns;
-                              final itemHeight =
-                                  (constraints.maxHeight -
-                                          gridGap * (rows - 1)) /
-                                      rows;
-                              return GridView.count(
-                                crossAxisCount: columns,
-                                physics: const NeverScrollableScrollPhysics(),
-                                mainAxisSpacing: gridGap,
-                                crossAxisSpacing: gridGap,
-                                childAspectRatio: itemWidth / itemHeight,
-                                children: [
-                                  for (final module in HomeCatalog.modules)
-                                    HomeModuleCard(
-                                      module: module,
-                                      onTap: () => Navigator.pushNamed(
-                                        context,
-                                        module.route,
-                                      ),
-                                    ),
-                                ],
-                              );
-                            },
+                          child: Column(
+                            children: [
+                              for (var row = 0; row < 2; row++) ...[
+                                if (row > 0) const SizedBox(height: 10),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      for (var col = 0; col < 4; col++) ...[
+                                        if (col > 0) const SizedBox(width: 10),
+                                        Expanded(
+                                          child: HomeModuleCard(
+                                            module: HomeCatalog.modules[row * 4 + col],
+                                            onTap: () => Navigator.pushNamed(
+                                              context,
+                                              HomeCatalog.modules[row * 4 + col].route,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
                         ),
+                        if (data.mushafBookmark != null) ...[
+                          const SizedBox(height: 8),
+                          HomeQuranResumeBar(
+                            subtitle:
+                                '${TurkishNumber.pageLabel(data.mushafBookmark!.displayNumber)} · ${data.mushafBookmark!.surahLabel}',
+                            onTap: () async {
+                              await Navigator.pushNamed(
+                                context,
+                                AppRoutes.quranReader,
+                              );
+                              if (!mounted) return;
+                              setState(() => _future = _load(repos, store));
+                            },
+                          ),
+                        ],
                         const SizedBox(height: 10),
                         SizedBox(
                           height: 86,
@@ -364,23 +374,47 @@ class _HomeDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: MinikColors.surface,
       child: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
-            const ListTile(
-              title: Text(
-                AppConstants.defaultAppName,
-                style: TextStyle(fontWeight: FontWeight.w800),
+            Expanded(
+              child: ListView(
+                children: [
+                  const ListTile(
+                    title: Text(
+                      AppConstants.defaultAppName,
+                      style: TextStyle(fontWeight: FontWeight.w800),
+                    ),
+                    subtitle: Text('İslami Eğitim Uygulaması'),
+                  ),
+                  for (final module in HomeCatalog.modules)
+                    ListTile(
+                      title: Text(module.title),
+                      onTap: () => onSelect(module.route),
+                    ),
+                  ListTile(
+                    title: const Text('Peygamberler Kitabı'),
+                    onTap: () => onSelect(AppRoutes.learnProphetsBook),
+                  ),
+                  ListTile(
+                    title: const Text('Ayarlar'),
+                    onTap: () => onSelect(AppRoutes.settings),
+                  ),
+                ],
               ),
-              subtitle: Text('İslami Eğitim Uygulaması'),
             ),
-            for (final module in HomeCatalog.modules)
-              ListTile(
-                title: Text(module.title),
-                onTap: () => onSelect(module.route),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(20, 12, 20, 24),
+              child: Text(
+                "Elif ve Oğuzhan'a kocaman sevgilerimle",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  height: 1.3,
+                  color: MinikColors.green,
+                ),
               ),
-            ListTile(
-              title: const Text('Ayarlar'),
-              onTap: () => onSelect(AppRoutes.settings),
             ),
           ],
         ),
@@ -394,9 +428,11 @@ class _HomeSnapshot {
     required this.wudu,
     required this.wuduStepCount,
     this.continuePoint,
+    this.mushafBookmark,
   });
 
   final WuduProgress wudu;
   final int wuduStepCount;
   final ContinuePoint? continuePoint;
+  final ({int jsonPage, int displayNumber, String surahLabel})? mushafBookmark;
 }

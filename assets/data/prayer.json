@@ -32,7 +32,7 @@
       "id": "ruku_rise",
       "order": 5,
       "title": "Rükûdan Doğrulma",
-      "description": "Rükûdan doğruluruz ve hamd ederiz.",
+      "description": "Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.",
       "duaId": "qiyam_after_ruku"
     },
     {
@@ -46,7 +46,7 @@
       "id": "sitting",
       "order": 7,
       "title": "Oturma",
-      "description": "Oturuşta teşehhüdü okuruz.",
+      "description": "Oturuşta Tahiyyat duası okuruz.",
       "duaId": "tahiyyat"
     },
     {
@@ -121,20 +121,22 @@
       "id": "ruku_rise",
       "number": 7,
       "title": "Rükûdan Kalkış",
-      "prompt": "Rükûdan doğruluruz ve hamd ederiz.",
-      "image": "assets/images/prayer/step07_ruku_rise.png",
+      "prompt": "Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.",
+      "image": "assets/images/prayer/step08_kiyam.png",
       "kind": "farz",
       "jsonStepId": "ruku_rise",
-      "duaId": "qiyam_after_ruku"
+      "duaId": "qiyam_after_ruku",
+      "caption": "Semi‘allâhü limen hamideh"
     },
     {
       "id": "kiyam",
       "number": 8,
       "title": "Kıyam",
-      "prompt": "Rükûdan sonra ayakta dururuz.",
+      "prompt": "Kıyamda dururuz ve Rabbenâ lekel-hamd deriz.",
       "image": "assets/images/prayer/step08_kiyam.png",
       "kind": "farz",
-      "jsonStepId": "qiyam"
+      "jsonStepId": "qiyam",
+      "caption": "Rabbenâ lekel-hamd"
     },
     {
       "id": "secde1",
@@ -162,7 +164,7 @@
       "id": "oturus",
       "number": 11,
       "title": "Oturuş",
-      "prompt": "Oturuşta teşehhüdü okuruz.",
+      "prompt": "Oturuşta Tahiyyat duası okuruz.",
       "image": "assets/images/prayer/step11_oturus.png",
       "kind": "farz",
       "jsonStepId": "sitting",

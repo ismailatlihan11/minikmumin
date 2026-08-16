@@ -11,6 +11,7 @@ class QuranRepository {
 
   final JsonContentDatasource _datasource;
   List<QuranVerse>? _cache;
+  List<MushafPageData>? _mushafPages;
 
   Future<List<QuranVerse>> getAllAyahs() async {
     if (_cache != null) return _cache!;
@@ -61,6 +62,12 @@ class QuranRepository {
       fallbackPath: AssetPaths.quranLast10,
     );
     return rows.map(ShortAyah.fromJson).toList(growable: false);
+  }
+
+  Future<List<MushafPageData>> getMushafPages() async {
+    if (_mushafPages != null) return _mushafPages!;
+    _mushafPages = MushafPageData.group(await getAllAyahs());
+    return _mushafPages!;
   }
 
   Future<List<SurahIndexItem>> getSurahIndex() async {

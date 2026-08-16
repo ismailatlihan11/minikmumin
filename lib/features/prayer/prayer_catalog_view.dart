@@ -184,40 +184,6 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Hangi namaz kaç rekattır?',
-            style: TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
-              color: MinikColors.darkGreen,
-            ),
-          ),
-          const SizedBox(height: 4),
-          const Text(
-            'Beş vakit namazın farz rekâtları',
-            style: TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: MinikColors.textMuted,
-            ),
-          ),
-          const SizedBox(height: 8),
-          MinikCard(
-            color: Colors.white,
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-            child: Column(
-              children: [
-                for (var i = 0; i < _rakats.length; i++) ...[
-                  if (i > 0)
-                    const Divider(height: 1, color: Color(0xFFE8EEEA)),
-                  _RakatRow(item: _rakats[i]),
-                ],
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
@@ -351,6 +317,40 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                 ),
               ],
             ],
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Hangi namaz kaç rekattır?',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Beş vakit namazın farz rekâtları',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 8),
+          MinikCard(
+            color: Colors.white,
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Column(
+              children: [
+                for (var i = 0; i < _rakats.length; i++) ...[
+                  if (i > 0)
+                    const Divider(height: 1, color: Color(0xFFE8EEEA)),
+                  _RakatRow(item: _rakats[i]),
+                ],
+              ],
+            ),
           ),
           const SizedBox(height: 18),
           MinikCard(

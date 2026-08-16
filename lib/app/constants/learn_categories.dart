@@ -52,6 +52,13 @@ abstract final class LearnCategories {
       image: 'assets/images/learn/prophets.png',
     ),
     LearnCategory(
+      id: 'prophets_book',
+      title: 'Peygamber Kitabı',
+      route: '/minik/learn/prophets-book',
+      icon: 'auto_stories',
+      image: 'assets/images/learn/prophets.png',
+    ),
+    LearnCategory(
       id: 'stories',
       title: 'Kıssalar',
       route: '/minik/learn/stories',

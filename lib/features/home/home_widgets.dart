@@ -211,7 +211,7 @@ class HomeModuleCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(7, 8, 7, 7),
+          padding: const EdgeInsets.fromLTRB(6, 6, 6, 5),
           child: Column(
             children: [
               Expanded(
@@ -221,18 +221,21 @@ class HomeModuleCard extends StatelessWidget {
                   alignment: Alignment.center,
                 ),
               ),
-              const SizedBox(height: 6),
-              Text(
-                module.title,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: MinikColors.darkGreen,
-                  height: 1.15,
+              const SizedBox(height: 4),
+              SizedBox(
+                height: 28,
+                child: Text(
+                  module.title,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                    height: 1.15,
+                  ),
                 ),
               ),
             ],
@@ -381,6 +384,71 @@ class HomeContinueCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class HomeQuranResumeBar extends StatelessWidget {
+  const HomeQuranResumeBar({
+    super.key,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: const Color(0xFFD8F0E4),
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(12, 8, 10, 8),
+          child: Row(
+            children: [
+              const Icon(Icons.bookmark_rounded, color: MinikColors.green, size: 22),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Kaldığın yerden oku',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
+                        color: MinikColors.darkGreen,
+                        height: 1.1,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontSize: 11,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF4A6B5C),
+                        height: 1.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(Icons.play_arrow_rounded, color: MinikColors.green),
+            ],
+          ),
+        ),
       ),
     );
   }

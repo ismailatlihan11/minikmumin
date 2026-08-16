@@ -17,6 +17,9 @@ class QuranVerse {
   final String arabic;
   final String meal;
 
+  bool get hasMeal => meal.trim().isNotEmpty;
+  int get displayPage => page;
+
   factory QuranVerse.fromJson(Map<String, dynamic> json) {
     final text = JsonMap.object(json['metin']);
     return QuranVerse(
@@ -48,6 +51,38 @@ class QuranSurah {
   final List<QuranVerse> verses;
 
   int get ayahCount => verses.length;
+}
+
+class MushafPageData {
+  const MushafPageData({
+    required this.index,
+    required this.jsonPage,
+    required this.verses,
+  });
+
+  final int index;
+  final int jsonPage;
+  final List<QuranVerse> verses;
+
+  int get displayNumber => jsonPage;
+
+  Set<int> get surahIds => {for (final verse in verses) verse.surahId};
+
+  static List<MushafPageData> group(List<QuranVerse> verses) {
+    final map = <int, List<QuranVerse>>{};
+    for (final verse in verses) {
+      map.putIfAbsent(verse.page, () => []).add(verse);
+    }
+    final keys = map.keys.toList()..sort();
+    return [
+      for (var i = 0; i < keys.length; i++)
+        MushafPageData(
+          index: i,
+          jsonPage: keys[i],
+          verses: List<QuranVerse>.unmodifiable(map[keys[i]]!),
+        ),
+    ];
+  }
 }
 
 class SurahIndexItem {

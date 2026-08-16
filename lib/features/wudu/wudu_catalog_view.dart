@@ -377,7 +377,7 @@ class _WuduStepCard extends StatelessWidget {
               ),
               Text(
                 step.prompt,
-                maxLines: 2,
+                maxLines: 4,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: const TextStyle(

@@ -15,28 +15,28 @@
       "id": "mouth",
       "order": 2,
       "title": "Ağız",
-      "description": "Sağ elimizle ağzımıza su verir ve çalkalarız.",
+      "description": "Sağ elimizle ağzımıza suyu üç kere verir ve çalkalarız.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "nose",
       "order": 3,
       "title": "Burun",
-      "description": "Burnumuza su verir ve temizleriz.",
+      "description": "Burnumuza suyu üç kere verir ve temizleriz.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "face",
       "order": 4,
       "title": "Yüz",
-      "description": "Yüzümüzü yıkarız. Alından çeneye, bir kulaktan diğerine.",
+      "description": "Yüzümüzü üç kere yıkarız. Alından çeneye, bir kulaktan diğerine.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "arms",
       "order": 5,
       "title": "Kollar",
-      "description": "Kollarımızı dirsekle birlikte yıkarız.",
+      "description": "Kollarımızı dirsekle birlikte üç kere yıkarız.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
@@ -66,7 +66,7 @@
       "id": "niyet",
       "number": 1,
       "title": "Niyet Edelim",
-      "prompt": "Allah rızası için abdest almaya niyet ederiz.",
+      "prompt": "Allah rızası için abdest almaya niyet ederiz. “Niyet ettim Allah rızası için abdest almaya.”",
       "image": "assets/images/wudu/wudu_01_niyet.png",
       "kind": "adab"
     },
@@ -74,7 +74,7 @@
       "id": "besmele",
       "number": 2,
       "title": "Besmele ile Başlayalım",
-      "prompt": "Besmele ile başlarız.",
+      "prompt": "Besmele ile başlarız. Eûzü billâhi mine'ş-şeytânirracîm. Bismillâhirrahmânirrahîm.",
       "image": "assets/images/wudu/wudu_02_besmele.png",
       "kind": "sunnah"
     },
@@ -91,7 +91,7 @@
       "id": "agiz",
       "number": 4,
       "title": "Ağzımızı Temizleyelim",
-      "prompt": "Sağ elimizle ağzımıza su verir ve çalkalarız.",
+      "prompt": "Sağ elimizle ağzımıza suyu üç kere verir ve çalkalarız.",
       "image": "assets/images/wudu/wudu_04_agiz.png",
       "kind": "sunnah",
       "jsonStepId": "mouth"
@@ -100,7 +100,7 @@
       "id": "burun",
       "number": 5,
       "title": "Burnumuzu Temizleyelim",
-      "prompt": "Burnumuza su verir ve temizleriz.",
+      "prompt": "Burnumuza suyu üç kere verir ve temizleriz.",
       "image": "assets/images/wudu/wudu_05_burun.png",
       "kind": "sunnah",
       "jsonStepId": "nose"
@@ -109,7 +109,7 @@
       "id": "yuz",
       "number": 6,
       "title": "Yüzümüzü Yıkayalım",
-      "prompt": "Yüzümüzü yıkarız. Alından çeneye, bir kulaktan diğerine.",
+      "prompt": "Yüzümüzü üç kere yıkarız. Alından çeneye, bir kulaktan diğerine.",
       "image": "assets/images/wudu/wudu_06_yuz.png",
       "kind": "farz",
       "jsonStepId": "face"
@@ -118,7 +118,7 @@
       "id": "sag_kol",
       "number": 7,
       "title": "Sağ Kolumuzu Yıkayalım",
-      "prompt": "Sağ kolumuzu dirsekle birlikte yıkarız.",
+      "prompt": "Sağ kolumuzu dirsekle birlikte üç kere yıkarız.",
       "image": "assets/images/wudu/wudu_07_sag_kol.png",
       "kind": "farz",
       "jsonStepId": "arms"
@@ -127,7 +127,7 @@
       "id": "sol_kol",
       "number": 8,
       "title": "Sol Kolumuzu Yıkayalım",
-      "prompt": "Sol kolumuzu dirsekle birlikte yıkarız.",
+      "prompt": "Sol kolumuzu dirsekle birlikte üç kere yıkarız.",
       "image": "assets/images/wudu/wudu_08_sol_kol.png",
       "kind": "farz",
       "jsonStepId": "arms"

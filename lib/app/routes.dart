@@ -17,6 +17,8 @@ abstract final class AppRoutes {
   static const String learnAsmaDetail = '/minik/learn/asma/detail';
   static const String learnProphets = '/minik/learn/prophets';
   static const String learnProphetDetail = '/minik/learn/prophets/detail';
+  static const String learnProphetsBook = '/minik/learn/prophets-book';
+  static const String learnProphetsBookRead = '/minik/learn/prophets-book/read';
   static const String learnStories = '/minik/learn/stories';
   static const String learnMorality = '/minik/learn/morality';
   static const String learnMoralityDetail = '/minik/learn/morality/detail';
@@ -31,6 +33,7 @@ abstract final class AppRoutes {
   static const String duas = '/minik/duas';
   static const String hadith = '/minik/hadith';
   static const String games = '/minik/games';
+  static const String zikrCollect = '/minik/games/zikr-collect';
   static const String zikr = '/minik/zikr';
   static const String dailyTask = '/minik/daily-task';
   static const String favorites = '/minik/favorites';

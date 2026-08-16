@@ -240,6 +240,76 @@ class LocalProgressStore extends ChangeNotifier {
     return prefs.getInt(_key('story_page_$id')) ?? 0;
   }
 
+  Future<void> setBookBookmark({
+    required String bookId,
+    required int page,
+    required String title,
+    required int totalPages,
+  }) async {
+    final prefs = await _ensure();
+    await prefs.setInt(_key('book_page_$bookId'), page);
+    await setContinue(
+      title: 'Kaldığın yerden devam et',
+      subtitle: '$page. sayfa · $title',
+      route: '/minik/learn/prophets-book/read',
+      progress: (page / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
+    );
+  }
+
+  Future<int?> getBookBookmark(String bookId) async {
+    final prefs = await _ensure();
+    if (!prefs.containsKey(_key('book_page_$bookId'))) return null;
+    return prefs.getInt(_key('book_page_$bookId'));
+  }
+
+  Future<void> rememberMushafPage({
+    required int jsonPage,
+    required int displayNumber,
+    required String surahLabel,
+  }) async {
+    final prefs = await _ensure();
+    await prefs.setInt(_key('mushaf_page'), jsonPage);
+    await prefs.setInt(_key('mushaf_display'), displayNumber);
+    await prefs.setString(_key('mushaf_surah'), surahLabel);
+    notifyListeners();
+  }
+
+  Future<void> setMushafBookmark({
+    required int jsonPage,
+    required int displayNumber,
+    required String surahLabel,
+    int totalPages = 604,
+  }) async {
+    await rememberMushafPage(
+      jsonPage: jsonPage,
+      displayNumber: displayNumber,
+      surahLabel: surahLabel,
+    );
+    await setContinue(
+      title: 'Kaldığın yerden devam et',
+      subtitle: '$displayNumber. sayfa · $surahLabel',
+      route: '/minik/quran/reader',
+      progress: (displayNumber / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
+    );
+  }
+
+  Future<int?> getMushafBookmark() async {
+    final prefs = await _ensure();
+    if (!prefs.containsKey(_key('mushaf_page'))) return null;
+    return prefs.getInt(_key('mushaf_page'));
+  }
+
+  Future<({int jsonPage, int displayNumber, String surahLabel})?>
+      getMushafBookmarkInfo() async {
+    final prefs = await _ensure();
+    if (!prefs.containsKey(_key('mushaf_page'))) return null;
+    return (
+      jsonPage: prefs.getInt(_key('mushaf_page')) ?? 0,
+      displayNumber: prefs.getInt(_key('mushaf_display')) ?? 1,
+      surahLabel: prefs.getString(_key('mushaf_surah')) ?? '',
+    );
+  }
+
   Future<List<FavoriteEntry>> getFavorites() async {
     final prefs = await _ensure();
     final raw = prefs.getString(_key('favorites_json')) ?? '[]';

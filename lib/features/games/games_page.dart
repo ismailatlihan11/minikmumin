@@ -13,6 +13,7 @@ import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../quiz/quiz_page.dart';
 import '../wudu/wudu_visual_catalog.dart';
+import 'zikr_collect_page.dart';
 
 class GamesPage extends StatelessWidget {
   const GamesPage({super.key});
@@ -64,6 +65,15 @@ class GamesPage extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const StoryOrderGamePage()),
+              ),
+            ),
+            ContentTile(
+              title: 'Zikirleri topla',
+              subtitle: 'Meali oku, doğru zikri seç.',
+              leading: const Icon(Icons.radio_button_checked_rounded, color: MinikColors.green),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ZikrCollectPage()),
               ),
             ),
             ContentTile(

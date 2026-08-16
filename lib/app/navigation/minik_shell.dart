@@ -4,10 +4,12 @@ import '../routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../../features/asma/asma_page.dart';
+import '../../features/books/peygamberler_kitabi_page.dart';
 import '../../features/daily_task/daily_task_page.dart';
 import '../../features/duas/duas_page.dart';
 import '../../features/favorites/favorites_page.dart';
 import '../../features/games/games_page.dart';
+import '../../features/games/zikr_collect_page.dart';
 import '../../features/hadith/hadith_page.dart';
 import '../../features/home/home_page.dart';
 import '../../features/learn/ilmihal_page.dart';
@@ -18,6 +20,7 @@ import '../../features/prayer/prayer_page.dart';
 import '../../features/profile/profile_page.dart';
 import '../../features/prophets/prophets_page.dart';
 import '../../features/quiz/quiz_page.dart';
+import '../../features/quran/mushaf_page.dart';
 import '../../features/quran/quran_page.dart';
 import '../../features/settings/settings_page.dart';
 import '../../features/wudu/wudu_flow_page.dart';
@@ -150,14 +153,20 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.learnDuas: (_) => const MinikDuasPage(),
     AppRoutes.learnAsma: (_) => const AsmaPage(),
     AppRoutes.learnProphets: (_) => const ProphetsPage(),
+    AppRoutes.learnProphetsBook: (_) =>
+        const PeygamberlerKitabiReaderPage(resume: true),
+    AppRoutes.learnProphetsBookRead: (_) =>
+        const PeygamberlerKitabiReaderPage(resume: true),
     AppRoutes.learnStories: (_) => const StoriesPage(),
     AppRoutes.learnMorality: (_) => const MoralityPage(),
     AppRoutes.learnIlmihal: (_) => const IlmihalPage(),
     AppRoutes.quiz: (_) => const QuizPage(),
     AppRoutes.quran: (_) => const MinikQuranPage(),
+    AppRoutes.quranReader: (_) => const MushafReaderPage(resume: true),
     AppRoutes.duas: (_) => const MinikDuasPage(),
     AppRoutes.hadith: (_) => const HadithPage(),
     AppRoutes.games: (_) => const GamesPage(),
+    AppRoutes.zikrCollect: (_) => const ZikrCollectPage(),
     AppRoutes.zikr: (_) => const ZikrPage(),
     AppRoutes.dailyTask: (_) => const DailyTaskPage(),
     AppRoutes.favorites: (_) => const FavoritesPage(),
