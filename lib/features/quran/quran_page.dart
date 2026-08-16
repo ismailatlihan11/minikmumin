@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/constants/surah_names.dart';
-import '../../app/theme/app_colors.dart';
+import '../../app/routes.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../data/models/progress.dart';
+import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_verse.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class MinikQuranPage extends StatefulWidget {
@@ -22,11 +23,10 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
   Future<_QuranHome>? _future;
 
   Future<_QuranHome> _load() async {
-    final repos = context.read<ContentRepositories>();
+    final quran = context.read<ContentRepositories>().quran;
     return _QuranHome(
-      kursi: await repos.quran.getAyetulKursi(),
-      lastTen: await repos.quran.getLastTenAyahs(),
-      surahs: await repos.quran.getSurahIndex(),
+      daily: await quran.getDailyAyah(),
+      surahs: await quran.getSurahIndex(),
     );
   }
 
@@ -38,56 +38,51 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
         child: AsyncBody<_QuranHome>(
           future: _future!,
           onRetry: () => setState(() => _future = _load()),
-          builder: (data) => ListView(
+          builder: (home) => ListView(
             padding: AppSpacing.page,
             children: [
               const PageHeader(
                 title: "Kur'an",
-                subtitle: 'Ayetleri oku, sureleri keşfet.',
+                subtitle: 'Sureleri oku ve keşfet.',
                 image: 'assets/images/quran/quran.png',
               ),
-              SizedBox(
-                height: 220,
-                child: CatalogTile(
-                  image: 'assets/images/duas/ayet_el_kursi.png',
-                  semanticLabel: data.kursi.title,
+              if (home.daily != null)
+                MinikCard(
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => _SimpleAyahPage(
-                        title: data.kursi.title,
-                        arabic: data.kursi.arabic,
-                        meaning: data.kursi.meaning,
-                        source: '${data.kursi.sourceName} • ${data.kursi.sourceReference}',
-                      ),
+                      builder: (_) => QuranSurahPage(surahId: home.daily!.surahId),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-              const SectionLabel('Felak ve Nâs'),
-              ...data.lastTen.map(
-                (ayah) => ContentTile(
-                  title: '${ayah.surahName} ${ayah.ayah}',
-                  subtitle: ayah.meaning,
-                  leading: NumberBadge('${ayah.ayah}', color: MinikColors.butter),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => _SimpleAyahPage(
-                        title: '${ayah.surahName} ${ayah.ayah}',
-                        arabic: ayah.arabic,
-                        meaning: ayah.meaning,
-                        source: "Kur'an-ı Kerim",
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SectionLabel('Bugünün ayeti'),
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        '${surahName(home.daily!.surahId)} ${home.daily!.ayahNo}',
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                    ),
+                      const SizedBox(height: AppSpacing.sm),
+                      ArabicText(home.daily!.arabic),
+                      const SizedBox(height: 10),
+                      SelectableText(home.daily!.meal),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: CopyIconButton(
+                          text: joinCopyParts([
+                            '${surahName(home.daily!.surahId)} ${home.daily!.ayahNo}',
+                            home.daily!.arabic,
+                            home.daily!.meal,
+                          ]),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              const SectionLabel('Sureler'),
-              ...data.surahs.map(
-                (surah) => ContentTile(
+              const SizedBox(height: AppSpacing.md),
+              for (final surah in home.surahs)
+                ContentTile(
                   title: surah.name,
                   subtitle: '${surah.ayahCount} ayet',
                   leading: NumberBadge('${surah.id}'),
@@ -98,7 +93,6 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                     ),
                   ),
                 ),
-              ),
             ],
           ),
         ),
@@ -108,14 +102,9 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
 }
 
 class _QuranHome {
-  const _QuranHome({
-    required this.kursi,
-    required this.lastTen,
-    required this.surahs,
-  });
+  const _QuranHome({required this.daily, required this.surahs});
 
-  final AyetulKursi kursi;
-  final List<ShortAyah> lastTen;
+  final QuranVerse? daily;
   final List<SurahIndexItem> surahs;
 }
 
@@ -130,6 +119,21 @@ class QuranSurahPage extends StatefulWidget {
 
 class _QuranSurahPageState extends State<QuranSurahPage> {
   Future<List<QuranVerse>>? _future;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final store = context.read<LocalProgressStore>();
+      store.markCompleted('quran', '${widget.surahId}', xp: 2);
+      store.setContinue(
+        title: surahName(widget.surahId),
+        subtitle: "Kur'an",
+        route: AppRoutes.quran,
+        progress: 0.5,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,41 +161,23 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
                   const SizedBox(height: AppSpacing.sm),
                   ArabicText(verse.arabic),
                   const SizedBox(height: 10),
-                  Text(verse.meal),
+                  SelectableText(verse.meal),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: CopyIconButton(
+                      text: joinCopyParts([
+                        '${surahName(widget.surahId)} ${verse.ayahNo}',
+                        verse.arabic,
+                        verse.meal,
+                      ]),
+                    ),
+                  ),
                 ],
               ),
             );
           },
         ),
       ),
-    );
-  }
-}
-
-class _SimpleAyahPage extends StatelessWidget {
-  const _SimpleAyahPage({
-    required this.title,
-    required this.arabic,
-    required this.meaning,
-    required this.source,
-  });
-
-  final String title;
-  final String arabic;
-  final String meaning;
-  final String source;
-
-  @override
-  Widget build(BuildContext context) {
-    return DetailScaffold(
-      title: title,
-      children: [
-        ArabicPanel(arabic, fontSize: 24),
-        const SizedBox(height: AppSpacing.md),
-        Text(meaning, style: Theme.of(context).textTheme.bodyLarge),
-        const SizedBox(height: AppSpacing.md),
-        Text(source, style: Theme.of(context).textTheme.bodySmall),
-      ],
     );
   }
 }

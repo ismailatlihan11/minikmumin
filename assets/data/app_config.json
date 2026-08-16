@@ -29,7 +29,8 @@
     "prophets": true,
     "morality": true,
     "ilmihal": true,
-    "quiz": true
+    "quiz": true,
+    "dhikr": true
   },
   "contentFiles": {
     "quran": "assets/data/kuran.json",
@@ -41,11 +42,22 @@
     "morality": "assets/data/morality.json",
     "ilmihal": "assets/data/ilmihal.json",
     "quiz": "assets/data/islamic_quiz.json",
+    "stories": "assets/data/kissalar.json",
     "wudu": "assets/data/wudu.json",
     "prayer": "assets/data/prayer.json",
     "achievements": "assets/data/achievements.json",
     "ayetulKursi": "assets/data/ayetul_kursi.json",
-    "quranLast10": "assets/data/quran_last_10_ayahs.json"
+    "quranLast10": "assets/data/quran_last_10_ayahs.json",
+    "dhikr": "assets/data/dhikr.json"
   },
-  "assetRoot": "assets/"
+  "assetRoot": "assets/",
+  "firstLaunch": {
+    "title": "Haydi başlayalım",
+    "button": "Anladım",
+    "lines": [
+      "Ana Sayfa’dan derslere geçersin.",
+      "Öğren’de abdest, namaz ve dualar var.",
+      "Kur’an sekmesinde sureleri okuyup dinlersin."
+    ]
+  }
 }

@@ -77,6 +77,9 @@ class WuduLesson {
     required this.sourceName,
     required this.verificationRequired,
     required this.steps,
+    this.visualSteps = const [],
+    this.tips = const [],
+    this.farzIds = const [],
   });
 
   final String id;
@@ -84,6 +87,9 @@ class WuduLesson {
   final String sourceName;
   final bool verificationRequired;
   final List<LessonStep> steps;
+  final List<Map<String, dynamic>> visualSteps;
+  final List<Map<String, dynamic>> tips;
+  final List<String> farzIds;
 
   factory WuduLesson.fromJson(Map<String, dynamic> json) {
     return WuduLesson(
@@ -94,6 +100,9 @@ class WuduLesson {
       steps: JsonMap.extractList(json, itemsKey: 'steps')
           .map(LessonStep.fromJson)
           .toList(growable: false),
+      visualSteps: JsonMap.extractList(json, itemsKey: 'visualSteps'),
+      tips: JsonMap.extractList(json, itemsKey: 'tips'),
+      farzIds: JsonMap.strings(json['farzIds']),
     );
   }
 
@@ -103,6 +112,9 @@ class WuduLesson {
         'sourceName': sourceName,
         'verificationRequired': verificationRequired,
         'steps': steps.map((e) => e.toJson()).toList(),
+        'visualSteps': visualSteps,
+        'tips': tips,
+        'farzIds': farzIds,
       };
 }
 
@@ -112,12 +124,22 @@ class PrayerLesson {
     required this.title,
     required this.sourceName,
     required this.steps,
+    this.visualSteps = const [],
+    this.tips = const [],
+    this.farzLabels = const [],
+    this.farzIds = const [],
+    this.duaList = const [],
   });
 
   final String id;
   final String title;
   final String sourceName;
   final List<LessonStep> steps;
+  final List<Map<String, dynamic>> visualSteps;
+  final List<Map<String, dynamic>> tips;
+  final List<String> farzLabels;
+  final List<String> farzIds;
+  final List<Map<String, dynamic>> duaList;
 
   factory PrayerLesson.fromJson(Map<String, dynamic> json) {
     return PrayerLesson(
@@ -127,6 +149,11 @@ class PrayerLesson {
       steps: JsonMap.extractList(json, itemsKey: 'steps')
           .map(LessonStep.fromJson)
           .toList(growable: false),
+      visualSteps: JsonMap.extractList(json, itemsKey: 'visualSteps'),
+      tips: JsonMap.extractList(json, itemsKey: 'tips'),
+      farzLabels: JsonMap.strings(json['farzLabels']),
+      farzIds: JsonMap.strings(json['farzIds']),
+      duaList: JsonMap.extractList(json, itemsKey: 'duaList'),
     );
   }
 
@@ -135,6 +162,11 @@ class PrayerLesson {
         'title': title,
         'sourceName': sourceName,
         'steps': steps.map((e) => e.toJson()).toList(),
+        'visualSteps': visualSteps,
+        'tips': tips,
+        'farzLabels': farzLabels,
+        'farzIds': farzIds,
+        'duaList': duaList,
       };
 }
 

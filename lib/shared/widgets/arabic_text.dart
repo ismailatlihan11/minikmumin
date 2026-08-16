@@ -12,7 +12,7 @@ class ArabicText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (text.trim().isEmpty) return const SizedBox.shrink();
-    return Text(
+    return SelectableText(
       text,
       textAlign: TextAlign.right,
       textDirection: TextDirection.rtl,

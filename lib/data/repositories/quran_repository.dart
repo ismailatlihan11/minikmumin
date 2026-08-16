@@ -43,7 +43,8 @@ class QuranRepository {
   Future<QuranVerse?> getDailyAyah({DateTime? now}) async {
     final all = await getAllAyahs();
     if (all.isEmpty) return null;
-    return pickDaily(all, now: now);
+    final short = all.where((verse) => verse.surahId >= 78).toList();
+    return pickDaily(short.isEmpty ? all : short, now: now);
   }
 
   Future<AyetulKursi> getAyetulKursi() async {

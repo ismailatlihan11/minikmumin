@@ -1,6 +1,7 @@
 import '../datasources/json_content_datasource.dart';
 import 'app_config_repository.dart';
 import 'asma_repository.dart';
+import 'dhikr_repository.dart';
 import 'dua_repository.dart';
 import 'hadith_repository.dart';
 import 'learn_repositories.dart';
@@ -17,12 +18,14 @@ class ContentRepositories {
     duas = DuaRepository(datasource: source);
     asma = AsmaRepository(datasource: source);
     prophets = ProphetRepository(datasource: source);
+    stories = StoryRepository(datasource: source);
     morality = MoralityRepository(datasource: source);
     ilmihal = IlmihalRepository(datasource: source);
     quiz = QuizRepository(datasource: source);
     wudu = WuduRepository(datasource: source);
     prayer = PrayerRepository(datasource: source);
     achievements = AchievementRepository(datasource: source);
+    dhikr = DhikrRepository(datasource: source);
   }
 
   final JsonContentDatasource datasource;
@@ -32,10 +35,12 @@ class ContentRepositories {
   late final DuaRepository duas;
   late final AsmaRepository asma;
   late final ProphetRepository prophets;
+  late final StoryRepository stories;
   late final MoralityRepository morality;
   late final IlmihalRepository ilmihal;
   late final QuizRepository quiz;
   late final WuduRepository wudu;
   late final PrayerRepository prayer;
   late final AchievementRepository achievements;
+  late final DhikrRepository dhikr;
 }

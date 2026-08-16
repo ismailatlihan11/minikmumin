@@ -29,6 +29,8 @@ flutter:
     - assets/images/backgrounds/
     - assets/images/duas/
     - assets/images/home/
+    - assets/images/ilmihal/
+    - assets/images/learn/
     - assets/images/logo/
     - assets/images/morality/
     - assets/images/onboarding/
@@ -36,10 +38,16 @@ flutter:
     - assets/images/prophets/
     - assets/images/quiz/
     - assets/images/quran/
+    - assets/images/qissalar/
     - assets/images/wudu/
+    - assets/audio/asma/
+    - assets/audio/dhikr/
     - assets/audio/duas/
     - assets/audio/effects/
+    - assets/audio/morality/
     - assets/audio/prayer/
+    - assets/audio/prophets/
+    - assets/audio/qissalar/
     - assets/audio/quran/
 
   fonts:

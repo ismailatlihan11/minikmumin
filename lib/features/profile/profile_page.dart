@@ -106,6 +106,18 @@ class MinikProfilePage extends StatelessWidget {
     switch (id) {
       case 'wudu':
         return 'Abdest';
+      case 'dua':
+        return 'Dualar';
+      case 'prayer_dua':
+        return 'Namaz duaları';
+      case 'story':
+        return 'Kıssalar';
+      case 'quran':
+        return "Kur'an";
+      case 'morality':
+        return 'Güzel ahlak';
+      case 'quiz':
+        return 'Mini test';
       default:
         return id;
     }

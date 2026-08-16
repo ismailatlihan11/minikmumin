@@ -46,15 +46,17 @@ class DetailScaffold extends StatelessWidget {
     super.key,
     required this.title,
     required this.children,
+    this.actions,
   });
 
   final String title;
   final List<Widget> children;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text(title), actions: actions),
       body: ListView(
         padding: AppSpacing.page,
         children: [

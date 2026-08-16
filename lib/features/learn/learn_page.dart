@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/constants/learn_categories.dart';
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../app/theme/app_theme.dart';
 import '../../shared/widgets/minik_ui.dart';
@@ -20,17 +22,97 @@ class LearnPage extends StatelessWidget {
               subtitle: 'Bir konu seç, adım adım ilerleyelim.',
               image: 'assets/images/home/learn.png',
             ),
-            CatalogGrid(
-              children: [
-                for (final category in LearnCategories.all)
-                  CatalogTile(
-                    image: category.image,
-                    semanticLabel: category.title,
-                    onTap: () => Navigator.pushNamed(context, category.route),
-                  ),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                const columns = 4;
+                const spacing = 10.0;
+                final tileWidth =
+                    ((constraints.maxWidth - spacing * (columns - 1)) / columns) *
+                        0.72;
+                return Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: spacing,
+                  runSpacing: 14,
+                  children: [
+                    for (final category in LearnCategories.all)
+                      SizedBox(
+                        width: tileWidth,
+                        child: _LearnTopicTile(category: category),
+                      ),
+                  ],
+                );
+              },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LearnTopicTile extends StatelessWidget {
+  const _LearnTopicTile({required this.category});
+
+  final LearnCategory category;
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 0.82,
+      child: Material(
+        color: Colors.white,
+        elevation: 1.5,
+        shadowColor: const Color(0x22000000),
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        child: InkWell(
+          onTap: () => Navigator.pushNamed(context, category.route),
+          borderRadius: BorderRadius.circular(AppRadius.md),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      category.image,
+                      fit: BoxFit.cover,
+                      semanticLabel: category.title,
+                      errorBuilder: (_, __, ___) => ColoredBox(
+                        color: MinikColors.mint,
+                        child: Center(
+                          child: Text(
+                            category.title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontFamily: 'NotoSans',
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              color: MinikColors.darkGreen,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  category.title,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                    height: 1.1,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

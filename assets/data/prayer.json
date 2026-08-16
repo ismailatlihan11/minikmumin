@@ -7,13 +7,13 @@
       "id": "intention",
       "order": 1,
       "title": "Niyet",
-      "description": "Kılınacak namaza niyet etme."
+      "description": "Niyet ederek namaza başlarız."
     },
     {
       "id": "takbir",
       "order": 2,
       "title": "İftitah Tekbiri",
-      "description": "Namaza tekbir ile başlama."
+      "description": "Tekbir ile namaza başlarız. Allahu ekber deriz."
     },
     {
       "id": "qiyam",
@@ -25,35 +25,219 @@
       "id": "ruku",
       "order": 4,
       "title": "Rükû",
-      "description": "Rükû hareketini ve tesbihini öğren.",
+      "description": "Rükûya vardıktan sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.",
       "duaId": "ruku"
     },
     {
       "id": "ruku_rise",
       "order": 5,
       "title": "Rükûdan Doğrulma",
-      "description": "Rükûdan doğrulmayı ve hamdi öğren.",
+      "description": "Rükûdan doğruluruz ve hamd ederiz.",
       "duaId": "qiyam_after_ruku"
     },
     {
       "id": "sujud",
       "order": 6,
       "title": "Secde",
-      "description": "Secdeyi ve tesbihini öğren.",
+      "description": "Secdeye gidince 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.",
       "duaId": "sujud"
     },
     {
       "id": "sitting",
       "order": 7,
       "title": "Oturma",
-      "description": "Tahiyyat ve diğer duaların okunduğu oturuşu öğren.",
+      "description": "Oturuşta teşehhüdü okuruz.",
       "duaId": "tahiyyat"
     },
     {
       "id": "salam",
       "order": 8,
       "title": "Selam",
-      "description": "Namazın sonunda selam vermeyi öğren."
+      "description": "Namazın sonunda sağa ve sola selam veririz."
+    }
+  ],
+  "visualSteps": [
+    {
+      "id": "niyet",
+      "number": 1,
+      "title": "Niyet",
+      "prompt": "Niyet ederek namaza başlarız.",
+      "image": "assets/images/prayer/step01_niyet.png",
+      "kind": "adab",
+      "jsonStepId": "intention"
+    },
+    {
+      "id": "tekbir",
+      "number": 2,
+      "title": "Tekbir",
+      "prompt": "Tekbir ile namaza başlarız. Allahu ekber deriz.",
+      "image": "assets/images/prayer/step02_tekbir.png",
+      "kind": "farz",
+      "jsonStepId": "takbir",
+      "caption": "Allahu ekber"
+    },
+    {
+      "id": "subhaneke",
+      "number": 3,
+      "title": "Sübhâneke",
+      "prompt": "Sübhâneke duasını okuruz.",
+      "image": "assets/images/prayer/step03_subhaneke.png",
+      "kind": "sunnah",
+      "jsonStepId": "qiyam",
+      "duaId": "subhaneke"
+    },
+    {
+      "id": "euzu",
+      "number": 4,
+      "title": "Eûzü - Besmele",
+      "prompt": "Eûzü besmele çeker, Fâtiha’yı okuruz.",
+      "image": "assets/images/prayer/step04_euzu.png",
+      "kind": "sunnah",
+      "jsonStepId": "qiyam",
+      "duaId": "besmele"
+    },
+    {
+      "id": "sure",
+      "number": 5,
+      "title": "Bir Sure",
+      "prompt": "Fâtiha’dan sonra bir sure okuruz.",
+      "image": "assets/images/prayer/step05_sure.png",
+      "kind": "sunnah",
+      "jsonStepId": "qiyam",
+      "duaId": "surah_112"
+    },
+    {
+      "id": "ruku",
+      "number": 6,
+      "title": "Rükû",
+      "prompt": "Rükûya vardıktan sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.",
+      "image": "assets/images/prayer/step06_ruku.png",
+      "kind": "farz",
+      "jsonStepId": "ruku",
+      "duaId": "ruku",
+      "caption": "Sübhâne Rabbiye’l-Azîm"
+    },
+    {
+      "id": "ruku_rise",
+      "number": 7,
+      "title": "Rükûdan Kalkış",
+      "prompt": "Rükûdan doğruluruz ve hamd ederiz.",
+      "image": "assets/images/prayer/step07_ruku_rise.png",
+      "kind": "farz",
+      "jsonStepId": "ruku_rise",
+      "duaId": "qiyam_after_ruku"
+    },
+    {
+      "id": "kiyam",
+      "number": 8,
+      "title": "Kıyam",
+      "prompt": "Rükûdan sonra ayakta dururuz.",
+      "image": "assets/images/prayer/step08_kiyam.png",
+      "kind": "farz",
+      "jsonStepId": "qiyam"
+    },
+    {
+      "id": "secde1",
+      "number": 9,
+      "title": "Secde (1)",
+      "prompt": "İlk secdeye gidince 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.",
+      "image": "assets/images/prayer/step09_secde1.png",
+      "kind": "farz",
+      "jsonStepId": "sujud",
+      "duaId": "sujud",
+      "caption": "Sübhâne Rabbiye’l-A‘lâ"
+    },
+    {
+      "id": "secde2",
+      "number": 10,
+      "title": "Secde (2)",
+      "prompt": "İkinci secdeye gidince 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.",
+      "image": "assets/images/prayer/step10_secde2.png",
+      "kind": "farz",
+      "jsonStepId": "sujud",
+      "duaId": "sujud",
+      "caption": "Sübhâne Rabbiye’l-A‘lâ"
+    },
+    {
+      "id": "oturus",
+      "number": 11,
+      "title": "Oturuş",
+      "prompt": "Oturuşta teşehhüdü okuruz.",
+      "image": "assets/images/prayer/step11_oturus.png",
+      "kind": "farz",
+      "jsonStepId": "sitting",
+      "duaId": "tahiyyat"
+    },
+    {
+      "id": "salli",
+      "number": 12,
+      "title": "Salli - Barik",
+      "prompt": "Salli ve Barik dualarını okuruz.",
+      "image": "assets/images/prayer/step12_salli.png",
+      "kind": "sunnah",
+      "jsonStepId": "sitting",
+      "duaId": "allahumme_salli"
+    },
+    {
+      "id": "rabbena",
+      "number": 13,
+      "title": "Rabbenâ Duaları",
+      "prompt": "Rabbenâ dualarını okuruz.",
+      "image": "assets/images/prayer/step13_rabbena.png",
+      "kind": "sunnah",
+      "jsonStepId": "sitting",
+      "duaId": "rabbena_atina"
+    },
+    {
+      "id": "selam_sag",
+      "number": 14,
+      "title": "Selam (Sağa)",
+      "prompt": "Sağa selam veririz.",
+      "image": "assets/images/prayer/step14_selam_sag.png",
+      "kind": "farz",
+      "jsonStepId": "salam"
+    },
+    {
+      "id": "selam_sol",
+      "number": 15,
+      "title": "Selam (Sola)",
+      "prompt": "Sola selam veririz.",
+      "image": "assets/images/prayer/step15_selam_sol.png",
+      "kind": "farz",
+      "jsonStepId": "salam"
+    },
+    {
+      "id": "tamam",
+      "number": 16,
+      "title": "Namaz Tamamlandı",
+      "prompt": "Maşallah! Namazı tamamladık.",
+      "image": "assets/images/prayer/step16_tamam.png",
+      "kind": "done"
+    }
+  ],
+  "farzLabels": ["Kıyam", "Kıraat", "Rükû", "Secde", "Oturuş"],
+  "farzIds": ["kiyam", "sure", "ruku", "secde1", "oturus"],
+  "duaList": [
+    {"id": "surah_1", "title": "Fâtiha"},
+    {"id": "surah_112", "title": "İhlâs"},
+    {"id": "subhaneke", "title": "Sübhâneke"}
+  ],
+  "tips": [
+    {
+      "title": "Vaktinde kıl",
+      "image": "assets/images/prayer/prayer_icon_clock.png"
+    },
+    {
+      "title": "Temiz giyin",
+      "image": "assets/images/prayer/prayer_icon_clean.png"
+    },
+    {
+      "title": "Kıbleye dön",
+      "image": "assets/images/prayer/prayer_icon_qibla.png"
+    },
+    {
+      "title": "Kalbinle dur",
+      "image": "assets/images/prayer/prayer_icon_heart.png"
     }
   ]
 }

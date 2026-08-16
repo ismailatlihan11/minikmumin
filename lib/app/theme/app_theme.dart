@@ -91,7 +91,7 @@ abstract final class MinikTheme {
         ),
       ),
       navigationBarTheme: NavigationBarThemeData(
-        height: 72,
+        height: 58,
         backgroundColor: MinikColors.surface,
         indicatorColor: MinikColors.mint,
         surfaceTintColor: Colors.transparent,
@@ -100,7 +100,7 @@ abstract final class MinikTheme {
           final selected = states.contains(WidgetState.selected);
           return TextStyle(
             fontFamily: _font,
-            fontSize: 11,
+            fontSize: 10,
             fontWeight: selected ? FontWeight.w700 : FontWeight.w600,
             color: selected ? MinikColors.green : MinikColors.textMuted,
           );
@@ -108,7 +108,7 @@ abstract final class MinikTheme {
         iconTheme: WidgetStateProperty.resolveWith((states) {
           final selected = states.contains(WidgetState.selected);
           return IconThemeData(
-            size: 26,
+            size: 22,
             color: selected ? MinikColors.green : MinikColors.textMuted,
           );
         }),

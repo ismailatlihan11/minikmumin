@@ -1,37 +1,440 @@
 {
-  "version": "2.0",
-  "items": [
+  "version": "1.0.0",
+  "title": "Minik Kalpler - İslami Bilgiler Quiz",
+  "description": "Çocuklara yönelik Kur'an, namaz, abdest, dualar, esmaül hüsna, peygamberler, ilmihal, güzel ahlak ve temel dini bilgiler soru bankası.",
+  "language": "tr",
+  "offline": true,
+  "questionCount": 123,
+  "categories": [
+    "Kur'an",
+    "Namaz",
+    "Abdest",
+    "Namaz Duaları",
+    "Dualar",
+    "Hadisler",
+    "Esmaül Hüsna",
+    "Peygamberler",
+    "İlmihal",
+    "Güzel Ahlak",
+    "Genel Bilgi"
+  ],
+  "difficultyLevels": [
+    "easy",
+    "medium",
+    "hard"
+  ],
+  "types": [
+    "multiple_choice",
+    "true_false",
+    "ordering"
+  ],
+  "quizAlgorithm": {
+    "mode": "adaptive_local",
+    "randomizeQuestions": true,
+    "randomizeOptions": true,
+    "avoidImmediateRepeat": true,
+    "questionsPerSession": 10,
+    "difficultyAdjustment": {
+      "start": "easy",
+      "increaseAfterConsecutiveCorrect": 3,
+      "decreaseAfterConsecutiveWrong": 2
+    },
+    "xp": {
+      "easy": 5,
+      "medium": 8,
+      "hard": 12,
+      "dailyBonus": 10
+    },
+    "completion": "sessionComplete",
+    "storage": "local"
+  },
+  "feedback": {
+    "correct": [
+      "Harika! 🌿",
+      "Çok güzel!",
+      "Aferin!"
+    ],
+    "wrong": [
+      "Tekrar deneyelim.",
+      "Birlikte düşünelim.",
+      "Bir sonraki soruda tekrar deneyelim."
+    ],
+    "neverUse": [
+      "Başarısız oldun",
+      "Kaybettin",
+      "Yeterince iyi değilsin"
+    ]
+  },
+  "questions": [
     {
-      "id": "quiz_fatiha",
-      "category": "quran",
-      "question": "Fâtiha sûresinde Allah'tan ne istenir?",
+      "id": "quran_001",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kur'an-ı Kerim kaç sûreden oluşur?",
       "options": [
         {
           "id": "a",
-          "text": "Doğru yol",
+          "text": "114",
           "correct": true
         },
         {
           "id": "b",
-          "text": "Dünya malı",
+          "text": "99",
           "correct": false
         },
         {
           "id": "c",
-          "text": "Şöhret",
+          "text": "110",
           "correct": false
         }
       ],
+      "correctOption": "a",
+      "explanation": "Kur'an-ı Kerim 114 sûreden oluşur.",
+      "source": "Kur'an verisi",
       "xp": 5
     },
     {
-      "id": "quiz_kursi",
-      "category": "quran",
-      "question": "Âyetü'l-Kürsî hangi sûrededir?",
+      "id": "prayer_001",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Namazın beş vakit isimlerinden biri hangisidir?",
       "options": [
         {
           "id": "a",
-          "text": "Bakara",
+          "text": "Sabah",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Kuşluk zorunludur",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Geceyarısı",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Beş vakit namazdan biri sabah namazıdır.",
+      "source": "Diyanet Namaz/İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "wudu_001",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdestin farzlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yüzü yıkamak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Havlu kullanmak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sabun sürmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Yüzü yıkamak abdestin farzlarından biridir.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "dua_001",
+      "category": "Dualar",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "'Rabbi zidnî ilmâ' ne anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rabbim ilmimi artır",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rabbim beni bağışla",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Rabbim bana mal ver",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tâhâ 20:114'te ilmin artırılması istenir.",
+      "source": "Tâhâ 20:114",
+      "xp": 5
+    },
+    {
+      "id": "asma_001",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Er-Rahmân ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Çok merhamet eden",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Er-Rahmân isminin yaygın Türkçe anlamı: Çok merhamet eden.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_001",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Âdem kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İlk insan ve peygamber",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Âdem için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri i̇lk insan ve peygamberdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_001",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Doğruluk konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İnsanların güvenini kazanmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Doğruluk, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_001",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İslam'ın şartlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Namaz kılmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her gün aynı yemeği yemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hiç konuşmamak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İslam'ın beş şartından biri namazdır.",
+      "source": "ilmihal.json",
+      "xp": 5
+    },
+    {
+      "id": "hadith_001",
+      "category": "Hadisler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "'Yapılan işler niyetlere göre değerlenir' hadisi hangi konuyu vurgular?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Niyet",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yolculuk",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Yemek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hadis, amellerin niyetlerle ilişkisini vurgular.",
+      "source": "Buhârî, Bed'ü'l-vahy 1; Müslim, İmâret 155",
+      "xp": 5
+    },
+    {
+      "id": "tf_001",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Kur'an-ı Kerim 114 sûreden oluşur.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kullanılan Kur'an JSON'unda 114 farklı sûre id'si bulunuyor.",
+      "source": "Kullanıcının Kur'an JSON'u",
+      "xp": 5
+    },
+    {
+      "id": "order_001",
+      "category": "Abdest",
+      "difficulty": "medium",
+      "type": "ordering",
+      "question": "Abdest öğrenme akışında hangisi doğru sıradadır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eller → Ağız → Burun → Yüz",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yüz → Ayak → Eller → Baş",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Baş → Burun → Ayak → Ağız",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Uygulama akışında önce eller, ardından ağız ve burun, sonra yüz öğretilir.",
+      "source": "wudu.json",
+      "xp": 8
+    },
+    {
+      "id": "surah_extra_001",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Kevser sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "2",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kevser sûresi 108'te 3 ayettir.",
+      "source": "Kevser 108",
+      "xp": 8
+    },
+    {
+      "id": "general_001",
+      "category": "Genel Bilgi",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İslam'ın beş şartından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Oruç tutmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her gün oyun oynamak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece uyumak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Oruç, İslam'ın beş şartındandır.",
+      "source": "Diyanet Temel Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "quran_002",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kur'an'ın ilk sûresi hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Fâtiha",
           "correct": true
         },
         {
@@ -41,38 +444,351 @@
         },
         {
           "id": "c",
-          "text": "Fîl",
+          "text": "İhlâs",
           "correct": false
         }
       ],
+      "correctOption": "a",
+      "explanation": "Kur'an'ın sûre listesinde ilk sûre Fâtiha'dır.",
+      "source": "Kullanıcının Kur'an JSON'u",
       "xp": 5
     },
     {
-      "id": "quiz_prayer",
-      "category": "prayer",
-      "question": "Rükûda hangi tesbih okunur?",
+      "id": "prayer_002",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Namazın başında okunan dualardan biri hangisidir?",
       "options": [
         {
           "id": "a",
-          "text": "Sübhâne Rabbiye'l-azîm",
+          "text": "Sübhaneke",
           "correct": true
         },
         {
           "id": "b",
-          "text": "Sübhâne Rabbiye'l-a'lâ",
+          "text": "Kunut 2",
           "correct": false
         },
         {
           "id": "c",
-          "text": "Rabbenâ âtinâ",
+          "text": "Yemek duası",
           "correct": false
         }
       ],
+      "correctOption": "a",
+      "explanation": "Sübhaneke namazın başında, iftitah tekbirinden sonra okunur.",
+      "source": "Diyanet Namaz İlmihali",
       "xp": 5
     },
     {
-      "id": "quiz_last10",
-      "category": "quran",
+      "id": "wudu_002",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdestin farzlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Kolları dirseklerle birlikte yıkamak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Saç taramak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Diş fırçalamak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kolları dirseklerle birlikte yıkamak farzlardan biridir.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "dua_002",
+      "category": "Dualar",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "'Rabbenâ âtinâ fi'd-dünyâ haseneten...' duasında ne istenir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dünyada ve ahirette iyilik",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sadece dünya malı",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Uzun uyku",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Bakara 2:201'de dünya ve ahiret iyiliği ile ateş azabından korunma istenir.",
+      "source": "Bakara 2:201",
+      "xp": 5
+    },
+    {
+      "id": "asma_002",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Er-Rahîm ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Çok esirgeyen, çok merhamet eden",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Er-Rahîm isminin yaygın Türkçe anlamı: Çok esirgeyen, çok merhamet eden.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_002",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Nûh kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabır ve kararlılık",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Nûh için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri sabır ve kararlılıkdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_002",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Emanet konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bize verilen şeyi korumak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Emanet, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_002",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İmanın şartlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Allah'a iman",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sadece zenginliğe inanmak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hiçbir şeye inanmamak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İman esaslarının ilki Allah'a imandır.",
+      "source": "ilmihal.json",
+      "xp": 5
+    },
+    {
+      "id": "hadith_002",
+      "category": "Hadisler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İnsanların görünen bedenlerinden çok hangi yönlerine dikkat edilmesi gerektiğini anlatan hadiste ne vurgulanır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Kalpler ve ameller",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Kıyafetler",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Zenginlik",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hadis, görünüşten ziyade kalpler ve amellere dikkat çekmektedir.",
+      "source": "Müslim, Birr 33",
+      "xp": 5
+    },
+    {
+      "id": "tf_002",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Nâs sûresi Kur'an'ın 113. sûresidir.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": true
+        }
+      ],
+      "correctOption": "b",
+      "explanation": "Nâs sûresi 114. sûredir; Felak 113. sûredir.",
+      "source": "Nâs 114",
+      "xp": 5
+    },
+    {
+      "id": "order_002",
+      "category": "Namaz",
+      "difficulty": "medium",
+      "type": "ordering",
+      "question": "Namaz öğrenme akışında aşağıdakilerden hangisi doğru sıralamayı verir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Niyet → Tekbir → Kıyam → Rükû",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rükû → Niyet → Secde → Tekbir",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Secde → Kıyam → Niyet → Selam",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Namaz öğrenme modülündeki temel akış bu sırayla ilerler.",
+      "source": "prayer.json",
+      "xp": 8
+    },
+    {
+      "id": "surah_extra_002",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "İhlâs sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "3",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İhlâs sûresi 112'te 4 ayettir.",
+      "source": "İhlâs 112",
+      "xp": 8
+    },
+    {
+      "id": "general_002",
+      "category": "Genel Bilgi",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kur'an okumaya başlamadan önce hangi ifade yaygın olarak söylenir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eûzü billâhi mine'ş-şeytânirracîm",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Haydi bakalım",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İyi geceler",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kur'an tilavetine başlarken istiâze ifadesi söylenir.",
+      "source": "Diyanet Temel Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "quran_003",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
       "question": "Kur'an'ın son sûresi hangisidir?",
       "options": [
         {
@@ -91,7 +807,2673 @@
           "correct": false
         }
       ],
+      "correctOption": "a",
+      "explanation": "Sure numarası 114 olan Nâs sûresi Kur'an'ın son sûresidir.",
+      "source": "Kullanıcının Kur'an JSON'u",
       "xp": 5
+    },
+    {
+      "id": "prayer_003",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Rükûda hangi tesbih okunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sübhâne Rabbiye'l-azîm",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sübhâne Rabbiye'l-a'lâ",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Rabbenâ âtinâ",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Rükû tesbihi 'Sübhâne Rabbiye'l-azîm' şeklindedir.",
+      "source": "Diyanet Namaz İlmihali",
+      "xp": 5
+    },
+    {
+      "id": "wudu_003",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdestte baş için yapılan işlem hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mesh etmek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sabunlamak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Üç kez tamamen yıkamak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Başın mesh edilmesi abdestin farzları arasındadır.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "dua_003",
+      "category": "Dualar",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Yûnus Peygamber'in duası hangi ifadedir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Lâ ilâhe illâ ente sübhâneke innî küntü mine'z-zâlimîn",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rabbi zidnî ilmâ",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Elhamdülillâh",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Enbiyâ 21:87'de Yûnus'un duası yer alır.",
+      "source": "Enbiyâ 21:87",
+      "xp": 8
+    },
+    {
+      "id": "asma_003",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Melik ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mülkün sahibi",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Melik isminin yaygın Türkçe anlamı: Mülkün sahibi.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_003",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. İbrâhim kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tevhid ve teslimiyet",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. İbrâhim için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri tevhid ve teslimiyetdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_003",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Merhamet konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İnsanlara ve canlılara iyi davranmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Merhamet, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_003",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Beş vakit namazdan biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yatsı",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Geceyarısı",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kuşluk zorunludur",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Beş vakit namaz sabah, öğle, ikindi, akşam ve yatsıdır.",
+      "source": "ilmihal.json",
+      "xp": 5
+    },
+    {
+      "id": "hadith_003",
+      "category": "Hadisler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İyilik yapmak isteyip yapamayan kimse için hadiste ne anlatılır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İyilik niyetinin sevap olarak yazılması",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hiçbir şey yazılmaması",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Ceza verilmesi",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hadiste iyilik niyetinin değerine dikkat çekilir.",
+      "source": "Buhârî, Rikâk 31; Müslim, Îmân 207, 259",
+      "xp": 5
+    },
+    {
+      "id": "tf_003",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Başın mesh edilmesi abdestin farzlarındandır.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Abdestin temel farzları arasında başın mesh edilmesi bulunur.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "order_003",
+      "category": "Namaz Duaları",
+      "difficulty": "medium",
+      "type": "ordering",
+      "question": "Son oturuşla ilişkilendirilen sıra hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tahiyyat → Salli → Bârik",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bârik → Fâtiha → Sübhaneke",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kunut → Fîl → Tahiyyat",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tahiyyat, ardından Salli ve Bârik duaları son oturuş eğitiminde ele alınır.",
+      "source": "namazda_okunanlar_sirali.json",
+      "xp": 8
+    },
+    {
+      "id": "surah_extra_003",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Asr sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "2",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Asr sûresi 103'te 3 ayettir.",
+      "source": "Asr 103",
+      "xp": 8
+    },
+    {
+      "id": "general_003",
+      "category": "Genel Bilgi",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kâbe Müslümanlar için hangi bakımdan önemlidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Kıble olması",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bir okul olması",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bir pazar yeri olması",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kâbe Müslümanların kıblesidir.",
+      "source": "Diyanet İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "quran_004",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Fâtiha sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "10",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fâtiha sûresinde 7 ayet bulunur.",
+      "source": "Fâtiha 1:1-7",
+      "xp": 5
+    },
+    {
+      "id": "prayer_004",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Secdede hangi tesbih okunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sübhâne Rabbiye'l-a'lâ",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sübhâne Rabbiye'l-azîm",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Elhamdülillâh",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Secde tesbihi 'Sübhâne Rabbiye'l-a'lâ' şeklindedir.",
+      "source": "Diyanet Namaz İlmihali",
+      "xp": 5
+    },
+    {
+      "id": "wudu_004",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdestin farzlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ayakları topuklarla birlikte yıkamak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Ellerine krem sürmek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Saç kurutmak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Ayakların topuklarla birlikte yıkanması farzlardan biridir.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "dua_004",
+      "category": "Dualar",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Eyyûb Peygamberin Kur'an'da geçen duası hangi sûrededir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Enbiyâ 21:83",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bakara 2:255",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Nâs 114:6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Enbiyâ 21:83'te Eyyûb'un duası bulunur.",
+      "source": "Enbiyâ 21:83",
+      "xp": 8
+    },
+    {
+      "id": "asma_004",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Kuddûs ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Her türlü eksiklikten uzak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Kuddûs isminin yaygın Türkçe anlamı: Her türlü eksiklikten uzak.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_004",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. İsmâil kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabır ve teslimiyet",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. İsmâil için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri sabır ve teslimiyetdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_004",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Adalet konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Herkese hakkını vermeye çalışmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Adalet, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_004",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Ramazan ile ilgili hangisi doğrudur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Oruç ibadetiyle ilişkilidir",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hac ayıdır",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece alışveriş ayıdır",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Ramazan, oruç ibadetiyle ilişkilidir.",
+      "source": "Bakara 2:183-187",
+      "xp": 5
+    },
+    {
+      "id": "hadith_004",
+      "category": "Hadisler",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Mağarada kalan üç kişinin kurtuluşunda ne öne çıkar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Salih amellerle Allah'a dua etmeleri",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Şans oyunu oynamaları",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Yeni eşya bulmaları",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hadiste üç kişinin yaptıkları salih amelleri vesile ederek dua etmeleri anlatılır.",
+      "source": "Buhârî, Büyû' 98; Müslim, Zikir 100",
+      "xp": 8
+    },
+    {
+      "id": "tf_004",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Rükûda Sübhâne Rabbiye'l-a'lâ okunur.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": true
+        }
+      ],
+      "correctOption": "b",
+      "explanation": "Bu ifade secde tesbihidir; rükûda Sübhâne Rabbiye'l-azîm okunur.",
+      "source": "Diyanet Namaz İlmihali",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_004",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Nâs sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "8",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Nâs sûresi 114'te 6 ayettir.",
+      "source": "Nâs 114",
+      "xp": 8
+    },
+    {
+      "id": "general_004",
+      "category": "Genel Bilgi",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Ramazan ayında hangi ibadet öne çıkar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Oruç",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hac",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kurban",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Ramazan oruç ibadetiyle özellikle ilişkilidir.",
+      "source": "Bakara 2:183",
+      "xp": 5
+    },
+    {
+      "id": "quran_005",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İhlâs sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "3",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İhlâs sûresinde 4 ayet bulunur.",
+      "source": "İhlâs 112:1-4",
+      "xp": 5
+    },
+    {
+      "id": "prayer_005",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Et-Tahiyyâtü hangi durumda okunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Otururken",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rükûda",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Abdest alırken",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tahiyyat namazdaki oturuşlarda okunur.",
+      "source": "Diyanet Namaz İlmihali",
+      "xp": 5
+    },
+    {
+      "id": "wudu_005",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdestte parmak aralarına neden dikkat edilir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Suyun ulaşmasına dikkat etmek için",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Daha hızlı bitirmek için",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Renk vermek için",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Abdestte suyun gerekli yerlere ulaşmasına dikkat edilir.",
+      "source": "Diyanet Abdest Anlatımı",
+      "xp": 5
+    },
+    {
+      "id": "dua_005",
+      "category": "Dualar",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Anne-baba için Kur'an'daki dualardan biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rabbi'rhamhumâ kemâ rabbeyânî sagîrâ",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rabbi zidnî ilmâ",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Lâ ilâhe illallah",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İsrâ 17:24'te anne-babaya merhamet dileği bulunur.",
+      "source": "İsrâ 17:24",
+      "xp": 5
+    },
+    {
+      "id": "asma_005",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Es-Selâm ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Esenlik veren",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Es-Selâm isminin yaygın Türkçe anlamı: Esenlik veren.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_005",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Yûsuf kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabır, iffet ve bağışlama",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Yûsuf için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri sabır, iffet ve bağışlamadır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_005",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Sabır konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Zor durumda hemen pes etmemek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Sabır, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_005",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Zekâtın temel amacıyla ilgili hangisi doğrudur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Paylaşma ve ihtiyaç sahiplerine destek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sadece kendine harcama",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hiç kimseyle paylaşmama",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Zekâtın sosyal yönlerinden biri ihtiyaç sahiplerine destek olmaktır.",
+      "source": "Diyanet İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "tf_005",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Suyu gereksiz yere tüketmek güzel ahlaktır.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": true
+        }
+      ],
+      "correctOption": "b",
+      "explanation": "İsraftan kaçınmak güzel bir davranıştır.",
+      "source": "A'râf 7:31",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_005",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Felak sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Felak sûresi 113'te 5 ayettir.",
+      "source": "Felak 113",
+      "xp": 8
+    },
+    {
+      "id": "general_005",
+      "category": "Genel Bilgi",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Zekâtın sosyal yönlerinden biri nedir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İhtiyaç sahiplerine destek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sadece kişisel harcama",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hiç paylaşmama",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Zekât paylaşma ve sosyal dayanışma yönü taşır.",
+      "source": "Diyanet İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "quran_006",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Felak sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "6",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Felak sûresi 5 ayettir.",
+      "source": "Felak 113:1-5",
+      "xp": 5
+    },
+    {
+      "id": "prayer_006",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Allahümme Salli ve Allahümme Bârik ne ile ilgilidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Salavat duaları",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Abdest duaları",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Yemek duası",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Salli ve Bârik son oturuşta okunan salavatlardır.",
+      "source": "Diyanet Namaz İlmihali",
+      "xp": 5
+    },
+    {
+      "id": "wudu_006",
+      "category": "Abdest",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Niyet konusunda mezhepler arasında hangi durum bulunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hüküm farklılığı vardır",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hiç fark yoktur",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Niyet yasaktır",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hanefî mezhebinde niyet sünnet, diğer üç mezhepte farz kabul edilir.",
+      "source": "Diyanet Din İşleri Yüksek Kurulu",
+      "xp": 8
+    },
+    {
+      "id": "asma_006",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Mü'min ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Güven veren",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Mü'min isminin yaygın Türkçe anlamı: Güven veren.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_006",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Eyyûb kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabır",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Eyyûb için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri sabırdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_006",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Şükür konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sahip olduğumuz nimetlerin değerini bilmek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Şükür, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_006",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Cami içinde nasıl davranmak uygundur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Saygılı ve sakin olmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bağırmak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları rahatsız etmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Cami adabında saygılı ve sakin davranmak önemlidir.",
+      "source": "Diyanet Temel Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "tf_006",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Hz. Yûnus'un Kur'an'da geçen kıssasında dua önemli bir yer tutar.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Enbiyâ 21:87-88'de Yûnus'un duası anlatılır.",
+      "source": "Enbiyâ 21:87-88",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_006",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Kâfirûn sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "8",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kâfirûn sûresi 109'te 6 ayettir.",
+      "source": "Kâfirûn 109",
+      "xp": 8
+    },
+    {
+      "id": "quran_007",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Nâs sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Nâs sûresi 6 ayettir.",
+      "source": "Nâs 114:1-6",
+      "xp": 5
+    },
+    {
+      "id": "prayer_007",
+      "category": "Namaz",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Namazın temel hazırlıklarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Vakti gözetmek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Oyun oynamak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Gürültü yapmak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Namazın vakti, hazırlık ve geçerlilik şartları arasında önemli bir unsurdur.",
+      "source": "Diyanet İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "wudu_007",
+      "category": "Abdest",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Abdest alırken suyu nasıl kullanmak gerekir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gerektiği kadar, israf etmeden",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Ne kadar çok o kadar iyi",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sürekli akıtarak",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İsraftan kaçınmak abdest adabındandır.",
+      "source": "Diyanet İlmihal",
+      "xp": 5
+    },
+    {
+      "id": "asma_007",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Azîz ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mutlak güçlü",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Azîz isminin yaygın Türkçe anlamı: Mutlak güçlü.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_007",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Mûsâ kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cesaret ve Allah'a güven",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Mûsâ için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri cesaret ve allah'a güvendır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_007",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Affetmek konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Samimi özür karşısında affedici olmaya çalışmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Affetmek, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_007",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Helal neyi ifade eder?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dinen yapılmasına izin verilen şeyleri",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi yasaklamayı",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece gece yapılan işleri",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Helal, dinen izin verilen şeyler için kullanılan bir kavramdır.",
+      "source": "Diyanet Temel Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "tf_007",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "true_false",
+      "question": "Cami içinde insanları rahatsız edecek şekilde bağırmak güzel bir adaptır.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru",
+          "correct": false
+        },
+        {
+          "id": "b",
+          "text": "Yanlış",
+          "correct": true
+        }
+      ],
+      "correctOption": "b",
+      "explanation": "Cami adabında saygı ve sakinlik önemlidir.",
+      "source": "Diyanet Temel Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_007",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Nasr sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "2",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Nasr sûresi 110'te 3 ayettir.",
+      "source": "Nasr 110",
+      "xp": 8
+    },
+    {
+      "id": "quran_008",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kevser sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kevser sûresi 3 ayettir.",
+      "source": "Kevser 108:1-3",
+      "xp": 5
+    },
+    {
+      "id": "prayer_008",
+      "category": "Namaz",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Kıble neyi ifade eder?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Namazda yönelinen yönü",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Abdestte kullanılan suyu",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Oruç vakitlerini",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kıble, namazda yönelinen istikamettir.",
+      "source": "Diyanet İlmihal",
+      "xp": 8
+    },
+    {
+      "id": "asma_008",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Er-Rezzâk ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rızık veren",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Er-Rezzâk isminin yaygın Türkçe anlamı: Rızık veren.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_008",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Dâvûd kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Adalet ve şükür",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Dâvûd için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri adalet ve şükürdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_008",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İsraf Etmemek konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Suyu ve yiyeceği gereksiz tüketmemek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İsraf Etmemek, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_008",
+      "category": "İlmihal",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Tövbe neyi ifade eder?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Allah'tan bağışlanma dileyip yanlıştan dönmeye çalışmayı",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Hata yapmaktan korkmayı",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bir daha hiç konuşmamayı",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tövbe, hatadan dönme ve bağışlanma dileme anlamındadır.",
+      "source": "Diyanet Dini Bilgiler",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_008",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Tebbet sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tebbet sûresi 111'te 5 ayettir.",
+      "source": "Tebbet 111",
+      "xp": 8
+    },
+    {
+      "id": "quran_009",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Asr sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "5",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Asr sûresi 3 ayettir.",
+      "source": "Asr 103:1-3",
+      "xp": 5
+    },
+    {
+      "id": "asma_009",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Alîm ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Her şeyi bilen",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Alîm isminin yaygın Türkçe anlamı: Her şeyi bilen.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_009",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Süleyman kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Şükür ve hikmet",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Süleyman için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri şükür ve hikmetdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_009",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Anne ve Babaya İyilik konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Güzel söz söylemek ve yardımcı olmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Anne ve Babaya İyilik, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_009",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Mâûn sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "6",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "9",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Mâûn sûresi 107'te 7 ayettir.",
+      "source": "Mâûn 107",
+      "xp": 8
+    },
+    {
+      "id": "quran_010",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kâfirûn sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kâfirûn sûresi 6 ayettir.",
+      "source": "Kâfirûn 109:1-6",
+      "xp": 5
+    },
+    {
+      "id": "asma_010",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Gafûr ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Çok bağışlayan",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Gafûr isminin yaygın Türkçe anlamı: Çok bağışlayan.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_010",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Yûnus kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dua ve ümit",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Yûnus için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri dua ve ümitdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_010",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Yardımlaşma konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İhtiyacı olanlara destek olmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Yardımlaşma, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_010",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Fîl sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "7",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fîl sûresi 105'te 5 ayettir.",
+      "source": "Fîl 105",
+      "xp": 8
+    },
+    {
+      "id": "quran_011",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Nasr sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Nasr sûresi 3 ayettir.",
+      "source": "Nasr 110:1-3",
+      "xp": 5
+    },
+    {
+      "id": "asma_011",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "El-Kerîm ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Çok ikram eden",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "El-Kerîm isminin yaygın Türkçe anlamı: Çok ikram eden.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_011",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Zekeriyyâ kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dua ve umut",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Zekeriyyâ için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri dua ve umutdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_011",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hayvanlara Merhamet konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Hayvanlara zarar vermemek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hayvanlara Merhamet, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "surah_extra_011",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Kureyş sûresinin ayet sayısı kaçtır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "3",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kureyş sûresi 106'te 4 ayettir.",
+      "source": "Kureyş 106",
+      "xp": 8
+    },
+    {
+      "id": "quran_012",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Tebbet sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tebbet sûresi 5 ayettir.",
+      "source": "Tebbet 111:1-5",
+      "xp": 5
+    },
+    {
+      "id": "asma_012",
+      "category": "Esmaül Hüsna",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Es-Semî' ismi hangi anlama gelir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Her şeyi işiten",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her şeyi uyutan",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece geceleri bilen",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Es-Semî' isminin yaygın Türkçe anlamı: Her şeyi işiten.",
+      "source": "Esmaül Hüsna içerik dosyası",
+      "xp": 5
+    },
+    {
+      "id": "prophet_012",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Yahyâ kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Takva ve temizlik",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Yahyâ için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri takva ve temizlikdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "morality_012",
+      "category": "Güzel Ahlak",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Komşuluk konusunda güzel davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Komşuları rahatsız etmemek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını küçümsemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları üzmek",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Komşuluk, güzel ahlak kapsamında öğretilen değerlerden biridir.",
+      "source": "guzel_ahlak.json",
+      "xp": 5
+    },
+    {
+      "id": "quran_013",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Mâûn sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "6",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "8",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Mâûn sûresi 7 ayettir.",
+      "source": "Mâûn 107:1-7",
+      "xp": 5
+    },
+    {
+      "id": "prophet_013",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Îsâ kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Merhamet ve tebliğ",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Îsâ için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri merhamet ve tebliğdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "quran_014",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Fîl sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "4",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "6",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fîl sûresi 5 ayettir.",
+      "source": "Fîl 105:1-5",
+      "xp": 5
+    },
+    {
+      "id": "prophet_014",
+      "category": "Peygamberler",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Hz. Muhammed kıssasından öne çıkan derslerden biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Güzel ahlak ve merhamet",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İsraf",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Kibir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Hz. Muhammed için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri güzel ahlak ve merhametdır.",
+      "source": "peygamberler.json",
+      "xp": 5
+    },
+    {
+      "id": "quran_015",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Kureyş sûresi kaç ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "5",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "3",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Kureyş sûresi 4 ayettir.",
+      "source": "Kureyş 106:1-4",
+      "xp": 5
+    },
+    {
+      "id": "quran_016",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Fâtiha sûresinde Allah'tan hangi yol istenir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dosdoğru yol",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Dünya zenginliği",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Uzun ömür",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fâtiha'nın 6. ayetinde dosdoğru yol istenir.",
+      "source": "Fâtiha 1:6",
+      "xp": 5
+    },
+    {
+      "id": "quran_017",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Fâtiha'nın başlangıcındaki ifade hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bismillâhirrahmânirrahîm",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Allahu ekber",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Elhamdülillâh",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fâtiha besmele ile başlar.",
+      "source": "Fâtiha 1:1",
+      "xp": 5
+    },
+    {
+      "id": "quran_018",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Âyetü'l-Kürsî hangi sûrede bulunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bakara",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Âl-i İmrân",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Nâs",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Âyetü'l-Kürsî Bakara sûresinin 255. ayetidir.",
+      "source": "Bakara 2:255",
+      "xp": 5
+    },
+    {
+      "id": "quran_019",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Âyetü'l-Kürsî hangi ayettir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "255",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "201",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "286",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Âyetü'l-Kürsî Bakara sûresi 255. ayettir.",
+      "source": "Bakara 2:255",
+      "xp": 8
+    },
+    {
+      "id": "quran_020",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İhlâs sûresinin ilk ayetinde Allah için hangi ifade geçer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Birdir",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Çok uyur",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Sadece göklerin sahibidir",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İhlâs 112:1 'De ki: O Allah birdir.' anlamındadır.",
+      "source": "İhlâs 112:1",
+      "xp": 5
+    },
+    {
+      "id": "quran_021",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "İhlâs sûresine göre Allah için hangisi doğrudur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğurmamış ve doğmamıştır",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bir çocuğu vardır",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Uyur",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "İhlâs sûresinin 3. ayetinde bu ifade yer alır.",
+      "source": "İhlâs 112:3",
+      "xp": 5
+    },
+    {
+      "id": "quran_022",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Felak sûresinde Allah hangi sıfatla anılır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabahın Rabbi",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Denizin Rabbi",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Dağların Rabbi",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Felak 113:1 'sabahın Rabbine sığınmayı' anlatır.",
+      "source": "Felak 113:1",
+      "xp": 5
+    },
+    {
+      "id": "quran_023",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "Nâs sûresinde kimlerin Rabbine sığınılır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İnsanların",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Meleklerin",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Dağların",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Nâs sûresi 'İnsanların Rabbine...' diye başlar.",
+      "source": "Nâs 114:1",
+      "xp": 5
+    },
+    {
+      "id": "quran_024",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "'Rabbi zıdnî ilmâ' ifadesinin anlamı hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rabbim ilmimi artır",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Rabbim beni zengin et",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Rabbim beni uzun yaşat",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tâhâ 20:114'te ilmin artırılması istenir.",
+      "source": "Tâhâ 20:114",
+      "xp": 8
+    },
+    {
+      "id": "quran_025",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "'Rabbenâ âtinâ fi'd-dünyâ haseneten...' duası hangi sûrededir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bakara",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "İbrâhîm",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Meryem",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Bu dua Bakara sûresi 201. ayettedir.",
+      "source": "Bakara 2:201",
+      "xp": 8
+    },
+    {
+      "id": "quran_026",
+      "category": "Kur'an",
+      "difficulty": "easy",
+      "type": "multiple_choice",
+      "question": "'İyyâke na'budu ve iyyâke نستعین' ifadesinin anlamı hangisine en yakındır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yalnız Sana kulluk eder, yalnız Senden yardım dileriz.",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bizi zengin et.",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Bize uzun ömür ver.",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Fâtiha 1:5 bu anlamı taşır.",
+      "source": "Fâtiha 1:5",
+      "xp": 5
+    },
+    {
+      "id": "quran_027",
+      "category": "Kur'an",
+      "difficulty": "medium",
+      "type": "multiple_choice",
+      "question": "Kur'an'da 'Rabbim ilmimi artır' duası hangi peygambere yönelik ayette geçer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Genel dua olarak, Tâhâ 20:114'te",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Nûh",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Yûnus",
+          "correct": false
+        }
+      ],
+      "correctOption": "a",
+      "explanation": "Tâhâ 20:114'te 'Rabbî zidnî ilmâ' ifadesi yer alır.",
+      "source": "Tâhâ 20:114",
+      "xp": 8
     }
   ]
 }

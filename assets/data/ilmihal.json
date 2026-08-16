@@ -1,36 +1,518 @@
 {
-  "version": "2.0",
-  "note": "Çocuklara yönelik özet anlatım. Fıkhi ayrıntılar mezhep ve kaynak farklılıkları nedeniyle yayın öncesi ilmihal uzmanı kontrolünden geçirilmelidir.",
-  "items": [
+  "version": "1.0.0",
+  "title": "İlmihal - Çocuklar İçin Temel Dini Bilgiler",
+  "description": "Çocukların temel inanç, ibadet, temizlik, ahlak ve günlük dini bilgiler öğrenmesi için düzenlenmiş yerel içerik.",
+  "language": "tr",
+  "offline": true,
+  "ageGroups": [
+    "7-9",
+    "10-12"
+  ],
+  "sourcePolicy": {
+    "primaryReference": "Diyanet İşleri Başkanlığı - İlmihal ve Temel Dini Bilgiler kaynakları",
+    "note": "Fıkhî ayrıntılar mezheplere göre değişebileceğinden gerektiğinde mezhep ve kaynak bilgisi ayrıca gösterilmelidir."
+  },
+  "categories": [
     {
-      "id": "temizlik",
-      "title": "Temizlik",
-      "summary": "İslam'da temizlik ve temizliğe özen göstermek önemli bir değerdir.",
-      "sourceReference": "Bakara 2:222; güvenilir ilmihal kaynakları"
+      "id": "iman",
+      "order": 1,
+      "title": "İman Esasları",
+      "icon": "assets/images/ilmihal/iman.png"
     },
     {
-      "id": "abdest",
-      "title": "Abdest",
-      "summary": "Namaz gibi bazı ibadetler için gerekli olan abdestin temel aşamalarını öğren.",
-      "sourceReference": "Diyanet namaz/ilmihal yayınları"
+      "id": "temizlik",
+      "order": 2,
+      "title": "Temizlik",
+      "icon": "assets/images/ilmihal/temizlik.png"
     },
     {
       "id": "namaz",
+      "order": 3,
       "title": "Namaz",
-      "summary": "Namazın temel hareketlerini, sırasını ve namazda okunan duaları öğren.",
-      "sourceReference": "Diyanet namaz ilmihali"
+      "icon": "assets/images/ilmihal/namaz.png"
     },
     {
       "id": "oruç",
+      "order": 4,
       "title": "Oruç",
-      "summary": "Ramazan ayında oruç ibadetinin temel anlamını ve çocuklara uygun temel bilgileri öğren.",
-      "sourceReference": "Bakara 2:183-187; güvenilir ilmihal kaynakları"
+      "icon": "assets/images/ilmihal/oruc.png"
     },
     {
-      "id": "cami_adabi",
-      "title": "Cami Adabı",
-      "summary": "Camiye girerken ve camide bulunurken saygı, temizlik ve sessizlik gibi güzel davranışları öğren.",
-      "sourceReference": "Güvenilir ilmihal kaynakları"
+      "id": "zekat_sadaka",
+      "order": 5,
+      "title": "Zekât ve Sadaka",
+      "icon": "assets/images/ilmihal/zekat.png"
+    },
+    {
+      "id": "hac_kurban",
+      "order": 6,
+      "title": "Hac ve Kurban",
+      "icon": "assets/images/ilmihal/hac.png"
+    },
+    {
+      "id": "dua_tövbe",
+      "order": 7,
+      "title": "Dua ve Tövbe",
+      "icon": "assets/images/ilmihal/dua.png"
+    },
+    {
+      "id": "camii",
+      "order": 8,
+      "title": "Cami ve İbadet Adabı",
+      "icon": "assets/images/ilmihal/cami.png"
+    },
+    {
+      "id": "gunluk_hayat",
+      "order": 9,
+      "title": "Günlük Hayatta Dini Bilgiler",
+      "icon": "assets/images/ilmihal/gunluk.png"
     }
-  ]
+  ],
+  "lessons": [
+    {
+      "order": 1,
+      "id": "iman_islama_giris",
+      "category": "iman",
+      "title": "İslam Nedir?",
+      "summary": "İslam'ın Allah'a iman, kulluk ve güzel davranışlarla ilgili temel anlamını öğrenelim.",
+      "keyPoints": [
+        "İslam, Allah'a kulluk etmeyi ve O'nun bildirdiği güzel yolu yaşamayı öğretir.",
+        "Müslüman, Allah'a inanır ve güzel davranışlara önem verir."
+      ],
+      "activity": "Bugün güzel bir davranış seç ve uygula.",
+      "source": "Diyanet Temel Dini Bilgiler / İman kaynakları"
+    },
+    {
+      "order": 2,
+      "id": "iman_sartlari",
+      "category": "iman",
+      "title": "İmanın Şartları",
+      "summary": "İmanın altı temel esasını öğren.",
+      "keyPoints": [
+        "Allah'a iman",
+        "Meleklere iman",
+        "Kitaplara iman",
+        "Peygamberlere iman",
+        "Âhiret gününe iman",
+        "Kadere, hayır ve şerrin Allah'ın bilgisi ve takdiriyle olduğuna iman"
+      ],
+      "memorization": "Allah'a, meleklerine, kitaplarına, peygamberlerine, âhiret gününe ve kadere iman.",
+      "source": "Diyanet Temel Dini Bilgiler"
+    },
+    {
+      "order": 3,
+      "id": "islamin_sartlari",
+      "category": "iman",
+      "title": "İslam'ın Şartları",
+      "summary": "İslam'ın beş temel şartını öğren.",
+      "keyPoints": [
+        "Kelime-i şehadet getirmek",
+        "Namaz kılmak",
+        "Oruç tutmak",
+        "Zekât vermek",
+        "Hac etmek"
+      ],
+      "source": "Diyanet Temel Dini Bilgiler"
+    },
+    {
+      "order": 4,
+      "id": "temizlik_neden_onemli",
+      "category": "temizlik",
+      "title": "Temizlik Neden Önemli?",
+      "summary": "Maddi ve manevi temizliğin ibadet ve günlük hayatla ilişkisini öğren.",
+      "keyPoints": [
+        "Temizliğe dikkat etmek günlük hayatımızın önemli bir parçasıdır.",
+        "Bazı ibadetler için özel temizlik kurallarına dikkat edilir."
+      ],
+      "source": "Diyanet İlmihal - Temizlik (Taharet)"
+    },
+    {
+      "order": 5,
+      "id": "abdest_ilmihal",
+      "category": "temizlik",
+      "title": "Abdest Hakkında Bilmemiz Gerekenler",
+      "summary": "Abdestin neden gerektiğini ve temel kavramları öğren.",
+      "keyPoints": [
+        "Abdest bazı ibadetler, özellikle namaz için hazırlık niteliğindedir.",
+        "Abdestin farzları ve sünnetleri vardır.",
+        "Abdestin uygulamalı öğrenimi ayrı 'Abdesti Öğren' modülünde yapılır."
+      ],
+      "linkedModule": "/learn/wudu",
+      "source": "Diyanet İlmihal - Temizlik"
+    },
+    {
+      "order": 6,
+      "id": "gusul",
+      "category": "temizlik",
+      "title": "Gusül Nedir?",
+      "summary": "Guslün temel anlamını ve hangi durumlarda gerekli olduğuna dair yaşa uygun bilgiyi öğren.",
+      "keyPoints": [
+        "Gusül, bütün bedenin belirli şekilde yıkanmasıyla yapılan dinî temizlenmedir.",
+        "Guslün hangi durumlarda gerekli olduğu yaş ve mahremiyet seviyesine uygun biçimde ebeveyn/öğretici desteğiyle anlatılabilir."
+      ],
+      "adultGuidance": true,
+      "source": "Diyanet İlmihal - Gusül"
+    },
+    {
+      "order": 7,
+      "id": "teyemmum",
+      "category": "temizlik",
+      "title": "Teyemmüm Nedir?",
+      "summary": "Suya ulaşılamaması veya suyu kullanmanın mümkün olmaması gibi durumlarda dinî temizlenmenin alternatif şeklini temel düzeyde öğren.",
+      "keyPoints": [
+        "Teyemmümün kendine özgü şartları vardır.",
+        "Detaylı uygulama mezhep ve fıkıh kaynağına göre öğretilebilir."
+      ],
+      "source": "Diyanet İlmihal - Temizlik"
+    },
+    {
+      "order": 8,
+      "id": "namaz_nedir",
+      "category": "namaz",
+      "title": "Namaz Nedir?",
+      "summary": "Namazın Müslüman için önemini öğren.",
+      "keyPoints": [
+        "Namaz Allah'a kulluğun temel ibadetlerindendir.",
+        "Namazın vakitleri, şartları ve kılınış şekli vardır.",
+        "Uygulamalı öğrenme ayrı 'Namazı Öğren' modülünde yapılır."
+      ],
+      "linkedModule": "/learn/prayer",
+      "source": "Diyanet İlmihal - Namaz"
+    },
+    {
+      "order": 9,
+      "id": "namazin_sartlari",
+      "category": "namaz",
+      "title": "Namazın Temel Şartları",
+      "summary": "Namaza hazırlık için temel şartları öğren.",
+      "keyPoints": [
+        "Temizlik",
+        "Vakit",
+        "Kıble",
+        "Niyet",
+        "Örtünme ile ilgili dinî şartlar"
+      ],
+      "source": "Diyanet İlmihal - Namazın Şartları"
+    },
+    {
+      "order": 10,
+      "id": "namaz_vakitleri",
+      "category": "namaz",
+      "title": "Namaz Vakitleri",
+      "summary": "Beş vakit namazın isimlerini öğren.",
+      "keyPoints": [
+        "Sabah",
+        "Öğle",
+        "İkindi",
+        "Akşam",
+        "Yatsı"
+      ],
+      "source": "Diyanet Namaz / İlmihal"
+    },
+    {
+      "order": 11,
+      "id": "namaz_adabi",
+      "category": "namaz",
+      "title": "Namaz Adabı",
+      "summary": "Namazı dikkat, huzur ve saygıyla kılmaya yardımcı olan davranışları öğren.",
+      "keyPoints": [
+        "Temiz ve düzenli olmak",
+        "Vakti gözetmek",
+        "Kıbleye yönelmek",
+        "Namazda dikkatli ve huzurlu olmaya çalışmak"
+      ],
+      "source": "Diyanet İlmihal - Namaz"
+    },
+    {
+      "order": 12,
+      "id": "oruc_nedir",
+      "category": "oruç",
+      "title": "Oruç Nedir?",
+      "summary": "Ramazan orucunun temel anlamını çocukların anlayabileceği şekilde öğren.",
+      "keyPoints": [
+        "Oruç, tan yerinin ağarmasından güneşin batmasına kadar yeme, içme ve bazı davranışlardan belirli kurallara göre uzak durmayı içerir.",
+        "Oruç sabır, şükür ve paylaşma duygularını güçlendirmeye yardımcı olur."
+      ],
+      "source": "Bakara 2:183-187; Diyanet Oruç İlmihali"
+    },
+    {
+      "order": 13,
+      "id": "ramazan",
+      "category": "oruç",
+      "title": "Ramazan Ayı",
+      "summary": "Ramazan'ın Kur'an, oruç, dua ve yardımlaşmayla ilişkisini öğren.",
+      "keyPoints": [
+        "Ramazan oruç ibadetinin farz kılındığı aydır.",
+        "Bu ayda Kur'an, dua, ibadet, sabır ve paylaşmaya daha çok önem verilir."
+      ],
+      "source": "Diyanet Oruç İlmihali"
+    },
+    {
+      "order": 14,
+      "id": "cocuklar_ve_oruc",
+      "category": "oruç",
+      "title": "Çocuklar ve Oruç",
+      "summary": "Oruç konusunda çocukların yaşına uygun şekilde öğrenmesi gereken temel bilgileri edin.",
+      "keyPoints": [
+        "Çocukların ibadetleri öğrenmesi ve alışkanlık kazanması desteklenebilir.",
+        "Çocukların oruç tutması sağlık, yaş ve aile rehberliği dikkate alınarak değerlendirilmelidir.",
+        "Ergenlikten sonra dinî sorumluluklarla ilgili hükümler farklılaşır."
+      ],
+      "parentGuidance": true,
+      "source": "Diyanet Oruç İlmihali"
+    },
+    {
+      "order": 15,
+      "id": "zekat",
+      "category": "zekat_sadaka",
+      "title": "Zekât Nedir?",
+      "summary": "Zekâtın temel anlamını ve paylaşma yönünü öğren.",
+      "keyPoints": [
+        "Zekât, belirli şartları taşıyan Müslümanların mallarından belirli bir kısmını ihtiyaç sahiplerine vermesidir.",
+        "Zekâtın şartları ve hesaplanması ayrıntılı fıkıh bilgisidir."
+      ],
+      "source": "Diyanet İlmihal - Zekât"
+    },
+    {
+      "order": 16,
+      "id": "sadaka",
+      "category": "zekat_sadaka",
+      "title": "Sadaka ve Yardımlaşma",
+      "summary": "Paylaşmanın ve iyilik yapmanın önemini öğren.",
+      "keyPoints": [
+        "Sadaka yalnızca para vermek anlamına gelmez; güzel ve faydalı davranışlar da iyilik kapsamına girebilir.",
+        "İhtiyacı olanlara yardım etmek güzel bir davranıştır."
+      ],
+      "source": "Diyanet Temel Dini Bilgiler / Ahlak"
+    },
+    {
+      "order": 17,
+      "id": "hac",
+      "category": "hac_kurban",
+      "title": "Hac Nedir?",
+      "summary": "Hac ibadetini ve Kâbe'nin önemini temel düzeyde öğren.",
+      "keyPoints": [
+        "Hac, şartlarını taşıyan Müslümanların belirli zamanda ve belirli mekânlarda gerçekleştirdiği ibadettir.",
+        "Kâbe, Müslümanların kıblesidir."
+      ],
+      "source": "Diyanet İlmihal - Hac"
+    },
+    {
+      "order": 18,
+      "id": "kurban",
+      "category": "hac_kurban",
+      "title": "Kurban Nedir?",
+      "summary": "Kurban ibadetinin anlamını ve paylaşma yönünü öğren.",
+      "keyPoints": [
+        "Kurban ibadetinde Allah'a yakınlık ve paylaşma bilinci ön plandadır.",
+        "Kurban etinin ihtiyaç sahipleriyle paylaşılması önemlidir."
+      ],
+      "source": "Diyanet Temel Dini Bilgiler / Kurban"
+    },
+    {
+      "order": 19,
+      "id": "dua",
+      "category": "dua_tövbe",
+      "title": "Dua Nedir?",
+      "summary": "Duanın Allah'a yönelmek, dilekte bulunmak ve O'na sığınmak anlamındaki yönünü öğren.",
+      "keyPoints": [
+        "Dua Allah'a yönelmenin ve O'ndan yardım dilemenin yollarındandır.",
+        "Dua ederken samimi olmak ve güzel dileklerde bulunmak önemlidir."
+      ],
+      "linkedModule": "/learn/duas",
+      "source": "Diyanet Dini Bilgiler / Dua"
+    },
+    {
+      "order": 20,
+      "id": "tovbe",
+      "category": "dua_tövbe",
+      "title": "Tövbe Nedir?",
+      "summary": "Hata ve günahlardan dönüp Allah'tan bağışlanma dilemenin temel anlamını öğren.",
+      "keyPoints": [
+        "Hatasını fark etmek",
+        "Pişmanlık duymak",
+        "Allah'tan bağışlanma dilemek",
+        "Yanlışa dönmemeye çalışmak"
+      ],
+      "source": "Diyanet Dini Bilgiler / Tövbe"
+    },
+    {
+      "order": 21,
+      "id": "cami_adabi",
+      "category": "camii",
+      "title": "Cami Adabı",
+      "summary": "Camiye giderken ve camideyken dikkat edilecek güzel davranışları öğren.",
+      "keyPoints": [
+        "Temiz ve uygun kıyafetle gitmek",
+        "Sessiz ve saygılı davranmak",
+        "İnsanları rahatsız etmemek",
+        "Camiye ve ibadet edenlere saygı göstermek"
+      ],
+      "source": "Diyanet Temel Dini Bilgiler / İbadet Adabı"
+    },
+    {
+      "order": 22,
+      "id": "kuran_adabi",
+      "category": "camii",
+      "title": "Kur'an-ı Kerim Adabı",
+      "summary": "Kur'an okurken ve dinlerken saygılı davranmayı öğren.",
+      "keyPoints": [
+        "Kur'an'ı temiz ve saygılı bir ortamda okumaya özen göstermek",
+        "Okunan ayetleri dikkatle dinlemek",
+        "Kur'an'ı öğrenmeye ve anlamaya çalışmak"
+      ],
+      "source": "Diyanet Temel Dini Bilgiler"
+    },
+    {
+      "order": 23,
+      "id": "helal_haram",
+      "category": "gunluk_hayat",
+      "title": "Helal ve Haram Nedir?",
+      "summary": "Helal ve haram kavramlarını korkutmadan ve yaşa uygun şekilde öğren.",
+      "keyPoints": [
+        "Helal, dinen yapılmasına izin verilen şeyleri anlatır.",
+        "Haram, dinen yasaklanan şeyleri anlatır.",
+        "Bir şeyin helal veya haram olup olmadığı konusunda güvenilir kaynaklara başvurmak gerekir."
+      ],
+      "source": "Diyanet Temel Dini Bilgiler"
+    },
+    {
+      "order": 24,
+      "id": "israf",
+      "category": "gunluk_hayat",
+      "title": "İsraf Etmemek",
+      "summary": "Yiyecek, su ve diğer imkânları gereksiz yere tüketmemeyi öğren.",
+      "keyPoints": [
+        "İhtiyacımızdan fazlasını gereksiz yere tüketmemeye dikkat ederiz.",
+        "Su, yiyecek ve nimetlerin kıymetini biliriz."
+      ],
+      "source": "Diyanet Dini Bilgiler / Ahlak"
+    },
+    {
+      "order": 25,
+      "id": "anne_babaya_iyilik",
+      "category": "gunluk_hayat",
+      "title": "Anne ve Babaya İyilik",
+      "summary": "Anne ve babaya güzel söz söylemenin ve iyilik etmenin önemini öğren.",
+      "keyPoints": [
+        "Güzel söz söylemek",
+        "Yardım etmek",
+        "Saygılı davranmak",
+        "Onları üzmemeye çalışmak"
+      ],
+      "quranReference": "İsrâ 17:23-24"
+    },
+    {
+      "order": 26,
+      "id": "komsuluk",
+      "category": "gunluk_hayat",
+      "title": "Komşuluk ve İyi İlişkiler",
+      "summary": "Komşularımıza ve çevremizdeki insanlara iyi davranmayı öğren.",
+      "keyPoints": [
+        "Rahatsız edici davranışlardan kaçınmak",
+        "İhtiyacı olduğunda yardım etmek",
+        "Selamlaşmak ve güzel söz söylemek"
+      ],
+      "source": "Diyanet Dini Bilgiler / Ahlak"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "ilmihal_quiz_01",
+      "question": "İslam'ın şartlarından biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Namaz kılmak",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Her gün aynı yemeği yemek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hiç konuşmamak",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_quiz_02",
+      "question": "Beş vakit namazdan biri hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sabah",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Öğleüstü",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Geceyarısı",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_quiz_03",
+      "question": "Oruç hangi ayda farz kılınmıştır?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ramazan",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Şevval",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Muharrem",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ilmihal_quiz_04",
+      "question": "Cami içinde nasıl davranmalıyız?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Saygılı ve sakin",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bağırarak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İnsanları rahatsız ederek",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    }
+  ],
+  "uiRules": {
+    "showCategory": true,
+    "showSource": true,
+    "showChildSummary": true,
+    "longTextUseReadMore": true,
+    "allowFavorite": true,
+    "allowShare": true,
+    "offlineOnly": true
+  }
 }

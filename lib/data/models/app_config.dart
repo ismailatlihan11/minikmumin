@@ -10,6 +10,9 @@ class AppConfig {
     required this.featureFlags,
     required this.contentFiles,
     required this.assetRoot,
+    this.firstLaunchTitle = '',
+    this.firstLaunchButton = '',
+    this.firstLaunchLines = const [],
   });
 
   final String appName;
@@ -20,6 +23,9 @@ class AppConfig {
   final Map<String, bool> featureFlags;
   final Map<String, String> contentFiles;
   final String assetRoot;
+  final String firstLaunchTitle;
+  final String firstLaunchButton;
+  final List<String> firstLaunchLines;
 
   bool isEnabled(String feature) => featureFlags[feature] ?? true;
 
@@ -30,6 +36,7 @@ class AppConfig {
     final flagsRaw = JsonMap.object(json['featureFlags']);
     final filesRaw = JsonMap.object(json['contentFiles']);
     final featuresRaw = json['features'];
+    final firstLaunch = JsonMap.object(json['firstLaunch']);
     return AppConfig(
       appName: JsonMap.str(json['appName'], 'Minik Kalpler'),
       version: JsonMap.str(json['version'], '1.0.0'),
@@ -45,6 +52,9 @@ class AppConfig {
         (key, value) => MapEntry(key, JsonMap.str(value)),
       ),
       assetRoot: JsonMap.str(json['assetRoot'], 'assets/'),
+      firstLaunchTitle: JsonMap.str(firstLaunch['title'], 'Haydi başlayalım'),
+      firstLaunchButton: JsonMap.str(firstLaunch['button'], 'Anladım'),
+      firstLaunchLines: JsonMap.strings(firstLaunch['lines']),
     );
   }
 
@@ -57,5 +67,10 @@ class AppConfig {
         'featureFlags': featureFlags,
         'contentFiles': contentFiles,
         'assetRoot': assetRoot,
+        'firstLaunch': {
+          'title': firstLaunchTitle,
+          'button': firstLaunchButton,
+          'lines': firstLaunchLines,
+        },
       };
 }

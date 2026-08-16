@@ -3,11 +3,14 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../data/models/asmaul_husna.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../duas/duas_page.dart';
 
 class AsmaPage extends StatefulWidget {
   const AsmaPage({super.key});
@@ -64,21 +67,58 @@ class _AsmaPageState extends State<AsmaPage> {
   }
 }
 
-class AsmaDetailPage extends StatelessWidget {
+class AsmaDetailPage extends StatefulWidget {
   const AsmaDetailPage({super.key, required this.item});
 
   final AsmaulHusna item;
 
   @override
+  State<AsmaDetailPage> createState() => _AsmaDetailPageState();
+}
+
+class _AsmaDetailPageState extends State<AsmaDetailPage> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final item = widget.item;
     return DetailScaffold(
       title: item.name,
+      actions: [
+        CopyIconButton(
+          text: joinCopyParts([
+            item.name,
+            item.arabic,
+            item.meaning,
+            item.childExplanation,
+          ]),
+        ),
+      ],
       children: [
         ArabicPanel(item.arabic, fontSize: 36),
         const SizedBox(height: AppSpacing.md),
-        Text(item.meaning, style: Theme.of(context).textTheme.headlineMedium),
+        SelectableText(item.meaning, style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: AppSpacing.sm),
-        Text(item.childExplanation, style: Theme.of(context).textTheme.bodyLarge),
+        SelectableText(item.childExplanation, style: Theme.of(context).textTheme.bodyLarge),
+        const SizedBox(height: AppSpacing.md),
+        CopyTextButton(
+          text: joinCopyParts([
+            item.name,
+            item.arabic,
+            item.meaning,
+            item.childExplanation,
+          ]),
+        ),
+        if (item.audio.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.lg),
+          ListenButton(audio: _audio, path: item.audio),
+        ],
       ],
     );
   }

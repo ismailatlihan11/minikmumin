@@ -12,6 +12,7 @@ import '../../data/models/interactive_lesson.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'wudu_catalog_view.dart';
 import 'wudu_controller.dart';
 import 'wudu_presentation.dart';
 
@@ -36,13 +37,16 @@ class _WuduFlowView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<WuduController>();
+    final hideAppBar = !controller.loading &&
+        controller.error == null &&
+        controller.phase == WuduPhase.intro;
     return Scaffold(
-      appBar: AppBar(
+      appBar: hideAppBar ? null : AppBar(
         title: Text(controller.lesson?.title ?? 'Abdest'),
       ),
-      body: SafeArea(
-        child: _buildBody(context, controller),
-      ),
+      body: hideAppBar
+          ? _buildBody(context, controller)
+          : SafeArea(child: _buildBody(context, controller)),
     );
   }
 
@@ -53,7 +57,7 @@ class _WuduFlowView extends StatelessWidget {
     }
     switch (controller.phase) {
       case WuduPhase.intro:
-        return _IntroView(controller: controller);
+        return const _IntroView();
       case WuduPhase.learn:
         return _LearnView(controller: controller);
       case WuduPhase.practice:
@@ -65,68 +69,21 @@ class _WuduFlowView extends StatelessWidget {
 }
 
 class _IntroView extends StatelessWidget {
-  const _IntroView({required this.controller});
-
-  final WuduController controller;
+  const _IntroView();
 
   @override
   Widget build(BuildContext context) {
-    final lesson = controller.lesson!;
-    final progress = controller.progress;
-    return ListView(
-      padding: AppSpacing.page,
-      children: [
-        MinikCard(
-          padding: EdgeInsets.zero,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-            child: Image.asset(
-              'assets/images/wudu/wudu.png',
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const SizedBox(height: 8),
-            ),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.lg),
-        Text(
-          'Haydi birlikte öğrenelim',
-          style: Theme.of(context).textTheme.displayMedium,
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        Text(
-          '${lesson.title} almayı adım adım öğreneceğiz. '
-          'Doğru resmi seçmen yeterli.',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        const SizedBox(height: AppSpacing.md),
-        Text(
-          'Kaynak: ${lesson.sourceName}',
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
-        const SizedBox(height: AppSpacing.xl),
-        if (progress.inProgress) ...[
-          PrimaryButton(
-            label: 'Devam Et',
-            onPressed: () => controller.start(continueLesson: true),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Text(
-            '${progress.stepIndex + 1}. adımdasın',
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          SecondaryButton(
-            label: 'Baştan Başla',
-            onPressed: () => controller.start(continueLesson: false),
-          ),
-        ] else
-          PrimaryButton(
-            label: progress.completed ? 'Tekrar Et' : 'Başla',
-            onPressed: () => controller.start(continueLesson: false),
-          ),
-      ],
+    return SafeArea(
+      child: WuduCatalogView(
+        onBack: () => Navigator.pop(context),
+        onHome: () => Navigator.popUntil(context, (route) => route.isFirst),
+        onOpenStep: (step) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => WuduStepDetailPage(step: step)),
+          );
+        },
+      ),
     );
   }
 }

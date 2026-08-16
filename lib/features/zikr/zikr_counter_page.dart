@@ -1,0 +1,341 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_spacing.dart';
+import '../../data/models/dhikr.dart';
+import '../../shared/widgets/arabic_text.dart';
+import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/copy_text.dart';
+import 'dhikr_store.dart';
+import 'zikr_form_page.dart';
+
+class ZikrCounterPage extends StatefulWidget {
+  const ZikrCounterPage({super.key, required this.dhikrId});
+
+  final String dhikrId;
+
+  @override
+  State<ZikrCounterPage> createState() => _ZikrCounterPageState();
+}
+
+class _ZikrCounterPageState extends State<ZikrCounterPage> {
+  bool _busy = false;
+
+  Future<void> _tap(Future<dynamic> Function() action, {bool completeCheck = false}) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final result = await action();
+    if (!mounted) return;
+    setState(() => _busy = false);
+    if (completeCheck && result is DhikrTapResult && result.completed) {
+      await _onCompleted(result.dhikr);
+    }
+  }
+
+  Future<void> _onCompleted(Dhikr dhikr) async {
+    final choice = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Çok güzel.'),
+        content: Text('Bugünkü zikrini tamamladın. ${dhikr.title}'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'again'),
+            child: const Text('Bir kez daha'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'new'),
+            child: const Text('Yeni zikir'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, 'ok'),
+            child: const Text('Tamam'),
+          ),
+        ],
+      ),
+    );
+    if (!mounted) return;
+    final store = context.read<DhikrStore>();
+    if (choice == 'again' || choice == 'ok') {
+      await store.startAgain(widget.dhikrId);
+    } else if (choice == 'new') {
+      await store.startAgain(widget.dhikrId);
+      if (!mounted) return;
+      Navigator.pop(context);
+    }
+  }
+
+  Future<void> _confirmReset() async {
+    final ok = await showModalBottomSheet<bool>(
+      context: context,
+      builder: (context) => Padding(
+        padding: AppSpacing.page,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Bu zikri sıfırlamak istediğine emin misin?',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: AppSpacing.md),
+            SecondaryButton(
+              label: 'Vazgeç',
+              onPressed: () => Navigator.pop(context, false),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            PrimaryButton(
+              label: 'Sıfırla',
+              onPressed: () => Navigator.pop(context, true),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (ok == true && mounted) {
+      await context.read<DhikrStore>().resetCurrent(widget.dhikrId);
+    }
+  }
+
+  Future<void> _handlePop(bool didPop) async {
+    if (didPop) return;
+    final store = context.read<DhikrStore>();
+    final dhikr = store.byId(widget.dhikrId);
+    if (dhikr == null ||
+        dhikr.currentCount <= 0 ||
+        dhikr.currentCount >= dhikr.targetCount) {
+      if (mounted) Navigator.pop(context);
+      return;
+    }
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) => Padding(
+        padding: AppSpacing.page,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Zikri yarım bırakmak ister misin?',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: AppSpacing.md),
+            PrimaryButton(
+              label: 'Devam Et',
+              onPressed: () => Navigator.pop(context, 'stay'),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            SecondaryButton(
+              label: 'Sonra Devam Et',
+              onPressed: () => Navigator.pop(context, 'pause'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (choice == 'pause') {
+      await store.pause(widget.dhikrId);
+      if (mounted) Navigator.pop(context);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final store = context.watch<DhikrStore>();
+    final dhikr = store.byId(widget.dhikrId);
+    if (dhikr == null) {
+      return const Scaffold(body: Center(child: Text('Zikir bulunamadı.')));
+    }
+    final needsConfirm =
+        dhikr.currentCount > 0 && dhikr.currentCount < dhikr.targetCount;
+    return PopScope(
+      canPop: !needsConfirm,
+      onPopInvokedWithResult: (didPop, _) => _handlePop(didPop),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(dhikr.title),
+          actions: [
+            IconButton(
+              tooltip: dhikr.isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle',
+              onPressed: () => store.toggleFavorite(dhikr.id),
+              icon: Icon(
+                dhikr.isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                color: dhikr.isFavorite ? const Color(0xFFC45B7A) : null,
+              ),
+            ),
+            CopyIconButton(
+              text: joinCopyParts([
+                dhikr.title,
+                dhikr.arabic,
+                dhikr.transliteration,
+                dhikr.meaning,
+              ]),
+            ),
+          ],
+        ),
+        body: ListView(
+          padding: AppSpacing.page,
+          children: [
+            if (dhikr.arabic.isNotEmpty) ArabicText(dhikr.arabic, fontSize: 32),
+            if (dhikr.transliteration.isNotEmpty) ...[
+              const SizedBox(height: AppSpacing.sm),
+              Text(
+                dhikr.transliteration,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ],
+            if (dhikr.meaning.isNotEmpty) ...[
+              const SizedBox(height: AppSpacing.xs),
+              SelectableText(
+                dhikr.meaning,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ],
+            const SizedBox(height: AppSpacing.lg),
+            Text(
+              '${dhikr.currentCount}',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    fontSize: 72,
+                    fontWeight: FontWeight.w800,
+                    height: 1,
+                    color: MinikColors.darkGreen,
+                  ),
+            ),
+            Text(
+              '/ ${dhikr.targetCount}',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: AppSpacing.md),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                minHeight: 14,
+                value: dhikr.uiProgress,
+                backgroundColor: MinikColors.creamDark,
+                color: MinikColors.green,
+              ),
+            ),
+            if (dhikr.dailySessionTarget > 0) ...[
+              const SizedBox(height: AppSpacing.sm),
+              Text(
+                'Günlük oturum: ${store.todayCompletedCount(dhikr.id)} / ${dhikr.dailySessionTarget}',
+                textAlign: TextAlign.center,
+              ),
+            ],
+            const SizedBox(height: AppSpacing.lg),
+            Material(
+              color: MinikColors.mint,
+              borderRadius: BorderRadius.circular(28),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(28),
+                onTap: () => _tap(() => store.addCount(dhikr.id), completeCheck: true),
+                child: const SizedBox(
+                  height: 160,
+                  child: Center(
+                    child: Text(
+                      'ZİKRET',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
+                        color: MinikColors.darkGreen,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            Row(
+              children: [
+                _RoundControl(
+                  icon: Icons.remove_rounded,
+                  onTap: () => _tap(() => store.subtractCount(dhikr.id)),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: SecondaryButton(
+                    label: 'Sıfırla',
+                    onPressed: _confirmReset,
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                _RoundControl(
+                  icon: Icons.add_rounded,
+                  onTap: () => _tap(() => store.addCount(dhikr.id), completeCheck: true),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.lg),
+            Row(
+              children: [
+                Expanded(
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Ses'),
+                    value: store.settings.soundEnabled && dhikr.soundEnabled,
+                    onChanged: (value) => store.updateDhikr(
+                      dhikr.copyWith(soundEnabled: value),
+                    ),
+                    secondary: const Icon(Icons.volume_up_rounded),
+                  ),
+                ),
+                Expanded(
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Titreşim'),
+                    value: store.settings.vibrationEnabled && dhikr.vibrationEnabled,
+                    onChanged: (value) => store.updateDhikr(
+                      dhikr.copyWith(vibrationEnabled: value),
+                    ),
+                    secondary: const Icon(Icons.vibration_rounded),
+                  ),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () => _editSettings(dhikr),
+              child: const Text('Zikir ayarları'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _editSettings(Dhikr dhikr) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => ZikrFormPage(existing: dhikr)),
+    );
+  }
+}
+
+class _RoundControl extends StatelessWidget {
+  const _RoundControl({required this.icon, required this.onTap});
+
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: MinikColors.surface,
+      shape: const CircleBorder(),
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: onTap,
+        child: SizedBox(
+          width: 54,
+          height: 54,
+          child: Icon(icon, color: MinikColors.darkGreen),
+        ),
+      ),
+    );
+  }
+}

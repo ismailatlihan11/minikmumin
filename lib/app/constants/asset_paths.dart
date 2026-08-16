@@ -11,11 +11,14 @@ abstract final class AssetPaths {
   static const String morality = 'assets/data/morality.json';
   static const String ilmihal = 'assets/data/ilmihal.json';
   static const String quiz = 'assets/data/islamic_quiz.json';
+  static const String stories = 'assets/data/kissalar.json';
   static const String wudu = 'assets/data/wudu.json';
   static const String prayer = 'assets/data/prayer.json';
   static const String achievements = 'assets/data/achievements.json';
   static const String ayetulKursi = 'assets/data/ayetul_kursi.json';
   static const String quranLast10 = 'assets/data/quran_last_10_ayahs.json';
+  static const String dhikr = 'assets/data/dhikr.json';
+  static const String dhikrAssets = 'assets/data/dhikr_assets.json';
 
   static const String arabicFontFamily = 'NotoNaskhArabic';
 }

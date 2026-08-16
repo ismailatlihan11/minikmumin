@@ -43,8 +43,8 @@ class PageHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.md),
               child: Image.asset(
                 image!,
-                width: 72,
-                height: 72,
+                width: 48,
+                height: 48,
                 fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => const SizedBox.shrink(),
               ),
@@ -312,13 +312,15 @@ class CatalogGrid extends StatelessWidget {
   const CatalogGrid({
     super.key,
     required this.children,
-    this.crossAxisCount = 2,
+    this.crossAxisCount = 3,
     this.childAspectRatio = 1,
+    this.spacing = 8,
   });
 
   final List<Widget> children;
   final int crossAxisCount;
   final double childAspectRatio;
+  final double spacing;
 
   @override
   Widget build(BuildContext context) {
@@ -326,10 +328,36 @@ class CatalogGrid extends StatelessWidget {
       crossAxisCount: crossAxisCount,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
+      mainAxisSpacing: spacing,
+      crossAxisSpacing: spacing,
       childAspectRatio: childAspectRatio,
       children: children,
+    );
+  }
+}
+
+class CompactCatalogRow extends StatelessWidget {
+  const CompactCatalogRow({
+    super.key,
+    required this.children,
+    this.tileSize = 72,
+    this.spacing = 8,
+  });
+
+  final List<Widget> children;
+  final double tileSize;
+  final double spacing;
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: spacing,
+      runSpacing: spacing,
+      children: [
+        for (final child in children)
+          SizedBox(width: tileSize, height: tileSize, child: child),
+      ],
     );
   }
 }

@@ -1,0 +1,1241 @@
+{
+  "version": "1.0.0",
+  "title": "Kıssalar - Minik Kalpler",
+  "description": "Kur'an'da anlatılan önemli kıssaları çocukların yaşına uygun, sahne sahne ve ders odaklı öğrenmesini sağlayan offline eğitim içerikleri.",
+  "language": "tr",
+  "offline": true,
+  "agePolicy": {
+    "7-9": "simple",
+    "10-12": "deeper"
+  },
+  "contentPrinciples": [
+    "Kur'an'da açıkça desteklenmeyen ayrıntılar eklenmez.",
+    "Kur'an'ın vermediği tarih, yer, fiziksel görünüm ve diyalog ayrıntıları uydurulmaz.",
+    "Çocukların korkutulması yerine ibret, umut, sorumluluk ve güzel davranış öne çıkarılır.",
+    "Peygamberler insan suretinde çizilmez; sembolik görseller kullanılır.",
+    "Kıssalar tarih ansiklopedisi gibi değil, alınacak derslerle anlatılır."
+  ],
+  "learningAlgorithm": {
+    "type": "story_based",
+    "flow": "cover -> intro -> scene_1 -> scene_2 -> ... -> lesson -> reflection -> mini_quiz -> completion",
+    "sceneCompletion": "read_or_listen",
+    "progressStorage": "local",
+    "resumeEnabled": true,
+    "recommendedDailyStories": 1,
+    "favoriteEnabled": true,
+    "audioLocalOnly": true
+  },
+  "categories": [
+    {
+      "id": "peygamber_kissalari",
+      "title": "Peygamber Kıssaları"
+    },
+    {
+      "id": "ibadet_kissalari",
+      "title": "İbadet ve Dua Kıssaları"
+    },
+    {
+      "id": "ahlak_kissalari",
+      "title": "Ahlak Kıssaları"
+    },
+    {
+      "id": "mucize_kissalari",
+      "title": "Mucize Kıssaları"
+    },
+    {
+      "id": "ders_kissalari",
+      "title": "Ders ve Hikmet Kıssaları"
+    },
+    {
+      "id": "sabir_kissalari",
+      "title": "Sabır Kıssaları"
+    },
+    {
+      "id": "ibret_kissalari",
+      "title": "İbret Kıssaları"
+    },
+    {
+      "id": "siyer_kissalari",
+      "title": "Siyer Kıssaları"
+    }
+  ],
+  "items": [
+    {
+      "id": "adem_ve_yaratilis",
+      "order": 1,
+      "title": "Hz. Âdem ve İlk İnsan",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "peygamber_kissalari",
+      "summary": "Hz. Âdem'in yaratılışı, Allah'ın ona isimleri öğretmesi, imtihanı ve tevbe etmesi üzerinden sorumluluk ve Allah'a yönelme anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "İnsanların Yaratılışı",
+          "text": "Kur'an'da Allah'ın yeryüzünde bir halife yaratacağını meleklere bildirmesi anlatılır.",
+          "references": [
+            "Bakara 2:30"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Âdem'e İsimlerin Öğretilmesi",
+          "text": "Allah'ın Âdem'e isimleri öğrettiği ve ilmin öneminin gösterildiği anlatılır.",
+          "references": [
+            "Bakara 2:31-33"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "İmtihan",
+          "text": "Âdem ve eşinin imtihan edilmesi ve şeytanın vesvesesi anlatılır.",
+          "references": [
+            "Bakara 2:35-36",
+            "A'râf 7:19-22"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Tevbe",
+          "text": "Âdem ve eşinin Allah'a yönelip bağışlanma dilemeleri anlatılır.",
+          "references": [
+            "Bakara 2:37",
+            "A'râf 7:23"
+          ]
+        }
+      ],
+      "lessons": [
+        "Sorumluluk",
+        "Tevbe",
+        "Allah'a yönelmek",
+        "İmtihanlarda doğruyu seçmek"
+      ],
+      "reflection": "Hata yaptığımızda doğru olan nedir?",
+      "quranReferences": [
+        "Bakara 2:30-39",
+        "A'râf 7:11-25",
+        "Tâhâ 20:115-123"
+      ],
+      "image": "assets/images/qissalar/adem_ve_yaratilis.png",
+      "audio": "assets/audio/qissalar/adem_ve_yaratilis.mp3"
+    },
+    {
+      "id": "nuh_ve_gemi",
+      "order": 2,
+      "title": "Hz. Nûh ve Gemi",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "peygamber_kissalari",
+      "summary": "Hz. Nûh'un kavmini uyarması, sabrı, geminin yapılması ve tufan kıssası üzerinden sabır ve Allah'a güven anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Uyarı",
+          "text": "Nûh peygamber kavmini Allah'a kulluğa ve doğru yola çağırır.",
+          "references": [
+            "Nûh 71:1-4"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Uzun Süren Tebliğ",
+          "text": "Nûh'un kavmine sabırla öğüt vermesi anlatılır.",
+          "references": [
+            "Nûh 71:5-9"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Gemi",
+          "text": "Allah'ın emriyle geminin yapılması ve müminlerin gemiye binmesi anlatılır.",
+          "references": [
+            "Hûd 11:37-40",
+            "Mü'minûn 23:27-29"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Tufan",
+          "text": "Tufanın gerçekleşmesi ve geminin Allah'ın korumasıyla yol alması anlatılır.",
+          "references": [
+            "Hûd 11:42-44"
+          ]
+        }
+      ],
+      "lessons": [
+        "Sabır",
+        "Kararlılık",
+        "Allah'a güven",
+        "Emirlere uymak"
+      ],
+      "reflection": "Bir işi zor olsa da doğru olduğuna inanıyorsak neden sabırlı olmalıyız?",
+      "quranReferences": [
+        "Hûd 11:25-49",
+        "Nûh 71:1-28",
+        "Mü'minûn 23:23-30"
+      ],
+      "image": "assets/images/qissalar/nuh_ve_gemi.png",
+      "audio": "assets/audio/qissalar/nuh_ve_gemi.mp3"
+    },
+    {
+      "id": "ibrahim_ve_putlar",
+      "order": 3,
+      "title": "Hz. İbrâhim ve Putlar",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "peygamber_kissalari",
+      "summary": "Hz. İbrâhim'in kavmini tevhid inancına çağırması ve putların ilâh olamayacağını anlatması üzerinden düşünme ve tevhid öğretilir.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Düşünmek",
+          "text": "İbrâhim'in göklerdeki ve yerdeki varlıklar üzerinde düşünmesi anlatılır.",
+          "references": [
+            "En'âm 6:74-79"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Putlarla Konuşması",
+          "text": "İbrâhim kavmine tapındıkları varlıkların fayda ve zarar vermeye güçleri olmadığını anlatır.",
+          "references": [
+            "Enbiyâ 21:51-67"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Putların Kırılması",
+          "text": "İbrâhim'in putların durumunu sorgulatan davranışı ve kavminin verdiği tepki anlatılır.",
+          "references": [
+            "Enbiyâ 21:57-67"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Ateş",
+          "text": "İbrâhim'in ateşe atılması ve Allah'ın onu koruması anlatılır.",
+          "references": [
+            "Enbiyâ 21:68-70"
+          ]
+        }
+      ],
+      "lessons": [
+        "Tevhid",
+        "Cesaret",
+        "Düşünmek",
+        "Allah'a güven"
+      ],
+      "reflection": "Bir şeyin çok kişi tarafından yapılması onu otomatik olarak doğru yapar mı?",
+      "quranReferences": [
+        "En'âm 6:74-83",
+        "Enbiyâ 21:51-70",
+        "Sâffât 37:83-98"
+      ],
+      "image": "assets/images/qissalar/ibrahim_ve_putlar.png",
+      "audio": "assets/audio/qissalar/ibrahim_ve_putlar.mp3"
+    },
+    {
+      "id": "ibrahim_ve_kabe",
+      "order": 4,
+      "title": "Hz. İbrâhim ve Kâbe",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "ibadet_kissalari",
+      "summary": "Hz. İbrâhim ve Hz. İsmâil'in Kâbe ile ilgili görevleri ve yaptıkları dua üzerinden ibadet, dua ve aile dayanışması anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Kâbe'nin Temelleri",
+          "text": "İbrâhim ve İsmâil'in Kâbe'nin temellerini yükseltmeleri anlatılır.",
+          "references": [
+            "Bakara 2:125-127"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Dua",
+          "text": "İbrâhim ve İsmâil'in Allah'tan yaptıkları ameli kabul etmesini istemeleri anlatılır.",
+          "references": [
+            "Bakara 2:127-129"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Güvenli Şehir",
+          "text": "İbrâhim'in Mekke ve insanları için yaptığı dualardan söz edilir.",
+          "references": [
+            "Bakara 2:126",
+            "İbrâhîm 14:35-37"
+          ]
+        }
+      ],
+      "lessons": [
+        "Dua",
+        "İbadet",
+        "Aileyle iyilikte bulunmak",
+        "Şükür"
+      ],
+      "reflection": "Bir iyilik yaptıktan sonra neden Allah'tan kabul etmesini istemeliyiz?",
+      "quranReferences": [
+        "Bakara 2:125-129",
+        "İbrâhîm 14:35-41"
+      ],
+      "image": "assets/images/qissalar/ibrahim_ve_kabe.png",
+      "audio": "assets/audio/qissalar/ibrahim_ve_kabe.mp3"
+    },
+    {
+      "id": "yusuf_kuyudan_kurtulus",
+      "order": 5,
+      "title": "Hz. Yûsuf: Kuyudan Kurtuluş",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "peygamber_kissalari",
+      "summary": "Hz. Yûsuf'un kardeşleri tarafından kuyuya bırakılması, ardından Allah'ın takdiriyle yeni bir hayata başlaması anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Rüya",
+          "text": "Yûsuf'un çocukken gördüğü rüya ve babası Ya'kûb'un ona yaklaşımı anlatılır.",
+          "references": [
+            "Yûsuf 12:4-6"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Kuyu",
+          "text": "Kardeşlerinin Yûsuf'u kuyuya bırakması ve ardından dönen olaylar anlatılır.",
+          "references": [
+            "Yûsuf 12:8-18"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Kervan",
+          "text": "Bir kervanın Yûsuf'u bulması ve onu Mısır'a götürmesi anlatılır.",
+          "references": [
+            "Yûsuf 12:19-21"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Sabır",
+          "text": "Yûsuf'un yaşadığı zorluklarda iffetini ve sabrını koruması kıssanın önemli derslerinden biridir.",
+          "references": [
+            "Yûsuf 12:23-35"
+          ]
+        }
+      ],
+      "lessons": [
+        "Sabır",
+        "İffet",
+        "Allah'a güven",
+        "Zorlukta doğru davranmak"
+      ],
+      "reflection": "Haksızlığa uğradığımızda nasıl bir davranış sergilemeliyiz?",
+      "quranReferences": [
+        "Yûsuf 12:4-35"
+      ],
+      "image": "assets/images/qissalar/yusuf_kuyudan_kurtulus.png",
+      "audio": "assets/audio/qissalar/yusuf_kuyudan_kurtulus.mp3"
+    },
+    {
+      "id": "yusuf_ve_kardesleri",
+      "order": 6,
+      "title": "Hz. Yûsuf: Affetmek",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "ahlak_kissalari",
+      "summary": "Yıllar sonra kardeşleriyle karşılaşan Yûsuf'un affediciliği ve Allah'ın planına güvenmesi üzerinden güzel ahlak anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Yıllar Sonra",
+          "text": "Yûsuf'un Mısır'da önemli bir konuma gelmesi ve kardeşleriyle tekrar karşılaşması anlatılır.",
+          "references": [
+            "Yûsuf 12:54-58",
+            "Yûsuf 12:70-76"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Gerçeğin Ortaya Çıkması",
+          "text": "Yûsuf kendisini kardeşlerine tanıtır ve geçmişte yaşananları hatırlatır.",
+          "references": [
+            "Yûsuf 12:89-90"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Affetmek",
+          "text": "Yûsuf kardeşlerine sitem etmek yerine Allah'ın bağışlayıcı olduğunu hatırlatır.",
+          "references": [
+            "Yûsuf 12:91-92"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Buluşma",
+          "text": "Yûsuf ailesiyle yeniden buluşur ve çocukluk rüyasının gerçekleşmesi anlatılır.",
+          "references": [
+            "Yûsuf 12:93-101"
+          ]
+        }
+      ],
+      "lessons": [
+        "Affetmek",
+        "Sabır",
+        "Aile bağları",
+        "Allah'a güven"
+      ],
+      "reflection": "Biri bize haksızlık yaptığında affetmek neden güzel bir davranış olabilir?",
+      "quranReferences": [
+        "Yûsuf 12:89-101"
+      ],
+      "image": "assets/images/qissalar/yusuf_ve_kardesleri.png",
+      "audio": "assets/audio/qissalar/yusuf_ve_kardesleri.mp3"
+    },
+    {
+      "id": "musa_deniz",
+      "order": 7,
+      "title": "Hz. Mûsâ ve Denizin Yarılması",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "mucize_kissalari",
+      "summary": "Hz. Mûsâ ve beraberindekilerin Firavun'un zulmünden kurtuluşu ve denizin yarılması kıssası üzerinden Allah'a güven anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Firavun'un Zulmü",
+          "text": "Firavun'un İsrailoğullarına uyguladığı zulüm ve Mûsâ'nın tebliği anlatılır.",
+          "references": [
+            "Kasas 28:3-6",
+            "Tâhâ 20:24-45"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Yolculuk",
+          "text": "Mûsâ'nın kavmiyle birlikte yola çıkması anlatılır.",
+          "references": [
+            "Şuarâ 26:52-57"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Deniz",
+          "text": "Mûsâ'ya asasıyla denize vurmasının emredilmesi ve denizin yarılması anlatılır.",
+          "references": [
+            "Şuarâ 26:60-66",
+            "Bakara 2:50"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Kurtuluş",
+          "text": "Mûsâ ve beraberindekilerin kurtuluşu, Firavun ve ordusunun ise boğulması anlatılır.",
+          "references": [
+            "Yûnus 10:90-92",
+            "Şuarâ 26:66-68"
+          ]
+        }
+      ],
+      "lessons": [
+        "Allah'a güven",
+        "Cesaret",
+        "Zulme karşı durmak",
+        "Şükür"
+      ],
+      "reflection": "Çok zor bir durumda kaldığımızda Allah'a güvenmek bize nasıl yardımcı olur?",
+      "quranReferences": [
+        "Tâhâ 20:9-79",
+        "Şuarâ 26:10-68",
+        "Kasas 28:3-42"
+      ],
+      "image": "assets/images/qissalar/musa_deniz.png",
+      "audio": "assets/audio/qissalar/musa_deniz.mp3"
+    },
+    {
+      "id": "musa_hizir",
+      "order": 8,
+      "title": "Hz. Mûsâ ve Bilgelik Yolculuğu",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "ders_kissalari",
+      "summary": "Mûsâ ile Allah tarafından kendisine özel bilgi verilmiş kulun yolculuğunda sabır, görünmeyen hikmetler ve acele hüküm vermemek anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Yolculuk",
+          "text": "Mûsâ'nın bilgi öğrenmek amacıyla yola çıkması anlatılır.",
+          "references": [
+            "Kehf 18:60-65"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Gemi",
+          "text": "İlk olayda görünen ile gerçek sonuç arasındaki fark gösterilir.",
+          "references": [
+            "Kehf 18:66-82"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Genç",
+          "text": "İkinci olayda görünenin arkasındaki hikmet anlatılır.",
+          "references": [
+            "Kehf 18:74-81"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Duvar",
+          "text": "İyilik ve koruma karşılığının her zaman hemen görülmeyebileceği anlatılır.",
+          "references": [
+            "Kehf 18:77-82"
+          ]
+        }
+      ],
+      "lessons": [
+        "Sabır",
+        "Bilginin sınırlarını bilmek",
+        "Acele hüküm vermemek",
+        "Görünenin ötesindeki hikmet"
+      ],
+      "reflection": "Bir olayın bütün nedenlerini bilmeden hemen karar vermek doğru mudur?",
+      "quranReferences": [
+        "Kehf 18:60-82"
+      ],
+      "image": "assets/images/qissalar/musa_hizir.png",
+      "audio": "assets/audio/qissalar/musa_hizir.mp3"
+    },
+    {
+      "id": "yunus_balik",
+      "order": 9,
+      "title": "Hz. Yûnus ve Balık",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "dua_kissalari",
+      "summary": "Hz. Yûnus'un yaşadığı sıkıntı, karanlıklarda yaptığı dua ve Allah'ın onu kurtarması üzerinden tevbe, dua ve ümit anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Görev ve Ayrılış",
+          "text": "Yûnus'un kavmiyle ilgili yaşadığı süreç anlatılır.",
+          "references": [
+            "Sâffât 37:139-142"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Balık",
+          "text": "Yûnus'un gemiden ayrılması ve balık tarafından yutulması anlatılır.",
+          "references": [
+            "Sâffât 37:139-145"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Dua",
+          "text": "Yûnus'un karanlıklar içinde Allah'a yönelmesi anlatılır.",
+          "references": [
+            "Enbiyâ 21:87"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Kurtuluş",
+          "text": "Allah'ın Yûnus'un duasını kabul etmesi ve onu kurtarması anlatılır.",
+          "references": [
+            "Enbiyâ 21:88",
+            "Sâffât 37:145-148"
+          ]
+        }
+      ],
+      "lessons": [
+        "Dua",
+        "Tevbe",
+        "Ümit",
+        "Allah'a yönelmek"
+      ],
+      "reflection": "Kendimizi çok zor durumda hissettiğimizde dua etmek neden önemlidir?",
+      "duaReference": "Enbiyâ 21:87",
+      "quranReferences": [
+        "Enbiyâ 21:87-88",
+        "Sâffât 37:139-148"
+      ],
+      "image": "assets/images/qissalar/yunus_balik.png",
+      "audio": "assets/audio/qissalar/yunus_balik.mp3"
+    },
+    {
+      "id": "eyyub_sabir",
+      "order": 10,
+      "title": "Hz. Eyyûb ve Sabır",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "sabir_kissalari",
+      "summary": "Hz. Eyyûb'un sıkıntı karşısında Rabbine yönelmesi ve sabrı üzerinden dua, ümit ve Allah'a güven anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Sıkıntı",
+          "text": "Eyyûb'un ağır bir sıkıntı yaşadığı ve Rabbine seslendiği anlatılır.",
+          "references": [
+            "Enbiyâ 21:83"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Dua",
+          "text": "Eyyûb, Rabbine zarar ve sıkıntının dokunduğunu bildirerek merhamet ister.",
+          "references": [
+            "Enbiyâ 21:83"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Şifa ve Rahmet",
+          "text": "Allah'ın Eyyûb'un duasına karşılık vermesi ve sıkıntısını gidermesi anlatılır.",
+          "references": [
+            "Enbiyâ 21:84"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Sabır",
+          "text": "Kur'an Eyyûb'u sabırlı bir kul olarak anar.",
+          "references": [
+            "Sâd 38:44"
+          ]
+        }
+      ],
+      "lessons": [
+        "Sabır",
+        "Dua",
+        "Ümit",
+        "Allah'ın rahmetine güven"
+      ],
+      "reflection": "Sıkıntılı zamanlarda sabır ile dua nasıl birlikte yürür?",
+      "quranReferences": [
+        "Enbiyâ 21:83-84",
+        "Sâd 38:41-44"
+      ],
+      "image": "assets/images/qissalar/eyyub_sabir.png",
+      "audio": "assets/audio/qissalar/eyyub_sabir.mp3"
+    },
+    {
+      "id": "suleyman_karinca",
+      "order": 11,
+      "title": "Hz. Süleyman ve Karınca",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "sukur_kissalari",
+      "summary": "Hz. Süleyman'ın karıncanın sözünü işitmesi ve Allah'ın nimetlerini fark ederek şükretmesi üzerinden merhamet ve şükür anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Ordu",
+          "text": "Süleyman'ın ordularıyla birlikte karıncalar vadisine ulaştığı anlatılır.",
+          "references": [
+            "Neml 27:17-18"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Karıncanın Uyarısı",
+          "text": "Bir karıncanın diğer karıncaları korumak için uyardığı anlatılır.",
+          "references": [
+            "Neml 27:18"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Süleyman'ın Tebessümü",
+          "text": "Süleyman'ın karıncanın sözünü anlayıp tebessüm ettiği anlatılır.",
+          "references": [
+            "Neml 27:19"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Şükür Duası",
+          "text": "Süleyman'ın Allah'ın nimetlerine şükretmesi için dua ettiği anlatılır.",
+          "references": [
+            "Neml 27:19"
+          ]
+        }
+      ],
+      "lessons": [
+        "Şükür",
+        "Merhamet",
+        "Hayvanlara dikkat",
+        "Nimetleri fark etmek"
+      ],
+      "reflection": "Küçük görünen bir canlıya karşı bile neden dikkatli ve merhametli olmalıyız?",
+      "quranReferences": [
+        "Neml 27:15-19"
+      ],
+      "image": "assets/images/qissalar/suleyman_karinca.png",
+      "audio": "assets/audio/qissalar/suleyman_karinca.mp3"
+    },
+    {
+      "id": "davud_calisma",
+      "order": 12,
+      "title": "Hz. Dâvûd ve Emeği",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "emek_kissalari",
+      "summary": "Hz. Dâvûd'a verilen nimetler ve zırh yapma bilgisi üzerinden emek, şükür ve sorumluluk anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Hüküm ve Hikmet",
+          "text": "Dâvûd'a hükümranlık ve hikmet verilmesinden söz edilir.",
+          "references": [
+            "Sâd 38:17-20"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Demirin Yumuşatılması",
+          "text": "Dâvûd'a demirin yumuşatılması ve zırh yapma bilgisi verilmesi anlatılır.",
+          "references": [
+            "Sebe' 34:10-11",
+            "Enbiyâ 21:80"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Şükür",
+          "text": "Verilen nimetin Allah'tan olduğu ve güzel işler yapılması gerektiği vurgulanır.",
+          "references": [
+            "Sebe' 34:13"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Sorumluluk",
+          "text": "Dâvûd'a insanlar arasında adaletle hükmetmesi emredilir.",
+          "references": [
+            "Sâd 38:26"
+          ]
+        }
+      ],
+      "lessons": [
+        "Çalışmak",
+        "Şükür",
+        "Sorumluluk",
+        "Adalet"
+      ],
+      "reflection": "Bir yetenek bize verildiğinde onu nasıl kullanmalıyız?",
+      "quranReferences": [
+        "Sebe' 34:10-13",
+        "Sâd 38:17-26"
+      ],
+      "image": "assets/images/qissalar/davud_calisma.png",
+      "audio": "assets/audio/qissalar/davud_calisma.mp3"
+    },
+    {
+      "id": "ashab_i_kehf",
+      "order": 13,
+      "title": "Ashâb-ı Kehf",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "genclik_kissalari",
+      "summary": "İnançlarını korumaya çalışan gençlerin mağaraya sığınması ve Allah'ın onları uzun süre koruması üzerinden iman, cesaret ve Allah'a güven anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Gençler",
+          "text": "Gençlerin Rablerine iman ettikleri ve Allah'ın onların hidayetini artırdığı anlatılır.",
+          "references": [
+            "Kehf 18:13-14"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Mağaraya Sığınma",
+          "text": "Gençler zulümden uzaklaşmak için mağaraya sığınır ve Allah'ın rahmetini ister.",
+          "references": [
+            "Kehf 18:16"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Uzun Bekleyiş",
+          "text": "Allah'ın onları mağarada uzun süre koruması anlatılır.",
+          "references": [
+            "Kehf 18:17-18",
+            "Kehf 18:25"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Uyanış",
+          "text": "Uyandıklarında ne kadar kaldıklarını anlamaya çalışmaları ve yiyecek göndermeleri anlatılır.",
+          "references": [
+            "Kehf 18:19-21"
+          ]
+        }
+      ],
+      "lessons": [
+        "İman",
+        "Cesaret",
+        "Allah'a güven",
+        "Arkadaşlık"
+      ],
+      "reflection": "İnandığımız güzel değerleri korumak için cesaret göstermek ne demektir?",
+      "quranReferences": [
+        "Kehf 18:9-26"
+      ],
+      "image": "assets/images/qissalar/ashab_i_kehf.png",
+      "audio": "assets/audio/qissalar/ashab_i_kehf.mp3"
+    },
+    {
+      "id": "ashab_i_fil",
+      "order": 14,
+      "title": "Fil Olayı",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "korunma_kissalari",
+      "summary": "Kâbe'ye saldırmak isteyen fil ordusunun akıbeti üzerinden Allah'ın kudreti ve Kâbe'nin korunması anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Fil Ordusu",
+          "text": "Kâbe'ye saldırmak üzere gelen fil ordusundan söz edilir.",
+          "references": [
+            "Fîl 105:1-2"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Planın Boşa Çıkması",
+          "text": "Allah'ın onların planını boşa çıkardığı anlatılır.",
+          "references": [
+            "Fîl 105:2-3"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Kuşlar",
+          "text": "Üzerlerine bölük bölük kuşlar gönderilmesi anlatılır.",
+          "references": [
+            "Fîl 105:3-4"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Sonuç",
+          "text": "Ordunun yenilmiş ekin yaprağı gibi olduğu ifade edilir.",
+          "references": [
+            "Fîl 105:5"
+          ]
+        }
+      ],
+      "lessons": [
+        "Allah'ın kudreti",
+        "Kâbe'nin önemi",
+        "Zulme güvenmemek"
+      ],
+      "reflection": "Büyük görünen bir gücün her zaman başarılı olacağını söyleyebilir miyiz?",
+      "quranReferences": [
+        "Fîl 105:1-5"
+      ],
+      "image": "assets/images/qissalar/ashab_i_fil.png",
+      "audio": "assets/audio/qissalar/ashab_i_fil.mp3"
+    },
+    {
+      "id": "karun_ve_mal",
+      "order": 15,
+      "title": "Kârûn ve Serveti",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "ibret_kissalari",
+      "summary": "Kârûn'un büyük servetiyle övünmesi ve sonunda servetinin onu kurtaramaması üzerinden şükür, tevazu ve malın emanet oluşu anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Servet",
+          "text": "Kârûn'a verilen büyük servetten söz edilir.",
+          "references": [
+            "Kasas 28:76"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Öğüt",
+          "text": "Kavminin ona şımarıp böbürlenmemesini, Allah'ın verdiği nimetle ahiret yurdunu aramasını öğütlediği anlatılır.",
+          "references": [
+            "Kasas 28:77"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Böbürlenme",
+          "text": "Kârûn'un servetiyle övünmesi anlatılır.",
+          "references": [
+            "Kasas 28:78"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Sonuç",
+          "text": "Kârûn'un eviyle birlikte yere geçirilmesi anlatılır.",
+          "references": [
+            "Kasas 28:81-82"
+          ]
+        }
+      ],
+      "lessons": [
+        "Tevazu",
+        "Şükür",
+        "Malın emanet oluşu",
+        "Dünyaya aşırı bağlanmamak"
+      ],
+      "reflection": "Sahip olduğumuz şeyler bizi başkalarından üstün yapar mı?",
+      "quranReferences": [
+        "Kasas 28:76-82"
+      ],
+      "image": "assets/images/qissalar/karun_ve_mal.png",
+      "audio": "assets/audio/qissalar/karun_ve_mal.mp3"
+    },
+    {
+      "id": "musa_ve_kizlari",
+      "order": 16,
+      "title": "Hz. Mûsâ ve Medyen Yolculuğu",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "yardimlasma_kissalari",
+      "summary": "Mûsâ'nın Mısır'dan ayrıldıktan sonra Medyen'e ulaşması ve iki genç kadına yardım etmesi üzerinden yardımseverlik ve edep anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Medyen'e Ulaşmak",
+          "text": "Mûsâ'nın Medyen'e yönelmesi ve kuyu başındaki insanları görmesi anlatılır.",
+          "references": [
+            "Kasas 28:22-23"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Yardım",
+          "text": "Mûsâ'nın su başındaki iki kadına yardım ettiği anlatılır.",
+          "references": [
+            "Kasas 28:23-24"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Dua",
+          "text": "Mûsâ'nın Allah'ın göndereceği hayra muhtaç olduğunu ifade ettiği dua anlatılır.",
+          "references": [
+            "Kasas 28:24"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Yeni Bir Başlangıç",
+          "text": "Sonraki süreçte Mûsâ'nın Medyen'de yeni bir hayat kurmasına dair olaylar anlatılır.",
+          "references": [
+            "Kasas 28:25-28"
+          ]
+        }
+      ],
+      "lessons": [
+        "Yardım etmek",
+        "Edep",
+        "Dua",
+        "Zorluktan sonra umut"
+      ],
+      "reflection": "Kimse istemese bile yardıma ihtiyacı olan birini gördüğümüzde ne yapabiliriz?",
+      "quranReferences": [
+        "Kasas 28:22-28"
+      ],
+      "image": "assets/images/qissalar/musa_ve_kizlari.png",
+      "audio": "assets/audio/qissalar/musa_ve_kizlari.mp3"
+    },
+    {
+      "id": "zakerriya_yahya",
+      "order": 17,
+      "title": "Hz. Zekeriyyâ ve Yahyâ",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "dua_kissalari",
+      "summary": "Hz. Zekeriyyâ'nın duası, Yahyâ ile müjdelenmesi ve aile içinde güzel bir nesil yetiştirme arzusu üzerinden dua, umut ve Allah'ın kudreti anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Gizli Dua",
+          "text": "Zekeriyyâ'nın Rabbine gizlice dua etmesi anlatılır.",
+          "references": [
+            "Meryem 19:2-6"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Müjde",
+          "text": "Meleklerin Yahyâ isimli bir çocukla müjde vermesi anlatılır.",
+          "references": [
+            "Meryem 19:7-11"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Yahyâ",
+          "text": "Yahyâ'ya küçük yaşta hikmet verilmesi ve güzel özelliklerle anılması anlatılır.",
+          "references": [
+            "Meryem 19:12-15"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Ümit",
+          "text": "İnsanın imkânsız gördüğü bir durumda bile Allah'ın kudretini unutmaması öğretilir.",
+          "references": [
+            "Âl-i İmrân 3:38-41"
+          ]
+        }
+      ],
+      "lessons": [
+        "Dua",
+        "Ümit",
+        "Allah'ın kudreti",
+        "Aile"
+      ],
+      "reflection": "Bir dileğimiz hemen gerçekleşmediğinde neden dua etmeye devam edebiliriz?",
+      "quranReferences": [
+        "Meryem 19:2-15",
+        "Âl-i İmrân 3:37-41"
+      ],
+      "image": "assets/images/qissalar/zekeriyya_yahya.png",
+      "audio": "assets/audio/qissalar/zekeriyya_yahya.mp3"
+    },
+    {
+      "id": "isa_dogumu",
+      "order": 18,
+      "title": "Hz. Îsâ'nın Doğumu",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "mucize_kissalari",
+      "summary": "Hz. Meryem'in Allah tarafından seçilmesi ve Hz. Îsâ'nın mucizevi doğumu Kur'an'daki anlatım üzerinden aktarılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Meryem'in Seçilmesi",
+          "text": "Meryem'in Allah tarafından seçildiği ve temiz kılındığı anlatılır.",
+          "references": [
+            "Âl-i İmrân 3:42-45"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Müjde",
+          "text": "Meryem'e Îsâ ile müjdelendiği anlatılır.",
+          "references": [
+            "Meryem 19:16-21"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Doğum",
+          "text": "Îsâ'nın doğumu ve Meryem'in yaşadığı sıkıntı anlatılır.",
+          "references": [
+            "Meryem 19:22-26"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Konuşma",
+          "text": "Îsâ'nın beşikte konuşması ve Allah'ın kulu olduğunu bildirmesi anlatılır.",
+          "references": [
+            "Meryem 19:27-33"
+          ]
+        }
+      ],
+      "lessons": [
+        "Allah'ın kudreti",
+        "Sabır",
+        "Temizlik",
+        "Allah'a kulluk"
+      ],
+      "reflection": "Allah'ın kudretini düşündüğümüzde neden şaşırıp umutlanabiliriz?",
+      "quranReferences": [
+        "Âl-i İmrân 3:42-55",
+        "Meryem 19:16-36"
+      ],
+      "image": "assets/images/qissalar/isa_dogumu.png",
+      "audio": "assets/audio/qissalar/isa_dogumu.mp3"
+    },
+    {
+      "id": "muhammed_ve_merhamet",
+      "order": 19,
+      "title": "Hz. Muhammed ve Merhamet",
+      "ageGroups": [
+        "7-9",
+        "10-12"
+      ],
+      "category": "siyer_kissalari",
+      "summary": "Hz. Muhammed'in güzel ahlakı, merhameti ve insanlara karşı şefkati üzerinden çocukların günlük hayatına taşınabilecek örnekler anlatılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "Güzel Ahlak",
+          "text": "Kur'an'da Hz. Muhammed'in yüce bir ahlak üzere olduğu bildirilir.",
+          "references": [
+            "Kalem 68:4"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Rahmet",
+          "text": "Onun bütün âlemlere rahmet olarak gönderildiği belirtilir.",
+          "references": [
+            "Enbiyâ 21:107"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "İnsanlara Yaklaşım",
+          "text": "Siyer ve hadis kaynaklarında insanların iyiliğini gözetmesi, merhameti ve güzel sözlü oluşu geniş biçimde anlatılır.",
+          "references": [
+            "Hadis ve siyer kaynakları"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Çocuğun Dersi",
+          "text": "Çocuk için ders: güzel konuşmak, merhametli olmak, kimseyi incitmemek ve iyilik yapmak.",
+          "references": [
+            "Kalem 68:4",
+            "Enbiyâ 21:107"
+          ]
+        }
+      ],
+      "lessons": [
+        "Merhamet",
+        "Güzel ahlak",
+        "Yumuşak söz",
+        "İyilik"
+      ],
+      "reflection": "Bugün Peygamberimizin güzel ahlakını hangi davranışımızla örnekleyebiliriz?",
+      "quranReferences": [
+        "Kalem 68:4",
+        "Enbiyâ 21:107",
+        "Ahzâb 33:21"
+      ],
+      "image": "assets/images/qissalar/muhammed_ve_merhamet.png",
+      "audio": "assets/audio/qissalar/muhammed_ve_merhamet.mp3"
+    },
+    {
+      "id": "ashab_i_uhdud",
+      "order": 20,
+      "title": "Ashâb-ı Uhdûd",
+      "ageGroups": [
+        "10-12"
+      ],
+      "category": "iman_kissalari",
+      "summary": "İnançlarından vazgeçmeleri istenen insanların yaşadığı ağır imtihan, Kur'an'ın Burûc sûresindeki anlatım çerçevesinde aktarılır.",
+      "scenes": [
+        {
+          "order": 1,
+          "title": "İman",
+          "text": "İnsanların imanlarından dolayı ağır bir zulme maruz bırakıldığı anlatılır.",
+          "references": [
+            "Burûc 85:4-8"
+          ]
+        },
+        {
+          "order": 2,
+          "title": "Ateş Hendekleri",
+          "text": "İnananlara karşı ateş hendeklerinin hazırlanması anlatılır.",
+          "references": [
+            "Burûc 85:4-10"
+          ]
+        },
+        {
+          "order": 3,
+          "title": "Şahitlik",
+          "text": "Allah'ın her şeye şahit olduğu vurgulanır.",
+          "references": [
+            "Burûc 85:9"
+          ]
+        },
+        {
+          "order": 4,
+          "title": "Ders",
+          "text": "Kıssa iman, sabır ve zulüm karşısında insanın onurunu koruması konusunda düşünmeye yönlendirir.",
+          "references": [
+            "Burûc 85:8-11"
+          ]
+        }
+      ],
+      "lessons": [
+        "İman",
+        "Sabır",
+        "Adalet",
+        "Zulmün kötülüğü"
+      ],
+      "reflection": "Doğru olduğuna inandığımız bir değeri korumak neden bazen cesaret ister?",
+      "quranReferences": [
+        "Burûc 85:4-11"
+      ],
+      "image": "assets/images/qissalar/ashab_i_uhdud.png",
+      "audio": "assets/audio/qissalar/ashab_i_uhdud.mp3"
+    }
+  ],
+  "quizTemplates": [
+    {
+      "id": "qissa_quiz_01",
+      "type": "lesson_check",
+      "example": "Bu kıssadan hangi güzel davranışı öğrendik?"
+    },
+    {
+      "id": "qissa_quiz_02",
+      "type": "scene_order",
+      "example": "Olayları doğru sıraya koy."
+    },
+    {
+      "id": "qissa_quiz_03",
+      "type": "reference_match",
+      "example": "Bu olay hangi sûre/ayette anlatılıyor?"
+    }
+  ],
+  "audioPolicy": {
+    "directory": "assets/audio/qissalar/",
+    "localOnly": true,
+    "narration": "calm_child_friendly_storytelling",
+    "prophetDepiction": "never_use_visual_or_voice_as_imitation_of_prophet"
+  }
+}

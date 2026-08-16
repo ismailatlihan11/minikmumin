@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +17,48 @@ class WuduProgress {
   final bool started;
 
   bool get inProgress => started && !completed;
+}
+
+class ContinuePoint {
+  const ContinuePoint({
+    required this.title,
+    required this.subtitle,
+    required this.route,
+    this.progress = 0,
+  });
+
+  final String title;
+  final String subtitle;
+  final String route;
+  final double progress;
+}
+
+class FavoriteEntry {
+  const FavoriteEntry({
+    required this.kind,
+    required this.id,
+    required this.title,
+  });
+
+  final String kind;
+  final String id;
+  final String title;
+
+  String get key => '$kind|$id';
+
+  Map<String, String> toMap() => {
+        'kind': kind,
+        'id': id,
+        'title': title,
+      };
+
+  factory FavoriteEntry.fromMap(Map<String, dynamic> map) {
+    return FavoriteEntry(
+      kind: map['kind']?.toString() ?? '',
+      id: map['id']?.toString() ?? '',
+      title: map['title']?.toString() ?? '',
+    );
+  }
 }
 
 class LocalProgressStore extends ChangeNotifier {
@@ -59,7 +103,12 @@ class LocalProgressStore extends ChangeNotifier {
 
   Future<void> setNickname(String value) async {
     final prefs = await _ensure();
-    await prefs.setString(_key('nickname'), value);
+    final trimmed = value.trim();
+    if (trimmed.isEmpty) {
+      await prefs.remove(_key('nickname'));
+    } else {
+      await prefs.setString(_key('nickname'), trimmed);
+    }
     notifyListeners();
   }
 
@@ -77,7 +126,12 @@ class LocalProgressStore extends ChangeNotifier {
     await prefs.setBool(_key('wudu_started'), true);
     await prefs.setInt(_key('wudu_step'), index);
     await prefs.setBool(_key('wudu_completed'), false);
-    notifyListeners();
+    await setContinue(
+      title: 'Abdesti Öğren',
+      subtitle: '${index + 1}. adım',
+      route: '/minik/learn/wudu',
+      progress: ((index + 1) / 13).clamp(0, 1),
+    );
   }
 
   Future<void> markWuduCompleted() async {
@@ -86,7 +140,12 @@ class LocalProgressStore extends ChangeNotifier {
     await prefs.setBool(_key('wudu_completed'), true);
     await _addUnique(_key('completed_lessons'), 'wudu');
     await _addUnique(_key('badges'), 'first_lesson');
-    notifyListeners();
+    await setContinue(
+      title: 'Namazı Öğren',
+      subtitle: 'Sıradaki ders',
+      route: '/minik/learn/prayer',
+      progress: 0,
+    );
   }
 
   Future<void> resetWudu() async {
@@ -105,6 +164,113 @@ class LocalProgressStore extends ChangeNotifier {
   Future<List<String>> getBadges() async {
     final prefs = await _ensure();
     return prefs.getStringList(_key('badges')) ?? const [];
+  }
+
+  Future<void> markCompleted(
+    String kind,
+    String id, {
+    int xp = 0,
+    String? badge,
+  }) async {
+    final already = await isCompleted(kind, id);
+    if (already) return;
+    await _addUnique(_key('completed_items'), '$kind|$id');
+    await _addUnique(_key('completed_lessons'), kind);
+    if (badge != null && badge.isNotEmpty) {
+      await _addUnique(_key('badges'), badge);
+    }
+    if (kind == 'dua' || kind == 'prayer_dua') {
+      await _addUnique(_key('badges'), 'first_dua');
+    }
+    if (kind == 'prayer_dua') {
+      final items = await getCompletedItems();
+      final count = items.where((item) => item.startsWith('prayer_dua|')).length;
+      if (count >= 5) await _addUnique(_key('badges'), 'prayer_duas');
+    }
+    if (kind == 'story') await _addUnique(_key('badges'), 'first_lesson');
+    if (kind == 'morality') await _addUnique(_key('badges'), 'good_manners');
+    if (kind == 'quran') await _addUnique(_key('badges'), 'quran_reader');
+    if (xp > 0) await addXp(xp);
+    notifyListeners();
+  }
+
+  Future<bool> isCompleted(String kind, String id) async {
+    final items = await getCompletedItems();
+    return items.contains('$kind|$id');
+  }
+
+  Future<List<String>> getCompletedItems() async {
+    final prefs = await _ensure();
+    return prefs.getStringList(_key('completed_items')) ?? const [];
+  }
+
+  Future<void> setContinue({
+    required String title,
+    required String subtitle,
+    required String route,
+    double progress = 0,
+  }) async {
+    final prefs = await _ensure();
+    await prefs.setString(_key('continue_title'), title);
+    await prefs.setString(_key('continue_subtitle'), subtitle);
+    await prefs.setString(_key('continue_route'), route);
+    await prefs.setDouble(_key('continue_progress'), progress.clamp(0, 1));
+    notifyListeners();
+  }
+
+  Future<ContinuePoint?> getContinue() async {
+    final prefs = await _ensure();
+    final route = prefs.getString(_key('continue_route'));
+    if (route == null || route.isEmpty) return null;
+    return ContinuePoint(
+      title: prefs.getString(_key('continue_title')) ?? 'Öğrenmeye Devam Et',
+      subtitle: prefs.getString(_key('continue_subtitle')) ?? '',
+      route: route,
+      progress: prefs.getDouble(_key('continue_progress')) ?? 0,
+    );
+  }
+
+  Future<void> setStoryPage(String id, int page) async {
+    final prefs = await _ensure();
+    await prefs.setInt(_key('story_page_$id'), page);
+  }
+
+  Future<int> getStoryPage(String id) async {
+    final prefs = await _ensure();
+    return prefs.getInt(_key('story_page_$id')) ?? 0;
+  }
+
+  Future<List<FavoriteEntry>> getFavorites() async {
+    final prefs = await _ensure();
+    final raw = prefs.getString(_key('favorites_json')) ?? '[]';
+    final decoded = jsonDecode(raw);
+    if (decoded is! List) return const [];
+    return decoded
+        .whereType<Map>()
+        .map((item) => FavoriteEntry.fromMap(Map<String, dynamic>.from(item)))
+        .where((item) => item.id.isNotEmpty)
+        .toList(growable: false);
+  }
+
+  Future<bool> isFavorite(String kind, String id) async {
+    final items = await getFavorites();
+    return items.any((item) => item.kind == kind && item.id == id);
+  }
+
+  Future<void> toggleFavorite(FavoriteEntry entry) async {
+    final prefs = await _ensure();
+    final current = List<FavoriteEntry>.from(await getFavorites());
+    final exists = current.any((item) => item.key == entry.key);
+    if (exists) {
+      current.removeWhere((item) => item.key == entry.key);
+    } else {
+      current.add(entry);
+    }
+    await prefs.setString(
+      _key('favorites_json'),
+      jsonEncode(current.map((item) => item.toMap()).toList()),
+    );
+    notifyListeners();
   }
 
   Future<void> _addUnique(String key, String value) async {

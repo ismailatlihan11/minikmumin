@@ -1,29 +1,473 @@
 {
-  "version": "2.0",
+  "version": "1.0.0",
+  "title": "Güzel Ahlak",
+  "description": "Çocukların günlük hayatında uygulayabileceği İslami ahlak ve davranış değerlerini öğrenmesi için hazırlanmış eğitim içeriği.",
+  "language": "tr",
+  "offline": true,
+  "contentSource": {
+    "primary": "Kur'an ve Sünnet",
+    "verificationReference": "Diyanet İşleri Başkanlığı'nın ahlak içerikleri",
+    "note": "Özet açıklamalar çocuk diline uyarlanmıştır; özgün ayet ve hadis metinleri kaynak içeriklerden ayrıca gösterilmelidir."
+  },
+  "categories": [
+    {
+      "id": "temel_degerler",
+      "title": "Temel Değerler"
+    },
+    {
+      "id": "kalp_ahlaki",
+      "title": "Kalbin Güzellikleri"
+    },
+    {
+      "id": "aile",
+      "title": "Aile"
+    },
+    {
+      "id": "insanlarla_iliskiler",
+      "title": "İnsanlarla İlişkiler"
+    },
+    {
+      "id": "toplum",
+      "title": "Toplum"
+    },
+    {
+      "id": "dil_ahlaki",
+      "title": "Güzel Konuşmak"
+    },
+    {
+      "id": "canlilar",
+      "title": "Canlılara Merhamet"
+    },
+    {
+      "id": "gunluk_hayat",
+      "title": "Günlük Hayat"
+    }
+  ],
+  "learningAlgorithm": {
+    "type": "story_activity_quiz",
+    "recommendedFlow": "lesson -> story -> dailyChallenge -> reflection -> miniQuiz -> nextLesson",
+    "completion": "lessonReadAndActivityCompleted",
+    "progressStorage": "local"
+  },
+  "rules": {
+    "feedbackCorrect": "Harika! Güzel bir davranışı öğrendin.",
+    "feedbackRetry": "Birlikte tekrar düşünelim.",
+    "neverUseShamingLanguage": true,
+    "avoidFearBasedTeaching": true
+  },
   "items": [
     {
-      "id": "truthfulness",
+      "order": 1,
+      "id": "dogruluk",
       "title": "Doğruluk",
-      "lesson": "Doğru sözlü olmak güven oluşturur.",
-      "source": "Doğrulukla ilgili Kur'an ve sünnet öğretisi"
+      "category": "temel_degerler",
+      "shortMessage": "Doğruyu söylemek güven oluşturur.",
+      "childExplanation": "Bir şeyi yanlış yaptığımızda bile doğruyu söylemek güzel ahlaktır.",
+      "dailyChallenge": "Bugün bir konuda doğruyu söylemeye özellikle dikkat et.",
+      "quranReferences": [
+        "Ahzâb 33:70",
+        "Tevbe 9:119"
+      ],
+      "hadithReference": "Riyâzü's-Sâlihîn; doğruluk bahsi",
+      "image": "assets/images/morality/dogruluk.png",
+      "audio": "assets/audio/morality/dogruluk.mp3"
     },
     {
-      "id": "mercy",
+      "order": 2,
+      "id": "emanet",
+      "title": "Emanete Riayet",
+      "category": "temel_degerler",
+      "shortMessage": "Bize emanet edilen şeyi koruruz.",
+      "childExplanation": "Bir arkadaşımız bize bir eşya veya sır emanet ettiğinde ona sahip çıkarız.",
+      "dailyChallenge": "Bugün sana emanet edilen bir şeyi dikkatle koru.",
+      "quranReferences": [
+        "Nisâ 4:58"
+      ],
+      "hadithReference": "Emanet ve doğrulukla ilgili sahih hadisler",
+      "image": "assets/images/morality/emanet.png",
+      "audio": "assets/audio/morality/emanet.mp3"
+    },
+    {
+      "order": 3,
+      "id": "sozunde_durmak",
+      "title": "Sözünde Durmak",
+      "category": "temel_degerler",
+      "shortMessage": "Verdiğimiz sözü tutmaya çalışırız.",
+      "childExplanation": "Yapabileceğimizi söylediğimiz bir şeyi yerine getirmek güvenilir olmamıza yardımcı olur.",
+      "dailyChallenge": "Bugün verdiğin küçük bir sözü yerine getir.",
+      "quranReferences": [
+        "İsrâ 17:34"
+      ],
+      "hadithReference": "Doğruluk ve sözünde durmayla ilgili hadisler",
+      "image": "assets/images/morality/sozunde_durmak.png",
+      "audio": "assets/audio/morality/sozunde_durmak.mp3"
+    },
+    {
+      "order": 4,
+      "id": "merhamet",
       "title": "Merhamet",
-      "lesson": "İnsanlara ve canlılara karşı merhametli davran.",
-      "source": "Buhârî, Tevhîd 2; Müslim, Fedâil 66"
+      "category": "kalp_ahlaki",
+      "shortMessage": "İnsanlara ve canlılara şefkatle davranırız.",
+      "childExplanation": "Birinin üzgün olduğunu gördüğümüzde ona yardımcı olmak ve canlılara zarar vermemek merhametli davranışlardır.",
+      "dailyChallenge": "Bugün bir insana veya hayvana iyilik yap.",
+      "quranReferences": [
+        "Beled 90:12-17"
+      ],
+      "hadithReference": "Buhârî, Tevhîd 2; Müslim, Fedâil 66",
+      "image": "assets/images/morality/merhamet.png",
+      "audio": "assets/audio/morality/merhamet.mp3"
     },
     {
-      "id": "parents",
-      "title": "Anne-Babaya İyilik",
-      "lesson": "Anne ve babaya güzel söz söylemek ve iyilik etmek güzel bir davranıştır.",
-      "source": "İsrâ 17:23-24"
+      "order": 5,
+      "id": "saygi",
+      "title": "Saygı",
+      "category": "insanlarla_iliskiler",
+      "shortMessage": "İnsanlara değer veririz.",
+      "childExplanation": "Büyüklerimize hürmet eder, küçüklerimize şefkat gösterir ve kimseyi küçümsememeye çalışırız.",
+      "dailyChallenge": "Bugün bir büyüğüne güzel bir söz söyle.",
+      "quranReferences": [
+        "Hucurât 49:11"
+      ],
+      "hadithReference": "Büyüklerine saygı, küçüklerine merhametle ilgili hadisler",
+      "image": "assets/images/morality/saygi.png",
+      "audio": "assets/audio/morality/saygi.mp3"
     },
     {
-      "id": "sharing",
+      "order": 6,
+      "id": "anne_babaya_iyilik",
+      "title": "Anne ve Babaya İyilik",
+      "category": "aile",
+      "shortMessage": "Anne ve babamıza güzel davranırız.",
+      "childExplanation": "Onlara güzel söz söylemek, yardım etmek ve gönüllerini hoş tutmaya çalışmak güzel bir davranıştır.",
+      "dailyChallenge": "Bugün anne veya babana karşılıksız bir iyilik yap.",
+      "quranReferences": [
+        "İsrâ 17:23-24",
+        "Lokmân 31:14"
+      ],
+      "hadithReference": "Aileye güzel davranmayla ilgili hadisler",
+      "image": "assets/images/morality/anne_babaya_iyilik.png",
+      "audio": "assets/audio/morality/anne_babaya_iyilik.mp3"
+    },
+    {
+      "order": 7,
+      "id": "yardimlasma",
       "title": "Yardımlaşma",
-      "lesson": "İhtiyacı olanlara yardım etmeyi öğren.",
-      "source": "Mâide 5:2; Maûn 107"
+      "category": "toplum",
+      "shortMessage": "İhtiyacı olanlara yardımcı oluruz.",
+      "childExplanation": "Bir arkadaşımızın işi zor olduğunda elimizden gelen yardımı yapmak güzel ahlaktır.",
+      "dailyChallenge": "Bugün birinin işini kolaylaştır.",
+      "quranReferences": [
+        "Mâide 5:2",
+        "Mâûn 107:1-7"
+      ],
+      "hadithReference": "Yardımlaşma ve kardeşlikle ilgili hadisler",
+      "image": "assets/images/morality/yardimlasma.png",
+      "audio": "assets/audio/morality/yardimlasma.mp3"
+    },
+    {
+      "order": 8,
+      "id": "paylasma",
+      "title": "Paylaşma ve Cömertlik",
+      "category": "toplum",
+      "shortMessage": "Sahip olduğumuz güzellikleri paylaşmayı öğreniriz.",
+      "childExplanation": "Oyuncağımızı, yiyeceğimizi veya zamanımızı paylaşmak sevgiyi artırır.",
+      "dailyChallenge": "Bugün bir şeyi gönüllü olarak paylaş.",
+      "quranReferences": [
+        "Bakara 2:261",
+        "Haşr 59:9"
+      ],
+      "hadithReference": "Cömertlik ve infakla ilgili hadisler",
+      "image": "assets/images/morality/paylasma.png",
+      "audio": "assets/audio/morality/paylasma.mp3"
+    },
+    {
+      "order": 9,
+      "id": "sabir",
+      "title": "Sabır",
+      "category": "kalp_ahlaki",
+      "shortMessage": "Zorluklarda iyiliğe bağlı kalmaya çalışırız.",
+      "childExplanation": "Bir şey hemen istediğimiz gibi olmadığında sakin kalmak ve doğru davranmaya devam etmek sabırdır.",
+      "dailyChallenge": "Bugün zorlandığın bir konuda hemen pes etme.",
+      "quranReferences": [
+        "Bakara 2:153",
+        "Zümer 39:10"
+      ],
+      "hadithReference": "Sabırla ilgili sahih hadisler",
+      "image": "assets/images/morality/sabir.png",
+      "audio": "assets/audio/morality/sabir.mp3"
+    },
+    {
+      "order": 10,
+      "id": "sukur",
+      "title": "Şükür",
+      "category": "kalp_ahlaki",
+      "shortMessage": "Sahip olduğumuz nimetlerin değerini biliriz.",
+      "childExplanation": "Yiyecek, aile, sağlık, arkadaşlık ve sahip olduğumuz güzellikler için Allah'a teşekkür ederiz.",
+      "dailyChallenge": "Bugün şükrettiğin üç şeyi düşün.",
+      "quranReferences": [
+        "İbrâhîm 14:7",
+        "Bakara 2:152"
+      ],
+      "hadithReference": "Şükürle ilgili sahih hadisler",
+      "image": "assets/images/morality/sukur.png",
+      "audio": "assets/audio/morality/sukur.mp3"
+    },
+    {
+      "order": 11,
+      "id": "affetmek",
+      "title": "Affetmek",
+      "category": "kalp_ahlaki",
+      "shortMessage": "Hata yapanlara karşı affedici olmaya çalışırız.",
+      "childExplanation": "Biri samimiyetle özür dilediğinde onu affetmeyi öğrenmek güzel bir davranıştır.",
+      "dailyChallenge": "Seni üzen bir davranış karşısında sakin kalmayı dene.",
+      "quranReferences": [
+        "Âl-i İmrân 3:134",
+        "Şûrâ 42:40"
+      ],
+      "hadithReference": "Affetme ve merhametle ilgili hadisler",
+      "image": "assets/images/morality/affetmek.png",
+      "audio": "assets/audio/morality/affetmek.mp3"
+    },
+    {
+      "order": 12,
+      "id": "tevazu",
+      "title": "Tevazu",
+      "category": "kalp_ahlaki",
+      "shortMessage": "Kendimizi başkalarından üstün görmeyiz.",
+      "childExplanation": "Bir başarımız olduğunda kibirlenmek yerine şükretmeyi ve başkalarına değer vermeyi öğreniriz.",
+      "dailyChallenge": "Bugün bir arkadaşının başarısını içtenlikle kutla.",
+      "quranReferences": [
+        "Lokmân 31:18-19",
+        "Furkân 25:63"
+      ],
+      "hadithReference": "Tevazu ile ilgili hadisler",
+      "image": "assets/images/morality/tevazu.png",
+      "audio": "assets/audio/morality/tevazu.mp3"
+    },
+    {
+      "order": 13,
+      "id": "adalet",
+      "title": "Adalet",
+      "category": "insanlarla_iliskiler",
+      "shortMessage": "Herkese hakkını vermeye çalışırız.",
+      "childExplanation": "Oyunda, sırada veya paylaşırken arkadaşımıza haksızlık etmemeye dikkat ederiz.",
+      "dailyChallenge": "Bugün bir paylaşımda veya oyunda adil ol.",
+      "quranReferences": [
+        "Nahl 16:90",
+        "Mâide 5:8"
+      ],
+      "hadithReference": "Adaletle ilgili hadisler",
+      "image": "assets/images/morality/adalet.png",
+      "audio": "assets/audio/morality/adalet.mp3"
+    },
+    {
+      "order": 14,
+      "id": "komsuluk",
+      "title": "Komşuluk",
+      "category": "toplum",
+      "shortMessage": "Komşularımızı rahatsız etmez, onlara iyi davranırız.",
+      "childExplanation": "Gürültü yapmamak, selam vermek ve ihtiyaç olduğunda yardımcı olmak güzel komşuluktur.",
+      "dailyChallenge": "Bugün bir komşuna güzel bir selam ver.",
+      "quranReferences": [
+        "Nisâ 4:36"
+      ],
+      "hadithReference": "Müslim, Îmân 73; Tirmizî, Birr 28",
+      "image": "assets/images/morality/komsuluk.png",
+      "audio": "assets/audio/morality/komsuluk.mp3"
+    },
+    {
+      "order": 15,
+      "id": "gıybetten_kacinmak",
+      "title": "Gıybetten Kaçınmak",
+      "category": "dil_ahlaki",
+      "shortMessage": "Bir kişinin arkasından onu incitecek şekilde konuşmayız.",
+      "childExplanation": "Arkadaşımız yanımızda değilken onun hakkında hoşlanmayacağı şeyleri söylememeye dikkat ederiz.",
+      "dailyChallenge": "Bugün bir arkadaşın hakkında konuşmadan önce sözünün ona nasıl hissettireceğini düşün.",
+      "quranReferences": [
+        "Hucurât 49:12"
+      ],
+      "hadithReference": "Gıybetle ilgili sahih hadisler",
+      "image": "assets/images/morality/giybet.png",
+      "audio": "assets/audio/morality/giybet.mp3"
+    },
+    {
+      "order": 16,
+      "id": "yalan_soylememek",
+      "title": "Yalandan Kaçınmak",
+      "category": "dil_ahlaki",
+      "shortMessage": "Sözümüzde doğru olmaya çalışırız.",
+      "childExplanation": "Bir hata yaptığımızda gizlemek için yalan söylemek yerine doğruyu anlatmayı seçeriz.",
+      "dailyChallenge": "Bugün zor bir durumda bile doğruyu söylemeye çalış.",
+      "quranReferences": [
+        "Ahzâb 33:70"
+      ],
+      "hadithReference": "Buhârî, Edeb; Müslim, Birr - doğruluk bölümleri",
+      "image": "assets/images/morality/yalan.png",
+      "audio": "assets/audio/morality/yalan.mp3"
+    },
+    {
+      "order": 17,
+      "id": "kibirden_kacinmak",
+      "title": "Kibirden Kaçınmak",
+      "category": "kalp_ahlaki",
+      "shortMessage": "Başarılarımızla başkalarını küçümsemeyiz.",
+      "childExplanation": "Daha iyi olduğumuzu düşünerek arkadaşlarımızı küçümsemek güzel ahlaka uygun değildir.",
+      "dailyChallenge": "Bugün birinin iyi yaptığı şeyi fark edip onu takdir et.",
+      "quranReferences": [
+        "Lokmân 31:18",
+        "Hadîd 57:23"
+      ],
+      "hadithReference": "Kibirle ilgili sahih hadisler",
+      "image": "assets/images/morality/kibir.png",
+      "audio": "assets/audio/morality/kibir.mp3"
+    },
+    {
+      "order": 18,
+      "id": "israf_etmemek",
+      "title": "İsraf Etmemek",
+      "category": "gunluk_hayat",
+      "shortMessage": "Nimetleri gereksiz yere tüketmeyiz.",
+      "childExplanation": "Suyu, ekmeği, yiyecekleri ve sahip olduğumuz imkânları gereksiz yere harcamamaya dikkat ederiz.",
+      "dailyChallenge": "Bugün suyu ve yiyeceği dikkatli kullan.",
+      "quranReferences": [
+        "A'râf 7:31",
+        "İsrâ 17:27"
+      ],
+      "hadithReference": "İsraf ve nimetleri korumayla ilgili hadisler",
+      "image": "assets/images/morality/israf.png",
+      "audio": "assets/audio/morality/israf.mp3"
+    },
+    {
+      "order": 19,
+      "id": "hayvanlara_merhamet",
+      "title": "Hayvanlara Merhamet",
+      "category": "canlilar",
+      "shortMessage": "Hayvanlara zarar vermemeye ve onlara merhamet etmeye çalışırız.",
+      "childExplanation": "Hayvanları korkutmamak, onlara eziyet etmemek ve ihtiyaçları olduğunda yardımcı olmak güzel bir davranıştır.",
+      "dailyChallenge": "Bugün bir hayvana zarar vermeden ona iyi davran.",
+      "hadithReference": "Hayvanlara merhametle ilgili sahih hadisler",
+      "image": "assets/images/morality/hayvanlara_merhamet.png",
+      "audio": "assets/audio/morality/hayvanlara_merhamet.mp3"
+    },
+    {
+      "order": 20,
+      "id": "iyilikte_yaris",
+      "title": "İyilikte Yarışmak",
+      "category": "temel_degerler",
+      "shortMessage": "İyilik yapmayı fırsat biliriz.",
+      "childExplanation": "Kimse görmese bile güzel bir iş yapmayı tercih ederiz.",
+      "dailyChallenge": "Bugün kimse istemeden bir iyilik yap.",
+      "quranReferences": [
+        "Bakara 2:148",
+        "Mâide 5:48"
+      ],
+      "hadithReference": "İyilik ve salih amellerle ilgili hadisler",
+      "image": "assets/images/morality/iyilikte_yaris.png",
+      "audio": "assets/audio/morality/iyilikte_yaris.mp3"
     }
-  ]
+  ],
+  "quiz": [
+    {
+      "id": "ahlak_quiz_01",
+      "category": "dogruluk",
+      "question": "Doğru söylemek neden önemlidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İnsanların bize güvenebilmesi için",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Başkalarını üzmek için",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Hatalarımızı saklamak için",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ahlak_quiz_02",
+      "category": "merhamet",
+      "question": "Merhametli bir davranış hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "İhtiyacı olana yardım etmek",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Bir canlıya zarar vermek",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Arkadaşımızı küçümsemek",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ahlak_quiz_03",
+      "category": "israf_etmemek",
+      "question": "Suyu nasıl kullanmalıyız?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Gerektiği kadar",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sınırsızca",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Boşa akıtarak",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "ahlak_quiz_04",
+      "category": "anne_babaya_iyilik",
+      "question": "Anne ve babamıza nasıl davranmalıyız?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Güzel söz ve iyilikle",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Kaba sözlerle",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Onları küçümseyerek",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    }
+  ],
+  "uiRules": {
+    "showStory": true,
+    "showDailyChallenge": true,
+    "showQuranReferences": true,
+    "showHadithReferences": true,
+    "showAudio": true,
+    "allowFavorite": true,
+    "allowShare": true,
+    "longTextUseReadMore": true
+  }
 }

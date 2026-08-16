@@ -7,6 +7,7 @@ import 'app/theme/app_colors.dart';
 import 'app/theme/app_theme.dart';
 import 'core/storage/local_progress_store.dart';
 import 'data/repositories/content_repositories.dart';
+import 'features/zikr/dhikr_store.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,7 @@ class MinikKalplerApp extends StatelessWidget {
       providers: [
         Provider(create: (_) => ContentRepositories()),
         ChangeNotifierProvider(create: (_) => LocalProgressStore()),
+        ChangeNotifierProvider(create: (_) => DhikrStore()..restore()),
       ],
       child: MaterialApp(
         title: 'Minik Kalpler',

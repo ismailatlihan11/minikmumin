@@ -1,231 +1,552 @@
 {
-  "version": "2.0",
+  "version": "1.0.0",
+  "title": "Peygamberleri Tanıyorum",
+  "description": "Kur'an'da adı geçen 25 peygamberi çocuklara uygun, kaynak referanslı ve sembolik görsellerle tanıtan içerik.",
+  "language": "tr",
+  "offline": true,
+  "ordered": true,
   "count": 25,
+  "contentPolicy": {
+    "noHumanDepiction": true,
+    "illustrationStyle": "symbolic_landscape_object_only",
+    "noProphetFace": true,
+    "noProphetBody": true,
+    "sourcePolicy": "Özetler yalnızca verilen Kur'an referanslarının desteklediği genel çerçevede kullanılmalı; ayrıntılı kıssalar kaynak metniyle doğrulanmadan üretilmemelidir."
+  },
+  "learningAlgorithm": {
+    "type": "ordered_exploration",
+    "recommendedFlow": "list -> detail -> Quran references -> lesson -> mini quiz -> next prophet",
+    "completion": "detailViewedAndQuizCompleted",
+    "progressStorage": "local"
+  },
   "items": [
     {
-      "id": "prophet_01",
-      "name": "Adem",
-      "arabicName": "Âdem",
-      "quranReferences": "Bakara 2:30-37; Tâhâ 20:115-123",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 1,
+      "id": "adem",
+      "name": "Âdem",
+      "arabicName": "آدَم",
+      "shortTitle": "İlk insan ve peygamber",
+      "summary": "Kur’an’da Allah’ın Âdem’i yaratması, ona isimleri öğretmesi, meleklerin secdesi emri ve Âdem’in eşiyle birlikte yaşadığı imtihan anlatılır.",
+      "lessons": [
+        "Sorumluluk",
+        "Tevbe",
+        "Allah'ın nimetlerini bilmek"
+      ],
+      "quranReferences": [
+        "Bakara 2:30-39",
+        "Tâhâ 20:115-123",
+        "A'râf 7:11-25"
+      ],
+      "image": "assets/images/prophets/adem.png",
+      "audio": "assets/audio/prophets/adem.mp3",
+      "displayName": "Hz. Âdem"
     },
     {
-      "id": "prophet_02",
-      "name": "İdris",
-      "arabicName": "İdrîs",
-      "quranReferences": "Meryem 19:56-57",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 2,
+      "id": "idris",
+      "name": "İdrîs",
+      "arabicName": "إِدْرِيس",
+      "shortTitle": "Doğruluğu övülen peygamber",
+      "summary": "Kur’an, İdrîs'i doğruluğu ve yüksek makamı ile anar.",
+      "lessons": [
+        "Doğruluk",
+        "Sabır",
+        "Güzel davranış"
+      ],
+      "quranReferences": [
+        "Meryem 19:56-57",
+        "Enbiyâ 21:85-86"
+      ],
+      "image": "assets/images/prophets/idris.png",
+      "audio": "assets/audio/prophets/idris.mp3",
+      "displayName": "Hz. İdrîs"
     },
     {
-      "id": "prophet_03",
-      "name": "Nuh",
-      "arabicName": "Nûh",
-      "quranReferences": "Nûh 71:1-28",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 3,
+      "id": "nuh",
+      "name": "Nûh",
+      "arabicName": "نُوح",
+      "shortTitle": "Sabır ve kararlılık",
+      "summary": "Nûh'un kavmini Allah'a çağırması, uzun süre tebliğ etmesi ve gemi kıssası Kur’an’da anlatılır.",
+      "lessons": [
+        "Sabır",
+        "Kararlılık",
+        "Allah'a güven"
+      ],
+      "quranReferences": [
+        "Nûh 71:1-28",
+        "Hûd 11:25-49",
+        "Mü'minûn 23:23-30"
+      ],
+      "image": "assets/images/prophets/nuh.png",
+      "audio": "assets/audio/prophets/nuh.mp3",
+      "displayName": "Hz. Nûh"
     },
     {
-      "id": "prophet_04",
-      "name": "Hud",
-      "arabicName": "Hûd",
-      "quranReferences": "Hûd 11:50-60",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 4,
+      "id": "hud",
+      "name": "Hûd",
+      "arabicName": "هُود",
+      "shortTitle": "Tevhide çağrı",
+      "summary": "Hûd, Âd kavmine Allah'a kulluk etmeyi ve taşkınlıktan uzak durmayı öğütleyen peygamber olarak anlatılır.",
+      "lessons": [
+        "Tevhid",
+        "Cesaret",
+        "Doğru sözlülük"
+      ],
+      "quranReferences": [
+        "Hûd 11:50-60",
+        "A'râf 7:65-72"
+      ],
+      "image": "assets/images/prophets/hud.png",
+      "audio": "assets/audio/prophets/hud.mp3",
+      "displayName": "Hz. Hûd"
     },
     {
-      "id": "prophet_05",
-      "name": "Salih",
-      "arabicName": "Sâlih",
-      "quranReferences": "Hûd 11:61-68",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 5,
+      "id": "salih",
+      "name": "Sâlih",
+      "arabicName": "صَالِح",
+      "shortTitle": "Emanet ve uyarı",
+      "summary": "Sâlih'in Semûd kavmine yaptığı çağrı ve dişi deve mucizesi Kur’an’da yer alır.",
+      "lessons": [
+        "Allah'ın ayetlerine saygı",
+        "Emanet",
+        "Uyarıları dikkate almak"
+      ],
+      "quranReferences": [
+        "Hûd 11:61-68",
+        "A'râf 7:73-79",
+        "Şems 91:11-15"
+      ],
+      "image": "assets/images/prophets/salih.png",
+      "audio": "assets/audio/prophets/salih.mp3",
+      "displayName": "Hz. Sâlih"
     },
     {
-      "id": "prophet_06",
-      "name": "İbrahim",
-      "arabicName": "İbrâhim",
-      "quranReferences": "Bakara 2:124-141; En'âm 6:74-83",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 6,
+      "id": "ibrahim",
+      "name": "İbrâhim",
+      "arabicName": "إِبْرَاهِيم",
+      "shortTitle": "Tevhid ve teslimiyet",
+      "summary": "İbrâhim'in Allah'ın birliğini savunması, putlara karşı mücadelesi ve Allah'a teslimiyeti birçok sûrede anlatılır.",
+      "lessons": [
+        "Tevhid",
+        "Teslimiyet",
+        "Cesaret"
+      ],
+      "quranReferences": [
+        "En'âm 6:74-83",
+        "Bakara 2:124-132",
+        "Sâffât 37:83-113"
+      ],
+      "image": "assets/images/prophets/ibrahim.png",
+      "audio": "assets/audio/prophets/ibrahim.mp3",
+      "displayName": "Hz. İbrâhim"
     },
     {
-      "id": "prophet_07",
-      "name": "Lut",
-      "arabicName": "Lût",
-      "quranReferences": "Hûd 11:69-83",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 7,
+      "id": "lut",
+      "name": "Lût",
+      "arabicName": "لُوط",
+      "shortTitle": "Ahlak ve doğruluk",
+      "summary": "Lût'un kavmini yanlış davranışlardan vazgeçirmeye çağırması ve yaşanan olaylar Kur’an’da anlatılır.",
+      "lessons": [
+        "Ahlak",
+        "Temiz davranış",
+        "Doğruluk"
+      ],
+      "quranReferences": [
+        "Hûd 11:77-83",
+        "Ankebût 29:28-35",
+        "A'râf 7:80-84"
+      ],
+      "image": "assets/images/prophets/lut.png",
+      "audio": "assets/audio/prophets/lut.mp3",
+      "displayName": "Hz. Lût"
     },
     {
-      "id": "prophet_08",
-      "name": "İsmail",
-      "arabicName": "İsmâil",
-      "quranReferences": "Bakara 2:125-129; Meryem 19:54-55",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 8,
+      "id": "ismail",
+      "name": "İsmâil",
+      "arabicName": "إِسْمَاعِيل",
+      "shortTitle": "Sabır ve teslimiyet",
+      "summary": "İsmâil, sabrı, sözünde durması ve ailesine namaz ile zekâtı emretmesiyle Kur’an’da anılır.",
+      "lessons": [
+        "Sabır",
+        "Sözünde durmak",
+        "İtaat"
+      ],
+      "quranReferences": [
+        "Meryem 19:54-55",
+        "Sâffât 37:101-107",
+        "Bakara 2:125-129"
+      ],
+      "image": "assets/images/prophets/ismail.png",
+      "audio": "assets/audio/prophets/ismail.mp3",
+      "displayName": "Hz. İsmâil"
     },
     {
-      "id": "prophet_09",
+      "order": 9,
+      "id": "ishak",
       "name": "İshak",
-      "arabicName": "İshâk",
-      "quranReferences": "Hûd 11:71-73",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "arabicName": "إِسْحَاق",
+      "shortTitle": "Müjde ve bereket",
+      "summary": "İshak, İbrâhim'e verilen müjde ile birlikte Kur’an’da salihlerden biri olarak anılır.",
+      "lessons": [
+        "Şükür",
+        "Aile",
+        "Salihlik"
+      ],
+      "quranReferences": [
+        "Hûd 11:71-73",
+        "En'âm 6:84",
+        "Sâffât 37:112-113"
+      ],
+      "image": "assets/images/prophets/ishak.png",
+      "audio": "assets/audio/prophets/ishak.mp3",
+      "displayName": "Hz. İshak"
     },
     {
-      "id": "prophet_10",
-      "name": "Yakup",
-      "arabicName": "Ya'kûb",
-      "quranReferences": "Bakara 2:132-133",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 10,
+      "id": "yakup",
+      "name": "Ya'kûb",
+      "arabicName": "يَعْقُوب",
+      "shortTitle": "Sabır ve umut",
+      "summary": "Ya'kûb'un çocuklarına öğütleri, Yusuf ile ilgili sabrı ve Allah'a güveni Kur’an’da yer alır.",
+      "lessons": [
+        "Sabır",
+        "Ümit",
+        "Allah'a güven"
+      ],
+      "quranReferences": [
+        "Yûsuf 12:6-18",
+        "Yûsuf 12:83-87",
+        "Bakara 2:132-133"
+      ],
+      "image": "assets/images/prophets/yakup.png",
+      "audio": "assets/audio/prophets/yakup.mp3",
+      "displayName": "Hz. Ya'kûb"
     },
     {
-      "id": "prophet_11",
-      "name": "Yusuf",
-      "arabicName": "Yûsuf",
-      "quranReferences": "Yûsuf 12:4-101",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 11,
+      "id": "yusuf",
+      "name": "Yûsuf",
+      "arabicName": "يُوسُف",
+      "shortTitle": "İffet, sabır ve bağışlama",
+      "summary": "Yûsuf sûresi, Yûsuf'un çocukluğundan Mısır'daki hayatına kadar uzanan kıssasını ayrıntılı biçimde anlatır.",
+      "lessons": [
+        "Sabır",
+        "İffet",
+        "Affetmek",
+        "Allah'a güven"
+      ],
+      "quranReferences": [
+        "Yûsuf 12:4-101"
+      ],
+      "image": "assets/images/prophets/yusuf.png",
+      "audio": "assets/audio/prophets/yusuf.mp3",
+      "displayName": "Hz. Yûsuf"
     },
     {
-      "id": "prophet_12",
-      "name": "Eyyub",
-      "arabicName": "Eyyûb",
-      "quranReferences": "Enbiyâ 21:83-84; Sâd 38:41-44",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 12,
+      "id": "eyyub",
+      "name": "Eyyûb",
+      "arabicName": "أَيُّوب",
+      "shortTitle": "Sabır örneği",
+      "summary": "Eyyûb'un sıkıntılar karşısında Rabbine yönelmesi ve sabrı Kur’an’da övülür.",
+      "lessons": [
+        "Sabır",
+        "Dua",
+        "Ümit"
+      ],
+      "quranReferences": [
+        "Enbiyâ 21:83-84",
+        "Sâd 38:41-44"
+      ],
+      "image": "assets/images/prophets/eyyub.png",
+      "audio": "assets/audio/prophets/eyyub.mp3",
+      "displayName": "Hz. Eyyûb"
     },
     {
-      "id": "prophet_13",
+      "order": 13,
+      "id": "suayb",
       "name": "Şuayb",
-      "arabicName": "Şuayb",
-      "quranReferences": "Hûd 11:84-95",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "arabicName": "شُعَيْب",
+      "shortTitle": "Adalet ve dürüstlük",
+      "summary": "Şuayb, kavmini ölçü ve tartıda adalete, dürüstlüğe ve Allah'a kulluğa çağırmıştır.",
+      "lessons": [
+        "Dürüstlük",
+        "Adalet",
+        "Emanet"
+      ],
+      "quranReferences": [
+        "Hûd 11:84-95",
+        "A'râf 7:85-93"
+      ],
+      "image": "assets/images/prophets/suayb.png",
+      "audio": "assets/audio/prophets/suayb.mp3",
+      "displayName": "Hz. Şuayb"
     },
     {
-      "id": "prophet_14",
-      "name": "Musa",
-      "arabicName": "Mûsâ",
-      "quranReferences": "Kasas 28:3-46; Tâhâ 20:9-98",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 14,
+      "id": "musa",
+      "name": "Mûsâ",
+      "arabicName": "مُوسَى",
+      "shortTitle": "Hak ve özgürlük",
+      "summary": "Mûsâ'nın Firavun'a karşı tebliği, İsrailoğulları'nın kurtuluşu ve vahiy ile ilgili kıssası Kur’an’da geniş yer tutar.",
+      "lessons": [
+        "Cesaret",
+        "Allah'a güven",
+        "Hakikati savunmak"
+      ],
+      "quranReferences": [
+        "Kasas 28:3-46",
+        "Tâhâ 20:9-98",
+        "A'râf 7:103-171"
+      ],
+      "image": "assets/images/prophets/musa.png",
+      "audio": "assets/audio/prophets/musa.mp3",
+      "displayName": "Hz. Mûsâ"
     },
     {
-      "id": "prophet_15",
-      "name": "Harun",
-      "arabicName": "Hârûn",
-      "quranReferences": "Tâhâ 20:29-36",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 15,
+      "id": "harun",
+      "name": "Hârûn",
+      "arabicName": "هَارُون",
+      "shortTitle": "Yardımlaşma ve destek",
+      "summary": "Hârûn, Mûsâ'ya tebliğ görevinde yardımcı olan ve Allah tarafından görevlendirilen peygamber olarak anılır.",
+      "lessons": [
+        "Kardeşlik",
+        "Yardımlaşma",
+        "Sorumluluk"
+      ],
+      "quranReferences": [
+        "Tâhâ 20:29-36",
+        "A'râf 7:142-151",
+        "Kasas 28:34"
+      ],
+      "image": "assets/images/prophets/harun.png",
+      "audio": "assets/audio/prophets/harun.mp3",
+      "displayName": "Hz. Hârûn"
     },
     {
-      "id": "prophet_16",
-      "name": "Davud",
-      "arabicName": "Dâvûd",
-      "quranReferences": "Sâd 38:17-26",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 16,
+      "id": "davud",
+      "name": "Dâvûd",
+      "arabicName": "دَاوُود",
+      "shortTitle": "Adalet ve şükür",
+      "summary": "Dâvûd'a hükümranlık ve hikmet verildiği, Allah'ı çokça tesbih ettiği ve adaletle hükmetmesi istendiği Kur’an’da anlatılır.",
+      "lessons": [
+        "Adalet",
+        "Şükür",
+        "İbadet"
+      ],
+      "quranReferences": [
+        "Sâd 38:17-26",
+        "Bakara 2:251",
+        "Enbiyâ 21:78-80"
+      ],
+      "image": "assets/images/prophets/davud.png",
+      "audio": "assets/audio/prophets/davud.mp3",
+      "displayName": "Hz. Dâvûd"
     },
     {
-      "id": "prophet_17",
+      "order": 17,
+      "id": "suleyman",
       "name": "Süleyman",
-      "arabicName": "Süleyman",
-      "quranReferences": "Neml 27:15-44",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "arabicName": "سُلَيْمَان",
+      "shortTitle": "Şükür ve hikmet",
+      "summary": "Süleyman'a verilen nimetler, hikmet ve hükümranlık ile Sebe melikesiyle ilgili kıssa Kur’an’da anlatılır.",
+      "lessons": [
+        "Şükür",
+        "Hikmet",
+        "Sorumlu yönetim"
+      ],
+      "quranReferences": [
+        "Neml 27:15-44",
+        "Sebe' 34:12-14",
+        "Sâd 38:30-40"
+      ],
+      "image": "assets/images/prophets/suleyman.png",
+      "audio": "assets/audio/prophets/suleyman.mp3",
+      "displayName": "Hz. Süleyman"
     },
     {
-      "id": "prophet_18",
-      "name": "İlyas",
-      "arabicName": "İlyâs",
-      "quranReferences": "Sâffât 37:123-132",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 18,
+      "id": "ilyas",
+      "name": "İlyâs",
+      "arabicName": "إِلْيَاس",
+      "shortTitle": "Tevhid mücadelesi",
+      "summary": "İlyâs, kavmini Allah'a kulluğa çağıran peygamber olarak Kur’an’da anlatılır.",
+      "lessons": [
+        "Tevhid",
+        "Kararlılık",
+        "Doğruyu savunmak"
+      ],
+      "quranReferences": [
+        "Sâffât 37:123-132"
+      ],
+      "image": "assets/images/prophets/ilyas.png",
+      "audio": "assets/audio/prophets/ilyas.mp3",
+      "displayName": "Hz. İlyâs"
     },
     {
-      "id": "prophet_19",
-      "name": "Elyesa",
-      "arabicName": "Elyesa'",
-      "quranReferences": "Sâd 38:48",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "order": 19,
+      "id": "elyesa",
+      "name": "Elyesa'",
+      "arabicName": "الْيَسَع",
+      "shortTitle": "Salihlerden biri",
+      "summary": "Elyesa', Kur’an’da seçkin ve hayırlı kimseler arasında anılan peygamberlerdendir.",
+      "lessons": [
+        "Salihlik",
+        "İbadet",
+        "Sorumluluk"
+      ],
+      "quranReferences": [
+        "En'âm 6:86",
+        "Sâd 38:48"
+      ],
+      "image": "assets/images/prophets/elyesa.png",
+      "audio": "assets/audio/prophets/elyesa.mp3",
+      "displayName": "Hz. Elyesa'"
     },
     {
-      "id": "prophet_20",
+      "order": 20,
+      "id": "yunus",
+      "name": "Yûnus",
+      "arabicName": "يُونُس",
+      "shortTitle": "Dua ve ümit",
+      "summary": "Yûnus'un kavminden ayrılması, balık tarafından yutulması ve Allah'a yaptığı dua Kur’an’da anlatılır.",
+      "lessons": [
+        "Tevbe",
+        "Dua",
+        "Ümit"
+      ],
+      "quranReferences": [
+        "Enbiyâ 21:87-88",
+        "Sâffât 37:139-148"
+      ],
+      "image": "assets/images/prophets/yunus.png",
+      "audio": "assets/audio/prophets/yunus.mp3",
+      "displayName": "Hz. Yûnus"
+    },
+    {
+      "order": 21,
+      "id": "zekeriyya",
+      "name": "Zekeriyyâ",
+      "arabicName": "زَكَرِيَّا",
+      "shortTitle": "Dua ve umut",
+      "summary": "Zekeriyyâ'nın Allah'a gizlice dua etmesi ve Yahyâ ile müjdelenmesi Kur’an’da anlatılır.",
+      "lessons": [
+        "Dua",
+        "Ümit",
+        "Allah'a güven"
+      ],
+      "quranReferences": [
+        "Meryem 19:2-15",
+        "Âl-i İmrân 3:37-41",
+        "Enbiyâ 21:89-90"
+      ],
+      "image": "assets/images/prophets/zekeriyya.png",
+      "audio": "assets/audio/prophets/zekeriyya.mp3",
+      "displayName": "Hz. Zekeriyyâ"
+    },
+    {
+      "order": 22,
+      "id": "yahya",
+      "name": "Yahyâ",
+      "arabicName": "يَحْيَى",
+      "shortTitle": "Temizlik ve takva",
+      "summary": "Yahyâ, küçük yaşta hikmet verilen, temiz kalpli ve Allah'a karşı duyarlı bir peygamber olarak anlatılır.",
+      "lessons": [
+        "Takva",
+        "Temizlik",
+        "Merhamet"
+      ],
+      "quranReferences": [
+        "Meryem 19:7-15",
+        "Âl-i İmrân 3:39"
+      ],
+      "image": "assets/images/prophets/yahya.png",
+      "audio": "assets/audio/prophets/yahya.mp3",
+      "displayName": "Hz. Yahyâ"
+    },
+    {
+      "order": 23,
+      "id": "isa",
+      "name": "Îsâ",
+      "arabicName": "عِيسَى",
+      "shortTitle": "Mucizeler ve tebliğ",
+      "summary": "Îsâ'nın doğumu, tebliği ve Allah'ın izniyle gösterdiği mucizeler Kur’an’da anlatılır.",
+      "lessons": [
+        "Allah'a kulluk",
+        "Merhamet",
+        "Tebliğ"
+      ],
+      "quranReferences": [
+        "Âl-i İmrân 3:45-55",
+        "Meryem 19:16-36",
+        "Mâide 5:110-120"
+      ],
+      "image": "assets/images/prophets/isa.png",
+      "audio": "assets/audio/prophets/isa.mp3",
+      "displayName": "Hz. Îsâ"
+    },
+    {
+      "order": 24,
+      "id": "zulkifl",
       "name": "Zülkifl",
-      "arabicName": "Zülkifl",
-      "quranReferences": "Enbiyâ 21:85-86; Sâd 38:48",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "arabicName": "ذُو الْكِفْل",
+      "shortTitle": "Sabır ve salihlik",
+      "summary": "Zülkifl, Kur’an’da sabredenlerden ve salihlerden biri olarak anılır.",
+      "lessons": [
+        "Sabır",
+        "Salihlik",
+        "Sorumluluk"
+      ],
+      "quranReferences": [
+        "Enbiyâ 21:85-86",
+        "Sâd 38:48"
+      ],
+      "image": "assets/images/prophets/zulkifl.png",
+      "audio": "assets/audio/prophets/zulkifl.mp3",
+      "displayName": "Hz. Zülkifl"
     },
     {
-      "id": "prophet_21",
-      "name": "Yunus",
-      "arabicName": "Yûnus",
-      "quranReferences": "Sâffât 37:139-148; Enbiyâ 21:87-88",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
-    },
-    {
-      "id": "prophet_22",
-      "name": "Zekeriya",
-      "arabicName": "Zekeriyyâ",
-      "quranReferences": "Meryem 19:2-15",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
-    },
-    {
-      "id": "prophet_23",
-      "name": "Yahya",
-      "arabicName": "Yahyâ",
-      "quranReferences": "Meryem 19:7-15",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
-    },
-    {
-      "id": "prophet_24",
-      "name": "İsa",
-      "arabicName": "Îsâ",
-      "quranReferences": "Âl-i İmrân 3:45-55; Meryem 19:16-36",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
-    },
-    {
-      "id": "prophet_25",
+      "order": 25,
+      "id": "muhammed",
       "name": "Muhammed",
-      "arabicName": "Muhammed",
-      "quranReferences": "Ahzâb 33:40; Fetih 48:29",
-      "illustrationPolicy": "symbolic_only",
-      "sourceName": "Kur'an-ı Kerim",
-      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+      "arabicName": "مُحَمَّد",
+      "shortTitle": "Son peygamber",
+      "summary": "Hz. Muhammed, Kur’an'a göre Allah'ın elçisi ve peygamberlerin sonuncusudur. Kur’an onun güzel ahlakını ve insanlara rahmet oluşunu vurgular.",
+      "lessons": [
+        "Güzel ahlak",
+        "Merhamet",
+        "Adalet",
+        "Sabır",
+        "Allah'a kulluk"
+      ],
+      "quranReferences": [
+        "Ahzâb 33:40",
+        "Kalem 68:4",
+        "Enbiyâ 21:107",
+        "Âl-i İmrân 3:144"
+      ],
+      "image": "assets/images/prophets/muhammed.png",
+      "audio": "assets/audio/prophets/muhammed.mp3",
+      "displayName": "Hz. Muhammed (sallallahu aleyhi ve sellem)",
+      "roleTitle": "Son Peygamber"
     }
-  ]
+  ],
+  "quizTemplate": {
+    "questionTypes": [
+      "multiple_choice",
+      "true_false",
+      "match_reference",
+      "lesson_choice"
+    ],
+    "feedbackCorrect": "Harika! Birlikte devam edelim.",
+    "feedbackRetry": "Tekrar düşünelim."
+  }
 }

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
+import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quiz.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
@@ -18,37 +19,119 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  Future<List<QuizQuestion>>? _future;
+  Future<QuizBank>? _future;
+
+  Future<QuizBank> _load() {
+    return context.read<ContentRepositories>().quiz.load();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final repos = context.read<ContentRepositories>();
-    _future ??= repos.quiz.getAll();
+    _future ??= _load();
     return Scaffold(
-      appBar: AppBar(title: const Text('Mini Testler')),
-      body: AsyncBody<List<QuizQuestion>>(
-        future: _future!,
-        onRetry: () => setState(() => _future = repos.quiz.getAll()),
-        builder: (items) => QuizPlayView(questions: items),
+      body: SafeArea(
+        child: AsyncBody<QuizBank>(
+          future: _future!,
+          onRetry: () => setState(() => _future = _load()),
+          builder: (bank) => ListView(
+            padding: AppSpacing.page,
+            children: [
+              PageHeader(
+                title: 'Mini Testler',
+                subtitle: '${bank.questions.length} soru ile öğrendiklerini pekiştir.',
+                image: 'assets/images/home/mini_quiz.png',
+              ),
+              ContentTile(
+                title: 'Karışık sorular',
+                subtitle: '${bank.questionsPerSession} soruluk oturum',
+                leading: const Icon(Icons.shuffle_rounded, color: MinikColors.green),
+                onTap: () => _openSession(context, bank, bank.questions, 'Karışık sorular'),
+              ),
+              for (final category in bank.categories)
+                ContentTile(
+                  title: category,
+                  subtitle: '${bank.forCategory(category).length} soru',
+                  leading: const Icon(Icons.quiz_rounded, color: MinikColors.green),
+                  onTap: () => _openSession(
+                    context,
+                    bank,
+                    bank.forCategory(category),
+                    category,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _openSession(
+    BuildContext context,
+    QuizBank bank,
+    List<QuizQuestion> pool,
+    String title,
+  ) {
+    if (pool.isEmpty) return;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => Scaffold(
+          appBar: AppBar(title: Text(title)),
+          body: QuizPlayView(
+            questions: pool,
+            shuffle: true,
+            limit: bank.questionsPerSession,
+            correctFeedback: bank.correctFeedback,
+            wrongFeedback: bank.wrongFeedback,
+          ),
+        ),
       ),
     );
   }
 }
 
 class QuizPlayView extends StatefulWidget {
-  const QuizPlayView({super.key, required this.questions});
+  const QuizPlayView({
+    super.key,
+    required this.questions,
+    this.shuffle = false,
+    this.limit,
+    this.correctFeedback = const [],
+    this.wrongFeedback = const [],
+  });
 
   final List<QuizQuestion> questions;
+  final bool shuffle;
+  final int? limit;
+  final List<String> correctFeedback;
+  final List<String> wrongFeedback;
 
   @override
   State<QuizPlayView> createState() => _QuizPlayViewState();
 }
 
 class _QuizPlayViewState extends State<QuizPlayView> {
+  late List<QuizQuestion> _session;
   int _index = 0;
   int _score = 0;
   String? _selectedId;
   final AudioPlayerService _audio = AudioPlayerService();
+
+  @override
+  void initState() {
+    super.initState();
+    _session = _buildSession();
+  }
+
+  List<QuizQuestion> _buildSession() {
+    final pool = List<QuizQuestion>.from(widget.questions);
+    if (widget.shuffle) pool.shuffle();
+    final limit = widget.limit;
+    final sliced = limit == null || pool.length <= limit ? pool : pool.take(limit).toList();
+    if (!widget.shuffle) return sliced;
+    return sliced.map((question) => question.shuffledOptions()).toList();
+  }
 
   @override
   void dispose() {
@@ -58,7 +141,10 @@ class _QuizPlayViewState extends State<QuizPlayView> {
 
   @override
   Widget build(BuildContext context) {
-    if (_index >= widget.questions.length) {
+    if (_session.isEmpty) {
+      return const Center(child: Text('Soru bulunamadı.'));
+    }
+    if (_index >= _session.length) {
       return ListView(
         padding: AppSpacing.page,
         children: [
@@ -72,12 +158,13 @@ class _QuizPlayViewState extends State<QuizPlayView> {
           const SizedBox(height: AppSpacing.md),
           MinikCard(
             color: MinikColors.mint,
-            child: Text('${widget.questions.length} sorudan $_score tanesini bildin.'),
+            child: Text('${_session.length} sorudan $_score tanesini bildin.'),
           ),
           const SizedBox(height: AppSpacing.lg),
           PrimaryButton(
             label: 'Tekrar Dene',
             onPressed: () => setState(() {
+              _session = _buildSession();
               _index = 0;
               _score = 0;
               _selectedId = null;
@@ -87,11 +174,13 @@ class _QuizPlayViewState extends State<QuizPlayView> {
       );
     }
 
-    final question = widget.questions[_index];
+    final question = _session[_index];
+    final selected = question.options.where((option) => option.id == _selectedId);
+    final answeredCorrect = selected.isNotEmpty && selected.first.correct;
     return ListView(
       padding: AppSpacing.page,
       children: [
-        LessonProgressBar(current: _index + 1, total: widget.questions.length),
+        LessonProgressBar(current: _index + 1, total: _session.length),
         const SizedBox(height: AppSpacing.md),
         MinikCard(
           color: MinikColors.butter,
@@ -99,10 +188,10 @@ class _QuizPlayViewState extends State<QuizPlayView> {
         ),
         const SizedBox(height: AppSpacing.md),
         ...question.options.map((option) {
-          final selected = _selectedId == option.id;
+          final isSelected = _selectedId == option.id;
           Color color = MinikColors.surface;
           if (_selectedId != null && option.correct) color = MinikColors.mint;
-          if (selected && !option.correct) color = MinikColors.blush;
+          if (isSelected && !option.correct) color = MinikColors.blush;
           return Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: MinikCard(
@@ -114,16 +203,39 @@ class _QuizPlayViewState extends State<QuizPlayView> {
         }),
         if (_selectedId != null) ...[
           const SizedBox(height: AppSpacing.sm),
+          if (_feedback(answeredCorrect ? widget.correctFeedback : widget.wrongFeedback).isNotEmpty)
+            Text(
+              _feedback(answeredCorrect ? widget.correctFeedback : widget.wrongFeedback),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          if (question.explanation.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.sm),
+            Text(question.explanation, style: Theme.of(context).textTheme.bodyLarge),
+          ],
+          const SizedBox(height: AppSpacing.md),
           PrimaryButton(
-            label: _index == widget.questions.length - 1 ? 'Bitir' : 'Devam Et',
-            onPressed: () => setState(() {
-              _index += 1;
-              _selectedId = null;
-            }),
+            label: _index == _session.length - 1 ? 'Bitir' : 'Devam Et',
+            onPressed: () async {
+              if (_index == _session.length - 1) {
+                final store = context.read<LocalProgressStore>();
+                await store.addXp((_score * 2).clamp(2, 20));
+                await store.markCompleted('quiz', 'session');
+              }
+              if (!mounted) return;
+              setState(() {
+                _index += 1;
+                _selectedId = null;
+              });
+            },
           ),
         ],
       ],
     );
+  }
+
+  String _feedback(List<String> messages) {
+    if (messages.isEmpty) return '';
+    return messages[_index % messages.length];
   }
 
   Future<void> _answer(QuizOption option) async {

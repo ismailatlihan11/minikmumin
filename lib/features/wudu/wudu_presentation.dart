@@ -1,22 +1,12 @@
 import 'dart:math';
 
 import '../../data/models/interactive_lesson.dart';
+import 'wudu_visual_catalog.dart';
 
 abstract final class WuduPresentation {
-  static const Map<String, String> images = {
-    'hands': 'assets/images/wudu/01_eller.png',
-    'mouth': 'assets/images/wudu/02_agiz.png',
-    'nose': 'assets/images/wudu/03_burun.png',
-    'face': 'assets/images/wudu/04_yuz.png',
-    'arms': 'assets/images/wudu/05_kollar.png',
-    'head': 'assets/images/wudu/06_bas.png',
-    'ears': 'assets/images/wudu/07_kulaklar.png',
-    'feet': 'assets/images/wudu/08_ayaklar.png',
-  };
-
   static String imageFor(LessonStep step) {
     if (step.image.trim().isNotEmpty) return step.image;
-    return images[step.id] ?? 'assets/images/wudu/wudu.png';
+    return WuduVisualCatalog.imageForJsonStep(step.id);
   }
 
   static String promptFor(LessonStep step) {

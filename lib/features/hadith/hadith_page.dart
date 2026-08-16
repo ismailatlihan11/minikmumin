@@ -6,6 +6,8 @@ import '../../app/theme/app_spacing.dart';
 import '../../data/models/hadith.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class HadithPage extends StatefulWidget {
@@ -18,6 +20,9 @@ class HadithPage extends StatefulWidget {
 class _HadithPageState extends State<HadithPage> {
   Future<List<Hadith>>? _future;
   String _query = '';
+  bool _shortOnly = true;
+
+  static const _shortLimit = 420;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +34,13 @@ class _HadithPageState extends State<HadithPage> {
         future: _future!,
         onRetry: () => setState(() => _future = repos.hadith.getAll()),
         builder: (items) {
+          final pool = _shortOnly
+              ? items.where((item) => item.plainTurkish.length <= _shortLimit).toList()
+              : items;
+          final source = pool.isEmpty ? items : pool;
           final filtered = _query.trim().isEmpty
-              ? items
-              : items
+              ? source
+              : source
                   .where((item) =>
                       item.plainTurkish.toLowerCase().contains(_query.toLowerCase()) ||
                       item.id.contains(_query))
@@ -40,12 +49,23 @@ class _HadithPageState extends State<HadithPage> {
             children: [
               Padding(
                 padding: AppSpacing.page,
-                child: TextField(
-                  decoration: const InputDecoration(
-                    hintText: 'Hadis ara',
-                    prefixIcon: Icon(Icons.search_rounded),
-                  ),
-                  onChanged: (value) => setState(() => _query = value),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: const InputDecoration(
+                        hintText: 'Hadis ara',
+                        prefixIcon: Icon(Icons.search_rounded),
+                      ),
+                      onChanged: (value) => setState(() => _query = value),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Kısa hadisler'),
+                      subtitle: const Text('Çocuklar için daha kısa metinler'),
+                      value: _shortOnly,
+                      onChanged: (value) => setState(() => _shortOnly = value),
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -86,10 +106,28 @@ class HadithDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailScaffold(
       title: 'Hadis ${hadith.id}',
+      actions: [
+        CopyIconButton(
+          text: joinCopyParts([
+            'Hadis ${hadith.id}',
+            hadith.arabic,
+            hadith.plainTurkish,
+          ]),
+        ),
+        FavoriteButton(kind: 'hadith', id: hadith.id, title: 'Hadis ${hadith.id}'),
+      ],
       children: [
         ArabicPanel(hadith.arabic),
         const SizedBox(height: AppSpacing.md),
-        Text(hadith.plainTurkish, style: Theme.of(context).textTheme.bodyLarge),
+        SelectableText(hadith.plainTurkish, style: Theme.of(context).textTheme.bodyLarge),
+        const SizedBox(height: AppSpacing.md),
+        CopyTextButton(
+          text: joinCopyParts([
+            'Hadis ${hadith.id}',
+            hadith.arabic,
+            hadith.plainTurkish,
+          ]),
+        ),
       ],
     );
   }

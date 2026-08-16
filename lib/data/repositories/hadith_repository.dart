@@ -28,8 +28,14 @@ class HadithRepository {
     return null;
   }
 
-  Future<Hadith?> getDaily({DateTime? now}) async {
+  Future<List<Hadith>> getShort({int maxChars = 420}) async {
     final all = await getAll();
+    final short = all.where((item) => item.plainTurkish.length <= maxChars).toList();
+    return short.isEmpty ? all : short;
+  }
+
+  Future<Hadith?> getDaily({DateTime? now}) async {
+    final all = await getShort();
     if (all.isEmpty) return null;
     return pickDaily(all, now: now);
   }

@@ -17,7 +17,9 @@ class DuaRepository {
       key: 'duas',
       fallbackPath: AssetPaths.duas,
     );
-    _duas = rows.map(Dua.fromJson).toList(growable: false);
+    final parsed = rows.map(Dua.fromJson).toList();
+    parsed.sort((a, b) => a.order.compareTo(b.order));
+    _duas = List<Dua>.unmodifiable(parsed);
     return _duas!;
   }
 
@@ -27,7 +29,9 @@ class DuaRepository {
       key: 'prayerDuas',
       fallbackPath: AssetPaths.prayerDuas,
     );
-    _prayerDuas = rows.map(PrayerDua.fromJson).toList(growable: false);
+    final parsed = rows.map(PrayerDua.fromJson).toList();
+    parsed.sort((a, b) => a.order.compareTo(b.order));
+    _prayerDuas = List<PrayerDua>.unmodifiable(parsed);
     return _prayerDuas!;
   }
 
@@ -39,10 +43,16 @@ class DuaRepository {
 
   Future<List<DuaEntry>> getCatalog() async {
     final duas = await getAll();
-    final prayer = await getPrayerDuas();
-    return [
-      ...duas.map(DuaEntry.fromDua),
-      ...prayer.map(DuaEntry.fromPrayerDua),
-    ];
+    return duas.map(DuaEntry.fromDua).toList(growable: false);
+  }
+
+  Future<DuaEntry?> getEntryById(String id) async {
+    for (final dua in await getCatalog()) {
+      if (dua.id == id) return dua;
+    }
+    for (final dua in await getPrayerDuas()) {
+      if (dua.id == id) return DuaEntry.fromPrayerDua(dua);
+    }
+    return null;
   }
 }

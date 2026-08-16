@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/constants/content_assets.dart';
+import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
+import '../../data/models/dua.dart';
 import '../../data/models/prophet.dart';
 import '../../data/repositories/content_repositories.dart';
+import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../duas/duas_page.dart';
 
 class ProphetsPage extends StatefulWidget {
   const ProphetsPage({super.key});
@@ -23,76 +29,202 @@ class _ProphetsPageState extends State<ProphetsPage> {
     final repos = context.read<ContentRepositories>();
     _future ??= repos.prophets.getAll();
     return Scaffold(
-      appBar: AppBar(title: const Text('Peygamberler')),
-      body: AsyncBody<List<Prophet>>(
-        future: _future!,
-        onRetry: () => setState(() => _future = repos.prophets.getAll()),
-        builder: (items) => ListView(
-          padding: AppSpacing.page,
-          children: [
-            CatalogGrid(
-              children: [
-                for (final item in items)
-                  if (ContentAssets.prophetImages.containsKey(item.name.toLowerCase()))
-                    CatalogTile(
-                      image: ContentAssets.prophetImage(item.name),
-                      semanticLabel: item.name,
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => ProphetDetailPage(item: item)),
-                      ),
+      body: SafeArea(
+        child: AsyncBody<List<Prophet>>(
+          future: _future!,
+          onRetry: () => setState(() => _future = repos.prophets.getAll()),
+          builder: (items) => ListView(
+            padding: AppSpacing.page,
+            children: [
+              const PageHeader(
+                title: 'Peygamberler',
+                subtitle: 'Kur\'an\'da adı geçen peygamberleri tanıyalım.',
+                image: 'assets/images/prophets/prophets.png',
+              ),
+              for (final item in items)
+                ContentTile(
+                  title: item.listTitle,
+                  subtitle: item.roleTitle,
+                  leading: Image.asset(
+                    ContentAssets.prophetImage(
+                      item.name,
+                      id: item.id,
+                      jsonPath: item.image,
                     ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.md),
-            ...items
-                .where((item) => !ContentAssets.prophetImages.containsKey(item.name.toLowerCase()))
-                .map(
-                  (item) => ContentTile(
-                    title: item.name,
-                    subtitle: item.arabicName,
-                    leading: const RoundedAsset(
-                      path: 'assets/images/prophets/prophets.png',
-                      width: 52,
-                      height: 52,
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => ProphetDetailPage(item: item)),
+                    width: 44,
+                    height: 44,
+                    fit: BoxFit.contain,
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.auto_awesome_rounded,
+                      color: MinikColors.green,
                     ),
                   ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ProphetDetailPage(item: item)),
+                  ),
                 ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class ProphetDetailPage extends StatelessWidget {
+class ProphetDetailPage extends StatefulWidget {
   const ProphetDetailPage({super.key, required this.item});
 
   final Prophet item;
 
   @override
+  State<ProphetDetailPage> createState() => _ProphetDetailPageState();
+}
+
+class _ProphetDetailPageState extends State<ProphetDetailPage> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final item = widget.item;
+    final theme = Theme.of(context).textTheme;
+    final imagePath = ContentAssets.prophetImage(
+      item.name,
+      id: item.id,
+      jsonPath: item.image,
+    );
+    final audioPath = item.audio.isNotEmpty ? item.audio : ContentAssets.audioFor(item.id);
     return DetailScaffold(
-      title: item.name,
+      title: item.honorificName,
+      actions: [
+        CopyIconButton(
+          text: joinCopyParts([
+            item.roleTitle,
+            item.honorificName,
+            item.arabicName,
+            item.summary,
+          ]),
+        ),
+      ],
       children: [
         Image.asset(
-          ContentAssets.prophetImage(item.name),
+          imagePath,
           height: 180,
           fit: BoxFit.contain,
+          errorBuilder: (_, __, ___) => Image.asset(
+            'assets/images/prophets/prophets.png',
+            height: 180,
+            fit: BoxFit.contain,
+          ),
         ),
         const SizedBox(height: AppSpacing.md),
-        Text(item.arabicName, style: Theme.of(context).textTheme.headlineMedium),
-        const SizedBox(height: AppSpacing.md),
-        Text(item.summary, style: Theme.of(context).textTheme.bodyLarge),
-        const SizedBox(height: AppSpacing.md),
-        Text('Kur\'an: ${item.quranReferences}'),
+        ArabicText(item.arabicName, fontSize: 28),
         const SizedBox(height: AppSpacing.sm),
-        Text('Kaynak: ${item.sourceName}', style: Theme.of(context).textTheme.bodySmall),
+        if (item.roleTitle.isNotEmpty)
+          Text(item.roleTitle, style: theme.titleMedium),
+        Text(
+          item.honorificName,
+          style: theme.headlineMedium,
+        ),
+        if (item.isMuhammad) ...[
+          const SizedBox(height: AppSpacing.lg),
+          const SectionLabel('Salavat'),
+          _ProphetSalawat(audio: _audio),
+        ],
+        const SizedBox(height: AppSpacing.md),
+        SelectableText(item.summary, style: theme.bodyLarge),
+        if (item.lessons.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.lg),
+          const SectionLabel('Öğrendiğimiz değerler'),
+          for (final lesson in item.lessons)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  const SizedBox(width: 8),
+                  Expanded(child: Text(lesson, style: theme.bodyLarge)),
+                ],
+              ),
+            ),
+        ],
+        if (item.quranReferences.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.md),
+          const SectionLabel('Kur\'an'),
+          Text(item.quranReferencesText, style: theme.bodyLarge),
+        ],
+        if (item.sourceName.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.sm),
+          Text('Kaynak: ${item.sourceName}', style: theme.bodySmall),
+        ],
+        const SizedBox(height: AppSpacing.lg),
+        ListenButton(audio: _audio, path: audioPath),
       ],
+    );
+  }
+}
+
+class _ProphetSalawat extends StatefulWidget {
+  const _ProphetSalawat({required this.audio});
+
+  final AudioPlayerService audio;
+
+  @override
+  State<_ProphetSalawat> createState() => _ProphetSalawatState();
+}
+
+class _ProphetSalawatState extends State<_ProphetSalawat> {
+  Future<List<DuaEntry>>? _future;
+
+  @override
+  Widget build(BuildContext context) {
+    final duas = context.read<ContentRepositories>().duas;
+    _future ??= Future.wait([
+      duas.getEntryById('allahumme_salli'),
+      duas.getEntryById('allahumme_barik'),
+    ]).then((items) => items.whereType<DuaEntry>().toList());
+    return FutureBuilder<List<DuaEntry>>(
+      future: _future,
+      builder: (context, snapshot) {
+        final items = snapshot.data ?? const <DuaEntry>[];
+        if (items.isEmpty) return const SizedBox.shrink();
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final dua in items) ...[
+              Text(dua.title, style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: AppSpacing.sm),
+              DuaContentBlocks(dua: dua, arabicFontSize: 20),
+              Align(
+                alignment: Alignment.centerRight,
+                child: CopyIconButton(
+                  text: joinCopyParts([
+                    dua.title,
+                    dua.arabic,
+                    dua.transliteration,
+                    dua.meaning,
+                  ]),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              ListenButton(
+                audio: widget.audio,
+                path: dua.audio.isNotEmpty
+                    ? dua.audio
+                    : ContentAssets.audioFor(dua.id),
+              ),
+              const SizedBox(height: AppSpacing.md),
+            ],
+          ],
+        );
+      },
     );
   }
 }

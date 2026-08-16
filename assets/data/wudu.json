@@ -8,57 +8,192 @@
       "id": "hands",
       "order": 1,
       "title": "Eller",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Ellerimizi bileklere kadar yıkarız. Parmak aralarını unutmayız.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "mouth",
       "order": 2,
       "title": "Ağız",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Sağ elimizle ağzımıza su verir ve çalkalarız.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "nose",
       "order": 3,
       "title": "Burun",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Burnumuza su verir ve temizleriz.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "face",
       "order": 4,
       "title": "Yüz",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Yüzümüzü yıkarız. Alından çeneye, bir kulaktan diğerine.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "arms",
       "order": 5,
       "title": "Kollar",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Kollarımızı dirsekle birlikte yıkarız.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "head",
       "order": 6,
       "title": "Başın Mesh Edilmesi",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Islak elimizle başımızı mesh ederiz.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "ears",
       "order": 7,
       "title": "Kulaklar",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Islak elimizle kulaklarımızın içini ve dışını mesh ederiz.",
       "sourceReference": "Diyanet ilmihal"
     },
     {
       "id": "feet",
       "order": 8,
       "title": "Ayaklar",
-      "description": "Abdestin bu aşamasını öğren.",
+      "description": "Ayaklarımızı topuk ve parmak araları dahil yıkarız.",
       "sourceReference": "Diyanet ilmihal"
     }
-  ]
+  ],
+  "visualSteps": [
+    {
+      "id": "niyet",
+      "number": 1,
+      "title": "Niyet Edelim",
+      "prompt": "Allah rızası için abdest almaya niyet ederiz.",
+      "image": "assets/images/wudu/wudu_01_niyet.png",
+      "kind": "adab"
+    },
+    {
+      "id": "besmele",
+      "number": 2,
+      "title": "Besmele ile Başlayalım",
+      "prompt": "Besmele ile başlarız.",
+      "image": "assets/images/wudu/wudu_02_besmele.png",
+      "kind": "sunnah"
+    },
+    {
+      "id": "eller",
+      "number": 3,
+      "title": "Ellerimizi Yıkayalım",
+      "prompt": "Ellerimizi bileklere kadar yıkarız. Parmak aralarını unutmayız.",
+      "image": "assets/images/wudu/wudu_03_eller.png",
+      "kind": "sunnah",
+      "jsonStepId": "hands"
+    },
+    {
+      "id": "agiz",
+      "number": 4,
+      "title": "Ağzımızı Temizleyelim",
+      "prompt": "Sağ elimizle ağzımıza su verir ve çalkalarız.",
+      "image": "assets/images/wudu/wudu_04_agiz.png",
+      "kind": "sunnah",
+      "jsonStepId": "mouth"
+    },
+    {
+      "id": "burun",
+      "number": 5,
+      "title": "Burnumuzu Temizleyelim",
+      "prompt": "Burnumuza su verir ve temizleriz.",
+      "image": "assets/images/wudu/wudu_05_burun.png",
+      "kind": "sunnah",
+      "jsonStepId": "nose"
+    },
+    {
+      "id": "yuz",
+      "number": 6,
+      "title": "Yüzümüzü Yıkayalım",
+      "prompt": "Yüzümüzü yıkarız. Alından çeneye, bir kulaktan diğerine.",
+      "image": "assets/images/wudu/wudu_06_yuz.png",
+      "kind": "farz",
+      "jsonStepId": "face"
+    },
+    {
+      "id": "sag_kol",
+      "number": 7,
+      "title": "Sağ Kolumuzu Yıkayalım",
+      "prompt": "Sağ kolumuzu dirsekle birlikte yıkarız.",
+      "image": "assets/images/wudu/wudu_07_sag_kol.png",
+      "kind": "farz",
+      "jsonStepId": "arms"
+    },
+    {
+      "id": "sol_kol",
+      "number": 8,
+      "title": "Sol Kolumuzu Yıkayalım",
+      "prompt": "Sol kolumuzu dirsekle birlikte yıkarız.",
+      "image": "assets/images/wudu/wudu_08_sol_kol.png",
+      "kind": "farz",
+      "jsonStepId": "arms"
+    },
+    {
+      "id": "bas",
+      "number": 9,
+      "title": "Başımızı Mesh Edelim",
+      "prompt": "Islak elimizle başımızı mesh ederiz.",
+      "image": "assets/images/wudu/wudu_09_bas.png",
+      "kind": "farz",
+      "jsonStepId": "head"
+    },
+    {
+      "id": "kulaklar",
+      "number": 10,
+      "title": "Kulaklarımızı Mesh Edelim",
+      "prompt": "Islak elimizle kulaklarımızın içini ve dışını mesh ederiz.",
+      "image": "assets/images/wudu/wudu_10_kulaklar.png",
+      "kind": "sunnah",
+      "jsonStepId": "ears"
+    },
+    {
+      "id": "sag_ayak",
+      "number": 11,
+      "title": "Sağ Ayağımızı Yıkayalım",
+      "prompt": "Sağ ayağımızı topuk ve parmak araları dahil yıkarız.",
+      "image": "assets/images/wudu/wudu_11_sag_ayak.png",
+      "kind": "farz",
+      "jsonStepId": "feet"
+    },
+    {
+      "id": "sol_ayak",
+      "number": 12,
+      "title": "Sol Ayağımızı Yıkayalım",
+      "prompt": "Sol ayağımızı topuk ve parmak araları dahil yıkarız.",
+      "image": "assets/images/wudu/wudu_12_sol_ayak.png",
+      "kind": "farz",
+      "jsonStepId": "feet"
+    },
+    {
+      "id": "tamam",
+      "number": 13,
+      "title": "Abdestimiz Tamamlandı!",
+      "prompt": "Maşallah! Abdestimizi öğrendik.",
+      "image": "assets/images/wudu/wudu_13_tamam.png",
+      "kind": "done"
+    }
+  ],
+  "tips": [
+    {
+      "title": "Suyu israf etme",
+      "image": "assets/images/wudu/wudu_tip_water.png"
+    },
+    {
+      "title": "Parmak araları",
+      "image": "assets/images/wudu/wudu_tip_fingers.png"
+    },
+    {
+      "title": "Yüzük / engeller",
+      "image": "assets/images/wudu/wudu_tip_ring.png"
+    },
+    {
+      "title": "Acele etme",
+      "image": "assets/images/wudu/wudu_tip_time.png"
+    }
+  ],
+  "farzIds": ["yuz", "sag_kol", "bas", "sag_ayak"]
 }

@@ -9,5 +9,5 @@ abstract final class AppSpacing {
   static const double xl = 32;
   static const double xxl = 40;
 
-  static const EdgeInsets page = EdgeInsets.fromLTRB(20, 12, 20, 24);
+  static const EdgeInsets page = EdgeInsets.fromLTRB(16, 8, 16, 16);
 }

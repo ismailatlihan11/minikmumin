@@ -10,12 +10,14 @@ abstract final class AppRoutes {
   static const String learnPrayer = '/minik/learn/prayer';
   static const String learnPrayerStep = '/minik/learn/prayer/step';
   static const String learnPrayerResult = '/minik/learn/prayer/result';
+  static const String learnPrayerDuas = '/minik/learn/prayer-duas';
   static const String learnDuas = '/minik/learn/duas';
   static const String learnDuaDetail = '/minik/learn/duas/detail';
   static const String learnAsma = '/minik/learn/asma';
   static const String learnAsmaDetail = '/minik/learn/asma/detail';
   static const String learnProphets = '/minik/learn/prophets';
   static const String learnProphetDetail = '/minik/learn/prophets/detail';
+  static const String learnStories = '/minik/learn/stories';
   static const String learnMorality = '/minik/learn/morality';
   static const String learnMoralityDetail = '/minik/learn/morality/detail';
   static const String learnIlmihal = '/minik/learn/ilmihal';
@@ -28,6 +30,9 @@ abstract final class AppRoutes {
   static const String quranReader = '/minik/quran/reader';
   static const String duas = '/minik/duas';
   static const String hadith = '/minik/hadith';
+  static const String games = '/minik/games';
+  static const String zikr = '/minik/zikr';
+  static const String dailyTask = '/minik/daily-task';
   static const String favorites = '/minik/favorites';
   static const String profile = '/minik/profile';
   static const String settings = '/minik/settings';

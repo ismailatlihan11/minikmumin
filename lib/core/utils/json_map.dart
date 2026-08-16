@@ -14,7 +14,12 @@ class JsonMap {
     }
     if (data is Map) {
       final map = object(data);
-      final list = map[itemsKey] ?? map['ayet'] ?? map['steps'];
+      final list = map[itemsKey] ??
+          map['ayet'] ??
+          map['steps'] ??
+          map['lessons'] ??
+          map['questions'] ??
+          map['categories'];
       if (list is List) {
         return list.map(object).toList(growable: false);
       }
@@ -29,6 +34,14 @@ class JsonMap {
     if (value is int) return value;
     if (value is num) return value.toInt();
     return int.tryParse(value?.toString() ?? '') ?? fallback;
+  }
+
+  static List<String> strings(dynamic value) {
+    if (value is! List) return const [];
+    return value
+        .map((item) => str(item))
+        .where((item) => item.isNotEmpty)
+        .toList(growable: false);
   }
 
   static bool flag(dynamic value, [bool fallback = false]) {

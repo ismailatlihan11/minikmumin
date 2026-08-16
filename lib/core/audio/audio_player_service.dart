@@ -5,14 +5,16 @@ class AudioPlayerService {
 
   final AudioPlayer _player;
 
-  Future<void> playAsset(String path) async {
-    if (path.trim().isEmpty) return;
+  Future<bool> playAsset(String path) async {
+    if (path.trim().isEmpty) return false;
     try {
       await _player.stop();
       await _player.setAsset(path);
       await _player.play();
+      return true;
     } catch (_) {
       // Missing or unplayable audio must never crash the lesson.
+      return false;
     }
   }
 
