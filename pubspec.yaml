@@ -40,14 +40,9 @@ flutter:
     - assets/images/quran/
     - assets/images/qissalar/
     - assets/images/wudu/
-    - assets/audio/asma/
-    - assets/audio/dhikr/
     - assets/audio/duas/
     - assets/audio/effects/
-    - assets/audio/morality/
     - assets/audio/prayer/
-    - assets/audio/prophets/
-    - assets/audio/qissalar/
     - assets/audio/quran/
 
   fonts:

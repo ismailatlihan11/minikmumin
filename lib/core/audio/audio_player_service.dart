@@ -48,5 +48,4 @@ abstract final class EffectAudio {
   static const String correct = 'assets/audio/effects/dogru_cevap.mp3';
   static const String retry = 'assets/audio/effects/tekrar_deneyelim.mp3';
   static const String complete = 'assets/audio/effects/ders_tamamlandi.mp3';
-  static const String celebrate = 'assets/audio/effects/tebrik.mp3';
 }

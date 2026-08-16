@@ -28,13 +28,10 @@ abstract final class ContentAssets {
     'sujud': 'assets/audio/prayer/sujud_tesbihi.mp3',
     'salli': 'assets/audio/prayer/allahumme_salli.mp3',
     'barik': 'assets/audio/prayer/allahumme_barik.mp3',
-    'kunut_1': 'assets/audio/prayer/kunut_1.mp3',
-    'kunut_2': 'assets/audio/prayer/kunut_2.mp3',
     'fatiha': 'assets/audio/quran/fatiha_transliteration.mp3',
     'ihlas': 'assets/audio/quran/ihlas_transliteration.mp3',
     'felak': 'assets/audio/quran/felak_transliteration.mp3',
     'nas': 'assets/audio/quran/nas_transliteration.mp3',
-    'ayet_el_kursi': 'assets/audio/quran/ayet_el_kursi_transliteration.mp3',
   };
 
   static const Map<String, String> prayerImages = {
