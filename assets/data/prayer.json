@@ -217,6 +217,43 @@
   ],
   "farzLabels": ["Kıyam", "Kıraat", "Rükû", "Secde", "Oturuş"],
   "farzIds": ["kiyam", "sure", "ruku", "secde1", "oturus"],
+  "rakats": [
+    {
+      "id": "fajr",
+      "title": "Sabah",
+      "farz": 2,
+      "summary": "2 rekat farz",
+      "detail": "2 sünnet + 2 farz"
+    },
+    {
+      "id": "dhuhr",
+      "title": "Öğle",
+      "farz": 4,
+      "summary": "4 rekat farz",
+      "detail": "4 sünnet + 4 farz + 2 sünnet"
+    },
+    {
+      "id": "asr",
+      "title": "İkindi",
+      "farz": 4,
+      "summary": "4 rekat farz",
+      "detail": "4 sünnet + 4 farz"
+    },
+    {
+      "id": "maghrib",
+      "title": "Akşam",
+      "farz": 3,
+      "summary": "3 rekat farz",
+      "detail": "3 farz + 2 sünnet"
+    },
+    {
+      "id": "isha",
+      "title": "Yatsı",
+      "farz": 4,
+      "summary": "4 rekat farz",
+      "detail": "4 sünnet + 4 farz + 2 sünnet + 3 vitir"
+    }
+  ],
   "duaList": [
     {"id": "surah_1", "title": "Fâtiha"},
     {"id": "surah_112", "title": "İhlâs"},

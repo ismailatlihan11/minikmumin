@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate missing catalog cards in the existing Minik Kalpler icon style."""
+"""Generate missing catalog cards in the existing Minik Mümin icon style."""
 
 from __future__ import annotations
 

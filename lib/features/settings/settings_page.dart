@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/constants/app_constants.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
@@ -79,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
           MinikCard(
             color: MinikColors.mint,
             child: Text(
-              'Minik Kalpler tamamen bu cihazda çalışır. Kur’an ve hadis metinleri değiştirilmez.',
+              '${AppConstants.defaultAppName} tamamen bu cihazda çalışır. Kur’an ve hadis metinleri değiştirilmez.',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),

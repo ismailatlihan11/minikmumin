@@ -136,7 +136,7 @@ Splash ekranı:
 
 Örnek isim:
 
-"Minik Kalpler"
+"Minik Mümin"
 
 Ancak uygulama adı kodda tek bir constant/config üzerinden değiştirilebilir olsun.
 

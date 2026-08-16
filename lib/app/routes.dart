@@ -1,4 +1,4 @@
-/// Named routes for Minik Kalpler. Existing adult-app routes stay in `lib/app.dart`.
+/// Named routes for Minik Mümin. Existing adult-app routes stay in `lib/app.dart`.
 abstract final class AppRoutes {
   static const String minik = '/minik';
   static const String onboarding = '/minik/onboarding';

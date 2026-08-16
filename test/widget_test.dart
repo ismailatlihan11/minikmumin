@@ -9,7 +9,7 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
-  testWidgets('Minik Kalpler starts without errors', (WidgetTester tester) async {
+  testWidgets('Minik Mümin starts without errors', (WidgetTester tester) async {
     await tester.pumpWidget(const MinikKalplerApp());
     expect(find.byType(MinikKalplerApp), findsOneWidget);
   });

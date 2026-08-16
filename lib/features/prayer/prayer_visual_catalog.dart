@@ -57,6 +57,32 @@ class PrayerVisualStep {
   }
 }
 
+class PrayerRakat {
+  const PrayerRakat({
+    required this.id,
+    required this.title,
+    required this.farz,
+    required this.summary,
+    required this.detail,
+  });
+
+  final String id;
+  final String title;
+  final int farz;
+  final String summary;
+  final String detail;
+
+  factory PrayerRakat.fromJson(Map<String, dynamic> json) {
+    return PrayerRakat(
+      id: JsonMap.str(json['id']),
+      title: JsonMap.str(json['title']),
+      farz: JsonMap.integer(json['farz']),
+      summary: JsonMap.str(json['summary']),
+      detail: JsonMap.str(json['detail']),
+    );
+  }
+}
+
 class PrayerTip {
   const PrayerTip({
     required this.title,
@@ -270,6 +296,44 @@ abstract final class PrayerVisualCatalog {
     ),
   ];
 
+  static const rakats = [
+    PrayerRakat(
+      id: 'fajr',
+      title: 'Sabah',
+      farz: 2,
+      summary: '2 rekat farz',
+      detail: '2 sünnet + 2 farz',
+    ),
+    PrayerRakat(
+      id: 'dhuhr',
+      title: 'Öğle',
+      farz: 4,
+      summary: '4 rekat farz',
+      detail: '4 sünnet + 4 farz + 2 sünnet',
+    ),
+    PrayerRakat(
+      id: 'asr',
+      title: 'İkindi',
+      farz: 4,
+      summary: '4 rekat farz',
+      detail: '4 sünnet + 4 farz',
+    ),
+    PrayerRakat(
+      id: 'maghrib',
+      title: 'Akşam',
+      farz: 3,
+      summary: '3 rekat farz',
+      detail: '3 farz + 2 sünnet',
+    ),
+    PrayerRakat(
+      id: 'isha',
+      title: 'Yatsı',
+      farz: 4,
+      summary: '4 rekat farz',
+      detail: '4 sünnet + 4 farz + 2 sünnet + 3 vitir',
+    ),
+  ];
+
   static List<PrayerVisualStep> resolveSteps(List<Map<String, dynamic>> rows) {
     if (rows.isEmpty) return steps;
     return [for (final row in rows) PrayerVisualStep.fromJson(row)];
@@ -278,6 +342,11 @@ abstract final class PrayerVisualCatalog {
   static List<PrayerTip> resolveTips(List<Map<String, dynamic>> rows) {
     if (rows.isEmpty) return tips;
     return [for (final row in rows) PrayerTip.fromJson(row)];
+  }
+
+  static List<PrayerRakat> resolveRakats(List<Map<String, dynamic>> rows) {
+    if (rows.isEmpty) return rakats;
+    return [for (final row in rows) PrayerRakat.fromJson(row)];
   }
 
   static List<({String id, String title})> resolveDuaList(

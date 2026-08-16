@@ -1,4 +1,4 @@
-# minik_kalpler
+# Minik Mümin
 
 A new Flutter project.
 

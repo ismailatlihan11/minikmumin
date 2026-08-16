@@ -129,6 +129,7 @@ class PrayerLesson {
     this.farzLabels = const [],
     this.farzIds = const [],
     this.duaList = const [],
+    this.rakats = const [],
   });
 
   final String id;
@@ -140,6 +141,7 @@ class PrayerLesson {
   final List<String> farzLabels;
   final List<String> farzIds;
   final List<Map<String, dynamic>> duaList;
+  final List<Map<String, dynamic>> rakats;
 
   factory PrayerLesson.fromJson(Map<String, dynamic> json) {
     return PrayerLesson(
@@ -154,6 +156,7 @@ class PrayerLesson {
       farzLabels: JsonMap.strings(json['farzLabels']),
       farzIds: JsonMap.strings(json['farzIds']),
       duaList: JsonMap.extractList(json, itemsKey: 'duaList'),
+      rakats: JsonMap.extractList(json, itemsKey: 'rakats'),
     );
   }
 
@@ -167,6 +170,7 @@ class PrayerLesson {
         'farzLabels': farzLabels,
         'farzIds': farzIds,
         'duaList': duaList,
+        'rakats': rakats,
       };
 }
 

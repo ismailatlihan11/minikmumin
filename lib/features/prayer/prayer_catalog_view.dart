@@ -31,6 +31,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
   final _scroll = ScrollController();
   List<PrayerVisualStep> _steps = PrayerVisualCatalog.steps;
   List<PrayerTip> _tips = PrayerVisualCatalog.tips;
+  List<PrayerRakat> _rakats = PrayerVisualCatalog.rakats;
   List<String> _farzLabels = PrayerVisualCatalog.farzLabels;
   List<String> _farzIds = PrayerVisualCatalog.farzIds;
   List<({String id, String title})> _duaList = PrayerVisualCatalog.duaList;
@@ -47,6 +48,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     setState(() {
       _steps = PrayerVisualCatalog.resolveSteps(lesson.visualSteps);
       _tips = PrayerVisualCatalog.resolveTips(lesson.tips);
+      _rakats = PrayerVisualCatalog.resolveRakats(lesson.rakats);
       if (lesson.farzLabels.isNotEmpty) _farzLabels = lesson.farzLabels;
       if (lesson.farzIds.isNotEmpty) _farzIds = lesson.farzIds;
       _duaList = PrayerVisualCatalog.resolveDuaList(lesson.duaList);
@@ -180,6 +182,40 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
               ],
             ),
           ),
+          const SizedBox(height: 16),
+          const Text(
+            'Hangi namaz kaç rekattır?',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Beş vakit namazın farz rekâtları',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 8),
+          MinikCard(
+            color: Colors.white,
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            child: Column(
+              children: [
+                for (var i = 0; i < _rakats.length; i++) ...[
+                  if (i > 0)
+                    const Divider(height: 1, color: Color(0xFFE8EEEA)),
+                  _RakatRow(item: _rakats[i]),
+                ],
+              ],
+            ),
+          ),
           const SizedBox(height: 12),
           GridView.count(
             crossAxisCount: 2,
@@ -198,7 +234,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 16),
           const Text(
-            'Namazda Okunan Sure ve Dualar',
+            'Namazda okunan Ayetler ve Dualar',
             style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
@@ -369,6 +405,85 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   ),
                   icon: const Icon(Icons.refresh_rounded),
                   label: const Text('Baştan Tekrar Et'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _RakatRow extends StatelessWidget {
+  const _RakatRow({required this.item});
+
+  final PrayerRakat item;
+
+  static const _colors = {
+    'fajr': Color(0xFFE0A21A),
+    'dhuhr': Color(0xFF4C8ED9),
+    'asr': Color(0xFFE07A3D),
+    'maghrib': Color(0xFF7B5EA7),
+    'isha': Color(0xFF3D8B6E),
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _colors[item.id] ?? MinikColors.green;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            child: Text(
+              '${item.farz}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item.title,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+                Text(
+                  item.summary,
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: color,
+                    height: 1.2,
+                  ),
+                ),
+                Text(
+                  item.detail,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: MinikColors.textMuted,
+                    height: 1.25,
+                  ),
                 ),
               ],
             ),
@@ -669,37 +784,51 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6F8),
       appBar: AppBar(title: Text(step.title)),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
+      body: Column(
         children: [
-          MinikCard(
-            color: Colors.white,
-            padding: const EdgeInsets.all(12),
-            child: Image.asset(step.image, height: 240, fit: BoxFit.contain),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+              children: [
+                MinikCard(
+                  color: Colors.white,
+                  padding: const EdgeInsets.all(12),
+                  child: Image.asset(step.image, height: 168, fit: BoxFit.contain),
+                ),
+                const SizedBox(height: 12),
+                Text(step.prompt, style: Theme.of(context).textTheme.bodyLarge),
+                if (_dua != null) ...[
+                  const SizedBox(height: 14),
+                  DuaContentBlocks(
+                    dua: DuaEntry.fromPrayerDua(_dua!),
+                    arabicFontSize: 22,
+                  ),
+                ] else if (step.caption.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    step.caption,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ],
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
-          Text(step.prompt, style: Theme.of(context).textTheme.bodyLarge),
-          if (_dua != null) ...[
-            const SizedBox(height: 16),
-            DuaContentBlocks(
-              dua: DuaEntry.fromPrayerDua(_dua!),
-              arabicFontSize: 22,
+          if (audioPath != null)
+            Material(
+              color: Colors.white,
+              elevation: 12,
+              shadowColor: const Color(0x33000000),
+              child: SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ListenButton(audio: _audio, path: audioPath),
+                  ),
+                ),
+              ),
             ),
-          ] else if (step.caption.isNotEmpty) ...[
-            const SizedBox(height: 12),
-            Text(
-              step.caption,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ],
-          if (audioPath != null) ...[
-            const SizedBox(height: 20),
-            ListenButton(
-              audio: _audio,
-              path: audioPath,
-              iconStyle: true,
-            ),
-          ],
         ],
       ),
     );

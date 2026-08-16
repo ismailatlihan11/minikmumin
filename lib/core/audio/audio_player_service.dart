@@ -18,6 +18,19 @@ class AudioPlayerService {
     }
   }
 
+  Stream<bool> get playingStream => _player.playingStream;
+
+  bool get isPlaying => _player.playing;
+
+  Future<bool> toggleAsset(String path) async {
+    if (path.trim().isEmpty) return false;
+    if (_player.playing) {
+      await stop();
+      return true;
+    }
+    return playAsset(path);
+  }
+
   Future<void> stop() async {
     try {
       await _player.stop();

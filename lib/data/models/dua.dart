@@ -220,6 +220,35 @@ class DuaEntry {
   String get displayImage =>
       image.isNotEmpty ? image : ContentAssets.duaImage(id);
 
+  String get fullArabic {
+    if (verses.isNotEmpty) {
+      return verses
+          .map((verse) => verse.arabic.trim())
+          .where((line) => line.isNotEmpty)
+          .join('\n');
+    }
+    return arabic.trim();
+  }
+
+  String get fullReading {
+    return transliteration.trim();
+  }
+
+  String get fullMeaning {
+    if (verses.isNotEmpty) {
+      final numbered = verses.length > 1;
+      return verses
+          .map((verse) {
+            final meal = verse.meal.trim();
+            if (meal.isEmpty) return '';
+            return numbered ? '${verse.ayahNo}. $meal' : meal;
+          })
+          .where((line) => line.isNotEmpty)
+          .join('\n\n');
+    }
+    return meaning.trim();
+  }
+
   factory DuaEntry.fromDua(Dua dua) {
     return DuaEntry(
       id: dua.id,

@@ -224,11 +224,11 @@ class HomeModuleCard extends StatelessWidget {
               Text(
                 module.title,
                 textAlign: TextAlign.center,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'NotoSans',
-                  fontSize: 11,
+                  fontSize: 8,
                   fontWeight: FontWeight.w800,
                   color: MinikColors.darkGreen,
                   height: 1.05,
@@ -399,7 +399,7 @@ class HomeQuickCircle extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(item.image, width: 40, height: 40, fit: BoxFit.contain),
+          Image.asset(item.image, width: 32, height: 32, fit: BoxFit.contain),
           const SizedBox(height: 2),
           Text(
             item.title,
@@ -408,7 +408,7 @@ class HomeQuickCircle extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               fontFamily: 'NotoSans',
-              fontSize: 9,
+              fontSize: 8,
               fontWeight: FontWeight.w700,
               color: MinikColors.darkGreen,
               height: 1.1,

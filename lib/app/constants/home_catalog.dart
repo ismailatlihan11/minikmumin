@@ -67,8 +67,8 @@ abstract final class HomeCatalog {
       route: AppRoutes.learnPrayer,
     ),
     HomeModule(
-      title: 'Namazda Okunanlar',
-      subtitle: 'Namazda okunanlar sırasıyla',
+      title: 'Namazda okunan Ayetler ve Dualar',
+      subtitle: 'Namazda okunan ayet ve dualar sırasıyla',
       image: 'assets/images/home/card_prayer_duas.png',
       color: Color(0xFFE8DFF8),
       accent: Color(0xFF8B6CC9),

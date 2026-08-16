@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'app/constants/app_constants.dart';
 import 'app/navigation/minik_shell.dart';
 import 'app/theme/app_colors.dart';
 import 'app/theme/app_theme.dart';
@@ -38,7 +39,7 @@ class MinikKalplerApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DhikrStore()..restore()),
       ],
       child: MaterialApp(
-        title: 'Minik Kalpler',
+        title: AppConstants.defaultAppName,
         debugShowCheckedModeBanner: false,
         theme: MinikTheme.light(),
         darkTheme: MinikTheme.dark(),

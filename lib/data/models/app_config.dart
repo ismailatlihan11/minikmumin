@@ -38,7 +38,7 @@ class AppConfig {
     final featuresRaw = json['features'];
     final firstLaunch = JsonMap.object(json['firstLaunch']);
     return AppConfig(
-      appName: JsonMap.str(json['appName'], 'Minik Kalpler'),
+      appName: JsonMap.str(json['appName'], 'Minik Mümin'),
       version: JsonMap.str(json['version'], '1.0.0'),
       minimumAge: JsonMap.integer(json['minimumAge'], 4),
       theme: JsonMap.str(json['theme'], 'light'),

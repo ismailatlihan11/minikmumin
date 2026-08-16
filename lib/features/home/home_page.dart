@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/constants/app_constants.dart';
 import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
@@ -252,12 +253,12 @@ class _MinikHomePageState extends State<MinikHomePage> {
                       const rows = 2;
                       const gridGap = 8.0;
                       const restGap = 8.0;
-                      const miniHeight = 56.0;
-                      const circlesHeight = 64.0;
+                      const miniHeight = 48.0;
+                      const circlesHeight = 52.0;
                       final itemWidth =
                           (constraints.maxWidth - gridGap * (columns - 1)) /
                               columns;
-                      final halfHeight = itemWidth * 0.68;
+                      final halfHeight = itemWidth * 0.5;
                       final gridHeight =
                           halfHeight * rows + gridGap * (rows - 1);
                       final itemHeight = halfHeight.clamp(1.0, 400.0);
@@ -372,7 +373,7 @@ class _HomeDrawer extends StatelessWidget {
           children: [
             const ListTile(
               title: Text(
-                'Minik Kalpler',
+                AppConstants.defaultAppName,
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
               subtitle: Text('İslami Eğitim Uygulaması'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Minik Kalpler palette. Existing adult-app colors stay in `lib/theme/app_theme.dart`.
+/// Minik Mümin palette. Existing adult-app colors stay in `lib/theme/app_theme.dart`.
 abstract final class MinikColors {
   static const Color cream = Color(0xFFF7F3EA);
   static const Color creamDark = Color(0xFFEFE8D8);

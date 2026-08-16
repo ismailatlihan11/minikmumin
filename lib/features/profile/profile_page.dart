@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
-import '../../shared/widgets/minik_ui.dart';
 
 class MinikProfilePage extends StatelessWidget {
   const MinikProfilePage({super.key});
@@ -13,6 +13,7 @@ class MinikProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
+      backgroundColor: const Color(0xFFF4F7F2),
       body: SafeArea(
         child: FutureBuilder<_ProfileSnapshot>(
           future: _load(store),
@@ -21,70 +22,54 @@ class MinikProfilePage extends StatelessWidget {
             final xp = data?.xp ?? 0;
             final lessons = data?.lessons ?? const [];
             final badges = data?.badges ?? const [];
+            final name = data?.nickname;
             return ListView(
               padding: AppSpacing.page,
               children: [
-                const PageHeader(
-                  title: 'Profil',
-                  subtitle: 'İlerlemen bu cihazda saklanır.',
-                  image: 'assets/images/home/profile.png',
-                ),
-                MinikCard(
-                  color: MinikColors.butter,
-                  child: Row(
+                _ProfileHero(name: name, xp: xp),
+                const SizedBox(height: 16),
+                const _SectionTitle('Dersler'),
+                const SizedBox(height: 8),
+                if (lessons.isEmpty)
+                  const _EmptyHint(
+                    'Henüz tamamlanan ders yok. Öğren’den başlayabilirsin.',
+                  )
+                else
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 6,
                     children: [
-                      Container(
-                        width: 56,
-                        height: 56,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: MinikColors.surface,
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: const Text(
-                          'XP',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            color: MinikColors.gold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('$xp', style: Theme.of(context).textTheme.displayMedium),
-                            const Text('Toplam puan'),
-                          ],
-                        ),
-                      ),
+                      for (final id in lessons)
+                        _LessonChip(label: _lessonLabel(id)),
                     ],
                   ),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('Dersler'),
-                MinikCard(
-                  child: Text(
-                    lessons.isEmpty
-                        ? 'Henüz tamamlanan ders yok. Öğren sekmesinden başlayabilirsin.'
-                        : lessons.map(_lessonLabel).join(', '),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('Rozetler'),
-                CatalogGrid(
-                  children: [
-                    for (final badge in _allBadges)
-                      Opacity(
-                        opacity: badges.contains(badge.id) ? 1 : 0.35,
-                        child: Image.asset(
-                          badge.image,
-                          fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => SoftBadge(label: badge.title),
-                        ),
-                      ),
-                  ],
+                const SizedBox(height: 18),
+                const _SectionTitle('Rozetler'),
+                const SizedBox(height: 8),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    const columns = 3;
+                    const spacing = 8.0;
+                    final tileWidth =
+                        ((constraints.maxWidth - spacing * (columns - 1)) /
+                                columns) *
+                            0.92;
+                    return Wrap(
+                      alignment: WrapAlignment.start,
+                      spacing: spacing,
+                      runSpacing: 10,
+                      children: [
+                        for (final badge in _allBadges)
+                          SizedBox(
+                            width: tileWidth,
+                            child: _BadgeTile(
+                              badge: badge,
+                              earned: badges.contains(badge.id),
+                            ),
+                          ),
+                      ],
+                    );
+                  },
                 ),
               ],
             );
@@ -95,10 +80,12 @@ class MinikProfilePage extends StatelessWidget {
   }
 
   Future<_ProfileSnapshot> _load(LocalProgressStore store) async {
+    final rawName = (await store.getNickname())?.trim();
     return _ProfileSnapshot(
       xp: await store.getXp(),
       lessons: await store.getCompletedLessons(),
       badges: await store.getBadges(),
+      nickname: (rawName == null || rawName.isEmpty) ? null : rawName,
     );
   }
 
@@ -124,13 +111,294 @@ class MinikProfilePage extends StatelessWidget {
   }
 }
 
+class _ProfileHero extends StatelessWidget {
+  const _ProfileHero({required this.name, required this.xp});
+
+  final String? name;
+  final int xp;
+
+  @override
+  Widget build(BuildContext context) {
+    final greeting = name == null ? 'Profilin' : name!;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x14000000),
+            blurRadius: 10,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: const BoxDecoration(
+              color: Color(0xFFE8F4EC),
+              shape: BoxShape.circle,
+            ),
+            child: const Icon(
+              Icons.favorite_rounded,
+              color: MinikColors.green,
+              size: 22,
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  greeting,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                    height: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                const Text(
+                  'İlerlemen bu cihazda saklanır',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: MinikColors.textMuted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(8, 6, 10, 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF3D1),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/images/home/mini_trophy.png',
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => const Icon(
+                    Icons.emoji_events_rounded,
+                    size: 18,
+                    color: MinikColors.gold,
+                  ),
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '$xp',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontFamily: 'NotoSans',
+        fontSize: 14,
+        fontWeight: FontWeight.w800,
+        color: MinikColors.darkGreen,
+      ),
+    );
+  }
+}
+
+class _EmptyHint extends StatelessWidget {
+  const _EmptyHint(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontFamily: 'NotoSans',
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: MinikColors.textMuted,
+        height: 1.3,
+      ),
+    );
+  }
+}
+
+class _LessonChip extends StatelessWidget {
+  const _LessonChip({required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: const Color(0xFFE8F4EC),
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontFamily: 'NotoSans',
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+          color: MinikColors.darkGreen,
+        ),
+      ),
+    );
+  }
+}
+
+class _BadgeTile extends StatelessWidget {
+  const _BadgeTile({required this.badge, required this.earned});
+
+  final _BadgeInfo badge;
+  final bool earned;
+
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: earned ? 1 : 0.42,
+      child: AspectRatio(
+        aspectRatio: 0.86,
+        child: Material(
+          color: badge.color,
+          elevation: earned ? 1.2 : 0,
+          shadowColor: const Color(0x22000000),
+          borderRadius: BorderRadius.circular(AppRadius.md),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(6, 8, 6, 6),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.72),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      badge.icon,
+                      size: 22,
+                      color: badge.accent,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  badge.title,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 10,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                    height: 1.15,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BadgeInfo {
+  const _BadgeInfo({
+    required this.id,
+    required this.title,
+    required this.icon,
+    required this.color,
+    required this.accent,
+  });
+
+  final String id;
+  final String title;
+  final IconData icon;
+  final Color color;
+  final Color accent;
+}
+
 const _allBadges = [
-  (id: 'first_lesson', title: 'İlk Ders', image: 'assets/images/achievements/first_lesson.png'),
-  (id: 'first_dua', title: 'İlk Dua', image: 'assets/images/achievements/first_dua.png'),
-  (id: 'prayer_duas', title: 'Namaz Duaları', image: 'assets/images/achievements/prayer_duas.png'),
-  (id: 'quran_reader', title: "Kur'an Okuyorum", image: 'assets/images/achievements/quran_reader.png'),
-  (id: 'asma_10', title: '10 Esma', image: 'assets/images/achievements/asma_10.png'),
-  (id: 'good_manners', title: 'Güzel Ahlak', image: 'assets/images/achievements/good_manners.png'),
+  _BadgeInfo(
+    id: 'first_lesson',
+    title: 'İlk Ders',
+    icon: Icons.menu_book_rounded,
+    color: Color(0xFFD8EEF8),
+    accent: Color(0xFF3AA0C8),
+  ),
+  _BadgeInfo(
+    id: 'first_dua',
+    title: 'İlk Dua',
+    icon: Icons.favorite_rounded,
+    color: Color(0xFFFADDE3),
+    accent: Color(0xFFD36B84),
+  ),
+  _BadgeInfo(
+    id: 'prayer_duas',
+    title: 'Namaz Duaları',
+    icon: Icons.mosque_rounded,
+    color: Color(0xFFE8DFF8),
+    accent: Color(0xFF8B6CC9),
+  ),
+  _BadgeInfo(
+    id: 'quran_reader',
+    title: "Kur'an Okuyorum",
+    icon: Icons.auto_stories_rounded,
+    color: Color(0xFFD4F0E2),
+    accent: Color(0xFF3D8B6E),
+  ),
+  _BadgeInfo(
+    id: 'asma_10',
+    title: '10 Esma',
+    icon: Icons.auto_awesome_rounded,
+    color: Color(0xFFFFF1C2),
+    accent: Color(0xFFE0A21A),
+  ),
+  _BadgeInfo(
+    id: 'good_manners',
+    title: 'Güzel Ahlak',
+    icon: Icons.volunteer_activism_rounded,
+    color: Color(0xFFE6D9F5),
+    accent: Color(0xFF9B6BC9),
+  ),
 ];
 
 class _ProfileSnapshot {
@@ -138,9 +406,11 @@ class _ProfileSnapshot {
     required this.xp,
     required this.lessons,
     required this.badges,
+    this.nickname,
   });
 
   final int xp;
   final List<String> lessons;
   final List<String> badges;
+  final String? nickname;
 }

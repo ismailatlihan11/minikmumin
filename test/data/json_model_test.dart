@@ -79,6 +79,7 @@ void main() {
       'surahNumber': 2,
       'ayahNumber': 201,
       'arabic': 'رَبَّنَا',
+      'transliteration': "Rabbenâ âtinâ fi'd-dünyâ haseneten.",
       'meaning': 'Rabbimiz',
       'source': 'Kur\'an-ı Kerim',
       'reference': '2:201',
@@ -87,6 +88,8 @@ void main() {
     });
     expect(dua.order, 1);
     expect(dua.surahNumber, 2);
+    expect(dua.transliteration, "Rabbenâ âtinâ fi'd-dünyâ haseneten.");
+    expect(DuaEntry.fromDua(dua).fullReading, "Rabbenâ âtinâ fi'd-dünyâ haseneten.");
     expect(dua.displayReference, 'Kur\'an-ı Kerim • 2:201');
     expect(DuaEntry.fromDua(dua).audio, 'assets/audio/duas/quran_002_201.mp3');
     expect(Dua.fromJson(dua.toJson()).id, 'quran_dua_2_201');
@@ -219,6 +222,29 @@ void main() {
     });
     expect(lesson.visualSteps, hasLength(1));
     expect(lesson.visualSteps.first['duaId'], 'ruku');
+  });
+
+  test('PrayerLesson reads rakat counts from JSON', () {
+    final lesson = PrayerLesson.fromJson({
+      'id': 'prayer',
+      'title': 'Namaz',
+      'sourceName': 'Diyanet',
+      'steps': [
+        {'id': 'ruku', 'order': 1, 'title': 'Rükû', 'description': 'Tesbih'},
+      ],
+      'rakats': [
+        {
+          'id': 'fajr',
+          'title': 'Sabah',
+          'farz': 2,
+          'summary': '2 rekat farz',
+          'detail': '2 sünnet + 2 farz',
+        },
+      ],
+    });
+    expect(lesson.rakats, hasLength(1));
+    expect(lesson.rakats.first['farz'], 2);
+    expect(lesson.rakats.first['title'], 'Sabah');
   });
 
   test('MoralityLesson maps the guzel_ahlak.json schema', () {
