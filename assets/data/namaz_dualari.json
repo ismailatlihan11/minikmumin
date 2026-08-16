@@ -1,0 +1,99 @@
+{
+  "version": "2.0",
+  "items": [
+    {
+      "id": "subhaneke",
+      "title": "Sübhâneke Duası",
+      "position": "Namazın başında",
+      "arabic": "سُبْحَانَكَ اَللّٰهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلٰهَ غَيْرُكَ",
+      "transliteration": "Sübhâneke allâhümme ve bihamdik, ve tebârekesmük, ve teâlâ ceddük, ve lâ ilâhe ğayrük.",
+      "meaning": "Allah'ım! Seni eksikliklerden uzak tutar, överim. Adın bereketlidir, şanın yücedir. Senden başka ilâh yoktur.",
+      "reference": "Ebû Dâvûd, Salât, 122 (775-776)"
+    },
+    {
+      "id": "ruku",
+      "title": "Rükû Tesbihi",
+      "position": "Rükûda",
+      "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
+      "transliteration": "Sübhâne Rabbiye'l-azîm.",
+      "meaning": "Ulu Rabbim her türlü eksiklikten uzaktır.",
+      "reference": "Ebû Dâvûd, Salât, 154; Tirmizî, Salât, 194"
+    },
+    {
+      "id": "qiyam_after_ruku",
+      "title": "Rükûdan Doğrulurken",
+      "position": "Rükûdan kalkarken",
+      "arabic": "سَمِعَ اللّٰهُ لِمَنْ حَمِدَهُ رَبَّنَا لَكَ الْحَمْدُ",
+      "transliteration": "Semi'allâhü limen hamideh. Rabbenâ leke'l-hamd.",
+      "meaning": "Allah kendisine hamd edeni işitir. Rabbimiz, hamd yalnız sanadır.",
+      "reference": "Diyanet namaz ilmihali; bkz. namaz içinde okunacak dualar"
+    },
+    {
+      "id": "sujud",
+      "title": "Secde Tesbihi",
+      "position": "Secdede",
+      "arabic": "سُبْحَانَ رَبِّيَ الْأَعْلَى",
+      "transliteration": "Sübhâne Rabbiye'l-a'lâ.",
+      "meaning": "Yüce Rabbim her türlü eksiklikten uzaktır.",
+      "reference": "Ebû Dâvûd, Salât, 154; Tirmizî, Salât, 194"
+    },
+    {
+      "id": "tahiyyat",
+      "title": "Tahiyyât (Ettehiyyâtü)",
+      "position": "Oturuşta",
+      "arabic": "اَلتَّحِيَّاتُ لِلّٰهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ ۚ اَلسَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ ۚ اَلسَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللّٰهِ الصَّالِحِينَ ۚ أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+      "transliteration": "Ettehiyyâtü lillâhi vessalavâtü vettayyibât. Esselâmü aleyke eyyühennebiyyü ve rahmetullâhi ve berakâtüh. Esselâmü aleynâ ve alâ ibâdillâhis-sâlihîn. Eşhedü en lâ ilâhe illallâh ve eşhedü enne Muhammeden abdühû ve resûlüh.",
+      "meaning": "Bütün hürmetler, ibadetler ve güzel sözler Allah'a aittir. Peygamber'e selâm; bize ve Allah'ın salih kullarına selâm olsun. Allah'tan başka ilâh olmadığına ve Muhammed'in O'nun kulu ve elçisi olduğuna şahitlik ederim.",
+      "reference": "Diyanet; Sahîh hadis kaynaklarında tahiyyat rivayetleri"
+    },
+    {
+      "id": "salli",
+      "title": "Allahümme Salli",
+      "position": "Son oturuşta",
+      "arabic": "اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ. اَللّٰهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
+      "transliteration": "Allâhümme salli alâ Muhammedin ve alâ âli Muhammed... Allâhümme bârik alâ Muhammedin ve alâ âli Muhammed...",
+      "meaning": "Allah'ım! Muhammed'e ve ailesine, İbrahim'e ve ailesine rahmet ve bereket verdiğin gibi rahmet ve bereket ver. Şüphesiz Sen övülmüş ve yücesin.",
+      "reference": "Buhârî, Enbiyâ, 10; Müslim, Salât, 66"
+    },
+    {
+      "id": "rabbena_atina",
+      "title": "Rabbenâ Âtinâ",
+      "position": "Namazda okunabilecek dua",
+      "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+      "transliteration": "Rabbenâ âtinâ fi'd-dünyâ haseneten ve fi'l-âhireti haseneten ve kınâ azâben-nâr.",
+      "meaning": "Rabbimiz! Bize dünyada da iyilik ver, ahirette de iyilik ver ve bizi ateşin azabından koru.",
+      "reference": "Bakara 2:201"
+    },
+    {
+      "id": "rabbena_ghfirli",
+      "title": "Rabbenâ'ğfirlî",
+      "position": "Namazda okunabilecek dua",
+      "arabic": "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ",
+      "transliteration": "Rabbenâ'ğfir lî ve li-vâlideyye ve lil-mü'minîne yevme yekûmü'l-hisâb.",
+      "meaning": "Rabbimiz! Hesabın kurulacağı gün beni, anne babamı ve müminleri bağışla.",
+      "reference": "İbrâhîm 14:41"
+    },
+    {
+      "id": "kunut_1",
+      "title": "Kunut Duası 1",
+      "position": "Vitir namazında",
+      "arabic": "اَللّٰهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنَسْتَهْدِيكَ وَنُؤْمِنُ بِكَ وَنَتُوبُ إِلَيْكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِي عَلَيْكَ الْخَيْرَ كُلَّهُ نَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ",
+      "transliteration": "Allâhümme innâ nesteînüke ve nestağfirüke ve nestehdîke ve nü'minü bike ve netûbü ileyk...",
+      "meaning": "Allah'ım! Senden yardım ister, senden bağışlanma diler, senden hidayet isteriz. Sana iman eder ve sana döneriz.",
+      "reference": "Diyanet namaz ilmihali; Kunut duaları"
+    },
+    {
+      "id": "kunut_2",
+      "title": "Kunut Duası 2",
+      "position": "Vitir namazında",
+      "arabic": "اَللّٰهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعَى وَنَحْفِدُ وَنَرْجُو رَحْمَتَكَ وَنَخْشَى عَذَابَكَ إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ",
+      "transliteration": "Allâhümme iyyâke na'büdü ve leke nusallî ve nescüd... ",
+      "meaning": "Allah'ım! Yalnız Sana kulluk eder, Sana namaz kılar ve Sana secde ederiz. Rahmetini umar, azabından sakınırız.",
+      "reference": "Diyanet namaz ilmihali; Kunut duaları"
+    }
+  ],
+  "sourceNotes": [
+    "Diyanet, Namaz İlmihali içindekiler ve namaz içinde okunacak dualar bölümü.",
+    "Diyanet Haber, Namaz içinde okunacak dualar."
+  ]
+}

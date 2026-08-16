@@ -1,0 +1,45 @@
+{
+  "version": "2.0",
+  "items": [
+    {
+      "id": "first_lesson",
+      "title": "İlk Ders",
+      "condition": {
+        "type": "lessonsCompleted",
+        "value": 1
+      }
+    },
+    {
+      "id": "first_dua",
+      "title": "İlk Dua",
+      "condition": {
+        "type": "duasLearned",
+        "value": 1
+      }
+    },
+    {
+      "id": "prayer_duas",
+      "title": "Namaz Duaları",
+      "condition": {
+        "type": "prayerDuasLearned",
+        "value": 5
+      }
+    },
+    {
+      "id": "quran_reader",
+      "title": "Kur'an Okuyorum",
+      "condition": {
+        "type": "quranVersesRead",
+        "value": 10
+      }
+    },
+    {
+      "id": "asma_10",
+      "title": "10 Esma",
+      "condition": {
+        "type": "asmaLearned",
+        "value": 10
+      }
+    }
+  ]
+}

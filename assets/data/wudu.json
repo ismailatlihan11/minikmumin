@@ -1,0 +1,64 @@
+{
+  "id": "wudu",
+  "title": "Abdest",
+  "sourceName": "Diyanet namaz/ilmihal yayınları",
+  "verificationRequired": true,
+  "steps": [
+    {
+      "id": "hands",
+      "order": 1,
+      "title": "Eller",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "mouth",
+      "order": 2,
+      "title": "Ağız",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "nose",
+      "order": 3,
+      "title": "Burun",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "face",
+      "order": 4,
+      "title": "Yüz",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "arms",
+      "order": 5,
+      "title": "Kollar",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "head",
+      "order": 6,
+      "title": "Başın Mesh Edilmesi",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "ears",
+      "order": 7,
+      "title": "Kulaklar",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "feet",
+      "order": 8,
+      "title": "Ayaklar",
+      "description": "Abdestin bu aşamasını öğren.",
+      "sourceReference": "Diyanet ilmihal"
+    }
+  ]
+}

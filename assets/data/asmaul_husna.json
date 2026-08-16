@@ -1,0 +1,799 @@
+{
+  "version": "2.0",
+  "count": 99,
+  "items": [
+    {
+      "id": 1,
+      "arabic": "الرَّحْمَنُ",
+      "name": "Er-Rahmân",
+      "meaning": "Çok merhamet eden",
+      "childExplanation": "Çok merhamet eden.",
+      "audio": "assets/audio/asma/01.mp3"
+    },
+    {
+      "id": 2,
+      "arabic": "الرَّحِيمُ",
+      "name": "Er-Rahîm",
+      "meaning": "Çok esirgeyen, çok merhamet eden",
+      "childExplanation": "Çok esirgeyen, çok merhamet eden.",
+      "audio": "assets/audio/asma/02.mp3"
+    },
+    {
+      "id": 3,
+      "arabic": "الْمَلِكُ",
+      "name": "El-Melik",
+      "meaning": "Mülkün sahibi",
+      "childExplanation": "Mülkün sahibi.",
+      "audio": "assets/audio/asma/03.mp3"
+    },
+    {
+      "id": 4,
+      "arabic": "الْقُدُّوسُ",
+      "name": "El-Kuddûs",
+      "meaning": "Her türlü eksiklikten uzak",
+      "childExplanation": "Her türlü eksiklikten uzak.",
+      "audio": "assets/audio/asma/04.mp3"
+    },
+    {
+      "id": 5,
+      "arabic": "السَّلَامُ",
+      "name": "Es-Selâm",
+      "meaning": "Esenlik veren",
+      "childExplanation": "Esenlik veren.",
+      "audio": "assets/audio/asma/05.mp3"
+    },
+    {
+      "id": 6,
+      "arabic": "الْمُؤْمِنُ",
+      "name": "El-Mü'min",
+      "meaning": "Güven veren",
+      "childExplanation": "Güven veren.",
+      "audio": "assets/audio/asma/06.mp3"
+    },
+    {
+      "id": 7,
+      "arabic": "الْمُهَيْمِنُ",
+      "name": "El-Müheymin",
+      "meaning": "Gözetip koruyan",
+      "childExplanation": "Gözetip koruyan.",
+      "audio": "assets/audio/asma/07.mp3"
+    },
+    {
+      "id": 8,
+      "arabic": "الْعَزِيزُ",
+      "name": "El-Azîz",
+      "meaning": "Mutlak güçlü",
+      "childExplanation": "Mutlak güçlü.",
+      "audio": "assets/audio/asma/08.mp3"
+    },
+    {
+      "id": 9,
+      "arabic": "الْجَبَّارُ",
+      "name": "El-Cebbâr",
+      "meaning": "Dilediğini yaptıran",
+      "childExplanation": "Dilediğini yaptıran.",
+      "audio": "assets/audio/asma/09.mp3"
+    },
+    {
+      "id": 10,
+      "arabic": "الْمُتَكَبِّرُ",
+      "name": "El-Mütekebbir",
+      "meaning": "Büyüklükte eşsiz",
+      "childExplanation": "Büyüklükte eşsiz.",
+      "audio": "assets/audio/asma/10.mp3"
+    },
+    {
+      "id": 11,
+      "arabic": "الْخَالِقُ",
+      "name": "El-Hâlık",
+      "meaning": "Yaratan",
+      "childExplanation": "Yaratan.",
+      "audio": "assets/audio/asma/11.mp3"
+    },
+    {
+      "id": 12,
+      "arabic": "الْبَارِئُ",
+      "name": "El-Bâri'",
+      "meaning": "Kusursuz yaratan",
+      "childExplanation": "Kusursuz yaratan.",
+      "audio": "assets/audio/asma/12.mp3"
+    },
+    {
+      "id": 13,
+      "arabic": "الْمُصَوِّرُ",
+      "name": "El-Musavvir",
+      "meaning": "Şekil veren",
+      "childExplanation": "Şekil veren.",
+      "audio": "assets/audio/asma/13.mp3"
+    },
+    {
+      "id": 14,
+      "arabic": "الْغَفَّارُ",
+      "name": "El-Gaffâr",
+      "meaning": "Çok bağışlayan",
+      "childExplanation": "Çok bağışlayan.",
+      "audio": "assets/audio/asma/14.mp3"
+    },
+    {
+      "id": 15,
+      "arabic": "الْقَهَّارُ",
+      "name": "El-Kahhâr",
+      "meaning": "Her şeye galip",
+      "childExplanation": "Her şeye galip.",
+      "audio": "assets/audio/asma/15.mp3"
+    },
+    {
+      "id": 16,
+      "arabic": "الْوَهَّابُ",
+      "name": "El-Vehhâb",
+      "meaning": "Karşılıksız nimet veren",
+      "childExplanation": "Karşılıksız nimet veren.",
+      "audio": "assets/audio/asma/16.mp3"
+    },
+    {
+      "id": 17,
+      "arabic": "الرَّزَّاقُ",
+      "name": "Er-Rezzâk",
+      "meaning": "Rızık veren",
+      "childExplanation": "Rızık veren.",
+      "audio": "assets/audio/asma/17.mp3"
+    },
+    {
+      "id": 18,
+      "arabic": "الْفَتَّاحُ",
+      "name": "El-Fettâh",
+      "meaning": "Her türlü güçlüğü açan",
+      "childExplanation": "Her türlü güçlüğü açan.",
+      "audio": "assets/audio/asma/18.mp3"
+    },
+    {
+      "id": 19,
+      "arabic": "الْعَلِيمُ",
+      "name": "El-Alîm",
+      "meaning": "Her şeyi bilen",
+      "childExplanation": "Her şeyi bilen.",
+      "audio": "assets/audio/asma/19.mp3"
+    },
+    {
+      "id": 20,
+      "arabic": "الْقَابِضُ",
+      "name": "El-Kâbız",
+      "meaning": "Dilediğinde daraltan",
+      "childExplanation": "Dilediğinde daraltan.",
+      "audio": "assets/audio/asma/20.mp3"
+    },
+    {
+      "id": 21,
+      "arabic": "الْبَاسِطُ",
+      "name": "El-Bâsıt",
+      "meaning": "Dilediğinde genişleten",
+      "childExplanation": "Dilediğinde genişleten.",
+      "audio": "assets/audio/asma/21.mp3"
+    },
+    {
+      "id": 22,
+      "arabic": "الْخَافِضُ",
+      "name": "El-Hâfız",
+      "meaning": "Alçaltan",
+      "childExplanation": "Alçaltan.",
+      "audio": "assets/audio/asma/22.mp3"
+    },
+    {
+      "id": 23,
+      "arabic": "الرَّافِعُ",
+      "name": "Er-Râfi'",
+      "meaning": "Yükselten",
+      "childExplanation": "Yükselten.",
+      "audio": "assets/audio/asma/23.mp3"
+    },
+    {
+      "id": 24,
+      "arabic": "الْمُعِزُّ",
+      "name": "El-Muizz",
+      "meaning": "İzzet veren",
+      "childExplanation": "İzzet veren.",
+      "audio": "assets/audio/asma/24.mp3"
+    },
+    {
+      "id": 25,
+      "arabic": "المُذِلُّ",
+      "name": "El-Müzill",
+      "meaning": "Zillet veren",
+      "childExplanation": "Zillet veren.",
+      "audio": "assets/audio/asma/25.mp3"
+    },
+    {
+      "id": 26,
+      "arabic": "السَّمِيعُ",
+      "name": "Es-Semî'",
+      "meaning": "Her şeyi işiten",
+      "childExplanation": "Her şeyi işiten.",
+      "audio": "assets/audio/asma/26.mp3"
+    },
+    {
+      "id": 27,
+      "arabic": "الْبَصِيرُ",
+      "name": "El-Basîr",
+      "meaning": "Her şeyi gören",
+      "childExplanation": "Her şeyi gören.",
+      "audio": "assets/audio/asma/27.mp3"
+    },
+    {
+      "id": 28,
+      "arabic": "الْحَكَمُ",
+      "name": "El-Hakem",
+      "meaning": "Hükmeden",
+      "childExplanation": "Hükmeden.",
+      "audio": "assets/audio/asma/28.mp3"
+    },
+    {
+      "id": 29,
+      "arabic": "الْعَدْلُ",
+      "name": "El-Adl",
+      "meaning": "Mutlak adalet sahibi",
+      "childExplanation": "Mutlak adalet sahibi.",
+      "audio": "assets/audio/asma/29.mp3"
+    },
+    {
+      "id": 30,
+      "arabic": "اللَّطِيفُ",
+      "name": "El-Latîf",
+      "meaning": "Lütuf ve incelik sahibi",
+      "childExplanation": "Lütuf ve incelik sahibi.",
+      "audio": "assets/audio/asma/30.mp3"
+    },
+    {
+      "id": 31,
+      "arabic": "الْخَبِيرُ",
+      "name": "El-Habîr",
+      "meaning": "Her şeyden haberdar",
+      "childExplanation": "Her şeyden haberdar.",
+      "audio": "assets/audio/asma/31.mp3"
+    },
+    {
+      "id": 32,
+      "arabic": "الْحَلِيمُ",
+      "name": "El-Halîm",
+      "meaning": "Çok yumuşak davranan",
+      "childExplanation": "Çok yumuşak davranan.",
+      "audio": "assets/audio/asma/32.mp3"
+    },
+    {
+      "id": 33,
+      "arabic": "الْعَظِيمُ",
+      "name": "El-Azîm",
+      "meaning": "Çok büyük",
+      "childExplanation": "Çok büyük.",
+      "audio": "assets/audio/asma/33.mp3"
+    },
+    {
+      "id": 34,
+      "arabic": "الْغَفُورُ",
+      "name": "El-Gafûr",
+      "meaning": "Çok bağışlayan",
+      "childExplanation": "Çok bağışlayan.",
+      "audio": "assets/audio/asma/34.mp3"
+    },
+    {
+      "id": 35,
+      "arabic": "الشَّكُورُ",
+      "name": "Eş-Şekûr",
+      "meaning": "Şükrü karşılıksız bırakmayan",
+      "childExplanation": "Şükrü karşılıksız bırakmayan.",
+      "audio": "assets/audio/asma/35.mp3"
+    },
+    {
+      "id": 36,
+      "arabic": "الْعَلِيُّ",
+      "name": "El-Aliyy",
+      "meaning": "Yüceler yücesi",
+      "childExplanation": "Yüceler yücesi.",
+      "audio": "assets/audio/asma/36.mp3"
+    },
+    {
+      "id": 37,
+      "arabic": "الْكَبِيرُ",
+      "name": "El-Kebîr",
+      "meaning": "En büyük",
+      "childExplanation": "En büyük.",
+      "audio": "assets/audio/asma/37.mp3"
+    },
+    {
+      "id": 38,
+      "arabic": "الْحَفِيظُ",
+      "name": "El-Hafîz",
+      "meaning": "Koruyup gözeten",
+      "childExplanation": "Koruyup gözeten.",
+      "audio": "assets/audio/asma/38.mp3"
+    },
+    {
+      "id": 39,
+      "arabic": "الْمُقِيتُ",
+      "name": "El-Mukît",
+      "meaning": "Rızık ve güç veren",
+      "childExplanation": "Rızık ve güç veren.",
+      "audio": "assets/audio/asma/39.mp3"
+    },
+    {
+      "id": 40,
+      "arabic": "الْحَسِيبُ",
+      "name": "El-Hasîb",
+      "meaning": "Hesaba çeken",
+      "childExplanation": "Hesaba çeken.",
+      "audio": "assets/audio/asma/40.mp3"
+    },
+    {
+      "id": 41,
+      "arabic": "الْجَلِيلُ",
+      "name": "El-Celîl",
+      "meaning": "Ululuk sahibi",
+      "childExplanation": "Ululuk sahibi.",
+      "audio": "assets/audio/asma/41.mp3"
+    },
+    {
+      "id": 42,
+      "arabic": "الْكَرِيمُ",
+      "name": "El-Kerîm",
+      "meaning": "Çok ikram eden",
+      "childExplanation": "Çok ikram eden.",
+      "audio": "assets/audio/asma/42.mp3"
+    },
+    {
+      "id": 43,
+      "arabic": "الرَّقِيبُ",
+      "name": "Er-Rakîb",
+      "meaning": "Gözeten",
+      "childExplanation": "Gözeten.",
+      "audio": "assets/audio/asma/43.mp3"
+    },
+    {
+      "id": 44,
+      "arabic": "الْمُجِيبُ",
+      "name": "El-Mücîb",
+      "meaning": "Dualara cevap veren",
+      "childExplanation": "Dualara cevap veren.",
+      "audio": "assets/audio/asma/44.mp3"
+    },
+    {
+      "id": 45,
+      "arabic": "الْوَاسِعُ",
+      "name": "El-Vâsi'",
+      "meaning": "Rahmeti ve ilmi geniş olan",
+      "childExplanation": "Rahmeti ve ilmi geniş olan.",
+      "audio": "assets/audio/asma/45.mp3"
+    },
+    {
+      "id": 46,
+      "arabic": "الْحَكِيمُ",
+      "name": "El-Hakîm",
+      "meaning": "Hikmet sahibi",
+      "childExplanation": "Hikmet sahibi.",
+      "audio": "assets/audio/asma/46.mp3"
+    },
+    {
+      "id": 47,
+      "arabic": "الْوَدُودُ",
+      "name": "El-Vedûd",
+      "meaning": "Çok seven",
+      "childExplanation": "Çok seven.",
+      "audio": "assets/audio/asma/47.mp3"
+    },
+    {
+      "id": 48,
+      "arabic": "الْمَجِيدُ",
+      "name": "El-Mecîd",
+      "meaning": "Şanı yüce",
+      "childExplanation": "Şanı yüce.",
+      "audio": "assets/audio/asma/48.mp3"
+    },
+    {
+      "id": 49,
+      "arabic": "الْبَاعِثُ",
+      "name": "El-Bâis",
+      "meaning": "Dirilten",
+      "childExplanation": "Dirilten.",
+      "audio": "assets/audio/asma/49.mp3"
+    },
+    {
+      "id": 50,
+      "arabic": "الشَّهِيدُ",
+      "name": "Eş-Şehîd",
+      "meaning": "Her şeye şahit",
+      "childExplanation": "Her şeye şahit.",
+      "audio": "assets/audio/asma/50.mp3"
+    },
+    {
+      "id": 51,
+      "arabic": "الْحَقُّ",
+      "name": "El-Hakk",
+      "meaning": "Mutlak gerçek",
+      "childExplanation": "Mutlak gerçek.",
+      "audio": "assets/audio/asma/51.mp3"
+    },
+    {
+      "id": 52,
+      "arabic": "الْوَكِيلُ",
+      "name": "El-Vekîl",
+      "meaning": "Kendisine güvenilen",
+      "childExplanation": "Kendisine güvenilen.",
+      "audio": "assets/audio/asma/52.mp3"
+    },
+    {
+      "id": 53,
+      "arabic": "الْقَوِيُّ",
+      "name": "El-Kaviyy",
+      "meaning": "Çok güçlü",
+      "childExplanation": "Çok güçlü.",
+      "audio": "assets/audio/asma/53.mp3"
+    },
+    {
+      "id": 54,
+      "arabic": "الْمَتِينُ",
+      "name": "El-Metîn",
+      "meaning": "Çok sağlam",
+      "childExplanation": "Çok sağlam.",
+      "audio": "assets/audio/asma/54.mp3"
+    },
+    {
+      "id": 55,
+      "arabic": "الْوَلِيُّ",
+      "name": "El-Veliyy",
+      "meaning": "Dost ve yardımcı",
+      "childExplanation": "Dost ve yardımcı.",
+      "audio": "assets/audio/asma/55.mp3"
+    },
+    {
+      "id": 56,
+      "arabic": "الْحَمِيدُ",
+      "name": "El-Hamîd",
+      "meaning": "Övülmeye layık",
+      "childExplanation": "Övülmeye layık.",
+      "audio": "assets/audio/asma/56.mp3"
+    },
+    {
+      "id": 57,
+      "arabic": "الْمُحْصِي",
+      "name": "El-Muhsî",
+      "meaning": "Her şeyi sayıp bilen",
+      "childExplanation": "Her şeyi sayıp bilen.",
+      "audio": "assets/audio/asma/57.mp3"
+    },
+    {
+      "id": 58,
+      "arabic": "الْمُبْدِئُ",
+      "name": "El-Mübdi'",
+      "meaning": "İlk defa yaratan",
+      "childExplanation": "İlk defa yaratan.",
+      "audio": "assets/audio/asma/58.mp3"
+    },
+    {
+      "id": 59,
+      "arabic": "الْمُعِيدُ",
+      "name": "El-Muîd",
+      "meaning": "Yeniden yaratan",
+      "childExplanation": "Yeniden yaratan.",
+      "audio": "assets/audio/asma/59.mp3"
+    },
+    {
+      "id": 60,
+      "arabic": "الْمُحْيِي",
+      "name": "El-Muhyî",
+      "meaning": "Hayat veren",
+      "childExplanation": "Hayat veren.",
+      "audio": "assets/audio/asma/60.mp3"
+    },
+    {
+      "id": 61,
+      "arabic": "الْمُمِيتُ",
+      "name": "El-Mümît",
+      "meaning": "Öldüren",
+      "childExplanation": "Öldüren.",
+      "audio": "assets/audio/asma/61.mp3"
+    },
+    {
+      "id": 62,
+      "arabic": "الْحَيُّ",
+      "name": "El-Hayy",
+      "meaning": "Diri",
+      "childExplanation": "Diri.",
+      "audio": "assets/audio/asma/62.mp3"
+    },
+    {
+      "id": 63,
+      "arabic": "الْقَيُّومُ",
+      "name": "El-Kayyûm",
+      "meaning": "Her şeyi ayakta tutan",
+      "childExplanation": "Her şeyi ayakta tutan.",
+      "audio": "assets/audio/asma/63.mp3"
+    },
+    {
+      "id": 64,
+      "arabic": "الْوَاجِدُ",
+      "name": "El-Vâcid",
+      "meaning": "Hiçbir şeyi eksik olmayan",
+      "childExplanation": "Hiçbir şeyi eksik olmayan.",
+      "audio": "assets/audio/asma/64.mp3"
+    },
+    {
+      "id": 65,
+      "arabic": "الْمَاجِدُ",
+      "name": "El-Mâcid",
+      "meaning": "Şanı yüce",
+      "childExplanation": "Şanı yüce.",
+      "audio": "assets/audio/asma/65.mp3"
+    },
+    {
+      "id": 66,
+      "arabic": "الْوَاحِدُ",
+      "name": "El-Vâhid",
+      "meaning": "Tek",
+      "childExplanation": "Tek.",
+      "audio": "assets/audio/asma/66.mp3"
+    },
+    {
+      "id": 67,
+      "arabic": "الْأَحَدُ",
+      "name": "El-Ehad",
+      "meaning": "Bir ve eşsiz",
+      "childExplanation": "Bir ve eşsiz.",
+      "audio": "assets/audio/asma/67.mp3"
+    },
+    {
+      "id": 68,
+      "arabic": "الصَّمَدُ",
+      "name": "Es-Samed",
+      "meaning": "Her şeyin kendisine muhtaç olduğu",
+      "childExplanation": "Her şeyin kendisine muhtaç olduğu.",
+      "audio": "assets/audio/asma/68.mp3"
+    },
+    {
+      "id": 69,
+      "arabic": "الْقَادِرُ",
+      "name": "El-Kâdir",
+      "meaning": "Her şeye gücü yeten",
+      "childExplanation": "Her şeye gücü yeten.",
+      "audio": "assets/audio/asma/69.mp3"
+    },
+    {
+      "id": 70,
+      "arabic": "الْمُقْتَدِرُ",
+      "name": "El-Muktedir",
+      "meaning": "Kudreti sınırsız",
+      "childExplanation": "Kudreti sınırsız.",
+      "audio": "assets/audio/asma/70.mp3"
+    },
+    {
+      "id": 71,
+      "arabic": "الْمُقَدِّمُ",
+      "name": "El-Mukaddim",
+      "meaning": "Öne alan",
+      "childExplanation": "Öne alan.",
+      "audio": "assets/audio/asma/71.mp3"
+    },
+    {
+      "id": 72,
+      "arabic": "الْمُؤَخِّرُ",
+      "name": "El-Muahhir",
+      "meaning": "Geri bırakan",
+      "childExplanation": "Geri bırakan.",
+      "audio": "assets/audio/asma/72.mp3"
+    },
+    {
+      "id": 73,
+      "arabic": "الْأَوَّلُ",
+      "name": "El-Evvel",
+      "meaning": "İlk",
+      "childExplanation": "İlk.",
+      "audio": "assets/audio/asma/73.mp3"
+    },
+    {
+      "id": 74,
+      "arabic": "الْآخِرُ",
+      "name": "El-Âhir",
+      "meaning": "Son",
+      "childExplanation": "Son.",
+      "audio": "assets/audio/asma/74.mp3"
+    },
+    {
+      "id": 75,
+      "arabic": "الظَّاهِرُ",
+      "name": "Ez-Zâhir",
+      "meaning": "Varlığı açık olan",
+      "childExplanation": "Varlığı açık olan.",
+      "audio": "assets/audio/asma/75.mp3"
+    },
+    {
+      "id": 76,
+      "arabic": "الْبَاطِنُ",
+      "name": "El-Bâtın",
+      "meaning": "Mahiyeti gizli olan",
+      "childExplanation": "Mahiyeti gizli olan.",
+      "audio": "assets/audio/asma/76.mp3"
+    },
+    {
+      "id": 77,
+      "arabic": "الْوَالِي",
+      "name": "El-Vâlî",
+      "meaning": "Yöneten",
+      "childExplanation": "Yöneten.",
+      "audio": "assets/audio/asma/77.mp3"
+    },
+    {
+      "id": 78,
+      "arabic": "الْمُتَعَالِي",
+      "name": "El-Müteâlî",
+      "meaning": "Çok yüce",
+      "childExplanation": "Çok yüce.",
+      "audio": "assets/audio/asma/78.mp3"
+    },
+    {
+      "id": 79,
+      "arabic": "الْبَرُّ",
+      "name": "El-Berr",
+      "meaning": "İyiliği bol",
+      "childExplanation": "İyiliği bol.",
+      "audio": "assets/audio/asma/79.mp3"
+    },
+    {
+      "id": 80,
+      "arabic": "التَّوَابُ",
+      "name": "Et-Tevvâb",
+      "meaning": "Tevbeleri kabul eden",
+      "childExplanation": "Tevbeleri kabul eden.",
+      "audio": "assets/audio/asma/80.mp3"
+    },
+    {
+      "id": 81,
+      "arabic": "الْمُنْتَقِمُ",
+      "name": "El-Müntekim",
+      "meaning": "Adaletiyle karşılık veren",
+      "childExplanation": "Adaletiyle karşılık veren.",
+      "audio": "assets/audio/asma/81.mp3"
+    },
+    {
+      "id": 82,
+      "arabic": "الْعَفُوُّ",
+      "name": "El-Afüvv",
+      "meaning": "Çok affeden",
+      "childExplanation": "Çok affeden.",
+      "audio": "assets/audio/asma/82.mp3"
+    },
+    {
+      "id": 83,
+      "arabic": "الرَّؤُوفُ",
+      "name": "Er-Raûf",
+      "meaning": "Çok şefkatli",
+      "childExplanation": "Çok şefkatli.",
+      "audio": "assets/audio/asma/83.mp3"
+    },
+    {
+      "id": 84,
+      "arabic": "مَالِكُ الْمُلْكِ",
+      "name": "Mâlikü'l-Mülk",
+      "meaning": "Mülkün gerçek sahibi",
+      "childExplanation": "Mülkün gerçek sahibi.",
+      "audio": "assets/audio/asma/84.mp3"
+    },
+    {
+      "id": 85,
+      "arabic": "ذُوالْجَلَالِ وَالإكْرَامِ",
+      "name": "Zü'l-Celâli ve'l-İkrâm",
+      "meaning": "Celâl ve ikram sahibi",
+      "childExplanation": "Celâl ve ikram sahibi.",
+      "audio": "assets/audio/asma/85.mp3"
+    },
+    {
+      "id": 86,
+      "arabic": "الْمُقْسِطُ",
+      "name": "El-Muksit",
+      "meaning": "Adaletle hükmeden",
+      "childExplanation": "Adaletle hükmeden.",
+      "audio": "assets/audio/asma/86.mp3"
+    },
+    {
+      "id": 87,
+      "arabic": "الْجَامِعُ",
+      "name": "El-Câmi'",
+      "meaning": "Bir araya getiren",
+      "childExplanation": "Bir araya getiren.",
+      "audio": "assets/audio/asma/87.mp3"
+    },
+    {
+      "id": 88,
+      "arabic": "الْغَنِيُّ",
+      "name": "El-Ganiyy",
+      "meaning": "Hiçbir şeye muhtaç olmayan",
+      "childExplanation": "Hiçbir şeye muhtaç olmayan.",
+      "audio": "assets/audio/asma/88.mp3"
+    },
+    {
+      "id": 89,
+      "arabic": "الْمُغْنِي",
+      "name": "El-Muğnî",
+      "meaning": "Zengin eden",
+      "childExplanation": "Zengin eden.",
+      "audio": "assets/audio/asma/89.mp3"
+    },
+    {
+      "id": 90,
+      "arabic": "الْمَانِعُ",
+      "name": "El-Mâni'",
+      "meaning": "Engelleyen",
+      "childExplanation": "Engelleyen.",
+      "audio": "assets/audio/asma/90.mp3"
+    },
+    {
+      "id": 91,
+      "arabic": "الضَّارُّ",
+      "name": "Ed-Dârr",
+      "meaning": "Dilediğinde zarar veren",
+      "childExplanation": "Dilediğinde zarar veren.",
+      "audio": "assets/audio/asma/91.mp3"
+    },
+    {
+      "id": 92,
+      "arabic": "النَّافِعُ",
+      "name": "En-Nâfi'",
+      "meaning": "Fayda veren",
+      "childExplanation": "Fayda veren.",
+      "audio": "assets/audio/asma/92.mp3"
+    },
+    {
+      "id": 93,
+      "arabic": "النُّورُ",
+      "name": "En-Nûr",
+      "meaning": "Nurlandıran",
+      "childExplanation": "Nurlandıran.",
+      "audio": "assets/audio/asma/93.mp3"
+    },
+    {
+      "id": 94,
+      "arabic": "الْهَادِي",
+      "name": "El-Hâdî",
+      "meaning": "Hidayet veren",
+      "childExplanation": "Hidayet veren.",
+      "audio": "assets/audio/asma/94.mp3"
+    },
+    {
+      "id": 95,
+      "arabic": "الْبَدِيعُ",
+      "name": "El-Bedî'",
+      "meaning": "Eşsiz yaratan",
+      "childExplanation": "Eşsiz yaratan.",
+      "audio": "assets/audio/asma/95.mp3"
+    },
+    {
+      "id": 96,
+      "arabic": "الْبَاقِي",
+      "name": "El-Bâkî",
+      "meaning": "Varlığının sonu olmayan",
+      "childExplanation": "Varlığının sonu olmayan.",
+      "audio": "assets/audio/asma/96.mp3"
+    },
+    {
+      "id": 97,
+      "arabic": "الْوَارِثُ",
+      "name": "El-Vâris",
+      "meaning": "Her şeyin gerçek varisi",
+      "childExplanation": "Her şeyin gerçek varisi.",
+      "audio": "assets/audio/asma/97.mp3"
+    },
+    {
+      "id": 98,
+      "arabic": "الرَّشِيدُ",
+      "name": "Er-Reşîd",
+      "meaning": "Doğru yolu gösteren",
+      "childExplanation": "Doğru yolu gösteren.",
+      "audio": "assets/audio/asma/98.mp3"
+    },
+    {
+      "id": 99,
+      "arabic": "الصَّبُورُ",
+      "name": "Es-Sabûr",
+      "meaning": "Çok sabırlı",
+      "childExplanation": "Çok sabırlı.",
+      "audio": "assets/audio/asma/99.mp3"
+    }
+  ],
+  "sourceNote": "Yaygın 99 isim derlemesi. İsimlerin tek tek kaynaklandırılması ve listeleme yöntemi yayın öncesi ilmî kontrol gerektirir."
+}

@@ -1,0 +1,37 @@
+import 'package:just_audio/just_audio.dart';
+
+class AudioPlayerService {
+  AudioPlayerService({AudioPlayer? player}) : _player = player ?? AudioPlayer();
+
+  final AudioPlayer _player;
+
+  Future<void> playAsset(String path) async {
+    if (path.trim().isEmpty) return;
+    try {
+      await _player.stop();
+      await _player.setAsset(path);
+      await _player.play();
+    } catch (_) {
+      // Missing or unplayable audio must never crash the lesson.
+    }
+  }
+
+  Future<void> stop() async {
+    try {
+      await _player.stop();
+    } catch (_) {}
+  }
+
+  Future<void> dispose() async {
+    try {
+      await _player.dispose();
+    } catch (_) {}
+  }
+}
+
+abstract final class EffectAudio {
+  static const String correct = 'assets/audio/effects/dogru_cevap.mp3';
+  static const String retry = 'assets/audio/effects/tekrar_deneyelim.mp3';
+  static const String complete = 'assets/audio/effects/ders_tamamlandi.mp3';
+  static const String celebrate = 'assets/audio/effects/tebrik.mp3';
+}

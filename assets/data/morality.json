@@ -1,0 +1,29 @@
+{
+  "version": "2.0",
+  "items": [
+    {
+      "id": "truthfulness",
+      "title": "Doğruluk",
+      "lesson": "Doğru sözlü olmak güven oluşturur.",
+      "source": "Doğrulukla ilgili Kur'an ve sünnet öğretisi"
+    },
+    {
+      "id": "mercy",
+      "title": "Merhamet",
+      "lesson": "İnsanlara ve canlılara karşı merhametli davran.",
+      "source": "Buhârî, Tevhîd 2; Müslim, Fedâil 66"
+    },
+    {
+      "id": "parents",
+      "title": "Anne-Babaya İyilik",
+      "lesson": "Anne ve babaya güzel söz söylemek ve iyilik etmek güzel bir davranıştır.",
+      "source": "İsrâ 17:23-24"
+    },
+    {
+      "id": "sharing",
+      "title": "Yardımlaşma",
+      "lesson": "İhtiyacı olanlara yardım etmeyi öğren.",
+      "source": "Mâide 5:2; Maûn 107"
+    }
+  ]
+}

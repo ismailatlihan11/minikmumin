@@ -1,0 +1,53 @@
+name: minik_kalpler
+description: Çocuklara yönelik İslami eğitim uygulaması. Tamamen offline çalışır.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  shared_preferences: ^2.2.3
+  just_audio: ^0.9.40
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/data/
+    - assets/fonts/
+    - assets/images/achievements/
+    - assets/images/backgrounds/
+    - assets/images/duas/
+    - assets/images/home/
+    - assets/images/logo/
+    - assets/images/morality/
+    - assets/images/onboarding/
+    - assets/images/prayer/
+    - assets/images/prophets/
+    - assets/images/quiz/
+    - assets/images/quran/
+    - assets/images/wudu/
+    - assets/audio/duas/
+    - assets/audio/effects/
+    - assets/audio/prayer/
+    - assets/audio/quran/
+
+  fonts:
+    - family: NotoNaskhArabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
+        - asset: assets/fonts/NotoSans-Bold.ttf
+          weight: 700

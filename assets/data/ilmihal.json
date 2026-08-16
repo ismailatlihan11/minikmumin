@@ -1,0 +1,36 @@
+{
+  "version": "2.0",
+  "note": "Çocuklara yönelik özet anlatım. Fıkhi ayrıntılar mezhep ve kaynak farklılıkları nedeniyle yayın öncesi ilmihal uzmanı kontrolünden geçirilmelidir.",
+  "items": [
+    {
+      "id": "temizlik",
+      "title": "Temizlik",
+      "summary": "İslam'da temizlik ve temizliğe özen göstermek önemli bir değerdir.",
+      "sourceReference": "Bakara 2:222; güvenilir ilmihal kaynakları"
+    },
+    {
+      "id": "abdest",
+      "title": "Abdest",
+      "summary": "Namaz gibi bazı ibadetler için gerekli olan abdestin temel aşamalarını öğren.",
+      "sourceReference": "Diyanet namaz/ilmihal yayınları"
+    },
+    {
+      "id": "namaz",
+      "title": "Namaz",
+      "summary": "Namazın temel hareketlerini, sırasını ve namazda okunan duaları öğren.",
+      "sourceReference": "Diyanet namaz ilmihali"
+    },
+    {
+      "id": "oruç",
+      "title": "Oruç",
+      "summary": "Ramazan ayında oruç ibadetinin temel anlamını ve çocuklara uygun temel bilgileri öğren.",
+      "sourceReference": "Bakara 2:183-187; güvenilir ilmihal kaynakları"
+    },
+    {
+      "id": "cami_adabi",
+      "title": "Cami Adabı",
+      "summary": "Camiye girerken ve camide bulunurken saygı, temizlik ve sessizlik gibi güzel davranışları öğren.",
+      "sourceReference": "Güvenilir ilmihal kaynakları"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "version": "2.0",
+  "count": 25,
+  "items": [
+    {
+      "id": "prophet_01",
+      "name": "Adem",
+      "arabicName": "Âdem",
+      "quranReferences": "Bakara 2:30-37; Tâhâ 20:115-123",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_02",
+      "name": "İdris",
+      "arabicName": "İdrîs",
+      "quranReferences": "Meryem 19:56-57",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_03",
+      "name": "Nuh",
+      "arabicName": "Nûh",
+      "quranReferences": "Nûh 71:1-28",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_04",
+      "name": "Hud",
+      "arabicName": "Hûd",
+      "quranReferences": "Hûd 11:50-60",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_05",
+      "name": "Salih",
+      "arabicName": "Sâlih",
+      "quranReferences": "Hûd 11:61-68",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_06",
+      "name": "İbrahim",
+      "arabicName": "İbrâhim",
+      "quranReferences": "Bakara 2:124-141; En'âm 6:74-83",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_07",
+      "name": "Lut",
+      "arabicName": "Lût",
+      "quranReferences": "Hûd 11:69-83",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_08",
+      "name": "İsmail",
+      "arabicName": "İsmâil",
+      "quranReferences": "Bakara 2:125-129; Meryem 19:54-55",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_09",
+      "name": "İshak",
+      "arabicName": "İshâk",
+      "quranReferences": "Hûd 11:71-73",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_10",
+      "name": "Yakup",
+      "arabicName": "Ya'kûb",
+      "quranReferences": "Bakara 2:132-133",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_11",
+      "name": "Yusuf",
+      "arabicName": "Yûsuf",
+      "quranReferences": "Yûsuf 12:4-101",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_12",
+      "name": "Eyyub",
+      "arabicName": "Eyyûb",
+      "quranReferences": "Enbiyâ 21:83-84; Sâd 38:41-44",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_13",
+      "name": "Şuayb",
+      "arabicName": "Şuayb",
+      "quranReferences": "Hûd 11:84-95",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_14",
+      "name": "Musa",
+      "arabicName": "Mûsâ",
+      "quranReferences": "Kasas 28:3-46; Tâhâ 20:9-98",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_15",
+      "name": "Harun",
+      "arabicName": "Hârûn",
+      "quranReferences": "Tâhâ 20:29-36",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_16",
+      "name": "Davud",
+      "arabicName": "Dâvûd",
+      "quranReferences": "Sâd 38:17-26",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_17",
+      "name": "Süleyman",
+      "arabicName": "Süleyman",
+      "quranReferences": "Neml 27:15-44",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_18",
+      "name": "İlyas",
+      "arabicName": "İlyâs",
+      "quranReferences": "Sâffât 37:123-132",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_19",
+      "name": "Elyesa",
+      "arabicName": "Elyesa'",
+      "quranReferences": "Sâd 38:48",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_20",
+      "name": "Zülkifl",
+      "arabicName": "Zülkifl",
+      "quranReferences": "Enbiyâ 21:85-86; Sâd 38:48",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_21",
+      "name": "Yunus",
+      "arabicName": "Yûnus",
+      "quranReferences": "Sâffât 37:139-148; Enbiyâ 21:87-88",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_22",
+      "name": "Zekeriya",
+      "arabicName": "Zekeriyyâ",
+      "quranReferences": "Meryem 19:2-15",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_23",
+      "name": "Yahya",
+      "arabicName": "Yahyâ",
+      "quranReferences": "Meryem 19:7-15",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_24",
+      "name": "İsa",
+      "arabicName": "Îsâ",
+      "quranReferences": "Âl-i İmrân 3:45-55; Meryem 19:16-36",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    },
+    {
+      "id": "prophet_25",
+      "name": "Muhammed",
+      "arabicName": "Muhammed",
+      "quranReferences": "Ahzâb 33:40; Fetih 48:29",
+      "illustrationPolicy": "symbolic_only",
+      "sourceName": "Kur'an-ı Kerim",
+      "summary": "Kur'an'da adı ve kıssası geçen peygamberlerden biridir; ayrıntılı içerik kaynak doğrulamasıyla yazılmalıdır."
+    }
+  ]
+}

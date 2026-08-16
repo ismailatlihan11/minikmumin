@@ -1,0 +1,97 @@
+{
+  "version": "2.0",
+  "items": [
+    {
+      "id": "quiz_fatiha",
+      "category": "quran",
+      "question": "Fâtiha sûresinde Allah'tan ne istenir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Doğru yol",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Dünya malı",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Şöhret",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "quiz_kursi",
+      "category": "quran",
+      "question": "Âyetü'l-Kürsî hangi sûrededir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Bakara",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Nâs",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Fîl",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "quiz_prayer",
+      "category": "prayer",
+      "question": "Rükûda hangi tesbih okunur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sübhâne Rabbiye'l-azîm",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Sübhâne Rabbiye'l-a'lâ",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "Rabbenâ âtinâ",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    },
+    {
+      "id": "quiz_last10",
+      "category": "quran",
+      "question": "Kur'an'ın son sûresi hangisidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nâs",
+          "correct": true
+        },
+        {
+          "id": "b",
+          "text": "Felak",
+          "correct": false
+        },
+        {
+          "id": "c",
+          "text": "İhlâs",
+          "correct": false
+        }
+      ],
+      "xp": 5
+    }
+  ]
+}
