@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/story.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -12,7 +11,6 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
-import '../duas/duas_page.dart';
 
 class StoriesPage extends StatefulWidget {
   const StoriesPage({super.key});
@@ -41,7 +39,7 @@ class _StoriesPageState extends State<StoriesPage> {
             children: [
               const PageHeader(
                 title: 'Kıssalar',
-                subtitle: 'Kur\'an\'daki kıssaları sahne sahne dinleyelim.',
+                subtitle: 'Kur\'an\'daki kıssaları sahne sahne okuyalım.',
                 image: 'assets/images/home/circle_stories.png',
               ),
               ContentTile(
@@ -135,7 +133,6 @@ class StoryReaderPage extends StatefulWidget {
 }
 
 class _StoryReaderPageState extends State<StoryReaderPage> {
-  final _audio = AudioPlayerService();
   int _page = 0;
   bool _restored = false;
   bool _completed = false;
@@ -183,12 +180,6 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
       route: AppRoutes.learnStories,
       progress: _lastPage == 0 ? 0 : (_page / _lastPage).clamp(0, 1),
     );
-  }
-
-  @override
-  void dispose() {
-    _audio.dispose();
-    super.dispose();
   }
 
   @override
@@ -258,10 +249,6 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
         Text(story.title, style: Theme.of(context).textTheme.displayMedium),
         const SizedBox(height: AppSpacing.sm),
         Text(story.summary, style: Theme.of(context).textTheme.bodyLarge),
-        if (story.audio.isNotEmpty) ...[
-          const SizedBox(height: AppSpacing.md),
-          ListenButton(audio: _audio, path: story.audio),
-        ],
       ],
     );
   }

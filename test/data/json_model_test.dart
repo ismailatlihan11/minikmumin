@@ -135,8 +135,18 @@ void main() {
       'source': "Kur'an-ı Kerim",
       'sourceReference': 'Sure 1',
       'verses': [
-        {'ayahNo': 1, 'arabic': 'بِسْمِ', 'meal': 'Rahmân'},
-        {'ayahNo': 2, 'arabic': 'الْحَمْدُ', 'meal': 'Hamd'},
+        {
+          'ayahNo': 1,
+          'arabic': 'بِسْمِ',
+          'transliteration': 'Bismillâhirrahmânirrahîm.',
+          'meal': 'Rahmân',
+        },
+        {
+          'ayahNo': 2,
+          'arabic': 'الْحَمْدُ',
+          'transliteration': 'Elhamdü lillâhi rabbil âlemîn.',
+          'meal': 'Hamd',
+        },
       ],
     });
     expect(dua.verses, hasLength(2));
@@ -145,6 +155,10 @@ void main() {
     expect(dua.displayMeaning.contains('Hamd'), isTrue);
     expect(dua.reference, "Kur'an-ı Kerim • Sure 1");
     expect(DuaEntry.fromPrayerDua(dua).verses.first.ayahNo, 1);
+    expect(
+      DuaEntry.fromPrayerDua(dua).fullReading,
+      'Bismillâhirrahmânirrahîm.\nElhamdü lillâhi rabbil âlemîn.',
+    );
   });
 
   test('IlmihalLesson maps the new lessons schema', () {

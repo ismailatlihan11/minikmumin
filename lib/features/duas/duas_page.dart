@@ -5,6 +5,7 @@ import '../../app/constants/content_assets.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/dua.dart';
@@ -94,10 +95,12 @@ class _DuaListTile extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 8),
           child: Material(
-            color: Colors.white,
-            elevation: 1,
-            shadowColor: const Color(0x14000000),
-            borderRadius: BorderRadius.circular(16),
+            color: MinikColors.surface,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+              side: const BorderSide(color: Color(0x1421684E)),
+            ),
             child: InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () => Navigator.push(
@@ -111,7 +114,7 @@ class _DuaListTile extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+                padding: const EdgeInsets.fromLTRB(12, 10, 10, 10),
                 child: Row(
                   children: [
                     Container(
@@ -292,11 +295,6 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
                     _DuaDetailHeader(dua: dua),
                     const SizedBox(height: 14),
                     DuaContentBlocks(dua: dua),
-                    const SizedBox(height: 12),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: CopyTextButton(text: _duaCopyText(dua)),
-                    ),
                   ],
                 ),
               ),
@@ -327,15 +325,9 @@ class _DuaDetailHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.surface,
         borderRadius: BorderRadius.circular(18),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x14000000),
-            blurRadius: 10,
-            offset: Offset(0, 3),
-          ),
-        ],
+        border: Border.all(color: const Color(0x1421684E)),
       ),
       child: Row(
         children: [
@@ -419,35 +411,35 @@ class DuaContentBlocks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
+    final parts = <Widget>[
+      if (dua.fullArabic.isNotEmpty)
         DuaPartCard(
           label: 'Arapça',
-          icon: Icons.menu_book_rounded,
-          color: const Color(0xFFE7F4EC),
-          accent: MinikColors.green,
+          color: MinikColors.mint,
+          accent: MinikColors.greenSoft,
           arabic: dua.fullArabic,
           arabicFontSize: arabicFontSize,
         ),
-        if (dua.fullReading.isNotEmpty) ...[
-          const SizedBox(height: 12),
-          DuaPartCard(
-            label: 'Okunuşu',
-            icon: Icons.record_voice_over_rounded,
-            color: const Color(0xFFFFF3D6),
-            accent: const Color(0xFFC29739),
-            text: dua.fullReading,
-          ),
-        ],
-        if (dua.fullMeaning.isNotEmpty) ...[
-          const SizedBox(height: 12),
-          DuaPartCard(
-            label: 'Meali',
-            icon: Icons.translate_rounded,
-            color: const Color(0xFFE8F1FA),
-            accent: const Color(0xFF3AA0C8),
-            text: dua.fullMeaning,
-          ),
+      if (dua.fullReading.isNotEmpty)
+        DuaPartCard(
+          label: 'Okunuşu',
+          color: MinikColors.butter,
+          accent: MinikColors.gold,
+          text: dua.fullReading,
+        ),
+      if (dua.fullMeaning.isNotEmpty)
+        DuaPartCard(
+          label: 'Meali',
+          color: MinikColors.sky,
+          accent: MinikColors.teal,
+          text: dua.fullMeaning,
+        ),
+    ];
+    return Column(
+      children: [
+        for (var i = 0; i < parts.length; i++) ...[
+          if (i > 0) const SizedBox(height: 10),
+          parts[i],
         ],
       ],
     );
@@ -458,80 +450,58 @@ class DuaPartCard extends StatelessWidget {
   const DuaPartCard({
     super.key,
     required this.label,
-    required this.icon,
     required this.color,
     required this.accent,
     this.arabic = '',
     this.text = '',
-    this.emptyHint = '',
     this.arabicFontSize = 26,
   });
 
   final String label;
-  final IconData icon;
   final Color color;
   final Color accent;
   final String arabic;
   final String text;
-  final String emptyHint;
   final double arabicFontSize;
 
   @override
   Widget build(BuildContext context) {
     final hasArabic = arabic.trim().isNotEmpty;
     final hasText = text.trim().isNotEmpty;
+    if (!hasArabic && !hasText) return const SizedBox.shrink();
     final body = hasArabic
         ? ArabicText(arabic, fontSize: arabicFontSize)
         : SelectableText(
-            hasText ? text : emptyHint,
-            style: TextStyle(
+            text,
+            style: const TextStyle(
               fontFamily: 'NotoSans',
-              fontSize: 17,
+              fontSize: 16,
               height: 1.55,
               fontWeight: FontWeight.w600,
-              fontStyle: hasText ? FontStyle.normal : FontStyle.italic,
-              color: hasText ? MinikColors.darkGreen : MinikColors.textMuted,
+              color: MinikColors.darkGreen,
             ),
           );
-    if (!hasArabic && !hasText && emptyHint.isEmpty) {
-      return const SizedBox.shrink();
-    }
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: accent.withValues(alpha: 0.22), width: 1.4),
+        borderRadius: BorderRadius.circular(18),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Icon(icon, size: 18, color: accent),
-              const SizedBox(width: 6),
-              Text(
-                label,
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                  color: accent,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-            decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.88),
-              borderRadius: BorderRadius.circular(14),
+          Text(
+            label,
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: accent,
             ),
-            child: body,
           ),
+          const SizedBox(height: 8),
+          body,
         ],
       ),
     );
@@ -556,9 +526,9 @@ class _DuaStickyBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
-      elevation: 12,
-      shadowColor: const Color(0x33000000),
+      color: MinikColors.surface,
+      elevation: 6,
+      shadowColor: const Color(0x14000000),
       child: SafeArea(
         top: false,
         child: Padding(
@@ -566,11 +536,13 @@ class _DuaStickyBar extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                width: double.infinity,
-                child: ListenButton(audio: audio, path: path),
-              ),
-              const SizedBox(height: 8),
+              if (AssetCatalog.contains(path)) ...[
+                SizedBox(
+                  width: double.infinity,
+                  child: ListenButton(audio: audio, path: path),
+                ),
+                const SizedBox(height: 8),
+              ],
               Row(
                 children: [
                   Expanded(
@@ -585,7 +557,7 @@ class _DuaStickyBar extends StatelessWidget {
                         ),
                         textStyle: const TextStyle(
                           fontFamily: 'NotoSans',
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       child: Text(learned ? 'Öğrendin' : 'Öğrendim'),
@@ -597,12 +569,13 @@ class _DuaStickyBar extends StatelessWidget {
                       child: FilledButton.icon(
                         onPressed: onNext,
                         style: FilledButton.styleFrom(
-                          backgroundColor: const Color(0xFF3AA0C8),
+                          backgroundColor: MinikColors.teal,
                           foregroundColor: Colors.white,
+                          elevation: 0,
                           minimumSize: const Size.fromHeight(44),
                           textStyle: const TextStyle(
                             fontFamily: 'NotoSans',
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                         icon: const Icon(Icons.arrow_forward_rounded, size: 18),
@@ -642,16 +615,9 @@ class ListenButton extends StatelessWidget {
   final String path;
   final bool iconStyle;
 
-  Future<void> _play(BuildContext context) async {
-    final played = await audio.toggleAsset(path);
-    if (played || !context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Ses yakında eklenecek.')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    if (!AssetCatalog.contains(path)) return const SizedBox.shrink();
     return StreamBuilder<bool>(
       stream: audio.playingStream,
       initialData: audio.isPlaying,
@@ -661,7 +627,7 @@ class ListenButton extends StatelessWidget {
         final label = playing ? 'Durdur' : 'Dinle';
         if (iconStyle) {
           return FilledButton.icon(
-            onPressed: () => _play(context),
+            onPressed: () => audio.toggleAsset(path),
             icon: Icon(icon),
             label: Text(label),
           );
@@ -669,14 +635,15 @@ class ListenButton extends StatelessWidget {
         return SizedBox(
           height: 48,
           child: FilledButton.icon(
-            onPressed: () => _play(context),
+            onPressed: () => audio.toggleAsset(path),
             style: FilledButton.styleFrom(
-              backgroundColor: MinikColors.green,
+              backgroundColor: MinikColors.greenSoft,
               foregroundColor: Colors.white,
+              elevation: 0,
               textStyle: const TextStyle(
                 fontFamily: 'NotoSans',
-                fontWeight: FontWeight.w800,
-                fontSize: 16,
+                fontWeight: FontWeight.w700,
+                fontSize: 15,
               ),
             ),
             icon: Icon(icon),

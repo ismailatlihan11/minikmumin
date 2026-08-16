@@ -7,7 +7,6 @@ import '../../app/constants/app_constants.dart';
 import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
-import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
@@ -30,7 +29,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
   Future<_HomeSnapshot>? _future;
   LocalProgressStore? _store;
   Timer? _welcomeTimer;
-  final _welcomeAudio = AudioPlayerService();
   bool _welcomeVisible = false;
   bool _welcomeNameLoaded = false;
   String? _welcomeNickname;
@@ -68,7 +66,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
   void _hideWelcome() {
     _welcomeTimer?.cancel();
     _welcomeTimer = null;
-    _welcomeAudio.stop();
     if (!mounted || !_welcomeVisible) return;
     setState(() => _welcomeVisible = false);
   }
@@ -79,8 +76,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !widget.isCurrentTab) return;
       setState(() => _welcomeVisible = true);
-      _welcomeAudio.playAsset('assets/audio/effects/hosgeldin.mp3');
-      _welcomeTimer = Timer(const Duration(seconds: 10), _hideWelcome);
+      _welcomeTimer = Timer(const Duration(seconds: 3), _hideWelcome);
     });
   }
 
@@ -154,7 +150,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
   @override
   void dispose() {
     _welcomeTimer?.cancel();
-    _welcomeAudio.dispose();
     _store?.removeListener(_onProgress);
     super.dispose();
   }
@@ -234,6 +229,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
           return Column(
             children: [
               Expanded(
+                flex: 3,
                 child: HomeHeroHeader(
                   onMenu: () => _scaffoldKey.currentState?.openDrawer(),
                   onSettings: () async {
@@ -243,98 +239,97 @@ class _MinikHomePageState extends State<MinikHomePage> {
                   },
                 ),
               ),
-              ColoredBox(
-                color: const Color(0xFFF4F7F2),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      const columns = 4;
-                      const rows = 2;
-                      const gridGap = 8.0;
-                      const restGap = 8.0;
-                      const miniHeight = 48.0;
-                      const circlesHeight = 52.0;
-                      final itemWidth =
-                          (constraints.maxWidth - gridGap * (columns - 1)) /
-                              columns;
-                      final halfHeight = itemWidth * 0.5;
-                      final gridHeight =
-                          halfHeight * rows + gridGap * (rows - 1);
-                      final itemHeight = halfHeight.clamp(1.0, 400.0);
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            height: gridHeight,
-                            child: GridView.count(
-                              crossAxisCount: columns,
-                              physics: const NeverScrollableScrollPhysics(),
-                              mainAxisSpacing: gridGap,
-                              crossAxisSpacing: gridGap,
-                              childAspectRatio: itemWidth / itemHeight,
-                              children: [
-                                for (final module in HomeCatalog.modules)
-                                  HomeModuleCard(
-                                    module: module,
+              Expanded(
+                flex: 8,
+                child: ColoredBox(
+                  color: const Color(0xFFF4F7F2),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              const columns = 4;
+                              const rows = 2;
+                              const gridGap = 10.0;
+                              final itemWidth =
+                                  (constraints.maxWidth -
+                                          gridGap * (columns - 1)) /
+                                      columns;
+                              final itemHeight =
+                                  (constraints.maxHeight -
+                                          gridGap * (rows - 1)) /
+                                      rows;
+                              return GridView.count(
+                                crossAxisCount: columns,
+                                physics: const NeverScrollableScrollPhysics(),
+                                mainAxisSpacing: gridGap,
+                                crossAxisSpacing: gridGap,
+                                childAspectRatio: itemWidth / itemHeight,
+                                children: [
+                                  for (final module in HomeCatalog.modules)
+                                    HomeModuleCard(
+                                      module: module,
+                                      onTap: () => Navigator.pushNamed(
+                                        context,
+                                        module.route,
+                                      ),
+                                    ),
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 86,
+                          child: Row(
+                            children: [
+                              for (var i = 0;
+                                  i < HomeCatalog.miniActions.length;
+                                  i++) ...[
+                                if (i > 0) const SizedBox(width: 8),
+                                Expanded(
+                                  child: HomeMiniCard(
+                                    item: HomeCatalog.miniActions[i],
                                     onTap: () => Navigator.pushNamed(
                                       context,
-                                      module.route,
+                                      HomeCatalog.miniActions[i].route,
                                     ),
                                   ),
+                                ),
                               ],
-                            ),
+                            ],
                           ),
-                          const SizedBox(height: restGap),
-                          SizedBox(
-                            height: miniHeight,
-                            child: Row(
-                              children: [
-                                for (var i = 0;
-                                    i < HomeCatalog.miniActions.length;
-                                    i++) ...[
-                                  if (i > 0) const SizedBox(width: 6),
-                                  Expanded(
-                                    child: HomeMiniCard(
-                                      item: HomeCatalog.miniActions[i],
-                                      onTap: () => Navigator.pushNamed(
-                                        context,
-                                        HomeCatalog.miniActions[i].route,
-                                      ),
+                        ),
+                        const SizedBox(height: 10),
+                        HomeContinueCard(
+                          title: continueTitle,
+                          subtitle: continueSubtitle,
+                          progress: progress,
+                          onContinue: onContinue,
+                        ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 92,
+                          child: Row(
+                            children: [
+                              for (final item in HomeCatalog.quickItems)
+                                Expanded(
+                                  child: HomeQuickCircle(
+                                    item: item,
+                                    onTap: () => Navigator.pushNamed(
+                                      context,
+                                      item.route,
                                     ),
                                   ),
-                                ],
-                              ],
-                            ),
+                                ),
+                            ],
                           ),
-                          const SizedBox(height: restGap),
-                          HomeContinueCard(
-                            title: continueTitle,
-                            subtitle: continueSubtitle,
-                            progress: progress,
-                            onContinue: onContinue,
-                          ),
-                          const SizedBox(height: restGap),
-                          SizedBox(
-                            height: circlesHeight,
-                            child: Row(
-                              children: [
-                                for (final item in HomeCatalog.quickItems)
-                                  Expanded(
-                                    child: HomeQuickCircle(
-                                      item: item,
-                                      onTap: () => Navigator.pushNamed(
-                                        context,
-                                        item.route,
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      );
-                    },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

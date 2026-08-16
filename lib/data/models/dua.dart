@@ -82,23 +82,28 @@ class PrayerVerse {
     required this.ayahNo,
     required this.arabic,
     required this.meal,
+    this.transliteration = '',
   });
 
   final int ayahNo;
   final String arabic;
   final String meal;
+  final String transliteration;
 
   factory PrayerVerse.fromJson(Map<String, dynamic> json) {
+    final meal = JsonMap.str(json['meal']);
     return PrayerVerse(
       ayahNo: JsonMap.integer(json['ayahNo']),
       arabic: JsonMap.str(json['arabic']),
-      meal: JsonMap.str(json['meal']),
+      meal: meal.isNotEmpty ? meal : JsonMap.str(json['meaning']),
+      transliteration: JsonMap.str(json['transliteration']),
     );
   }
 
   Map<String, dynamic> toJson() => {
         'ayahNo': ayahNo,
         'arabic': arabic,
+        if (transliteration.isNotEmpty) 'transliteration': transliteration,
         'meal': meal,
       };
 }
@@ -231,6 +236,13 @@ class DuaEntry {
   }
 
   String get fullReading {
+    if (verses.isNotEmpty) {
+      final joined = verses
+          .map((verse) => verse.transliteration.trim())
+          .where((line) => line.isNotEmpty)
+          .join('\n');
+      if (joined.isNotEmpty) return joined;
+    }
     return transliteration.trim();
   }
 

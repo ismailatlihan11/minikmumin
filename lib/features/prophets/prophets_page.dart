@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../app/constants/content_assets.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../core/audio/audio_player_service.dart';
 import '../../data/models/dua.dart';
 import '../../data/models/prophet.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -82,14 +81,6 @@ class ProphetDetailPage extends StatefulWidget {
 }
 
 class _ProphetDetailPageState extends State<ProphetDetailPage> {
-  final _audio = AudioPlayerService();
-
-  @override
-  void dispose() {
-    _audio.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -99,7 +90,6 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
       id: item.id,
       jsonPath: item.image,
     );
-    final audioPath = item.audio.isNotEmpty ? item.audio : ContentAssets.audioFor(item.id);
     return DetailScaffold(
       title: item.honorificName,
       actions: [
@@ -135,7 +125,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         if (item.isMuhammad) ...[
           const SizedBox(height: AppSpacing.lg),
           const SectionLabel('Salavat'),
-          _ProphetSalawat(audio: _audio),
+          const _ProphetSalawat(),
         ],
         const SizedBox(height: AppSpacing.md),
         SelectableText(item.summary, style: theme.bodyLarge),
@@ -164,17 +154,13 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
           const SizedBox(height: AppSpacing.sm),
           Text('Kaynak: ${item.sourceName}', style: theme.bodySmall),
         ],
-        const SizedBox(height: AppSpacing.lg),
-        ListenButton(audio: _audio, path: audioPath),
       ],
     );
   }
 }
 
 class _ProphetSalawat extends StatefulWidget {
-  const _ProphetSalawat({required this.audio});
-
-  final AudioPlayerService audio;
+  const _ProphetSalawat();
 
   @override
   State<_ProphetSalawat> createState() => _ProphetSalawatState();
@@ -212,13 +198,6 @@ class _ProphetSalawatState extends State<_ProphetSalawat> {
                     dua.meaning,
                   ]),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              ListenButton(
-                audio: widget.audio,
-                path: dua.audio.isNotEmpty
-                    ? dua.audio
-                    : ContentAssets.audioFor(dua.id),
               ),
               const SizedBox(height: AppSpacing.md),
             ],

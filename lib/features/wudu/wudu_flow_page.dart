@@ -5,6 +5,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_shadows.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/asset_catalog.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
@@ -128,7 +129,7 @@ class _LearnView extends StatelessWidget {
               ],
             ),
           ),
-          if (step.audio.isNotEmpty) ...[
+          if (AssetCatalog.contains(step.audio)) ...[
             SecondaryButton(
               label: 'Dinle',
               onPressed: controller.playStepAudio,

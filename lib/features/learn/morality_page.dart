@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../app/constants/content_assets.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/lessons.dart';
 import '../../data/models/quiz.dart';
@@ -13,7 +12,6 @@ import '../../data/repositories/learn_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
-import '../duas/duas_page.dart';
 import '../quiz/quiz_page.dart';
 
 class MoralityPage extends StatefulWidget {
@@ -125,30 +123,15 @@ class MoralityCategoryPage extends StatelessWidget {
   }
 }
 
-class MoralityLessonPage extends StatefulWidget {
+class MoralityLessonPage extends StatelessWidget {
   const MoralityLessonPage({super.key, required this.lesson});
 
   final MoralityLesson lesson;
 
   @override
-  State<MoralityLessonPage> createState() => _MoralityLessonPageState();
-}
-
-class _MoralityLessonPageState extends State<MoralityLessonPage> {
-  final _audio = AudioPlayerService();
-
-  @override
-  void dispose() {
-    _audio.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final lesson = widget.lesson;
     final theme = Theme.of(context).textTheme;
     final imagePath = ContentAssets.moralityImage(lesson.id, lesson.image);
-    final audioPath = lesson.audio.isNotEmpty ? lesson.audio : ContentAssets.audioFor(lesson.id);
     final store = context.watch<LocalProgressStore>();
     return FutureBuilder<bool>(
       future: store.isCompleted('morality', lesson.id),
@@ -196,8 +179,6 @@ class _MoralityLessonPageState extends State<MoralityLessonPage> {
               Text('Kaynak: ${lesson.source}', style: theme.bodySmall),
             ],
             const SizedBox(height: AppSpacing.lg),
-            ListenButton(audio: _audio, path: audioPath),
-            const SizedBox(height: AppSpacing.sm),
             PrimaryButton(
               label: done ? 'Öğrendin' : 'Öğrendim',
               onPressed: done

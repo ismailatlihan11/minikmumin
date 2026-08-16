@@ -6,6 +6,7 @@ import 'app/constants/app_constants.dart';
 import 'app/navigation/minik_shell.dart';
 import 'app/theme/app_colors.dart';
 import 'app/theme/app_theme.dart';
+import 'core/audio/asset_catalog.dart';
 import 'core/storage/local_progress_store.dart';
 import 'data/repositories/content_repositories.dart';
 import 'features/zikr/dhikr_store.dart';
@@ -24,6 +25,7 @@ void main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+  await AssetCatalog.load();
   runApp(const MinikKalplerApp());
 }
 

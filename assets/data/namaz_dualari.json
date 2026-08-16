@@ -73,36 +73,43 @@
         {
           "ayahNo": 1,
           "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحٖیمِ",
+          "transliteration": "Bismillâhirrahmânirrahîm.",
           "meal": "Rahmân ve rahîm olan Allah'ın adıyla..._"
         },
         {
           "ayahNo": 2,
           "arabic": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمٖینَۙ",
+          "transliteration": "Elhamdü lillâhi rabbil âlemîn.",
           "meal": "Hamd (övme ve övülme), âlemlerin Rabbi Allah'a mahsustur."
         },
         {
           "ayahNo": 3,
           "arabic": "اَلرَّحْمٰنِ الرَّحٖیمِۙ",
+          "transliteration": "Er-Rahmânir-Rahîm.",
           "meal": "O, rahmândır ve rahîmdir."
         },
         {
           "ayahNo": 4,
           "arabic": "مَالِكِ یَوْمِ الدّٖینِؕ",
+          "transliteration": "Mâliki yevmiddîn.",
           "meal": "Ceza gününün mâlikidir."
         },
         {
           "ayahNo": 5,
           "arabic": "اِیَّاكَ نَعْبُدُ وَاِیَّاكَ نَسْتَعٖینُؕ",
+          "transliteration": "İyyâke na'büdü ve iyyâke neste'în.",
           "meal": "(Rabbimiz!) Ancak sana kulluk ederiz ve yalnız senden medet umarız."
         },
         {
           "ayahNo": 6,
           "arabic": "اِهْدِنَا الصِّرَاطَ الْمُسْتَقٖیمَۙ",
+          "transliteration": "İhdinessırâtal müstakîm.",
           "meal": "Bize doğru yolu göster."
         },
         {
           "ayahNo": 7,
           "arabic": "صِرَاطَ الَّذٖینَ اَنْعَمْتَ عَلَیْهِمْۙ غَیْرِ الْمَغْضُوبِ عَلَیْهِمْ وَلَا الضَّٓالّٖینَ",
+          "transliteration": "Sırâtallezîne en'amte aleyhim gayril mağdûbi aleyhim ve leddâllîn.",
           "meal": "Kendilerine lütuf ve ikramda bulunduğun kimselerin yolunu; gazaba uğramışların ve sapmışların yolunu değil! Âmin."
         }
       ],
@@ -119,16 +126,19 @@
         {
           "ayahNo": 1,
           "arabic": "اِنَّٓا اَعْطَیْنَاكَ الْكَوْثَرَؕ",
+          "transliteration": "İnnâ a'taynâkel kevser.",
           "meal": "(Resûlüm!) Kuskusuz biz sana Kevser'i verdik. Simdi sen Rabbine kulluk et ve kurban kes. Asil soyu kesik olan, süphesiz sana hinç besleyendir."
         },
         {
           "ayahNo": 2,
           "arabic": "فَصَلِّ لِرَبِّكَ وَانْحَرْؕ",
+          "transliteration": "Fe salli li rabbike venhar.",
           "meal": "Sen de Rabbin için namaz kıl ve kurban kesiver."
         },
         {
           "ayahNo": 3,
           "arabic": "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ",
+          "transliteration": "İnne şânieke hüvel ebter.",
           "meal": "Doğrusu sana bugz edendir ebter."
         }
       ],
@@ -145,21 +155,25 @@
         {
           "ayahNo": 1,
           "arabic": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
+          "transliteration": "Kul hüvallâhü ehad.",
           "meal": "De ki: O, Allah birdir. Allah sameddir. O, doğurmamış ve doğmamıştır. Onun hiçbir dengi yoktur."
         },
         {
           "ayahNo": 2,
           "arabic": "اَللّٰهُ الصَّمَدُۚ",
+          "transliteration": "Allâhüs samed.",
           "meal": "Allah, o eksiksiz sameddir."
         },
         {
           "ayahNo": 3,
           "arabic": "لَمْ یَلِدْ وَلَمْ یُولَدْۙ",
+          "transliteration": "lem yelid ve lem yûled.",
           "meal": "Doğurmadı ve doğurulmadı."
         },
         {
           "ayahNo": 4,
           "arabic": "وَلَمْ یَكُنْ لَهُ كُفُوًا اَحَدٌ",
+          "transliteration": "Ve lem yekün lehû küfüven ehad.",
           "meal": "Ona bir küfüv de olmadı."
         }
       ],
@@ -176,16 +190,19 @@
         {
           "ayahNo": 1,
           "arabic": "وَالْعَصْرِۙ",
+          "transliteration": "Vel asr.",
           "meal": "Asra yemin ederim ki insan gerçekten ziyan içindedir. Bundan ancak iman edip iyi ameller işleyenler, birbirlerine hakkı tavsiye edenler ve sabrı tavsiye edenler müstesnadır."
         },
         {
           "ayahNo": 2,
           "arabic": "اِنَّ الْاِنْسَانَ لَفٖی خُسْرٍۙ",
+          "transliteration": "İnnel insâne lefî husr.",
           "meal": "İnsan mutlak bir hüsranda."
         },
         {
           "ayahNo": 3,
           "arabic": "اِلَّا الَّذٖینَ اٰمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+          "transliteration": "İllellezîne âmenû ve amilûs sâlihâti ve tevâsav bil hakkı ve tevâsav bis sabr.",
           "meal": "Ancak o kimseler başka ki iman edip salih ameller işlediler ve hep hakka vasiyyetleştiler ve sabra vasiyyetleştiler."
         }
       ],
@@ -202,31 +219,37 @@
         {
           "ayahNo": 1,
           "arabic": "قُلْ اَعُوذُ بِرَبِّ النَّاسِۙ",
+          "transliteration": "Kul eûzü bi rabbin nâs.",
           "meal": "De ki: İnsanların kalplerine vesvese sokan, (insan Allah'ı andığında) pusuya çekilen cin ve insan şeytanının şerrinden insanların Rabbine, insanların Melikine (mutlak sahip ve hakimine) insanların İlâhına sığınırım!"
         },
         {
           "ayahNo": 2,
           "arabic": "مَلِكِ النَّاسِۙ",
+          "transliteration": "Melikin nâs.",
           "meal": "Melikine nâsın,"
         },
         {
           "ayahNo": 3,
           "arabic": "اِلٰهِ النَّاسِۙ",
+          "transliteration": "İlâhin nâs.",
           "meal": "İlâhına nâsın,"
         },
         {
           "ayahNo": 4,
           "arabic": "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِۙ",
+          "transliteration": "Min şerril vesvâsil hannâs.",
           "meal": "Şerrinden o sinsi vesvasın."
         },
         {
           "ayahNo": 5,
           "arabic": "اَلَّذٖی یُوَسْوِسُ فٖی صُدُورِ النَّاسِۙ",
+          "transliteration": "Ellezî yüvesvisü fî sudûrin nâs.",
           "meal": "Ki vesvese verir sinelerinde nâsın."
         },
         {
           "ayahNo": 6,
           "arabic": "مِنَ الْجِنَّةِ وَالنَّاسِ",
+          "transliteration": "Minel cinneti ven nâs.",
           "meal": "Gerek cinden gerekse insden."
         }
       ],
@@ -243,26 +266,31 @@
         {
           "ayahNo": 1,
           "arabic": "قُلْ اَعُوذُ بِرَبِّ الْفَلَقِۙ",
+          "transliteration": "Kul eûzü bi rabbil felak.",
           "meal": "De ki: Yarattığı şeylerin şerrinden, karanlığı çöktüğü zaman gecenin şerrinden, düğümlere üfürüp büyü yapan üfürükçülerin şerrinden ve kıskandığı vakit kıskanç kişinin şerrinden sabahın Rabbine sığınırım!"
         },
         {
           "ayahNo": 2,
           "arabic": "مِنْ شَرِّ مَا خَلَقَۙ",
+          "transliteration": "Min şerri mâ halak.",
           "meal": "Şerrinden yarattıklarının."
         },
         {
           "ayahNo": 3,
           "arabic": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
+          "transliteration": "Ve min şerri ğâsikın izâ vekab.",
           "meal": "Ve şerrinden bir gâsıkın daldığı zaman."
         },
         {
           "ayahNo": 4,
           "arabic": "وَمِنْ شَرِّ النَّفَّاثَاتِ فِی الْعُقَدِۙ",
+          "transliteration": "Ve min şerrin neffâsâti fil ukad.",
           "meal": "Ve o, ukdelere üfleyen neffasların şerrinden."
         },
         {
           "ayahNo": 5,
           "arabic": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
+          "transliteration": "Ve min şerri hâsidin izâ hased.",
           "meal": "Ve şerrinden bir hâsidin hased ettiği zaman."
         }
       ],
@@ -279,31 +307,37 @@
         {
           "ayahNo": 1,
           "arabic": "قُلْ یَٓا اَیُّهَا الْكَافِرُونَۙ",
+          "transliteration": "Kul yâ eyyühel kâfirûn.",
           "meal": "(Resûlüm!) De ki: Ey kâfirler! Ben sizin tapmakta olduklarınıza tapmam."
         },
         {
           "ayahNo": 2,
           "arabic": "لَٓا اَعْبُدُ مَا تَعْبُدُونَۙ",
+          "transliteration": "Lâ a'büdü mâ ta'büdûn.",
           "meal": "Tapmam o tapdıklarınıza."
         },
         {
           "ayahNo": 3,
           "arabic": "وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُۚ",
+          "transliteration": "Ve lâ entüm âbidûne mâ a'büd.",
           "meal": "Siz de benim taptığıma tapmıyorsunuz."
         },
         {
           "ayahNo": 4,
           "arabic": "وَلَٓا اَنَا࣑ عَابِدٌ مَا عَبَدْتُمْۙ",
+          "transliteration": "Ve lâ ene âbidün mâ abedtüm.",
           "meal": "Ben de sizin taptıklarınıza asla tapacak değilim."
         },
         {
           "ayahNo": 5,
           "arabic": "وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُؕ",
+          "transliteration": "Ve lâ entüm âbidûne mâ a'büd.",
           "meal": "Evet, siz de benim taptığıma tapıyor değilsiniz."
         },
         {
           "ayahNo": 6,
           "arabic": "لَكُمْ دٖینُكُمْ وَلِیَ دٖینِ",
+          "transliteration": "Leküm dînüküm ve liye dîn.",
           "meal": "Sizin dininiz size, benim dinim de banadır."
         }
       ],
@@ -320,16 +354,19 @@
         {
           "ayahNo": 1,
           "arabic": "اِذَا جَٓاءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ",
+          "transliteration": "İzâ câe nasrullâhi vel feth.",
           "meal": "Allah'ın yardımı ve zaferi gelip de insanların bölük bölük Allah'ın dinine girmekte olduklarını gördüğün vakit Rabbine hamdederek O'nu tesbih et ve O'ndan mağfiret dile. Çünkü O, tevbeleri çok kabul edendir."
         },
         {
           "ayahNo": 2,
           "arabic": "وَرَاَیْتَ النَّاسَ یَدْخُلُونَ فٖی دٖینِ اللّٰهِ اَفْوَاجًاۙ",
+          "transliteration": "Ve raeyten nâse yedhulûne fî dînillâhi efvâcâ.",
           "meal": "Gördüğün vakit nâsı girerlerken Allah dînine fevcâ fevc."
         },
         {
           "ayahNo": 3,
           "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُؕ اِنَّهُ كَانَ تَوَّابًا",
+          "transliteration": "Fe sebbih bihamdi rabbike vestağfirh. İnnehû kâne tevvâbâ.",
           "meal": "Artık tesbîh et Rabbi’ne hamdiyle ve mağfiretini dile, muhakkak ki o bir Tevvab bulunuyor."
         }
       ],
@@ -346,26 +383,31 @@
         {
           "ayahNo": 1,
           "arabic": "تَبَّتْ یَدَٓا اَبٖی لَهَبٍ وَتَبَّؕ",
+          "transliteration": "Tebbet yedâ ebî lehebin ve tebb.",
           "meal": "Ebu Leheb'in iki eli kurusun! Kurudu da. Malı ve kazandıkları ona fayda vermedi. O, alevli bir ateşte yanacak. Odun taşıyıcı olarak ve boynunda hurma lifinden bükülmüş bir ip olduğu halde karısı da (ateşe girecek)."
         },
         {
           "ayahNo": 2,
           "arabic": "مَٓا اَغْنٰى عَنْهُ مَالُهُ وَمَا كَسَبَؕ",
+          "transliteration": "Mâ ağnâ anhu mâlühû ve mâ keseb.",
           "meal": "Ne malı fâide verdi ona ne kazandığı."
         },
         {
           "ayahNo": 3,
           "arabic": "سَیَصْلٰى نَارًا ذَاتَ لَهَبٍۚ",
+          "transliteration": "Se yaslâ nâran zâte leheb.",
           "meal": "O bir alevli ateşe yaslanacak."
         },
         {
           "ayahNo": 4,
           "arabic": "وَامْرَاَتُهُؕ حَمَّالَةَ الْحَطَبِۚ",
+          "transliteration": "Vemraetühû hammâletel hatab.",
           "meal": "Karısı da, odun hammalı olarak."
         },
         {
           "ayahNo": 5,
           "arabic": "فٖی جٖیدِهَا حَبْلٌ مِنْ مَسَدٍ",
+          "transliteration": "Fî cîdihâ hablün min mesed.",
           "meal": "Gerdanında bir ip ki fitillisinden."
         }
       ],
@@ -382,36 +424,43 @@
         {
           "ayahNo": 1,
           "arabic": "اَرَاَیْتَ الَّذٖی یُكَذِّبُ بِالدّٖینِؕ",
+          "transliteration": "Eraeytellezî yükezzibü bid dîn.",
           "meal": "Dini yalanlayanı gördün mü?"
         },
         {
           "ayahNo": 2,
           "arabic": "فَذٰلِكَ الَّذٖی یَدُعُّ الْیَتٖیمَۙ",
+          "transliteration": "Fe zâlikellezî yedu'ul yetîm.",
           "meal": "İşte o, yetimi itip kakar;"
         },
         {
           "ayahNo": 3,
           "arabic": "وَلَا یَحُضُّ عَلٰى طَعَامِ الْمِسْكٖینِؕ",
+          "transliteration": "Ve lâ yahuddu alâ ta'âmil miskîn.",
           "meal": "Yoksulu doyurmaya teşvik etmez;"
         },
         {
           "ayahNo": 4,
           "arabic": "فَوَیْلٌ لِلْمُصَلّٖینَۙ",
+          "transliteration": "Fe veylün lil musallîn.",
           "meal": "Yazıklar olsun o namaz kılanlara ki, onlar namazlarını ciddiye almazlar."
         },
         {
           "ayahNo": 5,
           "arabic": "اَلَّذٖینَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَۙ",
+          "transliteration": "Ellezîne hüm an salâtihim sâhûn.",
           "meal": "Namazlarından yanılmaktadırlar."
         },
         {
           "ayahNo": 6,
           "arabic": "اَلَّذٖینَ هُمْ یُرَٓاؤُ࣒نَۙ",
+          "transliteration": "Ellezîne hüm yürâûn.",
           "meal": "Onlar ki müraîlik ederler."
         },
         {
           "ayahNo": 7,
           "arabic": "وَیَمْنَعُونَ الْمَاعُونَ",
+          "transliteration": "Ve yemneûnel mâûn.",
           "meal": "Onlar gösteriş yapanlardır; hayra da mâni olurlar."
         }
       ],
@@ -428,26 +477,31 @@
         {
           "ayahNo": 1,
           "arabic": "اَلَمْ تَرَ كَیْفَ فَعَلَ رَبُّكَ بِاَصْحَابِ الْفٖیلِؕ",
+          "transliteration": "Elem tera keyfe feale rabbüke bi ashâbil fîl.",
           "meal": "Rabbin fil sahiplerine neler etti, görmedin mi?"
         },
         {
           "ayahNo": 2,
           "arabic": "اَلَمْ یَجْعَلْ كَیْدَهُمْ فٖی تَضْلٖیلٍۙ",
+          "transliteration": "Elem yec'al keydehüm fî tadlîl.",
           "meal": "Onların kötü planlarını boşa çıkarmadı mı?"
         },
         {
           "ayahNo": 3,
           "arabic": "وَاَرْسَلَ عَلَیْهِمْ طَیْرًا اَبَابٖیلَۙ",
+          "transliteration": "Ve ersele aleyhim tayran ebâbîl.",
           "meal": "Onların üstüne sürü sürü kuşlar gönderdi."
         },
         {
           "ayahNo": 4,
           "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ مِنْ سِجّٖیلٍࣕۙ",
+          "transliteration": "Termîhim bi hıcâratim min siccîl.",
           "meal": "O kuşlar, onların üzerlerine pişkin tuğladan yapılmış taşlar atıyordu."
         },
         {
           "ayahNo": 5,
           "arabic": "فَجَعَلَهُمْ كَعَصْفٍ مَاْكُولٍ",
+          "transliteration": "Fe cealehüm ke asfin me'kûl.",
           "meal": "Böylece Allah onları yenilip çiğnenmiş ekine çevirdi."
         }
       ],
@@ -464,21 +518,25 @@
         {
           "ayahNo": 1,
           "arabic": "لِاٖیلَافِ قُرَیْشٍۙ",
+          "transliteration": "Li îlâfi kureyş.",
           "meal": "Kureyş'e kolaylaştırıldığı, evet, kış ve yaz seyahatleri onlara kolaylaştırıldığı için onlar, kendilerini açlıktan doyuran ve her çeşit korkudan emin kılan şu evin Rabbine kulluk etsinler."
         },
         {
           "ayahNo": 2,
           "arabic": "اٖیلَافِهِمْ رِحْلَةَ الشِّتَٓاءِ وَالصَّیْفِۚ",
+          "transliteration": "Îlâfihim rihleteş şitâi ves sayf.",
           "meal": "Sefere iylâfları yazın, kışın."
         },
         {
           "ayahNo": 3,
           "arabic": "فَلْیَعْبُدُوا رَبَّ هٰذَا الْبَیْتِۙ",
+          "transliteration": "Felya'büdû rabbe hâzel beyt.",
           "meal": "Hiç olmazsa onun için kulluk etsinler Rabb’ine bu Beytin."
         },
         {
           "ayahNo": 4,
           "arabic": "اَلَّذٖٓی اَطْعَمَهُمْ مِنْ جُوعٍ وَاٰمَنَهُمْ مِنْ خَوْفٍ",
+          "transliteration": "Ellezî et'amehüm min cû'in ve âmenehüm min havf.",
           "meal": "Ki onları açlıktan doyurdu, ve korkudan emîn buyurdu."
         }
       ],
@@ -545,20 +603,22 @@
       "id": "iftitah_tekbir",
       "type": "basic_expression",
       "title": "İftitah Tekbiri",
+      "arabic": "اَللّٰهُ أَكْبَرُ",
       "transliteration": "Allahu ekber",
-      "meaning": "",
+      "meaning": "Allah en büyüktür.",
       "usage": "Namaza tekbir ile başlama.",
-      "source": "islamic_quiz.json • prayer.json"
+      "source": "Diyanet Namaz İlmihali"
     },
     {
       "order": 24,
       "id": "ruku",
       "type": "prayer_dua",
       "title": "Rükû Tesbihi",
+      "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
       "transliteration": "Sübhâne Rabbiye'l-azîm",
-      "meaning": "",
-      "usage": "Rükû tesbihi 'Sübhâne Rabbiye'l-azîm' şeklindedir.",
-      "source": "islamic_quiz.json"
+      "meaning": "Yüce Rabbimi tesbih ederim.",
+      "usage": "Rükûda 3 kere okunur.",
+      "source": "Diyanet Namaz İlmihali"
     },
     {
       "order": 25,
@@ -566,19 +626,20 @@
       "type": "prayer_dua",
       "title": "Rükûdan Doğrulma",
       "transliteration": "",
-      "meaning": "",
-      "usage": "Rükûdan doğrulmayı ve hamdi öğren.",
-      "source": "prayer.json"
+      "meaning": "Rükûdan doğruluruz ve hamd ederiz.",
+      "usage": "Rükûdan sonra ayakta hamd edilir.",
+      "source": "Diyanet Namaz İlmihali"
     },
     {
       "order": 26,
       "id": "sujud",
       "type": "prayer_dua",
       "title": "Secde Tesbihi",
+      "arabic": "سُبْحَانَ رَبِّيَ الْأَعْلَى",
       "transliteration": "Sübhâne Rabbiye'l-a'lâ",
-      "meaning": "",
-      "usage": "Secde tesbihi 'Sübhâne Rabbiye'l-a'lâ' şeklindedir.",
-      "source": "islamic_quiz.json"
+      "meaning": "En yüce Rabbimi tesbih ederim.",
+      "usage": "Secdede 3 kere okunur.",
+      "source": "Diyanet Namaz İlmihali"
     }
   ]
 }

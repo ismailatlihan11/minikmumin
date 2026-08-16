@@ -168,16 +168,6 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
               ],
             ),
           ),
-          const SizedBox(height: 10),
-          FilledButton.icon(
-            onPressed: () {},
-            style: FilledButton.styleFrom(
-              backgroundColor: MinikColors.green,
-              minimumSize: const Size.fromHeight(44),
-            ),
-            icon: const Icon(Icons.volume_up_rounded),
-            label: const Text('Dinle'),
-          ),
           const SizedBox(height: 16),
           const Text(
             'Biliyor musun?',
@@ -399,12 +389,9 @@ class _WuduStepCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 6),
-              Row(
-                children: [
-                  const _RoundIcon(icon: Icons.volume_up_rounded, color: MinikColors.green),
-                  const Spacer(),
-                  _KindMark(kind: step.kind),
-                ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: _KindMark(kind: step.kind),
               ),
             ],
           ),
@@ -543,12 +530,6 @@ class WuduStepDetailPage extends StatelessWidget {
           Text(
             step.prompt,
             style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          const SizedBox(height: 20),
-          FilledButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.volume_up_rounded),
-            label: const Text('Dinle'),
           ),
         ],
       ),

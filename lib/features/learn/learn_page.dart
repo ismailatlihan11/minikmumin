@@ -24,15 +24,14 @@ class LearnPage extends StatelessWidget {
             ),
             LayoutBuilder(
               builder: (context, constraints) {
-                const columns = 4;
+                const columns = 3;
                 const spacing = 10.0;
                 final tileWidth =
-                    ((constraints.maxWidth - spacing * (columns - 1)) / columns) *
-                        0.72;
+                    (constraints.maxWidth - spacing * (columns - 1)) / columns;
                 return Wrap(
                   alignment: WrapAlignment.center,
                   spacing: spacing,
-                  runSpacing: 14,
+                  runSpacing: 10,
                   children: [
                     for (final category in LearnCategories.all)
                       SizedBox(
@@ -58,7 +57,7 @@ class _LearnTopicTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.82,
+      aspectRatio: 0.88,
       child: Material(
         color: Colors.white,
         elevation: 1.5,
@@ -68,12 +67,12 @@ class _LearnTopicTile extends StatelessWidget {
           onTap: () => Navigator.pushNamed(context, category.route),
           borderRadius: BorderRadius.circular(AppRadius.md),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
+            padding: const EdgeInsets.fromLTRB(6, 8, 6, 6),
             child: Column(
               children: [
                 Expanded(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(12),
                     child: Image.asset(
                       category.image,
                       fit: BoxFit.cover,
@@ -86,8 +85,8 @@ class _LearnTopicTile extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontFamily: 'NotoSans',
-                              fontSize: 11,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
                               color: MinikColors.darkGreen,
                             ),
                           ),
@@ -96,7 +95,7 @@ class _LearnTopicTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Text(
                   category.title,
                   textAlign: TextAlign.center,
@@ -104,10 +103,10 @@ class _LearnTopicTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontFamily: 'NotoSans',
-                    fontSize: 11,
-                    fontWeight: FontWeight.w800,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
                     color: MinikColors.darkGreen,
-                    height: 1.1,
+                    height: 1.15,
                   ),
                 ),
               ],

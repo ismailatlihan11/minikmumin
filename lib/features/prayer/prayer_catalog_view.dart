@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/constants/content_assets.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
+import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../data/models/dua.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -614,12 +615,9 @@ class _PrayerStepCard extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 6),
-              Row(
-                children: [
-                  const _RoundIcon(icon: Icons.volume_up_rounded, color: MinikColors.green),
-                  const Spacer(),
-                  _KindMark(kind: step.kind),
-                ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: _KindMark(kind: step.kind),
               ),
             ],
           ),
@@ -813,11 +811,11 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
               ],
             ),
           ),
-          if (audioPath != null)
+          if (audioPath != null && AssetCatalog.contains(audioPath))
             Material(
-              color: Colors.white,
-              elevation: 12,
-              shadowColor: const Color(0x33000000),
+              color: MinikColors.surface,
+              elevation: 6,
+              shadowColor: const Color(0x14000000),
               child: SafeArea(
                 top: false,
                 child: Padding(

@@ -98,7 +98,7 @@ class HomeHeroHeader extends StatelessWidget {
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
                           fontFamily: AssetPaths.arabicFontFamily,
-                          fontSize: 13,
+                          fontSize: 15,
                           color: Colors.white,
                           height: 1.2,
                           shadows: [
@@ -205,13 +205,13 @@ class HomeModuleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: module.color,
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(16),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(4, 4, 4, 3),
+          padding: const EdgeInsets.fromLTRB(7, 8, 7, 7),
           child: Column(
             children: [
               Expanded(
@@ -221,6 +221,7 @@ class HomeModuleCard extends StatelessWidget {
                   alignment: Alignment.center,
                 ),
               ),
+              const SizedBox(height: 6),
               Text(
                 module.title,
                 textAlign: TextAlign.center,
@@ -228,10 +229,10 @@ class HomeModuleCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'NotoSans',
-                  fontSize: 8,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
                   color: MinikColors.darkGreen,
-                  height: 1.05,
+                  height: 1.15,
                 ),
               ),
             ],
@@ -252,16 +253,16 @@ class HomeMiniCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: item.color,
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(14),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(14),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
+          padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(item.image, height: 18, fit: BoxFit.contain),
+              Image.asset(item.image, height: 28, fit: BoxFit.contain),
               const Spacer(),
               Text(
                 item.title,
@@ -269,8 +270,8 @@ class HomeMiniCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'NotoSans',
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
                   color: MinikColors.darkGreen,
                   height: 1.1,
                 ),
@@ -281,7 +282,7 @@ class HomeMiniCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontFamily: 'NotoSans',
-                  fontSize: 8,
+                  fontSize: 10,
                   fontWeight: FontWeight.w600,
                   color: MinikColors.textMuted,
                   height: 1.1,
@@ -312,15 +313,15 @@ class HomeContinueCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
         color: const Color(0xFF1F4E40),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
         children: [
-          Image.asset('assets/images/home/continue_book.png', width: 34, height: 34),
-          const SizedBox(width: 8),
+          Image.asset('assets/images/home/continue_book.png', width: 42, height: 42),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -329,8 +330,8 @@ class HomeContinueCard extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontFamily: 'NotoSans',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w800,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
@@ -340,16 +341,16 @@ class HomeContinueCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontFamily: 'NotoSans',
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFD5E8DC),
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(99),
                   child: LinearProgressIndicator(
-                    minHeight: 5,
+                    minHeight: 6,
                     value: progress.clamp(0, 1),
                     backgroundColor: const Color(0xFF326857),
                     color: const Color(0xFF7DDB6A),
@@ -358,24 +359,24 @@ class HomeContinueCard extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 8),
           FittedBox(
             child: FilledButton.icon(
               onPressed: onContinue,
               style: FilledButton.styleFrom(
                 backgroundColor: const Color(0xFF3D8B6E),
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                minimumSize: const Size(0, 40),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                minimumSize: const Size(0, 44),
                 tapTargetSize: MaterialTapTargetSize.padded,
                 visualDensity: VisualDensity.compact,
                 textStyle: const TextStyle(
                   fontFamily: 'NotoSans',
-                  fontSize: 10,
-                  fontWeight: FontWeight.w800,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              icon: const Icon(Icons.play_arrow_rounded, size: 16),
+              icon: const Icon(Icons.play_arrow_rounded, size: 18),
               label: const Text('Devam Et'),
             ),
           ),
@@ -399,16 +400,16 @@ class HomeQuickCircle extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(item.image, width: 32, height: 32, fit: BoxFit.contain),
-          const SizedBox(height: 2),
+          Image.asset(item.image, width: 48, height: 48, fit: BoxFit.contain),
+          const SizedBox(height: 5),
           Text(
             item.title,
             textAlign: TextAlign.center,
-            maxLines: 1,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               fontFamily: 'NotoSans',
-              fontSize: 8,
+              fontSize: 10,
               fontWeight: FontWeight.w700,
               color: MinikColors.darkGreen,
               height: 1.1,

@@ -126,14 +126,14 @@ abstract final class HomeCatalog {
     ),
     HomeMiniAction(
       title: 'Başarılarım',
-      subtitle: 'Rozetlerini gör ilerlemeni takip et',
+      subtitle: 'Rozetlerini gör',
       image: 'assets/images/home/mini_trophy.png',
       color: Color(0xFFD6ECFF),
       route: AppRoutes.profile,
     ),
     HomeMiniAction(
       title: 'Günün Görevi',
-      subtitle: 'Bugünün görevi seni bekliyor!',
+      subtitle: 'Bugünün görevi',
       image: 'assets/images/home/mini_gift.png',
       color: Color(0xFFF8D5C8),
       route: AppRoutes.dailyTask,
@@ -157,7 +157,7 @@ abstract final class HomeCatalog {
       route: AppRoutes.learnStories,
     ),
     HomeQuickItem(
-      title: 'Değerler Eğitimi',
+      title: 'Değerler',
       image: 'assets/images/home/circle_values.png',
       route: AppRoutes.learnMorality,
     ),
