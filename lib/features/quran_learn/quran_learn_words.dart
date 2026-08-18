@@ -8,6 +8,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -142,6 +143,13 @@ class _QuranLearnWordDetailPageState extends State<QuranLearnWordDetailPage> {
                 ],
                 const SizedBox(height: AppSpacing.md),
                 QlPlayListen(audio: _audio, path: word.audio),
+                const SizedBox(height: 8),
+                QlColorButton(
+                  arabic: word.arabic,
+                  title: word.reading,
+                  prompt: 'Bu kelimeyi boya.',
+                  audio: word.audio,
+                ),
               ],
             ),
           ),

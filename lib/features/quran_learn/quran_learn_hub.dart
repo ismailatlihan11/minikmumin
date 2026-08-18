@@ -8,6 +8,8 @@ import '../../data/models/quran_learning.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
+import 'quran_learn_memory_page.dart';
 import 'quran_learn_nav.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -133,6 +135,35 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
                         ),
                         const Icon(Icons.chevron_right_rounded),
                       ],
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  ContentTile(
+                    title: 'Harfleri boya',
+                    subtitle: "Harfleri ve derslerdeki yazıları parmağınla boya.",
+                    leading: const Icon(
+                      Icons.palette_rounded,
+                      color: MinikColors.green,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const QuranLearnColorHubPage(),
+                      ),
+                    ),
+                  ),
+                  ContentTile(
+                    title: 'Harf eşleştir',
+                    subtitle: 'Aynı iki harfi bul.',
+                    leading: const Icon(
+                      Icons.grid_view_rounded,
+                      color: MinikColors.green,
+                    ),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const QuranLearnMemoryPage(),
+                      ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.md),

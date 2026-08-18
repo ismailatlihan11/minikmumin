@@ -9,7 +9,9 @@ import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
+import 'quran_learn_memory_page.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
@@ -84,6 +86,28 @@ class QuranLearnLettersPage extends StatelessWidget {
                 },
               ),
               const SizedBox(height: AppSpacing.md),
+              ContentTile(
+                title: 'Harfleri boya',
+                subtitle: 'Parmağınla boyayarak pekiştir.',
+                leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnColorHubPage(),
+                  ),
+                ),
+              ),
+              ContentTile(
+                title: 'Harf eşleştir',
+                subtitle: 'Aynı iki harfi bul.',
+                leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnMemoryPage(),
+                  ),
+                ),
+              ),
               QlGamesStrip(
                 games: pack.gamesForLevel(1),
                 title: 'Harfi Bul',
@@ -177,7 +201,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
         ('Sonda', letter.forms.finalForm),
     ];
     final letterGames = widget.pack.gamesForLevel(1).where((game) {
-      return game.correctAnswer == letter.letter;
+      return qlSameAnswer(game.correctAnswer, letter.letter);
     }).toList();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
@@ -220,6 +244,17 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                 Text('Bu harf ${letter.name}.'),
                 const SizedBox(height: AppSpacing.md),
                 QlPlayListen(audio: _audio, path: letter.audio),
+                const SizedBox(height: 8),
+                QlColorButton(
+                  arabic: letter.letter,
+                  title: '${letter.name} boya',
+                  prompt: 'Parmağınla ${letter.name} harfini boya.',
+                  audio: letter.audio,
+                  pack: widget.pack,
+                  progressKind: 'ql_color',
+                  progressId: letter.id,
+                  celebrationSubtitle: '${letter.name} harfini boyadın.',
+                ),
               ],
             ),
           ),
@@ -229,7 +264,17 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
             children: [
               for (var i = 0; i < forms.length; i++) ...[
                 if (i > 0) const SizedBox(width: 8),
-                QlFormChip(label: forms[i].$1, arabic: forms[i].$2),
+                QlFormChip(
+                  label: forms[i].$1,
+                  arabic: forms[i].$2,
+                  onTap: () => openQlColoring(
+                    context,
+                    arabic: forms[i].$2,
+                    title: '${letter.name} · ${forms[i].$1}',
+                    prompt: '${letter.name} harfinin ${forms[i].$1.toLowerCase()} biçimini boya.',
+                    audio: letter.audio,
+                  ),
+                ),
               ],
             ],
           ),

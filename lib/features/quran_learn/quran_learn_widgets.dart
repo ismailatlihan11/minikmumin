@@ -126,34 +126,57 @@ class QlSoftProgress extends StatelessWidget {
 }
 
 class QlFormChip extends StatelessWidget {
-  const QlFormChip({required this.label, required this.arabic, super.key});
+  const QlFormChip({
+    required this.label,
+    required this.arabic,
+    this.onTap,
+    super.key,
+  });
 
   final String label;
   final String arabic;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-        decoration: BoxDecoration(
-          color: MinikColors.mint.withValues(alpha: 0.7),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Column(
-          children: [
-            Text(
-              label,
-              style: const TextStyle(
-                fontFamily: 'NotoSans',
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-                color: MinikColors.textMuted,
-              ),
+    final body = Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+      decoration: BoxDecoration(
+        color: MinikColors.mint.withValues(alpha: 0.7),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: MinikColors.textMuted,
             ),
+          ),
+          const SizedBox(height: 4),
+          QlBigArabic(arabic, fontSize: 28),
+          if (onTap != null) ...[
             const SizedBox(height: 4),
-            QlBigArabic(arabic, fontSize: 28),
+            const Icon(
+              Icons.palette_outlined,
+              size: 14,
+              color: MinikColors.green,
+            ),
           ],
+        ],
+      ),
+    );
+    if (onTap == null) return Expanded(child: body);
+    return Expanded(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(14),
+          child: body,
         ),
       ),
     );

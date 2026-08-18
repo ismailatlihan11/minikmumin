@@ -7,6 +7,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -163,6 +164,14 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
             won: _won,
             onCorrect: _onCorrect,
             onWrong: _onWrong,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Center(
+            child: QlColorButton(
+              arabic: example.combined,
+              title: widget.lesson.title,
+              prompt: 'Bu birleşimi boya.',
+            ),
           ),
           if (_won) ...[
             const SizedBox(height: AppSpacing.lg),

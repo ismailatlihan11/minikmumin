@@ -8,6 +8,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -140,6 +141,15 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                 Text(haraka.readingRule, textAlign: TextAlign.center),
                 const SizedBox(height: AppSpacing.md),
                 QlPlayListen(audio: _audio, path: haraka.audio),
+                const SizedBox(height: 8),
+                QlColorButton(
+                  arabic: haraka.examples.isEmpty
+                      ? haraka.symbol
+                      : haraka.examples.first.arabic,
+                  title: '${haraka.name} boya',
+                  prompt: '${haraka.name} örneğini boya.',
+                  audio: haraka.audio,
+                ),
               ],
             ),
           ),
@@ -156,6 +166,12 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                       example.reading,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
+                  ),
+                  QlColorIconButton(
+                    arabic: example.arabic,
+                    title: haraka.name,
+                    prompt: 'Bu örneği boya.',
+                    audio: haraka.audio,
                   ),
                 ],
               ),

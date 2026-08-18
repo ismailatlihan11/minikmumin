@@ -13,6 +13,7 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -290,7 +291,20 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
-                          child: SoftBadge(label: '${verses[i].ayahNo}'),
+                          child: Row(
+                            children: [
+                              SoftBadge(label: '${verses[i].ayahNo}'),
+                              const Spacer(),
+                              QlColorIconButton(
+                                arabic: verses[i].arabic,
+                                title: '${widget.surah.nameTr} ${verses[i].ayahNo}',
+                                prompt: 'Bu ayeti boya.',
+                                audio: QuranLearnAudio.surahPath(
+                                  widget.surah.surahNumber,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 6),
                         ArabicText(verses[i].arabic, fontSize: 26),

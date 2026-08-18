@@ -296,6 +296,9 @@ abstract final class PrayerVisualCatalog {
     ),
   ];
 
+  static List<PrayerVisualStep> get playableSteps =>
+      steps.where((step) => step.kind != PrayerKind.done).toList(growable: false);
+
   static const farzLabels = [
     'Kıyam',
     'Kıraat',

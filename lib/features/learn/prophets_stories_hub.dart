@@ -18,7 +18,7 @@ class ProphetsStoriesHubPage extends StatelessWidget {
             const PageHeader(
               title: 'Peygamberler ve Kıssalar',
               subtitle: 'Peygamberlerin hayatlarını ve çocuklara uygun kıssaları oku.',
-              image: 'assets/images/learn/prophets.png',
+              image: 'assets/images/home/circle_prophets.png',
             ),
             ContentTile(
               title: 'Peygamberler',

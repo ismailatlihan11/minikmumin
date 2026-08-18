@@ -12,8 +12,31 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
+import 'quran_learn_memory_page.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
+
+/// Invisible bidi/format marks must not make a correct tap fail.
+String qlNormalizeAnswer(String value) {
+  return value
+      .replaceAll(
+        RegExp(r'[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]'),
+        '',
+      )
+      .trim();
+}
+
+bool qlSameAnswer(String a, String b) =>
+    qlNormalizeAnswer(a) == qlNormalizeAnswer(b);
+
+bool qlSameSequence(List<String> a, List<String> b) {
+  if (a.length != b.length) return false;
+  for (var i = 0; i < a.length; i++) {
+    if (!qlSameAnswer(a[i], b[i])) return false;
+  }
+  return true;
+}
 
 String quranLearnGameTypeLabel(String type) {
   switch (type) {
@@ -103,8 +126,30 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
           children: [
             const PageHeader(
               title: "Kur'an Öğrenme Oyunları",
-              subtitle: 'Harfleri, harekeleri ve kelimeleri oyunla pekiştir.',
+              subtitle: 'Harfleri boya, eşleştir, bul ve birleştir.',
               image: 'assets/images/home/card_quran_learn.png',
+            ),
+            ContentTile(
+              title: 'Harfleri boya',
+              subtitle: 'Bir harf seç, parmağınla boya.',
+              leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const QuranLearnColorHubPage(),
+                ),
+              ),
+            ),
+            ContentTile(
+              title: 'Harf eşleştir',
+              subtitle: 'Aynı iki harfi bul.',
+              leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const QuranLearnMemoryPage(),
+                ),
+              ),
             ),
             QlGamesStrip(games: pack.games, title: 'Tüm oyunlar'),
           ],
@@ -193,7 +238,7 @@ class _QuranLearnGamePageState extends State<QuranLearnGamePage> {
               onPick: (option) {
                 if (_won) return;
                 setState(() => _picked = option);
-                if (option == game.correctAnswer) {
+                if (qlSameAnswer(option, game.correctAnswer)) {
                   _onCorrect();
                 } else {
                   _onWrong();
@@ -240,9 +285,9 @@ class _ChoicePlay extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: MinikCard(
-              color: won && option == game.correctAnswer
+              color: won && qlSameAnswer(option, game.correctAnswer)
                   ? MinikColors.mint
-                  : picked == option && option != game.correctAnswer
+                  : picked == option && !qlSameAnswer(option, game.correctAnswer)
                       ? MinikColors.blush
                       : MinikColors.surface,
               onTap: won ? null : () => onPick(option),
@@ -314,8 +359,10 @@ class _QlCombineBoardState extends State<QlCombineBoard> {
   void _check() {
     if (_slots.any((slot) => slot == null)) return;
     final filled = _slots.cast<String>();
-    final ok = List.generate(_target.length, (i) => filled[i] == _target[i])
-        .every((item) => item);
+    final joined = filled.map(qlNormalizeAnswer).join();
+    final result = qlNormalizeAnswer(widget.result);
+    final ok = qlSameSequence(filled, _target) ||
+        (result.isNotEmpty && joined == result);
     if (ok) {
       widget.onCorrect();
     } else {
@@ -335,6 +382,7 @@ class _QlCombineBoardState extends State<QlCombineBoard> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
+          textDirection: TextDirection.rtl,
           children: [
             for (var i = 0; i < _slots.length; i++)
               DragTarget<String>(
@@ -368,6 +416,7 @@ class _QlCombineBoardState extends State<QlCombineBoard> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
+          textDirection: TextDirection.rtl,
           children: [
             for (final part in _pool)
               Draggable<String>(

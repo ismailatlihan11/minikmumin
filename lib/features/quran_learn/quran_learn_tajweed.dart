@@ -8,6 +8,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
@@ -164,6 +165,15 @@ class _QuranLearnTajweedDetailPageState
                   const SizedBox(height: 6),
                   Text('Odak: ${example.focus}'),
                   Text(example.reference),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: QlColorButton(
+                      arabic: example.arabic,
+                      title: lesson.title,
+                      prompt: 'Bu örneği boya.',
+                      audio: lesson.audio,
+                    ),
+                  ),
                 ],
               ),
             ),
