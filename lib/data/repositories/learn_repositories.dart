@@ -8,6 +8,7 @@ import '../models/quiz.dart';
 import '../models/interactive_lesson.dart';
 import '../models/progress.dart';
 import '../models/story.dart';
+import '../models/basics.dart';
 
 class ProphetRepository {
   ProphetRepository({JsonContentDatasource? datasource})
@@ -257,6 +258,31 @@ class AchievementRepository {
       fallbackPath: AssetPaths.achievements,
     );
     _cache = rows.map(Achievement.fromJson).toList(growable: false);
+    return _cache!;
+  }
+}
+
+class BasicsRepository {
+  BasicsRepository({JsonContentDatasource? datasource})
+      : _datasource = datasource ?? JsonContentDatasource();
+
+  final JsonContentDatasource _datasource;
+  BasicsCatalog? _cache;
+
+  Future<BasicsCatalog> load() async {
+    if (_cache != null) return _cache!;
+    final json = await _datasource.loadObject(
+      key: 'basics',
+      fallbackPath: AssetPaths.basics,
+    );
+    final items = JsonMap.extractList(json, itemsKey: 'items')
+        .map(BasicsItem.fromJson)
+        .toList(growable: false);
+    _cache = BasicsCatalog(
+      title: JsonMap.str(json['title'], 'Temel Dini Bilgiler'),
+      description: JsonMap.str(json['description']),
+      items: items,
+    );
     return _cache!;
   }
 }

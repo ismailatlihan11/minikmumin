@@ -5,6 +5,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../app/theme/app_theme.dart';
+import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class LearnPage extends StatelessWidget {
@@ -73,7 +74,13 @@ class _LearnTopicTile extends StatelessWidget {
                 Expanded(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
+                    child: category.idleMotion
+                        ? LessonMotionImage(
+                            image: category.image,
+                            fit: BoxFit.cover,
+                            semanticLabel: category.title,
+                          )
+                        : Image.asset(
                       category.image,
                       fit: BoxFit.cover,
                       semanticLabel: category.title,

@@ -46,3 +46,10 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Local Python env for audio generation
+.venv/
+
+# Google Cloud local credential files (never commit)
+google-cloud-credentials.json
+

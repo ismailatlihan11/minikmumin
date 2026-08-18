@@ -5,6 +5,7 @@ import 'dhikr_repository.dart';
 import 'dua_repository.dart';
 import 'hadith_repository.dart';
 import 'learn_repositories.dart';
+import 'quran_learning_repository.dart';
 import 'quran_repository.dart';
 
 /// Shared repository graph. UI reads through this facade, never from JSON.
@@ -26,6 +27,8 @@ class ContentRepositories {
     prayer = PrayerRepository(datasource: source);
     achievements = AchievementRepository(datasource: source);
     dhikr = DhikrRepository(datasource: source);
+    basics = BasicsRepository(datasource: source);
+    quranLearning = QuranLearningRepository(datasource: source);
   }
 
   final JsonContentDatasource datasource;
@@ -43,4 +46,6 @@ class ContentRepositories {
   late final PrayerRepository prayer;
   late final AchievementRepository achievements;
   late final DhikrRepository dhikr;
+  late final BasicsRepository basics;
+  late final QuranLearningRepository quranLearning;
 }

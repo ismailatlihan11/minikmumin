@@ -12,9 +12,11 @@ import '../../features/games/games_page.dart';
 import '../../features/games/zikr_collect_page.dart';
 import '../../features/hadith/hadith_page.dart';
 import '../../features/home/home_page.dart';
+import '../../features/learn/basics_page.dart';
 import '../../features/learn/ilmihal_page.dart';
 import '../../features/learn/learn_page.dart';
 import '../../features/learn/morality_page.dart';
+import '../../features/learn/prophets_stories_hub.dart';
 import '../../features/stories/stories_page.dart';
 import '../../features/prayer/prayer_page.dart';
 import '../../features/profile/profile_page.dart';
@@ -22,6 +24,7 @@ import '../../features/prophets/prophets_page.dart';
 import '../../features/quiz/quiz_page.dart';
 import '../../features/quran/mushaf_page.dart';
 import '../../features/quran/quran_page.dart';
+import '../../features/quran_learn/quran_learn_hub.dart';
 import '../../features/settings/settings_page.dart';
 import '../../features/wudu/wudu_flow_page.dart';
 import '../../features/zikr/zikr_page.dart';
@@ -40,7 +43,6 @@ class _MinikShellState extends State<MinikShell> {
     MinikQuranPage(),
     LearnPage(),
     GamesPage(),
-    FavoritesPage(),
     MinikProfilePage(),
   ];
 
@@ -49,7 +51,6 @@ class _MinikShellState extends State<MinikShell> {
     (icon: Icons.menu_book_rounded, label: "Kur'an"),
     (icon: Icons.school_rounded, label: 'Öğren'),
     (icon: Icons.sports_esports_rounded, label: 'Oyunlar'),
-    (icon: Icons.favorite_rounded, label: 'Favoriler'),
     (icon: Icons.person_rounded, label: 'Profil'),
   ];
 
@@ -160,6 +161,9 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.learnStories: (_) => const StoriesPage(),
     AppRoutes.learnMorality: (_) => const MoralityPage(),
     AppRoutes.learnIlmihal: (_) => const IlmihalPage(),
+    AppRoutes.learnBasics: (_) => const BasicsPage(),
+    AppRoutes.learnQuran: (_) => const QuranLearnHubPage(),
+    AppRoutes.learnProphetsStories: (_) => const ProphetsStoriesHubPage(),
     AppRoutes.quiz: (_) => const QuizPage(),
     AppRoutes.quran: (_) => const MinikQuranPage(),
     AppRoutes.quranReader: (_) => const MushafReaderPage(resume: true),

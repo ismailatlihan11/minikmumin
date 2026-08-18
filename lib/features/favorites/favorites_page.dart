@@ -3,10 +3,17 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
+import '../../data/models/quran_learning.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../duas/duas_page.dart';
 import '../hadith/hadith_page.dart';
+import '../quran_learn/quran_learn_harakat.dart';
+import '../quran_learn/quran_learn_hub.dart';
+import '../quran_learn/quran_learn_letters.dart';
+import '../quran_learn/quran_learn_surahs.dart';
+import '../quran_learn/quran_learn_tajweed.dart';
+import '../quran_learn/quran_learn_words.dart';
 import '../stories/stories_page.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -75,6 +82,16 @@ class FavoritesPage extends StatelessWidget {
         return 'Kıssa';
       case 'hadith':
         return 'Hadis';
+      case 'ql_letter':
+        return 'Harf';
+      case 'ql_haraka':
+        return 'Hareke';
+      case 'ql_word':
+        return 'Kelime';
+      case 'ql_tajweed':
+        return 'Tecvid';
+      case 'ql_surah':
+        return 'Kısa sure';
       default:
         return kind;
     }
@@ -107,8 +124,83 @@ class FavoritesPage extends StatelessWidget {
           context,
           MaterialPageRoute(builder: (_) => HadithDetailPage(hadith: hadith)),
         );
+      case 'ql_letter':
+      case 'ql_haraka':
+      case 'ql_word':
+      case 'ql_tajweed':
+      case 'ql_surah':
+        final pack = await repos.quranLearning.load();
+        if (!context.mounted) return;
+        await _openQuranLearnFavorite(context, pack, item);
       default:
         return;
+    }
+  }
+
+  Future<void> _openQuranLearnFavorite(
+    BuildContext context,
+    QuranLearningPack pack,
+    FavoriteEntry item,
+  ) async {
+    switch (item.kind) {
+      case 'ql_letter':
+        final letter = pack.letterById(item.id);
+        if (letter == null) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>
+                QuranLearnLetterDetailPage(pack: pack, letter: letter),
+          ),
+        );
+      case 'ql_haraka':
+        final haraka = pack.harakaById(item.id);
+        if (haraka == null) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>
+                QuranLearnHarakaDetailPage(pack: pack, haraka: haraka),
+          ),
+        );
+      case 'ql_word':
+        final word = pack.wordById(item.id);
+        if (word == null) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => QuranLearnWordDetailPage(pack: pack, word: word),
+          ),
+        );
+      case 'ql_tajweed':
+        final lesson = pack.tajweedById(item.id);
+        if (lesson == null) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>
+                QuranLearnTajweedDetailPage(pack: pack, lesson: lesson),
+          ),
+        );
+      case 'ql_surah':
+        final surah = pack.surahByNumber(int.tryParse(item.id) ?? 0);
+        if (surah == null) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => QuranLearnSurahReaderPage(
+              pack: pack,
+              surah: surah,
+              mode: QuranLearnReadMode.surah,
+            ),
+          ),
+        );
+      default:
+        if (!context.mounted) return;
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const QuranLearnHubPage()),
+        );
     }
   }
 }

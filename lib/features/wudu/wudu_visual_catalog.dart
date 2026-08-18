@@ -11,6 +11,7 @@ class WuduVisualStep {
     required this.image,
     required this.kind,
     this.jsonStepId,
+    this.motionFrames = const [],
   });
 
   final String id;
@@ -20,6 +21,7 @@ class WuduVisualStep {
   final String image;
   final WuduKind kind;
   final String? jsonStepId;
+  final List<String> motionFrames;
 
   factory WuduVisualStep.fromJson(Map<String, dynamic> json) {
     final jsonStepId = JsonMap.str(json['jsonStepId']);
@@ -31,6 +33,7 @@ class WuduVisualStep {
       image: JsonMap.str(json['image']),
       kind: kindFrom(json['kind']),
       jsonStepId: jsonStepId.isEmpty ? null : jsonStepId,
+      motionFrames: JsonMap.strings(json['motion_frames']),
     );
   }
 
@@ -187,19 +190,19 @@ abstract final class WuduVisualCatalog {
 
   static const tips = [
     WuduTip(
-      title: 'Suyu israf etme',
+      title: 'Suyu israf etmemek',
       image: 'assets/images/wudu/wudu_tip_water.png',
     ),
     WuduTip(
-      title: 'Parmak araları',
+      title: 'Parmak aralarını yıkamak',
       image: 'assets/images/wudu/wudu_tip_fingers.png',
     ),
     WuduTip(
-      title: 'Yüzük / engeller',
+      title: 'Yüzüklerin altına su ulaştırmak',
       image: 'assets/images/wudu/wudu_tip_ring.png',
     ),
     WuduTip(
-      title: 'Acele etme',
+      title: 'Acele etmemek',
       image: 'assets/images/wudu/wudu_tip_time.png',
     ),
   ];

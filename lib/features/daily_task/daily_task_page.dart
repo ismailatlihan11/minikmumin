@@ -3,9 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/daily_seed.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../data/models/dua.dart';
+import '../../data/models/quran_learning.dart';
 import '../../data/models/quiz.dart';
 import '../../data/models/story.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -13,6 +15,8 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../duas/duas_page.dart';
 import '../quiz/quiz_page.dart';
+import '../quran_learn/quran_learn_nav.dart';
+import '../quran_learn/quran_learn_progress.dart';
 import '../stories/stories_page.dart';
 
 class DailyTaskPage extends StatefulWidget {
@@ -25,26 +29,42 @@ class DailyTaskPage extends StatefulWidget {
 class _DailyTaskPageState extends State<DailyTaskPage> {
   Future<_DailyLoop>? _future;
 
-  Future<_DailyLoop> _load(ContentRepositories repos) async {
+  Future<_DailyLoop> _load(
+    ContentRepositories repos,
+    LocalProgressStore store,
+  ) async {
     final duas = await repos.duas.getCatalog();
     final stories = await repos.stories.load();
     final questions = await repos.quiz.getAll();
+    QuranLearnDailyLesson? quranLesson;
+    QuranLearningPack? pack;
+    try {
+      pack = await repos.quranLearning.load();
+      final snap = await QuranLearnProgress.load(store, pack);
+      quranLesson = snap.dailyLesson();
+    } catch (_) {
+      quranLesson = null;
+      pack = null;
+    }
     return _DailyLoop(
       dua: duas.isEmpty ? null : pickDaily(duas),
       story: stories.items.isEmpty ? null : pickDaily(stories.items),
       question: questions.isEmpty ? null : pickDaily(questions),
+      quranPack: pack,
+      quranLesson: quranLesson,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final repos = context.read<ContentRepositories>();
-    _future ??= _load(repos);
+    final store = context.read<LocalProgressStore>();
+    _future ??= _load(repos, store);
     return Scaffold(
       appBar: AppBar(title: const Text('Günün Görevi')),
       body: AsyncBody<_DailyLoop>(
         future: _future!,
-        onRetry: () => setState(() => _future = _load(repos)),
+        onRetry: () => setState(() => _future = _load(repos, store)),
         emptyTitle: 'Bugün için görev bulunamadı.',
         builder: (loop) {
           if (loop.isEmpty) {
@@ -58,6 +78,17 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
                 subtitle: 'Bugünün duası, kıssası ve sorusu.',
                 image: 'assets/images/home/mini_gift.png',
               ),
+              if (loop.quranLesson != null && loop.quranPack != null)
+                _DailyCard(
+                  title: "Bugünün Kur'an dersi",
+                  subtitle: loop.quranLesson!.title,
+                  icon: Icons.menu_book_outlined,
+                  onTap: () => openQuranLearnDaily(
+                    context,
+                    pack: loop.quranPack!,
+                    lesson: loop.quranLesson!,
+                  ),
+                ),
               if (loop.dua != null)
                 _DailyCard(
                   title: 'Günün duası',
@@ -130,11 +161,23 @@ class _DailyCard extends StatelessWidget {
 }
 
 class _DailyLoop {
-  const _DailyLoop({this.dua, this.story, this.question});
+  const _DailyLoop({
+    this.dua,
+    this.story,
+    this.question,
+    this.quranPack,
+    this.quranLesson,
+  });
 
   final DuaEntry? dua;
   final StoryItem? story;
   final QuizQuestion? question;
+  final QuranLearningPack? quranPack;
+  final QuranLearnDailyLesson? quranLesson;
 
-  bool get isEmpty => dua == null && story == null && question == null;
+  bool get isEmpty =>
+      dua == null &&
+      story == null &&
+      question == null &&
+      quranLesson == null;
 }

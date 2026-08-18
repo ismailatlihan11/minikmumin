@@ -190,6 +190,7 @@ class LocalProgressStore extends ChangeNotifier {
     if (kind == 'story') await _addUnique(_key('badges'), 'first_lesson');
     if (kind == 'morality') await _addUnique(_key('badges'), 'good_manners');
     if (kind == 'quran') await _addUnique(_key('badges'), 'quran_reader');
+    if (kind.startsWith('ql_')) await noteQuranLearnDay();
     if (xp > 0) await addXp(xp);
     notifyListeners();
   }
@@ -340,6 +341,55 @@ class LocalProgressStore extends ChangeNotifier {
       _key('favorites_json'),
       jsonEncode(current.map((item) => item.toMap()).toList()),
     );
+    notifyListeners();
+  }
+
+  Future<int> getCounter(String name) async {
+    final prefs = await _ensure();
+    return prefs.getInt(_key(name)) ?? 0;
+  }
+
+  Future<int> addCounter(String name, [int amount = 1]) async {
+    if (amount == 0) return getCounter(name);
+    final prefs = await _ensure();
+    final next = (prefs.getInt(_key(name)) ?? 0) + amount;
+    await prefs.setInt(_key(name), next < 0 ? 0 : next);
+    notifyListeners();
+    return next;
+  }
+
+  Future<bool> getFlag(String name, {bool fallback = false}) async {
+    final prefs = await _ensure();
+    return prefs.getBool(_key(name)) ?? fallback;
+  }
+
+  Future<void> setFlag(String name, bool value) async {
+    final prefs = await _ensure();
+    await prefs.setBool(_key(name), value);
+    notifyListeners();
+  }
+
+  Future<void> awardBadge(String id) async {
+    if (id.trim().isEmpty) return;
+    await _addUnique(_key('badges'), id);
+    notifyListeners();
+  }
+
+  Future<int> getQuranLearnStreak() => getCounter('ql_streak');
+
+  Future<void> noteQuranLearnDay() async {
+    final prefs = await _ensure();
+    final today = DateTime.now();
+    final todayKey = today.year * 10000 + today.month * 100 + today.day;
+    final last = prefs.getInt(_key('ql_last_day')) ?? 0;
+    if (last == todayKey) return;
+    final yesterday = today.subtract(const Duration(days: 1));
+    final yesterdayKey =
+        yesterday.year * 10000 + yesterday.month * 100 + yesterday.day;
+    final streak = prefs.getInt(_key('ql_streak')) ?? 0;
+    final next = last == yesterdayKey ? streak + 1 : 1;
+    await prefs.setInt(_key('ql_last_day'), todayKey);
+    await prefs.setInt(_key('ql_streak'), next);
     notifyListeners();
   }
 

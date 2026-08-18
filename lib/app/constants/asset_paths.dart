@@ -19,6 +19,8 @@ abstract final class AssetPaths {
   static const String quranLast10 = 'assets/data/quran_last_10_ayahs.json';
   static const String dhikr = 'assets/data/dhikr.json';
   static const String dhikrAssets = 'assets/data/dhikr_assets.json';
+  static const String basics = 'assets/data/temel_dini_bilgiler.json';
+  static const String quranLearning = 'assets/data/kur_an_ogrenme_veri_paketi.json';
 
   static const String arabicFontFamily = 'NotoNaskhArabic';
 }

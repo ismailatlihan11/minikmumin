@@ -12,6 +12,7 @@ import '../../core/widgets/loading_view.dart';
 import '../../data/models/interactive_lesson.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_catalog_view.dart';
 import 'wudu_controller.dart';
@@ -278,17 +279,11 @@ class _StepImage extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: Image.asset(
-          path,
+        child: LessonMotionImage(
+          image: path,
           height: 220,
           width: double.infinity,
           fit: BoxFit.cover,
-          errorBuilder: (_, __, ___) => Container(
-            height: 180,
-            color: MinikColors.pastelBlue,
-            alignment: Alignment.center,
-            child: const Icon(Icons.water_drop_rounded, size: 48),
-          ),
         ),
       ),
     );

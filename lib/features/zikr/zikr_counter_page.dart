@@ -3,10 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../data/models/dhikr.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/listen_button.dart';
 import 'dhikr_store.dart';
 import 'zikr_form_page.dart';
 
@@ -20,7 +22,14 @@ class ZikrCounterPage extends StatefulWidget {
 }
 
 class _ZikrCounterPageState extends State<ZikrCounterPage> {
+  final _phraseAudio = AudioPlayerService();
   bool _busy = false;
+
+  @override
+  void dispose() {
+    _phraseAudio.dispose();
+    super.dispose();
+  }
 
   Future<void> _tap(Future<dynamic> Function() action, {bool completeCheck = false}) async {
     if (_busy) return;
@@ -194,6 +203,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
             ],
+            ListenButton(audio: _phraseAudio, path: store.audioFor(dhikr)),
             const SizedBox(height: AppSpacing.lg),
             Text(
               '${dhikr.currentCount}',

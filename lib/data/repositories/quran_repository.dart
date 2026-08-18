@@ -1,4 +1,5 @@
 import '../../app/constants/asset_paths.dart';
+import '../../app/constants/daily_ayah_pool.dart';
 import '../../app/constants/surah_names.dart';
 import '../../core/utils/daily_seed.dart';
 import '../datasources/json_content_datasource.dart';
@@ -44,8 +45,17 @@ class QuranRepository {
   Future<QuranVerse?> getDailyAyah({DateTime? now}) async {
     final all = await getAllAyahs();
     if (all.isEmpty) return null;
-    final short = all.where((verse) => verse.surahId >= 78).toList();
-    return pickDaily(short.isEmpty ? all : short, now: now);
+    final pool = <QuranVerse>[];
+    for (final pair in DailyAyahPool.pairs) {
+      for (final verse in all) {
+        if (verse.surahId == pair.$1 && verse.ayahNo == pair.$2) {
+          pool.add(verse);
+          break;
+        }
+      }
+    }
+    if (pool.isEmpty) return pickDaily(all, now: now);
+    return pickDaily(pool, now: now);
   }
 
   Future<AyetulKursi> getAyetulKursi() async {

@@ -259,11 +259,16 @@
   "duaList": [
     {"id": "surah_1", "title": "Fâtiha"},
     {"id": "surah_112", "title": "İhlâs"},
-    {"id": "subhaneke", "title": "Sübhâneke"}
+    {"id": "subhaneke", "title": "Sübhaneke"},
+    {"id": "tahiyyat", "title": "Tahiyyat"},
+    {"id": "allahumme_salli", "title": "Salli"},
+    {"id": "allahumme_barik", "title": "Barik"},
+    {"id": "rabbena_atina", "title": "Rabbena Âtinâ"},
+    {"id": "rabbena_gfirli", "title": "Rabbenağfir Lî"}
   ],
   "tips": [
     {
-      "title": "Vaktinde kıl",
+      "title": "Temizlen",
       "image": "assets/images/prayer/prayer_icon_clock.png"
     },
     {
@@ -275,7 +280,7 @@
       "image": "assets/images/prayer/prayer_icon_qibla.png"
     },
     {
-      "title": "Kalbinle dur",
+      "title": "Niyet et",
       "image": "assets/images/prayer/prayer_icon_heart.png"
     }
   ]

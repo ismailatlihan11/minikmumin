@@ -37,8 +37,8 @@ class _QuizPageState extends State<QuizPage> {
             padding: AppSpacing.page,
             children: [
               PageHeader(
-                title: 'Mini Testler',
-                subtitle: '${bank.questions.length} soru ile öğrendiklerini pekiştir.',
+                title: 'Öğrendiklerini Dene!',
+                subtitle: 'Bakalım kaç soruyu doğru yapabileceksin?',
                 image: 'assets/images/home/mini_quiz.png',
               ),
               ContentTile(
@@ -145,6 +145,9 @@ class _QuizPlayViewState extends State<QuizPlayView> {
       return const Center(child: Text('Soru bulunamadı.'));
     }
     if (_index >= _session.length) {
+      final total = _session.length;
+      final stars = total == 0 ? 0 : ((_score / total) * 5).round().clamp(0, 5);
+      final perfect = _score == total && total > 0;
       return ListView(
         padding: AppSpacing.page,
         children: [
@@ -154,11 +157,39 @@ class _QuizPlayViewState extends State<QuizPlayView> {
             errorBuilder: (_, __, ___) => const SizedBox.shrink(),
           ),
           const SizedBox(height: AppSpacing.md),
-          Text('Maşallah!', style: Theme.of(context).textTheme.displayMedium),
+          Text(
+            perfect ? 'Harika! Çok güzel öğrendin!' : 'Maşallah!',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
           const SizedBox(height: AppSpacing.md),
           MinikCard(
             color: MinikColors.mint,
-            child: Text('${_session.length} sorudan $_score tanesini bildin.'),
+            child: Column(
+              children: [
+                Text(
+                  '$_score / $total',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 28,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '⭐' * (stars == 0 ? 1 : stars),
+                  style: const TextStyle(fontSize: 22),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  perfect
+                      ? 'Bütün soruları bildin. Aferin!'
+                      : '$total sorudan $_score tanesini bildin.',
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: AppSpacing.lg),
           PrimaryButton(

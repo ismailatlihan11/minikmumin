@@ -40,8 +40,8 @@ class _IlmihalPageState extends State<IlmihalPage> {
             padding: AppSpacing.page,
             children: [
               const PageHeader(
-                title: 'İlmihal',
-                subtitle: 'Temel dini bilgileri öğrenelim.',
+                title: 'Temel Dini Bilgiler',
+                subtitle: 'İman, temizlik, namaz ve günlük hayattaki konuları öğrenelim.',
                 image: 'assets/images/home/ilmihal.png',
               ),
               for (final category in catalog.categories)

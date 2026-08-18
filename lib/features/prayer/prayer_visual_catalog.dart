@@ -13,6 +13,7 @@ class PrayerVisualStep {
     this.jsonStepId,
     this.duaId,
     this.caption = '',
+    this.motionFrames = const [],
   });
 
   final String id;
@@ -24,6 +25,7 @@ class PrayerVisualStep {
   final String? jsonStepId;
   final String? duaId;
   final String caption;
+  final List<String> motionFrames;
 
   factory PrayerVisualStep.fromJson(Map<String, dynamic> json) {
     final jsonStepId = JsonMap.str(json['jsonStepId']);
@@ -38,6 +40,7 @@ class PrayerVisualStep {
       jsonStepId: jsonStepId.isEmpty ? null : jsonStepId,
       duaId: duaId.isEmpty ? null : duaId,
       caption: JsonMap.str(json['caption']),
+      motionFrames: JsonMap.strings(json['motion_frames']),
     );
   }
 
@@ -120,6 +123,11 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.farz,
       jsonStepId: 'takbir',
       caption: 'Allahu ekber',
+      duaId: 'iftitah_tekbir',
+      motionFrames: [
+        'assets/images/prayer/step01_niyet.png',
+        'assets/images/prayer/step02_tekbir.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'subhaneke',
@@ -161,6 +169,10 @@ abstract final class PrayerVisualCatalog {
       jsonStepId: 'ruku',
       duaId: 'ruku',
       caption: 'Sübhâne Rabbiye’l-Azîm',
+      motionFrames: [
+        'assets/images/prayer/step08_kiyam.png',
+        'assets/images/prayer/step06_ruku.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'ruku_rise',
@@ -172,6 +184,11 @@ abstract final class PrayerVisualCatalog {
       jsonStepId: 'ruku_rise',
       duaId: 'qiyam_after_ruku',
       caption: 'Semi‘allâhü limen hamideh',
+      motionFrames: [
+        'assets/images/prayer/step06_ruku.png',
+        'assets/images/prayer/step07_ruku_rise.png',
+        'assets/images/prayer/step08_kiyam.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'kiyam',
@@ -193,6 +210,10 @@ abstract final class PrayerVisualCatalog {
       jsonStepId: 'sujud',
       duaId: 'sujud',
       caption: 'Sübhâne Rabbiye’l-A‘lâ',
+      motionFrames: [
+        'assets/images/prayer/step08_kiyam.png',
+        'assets/images/prayer/step09_secde1.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'secde2',
@@ -204,6 +225,10 @@ abstract final class PrayerVisualCatalog {
       jsonStepId: 'sujud',
       duaId: 'sujud',
       caption: 'Sübhâne Rabbiye’l-A‘lâ',
+      motionFrames: [
+        'assets/images/prayer/step11_oturus.png',
+        'assets/images/prayer/step10_secde2.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'oturus',
@@ -243,6 +268,10 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step14_selam_sag.png',
       kind: PrayerKind.farz,
       jsonStepId: 'salam',
+      motionFrames: [
+        'assets/images/prayer/step11_oturus.png',
+        'assets/images/prayer/step14_selam_sag.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'selam_sol',
@@ -252,6 +281,10 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step15_selam_sol.png',
       kind: PrayerKind.farz,
       jsonStepId: 'salam',
+      motionFrames: [
+        'assets/images/prayer/step14_selam_sag.png',
+        'assets/images/prayer/step15_selam_sol.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'tamam',
@@ -276,12 +309,17 @@ abstract final class PrayerVisualCatalog {
   static const duaList = [
     (id: 'surah_1', title: 'Fâtiha'),
     (id: 'surah_112', title: 'İhlâs'),
-    (id: 'subhaneke', title: 'Sübhâneke'),
+    (id: 'subhaneke', title: 'Sübhaneke'),
+    (id: 'tahiyyat', title: 'Tahiyyat'),
+    (id: 'allahumme_salli', title: 'Salli'),
+    (id: 'allahumme_barik', title: 'Barik'),
+    (id: 'rabbena_atina', title: 'Rabbena Âtinâ'),
+    (id: 'rabbena_gfirli', title: 'Rabbenağfir Lî'),
   ];
 
   static const tips = [
     PrayerTip(
-      title: 'Vaktinde kıl',
+      title: 'Temizlen',
       image: 'assets/images/prayer/prayer_icon_clock.png',
     ),
     PrayerTip(
@@ -293,7 +331,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/prayer_icon_qibla.png',
     ),
     PrayerTip(
-      title: 'Kalbinle dur',
+      title: 'Niyet et',
       image: 'assets/images/prayer/prayer_icon_heart.png',
     ),
   ];

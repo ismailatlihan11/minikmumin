@@ -1,0 +1,369 @@
+{
+  "title": "Temel Dini Bilgiler",
+  "description": "Çocukların İslam'ın temel kavramlarını sade ve anlaşılır bir dille öğrenmesi için hazırlanmış başlangıç içeriği.",
+  "version": "1.0.0",
+  "language": "tr",
+  "items": [
+    {
+      "id": 1,
+      "title": "İslam Nedir?",
+      "short_description": "İslam, Allah'ın emirlerine inanmak, O'na kulluk etmek ve güzel bir hayat yaşamaya çalışmaktır.",
+      "content": "İslam, Allah'a inanmak, yalnızca O'na kulluk etmek, Peygamberimiz Hz. Muhammed'in ﷺ bildirdiklerine inanmak ve Allah'ın emirlerine uygun güzel bir hayat yaşamaktır. İslam'ın beş temel şartı vardır: Şehadet, namaz, oruç, zekât ve hac",
+      "key_points": [
+        "Allah'tan başka bir ilah olmadığına inanmak",
+        "Allah'a kulluk etmek",
+        "Peygamberlerin öğretilerine uymak",
+        "Güzel ahlaklı olmaya çalışmak"
+      ],
+      "audio": null,
+      "icon": "islam"
+    },
+    {
+      "id": 2,
+      "title": "Şehadet Nedir?",
+      "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
+      "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
+      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
+      "meaning": "Allah'tan başka ilah olmadığına ve Muhammed'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
+      "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna inanır.",
+      "key_points": [
+        "Allah tektir.",
+        "Allah'tan başka ilah yoktur.",
+        "Hz. Muhammed (s.a.v) Allah'ın kulu ve elçisidir."
+      ],
+      "audio": null,
+      "icon": "shahada"
+    },
+    {
+      "id": 3,
+      "title": "Besmele Nedir?",
+      "short_description": "Besmele, güzel ve helal bir işe Allah'ın adıyla başlarken söylenen ifadedir.",
+      "arabic": "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ",
+      "transliteration": "Bismillâhirrahmânirrahîm.",
+      "meaning": "Rahmân ve Rahîm olan Allah'ın adıyla.",
+      "content": "Besmele, bir işe Allah'ın adıyla başlamayı ifade eder. Yemek yemek, ders çalışmak veya güzel bir işe başlamak gibi durumlarda besmele söylemek güzel bir davranıştır.",
+      "key_points": [
+        "Güzel işlere Allah'ın adıyla başlarız.",
+        "Besmele Allah'ı hatırlamamıza yardımcı olur.",
+        "Besmele söylemek güzel bir alışkanlıktır."
+      ],
+      "audio": null,
+      "icon": "bismillah"
+    },
+    {
+      "id": 4,
+      "title": "Kelime-i Tevhid Nedir?",
+      "short_description": "Kelime-i Tevhid, Allah'tan başka ilah olmadığını ifade eder.",
+      "arabic": "لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَسُولُ اللهِ",
+      "transliteration": "Lâ ilâhe illallah, Muhammedün resûlullah.",
+      "meaning": "Allah'tan başka ilah yoktur. Hz. Muhammed (S.A.V) Allah'ın Resûlüdür.",
+      "content": "Kelime-i Tevhid, Allah'ın bir olduğunu ve yalnızca O'nun ilah olduğunu anlatan çok önemli bir ifadedir.",
+      "key_points": [
+        "Allah tektir.",
+        "Yalnızca Allah'a kulluk ederiz.",
+        "Hz. Muhammed Allah'ın elçisidir."
+      ],
+      "audio": null,
+      "icon": "tawhid"
+    },
+    {
+      "id": 5,
+      "title": "İslam'ın 5 Şartı",
+      "short_description": "İslam'ın temel beş esası vardır.",
+      "content": "İslam'ın beş temel esası vardır. Bunlar Müslümanın ibadet ve hayatındaki önemli temel görevleri ifade eder.",
+      "items": [
+        {
+          "order": 1,
+          "title": "Şehadet",
+          "description": "Allah'tan başka ilah olmadığına ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna şahitlik etmek."
+        },
+        {
+          "order": 2,
+          "title": "Namaz",
+          "description": "Beş vakit namazı kılmak."
+        },
+        {
+          "order": 3,
+          "title": "Oruç",
+          "description": "Ramazan ayında oruç tutmak."
+        },
+        {
+          "order": 4,
+          "title": "Zekât",
+          "description": "Şartlarını taşıyan Müslümanların mallarından belirli bir payı ihtiyaç sahiplerine vermesi."
+        },
+        {
+          "order": 5,
+          "title": "Hac",
+          "description": "Gücü yeten Müslümanların ömründe bir kez Kâbe'yi ziyaret ederek hac ibadetini yerine getirmesi."
+        }
+      ],
+      "audio": null,
+      "icon": "five-pillars"
+    },
+    {
+      "id": 6,
+      "title": "İmanın 6 Şartı",
+      "short_description": "İmanın altı temel esası vardır.",
+      "content": "Müslüman, imanın altı esasına inanır. Bu esaslar Allah'a ve O'nun bildirdiği gerçeklere olan inancın temelini oluşturur.",
+      "items": [
+        {
+          "order": 1,
+          "title": "Allah'a iman",
+          "description": "Allah'ın var ve tek ilah olduğuna inanmak."
+        },
+        {
+          "order": 2,
+          "title": "Meleklere iman",
+          "description": "Allah'ın yarattığı meleklere inanmak."
+        },
+        {
+          "order": 3,
+          "title": "Kitaplara iman",
+          "description": "Allah'ın peygamberlerine gönderdiği ilahi kitapların hak olduğuna inanmak."
+        },
+        {
+          "order": 4,
+          "title": "Peygamberlere iman",
+          "description": "Allah'ın gönderdiği bütün peygamberlere inanmak."
+        },
+        {
+          "order": 5,
+          "title": "Ahiret gününe iman",
+          "description": "Ölümden sonra diriliş, hesap ve ahiret hayatının gerçek olduğuna inanmak."
+        },
+        {
+          "order": 6,
+          "title": "Kadere iman",
+          "description": "Allah'ın her şeyi bildiğine ve her şeyin O'nun bilgisi dahilinde olduğuna inanmak."
+        }
+      ],
+      "audio": null,
+      "icon": "six-articles-of-faith"
+    },
+    {
+      "id": 7,
+      "title": "Peygamber Kimdir?",
+      "short_description": "Peygamberler, Allah'ın insanlara gönderdiği elçilerdir.",
+      "content": "Peygamberler, Allah'ın emirlerini ve öğretilerini insanlara ulaştıran seçilmiş elçilerdir. İnsanlara doğruyu, iyiliği ve güzel ahlakı öğretmişlerdir.",
+      "key_points": [
+        "Peygamberler Allah'ın elçileridir.",
+        "İnsanları Allah'a kulluğa çağırmışlardır.",
+        "Doğru ve güzel davranışları öğretmişlerdir."
+      ],
+      "audio": null,
+      "icon": "prophets"
+    },
+    {
+      "id": 8,
+      "title": "Hz. Muhammed (S.A.V) Kimdir?",
+      "short_description": "Peygamberimiz Hz. Muhammed ﷺ, Allah Teâlâ'nın insanlara gönderdiği son peygamber ve son elçidir. O, peygamberlerin sonuncusudur. Ondan sonra başka bir peygamber gelmeyecektir.",
+      "content": "Hz. Muhammed (s.a.v.), Allah'ın insanlara gönderdiği son peygamberdir. Kur'an-ı Kerim kendisine vahyedilmiştir. O, doğruluk, merhamet, adalet, sabır ve güzel ahlak konusunda Müslümanlara örnek olmuştur.",
+      "key_points": [
+        "Son peygamberdir.",
+        "Kur'an-ı Kerim Hz. Muhammed (S.A.V)'e vahyedilmiştir.",
+        "Güzel ahlakı ile insanlara örnek olmuştur."
+      ],
+      "audio": null,
+      "icon": "muhammad"
+    },
+    {
+      "id": 9,
+      "title": "Kur'an-ı Kerim Nedir?",
+      "short_description": "Kur'an-ı Kerim, Allah'ın Hz. Muhammed'e vahyettiği kutsal kitaptır.",
+      "content": "Kur'an-ı Kerim, Allah'ın kelamıdır ve Hz. Muhammed'e vahiy yoluyla gönderilmiştir. Müslümanlar Kur'an'ı okuyarak, anlayarak ve hayatlarında uygulamaya çalışarak ondan faydalanırlar.",
+      "key_points": [
+        "Allah'ın kelamıdır.",
+        "Hz. Muhammed (S.A.V)'e vahyedilmiştir.",
+        "Müslümanlar için bir rehberdir."
+      ],
+      "audio": null,
+      "icon": "quran"
+    },
+    {
+      "id": 10,
+      "title": "Kıble Nedir?",
+      "short_description": "Kıble, namazda yöneldiğimiz Kâbe'nin bulunduğu yöndür.",
+      "content": "Müslümanlar namaz kılarken Kâbe'nin bulunduğu yöne yönelir. Bu yöne kıble denir.",
+      "key_points": [
+        "Kıble, namazda yöneldiğimiz yöndür.",
+        "Kıble Kâbe'nin bulunduğu yöndür.",
+        "Müslümanlar namazda kıbleye yönelir."
+      ],
+      "audio": null,
+      "icon": "qibla"
+    },
+    {
+      "id": 11,
+      "title": "Namaz Nedir?",
+      "short_description": "Namaz, Allah'a kulluk etmek için yerine getirilen önemli bir ibadettir.",
+      "content": "Namaz, Müslümanın Allah'a kulluğunu gösterdiği temel ibadetlerden biridir. Günde beş vakit namaz kılınır. Namazda Allah anılır, Kur'an'dan ayetler okunur ve dua edilir.",
+      "key_points": [
+        "Namaz önemli bir ibadettir.",
+        "Günde beş vakit namaz vardır.",
+        "Namazda Allah anılır ve dua edilir."
+      ],
+      "audio": null,
+      "icon": "prayer"
+    },
+    {
+      "id": 12,
+      "title": "Abdest Nedir?",
+      "short_description": "Abdest, bazı ibadetlerden önce yapılan özel bir temizlik ve hazırlıktır.",
+      "content": "Abdest, özellikle namaz gibi ibadetlerden önce yapılan temizlik ve hazırlıktır. Abdestin nasıl alınacağını ayrıntılı olarak 'Abdest Öğren' bölümünde adım adım öğrenebiliriz.",
+      "key_points": [
+        "Temizlik ve ibadet hazırlığıdır.",
+        "Namaz için önemlidir.",
+        "Abdest alma adımları ayrı bölümde öğretilebilir."
+      ],
+      "audio": null,
+      "icon": "wudu"
+    },
+    {
+      "id": 13,
+      "title": "Oruç Nedir?",
+      "short_description": "Oruç, Allah rızası için belirli bir süre yeme ve içmeden uzak durulan ibadettir.",
+      "content": "Oruç, özellikle Ramazan ayında tutulan önemli bir ibadettir. Oruç tutan kişi imsak vaktinden iftar vaktine kadar yeme ve içmeden uzak durur. Oruç aynı zamanda sabır, irade ve paylaşmayı öğrenmeye yardımcı olur.",
+      "key_points": [
+        "Ramazan ayının önemli ibadetlerindendir.",
+        "İmsak ile iftar arasında yeme ve içmeden uzak durulur.",
+        "Sabır ve paylaşmayı öğretir."
+      ],
+      "audio": null,
+      "icon": "fasting"
+    },
+    {
+      "id": 14,
+      "title": "Zekât Nedir?",
+      "short_description": "Zekât, şartlarını taşıyan Müslümanların mallarından belirli bir payı ihtiyaç sahiplerine vermesidir.",
+      "content": "Zekât, İslam'ın temel ibadetlerinden biridir. Maddi imkânları ve gerekli şartları taşıyan Müslümanlar, mallarından belirli bir payı ihtiyaç sahiplerine verir. Böylece yardımlaşma ve dayanışma güçlenir.",
+      "key_points": [
+        "Maddi bir ibadettir.",
+        "İhtiyaç sahiplerine yardım etmeyi destekler.",
+        "Belirli şartları taşıyan Müslümanlara farzdır."
+      ],
+      "audio": null,
+      "icon": "zakat"
+    },
+    {
+      "id": 15,
+      "title": "Hac Nedir?",
+      "short_description": "Hac, gücü yeten Müslümanların Kâbe'yi ziyaret ederek yerine getirdiği ibadettir.",
+      "content": "Hac, belirli zamanlarda Kâbe'yi ve Mekke'deki kutsal yerleri ziyaret ederek yapılan bir ibadettir. Sağlık ve maddi imkânları uygun olan Müslümanın hayatında bir kez hac ibadetini yerine getirmesi gerekir.",
+      "key_points": [
+        "Mekke'deki kutsal yerler ziyaret edilir.",
+        "Belirli zamanlarda yapılır.",
+        "Gücü yeten Müslümanın ömründe bir kez yapması gerekir."
+      ],
+      "audio": null,
+      "icon": "hajj"
+    },
+    {
+      "id": 16,
+      "title": "Helal ve Haram Nedir?",
+      "short_description": "Helal, dinimizce izin verilen; haram ise yasaklanan şeyleri ifade eder.",
+      "content": "Helal, Allah'ın izin verdiği şeyleri; haram ise Allah'ın yasakladığı şeyleri ifade eder. Müslüman, yaptığı seçimlerde helal ve haram konusunda dikkatli olmaya çalışır.",
+      "key_points": [
+        "Helal izin verilen şeydir.",
+        "Haram yasaklanan şeydir.",
+        "Doğru seçimler yapmak önemlidir."
+      ],
+      "audio": null,
+      "icon": "halal-haram"
+    },
+    {
+      "id": 17,
+      "title": "Dua Nedir?",
+      "short_description": "Dua, Allah'a yönelmek, O'ndan istemek ve O'nu anmaktır.",
+      "content": "Dua, insanın Allah'a yönelerek O'ndan yardım istemesi, şükretmesi ve dileklerini O'na sunmasıdır. Dua ederken Allah'ın bizi işittiğine ve bildiğine inanırız.",
+      "key_points": [
+        "Allah'a yöneliriz.",
+        "O'ndan yardım ve iyilik isteriz.",
+        "Şükür ve güzel dileklerimizi ifade ederiz."
+      ],
+      "audio": null,
+      "icon": "dua"
+    },
+    {
+      "id": 18,
+      "title": "Şükür Nedir?",
+      "short_description": "Şükür, Allah'ın verdiği nimetleri fark edip O'na teşekkür etmektir.",
+      "content": "Şükür, sahip olduğumuz nimetlerin Allah'tan geldiğini bilmek ve O'na teşekkür etmektir. Sağlığımız, ailemiz, yiyeceklerimiz ve sahip olduğumuz güzel şeyler için şükredebiliriz.",
+      "key_points": [
+        "Nimetlerin farkına varırız.",
+        "Allah'a teşekkür ederiz.",
+        "Şükür güzel bir davranıştır."
+      ],
+      "audio": null,
+      "icon": "gratitude"
+    },
+    {
+      "id": 19,
+      "title": "Güzel Ahlak Nedir?",
+      "short_description": "Güzel ahlak, doğru, merhametli, saygılı ve iyi davranışlar göstermektir.",
+      "content": "Güzel ahlak; doğru söylemek, emanete sahip çıkmak, anne ve babaya saygılı olmak, küçükleri sevmek, büyüklere saygı göstermek, yardım etmek ve insanlara zarar vermemek gibi güzel davranışları kapsar.",
+      "key_points": [
+        "Doğru konuşmak",
+        "Merhametli olmak",
+        "Yardım etmek",
+        "Saygılı olmak",
+        "Sözünde durmak"
+      ],
+      "audio": null,
+      "icon": "good-manners"
+    },
+    {
+      "id": 20,
+      "title": "Ayet Nedir?",
+      "short_description": "Ayet, Kur'an-ı Kerîm'i oluşturan ilâhî sözlerden her biridir.",
+      "content": "Ayet, Kur'an-ı Kerîm'i oluşturan ilâhî sözlerden her biridir. Kur'an-ı Kerîm, Allah Teâlâ'nın kelâmıdır ve Peygamberimiz Hz. Muhammed ﷺ'e vahiy yoluyla indirilmiştir.",
+      "key_points": [
+        "Ayetler Kur'an-ı Kerîm'in bölümleridir.",
+        "Kur'an-ı Kerîm Allah Teâlâ'nın kelâmıdır.",
+        "Ayetleri okuyarak ve anlamaya çalışarak Rabbimizin emirlerini ve öğütlerini öğreniriz."
+      ],
+      "example": {
+        "arabic": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+        "meaning": "De ki: O Allah tektir.",
+        "reference": "İhlâs Suresi, 1. ayet"
+      },
+      "audio": null,
+      "icon": "ayah"
+    },
+    {
+      "id": 21,
+      "title": "Hadis Nedir?",
+      "short_description": "Hadis, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, fiilleri, onayları ve bazı özellikleri hakkında nakledilen rivayetlerdir.",
+      "content": "Hadis, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, fiilleri, onayları ve bazı özellikleri hakkında nakledilen rivayetlerdir. Hadisleri öğrenerek Peygamberimizin ﷺ güzel sözlerini, davranışlarını ve örnek yaşayışını tanırız.",
+      "key_points": [
+        "Hadisler Peygamberimiz ﷺ hakkında nakledilen rivayetlerdir.",
+        "Peygamberimizin ﷺ sözlerini ve davranışlarını öğrenmemize yardımcı olurlar.",
+        "Hadisleri öğrenerek onun örnek yaşayışını daha iyi tanırız."
+      ],
+      "example": {
+        "text": "Ameller niyetlere göredir.",
+        "reference": "Buhârî, Bed'ü'l-Vahy, 1"
+      },
+      "audio": null,
+      "icon": "hadith"
+    },
+    {
+      "id": 22,
+      "title": "Sünnet Nedir?",
+      "short_description": "Sünnet, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, davranışları, yaşayışı ve onaylarıyla ortaya koyduğu örnek yoldur.",
+      "content": "Sünnet, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, davranışları, yaşayışı ve onaylarıyla ortaya koyduğu örnek yoldur. Müslümanlar Peygamberimizin ﷺ ibadetlerini, güzel ahlâkını ve davranışlarını öğrenip hayatlarında örnek almaya çalışırlar.",
+      "key_points": [
+        "Sünnet, Peygamberimiz ﷺ'in örnek yoludur.",
+        "Peygamberimizin ﷺ ibadetlerini ve güzel ahlâkını öğreniriz.",
+        "Onun güzel davranışlarını hayatımızda örnek almaya çalışırız."
+      ],
+      "example": {
+        "arabic": "لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ",
+        "meaning": "Andolsun, Allah'ın Resûlü'nde sizin için güzel bir örnek vardır.",
+        "reference": "Ahzâb Suresi, 21. ayet"
+      },
+      "audio": null,
+      "icon": "sunnah"
+    }
+  ]
+}

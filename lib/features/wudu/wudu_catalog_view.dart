@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../data/repositories/content_repositories.dart';
+import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_visual_catalog.dart';
 
@@ -112,7 +113,49 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
+          const Text(
+            'Abdestin 4 Farzı',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              for (var i = 0; i < _farzIds.length; i++) ...[
+                if (i > 0) const SizedBox(width: 8),
+                Expanded(
+                  child: _FarzTile(
+                    step: _steps.firstWhere(
+                      (item) => item.id == _farzIds[i],
+                      orElse: () => _steps.first,
+                    ),
+                    onTap: () => widget.onOpenStep(
+                      _steps.firstWhere(
+                        (item) => item.id == _farzIds[i],
+                        orElse: () => _steps.first,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Adım Adım Abdest Alalım',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 8),
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
@@ -121,7 +164,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             crossAxisSpacing: 10,
             childAspectRatio: 0.78,
             children: [
-              for (final step in _steps)
+              for (final step in _steps.where((item) => item.kind != WuduKind.done))
                 _WuduStepCard(
                   step: step,
                   onTap: () => widget.onOpenStep(step),
@@ -131,10 +174,10 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
           const SizedBox(height: 14),
           MinikCard(
             color: Colors.white,
-            child: Row(
+            child: const Row(
               children: [
-                Image.asset(
-                  'assets/images/wudu/wudu_dua_boy.png',
+                LessonMotionImage(
+                  image: 'assets/images/wudu/wudu_dua_boy.png',
                   width: 86,
                   height: 86,
                   fit: BoxFit.contain,
@@ -170,7 +213,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
           ),
           const SizedBox(height: 16),
           const Text(
-            'Biliyor musun?',
+            'Abdestin Adabı',
             style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
@@ -185,32 +228,6 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                 if (i > 0) const SizedBox(width: 8),
                 Expanded(
                   child: _TipTile(tip: _tips[i]),
-                ),
-              ],
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Text(
-            'Abdestin 4 Farzı',
-            style: TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
-              color: MinikColors.darkGreen,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              for (var i = 0; i < _farzIds.length; i++) ...[
-                if (i > 0) const SizedBox(width: 8),
-                Expanded(
-                  child: _FarzTile(
-                    step: _steps.firstWhere(
-                      (item) => item.id == _farzIds[i],
-                      orElse: () => _steps.first,
-                    ),
-                  ),
                 ),
               ],
             ],
@@ -244,6 +261,38 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                     color: MinikColors.textMuted,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFF1C2),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: const Column(
+                    children: [
+                      Text(
+                        '🏆 Abdest Ustası',
+                        style: TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        '⭐ Yeni rozet kazandın!',
+                        style: TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFFC48A12),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -474,35 +523,40 @@ class _TipTile extends StatelessWidget {
 }
 
 class _FarzTile extends StatelessWidget {
-  const _FarzTile({required this.step});
+  const _FarzTile({required this.step, this.onTap});
 
   final WuduVisualStep step;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(6),
-      decoration: BoxDecoration(
-        color: Colors.white,
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        children: [
-          Image.asset(step.image, height: 40, fit: BoxFit.contain),
-          const SizedBox(height: 4),
-          Text(
-            step.title.replaceAll(' Yıkayalım', '').replaceAll(' Mesh Edelim', ''),
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 9,
-              fontWeight: FontWeight.w700,
-              color: MinikColors.darkGreen,
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Column(
+            children: [
+              Image.asset(step.image, height: 40, fit: BoxFit.contain),
+              const SizedBox(height: 4),
+              Text(
+                step.title.replaceAll(' Yıkayalım', '').replaceAll(' Mesh Edelim', ''),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -524,7 +578,12 @@ class WuduStepDetailPage extends StatelessWidget {
           MinikCard(
             color: Colors.white,
             padding: const EdgeInsets.all(12),
-            child: Image.asset(step.image, height: 240, fit: BoxFit.contain),
+            child: LessonMotionImage(
+              image: step.image,
+              frames: step.motionFrames,
+              height: 240,
+              fit: BoxFit.contain,
+            ),
           ),
           const SizedBox(height: 16),
           Text(

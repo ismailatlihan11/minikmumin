@@ -337,11 +337,17 @@ class _MushafLeaf extends StatelessWidget {
           ),
         );
       }
-      spans.add(TextSpan(text: '${verse.arabic} '));
+      spans.add(
+        TextSpan(
+          text: '${verse.arabic} ',
+          style: const TextStyle(fontFamily: AssetPaths.arabicFontFamily),
+        ),
+      );
       spans.add(
         TextSpan(
           text: '﴿${TurkishNumber.arabicIndic(verse.ayahNo)}﴾ ',
           style: const TextStyle(
+            fontFamily: AssetPaths.arabicFontFamily,
             fontSize: 16,
             color: MinikColors.gold,
             height: 1.9,

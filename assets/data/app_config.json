@@ -48,7 +48,9 @@
     "achievements": "assets/data/achievements.json",
     "ayetulKursi": "assets/data/ayetul_kursi.json",
     "quranLast10": "assets/data/quran_last_10_ayahs.json",
-    "dhikr": "assets/data/dhikr.json"
+    "dhikr": "assets/data/dhikr.json",
+    "basics": "assets/data/temel_dini_bilgiler.json",
+    "quranLearning": "assets/data/kur_an_ogrenme_veri_paketi.json"
   },
   "assetRoot": "assets/",
   "firstLaunch": {

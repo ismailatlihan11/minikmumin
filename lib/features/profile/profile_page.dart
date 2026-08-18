@@ -105,6 +105,17 @@ class MinikProfilePage extends StatelessWidget {
         return 'Güzel ahlak';
       case 'quiz':
         return 'Mini test';
+      case 'ql_letter':
+      case 'ql_haraka':
+      case 'ql_comb':
+      case 'ql_word':
+      case 'ql_tajweed':
+      case 'ql_surah':
+      case 'ql_practice':
+      case 'ql_tajweed_read':
+      case 'ql_game':
+      case 'ql_level':
+        return "Kur'an Öğren";
       default:
         return id;
     }
@@ -398,6 +409,76 @@ const _allBadges = [
     icon: Icons.volunteer_activism_rounded,
     color: Color(0xFFE6D9F5),
     accent: Color(0xFF9B6BC9),
+  ),
+  _BadgeInfo(
+    id: 'badge_letters',
+    title: 'Harf Kaşifi',
+    icon: Icons.abc_rounded,
+    color: Color(0xFFEAF6FF),
+    accent: Color(0xFF3D8B6E),
+  ),
+  _BadgeInfo(
+    id: 'badge_listener',
+    title: 'Dinleme Ustası',
+    icon: Icons.volume_up_rounded,
+    color: Color(0xFFD8EEF8),
+    accent: Color(0xFF3AA0C8),
+  ),
+  _BadgeInfo(
+    id: 'badge_harakat',
+    title: 'Hareke Ustası',
+    icon: Icons.edit_rounded,
+    color: Color(0xFFFFF1C2),
+    accent: Color(0xFFE0A21A),
+  ),
+  _BadgeInfo(
+    id: 'badge_builder',
+    title: 'Birleştirme Ustası',
+    icon: Icons.extension_rounded,
+    color: Color(0xFFE6D9F5),
+    accent: Color(0xFF9B6BC9),
+  ),
+  _BadgeInfo(
+    id: 'badge_reader',
+    title: 'İlk Kelimem',
+    icon: Icons.menu_book_rounded,
+    color: Color(0xFFD4F0E2),
+    accent: Color(0xFF3D8B6E),
+  ),
+  _BadgeInfo(
+    id: 'badge_surah',
+    title: 'İlk Surem',
+    icon: Icons.nights_stay_rounded,
+    color: Color(0xFFE8DFF8),
+    accent: Color(0xFF8B6CC9),
+  ),
+  _BadgeInfo(
+    id: 'badge_tajweed',
+    title: 'Tecvid Öğrencisi',
+    icon: Icons.music_note_rounded,
+    color: Color(0xFFFADDE3),
+    accent: Color(0xFFD36B84),
+  ),
+  _BadgeInfo(
+    id: 'badge_practice',
+    title: 'Okuma Pratiği',
+    icon: Icons.auto_stories_rounded,
+    color: Color(0xFFC8EBE8),
+    accent: Color(0xFF2A9A94),
+  ),
+  _BadgeInfo(
+    id: 'badge_streak',
+    title: 'Düzenli Öğrenci',
+    icon: Icons.local_fire_department_rounded,
+    color: Color(0xFFFFE8D2),
+    accent: Color(0xFFD08A3A),
+  ),
+  _BadgeInfo(
+    id: 'badge_journey',
+    title: "Kur'an Yolcusu",
+    icon: Icons.emoji_events_rounded,
+    color: Color(0xFFFFF1C2),
+    accent: Color(0xFFC29739),
   ),
 ];
 

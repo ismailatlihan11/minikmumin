@@ -12,6 +12,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../quiz/quiz_page.dart';
+import '../quran_learn/quran_learn_games.dart';
 import '../wudu/wudu_visual_catalog.dart';
 import 'zikr_collect_page.dart';
 
@@ -83,6 +84,24 @@ class GamesPage extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => const QuizPage()),
+              ),
+            ),
+            const SizedBox(height: 8),
+            const SectionLabel("Kur'an Öğrenme Oyunları"),
+            ContentTile(
+              title: "Kur'an Öğrenme Oyunları",
+              subtitle: 'Harfi bul, birleştir, tecvidi tanı.',
+              leading: Image.asset(
+                'assets/images/home/card_quran_learn.png',
+                width: 44,
+                height: 44,
+                fit: BoxFit.cover,
+              ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const QuranLearnGamesHubPage(),
+                ),
               ),
             ),
           ],

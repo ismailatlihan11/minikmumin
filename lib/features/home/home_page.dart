@@ -49,11 +49,18 @@ class _MinikHomePageState extends State<MinikHomePage> {
   ) async {
     final wudu = await store.getWuduProgress();
     final lesson = await repos.wudu.getLesson();
+    final completed = await store.getCompletedItems();
+    final prayerDone = completed.where((item) => item.startsWith('prayer|')).length;
+    final basicsDone = completed.where((item) => item.startsWith('basics|')).length;
+    final basics = await repos.basics.load();
     return _HomeSnapshot(
       wudu: wudu,
       wuduStepCount: lesson.steps.length,
       continuePoint: await store.getContinue(),
       mushafBookmark: await store.getMushafBookmarkInfo(),
+      prayerCompleted: prayerDone,
+      basicsCompleted: basicsDone,
+      basicsTotal: basics.items.length,
     );
   }
 
@@ -192,16 +199,14 @@ class _MinikHomePageState extends State<MinikHomePage> {
           final point = data.continuePoint;
           final dhikrStore = context.watch<DhikrStore>();
           final pausedDhikr = dhikrStore.paused;
-          var continueTitle = 'Öğrenmeye Devam Et';
+          const continueTitle = 'Öğrenmeye Devam Et';
           var continueSubtitle = point == null
               ? (data.wudu.inProgress
-                  ? 'Abdest: ${data.wudu.stepIndex + 1}. adım'
+                  ? 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}'
                   : data.wudu.completed
-                      ? 'Namazı Öğren'
-                      : 'Abdesti Öğren')
-              : (point.subtitle.isEmpty
-                  ? point.title
-                  : '${point.title} · ${point.subtitle}');
+                      ? 'Namaz Öğren – ${data.prayerCompleted}/16'
+                      : 'Abdest Öğren')
+              : _continueSubtitle(point, data);
           var continueRoute = point?.route ??
               (data.wudu.completed && !data.wudu.inProgress
                   ? AppRoutes.learnPrayer
@@ -213,9 +218,8 @@ class _MinikHomePageState extends State<MinikHomePage> {
             setState(() => _future = _load(repos, store));
           };
           if (pausedDhikr != null) {
-            continueTitle = 'Zikrine devam et';
             continueSubtitle =
-                '${pausedDhikr.title} ${pausedDhikr.currentCount} / ${pausedDhikr.targetCount}';
+                '${pausedDhikr.title} ${pausedDhikr.currentCount}/${pausedDhikr.targetCount}';
             progress = pausedDhikr.uiProgress;
             onContinue = () async {
               await Navigator.push(
@@ -227,11 +231,28 @@ class _MinikHomePageState extends State<MinikHomePage> {
               if (!mounted) return;
               setState(() => _future = _load(repos, store));
             };
+          } else if (data.mushafBookmark != null &&
+              (point == null ||
+                  point.route == AppRoutes.quranReader ||
+                  point.route == AppRoutes.quran)) {
+            final mark = data.mushafBookmark!;
+            continueSubtitle =
+                "Kur'an – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
+            continueRoute = AppRoutes.quranReader;
+            progress = (mark.displayNumber / 604).clamp(0.05, 1);
+            onContinue = () async {
+              await Navigator.pushNamed(context, AppRoutes.quranReader);
+              if (!mounted) return;
+              setState(() => _future = _load(repos, store));
+            };
           }
+          final gridModules =
+              HomeCatalog.modules.where((module) => !module.featured).toList();
+          final topInset = MediaQuery.paddingOf(context).top;
           return Column(
             children: [
-              Expanded(
-                flex: 3,
+              SizedBox(
+                height: topInset + 132,
                 child: HomeHeroHeader(
                   onMenu: () => _scaffoldKey.currentState?.openDrawer(),
                   onSettings: () async {
@@ -242,104 +263,75 @@ class _MinikHomePageState extends State<MinikHomePage> {
                 ),
               ),
               Expanded(
-                flex: 8,
                 child: ColoredBox(
                   color: const Color(0xFFF4F7F2),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 8),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              for (var row = 0; row < 2; row++) ...[
-                                if (row > 0) const SizedBox(height: 10),
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      for (var col = 0; col < 4; col++) ...[
-                                        if (col > 0) const SizedBox(width: 10),
-                                        Expanded(
-                                          child: HomeModuleCard(
-                                            module: HomeCatalog.modules[row * 4 + col],
-                                            onTap: () => Navigator.pushNamed(
-                                              context,
-                                              HomeCatalog.modules[row * 4 + col].route,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ],
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 16),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: HomeBasicsFeaturedCard(
+                          completed: data.basicsCompleted,
+                          total: data.basicsTotal,
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            AppRoutes.learnBasics,
+                          ),
+                        ),
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: gridModules.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8,
+                          childAspectRatio: 0.78,
+                        ),
+                        itemBuilder: (context, index) {
+                          final module = gridModules[index];
+                          return HomeModuleCard(
+                            module: module,
+                            onTap: () =>
+                                Navigator.pushNamed(context, module.route),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      HomeContinueCard(
+                        title: continueTitle,
+                        subtitle: continueSubtitle,
+                        progress: progress,
+                        onContinue: onContinue,
+                      ),
+                      const SizedBox(height: 10),
+                      HomeAdventureCard(
+                        onContinue: () => Navigator.pushNamed(
+                          context,
+                          AppRoutes.dailyTask,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      SizedBox(
+                        height: 108,
+                        child: Row(
+                          children: [
+                            for (final item in HomeCatalog.quickItems)
+                              Expanded(
+                                child: HomeQuickCircle(
+                                  item: item,
+                                  onTap: () => Navigator.pushNamed(
+                                    context,
+                                    item.route,
                                   ),
                                 ),
-                              ],
-                            ],
-                          ),
+                              ),
+                          ],
                         ),
-                        if (data.mushafBookmark != null) ...[
-                          const SizedBox(height: 8),
-                          HomeQuranResumeBar(
-                            subtitle:
-                                '${TurkishNumber.pageLabel(data.mushafBookmark!.displayNumber)} · ${data.mushafBookmark!.surahLabel}',
-                            onTap: () async {
-                              await Navigator.pushNamed(
-                                context,
-                                AppRoutes.quranReader,
-                              );
-                              if (!mounted) return;
-                              setState(() => _future = _load(repos, store));
-                            },
-                          ),
-                        ],
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 86,
-                          child: Row(
-                            children: [
-                              for (var i = 0;
-                                  i < HomeCatalog.miniActions.length;
-                                  i++) ...[
-                                if (i > 0) const SizedBox(width: 8),
-                                Expanded(
-                                  child: HomeMiniCard(
-                                    item: HomeCatalog.miniActions[i],
-                                    onTap: () => Navigator.pushNamed(
-                                      context,
-                                      HomeCatalog.miniActions[i].route,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        HomeContinueCard(
-                          title: continueTitle,
-                          subtitle: continueSubtitle,
-                          progress: progress,
-                          onContinue: onContinue,
-                        ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          height: 92,
-                          child: Row(
-                            children: [
-                              for (final item in HomeCatalog.quickItems)
-                                Expanded(
-                                  child: HomeQuickCircle(
-                                    item: item,
-                                    onTap: () => Navigator.pushNamed(
-                                      context,
-                                      item.route,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -361,6 +353,28 @@ class _MinikHomePageState extends State<MinikHomePage> {
         ],
       ),
     );
+  }
+
+  String _continueSubtitle(ContinuePoint point, _HomeSnapshot data) {
+    if (point.route == AppRoutes.learnPrayer) {
+      return 'Namaz Öğren – ${data.prayerCompleted}/16';
+    }
+    if (point.route == AppRoutes.learnWudu) {
+      return 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}';
+    }
+    if (point.route == AppRoutes.quranReader || point.route == AppRoutes.quran) {
+      final mark = data.mushafBookmark;
+      if (mark != null) {
+        return "Kur'an – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
+      }
+    }
+    if (point.route == AppRoutes.learnQuran) {
+      return point.subtitle.isEmpty
+          ? "Kur'an Öğreniyorum"
+          : "Kur'an Öğren – ${point.subtitle}";
+    }
+    if (point.subtitle.isEmpty) return point.title;
+    return '${point.title} – ${point.subtitle}';
   }
 }
 
@@ -391,6 +405,10 @@ class _HomeDrawer extends StatelessWidget {
                       title: Text(module.title),
                       onTap: () => onSelect(module.route),
                     ),
+                  ListTile(
+                    title: const Text('Favoriler'),
+                    onTap: () => onSelect(AppRoutes.favorites),
+                  ),
                   ListTile(
                     title: const Text('Peygamberler Kitabı'),
                     onTap: () => onSelect(AppRoutes.learnProphetsBook),
@@ -429,10 +447,16 @@ class _HomeSnapshot {
     required this.wuduStepCount,
     this.continuePoint,
     this.mushafBookmark,
+    this.prayerCompleted = 0,
+    this.basicsCompleted = 0,
+    this.basicsTotal = 22,
   });
 
   final WuduProgress wudu;
   final int wuduStepCount;
   final ContinuePoint? continuePoint;
   final ({int jsonPage, int displayNumber, String surahLabel})? mushafBookmark;
+  final int prayerCompleted;
+  final int basicsCompleted;
+  final int basicsTotal;
 }

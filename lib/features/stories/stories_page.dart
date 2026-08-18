@@ -4,12 +4,14 @@ import 'package:provider/provider.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/story.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/favorite_button.dart';
+import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class StoriesPage extends StatefulWidget {
@@ -133,6 +135,7 @@ class StoryReaderPage extends StatefulWidget {
 }
 
 class _StoryReaderPageState extends State<StoryReaderPage> {
+  final _audio = AudioPlayerService();
   int _page = 0;
   bool _restored = false;
   bool _completed = false;
@@ -144,6 +147,12 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _restore());
+  }
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
   }
 
   Future<void> _restore() async {
@@ -249,6 +258,10 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
         Text(story.title, style: Theme.of(context).textTheme.displayMedium),
         const SizedBox(height: AppSpacing.sm),
         Text(story.summary, style: Theme.of(context).textTheme.bodyLarge),
+        if (story.audio.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.md),
+          ListenButton(audio: _audio, path: story.audio),
+        ],
       ],
     );
   }

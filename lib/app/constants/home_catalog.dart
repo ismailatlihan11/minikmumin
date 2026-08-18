@@ -10,6 +10,8 @@ class HomeModule {
     required this.color,
     required this.accent,
     required this.route,
+    this.featured = false,
+    this.idleMotion = false,
   });
 
   final String title;
@@ -18,22 +20,8 @@ class HomeModule {
   final Color color;
   final Color accent;
   final String route;
-}
-
-class HomeMiniAction {
-  const HomeMiniAction({
-    required this.title,
-    required this.subtitle,
-    required this.image,
-    required this.color,
-    required this.route,
-  });
-
-  final String title;
-  final String subtitle;
-  final String image;
-  final Color color;
-  final String route;
+  final bool featured;
+  final bool idleMotion;
 }
 
 class HomeQuickItem {
@@ -51,23 +39,34 @@ class HomeQuickItem {
 abstract final class HomeCatalog {
   static const modules = [
     HomeModule(
-      title: 'Abdesti Öğren',
+      title: 'Temel Dini Bilgiler',
+      subtitle: 'İslam\'ın temel bilgilerini birlikte öğrenelim.',
+      image: 'assets/images/home/card_ilmihal.png',
+      color: Color(0xFFE7F4EC),
+      accent: Color(0xFF21684E),
+      route: AppRoutes.learnBasics,
+      featured: true,
+    ),
+    HomeModule(
+      title: 'Abdest Öğren',
       subtitle: 'Adım adım abdest almayı öğren',
       image: 'assets/images/home/card_wudu.png',
       color: Color(0xFFD8EEF8),
       accent: Color(0xFF3AA0C8),
       route: AppRoutes.learnWudu,
+      idleMotion: true,
     ),
     HomeModule(
-      title: 'Namazı Öğren',
+      title: 'Namaz Öğren',
       subtitle: 'Namaz kılmayı adım adım öğren',
       image: 'assets/images/home/card_prayer.png',
       color: Color(0xFFFFF1C2),
       accent: Color(0xFFE0A21A),
       route: AppRoutes.learnPrayer,
+      idleMotion: true,
     ),
     HomeModule(
-      title: 'Namazda okunan Ayetler ve Dualar',
+      title: 'Namazda Okunan Ayetler ve Dualar',
       subtitle: 'Namazda okunan ayet ve dualar sırasıyla',
       image: 'assets/images/home/card_prayer_duas.png',
       color: Color(0xFFE8DFF8),
@@ -75,8 +74,16 @@ abstract final class HomeCatalog {
       route: AppRoutes.learnPrayerDuas,
     ),
     HomeModule(
-      title: "Kur’an-ı Kerim",
-      subtitle: 'Oku, dinle ve öğren',
+      title: "Kur'an Öğren",
+      subtitle: 'Harflerden başlayarak okumayı öğren.',
+      image: 'assets/images/home/card_quran_learn.png',
+      color: Color(0xFFEAF6FF),
+      accent: Color(0xFF21684E),
+      route: AppRoutes.learnQuran,
+    ),
+    HomeModule(
+      title: "Kur'an-ı Kerim",
+      subtitle: "Kur'an'ı oku, dinle ve anlamını keşfet.",
       image: 'assets/images/home/card_quran.png',
       color: Color(0xFFD4F0E2),
       accent: Color(0xFF3D8B6E),
@@ -91,20 +98,12 @@ abstract final class HomeCatalog {
       route: AppRoutes.hadith,
     ),
     HomeModule(
-      title: 'Dualar',
-      subtitle: 'Kur\'an\'dan seçilmiş dualar',
-      image: 'assets/images/home/card_duas.png',
-      color: Color(0xFFC8EBE8),
-      accent: Color(0xFF2A9A94),
-      route: AppRoutes.duas,
-    ),
-    HomeModule(
-      title: 'İlmihal',
-      subtitle: 'Temel dini bilgiler',
-      image: 'assets/images/home/card_ilmihal.png',
-      color: Color(0xFFFBE6C8),
+      title: 'Peygamberler ve Kıssalar',
+      subtitle: 'Peygamberlerin hayatları ve kıssalar',
+      image: 'assets/images/home/circle_prophets.png',
+      color: Color(0xFFFFE8D2),
       accent: Color(0xFFD08A3A),
-      route: AppRoutes.learnIlmihal,
+      route: AppRoutes.learnProphetsStories,
     ),
     HomeModule(
       title: 'Güzel Ahlak',
@@ -116,30 +115,6 @@ abstract final class HomeCatalog {
     ),
   ];
 
-  static const miniActions = [
-    HomeMiniAction(
-      title: 'Eğlenceli Testler',
-      subtitle: 'Öğrendiklerini pekiştir',
-      image: 'assets/images/home/mini_quiz.png',
-      color: Color(0xFFFFF0B8),
-      route: AppRoutes.quiz,
-    ),
-    HomeMiniAction(
-      title: 'Başarılarım',
-      subtitle: 'Rozetlerini gör',
-      image: 'assets/images/home/mini_trophy.png',
-      color: Color(0xFFD6ECFF),
-      route: AppRoutes.profile,
-    ),
-    HomeMiniAction(
-      title: 'Günün Görevi',
-      subtitle: 'Bugünün görevi',
-      image: 'assets/images/home/mini_gift.png',
-      color: Color(0xFFF8D5C8),
-      route: AppRoutes.dailyTask,
-    ),
-  ];
-
   static const quickItems = [
     HomeQuickItem(
       title: 'Esmaül Hüsna',
@@ -147,27 +122,12 @@ abstract final class HomeCatalog {
       route: AppRoutes.learnAsma,
     ),
     HomeQuickItem(
-      title: 'Peygamberler',
-      image: 'assets/images/home/circle_prophets.png',
-      route: AppRoutes.learnProphets,
-    ),
-    HomeQuickItem(
-      title: 'Kıssalar',
-      image: 'assets/images/home/circle_stories.png',
-      route: AppRoutes.learnStories,
-    ),
-    HomeQuickItem(
-      title: 'Değerler',
-      image: 'assets/images/home/circle_values.png',
-      route: AppRoutes.learnMorality,
-    ),
-    HomeQuickItem(
       title: 'Zikirmatik',
       image: 'assets/images/home/circle_zikr.png',
       route: AppRoutes.zikr,
     ),
     HomeQuickItem(
-      title: 'Favorilerim',
+      title: 'Favoriler',
       image: 'assets/images/home/circle_favorites.png',
       route: AppRoutes.favorites,
     ),

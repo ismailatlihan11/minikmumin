@@ -13,12 +13,14 @@ class AsyncBody<T> extends StatelessWidget {
     required this.builder,
     required this.onRetry,
     this.emptyTitle,
+    this.errorMessage,
   });
 
   final Future<T> future;
   final Widget Function(T data) builder;
   final VoidCallback onRetry;
   final String? emptyTitle;
+  final String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,10 @@ class AsyncBody<T> extends StatelessWidget {
           return const LoadingView();
         }
         if (snapshot.hasError) {
-          return ErrorView(onRetry: onRetry);
+          return ErrorView(
+            message: errorMessage ?? 'İçerik yüklenirken bir sorun oluştu.',
+            onRetry: onRetry,
+          );
         }
         final data = snapshot.data;
         if (data == null || (data is List && data.isEmpty)) {

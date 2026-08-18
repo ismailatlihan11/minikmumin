@@ -14,7 +14,10 @@ import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
+import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+
+export '../../shared/widgets/listen_button.dart';
 
 class MinikDuasPage extends StatefulWidget {
   const MinikDuasPage({super.key, this.prayerOnly = false});
@@ -115,68 +118,94 @@ class _DuaListTile extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(12, 10, 10, 10),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      width: 36,
-                      height: 36,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: done
-                            ? const Color(0xFFE7F4EC)
-                            : const Color(0xFFF3F6F8),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        dua.order > 0 ? '${dua.order}' : '•',
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 13,
-                          fontWeight: FontWeight.w800,
-                          color: done
-                              ? MinikColors.green
-                              : MinikColors.textMuted,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            dua.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
+                    Row(
+                      children: [
+                        Container(
+                          width: 36,
+                          height: 36,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: done
+                                ? const Color(0xFFE7F4EC)
+                                : const Color(0xFFF3F6F8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            dua.order > 0 ? '${dua.order}' : '•',
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
-                              fontSize: 14,
+                              fontSize: 13,
                               fontWeight: FontWeight.w800,
-                              color: MinikColors.darkGreen,
+                              color: done
+                                  ? MinikColors.green
+                                  : MinikColors.textMuted,
                             ),
                           ),
-                          if (dua.section.isNotEmpty)
-                            Text(
-                              dua.section,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: 'NotoSans',
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: MinikColors.textMuted,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                dua.title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w800,
+                                  color: MinikColors.darkGreen,
+                                ),
+                              ),
+                              if (dua.section.isNotEmpty)
+                                Text(
+                                  dua.section,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontFamily: 'NotoSans',
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w600,
+                                    color: MinikColors.textMuted,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        Icon(
+                          done
+                              ? Icons.check_circle_rounded
+                              : Icons.chevron_right_rounded,
+                          color: done ? MinikColors.green : MinikColors.greenSoft,
+                          size: 22,
+                        ),
+                      ],
+                    ),
+                    if (prayerOnly) ...[
+                      const SizedBox(height: 8),
+                      GestureDetector(
+                        onTap: () {},
+                        behavior: HitTestBehavior.opaque,
+                        child: _DuaQuickActions(
+                          dua: dua,
+                          kind: kind,
+                          onRead: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => DuaDetailPage(
+                                dua: dua,
+                                kind: kind,
+                                catalog: catalog,
                               ),
                             ),
-                        ],
+                          ),
+                        ),
                       ),
-                    ),
-                    Icon(
-                      done
-                          ? Icons.check_circle_rounded
-                          : Icons.chevron_right_rounded,
-                      color: done ? MinikColors.green : MinikColors.greenSoft,
-                      size: 22,
-                    ),
+                    ],
                   ],
                 ),
               ),
@@ -603,54 +632,110 @@ String _duaCopyText(DuaEntry dua) {
   ]);
 }
 
-class ListenButton extends StatelessWidget {
-  const ListenButton({
-    super.key,
-    required this.audio,
-    required this.path,
-    this.iconStyle = false,
+class _DuaQuickActions extends StatefulWidget {
+  const _DuaQuickActions({
+    required this.dua,
+    required this.kind,
+    required this.onRead,
   });
 
-  final AudioPlayerService audio;
-  final String path;
-  final bool iconStyle;
+  final DuaEntry dua;
+  final String kind;
+  final VoidCallback onRead;
+
+  @override
+  State<_DuaQuickActions> createState() => _DuaQuickActionsState();
+}
+
+class _DuaQuickActionsState extends State<_DuaQuickActions> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (!AssetCatalog.contains(path)) return const SizedBox.shrink();
-    return StreamBuilder<bool>(
-      stream: audio.playingStream,
-      initialData: audio.isPlaying,
-      builder: (context, snapshot) {
-        final playing = snapshot.data ?? false;
-        final icon = playing ? Icons.stop_rounded : Icons.volume_up_rounded;
-        final label = playing ? 'Durdur' : 'Dinle';
-        if (iconStyle) {
-          return FilledButton.icon(
-            onPressed: () => audio.toggleAsset(path),
-            icon: Icon(icon),
-            label: Text(label),
-          );
-        }
-        return SizedBox(
-          height: 48,
-          child: FilledButton.icon(
-            onPressed: () => audio.toggleAsset(path),
-            style: FilledButton.styleFrom(
-              backgroundColor: MinikColors.greenSoft,
-              foregroundColor: Colors.white,
-              elevation: 0,
-              textStyle: const TextStyle(
-                fontFamily: 'NotoSans',
-                fontWeight: FontWeight.w700,
-                fontSize: 15,
-              ),
-            ),
-            icon: Icon(icon),
-            label: Text(label),
+    final path = widget.dua.audio.isNotEmpty
+        ? widget.dua.audio
+        : ContentAssets.audioFor(widget.dua.id);
+    final hasAudio = AssetCatalog.contains(path);
+    return Row(
+      children: [
+        _TinyAction(
+          icon: Icons.menu_book_rounded,
+          label: 'Oku',
+          onTap: widget.onRead,
+        ),
+        if (hasAudio) ...[
+          const SizedBox(width: 6),
+          StreamBuilder<bool>(
+            stream: _audio.playingStream,
+            initialData: _audio.isPlaying,
+            builder: (context, snapshot) {
+              final playing = snapshot.data ?? false;
+              return _TinyAction(
+                icon: playing ? Icons.stop_rounded : Icons.volume_up_rounded,
+                label: playing ? 'Durdur' : 'Dinle',
+                onTap: () => _audio.toggleAsset(path),
+                emphasized: true,
+              );
+            },
           ),
-        );
-      },
+        ],
+        const Spacer(),
+        FavoriteButton(
+          kind: widget.kind,
+          id: widget.dua.id,
+          title: widget.dua.title,
+        ),
+      ],
+    );
+  }
+}
+
+class _TinyAction extends StatelessWidget {
+  const _TinyAction({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.emphasized = false,
+  });
+
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final bool emphasized;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: emphasized ? MinikColors.mint : const Color(0xFFF3F6F8),
+      borderRadius: BorderRadius.circular(99),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(99),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          child: Row(
+            children: [
+              Icon(icon, size: 16, color: MinikColors.green),
+              const SizedBox(width: 4),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

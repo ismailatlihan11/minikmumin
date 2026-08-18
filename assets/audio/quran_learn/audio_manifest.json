@@ -1,0 +1,9 @@
+{
+  "module": "quran_learn",
+  "kind": "educational_tts",
+  "not_quran_recitation": true,
+  "voice": null,
+  "language": "ar-XA",
+  "rate": 0.85,
+  "items": []
+}

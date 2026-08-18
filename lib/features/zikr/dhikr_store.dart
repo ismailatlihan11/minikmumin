@@ -83,6 +83,8 @@ class DhikrStore extends ChangeNotifier {
 
   String imageFor(Dhikr dhikr) => _manifest.imageFor(dhikr);
 
+  String audioFor(Dhikr dhikr) => _manifest.audioFor(dhikr);
+
   int todayCompletedCount(String dhikrId, [DateTime? now]) {
     final today = DhikrStatsService.dateKey(now ?? DateTime.now());
     return _sessions

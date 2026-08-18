@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/constants/content_assets.dart';
+import '../../app/constants/daily_ayah_pool.dart';
 import '../../app/constants/surah_names.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/asset_catalog.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/turkish_number.dart';
 import '../../data/models/quran_verse.dart';
@@ -12,6 +16,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'mushaf_page.dart';
 
@@ -128,41 +133,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
               ),
               const SizedBox(height: AppSpacing.md),
               if (home.daily != null)
-                MinikCard(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => QuranSurahPage(surahId: home.daily!.surahId),
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const SectionLabel('Bugünün ayeti'),
-                      const SizedBox(height: AppSpacing.sm),
-                      Text(
-                        '${surahName(home.daily!.surahId)} ${home.daily!.ayahNo}',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      const SizedBox(height: AppSpacing.sm),
-                      ArabicText(home.daily!.arabic),
-                      if (home.daily!.hasMeal) ...[
-                        const SizedBox(height: 10),
-                        SelectableText(home.daily!.meal),
-                      ],
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: CopyIconButton(
-                          text: joinCopyParts([
-                            '${surahName(home.daily!.surahId)} ${home.daily!.ayahNo}',
-                            home.daily!.arabic,
-                            home.daily!.meal,
-                          ]),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                _DailyAyahCard(verse: home.daily!),
               const SizedBox(height: AppSpacing.md),
               for (final surah in home.surahs)
                 ContentTile(
@@ -180,6 +151,121 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
           );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _DailyAyahCard extends StatefulWidget {
+  const _DailyAyahCard({required this.verse});
+
+  final QuranVerse verse;
+
+  @override
+  State<_DailyAyahCard> createState() => _DailyAyahCardState();
+}
+
+class _DailyAyahCardState extends State<_DailyAyahCard> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final verse = widget.verse;
+    final note = DailyAyahPool.childNoteFor(verse.surahId, verse.ayahNo);
+    final audioPath = ContentAssets.audioFor('surah_${verse.surahId}');
+    final hasAudio = AssetCatalog.contains(audioPath);
+    final copy = joinCopyParts([
+      '${surahName(verse.surahId)} ${verse.ayahNo}',
+      verse.arabic,
+      verse.meal,
+    ]);
+    return MinikCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SectionLabel('Bugünün ayeti'),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            '${surahName(verse.surahId)} ${verse.ayahNo}',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          ArabicText(verse.arabic),
+          if (verse.hasMeal) ...[
+            const SizedBox(height: 10),
+            SelectableText(verse.meal),
+          ],
+          if (note != null) ...[
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFE7F4EC),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Bu ayet bize ne öğretiyor?',
+                    style: TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w800,
+                      color: MinikColors.darkGreen,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    note,
+                    style: const TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF4A6B5C),
+                      height: 1.3,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 4,
+            runSpacing: 0,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              if (hasAudio)
+                StreamBuilder<bool>(
+                  stream: _audio.playingStream,
+                  initialData: _audio.isPlaying,
+                  builder: (context, snapshot) {
+                    final playing = snapshot.data ?? false;
+                    return TextButton.icon(
+                      onPressed: () => _audio.toggleAsset(audioPath),
+                      icon: Icon(
+                        playing ? Icons.stop_rounded : Icons.volume_up_rounded,
+                      ),
+                      label: Text(playing ? 'Durdur' : 'Dinle'),
+                    );
+                  },
+                ),
+              FavoriteButton(
+                kind: 'quran',
+                id: '${verse.surahId}:${verse.ayahNo}',
+                title: '${surahName(verse.surahId)} ${verse.ayahNo}',
+              ),
+              CopyIconButton(text: copy),
+            ],
+          ),
+        ],
       ),
     );
   }
