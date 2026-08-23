@@ -11,7 +11,6 @@ import '../wudu/wudu_visual_catalog.dart';
 import 'choice_round_game.dart';
 import 'combine_word_game.dart';
 import 'order_game_page.dart';
-import 'prophet_trial_match_page.dart';
 import 'zikr_collect_page.dart';
 
 class KidGame {
@@ -233,13 +232,6 @@ List<KidGame> kidGames() {
       icon: Icons.auto_stories_rounded,
       color: MinikColors.lavender,
       open: (context) => _push(context, const StoryOrderGamePage()),
-    ),
-    KidGame(
-      title: 'İmtihan Eşleştir',
-      blurb: 'İsimle imtihanı eşleştir',
-      icon: Icons.extension_rounded,
-      color: MinikColors.peach,
-      open: (context) => _push(context, const ProphetTrialMatchPage()),
     ),
     KidGame(
       title: 'Peygamberi Tanı',

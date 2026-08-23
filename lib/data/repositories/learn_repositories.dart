@@ -230,9 +230,6 @@ class StoryRepository {
     _catalog = StoryCatalog(
       categories: categories,
       items: List<StoryItem>.unmodifiable(items),
-      imtihanPairs: JsonMap.extractList(json, itemsKey: 'imtihanPairs')
-          .map(ProphetTrialPair.fromJson)
-          .toList(growable: false),
     );
     return _catalog!;
   }

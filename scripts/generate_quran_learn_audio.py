@@ -2,7 +2,8 @@
 """Generate educational Arabic MP3s for Minik Mümin Kur'an Öğren.
 
 These are teacher-style pronunciation clips, not Quran recitation.
-Surah tilawat is handled separately by real recitation assets.
+Kur'an-ı Kerim tilavet stays on real recitation assets under assets/audio/quran/.
+Short surahs in namaz duaları / Kur'an Öğren use the same cartoon-boy TTS.
 """
 
 from __future__ import annotations
@@ -22,11 +23,17 @@ ROOT = Path(__file__).resolve().parents[1]
 AUDIO_ROOT = ROOT / "assets" / "audio" / "quran_learn"
 LOG_PATH = ROOT / "logs" / "quran_learn_audio_generation.log"
 MANIFEST_PATH = AUDIO_ROOT / "audio_manifest.json"
+ARABIC_TTS_MANIFEST = ROOT / "assets" / "audio" / "arabic_tts_manifest.json"
 DOCS_PATH = ROOT / "docs" / "quran_learn_audio_sources.md"
 LANGUAGE = "ar-XA"
 SPEAKING_RATE = 0.9
 # Isolated letters need a slower clip so thick/thin (tafkhim/tarqiq) is audible.
 PHONETIC_RATE = 0.86
+# Prayer/dua clips: slower so madd, ghunnah and waqf stay audible.
+PRAYER_RATE = 0.85
+DUA_RATE = 0.82
+SURAH_RATE = 0.82
+ASMA_RATE = 0.86
 CHILD_PITCH = 8.0
 # Chirp ignores API pitch; ffmpeg raises this many semitones for a cartoon-boy timbre.
 CARTOON_SEMITONES = 5.0
@@ -41,13 +48,14 @@ PREFERRED_VOICES = (
     "ar-XA-Wavenet-B",
     "ar-XA-Wavenet-C",
 )
-# Huruf al-isti'la: these must not be synthesized as letter names only.
+PAUSE_MARKS = ("ؕ", "ۚ", "ۖ", "ۗ", "ۘ", "ۙ", "ۛ", "ۜ", "ۢ", "۝")
+CHUNK_GAP_MS = 180
+CARTOON_RATE = 48000
 TAFKHIM_IDS = frozenset(
     {"kha", "sad", "dad", "ghayn", "ta_heavy", "za_heavy", "qaf"}
 )
 PHONETIC_CATEGORIES = frozenset(
     {
-        "alphabet",
         "harakat_exercise",
         "letter_combination",
         "madd",
@@ -211,6 +219,38 @@ class Clip:
     extra: str | None = None
     phonetic: bool = False
     repeat: int = 2
+    speaking_rate: float | None = None
+
+
+# Spoken dua starts must already exist inside duas.json arabic.
+# Audio speaks only the invocation, not the narrative frame of the ayah.
+DUA_SPOKEN_STARTS: dict[str, str] = {
+    "quran_dua_2_201": "رَبَّنَٓا اٰتِنَا",
+    "quran_dua_2_286": "رَبَّنَا لَا تُؤَاخِذْنَٓا",
+    "quran_dua_3_16": "رَبَّنَٓا اِنَّنَٓا",
+    "quran_dua_7_23": "رَبَّنَا ظَلَمْنَٓا",
+    "quran_dua_7_126": "رَبَّنَٓا اَفْرِغْ",
+    "quran_dua_18_10": "رَبَّنَٓا اٰتِنَا مِنْ لَدُنْكَ",
+    "quran_dua_20_25": "رَبِّ اشْرَحْ",
+    "quran_dua_20_114": "رَبِّ زِدْنٖی",
+    "quran_dua_21_83": "اَنّٖی مَسَّنِیَ",
+    "quran_dua_21_87": "لَٓا اِلٰهَ اِلَّٓا اَنْتَ",
+    "quran_dua_23_97": "رَبِّ اَعُوذُ",
+    "quran_dua_23_118": "رَبِّ اغْفِرْ",
+    "quran_dua_25_74": "رَبَّنَا هَبْ",
+    "quran_dua_28_24": "رَبِّ اِنّٖی لِمَٓا",
+    "quran_dua_59_10": "رَبَّنَا اغْفِرْ لَنَا وَلِاِخْوَانِنَا",
+    "quran_dua_66_8": "رَبَّنَٓا اَتْمِمْ",
+}
+
+NARRATIVE_PREFIXES = (
+    "قَالَا ",
+    "قَالَ ",
+    "فَقَالُوا ",
+    "فَقَالَ ",
+    "وَقُلْ ",
+    "فَقُلْ ",
+)
 
 
 def log_line(kind: str, message: str) -> None:
@@ -321,6 +361,24 @@ def phonetic_fallback_text(arabic: str, extra: str | None = None, *, repeat: int
     return "، ".join(part for part in parts if part)
 
 
+def extract_spoken_arabic(arabic: str, item_id: str = "") -> str:
+    """Keep JSON Arabic unchanged on screen; speak only the dua already in it."""
+    text = " ".join(arabic.strip().split())
+    if not text:
+        return text
+    start = DUA_SPOKEN_STARTS.get(item_id)
+    if start:
+        idx = text.find(start)
+        if idx >= 0:
+            spoken = text[idx:].strip()
+            if spoken and spoken in text:
+                return spoken
+    for prefix in NARRATIVE_PREFIXES:
+        if text.startswith(prefix):
+            return text[len(prefix) :].strip()
+    return text
+
+
 def build_catalog(*, test: bool) -> list[Clip]:
     clips: list[Clip] = []
 
@@ -348,8 +406,8 @@ def build_catalog(*, test: bool) -> list[Clip]:
         )
 
     if test:
-        add("ba", "alphabet", "بَ", "alphabet/ba.mp3", extra="بَاء")
-        add("ta_heavy", "alphabet", "طَ", "alphabet/ta_heavy.mp3", extra="طَاء")
+        add("ba", "alphabet", "بَاء", "alphabet/ba.mp3", phonetic=False, repeat=1)
+        add("ta_heavy", "alphabet", "طَاء", "alphabet/ta_heavy.mp3", phonetic=False, repeat=1)
         add("ba_fatha", "harakat_exercise", "بَ", "exercises/ba_fatha.mp3")
         add("ta_heavy_fatha", "harakat_exercise", "طَ", "exercises/ta_heavy_fatha.mp3")
         add("ba_sukun", "sukun_letter", "بْ", "sukun/ba_sukun.mp3")
@@ -357,14 +415,14 @@ def build_catalog(*, test: bool) -> list[Clip]:
         return clips
 
     for letter_id, glyph, name in LETTERS:
-        sounded = with_haraka(glyph, "َ", letter_id)
+        spoken_name = "مِيمْ" if letter_id == "mim" else name
         add(
             letter_id,
             "alphabet",
-            sounded,
+            spoken_name,
             f"alphabet/{letter_id}.mp3",
-            extra=name,
-            repeat=3 if letter_id in TAFKHIM_IDS else 2,
+            phonetic=False,
+            repeat=1,
         )
 
     for haraka_id, _mark, name in HARAKA:
@@ -537,19 +595,20 @@ def build_surah_clips() -> list[Clip]:
                 category="surah",
                 arabic=arabic,
                 rel_path=f"assets/audio/quran_learn/surahs/surah_{padded}.mp3",
+                speaking_rate=SURAH_RATE,
             )
         )
     return clips
 
 
 def build_replace_clips() -> list[Clip]:
-    clips = build_surah_clips()
+    clips: list[Clip] = []
     namaz = json.loads((ROOT / "assets" / "data" / "namaz_dualari.json").read_text(encoding="utf-8"))
     for item in namaz.get("items") or []:
         item_id = str(item.get("id") or "").strip()
         if not item_id or item.get("type") == "surah":
             continue
-        arabic = str(item.get("arabic") or "").strip()
+        arabic = extract_spoken_arabic(str(item.get("arabic") or "").strip(), item_id)
         dest = PRAYER_AUDIO_PATHS.get(item_id, f"assets/audio/prayer/{item_id}.mp3")
         if not arabic:
             stale = ROOT / dest
@@ -563,23 +622,46 @@ def build_replace_clips() -> list[Clip]:
                 category="prayer",
                 arabic=arabic,
                 rel_path=dest,
+                speaking_rate=PRAYER_RATE,
             )
         )
     duas = json.loads((ROOT / "assets" / "data" / "duas.json").read_text(encoding="utf-8"))
     for item in duas.get("items") or []:
-        arabic = str(item.get("arabic") or "").strip()
+        source_arabic = str(item.get("arabic") or "").strip()
         dest = str(item.get("audio") or "").strip()
         item_id = str(item.get("id") or "").strip()
+        arabic = extract_spoken_arabic(source_arabic, item_id)
         if not arabic or not dest:
             continue
+        if arabic != source_arabic:
+            log_line("EXTRACT", f"{item_id}: dua-only Arabic from JSON ayah")
         clips.append(
             Clip(
                 clip_id=f"dua_{item_id}",
                 category="dua",
                 arabic=arabic,
                 rel_path=dest,
+                speaking_rate=DUA_RATE,
             )
         )
+    asma_path = ROOT / "assets" / "data" / "asmaul_husna.json"
+    if asma_path.exists():
+        asma = json.loads(asma_path.read_text(encoding="utf-8"))
+        for item in asma.get("items") or []:
+            arabic = str(item.get("arabic") or "").strip()
+            dest = str(item.get("audio") or "").strip()
+            item_id = str(item.get("id") or "").strip()
+            if not arabic or not dest:
+                continue
+            clips.append(
+                Clip(
+                    clip_id=f"asma_{item_id}",
+                    category="asma",
+                    arabic=arabic,
+                    rel_path=dest,
+                    speaking_rate=ASMA_RATE,
+                )
+            )
     return clips
 
 
@@ -635,11 +717,27 @@ def looks_like_mp3(path: Path) -> bool:
 
 
 def tts_input_text(arabic: str) -> str:
-    """Chirp rejects very long sentences; keep JSON Arabic unchanged."""
+    """Keep JSON Arabic; strip waqf marks so Chirp does not restart the sentence."""
     text = arabic.strip()
-    for mark in ("ؕ", "ۚ", "ۖ", "ۗ", "ۘ", "ۙ", "ۛ", "ۜ", "ۢ", "۝", "،", "؛"):
-        text = text.replace(mark, ". ")
+    for mark in PAUSE_MARKS + ("،", "؛"):
+        text = text.replace(mark, " ")
     return " ".join(text.split())
+
+
+def spoken_chunks(arabic: str) -> list[str]:
+    """Prefer one pass. Split only long text; never turn waqf into English periods."""
+    collapsed = tts_input_text(arabic.replace("\r", " ").replace("\n", " "))
+    if len(collapsed) <= 420:
+        return [collapsed] if collapsed else [tts_input_text(arabic)]
+    raw = arabic.replace("\r", "\n")
+    for mark in PAUSE_MARKS:
+        raw = raw.replace(mark, "\n")
+    chunks: list[str] = []
+    for piece in raw.split("\n"):
+        cleaned = tts_input_text(piece)
+        if cleaned:
+            chunks.append(cleaned)
+    return chunks or [collapsed]
 
 
 def synthesize(
@@ -720,82 +818,163 @@ def synthesize(
     raise RuntimeError(f"TTS failed for {dest}: {last_error}") from last_error
 
 
-def cartoonize_mp3(path: Path) -> None:
-    """Raise pitch after TTS so the clip sounds like a cartoon-boy character.
+def decode_mp3_pcm(path: Path, rate: int = CARTOON_RATE) -> tuple[bytes, int, int]:
+    import wave
 
-    Chirp voices ignore API pitch. macOS afconvert decodes MP3; samples are
-    shortened (classic cartoon/chipmunk) then re-encoded with lameenc.
-    """
-    if CARTOON_SEMITONES == 0:
-        return
-    ratio = 2 ** (CARTOON_SEMITONES / 12)
-    wav = path.with_suffix(".cartoon.wav")
-    tmp_mp3 = path.with_suffix(".cartoon.mp3")
+    wav = path.with_suffix(path.suffix + f".{rate}.wav")
+    conv = subprocess.run(
+        ["afconvert", "-f", "WAVE", "-d", f"LEI16@{rate}", str(path), str(wav)],
+        check=False,
+        capture_output=True,
+        text=True,
+        timeout=60,
+    )
+    if conv.returncode != 0 or not wav.exists():
+        wav.unlink(missing_ok=True)
+        raise RuntimeError(conv.stderr.strip() or "afconvert decode failed")
     try:
-        conv = subprocess.run(
-            ["afconvert", "-f", "WAVE", "-d", "LEI16@24000", str(path), str(wav)],
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=30,
-        )
-        if conv.returncode != 0 or not wav.exists():
-            log_line("RETRY", f"cartoon decode skipped for {path}: {conv.stderr.strip()}")
-            return
-        import wave
-
         with wave.open(str(wav), "rb") as reader:
             channels = reader.getnchannels()
-            sample_width = reader.getsampwidth()
-            rate = reader.getframerate()
-            nframes = reader.getnframes()
-            pcm = reader.readframes(nframes)
-        if sample_width != 2 or channels < 1 or not pcm:
-            log_line("RETRY", f"cartoon wav unsupported for {path}")
-            return
-        frame_width = sample_width * channels
-        src_frames = len(pcm) // frame_width
-        dst_frames = max(1, int(src_frames / ratio))
-        out = bytearray(dst_frames * frame_width)
-        for i in range(dst_frames):
-            src = i * ratio
-            a = int(src)
-            b = min(a + 1, src_frames - 1)
-            frac = src - a
-            a_off = a * frame_width
-            b_off = b * frame_width
-            for ch in range(channels):
-                a_idx = a_off + ch * 2
-                b_idx = b_off + ch * 2
-                sa = int.from_bytes(pcm[a_idx : a_idx + 2], "little", signed=True)
-                sb = int.from_bytes(pcm[b_idx : b_idx + 2], "little", signed=True)
-                val = int(sa * (1 - frac) + sb * frac)
-                val = max(-32768, min(32767, val))
-                o = i * frame_width + ch * 2
-                out[o : o + 2] = val.to_bytes(2, "little", signed=True)
-        with wave.open(str(wav), "wb") as writer:
-            writer.setnchannels(channels)
-            writer.setsampwidth(2)
-            writer.setframerate(rate)
-            writer.writeframes(bytes(out))
-        import lameenc
-
-        encoder = lameenc.Encoder()
-        encoder.set_bit_rate(64)
-        encoder.set_in_sample_rate(rate)
-        encoder.set_channels(channels)
-        encoder.set_quality(5)
-        mp3_data = encoder.encode(bytes(out)) + encoder.flush()
-        if not mp3_data:
-            log_line("RETRY", f"cartoon encode empty for {path}")
-            return
-        tmp_mp3.write_bytes(mp3_data)
-        tmp_mp3.replace(path)
-    except Exception as exc:  # noqa: BLE001
-        log_line("RETRY", f"cartoon pitch skipped for {path}: {exc}")
+            width = reader.getsampwidth()
+            pcm = reader.readframes(reader.getnframes())
     finally:
         wav.unlink(missing_ok=True)
-        tmp_mp3.unlink(missing_ok=True)
+    if width != 2 or channels < 1 or not pcm:
+        raise RuntimeError("unsupported wav")
+    return pcm, channels, rate
+
+
+def trim_pcm(pcm: bytes, channels: int, rate: int, *, thresh: int = 380, pad_ms: int = 70) -> bytes:
+    frame = 2 * channels
+    total = len(pcm) // frame
+    if total == 0:
+        return pcm
+
+    def amp(i: int) -> int:
+        peak = 0
+        off = i * frame
+        for ch in range(channels):
+            s = int.from_bytes(pcm[off + ch * 2 : off + ch * 2 + 2], "little", signed=True)
+            peak = max(peak, abs(s))
+        return peak
+
+    peak = 0
+    for i in range(total):
+        peak = max(peak, amp(i))
+    cut = max(thresh, int(peak * 0.06) if peak else thresh)
+
+    start = 0
+    while start < total and amp(start) < cut:
+        start += 1
+    end = total - 1
+    while end > start and amp(end) < cut:
+        end -= 1
+    pad = int(rate * pad_ms / 1000)
+    start = max(0, start - pad)
+    end = min(total - 1, end + pad)
+    return pcm[start * frame : (end + 1) * frame]
+
+
+def pitch_pcm(pcm: bytes, channels: int, ratio: float) -> bytes:
+    frame = 2 * channels
+    src_frames = len(pcm) // frame
+    dst_frames = max(1, int(src_frames / ratio))
+    out = bytearray(dst_frames * frame)
+    for i in range(dst_frames):
+        src = i * ratio
+        a = int(src)
+        b = min(a + 1, src_frames - 1)
+        frac = src - a
+        a_off = a * frame
+        b_off = b * frame
+        for ch in range(channels):
+            sa = int.from_bytes(pcm[a_off + ch * 2 : a_off + ch * 2 + 2], "little", signed=True)
+            sb = int.from_bytes(pcm[b_off + ch * 2 : b_off + ch * 2 + 2], "little", signed=True)
+            val = int(sa * (1 - frac) + sb * frac)
+            val = max(-32768, min(32767, val))
+            o = i * frame + ch * 2
+            out[o : o + 2] = val.to_bytes(2, "little", signed=True)
+    return bytes(out)
+
+
+def encode_mp3(pcm: bytes, dest: Path, channels: int, rate: int) -> None:
+    import lameenc
+
+    encoder = lameenc.Encoder()
+    encoder.set_bit_rate(128)
+    encoder.set_in_sample_rate(rate)
+    encoder.set_channels(channels)
+    encoder.set_quality(2)
+    mp3_data = encoder.encode(pcm) + encoder.flush()
+    if not mp3_data:
+        raise RuntimeError("empty mp3 encode")
+    dest.write_bytes(mp3_data)
+
+
+def join_pcm(parts: list[bytes], channels: int, rate: int, gap_ms: int) -> bytes:
+    gap = bytes(int(rate * gap_ms / 1000) * 2 * channels)
+    return gap.join(parts)
+
+
+def cartoonize_mp3(path: Path) -> None:
+    """Raise pitch after TTS so the clip sounds like a cartoon-boy character."""
+    if CARTOON_SEMITONES == 0:
+        return
+    try:
+        pcm, channels, rate = decode_mp3_pcm(path)
+        pcm = trim_pcm(pcm, channels, rate)
+        pcm = pitch_pcm(pcm, channels, 2 ** (CARTOON_SEMITONES / 12))
+        encode_mp3(pcm, path, channels, rate)
+    except Exception as exc:  # noqa: BLE001
+        log_line("RETRY", f"cartoon pitch skipped for {path}: {exc}")
+
+
+def render_spoken_mp3(
+    client,
+    voice_name: str,
+    dest: Path,
+    *,
+    arabic: str,
+    speaking_rate: float,
+) -> None:
+    chunks = spoken_chunks(arabic)
+    log_line("START", f"{dest} chunks={len(chunks)}")
+    if len(chunks) == 1:
+        synthesize(
+            client,
+            voice_name,
+            dest,
+            text=chunks[0],
+            speaking_rate=speaking_rate,
+            allow_pitch=True,
+        )
+        cartoonize_mp3(dest)
+        return
+    decoded: list[tuple[bytes, int, int]] = []
+    temps: list[Path] = []
+    try:
+        for index, chunk in enumerate(chunks):
+            tmp = dest.with_suffix(f".chunk{index}.mp3")
+            temps.append(tmp)
+            synthesize(
+                client,
+                voice_name,
+                tmp,
+                text=chunk,
+                speaking_rate=speaking_rate,
+                allow_pitch=True,
+            )
+            pcm, channels, rate = decode_mp3_pcm(tmp)
+            decoded.append((trim_pcm(pcm, channels, rate, pad_ms=50), channels, rate))
+        channels = decoded[0][1]
+        rate = decoded[0][2]
+        pcm = join_pcm([item[0] for item in decoded], channels, rate, CHUNK_GAP_MS)
+        pcm = trim_pcm(pcm, channels, rate)
+        pcm = pitch_pcm(pcm, channels, 2 ** (CARTOON_SEMITONES / 12))
+        encode_mp3(pcm, dest, channels, rate)
+    finally:
+        for tmp in temps:
+            tmp.unlink(missing_ok=True)
 
 
 def write_manifest(entries: list[dict], voice: str) -> None:
@@ -827,7 +1006,8 @@ def write_sources_doc(voice: str, generated: int, skipped: int, failed: int) -> 
                 "Review Google Cloud's current terms and pricing before commercial redistribution.",
                 "",
                 "This audio is **educational pronunciation**, not Quran recitation, adhan, "
-                "or qari imitation. Short-surah tilawat stays on real recitation assets.",
+                "or qari imitation. Short surahs here use the same cartoon-boy TTS. "
+                "Kur'an-ı Kerim tilavet stays on Husary (`assets/audio/quran/`).",
                 "",
                 f"- Voice: `{voice}`",
                 f"- Language: `{LANGUAGE}`",
@@ -835,8 +1015,8 @@ def write_sources_doc(voice: str, generated: int, skipped: int, failed: int) -> 
                 f"- Pitch: `{CHILD_PITCH}` (Neural2/Wavenet only; Chirp omits API pitch)",
                 f"- Cartoon pitch shift: `{CARTOON_SEMITONES}` semitones after TTS (cartoon-boy timbre)",
                 "- Voice style: cartoon-boy educational speaker, not a deep adult qari.",
-                "- Isolated letters are generated as sounded syllables (e.g. طَ), "
-                "not only letter names, so thick/thin Arabic sounds stay distinct.",
+                "- Isolated letter cards speak the letter name only (e.g. بَاء).",
+                "- Haraka chips (üstün/esre/ötre) still use sounded syllables (e.g. طَ).",
                 "- API: Google Cloud Text-to-Speech (`google-cloud-texttospeech`)",
                 "- Auth: Application Default Credentials (no keys in the Flutter app)",
                 f"- Generated date: {dt.date.today().isoformat()}",
@@ -864,7 +1044,13 @@ def make_client():
     return texttospeech.TextToSpeechClient()
 
 
-def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bool = True) -> int:
+def run(
+    test: bool,
+    force: bool,
+    clips: list[Clip] | None = None,
+    write_docs: bool = True,
+    write_arabic_manifest: bool = False,
+) -> int:
     configure_logging()
     log_line("START", "Kur'an Öğren educational TTS")
     require_adc()
@@ -875,7 +1061,7 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
     clips = clips if clips is not None else build_catalog(test=test)
     generated = skipped = failed = 0
     entries: list[dict] = []
-    if MANIFEST_PATH.exists():
+    if not write_arabic_manifest and MANIFEST_PATH.exists():
         try:
             previous = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
             entries = list(previous.get("items") or [])
@@ -886,10 +1072,6 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
     for clip in clips:
         dest = ROOT / clip.rel_path
         dest.parent.mkdir(parents=True, exist_ok=True)
-        if clip.category == "surah":
-            skipped += 1
-            log_line("SKIPPED", f"{clip.rel_path} (tilavet; educational TTS overwritten değil)")
-            continue
         if not force and looks_like_mp3(dest):
             skipped += 1
             log_line("SKIPPED", clip.rel_path)
@@ -900,7 +1082,7 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
                 "path": clip.rel_path,
                 "voice": voice,
                 "language": LANGUAGE,
-                "rate": SPEAKING_RATE,
+                "rate": clip.speaking_rate or SPEAKING_RATE,
                 "format": "mp3",
                 "sha256": sha256_file(dest),
                 "generated_at": dt.datetime.fromtimestamp(
@@ -909,25 +1091,29 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
             }
             continue
         try:
-            ssml = None
-            spoken = tts_input_text(clip.arabic)
-            rate = SPEAKING_RATE
+            rate = clip.speaking_rate or SPEAKING_RATE
             if clip.phonetic:
                 rate = PHONETIC_RATE
-                ssml = phonetic_ssml(clip.arabic, clip.extra, repeat=clip.repeat)
-                spoken = phonetic_fallback_text(
-                    clip.arabic, clip.extra, repeat=clip.repeat
+                synthesize(
+                    client,
+                    voice,
+                    dest,
+                    text=phonetic_fallback_text(
+                        clip.arabic, clip.extra, repeat=clip.repeat
+                    ),
+                    ssml=phonetic_ssml(clip.arabic, clip.extra, repeat=clip.repeat),
+                    speaking_rate=rate,
+                    allow_pitch=True,
                 )
-            synthesize(
-                client,
-                voice,
-                dest,
-                text=spoken,
-                ssml=ssml,
-                speaking_rate=rate,
-                allow_pitch=True,
-            )
-            cartoonize_mp3(dest)
+                cartoonize_mp3(dest)
+            else:
+                render_spoken_mp3(
+                    client,
+                    voice,
+                    dest,
+                    arabic=clip.arabic,
+                    speaking_rate=rate,
+                )
             if not looks_like_mp3(dest):
                 dest.unlink(missing_ok=True)
                 raise RuntimeError("output was not a valid MP3")
@@ -940,7 +1126,7 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
                 "path": clip.rel_path,
                 "voice": voice,
                 "language": LANGUAGE,
-                "rate": SPEAKING_RATE,
+                "rate": rate,
                 "format": "mp3",
                 "sha256": sha256_file(dest),
                 "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -961,9 +1147,30 @@ def run(test: bool, force: bool, clips: list[Clip] | None = None, write_docs: bo
         if cid and cid not in seen:
             ordered.append(item)
             seen.add(cid)
-    write_manifest(ordered, voice)
-    if write_docs:
-        write_sources_doc(voice, generated, skipped, failed)
+    if write_arabic_manifest:
+        ARABIC_TTS_MANIFEST.parent.mkdir(parents=True, exist_ok=True)
+        ARABIC_TTS_MANIFEST.write_text(
+            json.dumps(
+                {
+                    "module": "prayer_duas_asma",
+                    "kind": "educational_tts",
+                    "not_quran_recitation": True,
+                    "arabic_only": True,
+                    "voice": voice,
+                    "language": LANGUAGE,
+                    "cartoon_semitones": CARTOON_SEMITONES,
+                    "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                    "items": ordered,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+    else:
+        write_manifest(ordered, voice)
+        if write_docs:
+            write_sources_doc(voice, generated, skipped, failed)
 
     missing = [clip.rel_path for clip in clips if not looks_like_mp3(ROOT / clip.rel_path)]
     total_bytes = sum((ROOT / clip.rel_path).stat().st_size for clip in clips if (ROOT / clip.rel_path).exists())
@@ -991,13 +1198,23 @@ def main() -> int:
     parser.add_argument(
         "--replace-old",
         action="store_true",
-        help="Overwrite namaz/dua clips and generate short-surah educational TTS.",
+        help="Overwrite namaz/dua/asma clips with Fenrir cartoon-boy Arabic TTS.",
     )
     parser.add_argument("--force", action="store_true", help="Regenerate files that already exist.")
     parser.add_argument(
         "--phonetics",
         action="store_true",
         help="Regenerate isolated letter/haraka clips with thick vs thin sounds.",
+    )
+    parser.add_argument(
+        "--letters",
+        action="store_true",
+        help="Regenerate alphabet clips as letter names only (no sounded syllable).",
+    )
+    parser.add_argument(
+        "--surahs",
+        action="store_true",
+        help="Overwrite short-surah clips with Fenrir cartoon-boy educational TTS.",
     )
     parser.add_argument("--check-auth", action="store_true", help="Only verify ADC and list voices.")
     args = parser.parse_args()
@@ -1009,12 +1226,31 @@ def main() -> int:
             print(f"ADC OK\nVOICE={voice}\nLANGUAGE={LANGUAGE}")
             return 0
         if args.replace_old:
-            return run(test=False, force=True, clips=build_replace_clips(), write_docs=False)
+            return run(
+                test=False,
+                force=True,
+                clips=build_replace_clips(),
+                write_docs=False,
+                write_arabic_manifest=True,
+            )
+        if args.letters:
+            clips = [clip for clip in build_catalog(test=False) if clip.category == "alphabet"]
+            return run(test=False, force=True, clips=clips, write_docs=False)
+        if args.surahs:
+            return run(
+                test=False,
+                force=True,
+                clips=build_surah_clips(),
+                write_docs=False,
+            )
         if args.phonetics:
             clips = [clip for clip in build_catalog(test=False) if clip.phonetic]
             return run(test=False, force=True, clips=clips)
         if not args.test and not args.all:
-            print("Use --test, --all, --phonetics or --replace-old", file=sys.stderr)
+            print(
+                "Use --test, --all, --letters, --phonetics, --surahs or --replace-old",
+                file=sys.stderr,
+            )
             return 64
         return run(test=args.test, force=args.force)
     except RuntimeError as exc:

@@ -558,17 +558,16 @@ class _GlyphOutlinePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var fontSize = _startFont(text, size);
-    late TextPainter fill;
-    while (true) {
-      fill = _painter(text, fontSize, filled: true)
-        ..layout(maxWidth: size.width * 0.9);
-      if (fill.height <= size.height * 0.9 || fontSize <= 18) break;
-      fontSize *= 0.88;
-    }
-    final stroke = fontSize > 40 ? 5.0 : 2.2;
-    final outline = _painter(text, fontSize, filled: false, strokeWidth: stroke)
-      ..layout(maxWidth: size.width * 0.9);
+    final fontSize = _fitFont(text, size);
+    final stroke = (fontSize * 0.055).clamp(3.0, 8.0);
+    final fill = _layoutGlyph(text, fontSize, filled: true, size: size);
+    final outline = _layoutGlyph(
+      text,
+      fontSize,
+      filled: false,
+      size: size,
+      strokeWidth: stroke,
+    );
     final offset = Offset(
       (size.width - fill.width) / 2,
       (size.height - fill.height) / 2,
@@ -577,13 +576,47 @@ class _GlyphOutlinePainter extends CustomPainter {
     outline.paint(canvas, offset);
   }
 
-  double _startFont(String glyph, Size size) {
-    final n = glyph.replaceAll(RegExp(r'\s+'), '').length;
-    final short = size.shortestSide;
-    if (n <= 2) return short * 0.62;
-    if (n <= 6) return short * 0.38;
-    if (n <= 16) return short * 0.22;
-    return short * 0.16;
+  /// Largest one-line size that still fits the paper. Long words grow
+  /// with the canvas width instead of staying a small centered glyph.
+  double _fitFont(String glyph, Size size) {
+    final maxW = size.width * 0.94;
+    final maxH = size.height * 0.78;
+    var lo = 18.0;
+    var hi = (size.shortestSide * 0.72).clamp(48.0, 240.0);
+    var best = 28.0;
+    for (var i = 0; i < 14; i++) {
+      final mid = (lo + hi) / 2;
+      final painter = _painter(glyph, mid, filled: true)..layout();
+      if (painter.width <= maxW && painter.height <= maxH) {
+        best = mid;
+        lo = mid;
+      } else {
+        hi = mid;
+      }
+    }
+    return best;
+  }
+
+  TextPainter _layoutGlyph(
+    String glyph,
+    double fontSize, {
+    required bool filled,
+    required Size size,
+    double strokeWidth = 5,
+  }) {
+    final painter = _painter(
+      glyph,
+      fontSize,
+      filled: filled,
+      strokeWidth: strokeWidth,
+    )..layout();
+    if (painter.width <= size.width * 0.96) return painter;
+    return _painter(
+      glyph,
+      fontSize,
+      filled: filled,
+      strokeWidth: strokeWidth,
+    )..layout(maxWidth: size.width * 0.92);
   }
 
   TextPainter _painter(

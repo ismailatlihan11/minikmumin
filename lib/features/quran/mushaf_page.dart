@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/constants/asset_paths.dart';
 import '../../app/constants/surah_names.dart';
 import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_radius.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/turkish_number.dart';
 import '../../data/models/quran_verse.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
-import '../../shared/widgets/minik_ui.dart';
+import 'mushaf_decor.dart';
+import 'mushaf_reading.dart';
 
 class MushafReaderPage extends StatefulWidget {
   const MushafReaderPage({
@@ -32,14 +33,21 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
   int _index = 0;
   List<MushafPageData> _pages = const [];
   bool _savedHere = false;
+  double _fontSize = LocalProgressStore.mushafFontDefault;
+  bool _fingerFollow = false;
+  int? _followAyahId;
 
   Future<List<MushafPageData>> _load() async {
-    final pages = await context.read<ContentRepositories>().quran.getMushafPages();
+    final quran = context.read<ContentRepositories>().quran;
+    final store = context.read<LocalProgressStore>();
+    final pages = await quran.getMushafPages();
+    final font = await store.getMushafFontSize();
+    final follow = await store.getMushafFingerFollow();
     var start = 0;
     if (widget.initialJsonPage != null) {
       start = pages.indexWhere((page) => page.jsonPage == widget.initialJsonPage);
     } else if (widget.resume) {
-      final mark = await context.read<LocalProgressStore>().getMushafBookmark();
+      final mark = await store.getMushafBookmark();
       if (mark != null) {
         start = pages.indexWhere((page) => page.jsonPage == mark);
       }
@@ -49,6 +57,9 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     _controller = PageController(initialPage: start);
     _pages = pages;
     _index = start;
+    _fontSize = font;
+    _fingerFollow = follow;
+    if (follow) _followAyahOnPage(pages[start]);
     WidgetsBinding.instance.addPostFrameCallback((_) => _rememberLastPage());
     return pages;
   }
@@ -56,7 +67,8 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
   Future<void> _rememberLastPage() async {
     if (_pages.isEmpty || !mounted) return;
     final page = _pages[_index];
-    await context.read<LocalProgressStore>().rememberMushafPage(
+    final store = context.read<LocalProgressStore>();
+    await store.rememberMushafPage(
           jsonPage: page.jsonPage,
           displayNumber: page.jsonPage,
           surahLabel: _surahLabel(page),
@@ -73,10 +85,23 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     return page.surahIds.map(surahName).join(' · ');
   }
 
+  void _followAyahOnPage(MushafPageData page) {
+    if (page.verses.isEmpty) {
+      _followAyahId = null;
+      return;
+    }
+    if (_followAyahId != null &&
+        page.verses.any((verse) => verse.ayahId == _followAyahId)) {
+      return;
+    }
+    _followAyahId = page.verses.first.ayahId;
+  }
+
   Future<void> _saveHere() async {
     if (_pages.isEmpty) return;
     final page = _pages[_index];
-    await context.read<LocalProgressStore>().setMushafBookmark(
+    final store = context.read<LocalProgressStore>();
+    await store.setMushafBookmark(
           jsonPage: page.jsonPage,
           displayNumber: page.jsonPage,
           surahLabel: _surahLabel(page),
@@ -86,6 +111,7 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     setState(() => _savedHere = true);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        backgroundColor: kMushafGreen,
         content: Text(
           '${TurkishNumber.pageLabel(page.jsonPage)} kaydedildi. Sonra buradan devam ederiz.',
         ),
@@ -101,25 +127,34 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     final selected = await showDialog<int>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Sayfaya git'),
+        backgroundColor: MinikColors.nightSurface,
+        title: const Text(
+          'Sayfaya git',
+          style: TextStyle(color: Colors.white),
+        ),
         content: TextField(
           controller: controller,
           keyboardType: TextInputType.number,
           autofocus: true,
+          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
             labelText: 'Sayfa numarası',
             hintText: '$first – $last',
+            labelStyle: const TextStyle(color: Color(0xFFD4C4A0)),
+            hintStyle: const TextStyle(color: Color(0xFFD4C4A0)),
           ),
-          onSubmitted: (value) => Navigator.pop(context, int.tryParse(value.trim())),
+          onSubmitted: (value) =>
+              Navigator.pop(context, int.tryParse(value.trim())),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Vazgeç'),
+            child: const Text('Vazgeç', style: TextStyle(color: kMushafGold)),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, int.tryParse(controller.text.trim())),
-            child: const Text('Git'),
+            onPressed: () =>
+                Navigator.pop(context, int.tryParse(controller.text.trim())),
+            child: const Text('Git', style: TextStyle(color: kMushafGold)),
           ),
         ],
       ),
@@ -135,6 +170,7 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     setState(() {
       _index = next;
       _savedHere = false;
+      if (_fingerFollow) _followAyahOnPage(_pages[next]);
     });
     _rememberLastPage();
   }
@@ -145,8 +181,26 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     if (next == _index) return;
     _controller!.animateToPage(
       next,
-      duration: const Duration(milliseconds: 220),
+      duration: const Duration(milliseconds: 280),
       curve: Curves.easeOut,
+    );
+  }
+
+  void _showReadingOptions() {
+    showMushafReadingSheet(
+      context: context,
+      store: context.read<LocalProgressStore>(),
+      fontSize: _fontSize,
+      fingerFollow: _fingerFollow,
+      onChanged: (font, follow) {
+        setState(() {
+          _fontSize = font;
+          _fingerFollow = follow;
+          if (follow && _pages.isNotEmpty) {
+            _followAyahOnPage(_pages[_index]);
+          }
+        });
+      },
     );
   }
 
@@ -154,14 +208,34 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
   Widget build(BuildContext context) {
     _future ??= _load();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4EEDC),
+      backgroundColor: kMushafNight,
       appBar: AppBar(
-        title: const Text('Mushaf'),
+        backgroundColor: kMushafNight,
+        foregroundColor: kMushafGold,
+        title: Text(
+          _pages.isEmpty
+              ? 'Mushaf'
+              : 'Sayfa ${_pages[_index].jsonPage} / ${_pages.last.jsonPage}',
+          style: const TextStyle(color: kMushafGold, fontWeight: FontWeight.w700),
+        ),
         actions: [
+          IconButton(
+            tooltip: 'Yazı ve takip',
+            onPressed: _showReadingOptions,
+            icon: const Icon(Icons.text_fields_rounded, color: kMushafGold),
+          ),
+          IconButton(
+            tooltip: _savedHere ? 'Kaydedildi' : 'Burada kaldım',
+            onPressed: _saveHere,
+            icon: Icon(
+              _savedHere ? Icons.bookmark_rounded : Icons.bookmark_add_outlined,
+              color: kMushafGold,
+            ),
+          ),
           IconButton(
             tooltip: 'Sayfaya git',
             onPressed: _jumpToPage,
-            icon: const Icon(Icons.numbers_rounded),
+            icon: const Icon(Icons.numbers_rounded, color: kMushafGold),
           ),
         ],
       ),
@@ -169,63 +243,83 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
         future: _future!,
         onRetry: () => setState(() => _future = _load()),
         builder: (pages) {
-          final page = pages[_index];
+          final last = pages.last.jsonPage.toDouble().clamp(1.0, 9999.0);
+          final current = pages[_index].jsonPage.toDouble().clamp(0.0, last);
           return Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                child: _MushafPageHeader(
-                  displayNumber: page.jsonPage,
-                  lastJsonPage: pages.last.jsonPage,
-                  surahLabel: _surahLabel(page),
-                ),
-              ),
               Expanded(
                 child: PageView.builder(
                   controller: _controller,
+                  reverse: true,
                   itemCount: pages.length,
                   onPageChanged: (index) {
                     setState(() {
                       _index = index;
                       _savedHere = false;
+                      if (_fingerFollow) _followAyahOnPage(pages[index]);
                     });
                     _rememberLastPage();
                   },
                   itemBuilder: (context, index) => _MushafLeaf(
                     page: pages[index],
+                    fontSize: _fontSize,
+                    followEnabled: _fingerFollow,
+                    selectedAyahId: _followAyahId,
+                    onSelectAyah: (id) => setState(() => _followAyahId = id),
                   ),
                 ),
               ),
-              Material(
-                color: MinikColors.surface,
-                elevation: 8,
-                child: SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          tooltip: 'Önceki sayfa',
-                          onPressed: _index == 0 ? null : () => _go(-1),
-                          icon: const Icon(Icons.chevron_left_rounded),
-                        ),
-                        Expanded(
-                          child: FilledButton.icon(
-                            onPressed: _saveHere,
-                            icon: Icon(
-                              _savedHere ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+              SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        tooltip: 'Önceki sayfa',
+                        onPressed: _index == 0 ? null : () => _go(-1),
+                        icon: const Icon(Icons.chevron_right_rounded, color: kMushafGold),
+                      ),
+                      Expanded(
+                        child: SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            trackHeight: 2,
+                            thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 6,
                             ),
-                            label: Text(_savedHere ? 'Kaydedildi' : 'Burada kaldım'),
+                            overlayShape: const RoundSliderOverlayShape(
+                              overlayRadius: 14,
+                            ),
+                            activeTrackColor: kMushafGold,
+                            inactiveTrackColor: kMushafGold.withValues(alpha: 0.25),
+                            thumbColor: kMushafGold,
+                          ),
+                          child: Slider(
+                            value: current,
+                            min: 0,
+                            max: last <= 0 ? 1.0 : last,
+                            onChanged: (value) {
+                              var next = pages.indexWhere(
+                                (page) => page.jsonPage == value.round(),
+                              );
+                              if (next < 0) {
+                                next = pages.indexWhere(
+                                  (page) => page.jsonPage >= value.round(),
+                                );
+                                if (next < 0) next = pages.length - 1;
+                              }
+                              _controller?.jumpToPage(next);
+                            },
                           ),
                         ),
-                        IconButton(
-                          tooltip: 'Sonraki sayfa',
-                          onPressed: _index >= pages.length - 1 ? null : () => _go(1),
-                          icon: const Icon(Icons.chevron_right_rounded),
-                        ),
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        tooltip: 'Sonraki sayfa',
+                        onPressed:
+                            _index >= pages.length - 1 ? null : () => _go(1),
+                        icon: const Icon(Icons.chevron_left_rounded, color: kMushafGold),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -237,60 +331,132 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
   }
 }
 
-class _MushafPageHeader extends StatelessWidget {
-  const _MushafPageHeader({
-    required this.displayNumber,
-    required this.lastJsonPage,
-    required this.surahLabel,
+class _MushafLeaf extends StatelessWidget {
+  const _MushafLeaf({
+    required this.page,
+    required this.fontSize,
+    required this.followEnabled,
+    required this.selectedAyahId,
+    required this.onSelectAyah,
   });
 
-  final int displayNumber;
-  final int lastJsonPage;
-  final String surahLabel;
+  final MushafPageData page;
+  final double fontSize;
+  final bool followEnabled;
+  final int? selectedAyahId;
+  final ValueChanged<int> onSelectAyah;
 
   @override
   Widget build(BuildContext context) {
-    return MinikCard(
-      color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+    if (page.verses.isEmpty) {
+      return const Center(
+        child: Text(
+          'Bu sayfa boş.',
+          style: TextStyle(color: Color(0xFFD4C4A0)),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.45),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: MushafPageChrome(
+          child: Column(
+            children: [
+              _PageHeader(page: page),
+              Expanded(child: _buildContent()),
+              _PageFooter(pageNumber: page.jsonPage),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent() {
+    final sections = <Widget>[];
+    var prevSurah = 0;
+    final current = <QuranVerse>[];
+
+    void flush() {
+      if (current.isEmpty) return;
+      sections.add(
+        _AyahFlowBlock(
+          verses: List<QuranVerse>.from(current),
+          fontSize: fontSize,
+          followEnabled: followEnabled,
+          selectedAyahId: selectedAyahId,
+          onSelectAyah: onSelectAyah,
+        ),
+      );
+      current.clear();
+    }
+
+    for (final verse in page.verses) {
+      if (verse.surahId != prevSurah) {
+        flush();
+        if (verse.ayahNo == 1) {
+          sections.add(_SurahHeader(surahId: verse.surahId));
+        }
+        prevSurah = verse.surahId;
+      }
+      current.add(verse);
+    }
+    flush();
+
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: sections,
+        ),
+      ),
+    );
+  }
+}
+
+class _PageHeader extends StatelessWidget {
+  const _PageHeader({required this.page});
+
+  final MushafPageData page;
+
+  @override
+  Widget build(BuildContext context) {
+    final juz = ((page.jsonPage ~/ 20) + 1).clamp(1, 30);
+    final surah = page.verses.isEmpty ? '' : surahName(page.verses.first.surahId);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 2, 8, 6),
       child: Row(
         children: [
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  TurkishNumber.pageLabel(displayNumber),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  '${TurkishNumber.words(displayNumber)} · $surahLabel',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
+            child: Text(
+              surah,
+              style: const TextStyle(
+                color: Color(0xFF5C3A1E),
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                TurkishNumber.arabicIndic(displayNumber),
-                textDirection: TextDirection.rtl,
-                style: const TextStyle(
-                  fontFamily: AssetPaths.arabicFontFamily,
-                  fontSize: 22,
-                  color: MinikColors.green,
-                  height: 1.1,
-                ),
-              ),
-              Text(
-                '$displayNumber / $lastJsonPage',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
+          Text(
+            'Cüz $juz',
+            style: const TextStyle(
+              color: Color(0xFF5C3A1E),
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -298,77 +464,155 @@ class _MushafPageHeader extends StatelessWidget {
   }
 }
 
-class _MushafLeaf extends StatelessWidget {
-  const _MushafLeaf({required this.page});
+class _PageFooter extends StatelessWidget {
+  const _PageFooter({required this.pageNumber});
 
-  final MushafPageData page;
+  final int pageNumber;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: const Color(0xFFFFFBF2),
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: const Color(0xFFE4D4A8)),
-        ),
-        child: _arabicFlow(),
-      ),
-    );
-  }
-
-  Widget _arabicFlow() {
-    final spans = <InlineSpan>[];
-    var lastSurah = 0;
-    for (final verse in page.verses) {
-      if (verse.ayahNo == 1 && verse.surahId != lastSurah) {
-        lastSurah = verse.surahId;
-        spans.add(
-          TextSpan(
-            text: '\n\u202A${surahName(verse.surahId)}\u202C\n',
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('❧', style: TextStyle(color: kMushafGoldDeep)),
+          const SizedBox(width: 12),
+          Text(
+            '$pageNumber',
             style: const TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
-              color: MinikColors.gold,
-              height: 1.8,
+              color: Color(0xFF5C3A1E),
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        );
-      }
-      spans.add(
-        TextSpan(
-          text: '${verse.arabic} ',
-          style: const TextStyle(fontFamily: AssetPaths.arabicFontFamily),
-        ),
-      );
-      spans.add(
-        TextSpan(
-          text: '﴿${TurkishNumber.arabicIndic(verse.ayahNo)}﴾ ',
-          style: const TextStyle(
-            fontFamily: AssetPaths.arabicFontFamily,
-            fontSize: 16,
-            color: MinikColors.gold,
-            height: 1.9,
-          ),
-        ),
-      );
-    }
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
-      child: SelectableText.rich(
-        TextSpan(children: spans),
-        textAlign: TextAlign.right,
-        textDirection: TextDirection.rtl,
-        style: const TextStyle(
-          fontFamily: AssetPaths.arabicFontFamily,
-          fontSize: 26,
-          height: 2.05,
-          color: MinikColors.darkGreen,
-        ),
+          const SizedBox(width: 12),
+          const Text('❧', style: TextStyle(color: kMushafGoldDeep)),
+        ],
       ),
     );
   }
 }
 
+class _SurahHeader extends StatelessWidget {
+  const _SurahHeader({required this.surahId});
+
+  final int surahId;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          const SizedBox(height: 8),
+          MushafSurahUnwan(
+            arabicName: surahArabicName(surahId),
+            turkishName: surahName(surahId),
+          ),
+          if (surahId != 1 && surahId != 9) const MushafBismillahBanner(),
+        ],
+      ),
+    );
+  }
+}
+
+class _AyahFlowBlock extends StatefulWidget {
+  const _AyahFlowBlock({
+    required this.verses,
+    required this.fontSize,
+    required this.followEnabled,
+    required this.selectedAyahId,
+    required this.onSelectAyah,
+  });
+
+  final List<QuranVerse> verses;
+  final double fontSize;
+  final bool followEnabled;
+  final int? selectedAyahId;
+  final ValueChanged<int> onSelectAyah;
+
+  @override
+  State<_AyahFlowBlock> createState() => _AyahFlowBlockState();
+}
+
+class _AyahFlowBlockState extends State<_AyahFlowBlock> {
+  final GlobalKey _textKey = GlobalKey();
+
+  String _ayahMark(int n) => ' ﴿${TurkishNumber.arabicIndic(n)}﴾ ';
+
+  void _pickAt(Offset global) {
+    if (!widget.followEnabled) return;
+    final box = _textKey.currentContext?.findRenderObject();
+    if (box is! RenderParagraph) return;
+    final local = box.globalToLocal(global);
+    final pos = box.getPositionForOffset(local).offset;
+    var cursor = 0;
+    for (final verse in widget.verses) {
+      final len = verse.arabic.length + _ayahMark(verse.ayahNo).length;
+      if (pos >= cursor && pos < cursor + len) {
+        if (verse.ayahId != widget.selectedAyahId) {
+          widget.onSelectAyah(verse.ayahId);
+        }
+        return;
+      }
+      cursor += len;
+    }
+    if (widget.verses.isEmpty) return;
+    if (pos <= 0) {
+      widget.onSelectAyah(widget.verses.first.ayahId);
+    } else {
+      widget.onSelectAyah(widget.verses.last.ayahId);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final spans = <InlineSpan>[];
+    final highlight = Paint()..color = const Color(0x66C8A96E);
+
+    for (final verse in widget.verses) {
+      final selected =
+          widget.followEnabled && verse.ayahId == widget.selectedAyahId;
+      spans.add(
+        TextSpan(
+          text: verse.arabic,
+          style: TextStyle(
+            color: kMushafInk,
+            fontSize: widget.fontSize,
+            fontFamily: AssetPaths.arabicFontFamily,
+            height: 2.2,
+            background: selected ? highlight : null,
+          ),
+        ),
+      );
+      spans.add(
+        TextSpan(
+          text: _ayahMark(verse.ayahNo),
+          style: TextStyle(
+            color: const Color(0xFF8B4513),
+            fontSize: widget.fontSize - 4,
+            fontFamily: AssetPaths.arabicFontFamily,
+            height: 2.2,
+            background: selected ? highlight : null,
+          ),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Listener(
+        behavior: HitTestBehavior.translucent,
+        onPointerDown: widget.followEnabled ? (e) => _pickAt(e.position) : null,
+        onPointerMove: widget.followEnabled ? (e) => _pickAt(e.position) : null,
+        child: RichText(
+          key: _textKey,
+          textDirection: TextDirection.rtl,
+          textAlign: TextAlign.justify,
+          text: TextSpan(children: spans),
+        ),
+      ),
+    );
+  }
+}

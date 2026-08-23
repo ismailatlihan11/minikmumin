@@ -625,9 +625,10 @@
       "id": "qiyam_after_ruku",
       "type": "prayer_dua",
       "title": "Rükûdan Doğrulma",
-      "transliteration": "",
-      "meaning": "Rükûdan doğruluruz ve hamd ederiz.",
-      "usage": "Rükûdan sonra ayakta hamd edilir.",
+      "arabic": "سَمِعَ اللّٰهُ لِمَنْ حَمِدَهُ",
+      "transliteration": "Semi'allâhü limen hamideh.",
+      "meaning": "Allah, kendisine hamd edeni işitir.",
+      "usage": "Rükûdan doğrulurken okunur.",
       "source": "Diyanet Namaz İlmihali"
     },
     {

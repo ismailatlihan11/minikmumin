@@ -7,16 +7,18 @@ The Flutter app is **offline**. It never calls Google Cloud, TTS APIs, or recita
 Quran recitation files are downloaded from official APIs at build/prep time.
 Prayer / non-Quran phrases are **not** fetched from the internet.
 
-## Missing non-recitation audio (this APK)
+## Educational Arabic TTS (namaz, dualar, esma)
 
-These JSON paths stay bound. Files are not generated or downloaded without a verified license or a separate TTS contract (ADC + Google Cloud TTS). Empty/fake MP3s are not added.
+Prayer phrases, Quranic dua *invocations*, and Esmaül Hüsna names were generated with the same Kur'an Öğren cartoon-boy voice. Runtime stays offline.
 
-- `assets/audio/prayer/iftitah_tekbir.mp3` — İftitah tekbiri. Namaz Tekbir step is wired (`duaId: iftitah_tekbir`). **MANUAL_REQUIRED**.
-- `assets/audio/dhikr/*.mp3` — 8 zikir phrases. Dinle is hidden until files exist.
-- `assets/audio/qissalar/*.mp3` — kıssa narration. Cover Dinle is hidden until files exist.
-- `assets/audio/prophets/*.mp3`, `assets/audio/asma/*.mp3`, `assets/audio/morality/*.mp3` — same policy.
+- Voice: `ar-XA-Chirp3-HD-Fenrir` + 5 semitone cartoon shift
+- Input: Arabic only from JSON (no Turkish meaning, no latin)
+- Quranic duas: spoken text is the dua already inside the ayah JSON, not the narrative frame
+- Short surahs in namaz duaları / Kur'an Öğren use Fenrir cartoon TTS (`quran_learn/surahs/`)
+- Kur'an-ı Kerim tilavet stays Husary (`assets/audio/quran/`)
+- Generated: 2026-08-23
 
-Existing namaz files under `assets/audio/prayer/` (except iftitah) are **pre-existing local assets**. License: **UNVERIFIED**. They were not replaced and are not fetched at runtime.
+Still missing (Dinle hidden until files exist): dhikr, kıssa, prophets narration, morality.
 
 Kur'an Öğren educational clips (`assets/audio/quran_learn/`) were **not generated** in this build: Google Application Default Credentials are missing (`gcloud auth application-default login` has not been run). JSON audio paths are already bound; Dinle stays hidden until MP3s are generated and bundled.
 

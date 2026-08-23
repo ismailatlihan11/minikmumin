@@ -322,6 +322,34 @@ class LocalProgressStore extends ChangeNotifier {
     );
   }
 
+  static const mushafFontMin = 16.0;
+  static const mushafFontMax = 34.0;
+  static const mushafFontDefault = 24.0;
+
+  Future<double> getMushafFontSize() async {
+    final prefs = await _ensure();
+    return (prefs.getDouble(_key('mushaf_font')) ?? mushafFontDefault)
+        .clamp(mushafFontMin, mushafFontMax);
+  }
+
+  Future<void> setMushafFontSize(double size) async {
+    final prefs = await _ensure();
+    await prefs.setDouble(
+      _key('mushaf_font'),
+      size.clamp(mushafFontMin, mushafFontMax),
+    );
+  }
+
+  Future<bool> getMushafFingerFollow() async {
+    final prefs = await _ensure();
+    return prefs.getBool(_key('mushaf_follow')) ?? false;
+  }
+
+  Future<void> setMushafFingerFollow(bool on) async {
+    final prefs = await _ensure();
+    await prefs.setBool(_key('mushaf_follow'), on);
+  }
+
   Future<List<FavoriteEntry>> getFavorites() async {
     final prefs = await _ensure();
     final raw = prefs.getString(_key('favorites_json')) ?? '[]';

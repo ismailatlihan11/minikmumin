@@ -2,7 +2,7 @@
 
 These files were generated using Google Cloud Text-to-Speech. The audio files are synthetic outputs generated from the supplied text. Review Google Cloud's current terms and pricing before commercial redistribution.
 
-This audio is **educational pronunciation**, not Quran recitation, adhan, or qari imitation. Short-surah tilawat stays on real recitation assets.
+This audio is **educational pronunciation**, not Quran recitation, adhan, or qari imitation. Short surahs here use the same cartoon-boy TTS. Kur'an-ı Kerim tilavet stays on Husary (`assets/audio/quran/`).
 
 - Voice: `ar-XA-Chirp3-HD-Fenrir`
 - Language: `ar-XA`
@@ -10,7 +10,8 @@ This audio is **educational pronunciation**, not Quran recitation, adhan, or qar
 - Pitch: `8.0` (Neural2/Wavenet only; Chirp omits API pitch)
 - Cartoon pitch shift: `5.0` semitones after TTS (cartoon-boy timbre)
 - Voice style: cartoon-boy educational speaker, not a deep adult qari.
-- Isolated letters are generated as sounded syllables (e.g. طَ), not only letter names, so thick/thin Arabic sounds stay distinct.
+- Isolated letter cards speak the letter name only (e.g. بَاء).
+- Haraka chips (üstün/esre/ötre) still use sounded syllables (e.g. طَ).
 - API: Google Cloud Text-to-Speech (`google-cloud-texttospeech`)
 - Auth: Application Default Credentials (no keys in the Flutter app)
 - Generated date: 2026-08-23

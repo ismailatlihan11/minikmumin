@@ -121,7 +121,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                           Text('Mushaf', style: Theme.of(context).textTheme.titleMedium),
                           const SizedBox(height: 2),
                           Text(
-                            'Sayfa sayfa Arapça.',
+                            'Parşömen sayfa, yazı boyutu ve elle ayet takibi.',
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
