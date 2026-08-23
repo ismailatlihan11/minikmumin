@@ -42,7 +42,9 @@ class MoralityCatalog {
   final List<QuizQuestion> quiz;
 
   List<MoralityLesson> lessonsFor(String categoryId) {
-    return lessons.where((lesson) => lesson.category == categoryId).toList(growable: false);
+    return lessons
+        .where((lesson) => lesson.category == categoryId)
+        .toList(growable: false);
   }
 }
 
@@ -95,7 +97,9 @@ class IlmihalCatalog {
   final List<QuizQuestion> quiz;
 
   List<IlmihalLesson> lessonsFor(String categoryId) {
-    return lessons.where((lesson) => lesson.category == categoryId).toList(growable: false);
+    return lessons
+        .where((lesson) => lesson.category == categoryId)
+        .toList(growable: false);
   }
 }
 
@@ -156,7 +160,8 @@ class QuizRepository {
       title: JsonMap.str(json['title'], 'Mini Testler'),
       categories: JsonMap.strings(json['categories']),
       questions: questions,
-      questionsPerSession: JsonMap.integer(algorithm['questionsPerSession'], 10),
+      questionsPerSession:
+          JsonMap.integer(algorithm['questionsPerSession'], 10),
       correctFeedback: JsonMap.strings(feedback['correct']),
       wrongFeedback: JsonMap.strings(feedback['wrong']),
     );
@@ -225,6 +230,9 @@ class StoryRepository {
     _catalog = StoryCatalog(
       categories: categories,
       items: List<StoryItem>.unmodifiable(items),
+      imtihanPairs: JsonMap.extractList(json, itemsKey: 'imtihanPairs')
+          .map(ProphetTrialPair.fromJson)
+          .toList(growable: false),
     );
     return _catalog!;
   }

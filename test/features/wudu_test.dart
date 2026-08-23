@@ -37,10 +37,14 @@ void main() {
     expect(prompt, isNot(contains('Abdestin bu aşamasını öğren')));
   });
 
-  test('visual catalog has thirteen illustrated steps', () {
-    expect(WuduVisualCatalog.steps, hasLength(13));
+  test('visual catalog includes neck wiping after the ears', () {
+    expect(WuduVisualCatalog.steps, hasLength(14));
     expect(WuduVisualCatalog.steps.first.id, 'niyet');
     expect(WuduVisualCatalog.steps.last.id, 'tamam');
+    final neck = WuduVisualCatalog.steps.where((step) => step.id == 'boyun');
+    expect(neck, hasLength(1));
+    expect(neck.first.kind, WuduKind.sunnah);
+    expect(neck.first.number, 11);
   });
 
   test('wudu progress is stored locally', () async {

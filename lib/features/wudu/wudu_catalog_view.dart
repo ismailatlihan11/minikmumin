@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/theme/app_colors.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_visual_catalog.dart';
 
@@ -567,6 +568,18 @@ class WuduStepDetailPage extends StatelessWidget {
 
   final WuduVisualStep step;
 
+  void _openColoring(BuildContext context) {
+    openImageColoring(
+      context,
+      image: step.image,
+      title: '${step.title} boya',
+      prompt: 'Parmağınla bu abdest adımını boya.',
+      progressKind: 'wudu_color',
+      progressId: step.id,
+      celebrationSubtitle: '${step.title} resmini boyadın.',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -578,17 +591,67 @@ class WuduStepDetailPage extends StatelessWidget {
           MinikCard(
             color: Colors.white,
             padding: const EdgeInsets.all(12),
-            child: LessonMotionImage(
-              image: step.image,
-              frames: step.motionFrames,
-              height: 240,
-              fit: BoxFit.contain,
+            onTap: () => _openColoring(context),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                LessonMotionImage(
+                  image: step.image,
+                  frames: step.motionFrames,
+                  height: 240,
+                  width: double.infinity,
+                  fit: BoxFit.contain,
+                ),
+                const Positioned(
+                  right: 4,
+                  bottom: 4,
+                  child: _ColorHint(),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 16),
           Text(
             step.prompt,
             style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 16),
+          FilledButton.tonalIcon(
+            onPressed: () => _openColoring(context),
+            icon: const Icon(Icons.palette_rounded),
+            label: const Text('Boya'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ColorHint extends StatelessWidget {
+  const _ColorHint();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 4, bottom: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: MinikColors.peach,
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: const Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.palette_rounded, size: 16, color: MinikColors.darkGreen),
+          SizedBox(width: 4),
+          Text(
+            'Boya',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 12,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
           ),
         ],
       ),

@@ -9,7 +9,6 @@ import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
@@ -56,10 +55,6 @@ class QuranLearnWordsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              QlGamesStrip(
-                games: pack.gamesForLevel(4),
-                title: 'Okunuşu Seç',
-              ),
             ],
           );
         },

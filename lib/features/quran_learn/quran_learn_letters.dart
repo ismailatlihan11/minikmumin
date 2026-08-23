@@ -10,8 +10,6 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
-import 'quran_learn_memory_page.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
@@ -84,33 +82,6 @@ class QuranLearnLettersPage extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-              const SizedBox(height: AppSpacing.md),
-              ContentTile(
-                title: 'Harfleri boya',
-                subtitle: 'Parmağınla boyayarak pekiştir.',
-                leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const QuranLearnColorHubPage(),
-                  ),
-                ),
-              ),
-              ContentTile(
-                title: 'Harf eşleştir',
-                subtitle: 'Aynı iki harfi bul.',
-                leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const QuranLearnMemoryPage(),
-                  ),
-                ),
-              ),
-              QlGamesStrip(
-                games: pack.gamesForLevel(1),
-                title: 'Harfi Bul',
               ),
             ],
           );
@@ -200,9 +171,6 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
       else if (letter.joinsBothSides)
         ('Sonda', letter.forms.finalForm),
     ];
-    final letterGames = widget.pack.gamesForLevel(1).where((game) {
-      return qlSameAnswer(game.correctAnswer, letter.letter);
-    }).toList();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
@@ -231,7 +199,9 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                   child: QlBigArabic(
                     letter.letter,
                     fontSize: 86,
-                    onTap: letter.audio == null ? null : _play,
+                    onTap: QuranLearnAudio.resolve(letter.audio) == null
+                        ? null
+                        : _play,
                   ),
                 ),
                 Text(
@@ -240,10 +210,57 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                 ),
                 const SizedBox(height: 4),
                 Text('Yaklaşık ses: ${letter.approximateTurkishSound}'),
+                if (letter.isHeavySound) ...[
+                  const SizedBox(height: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: MinikColors.peach,
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: const Text(
+                      'Kalın harf',
+                      style: TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontWeight: FontWeight.w800,
+                        color: MinikColors.darkGreen,
+                      ),
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 8),
                 Text('Bu harf ${letter.name}.'),
                 const SizedBox(height: AppSpacing.md),
                 QlPlayListen(audio: _audio, path: letter.audio),
+                const SizedBox(height: AppSpacing.md),
+                const Text(
+                  'Harekeli sesi',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    for (final item in <(String, String)>[
+                      ('Üstün', 'fatha'),
+                      ('Esre', 'kasra'),
+                      ('Ötre', 'damma'),
+                    ]) ...[
+                      if (item.$2 != 'fatha') const SizedBox(width: 8),
+                      Expanded(
+                        child: _LetterHarakatChip(
+                          audio: _audio,
+                          label: item.$1,
+                          arabic: _letterWithHaraka(letter, item.$2),
+                          path: QuranLearnAudio.exercisePath(letter.audio, item.$2),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
                 const SizedBox(height: 8),
                 QlColorButton(
                   arabic: letter.letter,
@@ -280,11 +297,73 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
           ),
           const SizedBox(height: AppSpacing.lg),
           QlPrimaryBar(label: 'Öğrendim', onPressed: _markLearned),
-          if (letterGames.isNotEmpty) ...[
-            const SizedBox(height: AppSpacing.md),
-            QlGamesStrip(games: letterGames, title: 'Harfi Bul'),
-          ],
         ],
+      ),
+    );
+  }
+}
+
+String _letterWithHaraka(QuranArabicLetter letter, String harakaId) {
+  if (letter.letter == 'ا') {
+    switch (harakaId) {
+      case 'fatha':
+        return 'أَ';
+      case 'kasra':
+        return 'إِ';
+      case 'damma':
+        return 'أُ';
+    }
+  }
+  const marks = {'fatha': 'َ', 'kasra': 'ِ', 'damma': 'ُ'};
+  return '${letter.letter}${marks[harakaId] ?? ''}';
+}
+
+class _LetterHarakatChip extends StatelessWidget {
+  const _LetterHarakatChip({
+    required this.audio,
+    required this.label,
+    required this.arabic,
+    required this.path,
+  });
+
+  final AudioPlayerService audio;
+  final String label;
+  final String arabic;
+  final String? path;
+
+  @override
+  Widget build(BuildContext context) {
+    final playable = QuranLearnAudio.resolve(path);
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: playable == null
+            ? null
+            : () => QuranLearnAudio.play(
+                  audio,
+                  context.read<LocalProgressStore>(),
+                  playable,
+                ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+          child: Column(
+            children: [
+              QlBigArabic(arabic, fontSize: 28),
+              const SizedBox(height: 2),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 11,
+                  fontWeight: FontWeight.w800,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -33,15 +33,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
   bool _welcomeVisible = false;
   bool _welcomeNameLoaded = false;
   String? _welcomeNickname;
-  bool _firstLaunchVisible = false;
-  bool _firstLaunchChecked = false;
-  String _firstLaunchTitle = 'Haydi başlayalım';
-  String _firstLaunchButton = 'Anladım';
-  List<String> _firstLaunchLines = const [
-    'Ana Sayfa’dan derslere geçersin.',
-    'Öğren’de abdest, namaz ve dualar var.',
-    'Kur’an sekmesinde sureleri okuyup dinlersin.',
-  ];
 
   Future<_HomeSnapshot> _load(
     ContentRepositories repos,
@@ -49,6 +40,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
   ) async {
     final wudu = await store.getWuduProgress();
     final lesson = await repos.wudu.getLesson();
+    final prayerLesson = await repos.prayer.getLesson();
     final completed = await store.getCompletedItems();
     final prayerDone = completed.where((item) => item.startsWith('prayer|')).length;
     final basicsDone = completed.where((item) => item.startsWith('basics|')).length;
@@ -59,6 +51,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
       continuePoint: await store.getContinue(),
       mushafBookmark: await store.getMushafBookmarkInfo(),
       prayerCompleted: prayerDone,
+      prayerTotal: prayerLesson.visualSteps.length,
       basicsCompleted: basicsDone,
       basicsTotal: basics.items.length,
     );
@@ -110,41 +103,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
       _welcomeNameLoaded = true;
       _loadWelcomeName(store);
     }
-    if (!_firstLaunchChecked) {
-      _firstLaunchChecked = true;
-      _loadFirstLaunch(store);
-    }
-  }
-
-  Future<void> _loadFirstLaunch(LocalProgressStore store) async {
-    final done = await store.getOnboardingDone();
-    if (!mounted) return;
-    if (done) return;
-    try {
-      final config = await context.read<ContentRepositories>().config.load();
-      if (!mounted) return;
-      setState(() {
-        _firstLaunchVisible = true;
-        if (config.firstLaunchTitle.isNotEmpty) {
-          _firstLaunchTitle = config.firstLaunchTitle;
-        }
-        if (config.firstLaunchButton.isNotEmpty) {
-          _firstLaunchButton = config.firstLaunchButton;
-        }
-        if (config.firstLaunchLines.isNotEmpty) {
-          _firstLaunchLines = config.firstLaunchLines;
-        }
-      });
-    } catch (_) {
-      if (!mounted) return;
-      setState(() => _firstLaunchVisible = true);
-    }
-  }
-
-  Future<void> _dismissFirstLaunch() async {
-    await _store?.setOnboardingDone();
-    if (!mounted) return;
-    setState(() => _firstLaunchVisible = false);
   }
 
   Future<void> _loadWelcomeName(LocalProgressStore store) async {
@@ -204,7 +162,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
               ? (data.wudu.inProgress
                   ? 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}'
                   : data.wudu.completed
-                      ? 'Namaz Öğren – ${data.prayerCompleted}/16'
+                      ? 'Namaz Öğren – ${data.prayerCompleted}/${data.prayerTotal}'
                       : 'Abdest Öğren')
               : _continueSubtitle(point, data);
           var continueRoute = point?.route ??
@@ -343,13 +301,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
             visible: _welcomeVisible,
             nickname: _welcomeNickname,
           ),
-          HomeFirstLaunchHint(
-            visible: _firstLaunchVisible,
-            title: _firstLaunchTitle,
-            lines: _firstLaunchLines,
-            buttonLabel: _firstLaunchButton,
-            onDismiss: _dismissFirstLaunch,
-          ),
         ],
       ),
     );
@@ -357,7 +308,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
 
   String _continueSubtitle(ContinuePoint point, _HomeSnapshot data) {
     if (point.route == AppRoutes.learnPrayer) {
-      return 'Namaz Öğren – ${data.prayerCompleted}/16';
+      return 'Namaz Öğren – ${data.prayerCompleted}/${data.prayerTotal}';
     }
     if (point.route == AppRoutes.learnWudu) {
       return 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}';
@@ -388,51 +339,31 @@ class _HomeDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: MinikColors.surface,
       child: SafeArea(
-        child: Column(
+        child: ListView(
           children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  const ListTile(
-                    title: Text(
-                      AppConstants.defaultAppName,
-                      style: TextStyle(fontWeight: FontWeight.w800),
-                    ),
-                    subtitle: Text('İslami Eğitim Uygulaması'),
-                  ),
-                  for (final module in HomeCatalog.modules)
-                    ListTile(
-                      title: Text(module.title),
-                      onTap: () => onSelect(module.route),
-                    ),
-                  ListTile(
-                    title: const Text('Favoriler'),
-                    onTap: () => onSelect(AppRoutes.favorites),
-                  ),
-                  ListTile(
-                    title: const Text('Peygamberler Kitabı'),
-                    onTap: () => onSelect(AppRoutes.learnProphetsBook),
-                  ),
-                  ListTile(
-                    title: const Text('Ayarlar'),
-                    onTap: () => onSelect(AppRoutes.settings),
-                  ),
-                ],
+            const ListTile(
+              title: Text(
+                AppConstants.defaultAppName,
+                style: TextStyle(fontWeight: FontWeight.w800),
               ),
+              subtitle: Text('İslami Eğitim Uygulaması'),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(20, 12, 20, 24),
-              child: Text(
-                "Elif ve Oğuzhan'a kocaman sevgilerimle",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  height: 1.3,
-                  color: MinikColors.green,
-                ),
+            for (final module in HomeCatalog.modules)
+              ListTile(
+                title: Text(module.title),
+                onTap: () => onSelect(module.route),
               ),
+            ListTile(
+              title: const Text('Favoriler'),
+              onTap: () => onSelect(AppRoutes.favorites),
+            ),
+            ListTile(
+              title: const Text('Peygamberler Kitabı'),
+              onTap: () => onSelect(AppRoutes.learnProphetsBook),
+            ),
+            ListTile(
+              title: const Text('Ayarlar'),
+              onTap: () => onSelect(AppRoutes.settings),
             ),
           ],
         ),
@@ -448,6 +379,7 @@ class _HomeSnapshot {
     this.continuePoint,
     this.mushafBookmark,
     this.prayerCompleted = 0,
+    this.prayerTotal = 25,
     this.basicsCompleted = 0,
     this.basicsTotal = 22,
   });
@@ -457,6 +389,7 @@ class _HomeSnapshot {
   final ContinuePoint? continuePoint;
   final ({int jsonPage, int displayNumber, String surahLabel})? mushafBookmark;
   final int prayerCompleted;
+  final int prayerTotal;
   final int basicsCompleted;
   final int basicsTotal;
 }

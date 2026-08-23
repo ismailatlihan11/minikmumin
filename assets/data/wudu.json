@@ -54,8 +54,15 @@
       "sourceReference": "Diyanet ilmihal"
     },
     {
-      "id": "feet",
+      "id": "neck",
       "order": 8,
+      "title": "Boyun",
+      "description": "Islak elimizin tersiyle boynumuzu mesh ederiz.",
+      "sourceReference": "Diyanet ilmihal"
+    },
+    {
+      "id": "feet",
+      "order": 9,
       "title": "Ayaklar",
       "description": "Ayaklarımızı topuk ve parmak araları dahil yıkarız.",
       "sourceReference": "Diyanet ilmihal"
@@ -151,8 +158,17 @@
       "jsonStepId": "ears"
     },
     {
-      "id": "sag_ayak",
+      "id": "boyun",
       "number": 11,
+      "title": "Boynumuzu Mesh Edelim",
+      "prompt": "Islak elimizin tersiyle boynumuzu mesh ederiz.",
+      "image": "assets/images/wudu/wudu_boyun.png",
+      "kind": "sunnah",
+      "jsonStepId": "neck"
+    },
+    {
+      "id": "sag_ayak",
+      "number": 12,
       "title": "Sağ Ayağımızı Yıkayalım",
       "prompt": "Sağ ayağımızı topuk ve parmak araları dahil yıkarız.",
       "image": "assets/images/wudu/wudu_11_sag_ayak.png",
@@ -161,7 +177,7 @@
     },
     {
       "id": "sol_ayak",
-      "number": 12,
+      "number": 13,
       "title": "Sol Ayağımızı Yıkayalım",
       "prompt": "Sol ayağımızı topuk ve parmak araları dahil yıkarız.",
       "image": "assets/images/wudu/wudu_12_sol_ayak.png",
@@ -170,7 +186,7 @@
     },
     {
       "id": "tamam",
-      "number": 13,
+      "number": 14,
       "title": "Abdestimiz Tamamlandı!",
       "prompt": "Maşallah! Abdestimizi öğrendik.",
       "image": "assets/images/wudu/wudu_13_tamam.png",

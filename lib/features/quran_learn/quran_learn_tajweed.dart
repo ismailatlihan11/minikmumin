@@ -11,6 +11,7 @@ import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_tajweed_marks.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnTajweedPage extends StatelessWidget {
@@ -21,6 +22,7 @@ class QuranLearnTajweedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
+    final games = pack.gamesForLevel(6);
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(title: const Text('Temel Tecvid')),
@@ -55,10 +57,10 @@ class QuranLearnTajweedPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              QlGamesStrip(
-                games: pack.gamesForLevel(6),
-                title: 'Kuralı Bul',
-              ),
+              if (games.isNotEmpty) ...[
+                const SizedBox(height: AppSpacing.md),
+                QlGamesStrip(games: games, title: 'Tecvid oyunları'),
+              ],
             ],
           );
         },
@@ -155,23 +157,32 @@ class _QuranLearnTajweedDetailPageState
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          const SectionLabel('Örnek'),
+          SectionLabel(lesson.examples.length > 1 ? 'Örnekler' : 'Örnek'),
           for (final example in lesson.examples)
             MinikCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  QlBigArabic(example.arabic, fontSize: 32),
+                  QlTajweedFocusArabic(
+                    example.arabic,
+                    focus: example.focus,
+                    fontSize: 32,
+                  ),
                   const SizedBox(height: 6),
                   Text('Odak: ${example.focus}'),
-                  Text(example.reference),
+                  Text(quranLearnTajweedReference(example.reference)),
+                  const SizedBox(height: 8),
+                  QlPlayListen(
+                    audio: _audio,
+                    path: example.audio ?? lesson.audio,
+                  ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: QlColorButton(
                       arabic: example.arabic,
                       title: lesson.title,
                       prompt: 'Bu örneği boya.',
-                      audio: lesson.audio,
+                      audio: example.audio ?? lesson.audio,
                     ),
                   ),
                 ],

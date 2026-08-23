@@ -215,7 +215,7 @@
       "options": [
         {
           "id": "a",
-          "text": "İlk insan ve peygamber",
+          "text": "Tevbe",
           "correct": true
         },
         {
@@ -225,12 +225,12 @@
         },
         {
           "id": "c",
-          "text": "Kibir",
+          "text": "İsyan etmek",
           "correct": false
         }
       ],
       "correctOption": "a",
-      "explanation": "Hz. Âdem için hazırlanan eğitim içeriğinde öne çıkarılan derslerden biri i̇lk insan ve peygamberdır.",
+      "explanation": "Hz. Âdem kıssasında öne çıkan derslerden biri tevbedir: hata sonrası Allah'a yönelmek.",
       "source": "peygamberler.json",
       "xp": 5
     },

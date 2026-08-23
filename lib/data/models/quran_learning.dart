@@ -55,6 +55,8 @@ class QuranArabicLetter {
 
   bool get joinsBothSides => connectsToNext && connectionType == 'connected';
 
+  bool get isHeavySound => approximateTurkishSound.contains('kalın');
+
   factory QuranArabicLetter.fromJson(Map<String, dynamic> json) {
     return QuranArabicLetter(
       id: JsonMap.str(json['id']),
@@ -71,15 +73,21 @@ class QuranArabicLetter {
 }
 
 class QuranHarakaExample {
-  const QuranHarakaExample({required this.arabic, required this.reading});
+  const QuranHarakaExample({
+    required this.arabic,
+    required this.reading,
+    this.audio,
+  });
 
   final String arabic;
   final String reading;
+  final String? audio;
 
   factory QuranHarakaExample.fromJson(Map<String, dynamic> json) {
     return QuranHarakaExample(
       arabic: JsonMap.str(json['arabic']),
       reading: JsonMap.str(json['reading']),
+      audio: _nullableAudio(json['audio']),
     );
   }
 }
@@ -124,12 +132,14 @@ class QuranCombinationExample {
     required this.combined,
     required this.reading,
     this.note,
+    this.audio,
   });
 
   final List<String> parts;
   final String combined;
   final String reading;
   final String? note;
+  final String? audio;
 
   factory QuranCombinationExample.fromJson(Map<String, dynamic> json) {
     final note = json['note'];
@@ -138,6 +148,7 @@ class QuranCombinationExample {
       combined: JsonMap.str(json['combined']),
       reading: JsonMap.str(json['reading']),
       note: note == null ? null : JsonMap.str(note),
+      audio: _nullableAudio(json['audio']),
     );
   }
 }
@@ -204,17 +215,20 @@ class QuranTajweedExample {
     required this.arabic,
     required this.reference,
     required this.focus,
+    this.audio,
   });
 
   final String arabic;
   final String reference;
   final String focus;
+  final String? audio;
 
   factory QuranTajweedExample.fromJson(Map<String, dynamic> json) {
     return QuranTajweedExample(
       arabic: JsonMap.str(json['arabic']),
       reference: JsonMap.str(json['reference']),
       focus: JsonMap.str(json['focus']),
+      audio: _nullableAudio(json['audio']),
     );
   }
 }
@@ -369,6 +383,7 @@ class QuranLearningSurah {
     required this.nameTr,
     required this.ayahCount,
     required this.priority,
+    this.audio,
   });
 
   final int surahNumber;
@@ -376,6 +391,7 @@ class QuranLearningSurah {
   final String nameTr;
   final int ayahCount;
   final int priority;
+  final String? audio;
 
   String get id => '$surahNumber';
 
@@ -386,6 +402,7 @@ class QuranLearningSurah {
       nameTr: JsonMap.str(json['name_tr']),
       ayahCount: JsonMap.integer(json['ayah_count']),
       priority: JsonMap.integer(json['priority']),
+      audio: _nullableAudio(json['audio']),
     );
   }
 }

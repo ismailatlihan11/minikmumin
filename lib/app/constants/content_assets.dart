@@ -5,19 +5,19 @@ abstract final class ContentAssets {
     'kelime_i_tevhid': 'assets/audio/prayer/kelime_i_tevhid.mp3',
     'kelime_i_sehadet': 'assets/audio/prayer/kelime_i_sehadet.mp3',
     'subhaneke': 'assets/audio/prayer/subhaneke.mp3',
-    'surah_1': 'assets/audio/quran/surah_001.mp3',
-    'surah_001': 'assets/audio/quran/surah_001.mp3',
-    'surah_108': 'assets/audio/quran/surah_108.mp3',
-    'surah_112': 'assets/audio/quran/surah_112.mp3',
-    'surah_103': 'assets/audio/quran/surah_103.mp3',
-    'surah_114': 'assets/audio/quran/surah_114.mp3',
-    'surah_113': 'assets/audio/quran/surah_113.mp3',
-    'surah_109': 'assets/audio/quran/surah_109.mp3',
-    'surah_110': 'assets/audio/quran/surah_110.mp3',
-    'surah_111': 'assets/audio/quran/surah_111.mp3',
-    'surah_107': 'assets/audio/quran/surah_107.mp3',
-    'surah_105': 'assets/audio/quran/surah_105.mp3',
-    'surah_106': 'assets/audio/quran/surah_106.mp3',
+    'surah_1': 'assets/audio/quran_learn/surahs/surah_001.mp3',
+    'surah_001': 'assets/audio/quran_learn/surahs/surah_001.mp3',
+    'surah_108': 'assets/audio/quran_learn/surahs/surah_108.mp3',
+    'surah_112': 'assets/audio/quran_learn/surahs/surah_112.mp3',
+    'surah_103': 'assets/audio/quran_learn/surahs/surah_103.mp3',
+    'surah_114': 'assets/audio/quran_learn/surahs/surah_114.mp3',
+    'surah_113': 'assets/audio/quran_learn/surahs/surah_113.mp3',
+    'surah_109': 'assets/audio/quran_learn/surahs/surah_109.mp3',
+    'surah_110': 'assets/audio/quran_learn/surahs/surah_110.mp3',
+    'surah_111': 'assets/audio/quran_learn/surahs/surah_111.mp3',
+    'surah_107': 'assets/audio/quran_learn/surahs/surah_107.mp3',
+    'surah_105': 'assets/audio/quran_learn/surahs/surah_105.mp3',
+    'surah_106': 'assets/audio/quran_learn/surahs/surah_106.mp3',
     'tahiyyat': 'assets/audio/prayer/tahiyyat.mp3',
     'allahumme_salli': 'assets/audio/prayer/allahumme_salli.mp3',
     'allahumme_barik': 'assets/audio/prayer/allahumme_barik.mp3',
@@ -30,11 +30,14 @@ abstract final class ContentAssets {
     'salli': 'assets/audio/prayer/allahumme_salli.mp3',
     'barik': 'assets/audio/prayer/allahumme_barik.mp3',
     'iftitah_tekbir': 'assets/audio/prayer/iftitah_tekbir.mp3',
-    'fatiha': 'assets/audio/quran/surah_001.mp3',
-    'ihlas': 'assets/audio/quran/surah_112.mp3',
-    'felak': 'assets/audio/quran/surah_113.mp3',
-    'nas': 'assets/audio/quran/surah_114.mp3',
+    'fatiha': 'assets/audio/quran_learn/surahs/surah_001.mp3',
+    'ihlas': 'assets/audio/quran_learn/surahs/surah_112.mp3',
+    'felak': 'assets/audio/quran_learn/surahs/surah_113.mp3',
+    'nas': 'assets/audio/quran_learn/surahs/surah_114.mp3',
   };
+
+  static String quranRecitation(int surahId) =>
+      'assets/audio/quran/surah_${surahId.toString().padLeft(3, '0')}.mp3';
 
   static const Map<String, String> prayerImages = {
     'intention': 'assets/images/prayer/step01_niyet.png',
@@ -98,9 +101,9 @@ abstract final class ContentAssets {
     if (id.startsWith('surah_')) {
       final number = int.tryParse(id.substring(6));
       if (number != null) {
-        return 'assets/audio/quran/surah_${number.toString().padLeft(3, '0')}.mp3';
+        return 'assets/audio/quran_learn/surahs/surah_${number.toString().padLeft(3, '0')}.mp3';
       }
-      return 'assets/audio/quran/$id.mp3';
+      return 'assets/audio/quran_learn/surahs/$id.mp3';
     }
     if (id.startsWith('dua_') || id.startsWith('quran_dua_')) {
       return 'assets/audio/duas/$id.mp3';

@@ -106,7 +106,7 @@
         "order": 7,
         "letter": "خ",
         "name": "Hı",
-        "approximate_turkish_sound": "hı",
+        "approximate_turkish_sound": "hı (kalın)",
         "connection_type": "connected",
         "forms": {
           "isolated": "خ",
@@ -298,7 +298,7 @@
         "order": 19,
         "letter": "غ",
         "name": "Gayn",
-        "approximate_turkish_sound": "ğ / gıyn",
+        "approximate_turkish_sound": "ğ / gıyn (kalın)",
         "connection_type": "connected",
         "forms": {
           "isolated": "غ",
@@ -472,7 +472,8 @@
             ],
             "combined": "با",
             "reading": "bâ",
-            "note": "Harflerin yazı içinde birleşmesini gösteren başlangıç örneği."
+            "note": "Harflerin yazı içinde birleşmesini gösteren başlangıç örneği.",
+            "audio": "assets/audio/quran_learn/letter_combinations/ba_alif.mp3"
           },
           {
             "parts": [
@@ -481,7 +482,38 @@
             ],
             "combined": "تا",
             "reading": "tâ",
-            "note": null
+            "note": null,
+            "audio": "assets/audio/quran_learn/letter_combinations/ta_alif.mp3"
+          },
+          {
+            "parts": [
+              "ط",
+              "ا"
+            ],
+            "combined": "طا",
+            "reading": "tâ (kalın)",
+            "note": "Kalın tı ile elif birleşimi.",
+            "audio": "assets/audio/quran_learn/letter_combinations/ta_heavy_alif.mp3"
+          },
+          {
+            "parts": [
+              "ص",
+              "ا"
+            ],
+            "combined": "صا",
+            "reading": "sâ (kalın)",
+            "note": "Kalın sad ile elif birleşimi.",
+            "audio": "assets/audio/quran_learn/letter_combinations/sad_alif.mp3"
+          },
+          {
+            "parts": [
+              "ق",
+              "ا"
+            ],
+            "combined": "قا",
+            "reading": "kâ (kalın)",
+            "note": "Kalın kaf ile elif birleşimi.",
+            "audio": "assets/audio/quran_learn/letter_combinations/qaf_alif.mp3"
           }
         ]
       },
@@ -497,7 +529,8 @@
             ],
             "combined": "بَتَ",
             "reading": "ba-ta",
-            "note": "Hareke seslerini ayırt etmeye yönelik eğitim örneği."
+            "note": "Hareke seslerini ayırt etmeye yönelik eğitim örneği.",
+            "audio": "assets/audio/quran_learn/combine/ba_ta.mp3"
           },
           {
             "parts": [
@@ -506,7 +539,38 @@
             ],
             "combined": "مَنَ",
             "reading": "ma-na",
-            "note": "Hareke çalışması."
+            "note": "Hareke çalışması.",
+            "audio": "assets/audio/quran_learn/combine/ma_na.mp3"
+          },
+          {
+            "parts": [
+              "تَ",
+              "طَ"
+            ],
+            "combined": "تَطَ",
+            "reading": "ta-ta (ince-kalın)",
+            "note": "İnce te ile kalın tı sesini ayırt etmeye yönelik eğitim örneği.",
+            "audio": "assets/audio/quran_learn/combine/ta_ta_heavy.mp3"
+          },
+          {
+            "parts": [
+              "سَ",
+              "صَ"
+            ],
+            "combined": "سَصَ",
+            "reading": "sa-sa (ince-kalın)",
+            "note": "İnce sin ile kalın sad sesini ayırt etmeye yönelik eğitim örneği.",
+            "audio": "assets/audio/quran_learn/combine/sin_sad.mp3"
+          },
+          {
+            "parts": [
+              "كَ",
+              "قَ"
+            ],
+            "combined": "كَقَ",
+            "reading": "ka-ka (ince-kalın)",
+            "note": "İnce kef ile kalın kaf sesini ayırt etmeye yönelik eğitim örneği.",
+            "audio": "assets/audio/quran_learn/combine/kaf_qaf.mp3"
           }
         ]
       },
@@ -523,7 +587,8 @@
             ],
             "combined": "بِسْمِ",
             "reading": "bismi",
-            "note": "Kur'an'da geçen gerçek kelime."
+            "note": "Kur'an'da geçen gerçek kelime.",
+            "audio": "assets/audio/quran_learn/words/word_02.mp3"
           }
         ]
       },
@@ -539,7 +604,8 @@
             ],
             "combined": "رَبِّ",
             "reading": "rabbi",
-            "note": "Kur'an'da geçen gerçek kelime; şedde örneği."
+            "note": "Kur'an'da geçen gerçek kelime; şedde örneği.",
+            "audio": "assets/audio/quran_learn/words/rabb.mp3"
           }
         ]
       }
@@ -559,11 +625,38 @@
         "examples": [
           {
             "arabic": "بَ",
-            "reading": "ba"
+            "reading": "ba",
+            "audio": "assets/audio/quran_learn/exercises/ba_fatha.mp3"
           },
           {
             "arabic": "تَ",
-            "reading": "ta"
+            "reading": "ta",
+            "audio": "assets/audio/quran_learn/exercises/ta_fatha.mp3"
+          },
+          {
+            "arabic": "طَ",
+            "reading": "ta (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/ta_heavy_fatha.mp3"
+          },
+          {
+            "arabic": "سَ",
+            "reading": "sa",
+            "audio": "assets/audio/quran_learn/exercises/sin_fatha.mp3"
+          },
+          {
+            "arabic": "صَ",
+            "reading": "sa (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/sad_fatha.mp3"
+          },
+          {
+            "arabic": "كَ",
+            "reading": "ka",
+            "audio": "assets/audio/quran_learn/exercises/kaf_fatha.mp3"
+          },
+          {
+            "arabic": "قَ",
+            "reading": "ka (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/qaf_fatha.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/harakat/fatha.mp3"
@@ -577,11 +670,28 @@
         "examples": [
           {
             "arabic": "بِ",
-            "reading": "bi"
+            "reading": "bi",
+            "audio": "assets/audio/quran_learn/exercises/ba_kasra.mp3"
           },
           {
             "arabic": "تِ",
-            "reading": "ti"
+            "reading": "ti",
+            "audio": "assets/audio/quran_learn/exercises/ta_kasra.mp3"
+          },
+          {
+            "arabic": "طِ",
+            "reading": "ti (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/ta_heavy_kasra.mp3"
+          },
+          {
+            "arabic": "صِ",
+            "reading": "si (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/sad_kasra.mp3"
+          },
+          {
+            "arabic": "قِ",
+            "reading": "ki (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/qaf_kasra.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/harakat/kasra.mp3"
@@ -595,11 +705,28 @@
         "examples": [
           {
             "arabic": "بُ",
-            "reading": "bu"
+            "reading": "bu",
+            "audio": "assets/audio/quran_learn/exercises/ba_damma.mp3"
           },
           {
             "arabic": "تُ",
-            "reading": "tu"
+            "reading": "tu",
+            "audio": "assets/audio/quran_learn/exercises/ta_damma.mp3"
+          },
+          {
+            "arabic": "طُ",
+            "reading": "tu (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/ta_heavy_damma.mp3"
+          },
+          {
+            "arabic": "صُ",
+            "reading": "su (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/sad_damma.mp3"
+          },
+          {
+            "arabic": "قُ",
+            "reading": "ku (kalın)",
+            "audio": "assets/audio/quran_learn/exercises/qaf_damma.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/harakat/damma.mp3"
@@ -613,7 +740,8 @@
         "examples": [
           {
             "arabic": "أَبْ",
-            "reading": "eb"
+            "reading": "eb",
+            "audio": "assets/audio/quran_learn/sukun/eb.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/sukun/sukun.mp3"
@@ -627,7 +755,8 @@
         "examples": [
           {
             "arabic": "رَبِّ",
-            "reading": "rabbi"
+            "reading": "rabbi",
+            "audio": "assets/audio/quran_learn/shadda/ra_shadda.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/shadda/shadda.mp3"
@@ -641,7 +770,8 @@
         "examples": [
           {
             "arabic": "كِتَابًا",
-            "reading": "kitâben"
+            "reading": "kitâben",
+            "audio": "assets/audio/quran_learn/tanwin/kitaban.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/tanwin/fathatayn.mp3"
@@ -655,7 +785,8 @@
         "examples": [
           {
             "arabic": "عَلِيمٍ",
-            "reading": "alîmin"
+            "reading": "alîmin",
+            "audio": "assets/audio/quran_learn/tanwin/alimin.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/tanwin/kasratayn.mp3"
@@ -669,7 +800,8 @@
         "examples": [
           {
             "arabic": "غَفُورٌ",
-            "reading": "gafûrun"
+            "reading": "gafûrun",
+            "audio": "assets/audio/quran_learn/tanwin/gafurun.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/tanwin/dammatayn.mp3"
@@ -988,6 +1120,90 @@
         "correct_answer": "ج",
         "feedback_correct": "Harika! ج kalkale harflerindendir.",
         "feedback_wrong": "Kalkale harflerini tekrar görelim."
+      },
+      {
+        "id": "game_tajweed_06",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "مَالِكِ kelimesinde hangi kural vardır?",
+        "options": [
+          "Med",
+          "Cezm",
+          "İklâb"
+        ],
+        "correct_answer": "Med",
+        "feedback_correct": "Harika! مَا uzatılarak okunur.",
+        "feedback_wrong": "Med örneğini tekrar dinleyelim."
+      },
+      {
+        "id": "game_tajweed_07",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "اَحَدٌ kelimesinde hangi işaret vardır?",
+        "options": [
+          "Tenvin",
+          "Şedde",
+          "Med"
+        ],
+        "correct_answer": "Tenvin",
+        "feedback_correct": "Doğru! دٌ üzerinde iki ötre vardır.",
+        "feedback_wrong": "Tenvin işaretini tekrar inceleyelim."
+      },
+      {
+        "id": "game_tajweed_08",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "اِنَّ kelimesinde hangi kural belirgindir?",
+        "options": [
+          "Gunne",
+          "Kalkale",
+          "Vakıf"
+        ],
+        "correct_answer": "Gunne",
+        "feedback_correct": "Aferin! Şeddeli nûn gunne ile okunur.",
+        "feedback_wrong": "Gunne örneğini tekrar dinleyelim."
+      },
+      {
+        "id": "game_tajweed_09",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "فَمَنْ یَعْمَلْ hangi kuralın örneğidir?",
+        "options": [
+          "İdğam",
+          "İklâb",
+          "Vakıf"
+        ],
+        "correct_answer": "İdğam",
+        "feedback_correct": "Harika! نْ + ی idğam örneğidir.",
+        "feedback_wrong": "İdğam örneğini tekrar inceleyelim."
+      },
+      {
+        "id": "game_tajweed_10",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "Vakıf ne demektir?",
+        "options": [
+          "Uygun yerde durmak",
+          "Sesi uzatmak",
+          "Harfi gizlemek"
+        ],
+        "correct_answer": "Uygun yerde durmak",
+        "feedback_correct": "Doğru! Vakıf, uygun bir yerde durmaktır.",
+        "feedback_wrong": "Vakıf dersini tekrar okuyalım."
+      },
+      {
+        "id": "game_tajweed_11",
+        "type": "find_tajweed",
+        "level": 6,
+        "question": "اَنْعَمْتَ hangi kuralın örneğidir?",
+        "options": [
+          "İzhâr",
+          "İklâb",
+          "Kalkale"
+        ],
+        "correct_answer": "İzhâr",
+        "feedback_correct": "Harika! نْ + ع izhâr örneğidir.",
+        "feedback_wrong": "İzhâr örneğini tekrar inceleyelim."
       }
     ]
   },
@@ -1040,7 +1256,7 @@
         "id": 6,
         "title": "Temel Tecvidi Öğrenelim",
         "description": "Kur'an okurken karşımıza çıkan temel tecvid kurallarını tanıyalım.",
-        "lesson_count": 10,
+        "lesson_count": 11,
         "prerequisite_level": 5,
         "unlock_rule": "level_completed"
       },
@@ -1073,90 +1289,102 @@
         "name_ar": "الفاتحة",
         "name_tr": "Fâtiha",
         "ayah_count": 7,
-        "priority": 1
+        "priority": 1,
+        "audio": "assets/audio/quran_learn/surahs/surah_001.mp3"
       },
       {
         "surah_number": 112,
         "name_ar": "الإخلاص",
         "name_tr": "İhlâs",
         "ayah_count": 4,
-        "priority": 2
+        "priority": 2,
+        "audio": "assets/audio/quran_learn/surahs/surah_112.mp3"
       },
       {
         "surah_number": 113,
         "name_ar": "الفلق",
         "name_tr": "Felak",
         "ayah_count": 5,
-        "priority": 3
+        "priority": 3,
+        "audio": "assets/audio/quran_learn/surahs/surah_113.mp3"
       },
       {
         "surah_number": 114,
         "name_ar": "الناس",
         "name_tr": "Nâs",
         "ayah_count": 6,
-        "priority": 4
+        "priority": 4,
+        "audio": "assets/audio/quran_learn/surahs/surah_114.mp3"
       },
       {
         "surah_number": 108,
         "name_ar": "الكوثر",
         "name_tr": "Kevser",
         "ayah_count": 3,
-        "priority": 5
+        "priority": 5,
+        "audio": "assets/audio/quran_learn/surahs/surah_108.mp3"
       },
       {
         "surah_number": 103,
         "name_ar": "العصر",
         "name_tr": "Asr",
         "ayah_count": 3,
-        "priority": 6
+        "priority": 6,
+        "audio": "assets/audio/quran_learn/surahs/surah_103.mp3"
       },
       {
         "surah_number": 109,
         "name_ar": "الكافرون",
         "name_tr": "Kâfirûn",
         "ayah_count": 6,
-        "priority": 7
+        "priority": 7,
+        "audio": "assets/audio/quran_learn/surahs/surah_109.mp3"
       },
       {
         "surah_number": 110,
         "name_ar": "النصر",
         "name_tr": "Nasr",
         "ayah_count": 3,
-        "priority": 8
+        "priority": 8,
+        "audio": "assets/audio/quran_learn/surahs/surah_110.mp3"
       },
       {
         "surah_number": 111,
         "name_ar": "المسد",
         "name_tr": "Tebbet / Mesed",
         "ayah_count": 5,
-        "priority": 9
+        "priority": 9,
+        "audio": "assets/audio/quran_learn/surahs/surah_111.mp3"
       },
       {
         "surah_number": 105,
         "name_ar": "الفيل",
         "name_tr": "Fil",
         "ayah_count": 5,
-        "priority": 10
+        "priority": 10,
+        "audio": "assets/audio/quran_learn/surahs/surah_105.mp3"
       },
       {
         "surah_number": 106,
         "name_ar": "قريش",
         "name_tr": "Kureyş",
         "ayah_count": 4,
-        "priority": 11
+        "priority": 11,
+        "audio": "assets/audio/quran_learn/surahs/surah_106.mp3"
       },
       {
         "surah_number": 107,
         "name_ar": "الماعون",
         "name_tr": "Mâûn",
         "ayah_count": 7,
-        "priority": 12
+        "priority": 12,
+        "audio": "assets/audio/quran_learn/surahs/surah_107.mp3"
       }
     ]
   },
   "quran_tajweed": {
     "title": "Kur'an Öğren - Temel Tecvid",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "language": "tr",
     "lessons": [
       {
@@ -1169,15 +1397,17 @@
           {
             "arabic": "مَالِكِ",
             "reference": "1:4",
-            "focus": "مَا"
+            "focus": "مَا",
+            "audio": "assets/audio/quran_learn/words/word_08.mp3"
           },
           {
-            "arabic": "الضَّالِّينَ",
+            "arabic": "الضَّٓالّٖینَ",
             "reference": "1:7",
-            "focus": "ضَا"
+            "focus": "ضَّٓا",
+            "audio": "assets/audio/quran_learn/madd/dad_madd_alif.mp3"
           }
         ],
-        "audio": "assets/audio/quran_learn/madd/ba_madd_alif.mp3"
+        "audio": "assets/audio/quran_learn/words/word_08.mp3"
       },
       {
         "id": "tajweed_02",
@@ -1187,17 +1417,19 @@
         "explanation": "Şedde işaretindeki ilk bölüm sakin, ikinci bölüm harekelidir; harf güçlü biçimde okunur.",
         "examples": [
           {
-            "arabic": "رَبِّ",
+            "arabic": "رَبِّ",
             "reference": "1:2",
-            "focus": "بِّ"
+            "focus": "بِّ",
+            "audio": "assets/audio/quran_learn/words/word_04.mp3"
           },
           {
-            "arabic": "إِيَّاكَ",
+            "arabic": "اِیَّاكَ",
             "reference": "1:5",
-            "focus": "يَّ"
+            "focus": "یَّ",
+            "audio": "assets/audio/quran_learn/words/word_11.mp3"
           }
         ],
-        "audio": "assets/audio/quran_learn/shadda/shadda.mp3"
+        "audio": "assets/audio/quran_learn/shadda/ba_shadda.mp3"
       },
       {
         "id": "tajweed_03",
@@ -1209,15 +1441,17 @@
           {
             "arabic": "قُلْ",
             "reference": "112:1",
-            "focus": "لْ"
+            "focus": "لْ",
+            "audio": "assets/audio/quran_learn/words/word_18.mp3"
           },
           {
             "arabic": "لَمْ",
             "reference": "112:3",
-            "focus": "مْ"
+            "focus": "مْ",
+            "audio": "assets/audio/quran_learn/words/word_22.mp3"
           }
         ],
-        "audio": "assets/audio/quran_learn/sukun/sukun.mp3"
+        "audio": "assets/audio/quran_learn/sukun/lam_sukun.mp3"
       },
       {
         "id": "tajweed_04",
@@ -1227,14 +1461,22 @@
         "explanation": "Tenvin; iki üstün, iki esre veya iki ötre ile gösterilir. Okunuş, durma/başlama durumuna göre değişebilir.",
         "examples": [
           {
-            "arabic": "أَحَدٌ",
+            "arabic": "اَحَدٌ",
             "reference": "112:1",
-            "focus": "دٌ"
+            "focus": "دٌ",
+            "audio": "assets/audio/quran_learn/words/word_20.mp3"
           },
           {
             "arabic": "كُفُوًا",
             "reference": "112:4",
-            "focus": "وًا"
+            "focus": "وًا",
+            "audio": "assets/audio/quran_learn/tanwin/waw_fathatayn.mp3"
+          },
+          {
+            "arabic": "حَاسِدٍ",
+            "reference": "113:5",
+            "focus": "دٍ",
+            "audio": "assets/audio/quran_learn/tanwin/dal_kasratayn.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/tanwin/dammatayn.mp3"
@@ -1247,14 +1489,16 @@
         "explanation": "Gunne, özellikle şeddeli nûn ve mîm gibi durumlarda belirginleşir. Dinleyerek öğrenme burada önemlidir.",
         "examples": [
           {
-            "arabic": "إِنَّ",
-            "reference": "örnek",
-            "focus": "نَّ"
+            "arabic": "اِنَّ",
+            "reference": "103:2",
+            "focus": "نَّ",
+            "audio": "assets/audio/quran_learn/shadda/nun_shadda.mp3"
           },
           {
-            "arabic": "ثُمَّ",
-            "reference": "örnek",
-            "focus": "مَّ"
+            "arabic": "ثُمَّ",
+            "reference": "2:28",
+            "focus": "مَّ",
+            "audio": "assets/audio/quran_learn/shadda/mim_shadda.mp3"
           }
         ],
         "audio": "assets/audio/quran_learn/shadda/nun_shadda.mp3"
@@ -1274,82 +1518,129 @@
         ],
         "examples": [
           {
-            "arabic": "أَحَدٌ",
+            "arabic": "اَحَدٌ",
             "reference": "112:1",
-            "focus": "دْ (vakıf halinde)"
+            "focus": "دْ (vakıf halinde)",
+            "audio": "assets/audio/quran_learn/sukun/dal_sukun.mp3"
           },
           {
-            "arabic": "يَجْعَلْ",
-            "reference": "örnek",
-            "focus": "جْ"
+            "arabic": "یَلِدْ",
+            "reference": "112:3",
+            "focus": "دْ",
+            "audio": "assets/audio/quran_learn/words/word_23.mp3"
           }
         ],
-        "audio": "assets/audio/quran_learn/sukun/ba_sukun.mp3"
+        "audio": "assets/audio/quran_learn/sukun/dal_sukun.mp3"
+      },
+      {
+        "id": "tajweed_11",
+        "order": 7,
+        "title": "İzhâr",
+        "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce açık okunmasıdır.",
+        "explanation": "İzhâr, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde nûn sesinin gizlenmeden, açık okunmasıdır.",
+        "examples": [
+          {
+            "arabic": "اَنْعَمْتَ",
+            "reference": "1:7",
+            "focus": "نْ ع",
+            "audio": "assets/audio/quran_learn/tajweed/izhar.mp3"
+          },
+          {
+            "arabic": "كُفُوًا اَحَدٌ",
+            "reference": "112:4",
+            "focus": "وًا ا",
+            "audio": "assets/audio/quran_learn/tanwin/waw_fathatayn.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/tajweed/izhar.mp3"
       },
       {
         "id": "tajweed_07",
-        "order": 7,
+        "order": 8,
         "title": "İdğam",
         "short_description": "Bazı harflerin belirli şartlarda birbirine katılarak okunmasıdır.",
         "explanation": "İdğam, bir harfin sonraki harfe katılmasıdır. Nûn-ı sâkin ve tenvin gibi konularla birlikte ayrıntılı öğretilir.",
         "examples": [
           {
-            "arabic": "مَن يَعْمَلْ",
-            "reference": "örnek yapı",
-            "focus": "نْ ي"
+            "arabic": "فَمَنْ یَعْمَلْ",
+            "reference": "99:7",
+            "focus": "نْ ی",
+            "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
+          },
+          {
+            "arabic": "یَكُنْ لَهُ",
+            "reference": "112:4",
+            "focus": "نْ ل",
+            "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
           }
         ],
-        "audio": null
+        "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
       },
       {
         "id": "tajweed_08",
-        "order": 8,
+        "order": 9,
         "title": "İhfâ",
         "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce gizli/genizli okunmasıdır.",
         "explanation": "İhfâ, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde uygulanır.",
         "examples": [
           {
-            "arabic": "مِن شَرِّ",
+            "arabic": "مِنْ شَرِّ",
             "reference": "113:2",
-            "focus": "نْ ش"
+            "focus": "نْ ش",
+            "audio": "assets/audio/quran_learn/tajweed/ihfa.mp3"
+          },
+          {
+            "arabic": "یَنْقُضُونَ",
+            "reference": "2:27",
+            "focus": "نْ ق",
+            "audio": "assets/audio/quran_learn/tajweed/ihfa.mp3"
           }
         ],
-        "audio": null
+        "audio": "assets/audio/quran_learn/tajweed/ihfa.mp3"
       },
       {
         "id": "tajweed_09",
-        "order": 9,
+        "order": 10,
         "title": "İklâb",
         "short_description": "Nûn-ı sâkin veya tenvinin ب harfinden önce mîm sesine çevrilerek gizli okunmasıdır.",
         "explanation": "İklâbın temel şartı, nûn-ı sâkin veya tenvinden sonra ب harfinin gelmesidir.",
         "examples": [
           {
-            "arabic": "أَنْبِئْهُمْ",
+            "arabic": "اَنْبِئْهُمْ",
             "reference": "2:33",
-            "focus": "نْب"
+            "focus": "نْب",
+            "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
+          },
+          {
+            "arabic": "مِنْ بَعْدِ",
+            "reference": "2:27",
+            "focus": "نْ ب",
+            "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
           }
         ],
-        "audio": null
+        "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
       },
       {
         "id": "tajweed_10",
-        "order": 10,
+        "order": 11,
         "title": "Vakıf",
         "short_description": "Okuma sırasında uygun bir yerde durmayı öğreniriz.",
         "explanation": "Vakıf, kıraat sırasında uygun bir yerde durmaktır. Duruşta kelimenin son harekesinin okunması değişebilir; vakıf işaretlerini öğrenmek önemlidir.",
         "examples": [
           {
-            "arabic": "الرَّحِيمِ",
+            "arabic": "الرَّحٖیمِ",
             "reference": "1:3",
-            "focus": "son"
+            "focus": "son",
+            "audio": "assets/audio/quran_learn/tajweed/waqf_rahim.mp3"
           },
           {
-            "arabic": "الْعَالَمِينَ",
+            "arabic": "الْعَالَمٖینَ",
             "reference": "1:2",
-            "focus": "son"
+            "focus": "son",
+            "audio": "assets/audio/quran_learn/tajweed/waqf_alamin.mp3"
           }
         ],
-        "audio": null
+        "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
       }
     ]
   },

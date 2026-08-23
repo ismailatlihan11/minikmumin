@@ -70,8 +70,8 @@
       "id": 9,
       "arabic": "الْجَبَّارُ",
       "name": "El-Cebbâr",
-      "meaning": "Dilediğini yaptıran",
-      "childExplanation": "Dilediğini yaptıran.",
+      "meaning": "Azamet sahibi, iradesi geçerli olan",
+      "childExplanation": "Azamet sahibi, iradesi geçerli olan.",
       "audio": "assets/audio/asma/09.mp3"
     },
     {
@@ -582,16 +582,16 @@
       "id": 73,
       "arabic": "الْأَوَّلُ",
       "name": "El-Evvel",
-      "meaning": "İlk",
-      "childExplanation": "İlk.",
+      "meaning": "Başlangıcı olmayan",
+      "childExplanation": "Başlangıcı olmayan.",
       "audio": "assets/audio/asma/73.mp3"
     },
     {
       "id": 74,
       "arabic": "الْآخِرُ",
       "name": "El-Âhir",
-      "meaning": "Son",
-      "childExplanation": "Son.",
+      "meaning": "Sonu olmayan",
+      "childExplanation": "Sonu olmayan.",
       "audio": "assets/audio/asma/74.mp3"
     },
     {

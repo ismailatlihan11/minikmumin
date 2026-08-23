@@ -39,6 +39,19 @@ flutter:
     - assets/audio/prayer/
     - assets/audio/quran/
     - assets/audio/quran_learn/
+    - assets/audio/quran_learn/alphabet/
+    - assets/audio/quran_learn/exercises/
+    - assets/audio/quran_learn/harakat/
+    - assets/audio/quran_learn/letter_combinations/
+    - assets/audio/quran_learn/madd/
+    - assets/audio/quran_learn/shadda/
+    - assets/audio/quran_learn/sukun/
+    - assets/audio/quran_learn/syllables/
+    - assets/audio/quran_learn/tanwin/
+    - assets/audio/quran_learn/words/
+    - assets/audio/quran_learn/surahs/
+    - assets/audio/quran_learn/combine/
+    - assets/audio/quran_learn/tajweed/
 
   fonts:
     - family: NotoNaskhArabic

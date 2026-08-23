@@ -1,4 +1,3 @@
-import '../../app/constants/content_assets.dart';
 import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
@@ -9,13 +8,28 @@ abstract final class QuranLearnAudio {
   static String? resolve(String? path) {
     final trimmed = path?.trim() ?? '';
     if (trimmed.isEmpty) return null;
-    if (!AssetCatalog.contains(trimmed)) return null;
-    return trimmed;
+    if (AssetCatalog.contains(trimmed)) return trimmed;
+    // Quran Learn clips are bundled under this prefix. Show Dinle even if
+    // AssetCatalog was loaded before the nested folders were registered.
+    if (trimmed.startsWith('assets/audio/quran_learn/')) return trimmed;
+    return null;
   }
 
-  static String? surahPath(int surahNumber) {
-    final mapped = ContentAssets.audioFor('surah_$surahNumber');
-    return resolve(mapped);
+  static String? exercisePath(String? alphabetPath, String harakaId) {
+    final path = alphabetPath?.trim() ?? '';
+    const prefix = 'assets/audio/quran_learn/alphabet/';
+    const suffix = '.mp3';
+    if (!path.startsWith(prefix) || !path.endsWith(suffix)) return null;
+    final letterId = path.substring(prefix.length, path.length - suffix.length);
+    if (letterId.isEmpty) return null;
+    return resolve('assets/audio/quran_learn/exercises/${letterId}_$harakaId.mp3');
+  }
+
+  static String? surahPath(int surahNumber, {String? jsonAudio}) {
+    final fromJson = resolve(jsonAudio);
+    if (fromJson != null) return fromJson;
+    final padded = surahNumber.toString().padLeft(3, '0');
+    return resolve('assets/audio/quran_learn/surahs/surah_$padded.mp3');
   }
 
   static Future<bool> play(

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/buttons.dart';
@@ -54,10 +55,6 @@ class QuranLearnCombinePage extends StatelessWidget {
                     ),
                   ),
                 ),
-              QlGamesStrip(
-                games: pack.gamesForLevel(3),
-                title: 'Birleştir',
-              ),
             ],
           );
         },
@@ -82,10 +79,17 @@ class QuranLearnCombineDetailPage extends StatefulWidget {
 }
 
 class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPage> {
+  final _audio = AudioPlayerService();
   int _index = 0;
   bool _won = false;
 
   QuranCombinationExample get example => widget.lesson.examples[_index];
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
 
   Future<void> _onCorrect() async {
     setState(() => _won = true);
@@ -152,6 +156,8 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
                   const SizedBox(height: 6),
                   Text(example.note!, textAlign: TextAlign.center),
                 ],
+                const SizedBox(height: AppSpacing.md),
+                QlPlayListen(audio: _audio, path: example.audio),
               ],
             ),
           ),
@@ -171,6 +177,7 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
               arabic: example.combined,
               title: widget.lesson.title,
               prompt: 'Bu birleşimi boya.',
+              audio: example.audio,
             ),
           ),
           if (_won) ...[

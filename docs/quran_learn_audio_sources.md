@@ -4,15 +4,19 @@ These files were generated using Google Cloud Text-to-Speech. The audio files ar
 
 This audio is **educational pronunciation**, not Quran recitation, adhan, or qari imitation. Short-surah tilawat stays on real recitation assets.
 
-The Flutter app stays **offline**. TTS runs only on a developer machine; MP3s are copied into `assets/audio/quran_learn/` and shipped in the APK. Do not call Google from Dart.
-
-Status (2026-08-18): **ADC missing** — `gcloud` / `application_default_credentials.json` not found. `--test` / `--all` were not run. JSON paths in `kur_an_ogrenme_veri_paketi.json` are already bound.
-
-- Voice: pending ADC / generation
+- Voice: `ar-XA-Chirp3-HD-Fenrir`
 - Language: `ar-XA`
-- Speaking rate: `0.85`
+- Speaking rate: `0.9` (isolated letters `0.86`)
+- Pitch: `8.0` (Neural2/Wavenet only; Chirp omits API pitch)
+- Cartoon pitch shift: `5.0` semitones after TTS (cartoon-boy timbre)
+- Voice style: cartoon-boy educational speaker, not a deep adult qari.
+- Isolated letters are generated as sounded syllables (e.g. طَ), not only letter names, so thick/thin Arabic sounds stay distinct.
 - API: Google Cloud Text-to-Speech (`google-cloud-texttospeech`)
 - Auth: Application Default Credentials (no keys in the Flutter app)
+- Generated date: 2026-08-23
+- Generated: 353
+- Skipped: 12
+- Failed: 0
 
 Documentation:
 - https://cloud.google.com/text-to-speech/docs
@@ -21,11 +25,3 @@ Documentation:
 License is **not** marked royalty-free or public domain.
 
 Letter `ه` is stored as `alphabet/hah.mp3` because `ha.mp3` is used for `ح`.
-
-To generate:
-
-```bash
-python3 scripts/setup_quran_learn_audio.py
-python3 scripts/generate_quran_learn_audio.py --test
-python3 scripts/generate_quran_learn_audio.py --all
-```

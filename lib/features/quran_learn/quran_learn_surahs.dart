@@ -14,8 +14,8 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_tajweed_marks.dart';
 import 'quran_learn_widgets.dart';
 
 enum QuranLearnReadMode { surah, practice, tajweedRead }
@@ -96,11 +96,6 @@ class QuranLearnSurahsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              if (mode == QuranLearnReadMode.surah)
-                QlGamesStrip(
-                  games: pack.gamesForLevel(5),
-                  title: 'Sureyi Bul',
-                ),
             ],
           );
         },
@@ -156,7 +151,10 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
   }
 
   Future<void> _listen(List<QuranVerse> verses) async {
-    final path = QuranLearnAudio.surahPath(widget.surah.surahNumber);
+    final path = QuranLearnAudio.surahPath(
+      widget.surah.surahNumber,
+      jsonAudio: widget.surah.audio,
+    );
     if (path == null) return;
     setState(() {
       _follow = true;
@@ -195,7 +193,10 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
   @override
   Widget build(BuildContext context) {
     _future ??= _load();
-    final audioPath = QuranLearnAudio.surahPath(widget.surah.surahNumber);
+    final audioPath = QuranLearnAudio.surahPath(
+      widget.surah.surahNumber,
+      jsonAudio: widget.surah.audio,
+    );
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
@@ -230,7 +231,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                     if (widget.mode == QuranLearnReadMode.tajweedRead) ...[
                       const SizedBox(height: 8),
                       const Text(
-                        'İşaretlere dikkat ederek oku.',
+                        'Öğrendiğin tecvid kurallarını bu ayetlerde fark et. Sarı etiketler derste gördüğün kurallardır.',
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -301,6 +302,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                                 prompt: 'Bu ayeti boya.',
                                 audio: QuranLearnAudio.surahPath(
                                   widget.surah.surahNumber,
+                                  jsonAudio: widget.surah.audio,
                                 ),
                               ),
                             ],
@@ -308,6 +310,15 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                         ),
                         const SizedBox(height: 6),
                         ArabicText(verses[i].arabic, fontSize: 26),
+                        if (widget.mode == QuranLearnReadMode.tajweedRead) ...[
+                          const SizedBox(height: 8),
+                          QlTajweedHitChips(
+                            quranLearnTajweedHits(
+                              arabic: verses[i].arabic,
+                              lessons: widget.pack.tajweed,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),

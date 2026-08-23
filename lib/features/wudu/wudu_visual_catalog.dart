@@ -161,8 +161,17 @@ abstract final class WuduVisualCatalog {
       jsonStepId: 'ears',
     ),
     WuduVisualStep(
-      id: 'sag_ayak',
+      id: 'boyun',
       number: 11,
+      title: 'Boynumuzu Mesh Edelim',
+      prompt: 'Islak elimizin tersiyle boynumuzu mesh ederiz.',
+      image: 'assets/images/wudu/wudu_boyun.png',
+      kind: WuduKind.sunnah,
+      jsonStepId: 'neck',
+    ),
+    WuduVisualStep(
+      id: 'sag_ayak',
+      number: 12,
       title: 'Sağ Ayağımızı Yıkayalım',
       prompt: 'Sağ ayağımızı topuk ve parmak araları dahil yıkarız.',
       image: 'assets/images/wudu/wudu_11_sag_ayak.png',
@@ -171,7 +180,7 @@ abstract final class WuduVisualCatalog {
     ),
     WuduVisualStep(
       id: 'sol_ayak',
-      number: 12,
+      number: 13,
       title: 'Sol Ayağımızı Yıkayalım',
       prompt: 'Sol ayağımızı topuk ve parmak araları dahil yıkarız.',
       image: 'assets/images/wudu/wudu_12_sol_ayak.png',
@@ -180,7 +189,7 @@ abstract final class WuduVisualCatalog {
     ),
     WuduVisualStep(
       id: 'tamam',
-      number: 13,
+      number: 14,
       title: 'Abdestimiz Tamamlandı!',
       prompt: 'Maşallah! Abdestimizi öğrendik.',
       image: 'assets/images/wudu/wudu_13_tamam.png',
@@ -238,6 +247,8 @@ abstract final class WuduVisualCatalog {
         return 'assets/images/wudu/wudu_09_bas.png';
       case 'ears':
         return 'assets/images/wudu/wudu_10_kulaklar.png';
+      case 'neck':
+        return 'assets/images/wudu/wudu_boyun.png';
       case 'feet':
         return 'assets/images/wudu/wudu_11_sag_ayak.png';
       default:

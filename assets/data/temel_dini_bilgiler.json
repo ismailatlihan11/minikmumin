@@ -7,12 +7,12 @@
     {
       "id": 1,
       "title": "İslam Nedir?",
-      "short_description": "İslam, Allah'ın emirlerine inanmak, O'na kulluk etmek ve güzel bir hayat yaşamaya çalışmaktır.",
+      "short_description": "",
       "content": "İslam, Allah'a inanmak, yalnızca O'na kulluk etmek, Peygamberimiz Hz. Muhammed'in ﷺ bildirdiklerine inanmak ve Allah'ın emirlerine uygun güzel bir hayat yaşamaktır. İslam'ın beş temel şartı vardır: Şehadet, namaz, oruç, zekât ve hac",
       "key_points": [
         "Allah'tan başka bir ilah olmadığına inanmak",
         "Allah'a kulluk etmek",
-        "Peygamberlerin öğretilerine uymak",
+        "Son peygamber Hz. Muhammed'in öğrettiklerine uymak",
         "Güzel ahlaklı olmaya çalışmak"
       ],
       "audio": null,
@@ -21,15 +21,15 @@
     {
       "id": 2,
       "title": "Şehadet Nedir?",
-      "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
+      "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
       "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
       "meaning": "Allah'tan başka ilah olmadığına ve Muhammed'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
-      "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna inanır.",
+      "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanır.",
       "key_points": [
         "Allah tektir.",
         "Allah'tan başka ilah yoktur.",
-        "Hz. Muhammed (s.a.v) Allah'ın kulu ve elçisidir."
+        "Hz. Muhammed (S.A.V) Allah'ın kulu ve elçisidir."
       ],
       "audio": null,
       "icon": "shahada"
@@ -61,7 +61,7 @@
       "key_points": [
         "Allah tektir.",
         "Yalnızca Allah'a kulluk ederiz.",
-        "Hz. Muhammed Allah'ın elçisidir."
+        "Hz. Muhammed (S.A.V) Allah'ın elçisidir."
       ],
       "audio": null,
       "icon": "tawhid"
@@ -110,7 +110,7 @@
         {
           "order": 1,
           "title": "Allah'a iman",
-          "description": "Allah'ın var ve tek ilah olduğuna inanmak."
+          "description": "Allah'ın var ve tek ilah olduğuna inanmak. O'na hiçbir şey benzemez."
         },
         {
           "order": 2,
@@ -120,12 +120,12 @@
         {
           "order": 3,
           "title": "Kitaplara iman",
-          "description": "Allah'ın peygamberlerine gönderdiği ilahi kitapların hak olduğuna inanmak."
+          "description": "Allah'ın peygamberlerine indirdiği kitapların hak olduğuna inanmak. Bugün okuduğumuz ve uyduğumuz kitap Kur'an'dır."
         },
         {
           "order": 4,
           "title": "Peygamberlere iman",
-          "description": "Allah'ın gönderdiği bütün peygamberlere inanmak."
+          "description": "Allah'ın gönderdiği bütün peygamberlere inanmak. Son peygamber Hz. Muhammed'dir."
         },
         {
           "order": 5,
@@ -135,7 +135,7 @@
         {
           "order": 6,
           "title": "Kadere iman",
-          "description": "Allah'ın her şeyi bildiğine ve her şeyin O'nun bilgisi dahilinde olduğuna inanmak."
+          "description": "Kadere, hayır ve şerrin Allah'ın bilgisi ve takdiriyle olduğuna inanmak."
         }
       ],
       "audio": null,

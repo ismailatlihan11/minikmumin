@@ -9,8 +9,8 @@ import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_audio.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnHarakatPage extends StatelessWidget {
@@ -55,10 +55,6 @@ class QuranLearnHarakatPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              QlGamesStrip(
-                games: pack.gamesForLevel(2),
-                title: 'Sesini Bul',
-              ),
             ],
           );
         },
@@ -135,6 +131,13 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                       ? haraka.symbol
                       : haraka.examples.first.arabic,
                   fontSize: 72,
+                  onTap: QuranLearnAudio.resolve(haraka.audio) == null
+                      ? null
+                      : () => QuranLearnAudio.play(
+                            _audio,
+                            context.read<LocalProgressStore>(),
+                            haraka.audio,
+                          ),
                 ),
                 Text(haraka.name, style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: 8),
@@ -167,6 +170,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
+                  QlListenIcon(audio: _audio, path: example.audio ?? haraka.audio),
                   QlColorIconButton(
                     arabic: example.arabic,
                     title: haraka.name,
@@ -178,7 +182,6 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
             ),
           const SizedBox(height: AppSpacing.lg),
           QlPrimaryBar(label: 'Öğrendim', onPressed: _mark),
-          QlGamesStrip(games: widget.pack.gamesForLevel(2), title: 'Sesini Bul'),
         ],
       ),
     );

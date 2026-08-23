@@ -10,6 +10,7 @@ import '../../data/models/quran_learning.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_progress.dart';
@@ -29,13 +30,6 @@ const _palette = <Color>[
   Color(0xFF5D4037),
   Color(0xFF1E392F),
   _paper,
-];
-
-const _brushes = <(double, String)>[
-  (6, 'Çok ince'),
-  (12, 'İnce'),
-  (22, 'Normal'),
-  (34, 'Kalın'),
 ];
 
 void openQlColoring(
@@ -177,7 +171,8 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
         future: _future!,
         errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
         onRetry: () => setState(
-          () => _future = context.read<ContentRepositories>().quranLearning.load(),
+          () => _future =
+              context.read<ContentRepositories>().quranLearning.load(),
         ),
         builder: (pack) => FutureBuilder<QuranLearnSnapshot>(
           future: QuranLearnProgress.load(store, pack),
@@ -302,6 +297,7 @@ class _QlColoringPageState extends State<QlColoringPage> {
   final _strokes = <_PaintStroke>[];
   Color _color = _palette[3];
   double _width = 22;
+  bool _customBrush = false;
   bool _saved = false;
 
   @override
@@ -388,36 +384,54 @@ class _QlColoringPageState extends State<QlColoringPage> {
             Text(widget.prompt, style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: AppSpacing.md),
             Expanded(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  color: _paper,
-                  borderRadius: BorderRadius.circular(28),
-                  border: Border.all(
-                    color: MinikColors.green.withValues(alpha: 0.18),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: _paper,
+                      borderRadius: BorderRadius.circular(28),
+                      border: Border.all(
+                        color: MinikColors.green.withValues(alpha: 0.18),
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(28),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onPanStart: (d) =>
+                                _addPoint(d.localPosition, start: true),
+                            onPanUpdate: (d) =>
+                                _addPoint(d.localPosition, start: false),
+                            child: CustomPaint(
+                              painter: _LetterPaintPainter(strokes: _strokes),
+                              foregroundPainter: _GlyphOutlinePainter(
+                                text: widget.arabic,
+                                canvasSize: constraints.biggest,
+                              ),
+                              child: const SizedBox.expand(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(28),
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      return GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onPanStart: (d) =>
-                            _addPoint(d.localPosition, start: true),
-                        onPanUpdate: (d) =>
-                            _addPoint(d.localPosition, start: false),
-                        child: CustomPaint(
-                          painter: _LetterPaintPainter(strokes: _strokes),
-                          foregroundPainter: _GlyphOutlinePainter(
-                            text: widget.arabic,
-                            canvasSize: constraints.biggest,
-                          ),
-                          child: const SizedBox.expand(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                  if (_customBrush)
+                    Positioned(
+                      right: 8,
+                      top: 16,
+                      bottom: 16,
+                      child: MinikCustomBrushRail(
+                        width: _width,
+                        onChanged: (width) => setState(() {
+                          _customBrush = true;
+                          _width = width;
+                        }),
+                      ),
+                    ),
+                ],
               ),
             ),
             const SizedBox(height: AppSpacing.md),
@@ -449,34 +463,17 @@ class _QlColoringPageState extends State<QlColoringPage> {
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (var i = 0; i < _brushes.length; i++) ...[
-                    if (i > 0) const SizedBox(width: 8),
-                    ChoiceChip(
-                      label: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            width: 22,
-                            height: (_brushes[i].$1 * 0.28).clamp(2.0, 10.0),
-                            decoration: BoxDecoration(
-                              color: MinikColors.darkGreen,
-                              borderRadius: BorderRadius.circular(99),
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                          Text(_brushes[i].$2),
-                        ],
-                      ),
-                      selected: _width == _brushes[i].$1,
-                      onSelected: (_) => setState(() => _width = _brushes[i].$1),
-                    ),
-                  ],
-                ],
-              ),
+            MinikBrushSizePicker(
+              width: _width,
+              custom: _customBrush,
+              onPreset: (width) => setState(() {
+                _customBrush = false;
+                _width = width;
+              }),
+              onCustom: (width) => setState(() {
+                _customBrush = true;
+                _width = width;
+              }),
             ),
             const SizedBox(height: AppSpacing.md),
             Row(
@@ -540,7 +537,8 @@ class _LetterPaintPainter extends CustomPainter {
         canvas.drawCircle(stroke.points.first, stroke.width / 2, paint);
         continue;
       }
-      final path = Path()..moveTo(stroke.points.first.dx, stroke.points.first.dy);
+      final path = Path()
+        ..moveTo(stroke.points.first.dx, stroke.points.first.dy);
       for (final point in stroke.points.skip(1)) {
         path.lineTo(point.dx, point.dy);
       }

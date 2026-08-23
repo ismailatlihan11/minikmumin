@@ -1215,6 +1215,68 @@
       "audio": "assets/audio/qissalar/ashab_i_uhdud.mp3"
     }
   ],
+  "imtihanPairs": [
+    {
+      "id": "adem",
+      "storyId": "adem_ve_yaratilis",
+      "name": "Hz. Âdem",
+      "trial": "İmtihan ve tevbe"
+    },
+    {
+      "id": "nuh",
+      "storyId": "nuh_ve_gemi",
+      "name": "Hz. Nûh",
+      "trial": "Gemi ve tufan"
+    },
+    {
+      "id": "ibrahim",
+      "storyId": "ibrahim_ve_putlar",
+      "name": "Hz. İbrâhim",
+      "trial": "Putlar ve ateş"
+    },
+    {
+      "id": "yusuf",
+      "storyId": "yusuf_kuyudan_kurtulus",
+      "name": "Hz. Yûsuf",
+      "trial": "Kuyuya bırakılması"
+    },
+    {
+      "id": "musa",
+      "storyId": "musa_deniz",
+      "name": "Hz. Mûsâ",
+      "trial": "Denizin yarılması"
+    },
+    {
+      "id": "yunus",
+      "storyId": "yunus_balik",
+      "name": "Hz. Yûnus",
+      "trial": "Balık kıssası"
+    },
+    {
+      "id": "eyyub",
+      "storyId": "eyyub_sabir",
+      "name": "Hz. Eyyûb",
+      "trial": "Sıkıntı ve sabır"
+    },
+    {
+      "id": "suleyman",
+      "storyId": "suleyman_karinca",
+      "name": "Hz. Süleyman",
+      "trial": "Karınca kıssası"
+    },
+    {
+      "id": "davud",
+      "storyId": "davud_calisma",
+      "name": "Hz. Dâvûd",
+      "trial": "Emek ve şükür"
+    },
+    {
+      "id": "zekeriyya",
+      "storyId": "zakerriya_yahya",
+      "name": "Hz. Zekeriyyâ",
+      "trial": "Dua ve müjde"
+    }
+  ],
   "quizTemplates": [
     {
       "id": "qissa_quiz_01",

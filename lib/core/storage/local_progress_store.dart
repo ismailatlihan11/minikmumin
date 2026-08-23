@@ -112,6 +112,17 @@ class LocalProgressStore extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<bool> getPrayerGirlLearner() async {
+    final prefs = await _ensure();
+    return prefs.getString(_key('prayer_learner')) == 'girl';
+  }
+
+  Future<void> setPrayerGirlLearner(bool girl) async {
+    final prefs = await _ensure();
+    await prefs.setString(_key('prayer_learner'), girl ? 'girl' : 'boy');
+    notifyListeners();
+  }
+
   Future<WuduProgress> getWuduProgress() async {
     final prefs = await _ensure();
     return WuduProgress(

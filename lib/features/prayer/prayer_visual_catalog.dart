@@ -13,7 +13,11 @@ class PrayerVisualStep {
     this.jsonStepId,
     this.duaId,
     this.caption = '',
+    this.imageGirl = '',
+    this.girlNote = '',
     this.motionFrames = const [],
+    this.motionFramesGirl = const [],
+    this.rakat = 1,
   });
 
   final String id;
@@ -25,7 +29,21 @@ class PrayerVisualStep {
   final String? jsonStepId;
   final String? duaId;
   final String caption;
+  final String imageGirl;
+  final String girlNote;
   final List<String> motionFrames;
+  final List<String> motionFramesGirl;
+  final int rakat;
+
+  String imageFor({required bool girl}) {
+    if (girl && imageGirl.isNotEmpty) return imageGirl;
+    return image;
+  }
+
+  List<String> motionFramesFor({required bool girl}) {
+    if (girl && motionFramesGirl.isNotEmpty) return motionFramesGirl;
+    return motionFrames;
+  }
 
   factory PrayerVisualStep.fromJson(Map<String, dynamic> json) {
     final jsonStepId = JsonMap.str(json['jsonStepId']);
@@ -40,7 +58,11 @@ class PrayerVisualStep {
       jsonStepId: jsonStepId.isEmpty ? null : jsonStepId,
       duaId: duaId.isEmpty ? null : duaId,
       caption: JsonMap.str(json['caption']),
+      imageGirl: JsonMap.str(json['imageGirl']),
+      girlNote: JsonMap.str(json['girlNote']),
       motionFrames: JsonMap.strings(json['motion_frames']),
+      motionFramesGirl: JsonMap.strings(json['motion_frames_girl']),
+      rakat: JsonMap.integer(json['rakat'], 1),
     );
   }
 
@@ -111,6 +133,8 @@ abstract final class PrayerVisualCatalog {
       title: 'Niyet',
       prompt: 'Niyet ederek namaza başlarız.',
       image: 'assets/images/prayer/step01_niyet.png',
+      imageGirl: 'assets/images/prayer/step01_niyet_girl.png',
+      girlNote: 'Kızlar namazda başlarını da örter.',
       kind: PrayerKind.adab,
       jsonStepId: 'intention',
     ),
@@ -120,6 +144,8 @@ abstract final class PrayerVisualCatalog {
       title: 'Tekbir',
       prompt: 'Tekbir ile namaza başlarız. Allahu ekber deriz.',
       image: 'assets/images/prayer/step02_tekbir.png',
+      imageGirl: 'assets/images/prayer/step02_tekbir_girl.png',
+      girlNote: 'Kızlar ellerini omuz hizasına kadar kaldırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'takbir',
       caption: 'Allahu ekber',
@@ -128,6 +154,10 @@ abstract final class PrayerVisualCatalog {
         'assets/images/prayer/step01_niyet.png',
         'assets/images/prayer/step02_tekbir.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step01_niyet_girl.png',
+        'assets/images/prayer/step02_tekbir_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'subhaneke',
@@ -135,6 +165,8 @@ abstract final class PrayerVisualCatalog {
       title: 'Sübhâneke',
       prompt: 'Sübhâneke duasını okuruz.',
       image: 'assets/images/prayer/step03_subhaneke.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'qiyam',
       duaId: 'subhaneke',
@@ -143,28 +175,48 @@ abstract final class PrayerVisualCatalog {
       id: 'euzu',
       number: 4,
       title: 'Eûzü - Besmele',
-      prompt: 'Eûzü besmele çeker, Fâtiha’yı okuruz.',
+      prompt: 'Eûzü besmele çekeriz.',
       image: 'assets/images/prayer/step04_euzu.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'qiyam',
       duaId: 'besmele',
     ),
     PrayerVisualStep(
-      id: 'sure',
+      id: 'fatiha',
       number: 5,
+      title: 'Fâtiha',
+      prompt: 'Birinci rekatta Fâtiha’yı okuruz.',
+      image: 'assets/images/prayer/step04_euzu.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'qiyam',
+      duaId: 'surah_1',
+      rakat: 1,
+    ),
+    PrayerVisualStep(
+      id: 'sure',
+      number: 6,
       title: 'Bir Sure',
       prompt: 'Fâtiha’dan sonra bir sure okuruz.',
       image: 'assets/images/prayer/step05_sure.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'qiyam',
       duaId: 'surah_112',
     ),
     PrayerVisualStep(
       id: 'ruku',
-      number: 6,
+      number: 7,
       title: 'Rükû',
-      prompt: 'Rükûya vardıktan sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.',
+      prompt: 'Rükûya Allahu ekber diyerek varırız. Sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.',
       image: 'assets/images/prayer/step06_ruku.png',
+      imageGirl: 'assets/images/prayer/step06_ruku_girl.png',
+      girlNote:
+          'Kızlar rükûda biraz daha az eğilir; parmaklar bitişik dizlerin üzerindedir.',
       kind: PrayerKind.farz,
       jsonStepId: 'ruku',
       duaId: 'ruku',
@@ -173,13 +225,18 @@ abstract final class PrayerVisualCatalog {
         'assets/images/prayer/step08_kiyam.png',
         'assets/images/prayer/step06_ruku.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step08_kiyam_girl.png',
+        'assets/images/prayer/step06_ruku_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'ruku_rise',
-      number: 7,
+      number: 8,
       title: 'Rükûdan Kalkış',
       prompt: 'Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.',
       image: 'assets/images/prayer/step08_kiyam.png',
+      imageGirl: 'assets/images/prayer/step08_kiyam_girl.png',
       kind: PrayerKind.farz,
       jsonStepId: 'ruku_rise',
       duaId: 'qiyam_after_ruku',
@@ -189,23 +246,31 @@ abstract final class PrayerVisualCatalog {
         'assets/images/prayer/step07_ruku_rise.png',
         'assets/images/prayer/step08_kiyam.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step06_ruku_girl.png',
+        'assets/images/prayer/step08_kiyam_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'kiyam',
-      number: 8,
+      number: 9,
       title: 'Kıyam',
       prompt: 'Kıyamda dururuz ve Rabbenâ lekel-hamd deriz.',
       image: 'assets/images/prayer/step08_kiyam.png',
+      imageGirl: 'assets/images/prayer/step08_kiyam_girl.png',
       kind: PrayerKind.farz,
       jsonStepId: 'qiyam',
       caption: 'Rabbenâ lekel-hamd',
     ),
     PrayerVisualStep(
       id: 'secde1',
-      number: 9,
+      number: 10,
       title: 'Secde (1)',
-      prompt: 'İlk secdeye gidince 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.',
+      prompt: 'Secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden kalkarken Allahu ekber deriz.',
       image: 'assets/images/prayer/step09_secde1.png',
+      imageGirl: 'assets/images/prayer/step09_secde_girl.png',
+      girlNote:
+          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -214,90 +279,304 @@ abstract final class PrayerVisualCatalog {
         'assets/images/prayer/step08_kiyam.png',
         'assets/images/prayer/step09_secde1.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step08_kiyam_girl.png',
+        'assets/images/prayer/step09_secde_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'secde2',
-      number: 10,
+      number: 11,
       title: 'Secde (2)',
-      prompt: 'İkinci secdeye gidince 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.',
+      prompt: 'İkinci secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.',
       image: 'assets/images/prayer/step10_secde2.png',
+      imageGirl: 'assets/images/prayer/step09_secde_girl.png',
+      girlNote:
+          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
       caption: 'Sübhâne Rabbiye’l-A‘lâ',
+      rakat: 1,
       motionFrames: [
         'assets/images/prayer/step11_oturus.png',
         'assets/images/prayer/step10_secde2.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step11_oturus_girl.png',
+        'assets/images/prayer/step09_secde_girl.png',
+      ],
+    ),
+    PrayerVisualStep(
+      id: 'ikinci_rekata_kalkis',
+      number: 12,
+      title: 'İkinci Rekata Kalkış',
+      prompt:
+          'Birinci rekat bitti. Secdeden Allahu ekber diyerek ayağa kalkarız ve ikinci rekata başlarız.',
+      image: 'assets/images/prayer/step08_kiyam.png',
+      imageGirl: 'assets/images/prayer/step08_kiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'qiyam',
+      duaId: 'iftitah_tekbir',
+      caption: 'Allahu ekber',
+      rakat: 1,
+      motionFrames: [
+        'assets/images/prayer/step10_secde2.png',
+        'assets/images/prayer/step08_kiyam.png',
+      ],
+      motionFramesGirl: [
+        'assets/images/prayer/step09_secde_girl.png',
+        'assets/images/prayer/step08_kiyam_girl.png',
+      ],
+    ),
+    PrayerVisualStep(
+      id: 'fatiha_r2',
+      number: 13,
+      title: 'Fâtiha',
+      prompt: 'İkinci rekatta Fâtiha’yı okuruz.',
+      image: 'assets/images/prayer/step04_euzu.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'qiyam',
+      duaId: 'surah_1',
+      rakat: 2,
+    ),
+    PrayerVisualStep(
+      id: 'sure_r2',
+      number: 14,
+      title: 'Bir Sure',
+      prompt: 'İkinci rekatta Fâtiha’dan sonra bir sure okuruz.',
+      image: 'assets/images/prayer/step05_sure.png',
+      imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
+      girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
+      kind: PrayerKind.sunnah,
+      jsonStepId: 'qiyam',
+      duaId: 'surah_112',
+      rakat: 2,
+    ),
+    PrayerVisualStep(
+      id: 'ruku_r2',
+      number: 15,
+      title: 'Rükû',
+      prompt: 'Rükûya Allahu ekber diyerek varırız. Sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.',
+      image: 'assets/images/prayer/step06_ruku.png',
+      imageGirl: 'assets/images/prayer/step06_ruku_girl.png',
+      girlNote:
+          'Kızlar rükûda biraz daha az eğilir; parmaklar bitişik dizlerin üzerindedir.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'ruku',
+      duaId: 'ruku',
+      caption: 'Sübhâne Rabbiye’l-Azîm',
+      rakat: 2,
+      motionFrames: [
+        'assets/images/prayer/step08_kiyam.png',
+        'assets/images/prayer/step06_ruku.png',
+      ],
+      motionFramesGirl: [
+        'assets/images/prayer/step08_kiyam_girl.png',
+        'assets/images/prayer/step06_ruku_girl.png',
+      ],
+    ),
+    PrayerVisualStep(
+      id: 'ruku_rise_r2',
+      number: 16,
+      title: 'Rükûdan Kalkış',
+      prompt: 'Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.',
+      image: 'assets/images/prayer/step08_kiyam.png',
+      imageGirl: 'assets/images/prayer/step08_kiyam_girl.png',
+      kind: PrayerKind.farz,
+      jsonStepId: 'ruku_rise',
+      duaId: 'qiyam_after_ruku',
+      caption: 'Semi‘allâhü limen hamideh',
+      rakat: 2,
+      motionFrames: [
+        'assets/images/prayer/step06_ruku.png',
+        'assets/images/prayer/step08_kiyam.png',
+      ],
+      motionFramesGirl: [
+        'assets/images/prayer/step06_ruku_girl.png',
+        'assets/images/prayer/step08_kiyam_girl.png',
+      ],
+    ),
+    PrayerVisualStep(
+      id: 'kiyam_r2',
+      number: 17,
+      title: 'Kıyam',
+      prompt: 'Kıyamda dururuz ve Rabbenâ lekel-hamd deriz.',
+      image: 'assets/images/prayer/step08_kiyam.png',
+      imageGirl: 'assets/images/prayer/step08_kiyam_girl.png',
+      kind: PrayerKind.farz,
+      jsonStepId: 'qiyam',
+      caption: 'Rabbenâ lekel-hamd',
+      rakat: 2,
+    ),
+    PrayerVisualStep(
+      id: 'secde1_r2',
+      number: 18,
+      title: 'Secde (1)',
+      prompt: 'Secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden kalkarken Allahu ekber deriz.',
+      image: 'assets/images/prayer/step09_secde1.png',
+      imageGirl: 'assets/images/prayer/step09_secde_girl.png',
+      girlNote:
+          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'sujud',
+      duaId: 'sujud',
+      caption: 'Sübhâne Rabbiye’l-A‘lâ',
+      rakat: 2,
+      motionFrames: [
+        'assets/images/prayer/step08_kiyam.png',
+        'assets/images/prayer/step09_secde1.png',
+      ],
+      motionFramesGirl: [
+        'assets/images/prayer/step08_kiyam_girl.png',
+        'assets/images/prayer/step09_secde_girl.png',
+      ],
+    ),
+    PrayerVisualStep(
+      id: 'secde2_r2',
+      number: 19,
+      title: 'Secde (2)',
+      prompt:
+          'İkinci secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden Allahu ekber diyerek kalkar ve otururuz.',
+      image: 'assets/images/prayer/step10_secde2.png',
+      imageGirl: 'assets/images/prayer/step09_secde_girl.png',
+      girlNote:
+          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+      kind: PrayerKind.farz,
+      jsonStepId: 'sujud',
+      duaId: 'sujud',
+      caption: 'Sübhâne Rabbiye’l-A‘lâ',
+      rakat: 2,
+      motionFrames: [
+        'assets/images/prayer/step11_oturus.png',
+        'assets/images/prayer/step10_secde2.png',
+      ],
+      motionFramesGirl: [
+        'assets/images/prayer/step11_oturus_girl.png',
+        'assets/images/prayer/step09_secde_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'oturus',
-      number: 11,
-      title: 'Oturuş',
-      prompt: 'Oturuşta Tahiyyat duası okuruz.',
+      number: 20,
+      title: 'Son Oturuş',
+      prompt:
+          'İkinci rekatın sonunda otururuz. Oturuşta Tahiyyat duası okuruz.',
       image: 'assets/images/prayer/step11_oturus.png',
+      imageGirl: 'assets/images/prayer/step11_oturus_girl.png',
+      girlNote: 'Kızlar oturuşta ayaklarını sağ tarafa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'sitting',
       duaId: 'tahiyyat',
+      rakat: 2,
     ),
     PrayerVisualStep(
       id: 'salli',
-      number: 12,
+      number: 21,
       title: 'Salli - Barik',
       prompt: 'Salli ve Barik dualarını okuruz.',
       image: 'assets/images/prayer/step12_salli.png',
+      imageGirl: 'assets/images/prayer/step11_oturus_girl.png',
+      girlNote: 'Kızlar oturuşta ayaklarını sağ tarafa yatırır.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'allahumme_salli',
+      rakat: 2,
     ),
     PrayerVisualStep(
       id: 'rabbena',
-      number: 13,
+      number: 22,
       title: 'Rabbenâ Duaları',
       prompt: 'Rabbenâ dualarını okuruz.',
       image: 'assets/images/prayer/step13_rabbena.png',
+      imageGirl: 'assets/images/prayer/step11_oturus_girl.png',
+      girlNote: 'Kızlar oturuşta ayaklarını sağ tarafa yatırır.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'rabbena_atina',
+      rakat: 2,
     ),
     PrayerVisualStep(
       id: 'selam_sag',
-      number: 14,
+      number: 23,
       title: 'Selam (Sağa)',
       prompt: 'Sağa selam veririz.',
       image: 'assets/images/prayer/step14_selam_sag.png',
+      imageGirl: 'assets/images/prayer/step14_selam_sag_girl.png',
+      girlNote: 'Kızlar oturuşta ayaklarını sağ tarafa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'salam',
+      rakat: 2,
       motionFrames: [
         'assets/images/prayer/step11_oturus.png',
         'assets/images/prayer/step14_selam_sag.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step11_oturus_girl.png',
+        'assets/images/prayer/step14_selam_sag_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'selam_sol',
-      number: 15,
+      number: 24,
       title: 'Selam (Sola)',
       prompt: 'Sola selam veririz.',
       image: 'assets/images/prayer/step15_selam_sol.png',
-      kind: PrayerKind.farz,
+      imageGirl: 'assets/images/prayer/step15_selam_sol_girl.png',
+      girlNote: 'Kızlar oturuşta ayaklarını sağ tarafa yatırır.',
+      kind: PrayerKind.sunnah,
       jsonStepId: 'salam',
+      rakat: 2,
       motionFrames: [
         'assets/images/prayer/step14_selam_sag.png',
         'assets/images/prayer/step15_selam_sol.png',
       ],
+      motionFramesGirl: [
+        'assets/images/prayer/step14_selam_sag_girl.png',
+        'assets/images/prayer/step15_selam_sol_girl.png',
+      ],
     ),
     PrayerVisualStep(
       id: 'tamam',
-      number: 16,
+      number: 25,
       title: 'Namaz Tamamlandı',
-      prompt: 'Maşallah! Namazı tamamladık.',
+      prompt: 'Maşallah! İki rekatlık namazı tamamladık.',
       image: 'assets/images/prayer/step16_tamam.png',
+      imageGirl: 'assets/images/prayer/step16_tamam_girl.png',
       kind: PrayerKind.done,
+      rakat: 0,
     ),
   ];
 
-  static List<PrayerVisualStep> get playableSteps =>
-      steps.where((step) => step.kind != PrayerKind.done).toList(growable: false);
+  static List<PrayerVisualStep> get playableSteps => steps
+      .where((step) => step.kind != PrayerKind.done)
+      .toList(growable: false);
+
+  static const teachingNote =
+      'Bu bölümde iki rekatlık bir namaz öğreniyoruz. Birinci rekatın sonunda ayağa kalkarız; ikinci rekatın sonunda otururuz.';
+
+  static const orderGameIds = [
+    'niyet',
+    'tekbir',
+    'fatiha',
+    'ruku',
+    'secde1',
+    'ikinci_rekata_kalkis',
+    'sure_r2',
+    'ruku_r2',
+    'secde1_r2',
+    'oturus',
+    'selam_sag',
+  ];
+
+  static List<PrayerVisualStep> get orderGameSteps => [
+        for (final id in orderGameIds)
+          for (final step in playableSteps)
+            if (step.id == id) step,
+      ];
 
   static const farzLabels = [
     'Kıyam',
@@ -307,7 +586,7 @@ abstract final class PrayerVisualCatalog {
     'Oturuş',
   ];
 
-  static const farzIds = ['kiyam', 'sure', 'ruku', 'secde1', 'oturus'];
+  static const farzIds = ['kiyam', 'fatiha', 'ruku', 'secde1', 'oturus'];
 
   static const duaList = [
     (id: 'surah_1', title: 'Fâtiha'),
@@ -379,7 +658,40 @@ abstract final class PrayerVisualCatalog {
 
   static List<PrayerVisualStep> resolveSteps(List<Map<String, dynamic>> rows) {
     if (rows.isEmpty) return steps;
-    return [for (final row in rows) PrayerVisualStep.fromJson(row)];
+    final fallbackById = {for (final step in steps) step.id: step};
+    return [
+      for (final row in rows)
+        _withFallback(PrayerVisualStep.fromJson(row),
+            fallbackById[JsonMap.str(row['id'])]),
+    ];
+  }
+
+  static PrayerVisualStep _withFallback(
+    PrayerVisualStep json,
+    PrayerVisualStep? fallback,
+  ) {
+    if (fallback == null) return json;
+    return PrayerVisualStep(
+      id: json.id,
+      number: json.number,
+      title: json.title,
+      prompt: json.prompt,
+      image: json.image.isNotEmpty ? json.image : fallback.image,
+      kind: json.kind,
+      jsonStepId: json.jsonStepId ?? fallback.jsonStepId,
+      duaId: json.duaId ?? fallback.duaId,
+      caption: json.caption.isNotEmpty ? json.caption : fallback.caption,
+      imageGirl:
+          json.imageGirl.isNotEmpty ? json.imageGirl : fallback.imageGirl,
+      girlNote: json.girlNote.isNotEmpty ? json.girlNote : fallback.girlNote,
+      motionFrames: json.motionFrames.isNotEmpty
+          ? json.motionFrames
+          : fallback.motionFrames,
+      motionFramesGirl: json.motionFramesGirl.isNotEmpty
+          ? json.motionFramesGirl
+          : fallback.motionFramesGirl,
+      rakat: json.rakat,
+    );
   }
 
   static List<PrayerTip> resolveTips(List<Map<String, dynamic>> rows) {

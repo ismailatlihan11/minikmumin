@@ -1,47 +1,154 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/constants/learn_categories.dart';
+import '../../app/constants/peygamberler_kitabi.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
+import '../../shared/widgets/minik_ui.dart';
 
-class MinikProfilePage extends StatelessWidget {
+class MinikProfilePage extends StatefulWidget {
   const MinikProfilePage({super.key});
 
   @override
+  State<MinikProfilePage> createState() => _MinikProfilePageState();
+}
+
+class _MinikProfilePageState extends State<MinikProfilePage> {
+  Future<_ProfileSnapshot>? _future;
+  LocalProgressStore? _store;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final store = context.read<LocalProgressStore>();
+    if (!identical(_store, store)) {
+      _store?.removeListener(_refresh);
+      _store = store;
+      store.addListener(_refresh);
+      _future ??= _load(store);
+    }
+  }
+
+  void _refresh() {
+    final store = _store;
+    if (!mounted || store == null) return;
+    setState(() => _future = _load(store));
+  }
+
+  @override
+  void dispose() {
+    _store?.removeListener(_refresh);
+    super.dispose();
+  }
+
+  Future<_ProfileSnapshot> _load(LocalProgressStore store) async {
+    final rawName = (await store.getNickname())?.trim();
+    final items = await store.getCompletedItems();
+    final wudu = await store.getWuduProgress();
+    final bookmarked = await store.getBookBookmark(PeygamberlerKitabi.id);
+    return _ProfileSnapshot(
+      xp: await store.getXp(),
+      badges: await store.getBadges(),
+      nickname: (rawName == null || rawName.isEmpty) ? null : rawName,
+      lessons: [
+        for (final category in LearnCategories.all)
+          _LessonStat(
+            category: category,
+            done: _doneCount(category.id, items, wudu),
+            started: _started(category.id, items, wudu, bookmarked != null),
+          ),
+      ],
+    );
+  }
+
+  int _doneCount(String id, List<String> items, WuduProgress wudu) {
+    switch (id) {
+      case 'basics':
+        return _prefixCount(items, 'basics|');
+      case 'wudu':
+        return wudu.completed ? 1 : 0;
+      case 'prayer':
+        return _prefixCount(items, 'prayer|');
+      case 'prayer_duas':
+        return _prefixCount(items, 'prayer_dua|');
+      case 'quran_learn':
+        return items.where((item) => item.startsWith('ql_')).length;
+      case 'duas':
+        return _prefixCount(items, 'dua|');
+      case 'hadith':
+        return _prefixCount(items, 'hadith|');
+      case 'prophets_stories':
+        return _prefixCount(items, 'story|') + _prefixCount(items, 'prophet|');
+      case 'prophets_book':
+        return _prefixCount(items, 'book|');
+      case 'morality':
+        return _prefixCount(items, 'morality|');
+      case 'asma':
+        return _prefixCount(items, 'asma|');
+      case 'quiz':
+        return _prefixCount(items, 'quiz|');
+      default:
+        return _prefixCount(items, '$id|');
+    }
+  }
+
+  bool _started(
+    String id,
+    List<String> items,
+    WuduProgress wudu,
+    bool hasBookBookmark,
+  ) {
+    if (id == 'wudu') return wudu.started || wudu.completed;
+    if (id == 'prophets_book') return hasBookBookmark;
+    return _doneCount(id, items, wudu) > 0;
+  }
+
+  int _prefixCount(List<String> items, String prefix) {
+    return items.where((item) => item.startsWith(prefix)).length;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       body: SafeArea(
         child: FutureBuilder<_ProfileSnapshot>(
-          future: _load(store),
+          future: _future,
           builder: (context, snapshot) {
-            final data = snapshot.data;
-            final xp = data?.xp ?? 0;
-            final lessons = data?.lessons ?? const [];
-            final badges = data?.badges ?? const [];
-            final name = data?.nickname;
+            if (!snapshot.hasData) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            final data = snapshot.data!;
             return ListView(
               padding: AppSpacing.page,
               children: [
-                _ProfileHero(name: name, xp: xp),
+                _ProfileHero(name: data.nickname, xp: data.xp),
                 const SizedBox(height: 16),
                 const _SectionTitle('Dersler'),
                 const SizedBox(height: 8),
-                if (lessons.isEmpty)
-                  const _EmptyHint(
-                    'Henüz tamamlanan ders yok. Öğren’den başlayabilirsin.',
-                  )
-                else
-                  Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
-                    children: [
-                      for (final id in lessons)
-                        _LessonChip(label: _lessonLabel(id)),
-                    ],
+                for (final lesson in data.lessons)
+                  ContentTile(
+                    title: lesson.category.title,
+                    subtitle: lesson.subtitle,
+                    color: lesson.done > 0 ? MinikColors.mint : MinikColors.surface,
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        lesson.category.image,
+                        width: 44,
+                        height: 44,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.menu_book_rounded,
+                          color: MinikColors.green,
+                        ),
+                      ),
+                    ),
+                    onTap: () =>
+                        Navigator.pushNamed(context, lesson.category.route),
                   ),
                 const SizedBox(height: 18),
                 const _SectionTitle('Rozetler'),
@@ -64,7 +171,7 @@ class MinikProfilePage extends StatelessWidget {
                             width: tileWidth,
                             child: _BadgeTile(
                               badge: badge,
-                              earned: badges.contains(badge.id),
+                              earned: data.badges.contains(badge.id),
                             ),
                           ),
                       ],
@@ -78,49 +185,8 @@ class MinikProfilePage extends StatelessWidget {
       ),
     );
   }
-
-  Future<_ProfileSnapshot> _load(LocalProgressStore store) async {
-    final rawName = (await store.getNickname())?.trim();
-    return _ProfileSnapshot(
-      xp: await store.getXp(),
-      lessons: await store.getCompletedLessons(),
-      badges: await store.getBadges(),
-      nickname: (rawName == null || rawName.isEmpty) ? null : rawName,
-    );
-  }
-
-  String _lessonLabel(String id) {
-    switch (id) {
-      case 'wudu':
-        return 'Abdest';
-      case 'dua':
-        return 'Dualar';
-      case 'prayer_dua':
-        return 'Namaz duaları';
-      case 'story':
-        return 'Kıssalar';
-      case 'quran':
-        return "Kur'an";
-      case 'morality':
-        return 'Güzel ahlak';
-      case 'quiz':
-        return 'Mini test';
-      case 'ql_letter':
-      case 'ql_haraka':
-      case 'ql_comb':
-      case 'ql_word':
-      case 'ql_tajweed':
-      case 'ql_surah':
-      case 'ql_practice':
-      case 'ql_tajweed_read':
-      case 'ql_game':
-      case 'ql_level':
-        return "Kur'an Öğren";
-      default:
-        return id;
-    }
-  }
 }
+
 
 class _ProfileHero extends StatelessWidget {
   const _ProfileHero({required this.name, required this.xp});
@@ -242,52 +308,6 @@ class _SectionTitle extends StatelessWidget {
         fontSize: 14,
         fontWeight: FontWeight.w800,
         color: MinikColors.darkGreen,
-      ),
-    );
-  }
-}
-
-class _EmptyHint extends StatelessWidget {
-  const _EmptyHint(this.text);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(
-        fontFamily: 'NotoSans',
-        fontSize: 12,
-        fontWeight: FontWeight.w600,
-        color: MinikColors.textMuted,
-        height: 1.3,
-      ),
-    );
-  }
-}
-
-class _LessonChip extends StatelessWidget {
-  const _LessonChip({required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: const Color(0xFFE8F4EC),
-        borderRadius: BorderRadius.circular(99),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontFamily: 'NotoSans',
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          color: MinikColors.darkGreen,
-        ),
       ),
     );
   }
@@ -491,7 +511,25 @@ class _ProfileSnapshot {
   });
 
   final int xp;
-  final List<String> lessons;
+  final List<_LessonStat> lessons;
   final List<String> badges;
   final String? nickname;
+}
+
+class _LessonStat {
+  const _LessonStat({
+    required this.category,
+    required this.done,
+    required this.started,
+  });
+
+  final LearnCategory category;
+  final int done;
+  final bool started;
+
+  String get subtitle {
+    if (done > 0) return '$done tamamlandı';
+    if (started) return 'Devam ediyor';
+    return 'Henüz başlanmadı';
+  }
 }

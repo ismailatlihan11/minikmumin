@@ -178,7 +178,7 @@ class _DailyAyahCardState extends State<_DailyAyahCard> {
   Widget build(BuildContext context) {
     final verse = widget.verse;
     final note = DailyAyahPool.childNoteFor(verse.surahId, verse.ayahNo);
-    final audioPath = ContentAssets.audioFor('surah_${verse.surahId}');
+    final audioPath = ContentAssets.quranRecitation(verse.surahId);
     final hasAudio = AssetCatalog.contains(audioPath);
     final copy = joinCopyParts([
       '${surahName(verse.surahId)} ${verse.ayahNo}',

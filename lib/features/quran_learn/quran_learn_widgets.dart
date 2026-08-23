@@ -86,6 +86,34 @@ class QlPlayListen extends StatelessWidget {
   }
 }
 
+class QlListenIcon extends StatelessWidget {
+  const QlListenIcon({
+    super.key,
+    required this.audio,
+    required this.path,
+  });
+
+  final AudioPlayerService audio;
+  final String? path;
+
+  @override
+  Widget build(BuildContext context) {
+    final playable = QuranLearnAudio.resolve(path);
+    if (playable == null) return const SizedBox.shrink();
+    return IconButton(
+      tooltip: 'Dinle',
+      onPressed: () {
+        QuranLearnAudio.play(
+          audio,
+          context.read<LocalProgressStore>(),
+          playable,
+        );
+      },
+      icon: const Icon(Icons.volume_up_rounded, color: MinikColors.green),
+    );
+  }
+}
+
 class QlSoftProgress extends StatelessWidget {
   const QlSoftProgress({
     super.key,

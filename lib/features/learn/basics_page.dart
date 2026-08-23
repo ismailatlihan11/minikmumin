@@ -266,10 +266,11 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
           body: ListView(
             padding: AppSpacing.page,
             children: [
-              Text(
-                item.shortDescription,
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
+              if (item.shortDescription.trim().isNotEmpty)
+                Text(
+                  item.shortDescription,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               if (item.hasArabic) ...[
                 const SizedBox(height: AppSpacing.lg),
                 const SectionLabel('📖 Arapça'),

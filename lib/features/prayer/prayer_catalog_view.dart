@@ -11,6 +11,7 @@ import '../../data/models/dua.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../features/duas/duas_page.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'prayer_visual_catalog.dart';
 
@@ -24,7 +25,8 @@ class PrayerCatalogView extends StatefulWidget {
 
   final VoidCallback onBack;
   final VoidCallback onHome;
-  final ValueChanged<PrayerVisualStep> onOpenStep;
+  final void Function(PrayerVisualStep step, {required bool girl, required int totalSteps})
+      onOpenStep;
 
   @override
   State<PrayerCatalogView> createState() => _PrayerCatalogViewState();
@@ -37,8 +39,10 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
   List<PrayerRakat> _rakats = PrayerVisualCatalog.rakats;
   List<String> _farzLabels = PrayerVisualCatalog.farzLabels;
   List<({String id, String title})> _duaList = PrayerVisualCatalog.duaList;
+  String _teachingNote = PrayerVisualCatalog.teachingNote;
   Set<String> _doneIds = {};
   Set<String> _favIds = {};
+  bool _girlLearner = false;
   LocalProgressStore? _store;
 
   @override
@@ -64,8 +68,10 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     if (store == null) return;
     final items = await store.getCompletedItems();
     final favs = await store.getFavorites();
+    final girl = await store.getPrayerGirlLearner();
     if (!mounted) return;
     setState(() {
+      _girlLearner = girl;
       _doneIds = {
         for (final item in items)
           if (item.startsWith('prayer|')) item.substring(7),
@@ -77,6 +83,11 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     });
   }
 
+  Future<void> _setGirlLearner(bool girl) async {
+    setState(() => _girlLearner = girl);
+    await _store?.setPrayerGirlLearner(girl);
+  }
+
   Future<void> _bindJson() async {
     final lesson = await context.read<ContentRepositories>().prayer.getLesson();
     if (!mounted) return;
@@ -86,7 +97,75 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
       _rakats = PrayerVisualCatalog.resolveRakats(lesson.rakats);
       if (lesson.farzLabels.isNotEmpty) _farzLabels = lesson.farzLabels;
       _duaList = PrayerVisualCatalog.resolveDuaList(lesson.duaList);
+      if (lesson.teachingNote.isNotEmpty) _teachingNote = lesson.teachingNote;
     });
+  }
+
+  List<Widget> _stepSections() {
+    final blocks = <(String, List<PrayerVisualStep>)>[
+      (
+        '1. Rekat',
+        [for (final step in _steps) if (step.rakat == 1) step],
+      ),
+      (
+        '2. Rekat',
+        [for (final step in _steps) if (step.rakat == 2) step],
+      ),
+    ];
+    final rest = [
+      for (final step in _steps)
+        if (step.rakat != 1 && step.rakat != 2) step,
+    ];
+    if (rest.isNotEmpty) {
+      blocks.add(('Namaz Bitti', rest));
+    }
+    return [
+      for (final block in blocks)
+        if (block.$2.isNotEmpty) ...[
+          Text(
+            block.$1,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 8),
+          GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 0.72,
+            children: [
+              for (final step in block.$2)
+                _PrayerStepCard(
+                  step: step,
+                  girl: _girlLearner,
+                  learned: _doneIds.contains(step.id),
+                  favorite: _favIds.contains(step.id),
+                  onTap: () => widget.onOpenStep(
+                    step,
+                    girl: _girlLearner,
+                    totalSteps: _steps.length,
+                  ),
+                  onToggleFavorite: () {
+                    _store?.toggleFavorite(
+                      FavoriteEntry(
+                        kind: 'prayer',
+                        id: step.id,
+                        title: step.title,
+                      ),
+                    );
+                  },
+                ),
+            ],
+          ),
+          const SizedBox(height: 16),
+        ],
+    ];
   }
 
   @override
@@ -136,6 +215,13 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 12),
+          Center(
+            child: _LearnerToggle(
+              girl: _girlLearner,
+              onChanged: _setGirlLearner,
+            ),
+          ),
+          const SizedBox(height: 12),
           const Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -149,9 +235,20 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 6),
+          Text(
+            _teachingNote,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 13,
+              fontWeight: FontWeight.w600,
+              height: 1.35,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 8),
           _PrayerProgressBar(
-            done: _doneIds.length.clamp(0, 16),
-            total: 16,
+            done: _doneIds.where((id) => _steps.any((step) => step.id == id)).length,
+            total: _steps.length,
           ),
           const SizedBox(height: 10),
           const Wrap(
@@ -181,8 +278,10 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             color: Colors.white,
             child: Column(
               children: [
-                const LessonMotionImage(
-                  image: 'assets/images/prayer/prayer_intro_boy.png',
+                LessonMotionImage(
+                  image: _girlLearner
+                      ? 'assets/images/prayer/prayer_intro_girl.png'
+                      : 'assets/images/prayer/prayer_intro_boy.png',
                   height: 140,
                   fit: BoxFit.contain,
                 ),
@@ -200,12 +299,24 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   ),
                 ),
                 const SizedBox(height: 6),
+                Text(
+                  _teachingNote,
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    height: 1.35,
+                    color: MinikColors.textMuted,
+                  ),
+                ),
+                const SizedBox(height: 8),
                 for (final label in _farzLabels)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: Row(
                       children: [
-                        const Icon(Icons.check_circle_rounded, size: 16, color: MinikColors.green),
+                        const Icon(Icons.check_circle_rounded,
+                            size: 16, color: MinikColors.green),
                         const SizedBox(width: 6),
                         Text(
                           label,
@@ -236,32 +347,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 16),
-          GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 0.72,
-            children: [
-              for (final step in _steps)
-                _PrayerStepCard(
-                  step: step,
-                  learned: _doneIds.contains(step.id),
-                  favorite: _favIds.contains(step.id),
-                  onTap: () => widget.onOpenStep(step),
-                  onToggleFavorite: () {
-                    _store?.toggleFavorite(
-                      FavoriteEntry(
-                        kind: 'prayer',
-                        id: step.id,
-                        title: step.title,
-                      ),
-                    );
-                  },
-                ),
-            ],
-          ),
+          ..._stepSections(),
           const SizedBox(height: 16),
           const Text(
             'Namazda okunan Ayetler ve Dualar',
@@ -275,7 +361,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           const SizedBox(height: 8),
           MinikCard(
             color: Colors.white,
-            onTap: () => Navigator.pushNamed(context, AppRoutes.learnPrayerDuas),
+            onTap: () =>
+                Navigator.pushNamed(context, AppRoutes.learnPrayerDuas),
             child: Column(
               children: [
                 for (final item in _duaList)
@@ -283,7 +370,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Row(
                       children: [
-                        const Icon(Icons.menu_book_rounded, color: MinikColors.green, size: 20),
+                        const Icon(Icons.menu_book_rounded,
+                            color: MinikColors.green, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           item.title,
@@ -381,8 +469,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             child: Column(
               children: [
                 for (var i = 0; i < _rakats.length; i++) ...[
-                  if (i > 0)
-                    const Divider(height: 1, color: Color(0xFFE8EEEA)),
+                  if (i > 0) const Divider(height: 1, color: Color(0xFFE8EEEA)),
                   _RakatRow(item: _rakats[i]),
                 ],
               ],
@@ -567,6 +654,78 @@ class _RakatRow extends StatelessWidget {
   }
 }
 
+class _LearnerToggle extends StatelessWidget {
+  const _LearnerToggle({
+    required this.girl,
+    required this.onChanged,
+  });
+
+  final bool girl;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(99),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _LearnerChip(
+            label: 'Erkek',
+            selected: !girl,
+            onTap: () => onChanged(false),
+          ),
+          _LearnerChip(
+            label: 'Kız',
+            selected: girl,
+            onTap: () => onChanged(true),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LearnerChip extends StatelessWidget {
+  const _LearnerChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: selected ? MinikColors.green : Colors.transparent,
+      borderRadius: BorderRadius.circular(99),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(99),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 13,
+              fontWeight: FontWeight.w800,
+              color: selected ? Colors.white : MinikColors.darkGreen,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _LegendChip extends StatelessWidget {
   const _LegendChip({
     required this.icon,
@@ -609,6 +768,7 @@ class _LegendChip extends StatelessWidget {
 class _PrayerStepCard extends StatelessWidget {
   const _PrayerStepCard({
     required this.step,
+    required this.girl,
     required this.onTap,
     required this.learned,
     required this.favorite,
@@ -616,6 +776,7 @@ class _PrayerStepCard extends StatelessWidget {
   });
 
   final PrayerVisualStep step;
+  final bool girl;
   final VoidCallback onTap;
   final bool learned;
   final bool favorite;
@@ -669,7 +830,10 @@ class _PrayerStepCard extends StatelessWidget {
                   ),
                 ],
               ),
-              Expanded(child: Image.asset(step.image, fit: BoxFit.contain)),
+              Expanded(
+                child:
+                    Image.asset(step.imageFor(girl: girl), fit: BoxFit.contain),
+              ),
               Text(
                 step.prompt,
                 maxLines: 3,
@@ -773,9 +937,16 @@ class _TipTile extends StatelessWidget {
 }
 
 class PrayerStepDetailPage extends StatefulWidget {
-  const PrayerStepDetailPage({super.key, required this.step});
+  const PrayerStepDetailPage({
+    super.key,
+    required this.step,
+    required this.girl,
+    this.totalSteps = 0,
+  });
 
   final PrayerVisualStep step;
+  final bool girl;
+  final int totalSteps;
 
   @override
   State<PrayerStepDetailPage> createState() => _PrayerStepDetailPageState();
@@ -792,12 +963,15 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
       _loadDua();
       final store = context.read<LocalProgressStore>();
       final step = widget.step;
+      final total = widget.totalSteps > 0
+          ? widget.totalSteps
+          : PrayerVisualCatalog.steps.length;
       store.markCompleted('prayer', step.id, xp: 1);
       store.setContinue(
         title: 'Namaz Öğren',
-        subtitle: '${step.number}/16',
+        subtitle: '${step.number}/$total',
         route: AppRoutes.learnPrayer,
-        progress: (step.number / 16).clamp(0.05, 1),
+        progress: (step.number / total).clamp(0.05, 1),
       );
     });
   }
@@ -823,10 +997,28 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
     super.dispose();
   }
 
+  void _openColoring() {
+    final step = widget.step;
+    final image = step.imageFor(girl: widget.girl);
+    final audioPath =
+        step.duaId == null ? null : ContentAssets.audioFor(step.duaId!);
+    openImageColoring(
+      context,
+      image: image,
+      title: '${step.title} boya',
+      prompt: 'Parmağınla bu namaz adımını boya.',
+      audio: audioPath,
+      progressKind: 'prayer_color',
+      progressId: '${step.id}${widget.girl ? '_girl' : ''}',
+      celebrationSubtitle: '${step.title} resmini boyadın.',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final step = widget.step;
-    final audioPath = step.duaId == null ? null : ContentAssets.audioFor(step.duaId!);
+    final audioPath =
+        step.duaId == null ? null : ContentAssets.audioFor(step.duaId!);
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6F8),
       appBar: AppBar(title: Text(step.title)),
@@ -839,15 +1031,96 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                 MinikCard(
                   color: Colors.white,
                   padding: const EdgeInsets.all(12),
-                  child: LessonMotionImage(
-                    image: step.image,
-                    frames: step.motionFrames,
-                    height: 168,
-                    fit: BoxFit.contain,
+                  onTap: _openColoring,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      LessonMotionImage(
+                        image: step.imageFor(girl: widget.girl),
+                        frames: step.motionFramesFor(girl: widget.girl),
+                        height: 168,
+                        width: double.infinity,
+                        fit: BoxFit.contain,
+                      ),
+                      Positioned(
+                        right: 4,
+                        bottom: 4,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: MinikColors.peach,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.palette_rounded,
+                                size: 16,
+                                color: MinikColors.darkGreen,
+                              ),
+                              SizedBox(width: 4),
+                              Text(
+                                'Boya',
+                                style: TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  color: MinikColors.darkGreen,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 12),
                 Text(step.prompt, style: Theme.of(context).textTheme.bodyLarge),
+                if (widget.girl && step.girlNote.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+                    decoration: BoxDecoration(
+                      color: MinikColors.blush,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.favorite_rounded,
+                          size: 18,
+                          color: Color(0xFFC45B7A),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            step.girlNote,
+                            style: const TextStyle(
+                              fontFamily: 'NotoSans',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                              color: MinikColors.darkGreen,
+                              height: 1.35,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 12),
+                FilledButton.tonalIcon(
+                  onPressed: _openColoring,
+                  icon: const Icon(Icons.palette_rounded),
+                  label: const Text('Boya'),
+                ),
                 if (_dua != null) ...[
                   const SizedBox(height: 14),
                   DuaContentBlocks(

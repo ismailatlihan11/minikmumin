@@ -72,9 +72,8 @@ class StoryItem {
   final String audio;
 
   factory StoryItem.fromJson(Map<String, dynamic> json) {
-    final scenes = JsonMap.extractList(json['scenes'])
-        .map(StoryScene.fromJson)
-        .toList();
+    final scenes =
+        JsonMap.extractList(json['scenes']).map(StoryScene.fromJson).toList();
     scenes.sort((a, b) => a.order.compareTo(b.order));
     return StoryItem(
       id: JsonMap.str(json['id']),
@@ -98,12 +97,39 @@ class StoryCatalog {
   const StoryCatalog({
     required this.categories,
     required this.items,
+    this.imtihanPairs = const [],
   });
 
   final List<StoryCategory> categories;
   final List<StoryItem> items;
+  final List<ProphetTrialPair> imtihanPairs;
 
   List<StoryItem> forCategory(String categoryId) {
-    return items.where((item) => item.category == categoryId).toList(growable: false);
+    return items
+        .where((item) => item.category == categoryId)
+        .toList(growable: false);
+  }
+}
+
+class ProphetTrialPair {
+  const ProphetTrialPair({
+    required this.id,
+    required this.name,
+    required this.trial,
+    this.storyId = '',
+  });
+
+  final String id;
+  final String name;
+  final String trial;
+  final String storyId;
+
+  factory ProphetTrialPair.fromJson(Map<String, dynamic> json) {
+    return ProphetTrialPair(
+      id: JsonMap.str(json['id']),
+      name: JsonMap.str(json['name']),
+      trial: JsonMap.str(json['trial']),
+      storyId: JsonMap.str(json['storyId']),
+    );
   }
 }
