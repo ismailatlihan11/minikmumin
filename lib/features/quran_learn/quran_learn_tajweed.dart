@@ -25,7 +25,9 @@ class QuranLearnTajweedPage extends StatelessWidget {
     final games = pack.gamesForLevel(6);
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text('Temel Tecvid')),
+      appBar: AppBar(
+        title: Text(pack.titleForLevel(6, fallback: 'Tecvid Uygulamaları')),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {

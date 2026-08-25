@@ -70,6 +70,40 @@ class LessonStep {
       };
 }
 
+class WuduCompletionDua {
+  const WuduCompletionDua({
+    required this.id,
+    required this.title,
+    required this.arabic,
+    required this.transliteration,
+    required this.meaning,
+    this.audio = '',
+    this.source = '',
+  });
+
+  final String id;
+  final String title;
+  final String arabic;
+  final String transliteration;
+  final String meaning;
+  final String audio;
+  final String source;
+
+  bool get hasAudio => audio.trim().isNotEmpty;
+
+  factory WuduCompletionDua.fromJson(Map<String, dynamic> json) {
+    return WuduCompletionDua(
+      id: JsonMap.str(json['id']),
+      title: JsonMap.str(json['title']),
+      arabic: JsonMap.str(json['arabic']),
+      transliteration: JsonMap.str(json['transliteration']),
+      meaning: JsonMap.str(json['meaning']),
+      audio: JsonMap.str(json['audio']),
+      source: JsonMap.str(json['source']),
+    );
+  }
+}
+
 class WuduLesson {
   const WuduLesson({
     required this.id,
@@ -80,6 +114,7 @@ class WuduLesson {
     this.visualSteps = const [],
     this.tips = const [],
     this.farzIds = const [],
+    this.completionDua,
   });
 
   final String id;
@@ -90,8 +125,10 @@ class WuduLesson {
   final List<Map<String, dynamic>> visualSteps;
   final List<Map<String, dynamic>> tips;
   final List<String> farzIds;
+  final WuduCompletionDua? completionDua;
 
   factory WuduLesson.fromJson(Map<String, dynamic> json) {
+    final duaJson = JsonMap.object(json['completionDua']);
     return WuduLesson(
       id: JsonMap.str(json['id']),
       title: JsonMap.str(json['title']),
@@ -103,6 +140,7 @@ class WuduLesson {
       visualSteps: JsonMap.extractList(json, itemsKey: 'visualSteps'),
       tips: JsonMap.extractList(json, itemsKey: 'tips'),
       farzIds: JsonMap.strings(json['farzIds']),
+      completionDua: duaJson.isEmpty ? null : WuduCompletionDua.fromJson(duaJson),
     );
   }
 
@@ -115,6 +153,16 @@ class WuduLesson {
         'visualSteps': visualSteps,
         'tips': tips,
         'farzIds': farzIds,
+        if (completionDua != null)
+          'completionDua': {
+            'id': completionDua!.id,
+            'title': completionDua!.title,
+            'arabic': completionDua!.arabic,
+            'transliteration': completionDua!.transliteration,
+            'meaning': completionDua!.meaning,
+            'audio': completionDua!.audio,
+            'source': completionDua!.source,
+          },
       };
 }
 

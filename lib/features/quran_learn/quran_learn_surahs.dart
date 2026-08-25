@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,7 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
+import 'quran_learn_follow.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_tajweed_marks.dart';
 import 'quran_learn_widgets.dart';
@@ -33,11 +36,11 @@ class QuranLearnSurahsPage extends StatelessWidget {
   String get _title {
     switch (mode) {
       case QuranLearnReadMode.surah:
-        return 'Kısa Sureler';
+        return pack.titleForLevel(5, fallback: 'Uygulama');
       case QuranLearnReadMode.practice:
-        return 'Kur\'an Okuma Pratiği';
+        return pack.titleForLevel(7, fallback: 'Uygulama — Okuma Pratiği');
       case QuranLearnReadMode.tajweedRead:
-        return 'Tecvidli Okuma';
+        return pack.titleForLevel(8, fallback: 'Uygulama — Tecvidli Okuma');
     }
   }
 
@@ -104,6 +107,8 @@ class QuranLearnSurahsPage extends StatelessWidget {
   }
 }
 
+enum _AlongMode { idle, listening, echoPlay, echoWait }
+
 class QuranLearnSurahReaderPage extends StatefulWidget {
   const QuranLearnSurahReaderPage({
     super.key,
@@ -123,9 +128,14 @@ class QuranLearnSurahReaderPage extends StatefulWidget {
 
 class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
   final _audio = AudioPlayerService();
+  final _ayahKeys = <int, GlobalKey>{};
   Future<List<QuranVerse>>? _future;
+  StreamSubscription<Duration>? _positionSub;
+  StreamSubscription<bool>? _completedSub;
+  List<QuranLearnFollowSpan> _spans = const [];
   int _highlight = -1;
-  bool _follow = false;
+  int _session = 0;
+  _AlongMode _mode = _AlongMode.idle;
 
   String get _kind {
     switch (widget.mode) {
@@ -138,8 +148,22 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
     }
   }
 
+  String? get _audioPath {
+    return QuranLearnAudio.surahPath(
+      widget.surah.surahNumber,
+      jsonAudio: widget.surah.audio,
+    );
+  }
+
+  bool get _isListening => _mode == _AlongMode.listening;
+
+  bool get _isEcho =>
+      _mode == _AlongMode.echoPlay || _mode == _AlongMode.echoWait;
+
   @override
   void dispose() {
+    _positionSub?.cancel();
+    _completedSub?.cancel();
     _audio.dispose();
     super.dispose();
   }
@@ -150,27 +174,167 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
         );
   }
 
-  Future<void> _listen(List<QuranVerse> verses) async {
-    final path = QuranLearnAudio.surahPath(
-      widget.surah.surahNumber,
-      jsonAudio: widget.surah.audio,
-    );
-    if (path == null) return;
-    setState(() {
-      _follow = true;
-      _highlight = 0;
-    });
-    await QuranLearnAudio.play(
+  Future<void> _cancelSession() async {
+    _session++;
+    await _positionSub?.cancel();
+    await _completedSub?.cancel();
+    _positionSub = null;
+    _completedSub = null;
+    await _audio.stop();
+  }
+
+  Future<Duration?> _prepare(List<QuranVerse> verses, {required bool count}) {
+    return QuranLearnAudio.prepare(
       _audio,
       context.read<LocalProgressStore>(),
-      path,
+      _audioPath,
+      countPlay: count,
+    ).then((duration) {
+      if (duration != null) {
+        _spans = QuranLearnFollowTimeline.fromArabic(
+          [for (final verse in verses) verse.arabic],
+          duration,
+        );
+      }
+      return duration;
+    });
+  }
+
+  void _listenPosition() {
+    _positionSub?.cancel();
+    _positionSub = _audio.positionStream.listen((position) {
+      if (!mounted || !_isListening || _spans.isEmpty) return;
+      final next = QuranLearnFollowTimeline.indexAt(_spans, position);
+      if (next == _highlight) return;
+      setState(() => _highlight = next);
+      _scrollTo(next);
+    });
+    _completedSub?.cancel();
+    _completedSub = _audio.completedStream.listen((done) {
+      if (!mounted || !done || !_isListening) return;
+      setState(() => _mode = _AlongMode.idle);
+    });
+  }
+
+  void _scrollTo(int index) {
+    final context = _ayahKeys[index]?.currentContext;
+    if (context == null) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final target = _ayahKeys[index]?.currentContext;
+      if (target == null) return;
+      Scrollable.ensureVisible(
+        target,
+        duration: const Duration(milliseconds: 280),
+        curve: Curves.easeOut,
+        alignment: 0.18,
+      );
+    });
+  }
+
+  Future<void> _startListen(List<QuranVerse> verses, {int fromAyah = 0}) async {
+    if (_audioPath == null) return;
+    if (_isListening) {
+      await _stopAlong();
+      return;
+    }
+    await _cancelSession();
+    final duration = await _prepare(verses, count: true);
+    if (!mounted || duration == null || duration <= Duration.zero) return;
+    final startIndex = fromAyah.clamp(0, verses.length - 1);
+    setState(() {
+      _mode = _AlongMode.listening;
+      _highlight = startIndex;
+    });
+    _scrollTo(startIndex);
+    await _audio.seek(_spans[startIndex].start);
+    _listenPosition();
+    await _audio.resume();
+  }
+
+  Future<void> _startEcho(List<QuranVerse> verses, {int fromAyah = 0}) async {
+    if (_audioPath == null) return;
+    if (_isEcho) {
+      await _stopAlong();
+      return;
+    }
+    await _cancelSession();
+    final duration = await _prepare(verses, count: true);
+    if (!mounted || duration == null || duration <= Duration.zero) return;
+    await _playEchoAyah(fromAyah.clamp(0, verses.length - 1));
+  }
+
+  Future<void> _playEchoAyah(int index) async {
+    final session = ++_session;
+    if (_spans.isEmpty || index < 0 || index >= _spans.length) return;
+    setState(() {
+      _mode = _AlongMode.echoPlay;
+      _highlight = index;
+    });
+    _scrollTo(index);
+    final span = _spans[index];
+    await _audio.seek(span.start);
+    await _audio.resume();
+    await _waitUntil(
+      start: span.start,
+      end: span.end,
+      session: session,
+      timeout: span.end - span.start + const Duration(seconds: 3),
     );
+    if (!mounted || session != _session) return;
+    await _audio.pause();
+    if (!mounted || session != _session) return;
+    setState(() => _mode = _AlongMode.echoWait);
+  }
+
+  Future<void> _waitUntil({
+    required Duration start,
+    required Duration end,
+    required int session,
+    required Duration timeout,
+  }) async {
+    final done = Completer<void>();
+    late final StreamSubscription<Duration> pos;
+    late final StreamSubscription<bool> completed;
+    var armed = false;
+    void finish() {
+      if (!done.isCompleted) done.complete();
+    }
+
+    pos = _audio.positionStream.listen((position) {
+      if (session != _session) {
+        finish();
+        return;
+      }
+      final inAyah = position >= start - const Duration(milliseconds: 400) &&
+          position < end;
+      if (inAyah) armed = true;
+      if (armed && position >= end) finish();
+    });
+    completed = _audio.completedStream.listen((isDone) {
+      if (isDone) finish();
+    });
+    await done.future.timeout(timeout, onTimeout: finish);
+    await pos.cancel();
+    await completed.cancel();
+  }
+
+  Future<void> _stopAlong() async {
+    await _cancelSession();
     if (!mounted) return;
-    // Ayah-level highlight only; word sync can be added later.
-    for (var i = 0; i < verses.length; i++) {
-      if (!mounted || !_follow) return;
-      setState(() => _highlight = i);
-      await Future<void>.delayed(const Duration(seconds: 4));
+    setState(() => _mode = _AlongMode.idle);
+  }
+
+  Future<void> _onAyahTap(int index) async {
+    setState(() => _highlight = index);
+    _scrollTo(index);
+    if (_audioPath == null || _spans.isEmpty) return;
+    if (_isListening) {
+      await _audio.seek(_spans[index].start);
+      if (!_audio.isPlaying) await _audio.resume();
+      return;
+    }
+    if (_isEcho) {
+      await _playEchoAyah(index);
     }
   }
 
@@ -190,13 +354,22 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
     );
   }
 
+  String get _hint {
+    switch (_mode) {
+      case _AlongMode.listening:
+        return 'Sarı ayeti sesle birlikte takip et. Ayetin üstüne dokunursan oraya atlar.';
+      case _AlongMode.echoPlay:
+        return 'Dinle. Bitince sen oku.';
+      case _AlongMode.echoWait:
+        return 'Şimdi sen oku. Hazır olunca sonraki ayete geç.';
+      case _AlongMode.idle:
+        return 'Dinle veya Takip Et: sureyi dinlerken ayetler işaretlenir. Benimle Oku: bir ayet dinle, sonra sen oku.';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _future ??= _load();
-    final audioPath = QuranLearnAudio.surahPath(
-      widget.surah.surahNumber,
-      jsonAudio: widget.surah.audio,
-    );
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
@@ -214,6 +387,9 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
         errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
         onRetry: () => setState(() => _future = _load()),
         builder: (verses) {
+          for (var i = 0; i < verses.length; i++) {
+            _ayahKeys.putIfAbsent(i, GlobalKey.new);
+          }
           return ListView(
             padding: AppSpacing.page,
             children: [
@@ -235,6 +411,15 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                         textAlign: TextAlign.center,
                       ),
                     ],
+                    const SizedBox(height: 8),
+                    Text(
+                      _hint,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontFamily: 'NotoSans',
+                        color: MinikColors.textMuted,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -243,50 +428,90 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  if (audioPath != null)
+                  if (_audioPath != null)
                     FilledButton.icon(
-                      onPressed: () => _listen(verses),
-                      icon: const Icon(Icons.volume_up_rounded),
-                      label: const Text('Dinle'),
+                      onPressed: () => _startListen(verses),
+                      icon: Icon(
+                        _isListening
+                            ? Icons.stop_rounded
+                            : Icons.volume_up_rounded,
+                      ),
+                      label: Text(_isListening ? 'Durdur' : 'Dinle'),
                     ),
-                  OutlinedButton.icon(
-                    onPressed: () => setState(() {
-                      _follow = !_follow;
-                      if (_follow && _highlight < 0) _highlight = 0;
-                    }),
-                    icon: const Icon(Icons.touch_app_rounded),
-                    label: Text(_follow ? 'Takip açık' : 'Takip Et'),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () => setState(() => _highlight = 0),
-                    icon: const Icon(Icons.record_voice_over_rounded),
-                    label: const Text('Benimle Oku'),
-                  ),
-                  OutlinedButton.icon(
-                    onPressed: () => setState(() {
-                      _follow = true;
-                      _highlight = 0;
-                    }),
-                    icon: const Icon(Icons.menu_book_rounded),
-                    label: const Text('Oku'),
-                  ),
-                  if (QuranLearnAudio.canRecord)
+                  if (_audioPath != null)
                     OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.mic_rounded),
-                      label: const Text('Kaydet'),
+                      onPressed: () => _startListen(
+                        verses,
+                        fromAyah: _highlight < 0 ? 0 : _highlight,
+                      ),
+                      icon: const Icon(Icons.touch_app_rounded),
+                      style: _isListening
+                          ? OutlinedButton.styleFrom(
+                              backgroundColor: MinikColors.butter,
+                            )
+                          : null,
+                      label: Text(_isListening ? 'Takip açık' : 'Takip Et'),
+                    ),
+                  if (_audioPath != null)
+                    OutlinedButton.icon(
+                      onPressed: () => _startEcho(
+                        verses,
+                        fromAyah: _highlight < 0 ? 0 : _highlight,
+                      ),
+                      icon: const Icon(Icons.record_voice_over_rounded),
+                      style: _isEcho
+                          ? OutlinedButton.styleFrom(
+                              backgroundColor: MinikColors.butter,
+                            )
+                          : null,
+                      label: Text(_isEcho ? 'Okumayı bitir' : 'Benimle Oku'),
                     ),
                 ],
               ),
+              if (_isEcho) ...[
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    OutlinedButton.icon(
+                      onPressed: _mode == _AlongMode.echoPlay
+                          ? null
+                          : () => _playEchoAyah(_highlight < 0 ? 0 : _highlight),
+                      icon: const Icon(Icons.replay_rounded),
+                      label: const Text('Tekrar dinle'),
+                    ),
+                    FilledButton.icon(
+                      onPressed: _mode == _AlongMode.echoPlay
+                          ? null
+                          : () {
+                              final next = (_highlight < 0 ? 0 : _highlight) + 1;
+                              if (next >= verses.length) {
+                                _stopAlong();
+                                return;
+                              }
+                              _playEchoAyah(next);
+                            },
+                      icon: const Icon(Icons.skip_next_rounded),
+                      label: Text(
+                        _highlight >= verses.length - 1
+                            ? 'Bitti'
+                            : 'Sonraki ayet',
+                      ),
+                    ),
+                  ],
+                ),
+              ],
               const SizedBox(height: AppSpacing.md),
               for (var i = 0; i < verses.length; i++)
                 Padding(
+                  key: _ayahKeys[i],
                   padding: const EdgeInsets.only(bottom: 8),
                   child: MinikCard(
                     color: _highlight == i
                         ? MinikColors.butter
                         : MinikColors.surface,
-                    onTap: () => setState(() => _highlight = i),
+                    onTap: () => _onAyahTap(i),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -298,18 +523,18 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                               const Spacer(),
                               QlColorIconButton(
                                 arabic: verses[i].arabic,
-                                title: '${widget.surah.nameTr} ${verses[i].ayahNo}',
+                                title:
+                                    '${widget.surah.nameTr} ${verses[i].ayahNo}',
                                 prompt: 'Bu ayeti boya.',
-                                audio: QuranLearnAudio.surahPath(
-                                  widget.surah.surahNumber,
-                                  jsonAudio: widget.surah.audio,
-                                ),
+                                audio: _audioPath,
                               ),
                             ],
                           ),
                         ),
                         const SizedBox(height: 6),
-                        ArabicText(verses[i].arabic, fontSize: 26),
+                        IgnorePointer(
+                          child: ArabicText(verses[i].arabic, fontSize: 26),
+                        ),
                         if (widget.mode == QuranLearnReadMode.tajweedRead) ...[
                           const SizedBox(height: 8),
                           QlTajweedHitChips(

@@ -11,6 +11,7 @@ class WuduVisualStep {
     required this.image,
     required this.kind,
     this.jsonStepId,
+    this.farzTitle = '',
     this.motionFrames = const [],
   });
 
@@ -21,7 +22,16 @@ class WuduVisualStep {
   final String image;
   final WuduKind kind;
   final String? jsonStepId;
+  final String farzTitle;
   final List<String> motionFrames;
+
+  String get displayFarzTitle {
+    final label = farzTitle.trim();
+    if (label.isNotEmpty) return label;
+    return title
+        .replaceAll(' Yıkayalım', '')
+        .replaceAll(' Mesh Edelim', '');
+  }
 
   factory WuduVisualStep.fromJson(Map<String, dynamic> json) {
     final jsonStepId = JsonMap.str(json['jsonStepId']);
@@ -33,6 +43,7 @@ class WuduVisualStep {
       image: JsonMap.str(json['image']),
       kind: kindFrom(json['kind']),
       jsonStepId: jsonStepId.isEmpty ? null : jsonStepId,
+      farzTitle: JsonMap.str(json['farzTitle']),
       motionFrames: JsonMap.strings(json['motion_frames']),
     );
   }
@@ -123,6 +134,7 @@ abstract final class WuduVisualCatalog {
       image: 'assets/images/wudu/wudu_06_yuz.png',
       kind: WuduKind.farz,
       jsonStepId: 'face',
+      farzTitle: 'Yüzümüzü',
     ),
     WuduVisualStep(
       id: 'sag_kol',
@@ -132,6 +144,7 @@ abstract final class WuduVisualCatalog {
       image: 'assets/images/wudu/wudu_07_sag_kol.png',
       kind: WuduKind.farz,
       jsonStepId: 'arms',
+      farzTitle: 'Kolumuzu',
     ),
     WuduVisualStep(
       id: 'sol_kol',
@@ -150,6 +163,7 @@ abstract final class WuduVisualCatalog {
       image: 'assets/images/wudu/wudu_09_bas.png',
       kind: WuduKind.farz,
       jsonStepId: 'head',
+      farzTitle: 'Başımızı',
     ),
     WuduVisualStep(
       id: 'kulaklar',
@@ -177,6 +191,7 @@ abstract final class WuduVisualCatalog {
       image: 'assets/images/wudu/wudu_11_sag_ayak.png',
       kind: WuduKind.farz,
       jsonStepId: 'feet',
+      farzTitle: 'Ayağımızı',
     ),
     WuduVisualStep(
       id: 'sol_ayak',

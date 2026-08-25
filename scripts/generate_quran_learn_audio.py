@@ -48,7 +48,7 @@ PREFERRED_VOICES = (
     "ar-XA-Wavenet-B",
     "ar-XA-Wavenet-C",
 )
-PAUSE_MARKS = ("ؕ", "ۚ", "ۖ", "ۗ", "ۘ", "ۙ", "ۛ", "ۜ", "ۢ", "۝")
+PAUSE_MARKS = ("ؕ", "ۚ", "ۖ", "ۗ", "ۘ", "ۙ", "ۛ", "ۜ", "ۢ", "۝", "\u08d5")
 CHUNK_GAP_MS = 180
 CARTOON_RATE = 48000
 TAFKHIM_IDS = frozenset(
@@ -662,6 +662,22 @@ def build_replace_clips() -> list[Clip]:
                     speaking_rate=ASMA_RATE,
                 )
             )
+    wudu_path = ROOT / "assets" / "data" / "wudu.json"
+    if wudu_path.exists():
+        wudu = json.loads(wudu_path.read_text(encoding="utf-8"))
+        dua = wudu.get("completionDua") or {}
+        arabic = str(dua.get("arabic") or "").strip()
+        dest = str(dua.get("audio") or "").strip()
+        if arabic and dest:
+            clips.append(
+                Clip(
+                    clip_id="wudu_abdest_duasi",
+                    category="dua",
+                    arabic=arabic,
+                    rel_path=dest,
+                    speaking_rate=DUA_RATE,
+                )
+            )
     return clips
 
 
@@ -716,17 +732,253 @@ def looks_like_mp3(path: Path) -> bool:
     return header == b"ID3" or header[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2", b"\xff\xfa")
 
 
-def tts_input_text(arabic: str) -> str:
-    """Keep JSON Arabic; strip waqf marks so Chirp does not restart the sentence."""
+_SHORT_VOWELS = frozenset("ًٌٍَُِْ")
+_SUKUN = "ْ"
+_MADD_STOP = frozenset("اأإآىو")
+
+
+def _is_arabic_letter(ch: str) -> bool:
+    code = ord(ch)
+    if 0x0621 <= code <= 0x063A:
+        return True
+    if 0x0641 <= code <= 0x064A:
+        return True
+    return code in {0x0629, 0x0649, 0x06CC, 0x0671, 0x0672, 0x0673, 0x0675}
+
+
+def _letter_clusters(word: str) -> list[list[str]]:
+    clusters: list[list[str]] = []
+    for char in word:
+        if _is_arabic_letter(char):
+            clusters.append([char, ""])
+        elif clusters:
+            clusters[-1][1] += char
+    return clusters
+
+
+def waqf_last_word(word: str) -> str:
+    """Stop on the last letter: drop final haraka/tanwin, read as sukun."""
+    clusters = _letter_clusters(word)
+    if not clusters:
+        return word
+    last_letter, last_marks = clusters[-1]
+    prev_marks = clusters[-2][1] if len(clusters) > 1 else ""
+    tanwin_fatha = "ً" in last_marks or "ً" in prev_marks
+    if last_letter in "اأى" and tanwin_fatha:
+        clusters.pop()
+        if not clusters:
+            return word
+        last_letter, last_marks = clusters[-1]
+    kept = "".join(mark for mark in last_marks if mark not in _SHORT_VOWELS)
+    if last_letter == "ة":
+        last_letter = "ه"
+    elif last_letter == "ئ":
+        last_letter = "ء"
+    if last_letter in _MADD_STOP:
+        clusters[-1] = [last_letter, kept]
+    else:
+        clusters[-1] = [last_letter, kept + _SUKUN]
+    return "".join(letter + marks for letter, marks in clusters)
+
+
+def normalize_mushaf_for_tts(arabic: str) -> str:
+    """Keep JSON on screen; only normalize mushaf marks Chirp misreads as other words."""
     text = arabic.strip()
-    for mark in PAUSE_MARKS + ("،", "؛"):
+    text = text.replace("ی", "ي")
+    # Subscript alef is a kasra-length mark, not an extra ي letter.
+    text = text.replace("ٖ", "ِ")
+    text = text.replace("اٰ", "آ")
+    text = text.replace("ٰى", "ى")
+    text = text.replace("ىٰ", "ى")
+    text = text.replace("ٰ", "ا")
+    # Maddah stretches ا; converting ٓا to آ would add a hamza in الضالين.
+    text = text.replace("ٓ", "")
+    for mark in ("،", "؛"):
         text = text.replace(mark, " ")
     return " ".join(text.split())
 
 
+def apply_waqf_to_phrase(phrase: str) -> str:
+    words = phrase.split()
+    if not words:
+        return phrase
+    words[-1] = waqf_last_word(words[-1])
+    return " ".join(words)
+
+
+# Extra madd letters Chirp should hold. Counts follow tilavet, not display JSON.
+# tabii ~2 harakat, muttasil/munfasil/arid ~4, lazim ~6.
+_MADD_EXTRA = {
+    "tabii": 1,
+    "badal": 1,
+    "muttasil": 2,
+    "munfasil": 2,
+    "arid": 2,
+    "lazim": 4,
+}
+_HAMZA_QAT = frozenset("أإؤئءآ")
+
+
+def _has_mark(marks: str, chars: str) -> bool:
+    return any(char in marks for char in chars)
+
+
+def _is_madd_carrier(letter: str, marks: str) -> bool:
+    if letter in "اآى":
+        return not _has_mark(marks, "ُِ")
+    if letter == "و":
+        return not _has_mark(marks, "ًٌٍَُِ")
+    if letter == "ي":
+        return not _has_mark(marks, "ًٌٍَُِ")
+    return False
+
+
+def _madd_kind_for_previous(letter: str, prev_marks: str) -> str | None:
+    if letter in "اآى":
+        if _has_mark(prev_marks, "ً"):
+            return None
+        if _has_mark(prev_marks, "َ"):
+            return "alif"
+        # Dagger alif (ٰ → ا) often leaves the previous letter without َ.
+        if not _has_mark(prev_marks, "ًٌٍَُِْ"):
+            return "alif"
+        return None
+    if letter == "و" and _has_mark(prev_marks, "ُ") and not _has_mark(prev_marks, "ٌ"):
+        return "waw"
+    if letter == "ي" and _has_mark(prev_marks, "ِ") and not _has_mark(prev_marks, "ٍ"):
+        return "yeh"
+    return None
+
+
+def _stretch_glyph(letter: str) -> str:
+    """Hold alif-class madd with extra ا so Chirp lengthens ā, not a new hamza/yeh."""
+    if letter in "آاى":
+        return "ا"
+    return letter
+
+
+def _is_stretch_copy(origin: str, letter: str, marks: str) -> bool:
+    if _has_mark(marks, "ًٌٍَُِ"):
+        return False
+    if letter == origin:
+        return True
+    return origin in "آاى" and letter == "ا"
+
+
+def _following_index(clusters: list[list[str]], madd_idx: int) -> int | None:
+    origin = clusters[madd_idx][0]
+    index = madd_idx + 1
+    while index < len(clusters) and _is_stretch_copy(
+        origin, clusters[index][0], clusters[index][1]
+    ):
+        index += 1
+    if index >= len(clusters):
+        return None
+    return index
+
+
+def _stretch_madd(clusters: list[list[str]], madd_idx: int, extra: int) -> None:
+    origin = clusters[madd_idx][0]
+    glyph = _stretch_glyph(origin)
+    end = madd_idx + 1
+    while end < len(clusters) and _is_stretch_copy(
+        origin, clusters[end][0], clusters[end][1]
+    ):
+        end += 1
+    del clusters[madd_idx + 1 : end]
+    for _ in range(extra):
+        clusters.insert(madd_idx + 1, [glyph, ""])
+
+
+def _starts_with_hamza_qat(word: str) -> bool:
+    clusters = _letter_clusters(word.lstrip())
+    if not clusters:
+        return False
+    letter, marks = clusters[0]
+    if letter in _HAMZA_QAT:
+        return True
+    return letter == "ا" and _has_mark(marks, "ًٌٍَُِ")
+
+
+def _classify_madd(
+    clusters: list[list[str]],
+    madd_idx: int,
+    *,
+    next_word: str,
+    is_last_word: bool,
+) -> str:
+    follow_idx = _following_index(clusters, madd_idx)
+    if follow_idx is not None:
+        follow_letter, follow_marks = clusters[follow_idx]
+        if _has_mark(follow_marks, "ّ"):
+            return "lazim"
+        if follow_letter in _HAMZA_QAT:
+            return "muttasil"
+        if (
+            is_last_word
+            and _has_mark(follow_marks, "ْ")
+            and follow_idx == len(clusters) - 1
+        ):
+            return "arid"
+        if madd_idx == 0 and clusters[madd_idx][0] in "اآ":
+            return "badal"
+        return "tabii"
+    if _starts_with_hamza_qat(next_word):
+        return "munfasil"
+    return "tabii"
+
+
+def apply_tajweed_madd(phrase: str) -> str:
+    """Lengthen madd letters in TTS input only; JSON on screen stays unchanged."""
+    words = phrase.split()
+    stretched: list[str] = []
+    for index, word in enumerate(words):
+        clusters = _letter_clusters(word)
+        if not clusters:
+            stretched.append(word)
+            continue
+        next_word = words[index + 1] if index + 1 < len(words) else ""
+        is_last_word = index == len(words) - 1
+        madd_indexes: list[int] = []
+        first_letter, first_marks = clusters[0]
+        if first_letter == "آ" and _is_madd_carrier(first_letter, first_marks):
+            madd_indexes.append(0)
+        for pos in range(1, len(clusters)):
+            letter, marks = clusters[pos]
+            if not _is_madd_carrier(letter, marks):
+                continue
+            if _madd_kind_for_previous(letter, clusters[pos - 1][1]):
+                madd_indexes.append(pos)
+        for pos in reversed(madd_indexes):
+            kind = _classify_madd(
+                clusters,
+                pos,
+                next_word=next_word,
+                is_last_word=is_last_word,
+            )
+            _stretch_madd(clusters, pos, _MADD_EXTRA[kind])
+        stretched.append("".join(letter + marks for letter, marks in clusters))
+    return " ".join(stretched)
+
+
+def tts_input_text(arabic: str) -> str:
+    """Normalize mushaf glyphs, apply waqf at stops, then stretch tajweed madd."""
+    raw = arabic.replace("\r", "\n")
+    for mark in PAUSE_MARKS:
+        raw = raw.replace(mark, "\n")
+    phrases: list[str] = []
+    for piece in raw.split("\n"):
+        normalized = normalize_mushaf_for_tts(piece)
+        if not normalized:
+            continue
+        stopped = apply_waqf_to_phrase(normalized)
+        phrases.append(apply_tajweed_madd(stopped))
+    return " ".join(phrases)
+
+
 def spoken_chunks(arabic: str) -> list[str]:
     """Prefer one pass. Split only long text; never turn waqf into English periods."""
-    collapsed = tts_input_text(arabic.replace("\r", " ").replace("\n", " "))
+    collapsed = tts_input_text(arabic)
     if len(collapsed) <= 420:
         return [collapsed] if collapsed else [tts_input_text(arabic)]
     raw = arabic.replace("\r", "\n")
@@ -749,6 +1001,7 @@ def synthesize(
     ssml: str | None = None,
     speaking_rate: float = SPEAKING_RATE,
     allow_pitch: bool,
+    process_text: bool = True,
 ) -> None:
     from google.cloud import texttospeech
 
@@ -763,10 +1016,11 @@ def synthesize(
         audio_config_kwargs["pitch"] = CHILD_PITCH
     audio_config = texttospeech.AudioConfig(**audio_config_kwargs)
 
+    spoken = tts_input_text(text) if process_text else text
     attempts: list[texttospeech.SynthesisInput] = []
     if ssml:
         attempts.append(texttospeech.SynthesisInput(ssml=ssml))
-    attempts.append(texttospeech.SynthesisInput(text=tts_input_text(text)))
+    attempts.append(texttospeech.SynthesisInput(text=spoken))
 
     last_error: Exception | None = None
     for input_index, synthesis_input in enumerate(attempts):
@@ -805,6 +1059,7 @@ def synthesize(
                         ssml=ssml if input_index == 0 else None,
                         speaking_rate=speaking_rate,
                         allow_pitch=False,
+                        process_text=process_text,
                     )
                     return
                 if ssml and input_index == 0 and (
@@ -947,6 +1202,7 @@ def render_spoken_mp3(
             text=chunks[0],
             speaking_rate=speaking_rate,
             allow_pitch=True,
+            process_text=False,
         )
         cartoonize_mp3(dest)
         return
@@ -963,6 +1219,7 @@ def render_spoken_mp3(
                 text=chunk,
                 speaking_rate=speaking_rate,
                 allow_pitch=True,
+                process_text=False,
             )
             pcm, channels, rate = decode_mp3_pcm(tmp)
             decoded.append((trim_pcm(pcm, channels, rate, pad_ms=50), channels, rate))

@@ -45,6 +45,11 @@ void main() {
     expect(neck, hasLength(1));
     expect(neck.first.kind, WuduKind.sunnah);
     expect(neck.first.number, 11);
+    final farz = {
+      for (final id in WuduVisualCatalog.farzIds)
+        WuduVisualCatalog.steps.firstWhere((step) => step.id == id).displayFarzTitle,
+    };
+    expect(farz, {'Yüzümüzü', 'Kolumuzu', 'Başımızı', 'Ayağımızı'});
   });
 
   test('wudu progress is stored locally', () async {

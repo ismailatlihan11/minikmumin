@@ -67,7 +67,7 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
                                   ),
                                   const SizedBox(height: 4),
                                   const Text(
-                                    'Adım adım öğrenelim, birlikte okuyalım.',
+                                    'Diyanet Elifba sırasıyla adım adım öğrenelim.',
                                   ),
                                 ],
                               ),

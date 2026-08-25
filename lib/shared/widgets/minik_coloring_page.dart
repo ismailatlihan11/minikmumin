@@ -300,7 +300,7 @@ class _MinikColoringPageState extends State<MinikColoringPage> {
                         ),
                       ),
                       child: color == _paper
-                          ? const Icon(Icons.auto_fix_off_rounded, size: 18)
+                          ? const MinikEraserIcon(size: 22)
                           : null,
                     ),
                   ),
@@ -346,6 +346,23 @@ class _MinikColoringPageState extends State<MinikColoringPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class MinikEraserIcon extends StatelessWidget {
+  const MinikEraserIcon({super.key, this.size = 22});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      'assets/images/ui/eraser.png',
+      width: size,
+      height: size,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.medium,
     );
   }
 }

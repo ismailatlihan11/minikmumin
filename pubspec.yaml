@@ -25,6 +25,7 @@ flutter:
   assets:
     - assets/data/
     - assets/fonts/
+    - assets/images/ui/
     - assets/images/duas/
     - assets/images/home/
     - assets/images/ilmihal/
@@ -35,8 +36,10 @@ flutter:
     - assets/images/wudu/
     - assets/images/books/peygamberler/
     - assets/audio/asma/
+    - assets/audio/duas/
     - assets/audio/effects/
     - assets/audio/prayer/
+    - assets/audio/wudu/
     - assets/audio/quran/
     - assets/audio/quran_learn/
     - assets/audio/quran_learn/alphabet/

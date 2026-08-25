@@ -119,7 +119,8 @@
       "prompt": "Yüzümüzü üç kere yıkarız. Alından çeneye, bir kulaktan diğerine.",
       "image": "assets/images/wudu/wudu_06_yuz.png",
       "kind": "farz",
-      "jsonStepId": "face"
+      "jsonStepId": "face",
+      "farzTitle": "Yüzümüzü"
     },
     {
       "id": "sag_kol",
@@ -128,7 +129,8 @@
       "prompt": "Sağ kolumuzu dirsekle birlikte üç kere yıkarız.",
       "image": "assets/images/wudu/wudu_07_sag_kol.png",
       "kind": "farz",
-      "jsonStepId": "arms"
+      "jsonStepId": "arms",
+      "farzTitle": "Kolumuzu"
     },
     {
       "id": "sol_kol",
@@ -146,7 +148,8 @@
       "prompt": "Islak elimizle başımızı mesh ederiz.",
       "image": "assets/images/wudu/wudu_09_bas.png",
       "kind": "farz",
-      "jsonStepId": "head"
+      "jsonStepId": "head",
+      "farzTitle": "Başımızı"
     },
     {
       "id": "kulaklar",
@@ -173,7 +176,8 @@
       "prompt": "Sağ ayağımızı topuk ve parmak araları dahil yıkarız.",
       "image": "assets/images/wudu/wudu_11_sag_ayak.png",
       "kind": "farz",
-      "jsonStepId": "feet"
+      "jsonStepId": "feet",
+      "farzTitle": "Ayağımızı"
     },
     {
       "id": "sol_ayak",
@@ -211,5 +215,14 @@
       "image": "assets/images/wudu/wudu_tip_time.png"
     }
   ],
-  "farzIds": ["yuz", "sag_kol", "bas", "sag_ayak"]
+  "farzIds": ["yuz", "sag_kol", "bas", "sag_ayak"],
+  "completionDua": {
+    "id": "abdest_duasi",
+    "title": "Abdest Tamamlandı Duası",
+    "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ\nاَللّٰهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ",
+    "transliteration": "Eşhedü en lâ ilâhe illallâhu vahdehû lâ şerîke leh. Ve eşhedü enne Muhammeden abdühû ve resûlüh.\nAllâhümme-c'alnî minet-tevvâbîne ve-c'alnî minel-mütetahhirîn.",
+    "meaning": "Şahitlik ederim ki Allah'tan başka ilâh yoktur. O tektir, ortağı yoktur. Yine şahitlik ederim ki Muhammed O'nun kulu ve resûlüdür. Allah'ım! Beni tövbe edenlerden eyle. Beni temizlenenlerden eyle.",
+    "audio": "assets/audio/wudu/abdest_duasi.mp3",
+    "source": "Müslim, Tahâret 17; Tirmizî, Tahâret 41"
+  }
 }

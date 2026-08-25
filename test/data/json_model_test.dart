@@ -72,9 +72,19 @@ void main() {
       'steps': [
         {'id': 'hands', 'order': 1, 'title': 'Eller', 'description': 'Yıka'},
       ],
+      'completionDua': {
+        'id': 'abdest_duasi',
+        'title': 'Abdest Tamamlandı Duası',
+        'arabic': 'أَشْهَدُ',
+        'transliteration': 'Eşhedü',
+        'meaning': 'Şahitlik ederim',
+        'audio': 'assets/audio/wudu/abdest_duasi.mp3',
+      },
     });
     expect(lesson.steps, hasLength(1));
     expect(lesson.steps.first.id, 'hands');
+    expect(lesson.completionDua?.id, 'abdest_duasi');
+    expect(lesson.completionDua?.hasAudio, isTrue);
   });
 
   test('Dua maps the dualar.json schema', () {

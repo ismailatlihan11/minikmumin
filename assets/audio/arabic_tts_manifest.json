@@ -6,7 +6,7 @@
   "voice": "ar-XA-Chirp3-HD-Fenrir",
   "language": "ar-XA",
   "cartoon_semitones": 5.0,
-  "generated_at": "2026-08-23T18:49:37.892302+00:00",
+  "generated_at": "2026-08-25T10:58:33.456306+00:00",
   "items": [
     {
       "id": "prayer_besmele",
@@ -17,8 +17,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "52bb18183608e804cf4978c6e57dd9ab70b5dfe96ffe5095fc42efada8731183",
-      "generated_at": "2026-08-23T18:47:48.935811+00:00"
+      "sha256": "50de93610d023789d1393fb919d91fe680e4099cf1179b290feb73630044f403",
+      "generated_at": "2026-08-25T10:56:52.730167+00:00"
     },
     {
       "id": "prayer_hamdele",
@@ -29,8 +29,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "9071a224e9de8ad387c1680a0e6ce8a0753c5c80df7a5ac68230f7ea7ec231fb",
-      "generated_at": "2026-08-23T18:47:49.475134+00:00"
+      "sha256": "3bc81477990e9573196de6ea952b552aa99c45bb7f18de77f2b6c4598edfb2c2",
+      "generated_at": "2026-08-25T10:56:53.611109+00:00"
     },
     {
       "id": "prayer_kelime_i_tevhid",
@@ -41,8 +41,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "9dd772c241a9b8dd073be4d0f48e2fb108fb9a83954564d99e2d0258fe503d9c",
-      "generated_at": "2026-08-23T18:47:50.454812+00:00"
+      "sha256": "8f1e21914fa1e07d45773c4d160898e199d48a03e6e7ab4ef518db493bb4c1c6",
+      "generated_at": "2026-08-25T10:56:54.815415+00:00"
     },
     {
       "id": "prayer_kelime_i_sehadet",
@@ -53,8 +53,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "dbb40266d28b32327fd4ee6b3beba8aa3eda5ed006662f63c88aef4300a10b4e",
-      "generated_at": "2026-08-23T18:47:51.729835+00:00"
+      "sha256": "43012a4613b40eb6b313541fe6a58a03c88b34b099f523b1530c19ffc317c9e9",
+      "generated_at": "2026-08-25T10:56:56.627838+00:00"
     },
     {
       "id": "prayer_subhaneke",
@@ -65,8 +65,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "779acbc2292f61ac174e3da57d3e5228f9bb277d7e0588dc6f2e822e599b5689",
-      "generated_at": "2026-08-23T18:47:52.952431+00:00"
+      "sha256": "4256ce666fe8967347b0e068846a06e6fb75e2d3de2b77756ee505ea0ef849f5",
+      "generated_at": "2026-08-25T10:56:59.448533+00:00"
     },
     {
       "id": "prayer_tahiyyat",
@@ -77,8 +77,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "495ac49d7ef678bea915dd4c91768f88e941a5f2b1ecda381ad54da384acee14",
-      "generated_at": "2026-08-23T18:47:56.718808+00:00"
+      "sha256": "21faab0d7f0035f23f98212aafaf4838d454979fa89241fc53320642df8906e6",
+      "generated_at": "2026-08-25T10:57:03.692827+00:00"
     },
     {
       "id": "prayer_allahumme_salli",
@@ -89,8 +89,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "920cc58f4e23bb9984162dae7a7f4a4f2e8c1f06548967aeac759f77a740b01c",
-      "generated_at": "2026-08-23T18:47:58.303282+00:00"
+      "sha256": "924782098457438404dc85eee2b7869e77c1f5f4ee08e41e093ac80a8efd842f",
+      "generated_at": "2026-08-25T10:57:06.000928+00:00"
     },
     {
       "id": "prayer_allahumme_barik",
@@ -101,8 +101,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "7baad36e19d4825620e3fe9b7cc44492a4247ea4ba74d216db469b3f37e6bc8a",
-      "generated_at": "2026-08-23T18:47:59.773426+00:00"
+      "sha256": "2d4feaeed22a6997b0793cd8ee23339a878ed5605c4688195a707a1834708acf",
+      "generated_at": "2026-08-25T10:57:08.478859+00:00"
     },
     {
       "id": "prayer_rabbena_atina",
@@ -113,8 +113,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "251ebfd9f91a8149689c5f2c01ac2a3c261c2c58bf17209826136a4bab6fa77e",
-      "generated_at": "2026-08-23T18:48:01.043460+00:00"
+      "sha256": "d849c73b771258846cf45417cc0a1083d562d076e2d7f2a4363acadcf7b34151",
+      "generated_at": "2026-08-25T10:57:10.202625+00:00"
     },
     {
       "id": "prayer_rabbena_gfirli",
@@ -125,8 +125,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "57a3add668cbb0af968669f78cb7103584e9e488a5c1860ad11371a70a5b1117",
-      "generated_at": "2026-08-23T18:48:02.046188+00:00"
+      "sha256": "7abe15e7effeb7349fca39f334fdf721699773c9774a21dd78248a492599b7f7",
+      "generated_at": "2026-08-25T10:57:11.667530+00:00"
     },
     {
       "id": "prayer_iftitah_tekbir",
@@ -137,8 +137,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "d71a33f64d8f2ef4834e500407499d3679be746fddfb943e33fed063a5e58730",
-      "generated_at": "2026-08-23T18:48:02.695821+00:00"
+      "sha256": "2c52db167519417ff4dc395c94afb2e7b18078afca45bdf59273137446ab3a84",
+      "generated_at": "2026-08-25T10:57:12.420688+00:00"
     },
     {
       "id": "prayer_ruku",
@@ -149,8 +149,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "4120054968f32769322bf6b7432500cde22ef0f9cc5465cfea408670182089b0",
-      "generated_at": "2026-08-23T18:48:03.249795+00:00"
+      "sha256": "645ed5246da736e7f9c86e2e560f12ba0f7bada7d706a8a3e8b003bc53a64f5a",
+      "generated_at": "2026-08-25T10:57:13.368334+00:00"
     },
     {
       "id": "prayer_qiyam_after_ruku",
@@ -161,8 +161,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "e619abcb6f9fd14e36889201906a44b96787f65e25ca7296d2d83151922ab131",
-      "generated_at": "2026-08-23T18:48:03.984426+00:00"
+      "sha256": "3a4e200f7e8c3f0377e07565e0680fdbe6c5cfbf67bcea6b11fba978e687f8ef",
+      "generated_at": "2026-08-25T10:57:14.396278+00:00"
     },
     {
       "id": "prayer_sujud",
@@ -173,8 +173,8 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "95df8828f8465c030440e4b52db4a34eb232ebeb5cc8afad2e26166208567962",
-      "generated_at": "2026-08-23T18:48:04.717346+00:00"
+      "sha256": "54200279eb4d1564b8571de2757bcccc2cd5de78de2d8d71aa8e2776ed43015f",
+      "generated_at": "2026-08-25T10:57:15.411745+00:00"
     },
     {
       "id": "dua_quran_dua_2_201",
@@ -185,8 +185,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "bd0733634495f14e5108c67576b654a36f0336e9f3443a070b255a5c39a6ffc9",
-      "generated_at": "2026-08-23T18:48:06.125985+00:00"
+      "sha256": "9a3b7f59f046d77d3109beebef3d1bf3ca4c3513ac0db0c71f7a2f3ee175c1a3",
+      "generated_at": "2026-08-25T10:57:17.126647+00:00"
     },
     {
       "id": "dua_quran_dua_2_286",
@@ -197,8 +197,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "bb2604ba942173d793852ef86cfb10190abcd4f6b8b9e2e3a0dabc11bb59c605",
-      "generated_at": "2026-08-23T18:48:12.499558+00:00"
+      "sha256": "dbc20475bbdd648956ed15e40e2fab5d70e8292d62b307e413f8f84cd847e01b",
+      "generated_at": "2026-08-25T10:57:23.313005+00:00"
     },
     {
       "id": "dua_quran_dua_3_8",
@@ -209,8 +209,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "485efbccefa4bc8f16bb153dbbdd3d1022dd22d7ce6d3461041260de6dac0a2c",
-      "generated_at": "2026-08-23T18:48:14.051284+00:00"
+      "sha256": "f0fa6d3df19a74dcb13f1cb938241340c38640fe3770d873dae51a08712d7e96",
+      "generated_at": "2026-08-25T10:57:25.149330+00:00"
     },
     {
       "id": "dua_quran_dua_3_16",
@@ -221,8 +221,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "c05c05be1d3838adedbf3f3bba465e160bcbf86975c9e51876abfa4e5a52a8d7",
-      "generated_at": "2026-08-23T18:48:15.064141+00:00"
+      "sha256": "01eef246341a6ce3db8316d586d9e474c7fc3f45fc9f0e24a055e8f3f2ef6a61",
+      "generated_at": "2026-08-25T10:57:26.559393+00:00"
     },
     {
       "id": "dua_quran_dua_3_53",
@@ -233,8 +233,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "30ee518cee0355dc699ea567a8e7c50e23f8bc6809a2a1caae4237fc62e03418",
-      "generated_at": "2026-08-23T18:48:16.816021+00:00"
+      "sha256": "096b816fc7e6c71c6391cb01d573561c6dd91655c362518fc19a5c70d40fa8b0",
+      "generated_at": "2026-08-25T10:57:28.012737+00:00"
     },
     {
       "id": "dua_quran_dua_7_23",
@@ -245,8 +245,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "faf27f99ef76814f330cf396ec74fe97770ba5b3e87ef1d5b9fc12662a499de3",
-      "generated_at": "2026-08-23T18:48:18.529391+00:00"
+      "sha256": "1f930c9c0a25faa132d8f9f8f2fa13f4d6c783c5eb2c5396de0bc4f436210c62",
+      "generated_at": "2026-08-25T10:57:29.830508+00:00"
     },
     {
       "id": "dua_quran_dua_7_126",
@@ -257,8 +257,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "80260cca5dc609a77816268780d9dad583381f1974d742467f8415fa04994b5c",
-      "generated_at": "2026-08-23T18:48:20.224329+00:00"
+      "sha256": "8daf91765f562dd27f7186fd554ef829904b814a3943a61c14de6badaea9ed6f",
+      "generated_at": "2026-08-25T10:57:32.655539+00:00"
     },
     {
       "id": "dua_quran_dua_14_40",
@@ -269,8 +269,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "25e101cebbec538d02d3d308dd6d9e062accaf8611ac53c07a45bac025b2da60",
-      "generated_at": "2026-08-23T18:48:23.099761+00:00"
+      "sha256": "f3f54b2b4b67919e3bf15a4cbe4e1e299dd0898bfda51d26a4c672463643ae8e",
+      "generated_at": "2026-08-25T10:57:35.062842+00:00"
     },
     {
       "id": "dua_quran_dua_14_41",
@@ -281,8 +281,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "67304969aaeb4f34c7d195cec68468439d099047e1607a071166aea3c4d8f502",
-      "generated_at": "2026-08-23T18:48:26.069499+00:00"
+      "sha256": "60eccb7acd45fc21df57caf8e3c62e233cb0ceb900396555b71660357a14cb97",
+      "generated_at": "2026-08-25T10:57:37.449844+00:00"
     },
     {
       "id": "dua_quran_dua_18_10",
@@ -293,8 +293,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "4ecb0d75ee51672b118bf46c52f5468035110d2061f85ad21e98d95f77e1d114",
-      "generated_at": "2026-08-23T18:48:26.987164+00:00"
+      "sha256": "7e9b9f81581893e46ef5bcfe247ecc29874948253b411f7480da272617a16044",
+      "generated_at": "2026-08-25T10:57:38.955730+00:00"
     },
     {
       "id": "dua_quran_dua_20_25",
@@ -305,8 +305,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "55e291483f04fbf7b51577ca83474b3f602e40dd70487b4167dfae391fa0423c",
-      "generated_at": "2026-08-23T18:48:28.145868+00:00"
+      "sha256": "31580b8a146af914ee9b14ce0b5e6d1d5ae8816e600025063c48051171df869a",
+      "generated_at": "2026-08-25T10:57:39.760825+00:00"
     },
     {
       "id": "dua_quran_dua_20_114",
@@ -317,8 +317,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "0761ff706f43301fd460f5c237b585d9ce64bc0afd73efd1f22fc56b08f396bc",
-      "generated_at": "2026-08-23T18:48:29.474784+00:00"
+      "sha256": "d7932ae5c4298f267cb86477db6717e1070ca94736e7b5de0f1a8990332776f1",
+      "generated_at": "2026-08-25T10:57:40.564625+00:00"
     },
     {
       "id": "dua_quran_dua_21_83",
@@ -329,8 +329,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "414d5d27f801be7f508f26110e919bc4f55795e49b4309b515747223cada56a1",
-      "generated_at": "2026-08-23T18:48:30.896901+00:00"
+      "sha256": "1f79f22b6505f245078535e46f6d1d4c47d30aef2fd79cc9f8273483440beaf5",
+      "generated_at": "2026-08-25T10:57:41.706848+00:00"
     },
     {
       "id": "dua_quran_dua_21_87",
@@ -341,8 +341,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "eff75b0c571ef629c25b29c59fc972651d8453515cf8e4289892add841f96f21",
-      "generated_at": "2026-08-23T18:48:35.490320+00:00"
+      "sha256": "0fffad5410462234c31cecbd6b72f595ae61941a1c580efa1f006fef01323f80",
+      "generated_at": "2026-08-25T10:57:44.678815+00:00"
     },
     {
       "id": "dua_quran_dua_23_97",
@@ -353,8 +353,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "889b3cc0b6ae00986475e4f288ca62bd2db18289df2245d0e65f0def7e1968f1",
-      "generated_at": "2026-08-23T18:48:36.945776+00:00"
+      "sha256": "004bf3657d710b87175d18fb820d2be902996d5250ebabfb43858c55efc10891",
+      "generated_at": "2026-08-25T10:57:45.917544+00:00"
     },
     {
       "id": "dua_quran_dua_23_118",
@@ -365,8 +365,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "b2bcbdb1c260364e74021c5729c458a479d2a3d3f46a9db7b164d1e2b6fe21c9",
-      "generated_at": "2026-08-23T18:48:38.721325+00:00"
+      "sha256": "80588d2abe61a0fa6676f4a016b493f2f3c5247cff66b815340d150e70f955a3",
+      "generated_at": "2026-08-25T10:57:47.180303+00:00"
     },
     {
       "id": "dua_quran_dua_25_74",
@@ -377,8 +377,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "932504edfc7086cd59f0f1862074d9b16323d612129e667fd64e1c8fd71226e6",
-      "generated_at": "2026-08-23T18:48:40.976545+00:00"
+      "sha256": "a7d31f7a728f77fe890c9fbc86f0e998ef62957d88b2f60724c1fa6e905ccc14",
+      "generated_at": "2026-08-25T10:57:48.853447+00:00"
     },
     {
       "id": "dua_quran_dua_28_24",
@@ -389,8 +389,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "76f410cf7e4eb0cba9409daed3b6938b9864fb87a6b32e8a7f8d7affd89bc0f9",
-      "generated_at": "2026-08-23T18:48:42.914613+00:00"
+      "sha256": "2d2fb69e5c7d155713cac5ef2a4dc6ad9db5f3c6308a201ba689cdc9846b09ca",
+      "generated_at": "2026-08-25T10:57:50.134590+00:00"
     },
     {
       "id": "dua_quran_dua_59_10",
@@ -401,8 +401,8 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "57b4271e7dbf546a7a17477d91575e097085f11fb978761d79030bde77c43427",
-      "generated_at": "2026-08-23T18:48:46.978233+00:00"
+      "sha256": "20bf10b801599b14aa85946a97ea551b77a1d71aa0b11d524491e10315b134f7",
+      "generated_at": "2026-08-25T10:57:54.889994+00:00"
     },
     {
       "id": "dua_quran_dua_66_8",
@@ -413,1196 +413,152 @@
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "b0e4a17d60739a365b318122e9b6a25082cc4d764700295ef2473110a040d061",
-      "generated_at": "2026-08-23T18:48:48.409694+00:00"
+      "sha256": "950b8efc4b44342d65d5c3a26720e6d953ace6821e4388ed9cfcafe0488cb3cd",
+      "generated_at": "2026-08-25T10:57:56.331550+00:00"
     },
     {
-      "id": "asma_1",
-      "category": "asma",
-      "arabic": "الرَّحْمَنُ",
-      "path": "assets/audio/asma/01.mp3",
+      "id": "surah_001",
+      "category": "surah",
+      "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحٖیمِ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمٖینَۙ اَلرَّحْمٰنِ الرَّحٖیمِۙ مَالِكِ یَوْمِ الدّٖینِؕ اِیَّاكَ نَعْبُدُ وَاِیَّاكَ نَسْتَعٖینُؕ اِهْدِنَا الصِّرَاطَ الْمُسْتَقٖیمَۙ صِرَاطَ الَّذٖینَ اَنْعَمْتَ عَلَیْهِمْۙ غَیْرِ الْمَغْضُوبِ عَلَیْهِمْ وَلَا الضَّٓالّٖینَ",
+      "path": "assets/audio/quran_learn/surahs/surah_001.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "2a1b812daa3f2cde5e648177054c808f5a68067800716fb3928f82dc0af75f40",
-      "generated_at": "2026-08-23T18:48:48.915568+00:00"
+      "sha256": "74bb5539c28193a4a02db3b968aa587c12a3b813e5a71a2223cfee850574eaee",
+      "generated_at": "2026-08-25T10:58:01.211972+00:00"
     },
     {
-      "id": "asma_2",
-      "category": "asma",
-      "arabic": "الرَّحِيمُ",
-      "path": "assets/audio/asma/02.mp3",
+      "id": "surah_112",
+      "category": "surah",
+      "arabic": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ اَللّٰهُ الصَّمَدُۚ لَمْ یَلِدْ وَلَمْ یُولَدْۙ وَلَمْ یَكُنْ لَهُ كُفُوًا اَحَدٌ",
+      "path": "assets/audio/quran_learn/surahs/surah_112.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "3bf48da8cd676ff90f35bcb66be3da97196908c35b34e1a22411fe465136a1c4",
-      "generated_at": "2026-08-23T18:48:49.383952+00:00"
+      "sha256": "90af8674cb9726cf8fa78a5cc036929c2b55c32ff7bc800a65e01044696fc0f9",
+      "generated_at": "2026-08-25T10:58:03.245755+00:00"
     },
     {
-      "id": "asma_3",
-      "category": "asma",
-      "arabic": "الْمَلِكُ",
-      "path": "assets/audio/asma/03.mp3",
+      "id": "surah_113",
+      "category": "surah",
+      "arabic": "قُلْ اَعُوذُ بِرَبِّ الْفَلَقِۙ مِنْ شَرِّ مَا خَلَقَۙ وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ وَمِنْ شَرِّ النَّفَّاثَاتِ فِی الْعُقَدِۙ وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
+      "path": "assets/audio/quran_learn/surahs/surah_113.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "318cd5c3c3a151cd90b6cb44d818b363f2697eac6b7dac709ad1d5bee3736d38",
-      "generated_at": "2026-08-23T18:48:49.851795+00:00"
+      "sha256": "bce6f1397a5a2881b66b8a44339cb4af1c9b9f5fbee2d73d06962cb6f298e558",
+      "generated_at": "2026-08-25T10:58:05.934094+00:00"
     },
     {
-      "id": "asma_4",
-      "category": "asma",
-      "arabic": "الْقُدُّوسُ",
-      "path": "assets/audio/asma/04.mp3",
+      "id": "surah_114",
+      "category": "surah",
+      "arabic": "قُلْ اَعُوذُ بِرَبِّ النَّاسِۙ مَلِكِ النَّاسِۙ اِلٰهِ النَّاسِۙ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِۙ اَلَّذٖی یُوَسْوِسُ فٖی صُدُورِ النَّاسِۙ مِنَ الْجِنَّةِ وَالنَّاسِ",
+      "path": "assets/audio/quran_learn/surahs/surah_114.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "5bdd788b0176dc2c8ab35525af0adcf95c2a7bc7cbe66068774233155841da10",
-      "generated_at": "2026-08-23T18:48:50.322076+00:00"
+      "sha256": "48a77fdcba4f9cea1db45f6a5a2ae6cfa36887e075e9a87599edf24e4586a0bf",
+      "generated_at": "2026-08-25T10:58:08.689422+00:00"
     },
     {
-      "id": "asma_5",
-      "category": "asma",
-      "arabic": "السَّلَامُ",
-      "path": "assets/audio/asma/05.mp3",
+      "id": "surah_108",
+      "category": "surah",
+      "arabic": "اِنَّٓا اَعْطَیْنَاكَ الْكَوْثَرَؕ فَصَلِّ لِرَبِّكَ وَانْحَرْؕ اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ",
+      "path": "assets/audio/quran_learn/surahs/surah_108.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "6a32c99ae6aefb3d0e4c7fe1e5ef24a7558252eea3a7395af51e5d901013f126",
-      "generated_at": "2026-08-23T18:48:50.821124+00:00"
+      "sha256": "f720073bf14a1a755cc0562a3e19f8339a1603998a7d036069fc5993c07aba9d",
+      "generated_at": "2026-08-25T10:58:10.312081+00:00"
     },
     {
-      "id": "asma_6",
-      "category": "asma",
-      "arabic": "الْمُؤْمِنُ",
-      "path": "assets/audio/asma/06.mp3",
+      "id": "surah_103",
+      "category": "surah",
+      "arabic": "وَالْعَصْرِۙ اِنَّ الْاِنْسَانَ لَفٖی خُسْرٍۙ اِلَّا الَّذٖینَ اٰمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+      "path": "assets/audio/quran_learn/surahs/surah_103.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "02a2430104df0a24c991ad78e836ef99fc79cc8c3985c9e06a8e63031e23fcfa",
-      "generated_at": "2026-08-23T18:48:51.229934+00:00"
+      "sha256": "c73b70d76ebc91d7075d18ba530951f62fdcfc37f2ad9297a4ed96c70048928e",
+      "generated_at": "2026-08-25T10:58:12.899925+00:00"
     },
     {
-      "id": "asma_7",
-      "category": "asma",
-      "arabic": "الْمُهَيْمِنُ",
-      "path": "assets/audio/asma/07.mp3",
+      "id": "surah_109",
+      "category": "surah",
+      "arabic": "قُلْ یَٓا اَیُّهَا الْكَافِرُونَۙ لَٓا اَعْبُدُ مَا تَعْبُدُونَۙ وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُۚ وَلَٓا اَنَا࣑ عَابِدٌ مَا عَبَدْتُمْۙ وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُؕ لَكُمْ دٖینُكُمْ وَلِیَ دٖینِ",
+      "path": "assets/audio/quran_learn/surahs/surah_109.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "8bf2c25f6a8c0e326fa04130f748098d353a5daee70f05ac0dc48ed971080c86",
-      "generated_at": "2026-08-23T18:48:51.769814+00:00"
+      "sha256": "7c1a0fe90f6d1a8dcc17dc30b2050dcd840c72eeaae5935bb999566df01169a9",
+      "generated_at": "2026-08-25T10:58:17.220873+00:00"
     },
     {
-      "id": "asma_8",
-      "category": "asma",
-      "arabic": "الْعَزِيزُ",
-      "path": "assets/audio/asma/08.mp3",
+      "id": "surah_110",
+      "category": "surah",
+      "arabic": "اِذَا جَٓاءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ وَرَاَیْتَ النَّاسَ یَدْخُلُونَ فٖی دٖینِ اللّٰهِ اَفْوَاجًاۙ فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُؕ اِنَّهُ كَانَ تَوَّابًا",
+      "path": "assets/audio/quran_learn/surahs/surah_110.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "9bdde2e8ee46327c6a03661ca0fdd90d99260dd9f3adb2d93b9efb6fc6f6f4a6",
-      "generated_at": "2026-08-23T18:48:52.406096+00:00"
+      "sha256": "41f40fac6f62bf4d774c5eb2fbbb03f0d4010ed5cd3180042c0ba0fab593a789",
+      "generated_at": "2026-08-25T10:58:19.699901+00:00"
     },
     {
-      "id": "asma_9",
-      "category": "asma",
-      "arabic": "الْجَبَّارُ",
-      "path": "assets/audio/asma/09.mp3",
+      "id": "surah_111",
+      "category": "surah",
+      "arabic": "تَبَّتْ یَدَٓا اَبٖی لَهَبٍ وَتَبَّؕ مَٓا اَغْنٰى عَنْهُ مَالُهُ وَمَا كَسَبَؕ سَیَصْلٰى نَارًا ذَاتَ لَهَبٍۚ وَامْرَاَتُهُؕ حَمَّالَةَ الْحَطَبِۚ فٖی جٖیدِهَا حَبْلٌ مِنْ مَسَدٍ",
+      "path": "assets/audio/quran_learn/surahs/surah_111.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "1f34bf2aa990a2f1ae50edf1df1831b2fb84fb269ad7f190a7bcd95cfc2e6c6a",
-      "generated_at": "2026-08-23T18:48:52.838335+00:00"
+      "sha256": "7892712d1e424c977e17f9b2bb3ffb602cf99c5d24dd0830c2012ffd37aebd0c",
+      "generated_at": "2026-08-25T10:58:22.541535+00:00"
     },
     {
-      "id": "asma_10",
-      "category": "asma",
-      "arabic": "الْمُتَكَبِّرُ",
-      "path": "assets/audio/asma/10.mp3",
+      "id": "surah_105",
+      "category": "surah",
+      "arabic": "اَلَمْ تَرَ كَیْفَ فَعَلَ رَبُّكَ بِاَصْحَابِ الْفٖیلِؕ اَلَمْ یَجْعَلْ كَیْدَهُمْ فٖی تَضْلٖیلٍۙ وَاَرْسَلَ عَلَیْهِمْ طَیْرًا اَبَابٖیلَۙ تَرْمٖیهِمْ بِحِجَارَةٍ مِنْ سِجّٖیلٍࣕۙ فَجَعَلَهُمْ كَعَصْفٍ مَاْكُولٍ",
+      "path": "assets/audio/quran_learn/surahs/surah_105.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "cc9de0458e9b7548d7017a5aa09431981d0cef89727e1fa423ad849d0d0a29f4",
-      "generated_at": "2026-08-23T18:48:53.316685+00:00"
+      "sha256": "43777c84cbb52476c5511ff5da6a2c85913656aa2588046a0e407110b9c9bcda",
+      "generated_at": "2026-08-25T10:58:26.088907+00:00"
     },
     {
-      "id": "asma_11",
-      "category": "asma",
-      "arabic": "الْخَالِقُ",
-      "path": "assets/audio/asma/11.mp3",
+      "id": "surah_106",
+      "category": "surah",
+      "arabic": "لِاٖیلَافِ قُرَیْشٍۙ اٖیلَافِهِمْ رِحْلَةَ الشِّتَٓاءِ وَالصَّیْفِۚ فَلْیَعْبُدُوا رَبَّ هٰذَا الْبَیْتِۙ اَلَّذٖٓی اَطْعَمَهُمْ مِنْ جُوعٍ وَاٰمَنَهُمْ مِنْ خَوْفٍ",
+      "path": "assets/audio/quran_learn/surahs/surah_106.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "2eab7a47737ba6c4a5d32d008866ff3a9760fa8fdf8ebd8aac61c04de9da7851",
-      "generated_at": "2026-08-23T18:48:53.794691+00:00"
+      "sha256": "a1ec1207acf24f93fe4e2751a19144af047218171e381844b4fe86697302094f",
+      "generated_at": "2026-08-25T10:58:28.690620+00:00"
     },
     {
-      "id": "asma_12",
-      "category": "asma",
-      "arabic": "الْبَارِئُ",
-      "path": "assets/audio/asma/12.mp3",
+      "id": "surah_107",
+      "category": "surah",
+      "arabic": "اَرَاَیْتَ الَّذٖی یُكَذِّبُ بِالدّٖینِؕ فَذٰلِكَ الَّذٖی یَدُعُّ الْیَتٖیمَۙ وَلَا یَحُضُّ عَلٰى طَعَامِ الْمِسْكٖینِؕ فَوَیْلٌ لِلْمُصَلّٖینَۙ اَلَّذٖینَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَۙ اَلَّذٖینَ هُمْ یُرَٓاؤُ࣒نَۙ وَیَمْنَعُونَ الْمَاعُونَ",
+      "path": "assets/audio/quran_learn/surahs/surah_107.mp3",
       "voice": "ar-XA-Chirp3-HD-Fenrir",
       "language": "ar-XA",
-      "rate": 0.86,
+      "rate": 0.82,
       "format": "mp3",
-      "sha256": "5ddab8a362d4cce35efd35dc7a2de9a9ae0dfcc4e1a778724b7be3ede341d02b",
-      "generated_at": "2026-08-23T18:48:54.573674+00:00"
-    },
-    {
-      "id": "asma_13",
-      "category": "asma",
-      "arabic": "الْمُصَوِّرُ",
-      "path": "assets/audio/asma/13.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "fd5df0aecb96826fc4a70fe26d986f9fcdb5889c477bfd6c10bc2f3640455a13",
-      "generated_at": "2026-08-23T18:48:55.104580+00:00"
-    },
-    {
-      "id": "asma_14",
-      "category": "asma",
-      "arabic": "الْغَفَّارُ",
-      "path": "assets/audio/asma/14.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "a76ff38bb9d4c681be9f7ccb3f4b269ffc879a6c7ea617b9138e1501d3d2e203",
-      "generated_at": "2026-08-23T18:48:55.687987+00:00"
-    },
-    {
-      "id": "asma_15",
-      "category": "asma",
-      "arabic": "الْقَهَّارُ",
-      "path": "assets/audio/asma/15.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "8fa6075539dcd6595fc220a301997e7460830786f2de01393f6c0dfab3e19f6a",
-      "generated_at": "2026-08-23T18:48:56.156217+00:00"
-    },
-    {
-      "id": "asma_16",
-      "category": "asma",
-      "arabic": "الْوَهَّابُ",
-      "path": "assets/audio/asma/16.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "8ecb9ebe22cf657ec82710df3b617cf6fa44c8de6d36b7db3ba9a66267914cc4",
-      "generated_at": "2026-08-23T18:48:56.686608+00:00"
-    },
-    {
-      "id": "asma_17",
-      "category": "asma",
-      "arabic": "الرَّزَّاقُ",
-      "path": "assets/audio/asma/17.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "4f65b5b075c98d70edf9ba8699b9ad4e2a7f1b09dd23b8c79c4322592789a544",
-      "generated_at": "2026-08-23T18:48:57.178047+00:00"
-    },
-    {
-      "id": "asma_18",
-      "category": "asma",
-      "arabic": "الْفَتَّاحُ",
-      "path": "assets/audio/asma/18.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "97b94d996c224a852f60cb9ad078d9a91e3df25296beee39f5b10e88d75b617d",
-      "generated_at": "2026-08-23T18:48:57.654049+00:00"
-    },
-    {
-      "id": "asma_19",
-      "category": "asma",
-      "arabic": "الْعَلِيمُ",
-      "path": "assets/audio/asma/19.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "3ece0c7754345a0cc25876ca1f30ee5e123db405daef7e81bc2eb7047cf70a26",
-      "generated_at": "2026-08-23T18:48:58.101038+00:00"
-    },
-    {
-      "id": "asma_20",
-      "category": "asma",
-      "arabic": "الْقَابِضُ",
-      "path": "assets/audio/asma/20.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ff62e46ccfc9a409ad40fd2c69db344e6ee15dbb5277fdcde3c5987dee2101d7",
-      "generated_at": "2026-08-23T18:48:58.607570+00:00"
-    },
-    {
-      "id": "asma_21",
-      "category": "asma",
-      "arabic": "الْبَاسِطُ",
-      "path": "assets/audio/asma/21.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "0af61d5c0f83212d8bf13147be8213e81df2607267f2a484ed4b4cb61c519ae6",
-      "generated_at": "2026-08-23T18:48:59.134306+00:00"
-    },
-    {
-      "id": "asma_22",
-      "category": "asma",
-      "arabic": "الْخَافِضُ",
-      "path": "assets/audio/asma/22.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "49c64a1ac1d9b8f6da1cf53c107fccad4f6a45ddb25730976185524dad9482af",
-      "generated_at": "2026-08-23T18:48:59.633056+00:00"
-    },
-    {
-      "id": "asma_23",
-      "category": "asma",
-      "arabic": "الرَّافِعُ",
-      "path": "assets/audio/asma/23.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d1a3077eb354933731b2398abdea4a3e861274f8cdc97372a38ca9f0523bd9a9",
-      "generated_at": "2026-08-23T18:49:00.063722+00:00"
-    },
-    {
-      "id": "asma_24",
-      "category": "asma",
-      "arabic": "الْمُعِزُّ",
-      "path": "assets/audio/asma/24.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "7d50ad960fb8d18f746cc743d26161752ae0550310dd164da793bd5556bdf365",
-      "generated_at": "2026-08-23T18:49:00.574164+00:00"
-    },
-    {
-      "id": "asma_25",
-      "category": "asma",
-      "arabic": "المُذِلُّ",
-      "path": "assets/audio/asma/25.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "02e4d6f9017ffa6ed98785ea144adad9fcea738c57f226272deef668c8b67196",
-      "generated_at": "2026-08-23T18:49:01.082266+00:00"
-    },
-    {
-      "id": "asma_26",
-      "category": "asma",
-      "arabic": "السَّمِيعُ",
-      "path": "assets/audio/asma/26.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "8d3d97ad8aeb947f8a50e5d5811e87a056edb1ed3c659cf3031a53d4ba11d935",
-      "generated_at": "2026-08-23T18:49:01.547315+00:00"
-    },
-    {
-      "id": "asma_27",
-      "category": "asma",
-      "arabic": "الْبَصِيرُ",
-      "path": "assets/audio/asma/27.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "1876883a35d73f932666fa378da23cfb25151a2282b28813b0e647567ba81fe1",
-      "generated_at": "2026-08-23T18:49:01.943176+00:00"
-    },
-    {
-      "id": "asma_28",
-      "category": "asma",
-      "arabic": "الْحَكَمُ",
-      "path": "assets/audio/asma/28.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "a94b2ea58af7f48d11d4a510ad02ad5549bea57e3b621ca5b7abbd3e24e155f3",
-      "generated_at": "2026-08-23T18:49:02.525227+00:00"
-    },
-    {
-      "id": "asma_29",
-      "category": "asma",
-      "arabic": "الْعَدْلُ",
-      "path": "assets/audio/asma/29.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "2bcab09c686ef6899c88589d2f8bbf8f010b28879fa6c2d3d98a7a0672d09fa5",
-      "generated_at": "2026-08-23T18:49:02.979193+00:00"
-    },
-    {
-      "id": "asma_30",
-      "category": "asma",
-      "arabic": "اللَّطِيفُ",
-      "path": "assets/audio/asma/30.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "3774eefde61688003a40d6a9d47250e6fe5fa30a4a0c2941340671bb7ec2104f",
-      "generated_at": "2026-08-23T18:49:03.463861+00:00"
-    },
-    {
-      "id": "asma_31",
-      "category": "asma",
-      "arabic": "الْخَبِيرُ",
-      "path": "assets/audio/asma/31.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "fe62377ea235753560784d3392fa4e5e440683cdacf8af08ab67e23780bb2099",
-      "generated_at": "2026-08-23T18:49:04.012948+00:00"
-    },
-    {
-      "id": "asma_32",
-      "category": "asma",
-      "arabic": "الْحَلِيمُ",
-      "path": "assets/audio/asma/32.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "712f8271e5f8b29c7b26d29f6c48899798992ae524fff18567baa53635855c8f",
-      "generated_at": "2026-08-23T18:49:04.493532+00:00"
-    },
-    {
-      "id": "asma_33",
-      "category": "asma",
-      "arabic": "الْعَظِيمُ",
-      "path": "assets/audio/asma/33.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "5591cdb46e536eb63493662f108458304e78e117e824a75d31ea21800fb65a53",
-      "generated_at": "2026-08-23T18:49:05.060909+00:00"
-    },
-    {
-      "id": "asma_34",
-      "category": "asma",
-      "arabic": "الْغَفُورُ",
-      "path": "assets/audio/asma/34.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "406e7623ce2de53300b419aa597045c8f527b3cf892d2110d8ad8afc1e6164c4",
-      "generated_at": "2026-08-23T18:49:05.550279+00:00"
-    },
-    {
-      "id": "asma_35",
-      "category": "asma",
-      "arabic": "الشَّكُورُ",
-      "path": "assets/audio/asma/35.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "9f39aaa2b9a3befc72a25bacfd90787c86efa52bc9d32e3b8334236992f52187",
-      "generated_at": "2026-08-23T18:49:05.985733+00:00"
-    },
-    {
-      "id": "asma_36",
-      "category": "asma",
-      "arabic": "الْعَلِيُّ",
-      "path": "assets/audio/asma/36.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "1da4aa801f9aaf5b34bf2c3e0d94e80cb448cd0a69a70193827feb1fc9ae93dc",
-      "generated_at": "2026-08-23T18:49:06.488261+00:00"
-    },
-    {
-      "id": "asma_37",
-      "category": "asma",
-      "arabic": "الْكَبِيرُ",
-      "path": "assets/audio/asma/37.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "10ecebf0f7bf44e8badc8da3c53db5b50a155a47dccdaf4ae3b1b3c6759647a8",
-      "generated_at": "2026-08-23T18:49:07.105339+00:00"
-    },
-    {
-      "id": "asma_38",
-      "category": "asma",
-      "arabic": "الْحَفِيظُ",
-      "path": "assets/audio/asma/38.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "a56471f0aa743c437f440cee3b04537e4385987f46e7dee3221d6daf0d2af51d",
-      "generated_at": "2026-08-23T18:49:07.592296+00:00"
-    },
-    {
-      "id": "asma_39",
-      "category": "asma",
-      "arabic": "الْمُقِيتُ",
-      "path": "assets/audio/asma/39.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "e904c2ac6db74a2da1efc173a1266ac9e6d26575f737cd7bd72ff8868347e114",
-      "generated_at": "2026-08-23T18:49:08.131997+00:00"
-    },
-    {
-      "id": "asma_40",
-      "category": "asma",
-      "arabic": "الْحَسِيبُ",
-      "path": "assets/audio/asma/40.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d8e149c47099ea9623be7ed52183a861f574bc4748959be75e86049a5c89e596",
-      "generated_at": "2026-08-23T18:49:08.585050+00:00"
-    },
-    {
-      "id": "asma_41",
-      "category": "asma",
-      "arabic": "الْجَلِيلُ",
-      "path": "assets/audio/asma/41.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "745fa1ef8dc5977d6a078c29c703ecc3fedd2d56c56950b30002a243b4138fdb",
-      "generated_at": "2026-08-23T18:49:09.095216+00:00"
-    },
-    {
-      "id": "asma_42",
-      "category": "asma",
-      "arabic": "الْكَرِيمُ",
-      "path": "assets/audio/asma/42.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "6464561e989dfc07eb4d46de66b70ebf3929dedbe0d0556ffa6ffa6d9afc288c",
-      "generated_at": "2026-08-23T18:49:09.672934+00:00"
-    },
-    {
-      "id": "asma_43",
-      "category": "asma",
-      "arabic": "الرَّقِيبُ",
-      "path": "assets/audio/asma/43.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "7b1c17a19ab9aaa0d0f083dcb4f79074f5b0b0ddb1cfeee3fbb374cf13f57c16",
-      "generated_at": "2026-08-23T18:49:10.106065+00:00"
-    },
-    {
-      "id": "asma_44",
-      "category": "asma",
-      "arabic": "الْمُجِيبُ",
-      "path": "assets/audio/asma/44.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "29bb207ba843aba009cd00c0b29d6d2f7eebff78042f15783b1ad313c302b849",
-      "generated_at": "2026-08-23T18:49:10.524524+00:00"
-    },
-    {
-      "id": "asma_45",
-      "category": "asma",
-      "arabic": "الْوَاسِعُ",
-      "path": "assets/audio/asma/45.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "4dade5ebe670cbf43b62739dda34fd6d63e9f9e073727a614c22fd21ded804f0",
-      "generated_at": "2026-08-23T18:49:10.981369+00:00"
-    },
-    {
-      "id": "asma_46",
-      "category": "asma",
-      "arabic": "الْحَكِيمُ",
-      "path": "assets/audio/asma/46.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "75c4da4baa9cd02f7dd1067215bcd3115470108694f02329122f86d58ba22845",
-      "generated_at": "2026-08-23T18:49:11.457307+00:00"
-    },
-    {
-      "id": "asma_47",
-      "category": "asma",
-      "arabic": "الْوَدُودُ",
-      "path": "assets/audio/asma/47.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ad5ff89f4f9809419b3ff8df37cde2c523169bc111832cab10dadea8dad9848e",
-      "generated_at": "2026-08-23T18:49:11.879409+00:00"
-    },
-    {
-      "id": "asma_48",
-      "category": "asma",
-      "arabic": "الْمَجِيدُ",
-      "path": "assets/audio/asma/48.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "a8fba38d53bfc51eaeb001cb39869f0a1ddbefbf5838f4676c871f122c74356f",
-      "generated_at": "2026-08-23T18:49:12.389145+00:00"
-    },
-    {
-      "id": "asma_49",
-      "category": "asma",
-      "arabic": "الْبَاعِثُ",
-      "path": "assets/audio/asma/49.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "3b5b517c1c9d7f8e574f9213762ad7540b8f7183b11b9f64a43b092a037fe245",
-      "generated_at": "2026-08-23T18:49:13.010788+00:00"
-    },
-    {
-      "id": "asma_50",
-      "category": "asma",
-      "arabic": "الشَّهِيدُ",
-      "path": "assets/audio/asma/50.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "cd0c156c2f0e13a700c71fb6ee0a79cb2323208c8338186134971aebad5cb009",
-      "generated_at": "2026-08-23T18:49:13.426681+00:00"
-    },
-    {
-      "id": "asma_51",
-      "category": "asma",
-      "arabic": "الْحَقُّ",
-      "path": "assets/audio/asma/51.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "24bc1cff0c66b9a40e4d1695ae4f9d7aaa9684d158aae9ab9ccfddf9d9bcdc4e",
-      "generated_at": "2026-08-23T18:49:13.917675+00:00"
-    },
-    {
-      "id": "asma_52",
-      "category": "asma",
-      "arabic": "الْوَكِيلُ",
-      "path": "assets/audio/asma/52.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "4287c16c2f5818e3eb0dcc2ce33636e2bba9177b6d58b0e5727ab3464f632808",
-      "generated_at": "2026-08-23T18:49:14.351155+00:00"
-    },
-    {
-      "id": "asma_53",
-      "category": "asma",
-      "arabic": "الْقَوِيُّ",
-      "path": "assets/audio/asma/53.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "e9cc0b5cf442a6192c9d1e0c150a814cc936fb77a01fcdd3af9e4098078ff187",
-      "generated_at": "2026-08-23T18:49:14.995225+00:00"
-    },
-    {
-      "id": "asma_54",
-      "category": "asma",
-      "arabic": "الْمَتِينُ",
-      "path": "assets/audio/asma/54.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "acf9550c1112c16e1b00076b3e11da029fe3c4c314386df6440008c457a9cd3b",
-      "generated_at": "2026-08-23T18:49:15.508507+00:00"
-    },
-    {
-      "id": "asma_55",
-      "category": "asma",
-      "arabic": "الْوَلِيُّ",
-      "path": "assets/audio/asma/55.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "7c7608222f7472f77c6c28c1148dee5bfdd5887d558418ced51286d3bc8a5230",
-      "generated_at": "2026-08-23T18:49:15.937937+00:00"
-    },
-    {
-      "id": "asma_56",
-      "category": "asma",
-      "arabic": "الْحَمِيدُ",
-      "path": "assets/audio/asma/56.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "65b878b816603280e1d83ba604411134e4795632ff2c9822c9b924a411959de9",
-      "generated_at": "2026-08-23T18:49:16.412423+00:00"
-    },
-    {
-      "id": "asma_57",
-      "category": "asma",
-      "arabic": "الْمُحْصِي",
-      "path": "assets/audio/asma/57.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ec6cbf6a606e7156c276ea523143d3ee26908efeb9a4d455fd8baaa453913cb0",
-      "generated_at": "2026-08-23T18:49:16.977474+00:00"
-    },
-    {
-      "id": "asma_58",
-      "category": "asma",
-      "arabic": "الْمُبْدِئُ",
-      "path": "assets/audio/asma/58.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "098e4452fa75786350f92a81664376b8ca05491cbe6ad0dde6d3d07b9d021352",
-      "generated_at": "2026-08-23T18:49:17.405254+00:00"
-    },
-    {
-      "id": "asma_59",
-      "category": "asma",
-      "arabic": "الْمُعِيدُ",
-      "path": "assets/audio/asma/59.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "9e3b5e023fa282e1323f443bca806ecb623f5e06d769410833dbec9e6352702d",
-      "generated_at": "2026-08-23T18:49:17.850893+00:00"
-    },
-    {
-      "id": "asma_60",
-      "category": "asma",
-      "arabic": "الْمُحْيِي",
-      "path": "assets/audio/asma/60.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "97a8ed050c741f12c43ff812b43a1e98dc4bc77cff4cb1d9650ba9444c5bd4e7",
-      "generated_at": "2026-08-23T18:49:18.454843+00:00"
-    },
-    {
-      "id": "asma_61",
-      "category": "asma",
-      "arabic": "الْمُمِيتُ",
-      "path": "assets/audio/asma/61.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "15231defec374703426c0f95bffc79815be6ac67d0274be0bf791a866945ce02",
-      "generated_at": "2026-08-23T18:49:18.911510+00:00"
-    },
-    {
-      "id": "asma_62",
-      "category": "asma",
-      "arabic": "الْحَيُّ",
-      "path": "assets/audio/asma/62.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "6e6610727ee82c0acaaecb5beec48b7c671a684bf2a14fab78bf8b1fdf795862",
-      "generated_at": "2026-08-23T18:49:19.373761+00:00"
-    },
-    {
-      "id": "asma_63",
-      "category": "asma",
-      "arabic": "الْقَيُّومُ",
-      "path": "assets/audio/asma/63.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ba8c981fe9f11727c9fc96539f53fcaee8a2a1abba594505fd63a5679a2402c1",
-      "generated_at": "2026-08-23T18:49:19.922353+00:00"
-    },
-    {
-      "id": "asma_64",
-      "category": "asma",
-      "arabic": "الْوَاجِدُ",
-      "path": "assets/audio/asma/64.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "5e18add1d613428762f45b970c0238c73dc94ea6ff6f3356d6a9ef22985c839f",
-      "generated_at": "2026-08-23T18:49:20.467820+00:00"
-    },
-    {
-      "id": "asma_65",
-      "category": "asma",
-      "arabic": "الْمَاجِدُ",
-      "path": "assets/audio/asma/65.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "f6d51f598a4b94eca764c0241840a5fae00e460672693fad05d85e6f069e900b",
-      "generated_at": "2026-08-23T18:49:20.953514+00:00"
-    },
-    {
-      "id": "asma_66",
-      "category": "asma",
-      "arabic": "الْوَاحِدُ",
-      "path": "assets/audio/asma/66.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "e173596c7665afc27f18484e11ad77054db08965857554b86a0dc5c2264c3166",
-      "generated_at": "2026-08-23T18:49:21.403115+00:00"
-    },
-    {
-      "id": "asma_67",
-      "category": "asma",
-      "arabic": "الْأَحَدُ",
-      "path": "assets/audio/asma/67.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "f1670b95725549b08f41faca8f8daa7e742a980e7d5b9b4ea426cd4299c716a4",
-      "generated_at": "2026-08-23T18:49:21.840170+00:00"
-    },
-    {
-      "id": "asma_68",
-      "category": "asma",
-      "arabic": "الصَّمَدُ",
-      "path": "assets/audio/asma/68.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "f51e546bd310a204efad347efe2c7fec4b9f648a0968c75652953cd03ac6e1d2",
-      "generated_at": "2026-08-23T18:49:22.321233+00:00"
-    },
-    {
-      "id": "asma_69",
-      "category": "asma",
-      "arabic": "الْقَادِرُ",
-      "path": "assets/audio/asma/69.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "385569f14808484fae5cdee628648ab045e84ec2510ad3295176345b3c32f9d3",
-      "generated_at": "2026-08-23T18:49:22.880078+00:00"
-    },
-    {
-      "id": "asma_70",
-      "category": "asma",
-      "arabic": "الْمُقْتَدِرُ",
-      "path": "assets/audio/asma/70.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "1d010c6e0de30b6bddf25091fdf991eed54edbb479c23f15ca24709b172f739c",
-      "generated_at": "2026-08-23T18:49:23.421762+00:00"
-    },
-    {
-      "id": "asma_71",
-      "category": "asma",
-      "arabic": "الْمُقَدِّمُ",
-      "path": "assets/audio/asma/71.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "779961cd8fcfb3b7b0708d03f66752981fd9bfbff0b5edf02d87c01f37e7eec5",
-      "generated_at": "2026-08-23T18:49:23.884600+00:00"
-    },
-    {
-      "id": "asma_72",
-      "category": "asma",
-      "arabic": "الْمُؤَخِّرُ",
-      "path": "assets/audio/asma/72.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "f76a300205702e62fa603594c109a882c3b543a209ac13b74b9a8ac7dda43953",
-      "generated_at": "2026-08-23T18:49:24.338902+00:00"
-    },
-    {
-      "id": "asma_73",
-      "category": "asma",
-      "arabic": "الْأَوَّلُ",
-      "path": "assets/audio/asma/73.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d671a6072c6f321f0c9b147542ae7f7536df8451ad9e29edbc25bdae19a28ff6",
-      "generated_at": "2026-08-23T18:49:24.824069+00:00"
-    },
-    {
-      "id": "asma_74",
-      "category": "asma",
-      "arabic": "الْآخِرُ",
-      "path": "assets/audio/asma/74.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "4717302e37682c5e0eb30e419ce0008d9d7e6362ea7cd9fa00850d5231b8ec3e",
-      "generated_at": "2026-08-23T18:49:25.221752+00:00"
-    },
-    {
-      "id": "asma_75",
-      "category": "asma",
-      "arabic": "الظَّاهِرُ",
-      "path": "assets/audio/asma/75.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "98f81ccbcbe794a3c4fe64a2e9c12d8503727544b7d529ac945a31d69c254b8e",
-      "generated_at": "2026-08-23T18:49:25.894827+00:00"
-    },
-    {
-      "id": "asma_76",
-      "category": "asma",
-      "arabic": "الْبَاطِنُ",
-      "path": "assets/audio/asma/76.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "8301e886a8e0d10eb963a665a6ca9e02fa9de76f7f9166b9609a23a194cd87db",
-      "generated_at": "2026-08-23T18:49:26.384645+00:00"
-    },
-    {
-      "id": "asma_77",
-      "category": "asma",
-      "arabic": "الْوَالِي",
-      "path": "assets/audio/asma/77.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "1a4d9a025d33967fffa980c5e330183e98366587d0f6a8cc3221b07d06755a5f",
-      "generated_at": "2026-08-23T18:49:26.854523+00:00"
-    },
-    {
-      "id": "asma_78",
-      "category": "asma",
-      "arabic": "الْمُتَعَالِي",
-      "path": "assets/audio/asma/78.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "b828aa24773273f3f0317eabd93f92c3cf227d0cc8dded4e50c1511e96b91c34",
-      "generated_at": "2026-08-23T18:49:27.371922+00:00"
-    },
-    {
-      "id": "asma_79",
-      "category": "asma",
-      "arabic": "الْبَرُّ",
-      "path": "assets/audio/asma/79.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "02042d3fdeb3f937f18f9cef0243ec346b9032031774447b13abf2818ef563b4",
-      "generated_at": "2026-08-23T18:49:27.757530+00:00"
-    },
-    {
-      "id": "asma_80",
-      "category": "asma",
-      "arabic": "التَّوَابُ",
-      "path": "assets/audio/asma/80.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "10704f24acd3758cbf671cffca03554d7167097fab9e3530aef6085f29273563",
-      "generated_at": "2026-08-23T18:49:28.169833+00:00"
-    },
-    {
-      "id": "asma_81",
-      "category": "asma",
-      "arabic": "الْمُنْتَقِمُ",
-      "path": "assets/audio/asma/81.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "934219673bf79899d1458af54f9b04b12f7d2b51b8ea82ac9de04b86f85e84f2",
-      "generated_at": "2026-08-23T18:49:28.654329+00:00"
-    },
-    {
-      "id": "asma_82",
-      "category": "asma",
-      "arabic": "الْعَفُوُّ",
-      "path": "assets/audio/asma/82.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "0d2adb8141c8ee89260bd85d75c74c23ef3902f8d37eba4c4b3ad5def56fa21c",
-      "generated_at": "2026-08-23T18:49:29.127257+00:00"
-    },
-    {
-      "id": "asma_83",
-      "category": "asma",
-      "arabic": "الرَّؤُوفُ",
-      "path": "assets/audio/asma/83.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c0872965d82a3e1aa64e2c098dd77eae980244f070282d99e2e343519995ec09",
-      "generated_at": "2026-08-23T18:49:29.849201+00:00"
-    },
-    {
-      "id": "asma_84",
-      "category": "asma",
-      "arabic": "مَالِكُ الْمُلْكِ",
-      "path": "assets/audio/asma/84.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d3154d18fef101b2bc4a3c56b1d4c76257109a2e9fbf95564180894a7561091b",
-      "generated_at": "2026-08-23T18:49:30.314118+00:00"
-    },
-    {
-      "id": "asma_85",
-      "category": "asma",
-      "arabic": "ذُوالْجَلَالِ وَالإكْرَامِ",
-      "path": "assets/audio/asma/85.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "7c14729c2d1bb71656f76bc659df5ff0b7784fdf1817cbe2ca1a9c502343e67d",
-      "generated_at": "2026-08-23T18:49:30.931528+00:00"
-    },
-    {
-      "id": "asma_86",
-      "category": "asma",
-      "arabic": "الْمُقْسِطُ",
-      "path": "assets/audio/asma/86.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "2f4a93258fb3aff8badc007b6fb1b1a92d05f6e6700e672a4e55763b83e456a9",
-      "generated_at": "2026-08-23T18:49:31.439984+00:00"
-    },
-    {
-      "id": "asma_87",
-      "category": "asma",
-      "arabic": "الْجَامِعُ",
-      "path": "assets/audio/asma/87.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c75170ccca43c703f14d7f66d6ac87aa63d2974e8011260a14f991cebbe5caa8",
-      "generated_at": "2026-08-23T18:49:32.055338+00:00"
-    },
-    {
-      "id": "asma_88",
-      "category": "asma",
-      "arabic": "الْغَنِيُّ",
-      "path": "assets/audio/asma/88.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "2e1994de1fa8c79ef36e41a9e66f5597e814203b468e9097bc977e5f5e744059",
-      "generated_at": "2026-08-23T18:49:32.470905+00:00"
-    },
-    {
-      "id": "asma_89",
-      "category": "asma",
-      "arabic": "الْمُغْنِي",
-      "path": "assets/audio/asma/89.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c4e4f1381b23c6c692db373caaab436a9b757ea469ffb3ebd0e40ffe65378b6f",
-      "generated_at": "2026-08-23T18:49:32.843890+00:00"
-    },
-    {
-      "id": "asma_90",
-      "category": "asma",
-      "arabic": "الْمَانِعُ",
-      "path": "assets/audio/asma/90.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d363b0d27e95695fd5c8f157f8f20e83664b5c9443003fdb9e58616943c5aa0f",
-      "generated_at": "2026-08-23T18:49:33.448053+00:00"
-    },
-    {
-      "id": "asma_91",
-      "category": "asma",
-      "arabic": "الضَّارُّ",
-      "path": "assets/audio/asma/91.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "0eb19b6d8acc41b77e18ee405f6487ef3f96293719e8d2231e9d83840bc6b0bf",
-      "generated_at": "2026-08-23T18:49:34.035058+00:00"
-    },
-    {
-      "id": "asma_92",
-      "category": "asma",
-      "arabic": "النَّافِعُ",
-      "path": "assets/audio/asma/92.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "263dd94d84d1e4d6bc61cfa1b6455a3af7e662749ba92b0f0c1feadf6b9c347b",
-      "generated_at": "2026-08-23T18:49:34.452019+00:00"
-    },
-    {
-      "id": "asma_93",
-      "category": "asma",
-      "arabic": "النُّورُ",
-      "path": "assets/audio/asma/93.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "996342fc166d316eaba759015e569515418fc597620d9f2da74429b419cdef7b",
-      "generated_at": "2026-08-23T18:49:35.035186+00:00"
-    },
-    {
-      "id": "asma_94",
-      "category": "asma",
-      "arabic": "الْهَادِي",
-      "path": "assets/audio/asma/94.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "165f9fe129cac705d1f426d351d4df5adb99dd0538aab1debd4ddafab3e1e2c4",
-      "generated_at": "2026-08-23T18:49:35.493084+00:00"
-    },
-    {
-      "id": "asma_95",
-      "category": "asma",
-      "arabic": "الْبَدِيعُ",
-      "path": "assets/audio/asma/95.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c95892b6fa43624f852dd09eb550e7a742a3093163a4762b43e45a45062458a5",
-      "generated_at": "2026-08-23T18:49:35.993882+00:00"
-    },
-    {
-      "id": "asma_96",
-      "category": "asma",
-      "arabic": "الْبَاقِي",
-      "path": "assets/audio/asma/96.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ac9c41466312df04dc602675fc0f75bbd247f8d7eed894723ced3ff7209ae35b",
-      "generated_at": "2026-08-23T18:49:36.415101+00:00"
-    },
-    {
-      "id": "asma_97",
-      "category": "asma",
-      "arabic": "الْوَارِثُ",
-      "path": "assets/audio/asma/97.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "e710aa3688f0049326a4f50056a15856ab99919a916fb1233f97df093d5a1564",
-      "generated_at": "2026-08-23T18:49:36.917625+00:00"
-    },
-    {
-      "id": "asma_98",
-      "category": "asma",
-      "arabic": "الرَّشِيدُ",
-      "path": "assets/audio/asma/98.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "ab01f6f6b56756e1f670996c4f0a665cd7fc433dfad52743e9e4e19ee555e6e1",
-      "generated_at": "2026-08-23T18:49:37.430752+00:00"
-    },
-    {
-      "id": "asma_99",
-      "category": "asma",
-      "arabic": "الصَّبُورُ",
-      "path": "assets/audio/asma/99.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "b504367f8f3ac0201d98b0d0f594c9455736434a71fe3fe78e68a008ad52a639",
-      "generated_at": "2026-08-23T18:49:37.892157+00:00"
+      "sha256": "95133f54bbd29200b697ebabc4d6217a43796eda6677895f336c73a647edd60a",
+      "generated_at": "2026-08-25T10:58:33.456217+00:00"
     }
   ]
 }

@@ -71,30 +71,29 @@ List<QuranTajweedHit> quranLearnTajweedHits({
 
   for (final lesson in lessons) {
     var matched = false;
-    final title = lesson.title;
-    if (title.startsWith('Şedde') && arabic.contains('ّ')) {
-      matched = true;
-    } else if (title.startsWith('Tenvin') && _containsMark(arabic, _tanwinMarks)) {
-      matched = true;
-    } else if (title.startsWith('Cezm') && arabic.contains('ْ')) {
-      matched = true;
-    } else if (title == 'Med' && _containsMark(arabic, _maddMarks)) {
-      matched = true;
-    } else if (title == 'Gunne' &&
-        (arabic.contains('نَّ') ||
+    switch (lesson.id) {
+      case 'tajweed_02':
+        matched = arabic.contains('ّ');
+      case 'tajweed_04':
+        matched = _containsMark(arabic, _tanwinMarks);
+      case 'tajweed_03':
+        matched = arabic.contains('ْ');
+      case 'tajweed_01':
+        matched = _containsMark(arabic, _maddMarks);
+      case 'tajweed_05':
+        matched = arabic.contains('نَّ') ||
             arabic.contains('مَّ') ||
             arabic.contains('نّ') ||
-            arabic.contains('مّ'))) {
-      matched = true;
-    } else if (title == 'Vakıf' && _containsMark(arabic, _waqfMarks)) {
-      matched = true;
-    } else if (title == 'Kalkale') {
-      for (final letter in lesson.qalqalaLetters) {
-        if (arabic.contains('$letterْ')) {
-          matched = true;
-          break;
+            arabic.contains('مّ');
+      case 'tajweed_10':
+        matched = _containsMark(arabic, _waqfMarks);
+      case 'tajweed_06':
+        for (final letter in lesson.qalqalaLetters) {
+          if (arabic.contains('$letterْ')) {
+            matched = true;
+            break;
+          }
         }
-      }
     }
 
     for (final example in lesson.examples) {

@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../core/audio/audio_player_service.dart';
+import '../../data/models/interactive_lesson.dart';
 import '../../data/repositories/content_repositories.dart';
+import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_visual_catalog.dart';
@@ -29,6 +33,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
   List<WuduVisualStep> _steps = WuduVisualCatalog.steps;
   List<WuduTip> _tips = WuduVisualCatalog.tips;
   List<String> _farzIds = WuduVisualCatalog.farzIds;
+  WuduCompletionDua? _dua;
 
   @override
   void initState() {
@@ -43,6 +48,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
       _steps = WuduVisualCatalog.resolveSteps(lesson.visualSteps);
       _tips = WuduVisualCatalog.resolveTips(lesson.tips);
       if (lesson.farzIds.isNotEmpty) _farzIds = lesson.farzIds;
+      _dua = lesson.completionDua;
     });
   }
 
@@ -173,45 +179,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             ],
           ),
           const SizedBox(height: 14),
-          MinikCard(
-            color: Colors.white,
-            child: const Row(
-              children: [
-                LessonMotionImage(
-                  image: 'assets/images/wudu/wudu_dua_boy.png',
-                  width: 86,
-                  height: 86,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(width: 12),
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Abdest Tamamlandı Duası',
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        'Dua metni ve ses dosyası sonra eklenecek.',
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 12,
-                          color: MinikColors.textMuted,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _WuduDuaCard(dua: _dua),
           const SizedBox(height: 16),
           const Text(
             'Abdestin Adabı',
@@ -523,6 +491,198 @@ class _TipTile extends StatelessWidget {
   }
 }
 
+class _WuduDuaCard extends StatelessWidget {
+  const _WuduDuaCard({this.dua});
+
+  final WuduCompletionDua? dua;
+
+  @override
+  Widget build(BuildContext context) {
+    final ready = dua != null && dua!.arabic.trim().isNotEmpty;
+    return MinikCard(
+      color: Colors.white,
+      onTap: ready
+          ? () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => WuduDuaPage(dua: dua!)),
+              )
+          : null,
+      child: Row(
+        children: [
+          const LessonMotionImage(
+            image: 'assets/images/wudu/wudu_dua_boy.png',
+            width: 86,
+            height: 86,
+            fit: BoxFit.contain,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  dua?.title ?? 'Abdest Tamamlandı Duası',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  ready
+                      ? 'Abdest bitince bu duayı okuruz. Dinlemek için dokun.'
+                      : 'Dua metni ve ses dosyası sonra eklenecek.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 12,
+                    color: MinikColors.textMuted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (ready)
+            const Icon(Icons.chevron_right_rounded, color: MinikColors.green),
+        ],
+      ),
+    );
+  }
+}
+
+class WuduDuaPage extends StatefulWidget {
+  const WuduDuaPage({super.key, required this.dua});
+
+  final WuduCompletionDua dua;
+
+  @override
+  State<WuduDuaPage> createState() => _WuduDuaPageState();
+}
+
+class _WuduDuaPageState extends State<WuduDuaPage> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final dua = widget.dua;
+    final audioPath = dua.audio.trim();
+    return Scaffold(
+      backgroundColor: const Color(0xFFF3F6F8),
+      appBar: AppBar(title: Text(dua.title)),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          const Center(
+            child: LessonMotionImage(
+              image: 'assets/images/wudu/wudu_dua_boy.png',
+              width: 120,
+              height: 120,
+              fit: BoxFit.contain,
+            ),
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            'Abdestimizi bitirdikten sonra bu duayı okuruz.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontWeight: FontWeight.w600,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 16),
+          MinikCard(
+            color: Colors.white,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Arapça',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.textMuted,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ArabicText(dua.arabic, fontSize: 24),
+              ],
+            ),
+          ),
+          if (dua.transliteration.trim().isNotEmpty) ...[
+            const SizedBox(height: 10),
+            MinikCard(
+              color: MinikColors.mint,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Okunuşu',
+                    style: TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: MinikColors.textMuted,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(dua.transliteration),
+                ],
+              ),
+            ),
+          ],
+          if (dua.meaning.trim().isNotEmpty) ...[
+            const SizedBox(height: 10),
+            MinikCard(
+              color: MinikColors.butter,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Anlamı',
+                    style: TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: MinikColors.textMuted,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(dua.meaning),
+                ],
+              ),
+            ),
+          ],
+          if (dua.source.trim().isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Text(
+              dua.source,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'NotoSans',
+                fontSize: 12,
+                color: MinikColors.textMuted,
+              ),
+            ),
+          ],
+          if (audioPath.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            ListenButton(audio: _audio, path: audioPath),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
 class _FarzTile extends StatelessWidget {
   const _FarzTile({required this.step, this.onTap});
 
@@ -544,7 +704,7 @@ class _FarzTile extends StatelessWidget {
               Image.asset(step.image, height: 40, fit: BoxFit.contain),
               const SizedBox(height: 4),
               Text(
-                step.title.replaceAll(' Yıkayalım', '').replaceAll(' Mesh Edelim', ''),
+                step.displayFarzTitle,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

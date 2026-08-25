@@ -1,6 +1,6 @@
 {
   "quran_arabic_letters": {
-    "title": "Kur'an Öğren - Arapça Harfler",
+    "title": "Kur'an Öğren - Harfler",
     "version": "1.0.0",
     "language": "tr",
     "letter_count": 28,
@@ -456,14 +456,14 @@
     ]
   },
   "quran_combinations": {
-    "title": "Kur'an Öğren - Harf Birleştirme",
+    "title": "Kur'an Öğren - Cezm (Harflerin Birleştirilmesi)",
     "version": "1.0.0",
     "language": "tr",
     "lessons": [
       {
         "id": "comb_01",
         "order": 1,
-        "title": "Elif ile Birleştirme",
+        "title": "Harflerin Birleştirilmesi",
         "examples": [
           {
             "parts": [
@@ -595,7 +595,7 @@
       {
         "id": "comb_04",
         "order": 4,
-        "title": "Rabb Kelimesini Oluşturalım",
+        "title": "Şedde Pekiştirme",
         "examples": [
           {
             "parts": [
@@ -613,7 +613,7 @@
   },
   "quran_harakat": {
     "title": "Kur'an Öğren - Harekeler",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "language": "tr",
     "items": [
       {
@@ -662,8 +662,58 @@
         "audio": "assets/audio/quran_learn/harakat/fatha.mp3"
       },
       {
-        "id": "kasra",
+        "id": "fatha_madd",
         "order": 2,
+        "name": "Fetha'nın Uzatılması",
+        "symbol": "ا",
+        "reading_rule": "Fethadan sonra elif gelince ses uzar.",
+        "examples": [
+          {
+            "arabic": "بَا",
+            "reading": "bâ",
+            "audio": "assets/audio/quran_learn/madd/ba_madd_alif.mp3"
+          },
+          {
+            "arabic": "تَا",
+            "reading": "tâ",
+            "audio": "assets/audio/quran_learn/madd/ta_madd_alif.mp3"
+          },
+          {
+            "arabic": "طَا",
+            "reading": "tâ (kalın)",
+            "audio": "assets/audio/quran_learn/madd/ta_heavy_madd_alif.mp3"
+          },
+          {
+            "arabic": "صَا",
+            "reading": "sâ (kalın)",
+            "audio": "assets/audio/quran_learn/madd/sad_madd_alif.mp3"
+          },
+          {
+            "arabic": "قَا",
+            "reading": "kâ (kalın)",
+            "audio": "assets/audio/quran_learn/madd/qaf_madd_alif.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/madd/ba_madd_alif.mp3"
+      },
+      {
+        "id": "tanwin_fath",
+        "order": 3,
+        "name": "Fetha'nın Tenvini (İki Fetha)",
+        "symbol": "ً",
+        "reading_rule": "Kelime sonunda 'an/en' benzeri tenvin sesi oluşturur.",
+        "examples": [
+          {
+            "arabic": "كِتَابًا",
+            "reading": "kitâben",
+            "audio": "assets/audio/quran_learn/tanwin/kitaban.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/tanwin/fathatayn.mp3"
+      },
+      {
+        "id": "kasra",
+        "order": 4,
         "name": "Kesra",
         "symbol": "ِ",
         "reading_rule": "Kısa 'i' sesi verir.",
@@ -697,8 +747,58 @@
         "audio": "assets/audio/quran_learn/harakat/kasra.mp3"
       },
       {
+        "id": "kasra_madd",
+        "order": 5,
+        "name": "Kesra'nın Uzatılması",
+        "symbol": "ي",
+        "reading_rule": "Kesradan sonra ye gelince ses uzar.",
+        "examples": [
+          {
+            "arabic": "بِي",
+            "reading": "bî",
+            "audio": "assets/audio/quran_learn/madd/ba_madd_ya.mp3"
+          },
+          {
+            "arabic": "تِي",
+            "reading": "tî",
+            "audio": "assets/audio/quran_learn/madd/ta_madd_ya.mp3"
+          },
+          {
+            "arabic": "طِي",
+            "reading": "tî (kalın)",
+            "audio": "assets/audio/quran_learn/madd/ta_heavy_madd_ya.mp3"
+          },
+          {
+            "arabic": "صِي",
+            "reading": "sî (kalın)",
+            "audio": "assets/audio/quran_learn/madd/sad_madd_ya.mp3"
+          },
+          {
+            "arabic": "قِي",
+            "reading": "kî (kalın)",
+            "audio": "assets/audio/quran_learn/madd/qaf_madd_ya.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/madd/ba_madd_ya.mp3"
+      },
+      {
+        "id": "tanwin_kasr",
+        "order": 6,
+        "name": "Kesra'nın Tenvini (İki Kesra)",
+        "symbol": "ٍ",
+        "reading_rule": "Kelime sonunda 'in' benzeri tenvin sesi oluşturur.",
+        "examples": [
+          {
+            "arabic": "عَلِيمٍ",
+            "reading": "alîmin",
+            "audio": "assets/audio/quran_learn/tanwin/alimin.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/tanwin/kasratayn.mp3"
+      },
+      {
         "id": "damma",
-        "order": 3,
+        "order": 7,
         "name": "Damme",
         "symbol": "ُ",
         "reading_rule": "Kısa 'u' sesi verir.",
@@ -732,9 +832,59 @@
         "audio": "assets/audio/quran_learn/harakat/damma.mp3"
       },
       {
+        "id": "damma_madd",
+        "order": 8,
+        "name": "Damme'nin Uzatılması",
+        "symbol": "و",
+        "reading_rule": "Dammeden sonra vav gelince ses uzar.",
+        "examples": [
+          {
+            "arabic": "بُو",
+            "reading": "bû",
+            "audio": "assets/audio/quran_learn/madd/ba_madd_waw.mp3"
+          },
+          {
+            "arabic": "تُو",
+            "reading": "tû",
+            "audio": "assets/audio/quran_learn/madd/ta_madd_waw.mp3"
+          },
+          {
+            "arabic": "طُو",
+            "reading": "tû (kalın)",
+            "audio": "assets/audio/quran_learn/madd/ta_heavy_madd_waw.mp3"
+          },
+          {
+            "arabic": "صُو",
+            "reading": "sû (kalın)",
+            "audio": "assets/audio/quran_learn/madd/sad_madd_waw.mp3"
+          },
+          {
+            "arabic": "قُو",
+            "reading": "kû (kalın)",
+            "audio": "assets/audio/quran_learn/madd/qaf_madd_waw.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/madd/ba_madd_waw.mp3"
+      },
+      {
+        "id": "tanwin_damm",
+        "order": 9,
+        "name": "Damme'nin Tenvini (İki Damme)",
+        "symbol": "ٌ",
+        "reading_rule": "Kelime sonunda 'un' benzeri tenvin sesi oluşturur.",
+        "examples": [
+          {
+            "arabic": "غَفُورٌ",
+            "reading": "gafûrun",
+            "audio": "assets/audio/quran_learn/tanwin/gafurun.mp3"
+          }
+        ],
+        "audio": "assets/audio/quran_learn/tanwin/dammatayn.mp3"
+      },
+      {
         "id": "sukun",
-        "order": 4,
-        "name": "Cezm (Sükûn)",
+        "order": 10,
+        "name": "Cezm",
         "symbol": "ْ",
         "reading_rule": "Harfte hareke olmadığını ve harfin sakin okunduğunu gösterir.",
         "examples": [
@@ -748,7 +898,7 @@
       },
       {
         "id": "shadda",
-        "order": 5,
+        "order": 11,
         "name": "Şedde",
         "symbol": "ّ",
         "reading_rule": "Harfin iki kez/kuvvetli okunacağını gösterir; ilk bölüm sakin, ikinci bölüm harekelidir.",
@@ -760,51 +910,6 @@
           }
         ],
         "audio": "assets/audio/quran_learn/shadda/shadda.mp3"
-      },
-      {
-        "id": "tanwin_fath",
-        "order": 6,
-        "name": "Fetha Tenvini",
-        "symbol": "ً",
-        "reading_rule": "Kelime sonunda 'an/en' benzeri tenvin sesi oluşturur.",
-        "examples": [
-          {
-            "arabic": "كِتَابًا",
-            "reading": "kitâben",
-            "audio": "assets/audio/quran_learn/tanwin/kitaban.mp3"
-          }
-        ],
-        "audio": "assets/audio/quran_learn/tanwin/fathatayn.mp3"
-      },
-      {
-        "id": "tanwin_kasr",
-        "order": 7,
-        "name": "Kesra Tenvini",
-        "symbol": "ٍ",
-        "reading_rule": "Kelime sonunda 'in' benzeri tenvin sesi oluşturur.",
-        "examples": [
-          {
-            "arabic": "عَلِيمٍ",
-            "reading": "alîmin",
-            "audio": "assets/audio/quran_learn/tanwin/alimin.mp3"
-          }
-        ],
-        "audio": "assets/audio/quran_learn/tanwin/kasratayn.mp3"
-      },
-      {
-        "id": "tanwin_damm",
-        "order": 8,
-        "name": "Damme Tenvini",
-        "symbol": "ٌ",
-        "reading_rule": "Kelime sonunda 'un' benzeri tenvin sesi oluşturur.",
-        "examples": [
-          {
-            "arabic": "غَفُورٌ",
-            "reading": "gafûrun",
-            "audio": "assets/audio/quran_learn/tanwin/gafurun.mp3"
-          }
-        ],
-        "audio": "assets/audio/quran_learn/tanwin/dammatayn.mp3"
       }
     ]
   },
@@ -836,11 +941,11 @@
       {
         "id": "badge_harakat",
         "title": "Hareke Ustası",
-        "description": "8 temel hareke dersini tamamla.",
+        "description": "11 hareke dersini tamamla.",
         "icon": "✏️",
         "rule": {
           "type": "harakat_lessons_completed",
-          "value": 8
+          "value": 11
         }
       },
       {
@@ -1059,7 +1164,7 @@
         "options": [
           "Şedde",
           "Cezm",
-          "Fetha Tenvini"
+          "Fetha'nın Tenvini"
         ],
         "correct_answer": "Şedde",
         "feedback_correct": "Doğru! بِّ üzerinde şedde var.",
@@ -1146,7 +1251,7 @@
           "Med"
         ],
         "correct_answer": "Tenvin",
-        "feedback_correct": "Doğru! دٌ üzerinde iki ötre vardır.",
+        "feedback_correct": "Doğru! دٌ üzerinde iki damme vardır.",
         "feedback_wrong": "Tenvin işaretini tekrar inceleyelim."
       },
       {
@@ -1209,77 +1314,77 @@
   },
   "quran_learning_levels": {
     "title": "Kur'an Öğren",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "language": "tr",
     "levels": [
       {
         "id": 1,
-        "title": "Harfleri Tanıyalım",
-        "description": "Kur'an alfabesindeki temel Arapça harfleri tanıyalım ve seslerini öğrenelim.",
+        "title": "Harfler",
+        "description": "Harfler ve isimleri, sesleri, şekilleri. Pekiştirme ile tanıyalım.",
         "lesson_count": 28,
         "prerequisite_level": null,
         "unlock_rule": "start"
       },
       {
         "id": 2,
-        "title": "Harekeleri Öğrenelim",
-        "description": "Fetha, kesra, damme, cezm, şedde ve tenvini tanıyalım.",
-        "lesson_count": 8,
+        "title": "Harekeler",
+        "description": "Fetha, fethanın uzatılması ve tenvini; kesra; damme; cezm ve şedde.",
+        "lesson_count": 11,
         "prerequisite_level": 1,
         "unlock_rule": "level_completed"
       },
       {
         "id": 3,
-        "title": "Harfleri Birleştirelim",
+        "title": "Cezm (Harflerin Birleştirilmesi)",
         "description": "Harflerin kelime içinde nasıl birleştiğini ve heceleri okuyalım.",
-        "lesson_count": 10,
+        "lesson_count": 4,
         "prerequisite_level": 2,
         "unlock_rule": "level_completed"
       },
       {
         "id": 4,
-        "title": "Kelimeleri Okuyalım",
-        "description": "Kur'an'da geçen kısa ve gerçek kelimeleri okuyarak pratik yapalım.",
-        "lesson_count": 20,
+        "title": "Şedde ve Pekiştirme",
+        "description": "Şeddeyi pekiştirerek Kur'an'da geçen gerçek kelimeleri okuyalım.",
+        "lesson_count": 24,
         "prerequisite_level": 3,
         "unlock_rule": "level_completed"
       },
       {
         "id": 5,
-        "title": "Kısa Surelere Başlayalım",
-        "description": "Kısa sureleri dinleyelim, takip edelim ve okumaya çalışalım.",
+        "title": "Uygulama",
+        "description": "Fâtiha ve kısa sureleri dinleyelim, takip edelim ve okumaya çalışalım.",
         "lesson_count": 12,
         "prerequisite_level": 4,
         "unlock_rule": "level_completed"
       },
       {
         "id": 6,
-        "title": "Temel Tecvidi Öğrenelim",
-        "description": "Kur'an okurken karşımıza çıkan temel tecvid kurallarını tanıyalım.",
+        "title": "Tecvid Uygulamaları",
+        "description": "Vakf, ihfâ, izhâr, idğâm, iklâb, kalkale ve medd kurallarını tanıyalım.",
         "lesson_count": 11,
         "prerequisite_level": 5,
         "unlock_rule": "level_completed"
       },
       {
         "id": 7,
-        "title": "Kur'an Okuma Pratiği",
+        "title": "Uygulama — Okuma Pratiği",
         "description": "Öğrendiğimiz harf, hareke ve tecvid bilgilerini ayetlerde uygulayalım.",
-        "lesson_count": 10,
+        "lesson_count": 12,
         "prerequisite_level": 6,
         "unlock_rule": "level_completed"
       },
       {
         "id": 8,
-        "title": "Tecvidli Okuma",
+        "title": "Uygulama — Tecvidli Okuma",
         "description": "Tecvid kurallarını gerçek ayetler üzerinde fark ederek okumayı geliştirelim.",
-        "lesson_count": 10,
+        "lesson_count": 12,
         "prerequisite_level": 7,
         "unlock_rule": "level_completed"
       }
     ]
   },
   "quran_learning_surahs": {
-    "title": "Kur'an Öğren - Kısa Sureler",
+    "title": "Kur'an Öğren - Uygulama",
     "version": "1.0.0",
     "language": "tr",
     "source_note": "Bu dosya öğrenme sırasını ve sure bilgilerini tanımlar. Tam Arapça sure metinleri uygulamadaki doğrulanmış Kur'an veri kaynağından alınmalıdır.",
@@ -1293,28 +1398,28 @@
         "audio": "assets/audio/quran_learn/surahs/surah_001.mp3"
       },
       {
-        "surah_number": 112,
-        "name_ar": "الإخلاص",
-        "name_tr": "İhlâs",
-        "ayah_count": 4,
-        "priority": 2,
-        "audio": "assets/audio/quran_learn/surahs/surah_112.mp3"
-      },
-      {
-        "surah_number": 113,
-        "name_ar": "الفلق",
-        "name_tr": "Felak",
+        "surah_number": 105,
+        "name_ar": "الفيل",
+        "name_tr": "Fil",
         "ayah_count": 5,
-        "priority": 3,
-        "audio": "assets/audio/quran_learn/surahs/surah_113.mp3"
+        "priority": 2,
+        "audio": "assets/audio/quran_learn/surahs/surah_105.mp3"
       },
       {
-        "surah_number": 114,
-        "name_ar": "الناس",
-        "name_tr": "Nâs",
-        "ayah_count": 6,
+        "surah_number": 106,
+        "name_ar": "قريش",
+        "name_tr": "Kureyş",
+        "ayah_count": 4,
+        "priority": 3,
+        "audio": "assets/audio/quran_learn/surahs/surah_106.mp3"
+      },
+      {
+        "surah_number": 107,
+        "name_ar": "الماعون",
+        "name_tr": "Mâûn",
+        "ayah_count": 7,
         "priority": 4,
-        "audio": "assets/audio/quran_learn/surahs/surah_114.mp3"
+        "audio": "assets/audio/quran_learn/surahs/surah_107.mp3"
       },
       {
         "surah_number": 108,
@@ -1325,19 +1430,11 @@
         "audio": "assets/audio/quran_learn/surahs/surah_108.mp3"
       },
       {
-        "surah_number": 103,
-        "name_ar": "العصر",
-        "name_tr": "Asr",
-        "ayah_count": 3,
-        "priority": 6,
-        "audio": "assets/audio/quran_learn/surahs/surah_103.mp3"
-      },
-      {
         "surah_number": 109,
         "name_ar": "الكافرون",
         "name_tr": "Kâfirûn",
         "ayah_count": 6,
-        "priority": 7,
+        "priority": 6,
         "audio": "assets/audio/quran_learn/surahs/surah_109.mp3"
       },
       {
@@ -1345,54 +1442,62 @@
         "name_ar": "النصر",
         "name_tr": "Nasr",
         "ayah_count": 3,
-        "priority": 8,
+        "priority": 7,
         "audio": "assets/audio/quran_learn/surahs/surah_110.mp3"
       },
       {
         "surah_number": 111,
         "name_ar": "المسد",
-        "name_tr": "Tebbet / Mesed",
+        "name_tr": "Tebbet",
         "ayah_count": 5,
-        "priority": 9,
+        "priority": 8,
         "audio": "assets/audio/quran_learn/surahs/surah_111.mp3"
       },
       {
-        "surah_number": 105,
-        "name_ar": "الفيل",
-        "name_tr": "Fil",
+        "surah_number": 112,
+        "name_ar": "الإخلاص",
+        "name_tr": "İhlâs",
+        "ayah_count": 4,
+        "priority": 9,
+        "audio": "assets/audio/quran_learn/surahs/surah_112.mp3"
+      },
+      {
+        "surah_number": 113,
+        "name_ar": "الفلق",
+        "name_tr": "Felak",
         "ayah_count": 5,
         "priority": 10,
-        "audio": "assets/audio/quran_learn/surahs/surah_105.mp3"
+        "audio": "assets/audio/quran_learn/surahs/surah_113.mp3"
       },
       {
-        "surah_number": 106,
-        "name_ar": "قريش",
-        "name_tr": "Kureyş",
-        "ayah_count": 4,
+        "surah_number": 114,
+        "name_ar": "الناس",
+        "name_tr": "Nâs",
+        "ayah_count": 6,
         "priority": 11,
-        "audio": "assets/audio/quran_learn/surahs/surah_106.mp3"
+        "audio": "assets/audio/quran_learn/surahs/surah_114.mp3"
       },
       {
-        "surah_number": 107,
-        "name_ar": "الماعون",
-        "name_tr": "Mâûn",
-        "ayah_count": 7,
+        "surah_number": 103,
+        "name_ar": "العصر",
+        "name_tr": "Asr",
+        "ayah_count": 3,
         "priority": 12,
-        "audio": "assets/audio/quran_learn/surahs/surah_107.mp3"
+        "audio": "assets/audio/quran_learn/surahs/surah_103.mp3"
       }
     ]
   },
   "quran_tajweed": {
-    "title": "Kur'an Öğren - Temel Tecvid",
-    "version": "1.1.0",
+    "title": "Kur'an Öğren - Tecvid Uygulamaları",
+    "version": "1.2.0",
     "language": "tr",
     "lessons": [
       {
         "id": "tajweed_01",
-        "order": 1,
-        "title": "Med",
+        "order": 7,
+        "title": "Medd-i Tabîî, Muttasıl, Munfasıl",
         "short_description": "Kurala göre sesin belirli ölçüde uzatılarak okunmasıdır.",
-        "explanation": "Med, bazı harf ve işaretlerin bulunduğu durumlarda sesin uzatılmasıyla ilgilidir. Uzatma miktarı kurala göre değişir.",
+        "explanation": "Medd, bazı harf ve işaretlerin bulunduğu durumlarda sesin uzatılmasıyla ilgilidir. Uzatma miktarı kurala göre değişir. İkinci örnek medd-i lâzıma yakındır.",
         "examples": [
           {
             "arabic": "مَالِكِ",
@@ -1411,7 +1516,7 @@
       },
       {
         "id": "tajweed_02",
-        "order": 2,
+        "order": 9,
         "title": "Şedde",
         "short_description": "Bir harfin iki kez/kuvvetli okunmasını gösterir.",
         "explanation": "Şedde işaretindeki ilk bölüm sakin, ikinci bölüm harekelidir; harf güçlü biçimde okunur.",
@@ -1433,8 +1538,8 @@
       },
       {
         "id": "tajweed_03",
-        "order": 3,
-        "title": "Cezm (Sükûn)",
+        "order": 10,
+        "title": "Cezm",
         "short_description": "Harfte hareke olmadığını ve harfin sakin okunduğunu gösterir.",
         "explanation": "Cezm, harfin harekesiz/sakin okunduğunu gösterir.",
         "examples": [
@@ -1455,10 +1560,10 @@
       },
       {
         "id": "tajweed_04",
-        "order": 4,
-        "title": "Tenvin",
+        "order": 8,
+        "title": "Tenvinli Kelimelerden Geçiş",
         "short_description": "Kelime sonunda an, in veya un benzeri ses veren çift harekedir.",
-        "explanation": "Tenvin; iki üstün, iki esre veya iki ötre ile gösterilir. Okunuş, durma/başlama durumuna göre değişebilir.",
+        "explanation": "Tenvin; iki fetha, iki kesra veya iki damme ile gösterilir. Okunuş, durma/başlama durumuna göre değişebilir.",
         "examples": [
           {
             "arabic": "اَحَدٌ",
@@ -1483,7 +1588,7 @@
       },
       {
         "id": "tajweed_05",
-        "order": 5,
+        "order": 11,
         "title": "Gunne",
         "short_description": "Özellikle nûn ve mîm ile ilgili bazı durumlarda burundan gelen geniz sesidir.",
         "explanation": "Gunne, özellikle şeddeli nûn ve mîm gibi durumlarda belirginleşir. Dinleyerek öğrenme burada önemlidir.",
@@ -1534,7 +1639,7 @@
       },
       {
         "id": "tajweed_11",
-        "order": 7,
+        "order": 3,
         "title": "İzhâr",
         "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce açık okunmasıdır.",
         "explanation": "İzhâr, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde nûn sesinin gizlenmeden, açık okunmasıdır.",
@@ -1556,21 +1661,21 @@
       },
       {
         "id": "tajweed_07",
-        "order": 8,
-        "title": "İdğam",
+        "order": 4,
+        "title": "İdğâm-ı Bila Ğunne / Mea'l-Ğunne",
         "short_description": "Bazı harflerin belirli şartlarda birbirine katılarak okunmasıdır.",
-        "explanation": "İdğam, bir harfin sonraki harfe katılmasıdır. Nûn-ı sâkin ve tenvin gibi konularla birlikte ayrıntılı öğretilir.",
+        "explanation": "İdğâm, bir harfin sonraki harfe katılmasıdır. Nûn-ı sâkin ve tenvin gibi konularla birlikte ayrıntılı öğretilir.",
         "examples": [
-          {
-            "arabic": "فَمَنْ یَعْمَلْ",
-            "reference": "99:7",
-            "focus": "نْ ی",
-            "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
-          },
           {
             "arabic": "یَكُنْ لَهُ",
             "reference": "112:4",
             "focus": "نْ ل",
+            "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
+          },
+          {
+            "arabic": "فَمَنْ یَعْمَلْ",
+            "reference": "99:7",
+            "focus": "نْ ی",
             "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
           }
         ],
@@ -1578,7 +1683,7 @@
       },
       {
         "id": "tajweed_08",
-        "order": 9,
+        "order": 2,
         "title": "İhfâ",
         "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce gizli/genizli okunmasıdır.",
         "explanation": "İhfâ, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde uygulanır.",
@@ -1600,7 +1705,7 @@
       },
       {
         "id": "tajweed_09",
-        "order": 10,
+        "order": 5,
         "title": "İklâb",
         "short_description": "Nûn-ı sâkin veya tenvinin ب harfinden önce mîm sesine çevrilerek gizli okunmasıdır.",
         "explanation": "İklâbın temel şartı, nûn-ı sâkin veya tenvinden sonra ب harfinin gelmesidir.",
@@ -1622,8 +1727,8 @@
       },
       {
         "id": "tajweed_10",
-        "order": 11,
-        "title": "Vakıf",
+        "order": 1,
+        "title": "Vakf",
         "short_description": "Okuma sırasında uygun bir yerde durmayı öğreniriz.",
         "explanation": "Vakıf, kıraat sırasında uygun bir yerde durmaktır. Duruşta kelimenin son harekesinin okunması değişebilir; vakıf işaretlerini öğrenmek önemlidir.",
         "examples": [
@@ -1645,7 +1750,7 @@
     ]
   },
   "quran_words": {
-    "title": "Kur'an Öğren - Gerçek Kur'an Kelimeleri",
+    "title": "Kur'an Öğren - Pekiştirme",
     "version": "1.0.0",
     "language": "tr",
     "note": "Eğitim örnekleri gerçek Kur'an ayetlerinden seçilmiştir. Uygulamada tam ayet/sure metinleri mevcut doğrulanmış Kur'an veri kaynağından alınmalıdır.",

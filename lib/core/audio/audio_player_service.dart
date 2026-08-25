@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:just_audio/just_audio.dart';
 
 class AudioPlayerService {
@@ -18,7 +20,45 @@ class AudioPlayerService {
     }
   }
 
+  /// Loads the asset without waiting for playback to finish.
+  Future<Duration?> prepareAsset(String path) async {
+    if (path.trim().isEmpty) return null;
+    try {
+      await _player.stop();
+      final duration = await _player.setAsset(path);
+      return duration ?? _player.duration;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> resume() async {
+    try {
+      unawaited(_player.play().then((_) {}, onError: (_, __) {}));
+    } catch (_) {}
+  }
+
+  Future<void> pause() async {
+    try {
+      await _player.pause();
+    } catch (_) {}
+  }
+
+  Future<void> seek(Duration position) async {
+    try {
+      await _player.seek(position);
+    } catch (_) {}
+  }
+
   Stream<bool> get playingStream => _player.playingStream;
+
+  Stream<Duration> get positionStream => _player.positionStream;
+
+  Stream<bool> get completedStream => _player.processingStateStream.map(
+        (state) => state == ProcessingState.completed,
+      );
+
+  Duration? get duration => _player.duration;
 
   bool get isPlaying => _player.playing;
 

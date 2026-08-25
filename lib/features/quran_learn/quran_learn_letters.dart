@@ -23,7 +23,9 @@ class QuranLearnLettersPage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text('Harfleri Tanıyalım')),
+      appBar: AppBar(
+        title: Text(pack.titleForLevel(1, fallback: 'Harfler')),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {
@@ -36,6 +38,29 @@ class QuranLearnLettersPage extends StatelessWidget {
               QlSoftProgress(
                 value: total == 0 ? 0 : done / total,
                 label: '$done / $total harf',
+              ),
+              const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      pack.levelById(1)?.description ??
+                          'Harfler ve isimleri, sesleri, şekilleri.',
+                      style: const TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontWeight: FontWeight.w700,
+                        color: MinikColors.darkGreen,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text('· Harfler ve İsimleri'),
+                    const Text('· Harfler ve Sesleri'),
+                    const Text('· Harfler ve Şekilleri'),
+                    const Text('· Pekiştirme'),
+                  ],
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               GridView.builder(
@@ -186,6 +211,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
       body: ListView(
         padding: AppSpacing.page,
         children: [
+          const SectionLabel('Harfler ve İsimleri'),
           MinikCard(
             color: MinikColors.mint,
             child: Column(
@@ -234,7 +260,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                 QlPlayListen(audio: _audio, path: letter.audio),
                 const SizedBox(height: AppSpacing.md),
                 const Text(
-                  'Harekeli sesi',
+                  'Harfler ve Sesleri',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w800,
@@ -245,9 +271,9 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                 Row(
                   children: [
                     for (final item in <(String, String)>[
-                      ('Üstün', 'fatha'),
-                      ('Esre', 'kasra'),
-                      ('Ötre', 'damma'),
+                      ('Fetha', 'fatha'),
+                      ('Kesra', 'kasra'),
+                      ('Damme', 'damma'),
                     ]) ...[
                       if (item.$2 != 'fatha') const SizedBox(width: 8),
                       Expanded(
@@ -276,7 +302,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          const SectionLabel('Harfin biçimleri'),
+          const SectionLabel('Harfler ve Şekilleri'),
           Row(
             children: [
               for (var i = 0; i < forms.length; i++) ...[

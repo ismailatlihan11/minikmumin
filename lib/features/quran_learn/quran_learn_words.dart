@@ -22,7 +22,9 @@ class QuranLearnWordsPage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text('Kelimeleri Okuyalım')),
+      appBar: AppBar(
+        title: Text(pack.titleForLevel(4, fallback: 'Pekiştirme')),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {

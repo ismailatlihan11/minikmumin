@@ -75,7 +75,7 @@ abstract final class HomeCatalog {
     ),
     HomeModule(
       title: "Kur'an Öğren",
-      subtitle: 'Harflerden başlayarak okumayı öğren.',
+      subtitle: 'Diyanet Elifba sırasıyla harflerden okumaya.',
       image: 'assets/images/home/card_quran_learn.png',
       color: Color(0xFFEAF6FF),
       accent: Color(0xFF21684E),

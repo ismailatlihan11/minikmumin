@@ -44,5 +44,21 @@ abstract final class QuranLearnAudio {
     return ok;
   }
 
+  /// Prepares a clip for follow-along. Playback is started by the caller.
+  static Future<Duration?> prepare(
+    AudioPlayerService audio,
+    LocalProgressStore store,
+    String? path, {
+    bool countPlay = true,
+  }) async {
+    final playable = resolve(path);
+    if (playable == null) return null;
+    final duration = await audio.prepareAsset(playable);
+    if (duration != null && countPlay) {
+      await store.addCounter(quranLearnAudioPlays);
+    }
+    return duration;
+  }
+
   static bool get canRecord => false;
 }

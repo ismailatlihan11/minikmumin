@@ -17,6 +17,8 @@ abstract final class AssetCatalog {
   static bool contains(String path) {
     final trimmed = path.trim();
     if (trimmed.isEmpty) return false;
-    return _assets.contains(trimmed);
+    if (_assets.contains(trimmed)) return true;
+    // Show Dinle even if AssetCatalog loaded before a newly bundled folder.
+    return trimmed.startsWith('assets/audio/wudu/');
   }
 }

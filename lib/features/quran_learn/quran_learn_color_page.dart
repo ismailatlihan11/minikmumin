@@ -456,7 +456,7 @@ class _QlColoringPageState extends State<QlColoringPage> {
                         ),
                       ),
                       child: color == _paper
-                          ? const Icon(Icons.auto_fix_off_rounded, size: 18)
+                          ? const MinikEraserIcon(size: 22)
                           : null,
                     ),
                   ),

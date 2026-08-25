@@ -23,7 +23,11 @@ class QuranLearnCombinePage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text('Harfleri Birleştirelim')),
+      appBar: AppBar(
+        title: Text(
+          pack.titleForLevel(3, fallback: 'Cezm (Harflerin Birleştirilmesi)'),
+        ),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {

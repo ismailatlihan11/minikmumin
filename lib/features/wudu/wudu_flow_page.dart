@@ -254,6 +254,20 @@ class _ResultView extends StatelessWidget {
           ),
         ],
         const SizedBox(height: AppSpacing.xl),
+        if (controller.lesson?.completionDua != null) ...[
+          SecondaryButton(
+            label: 'Abdest duasını oku',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => WuduDuaPage(
+                  dua: controller.lesson!.completionDua!,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+        ],
         PrimaryButton(
           label: 'Tekrar Et',
           onPressed: controller.restart,

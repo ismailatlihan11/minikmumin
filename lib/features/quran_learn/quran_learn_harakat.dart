@@ -23,7 +23,9 @@ class QuranLearnHarakatPage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text('Harekeleri Öğrenelim')),
+      appBar: AppBar(
+        title: Text(pack.titleForLevel(2, fallback: 'Harekeler')),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {
@@ -35,6 +37,19 @@ class QuranLearnHarakatPage extends StatelessWidget {
               QlSoftProgress(
                 value: pack.harakat.isEmpty ? 0 : done / pack.harakat.length,
                 label: '$done / ${pack.harakat.length} hareke',
+              ),
+              const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Text(
+                  pack.levelById(2)?.description ??
+                      'Fetha, kesra, damme, uzatma, tenvin, cezm ve şedde.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               for (final item in pack.harakat)

@@ -481,6 +481,17 @@ class QuranLearningPack {
     return null;
   }
 
+  QuranLearningLevel? levelById(int id) {
+    for (final level in levels) {
+      if (level.id == id) return level;
+    }
+    return null;
+  }
+
+  String titleForLevel(int id, {required String fallback}) {
+    return levelById(id)?.title ?? fallback;
+  }
+
   List<QuranLearningGame> gamesForLevel(int level) {
     return games.where((game) => game.level == level).toList(growable: false);
   }
