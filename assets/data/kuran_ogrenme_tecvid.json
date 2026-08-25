@@ -1,0 +1,851 @@
+{
+  "title": "Kur'an Öğren — Tecvid Müfredatı",
+  "version": "2.0.0",
+  "language": "tr",
+  "source_note": "Sıra ve başlıklar elifba/tecvid öğretim yoludur. Arapça örnekler uygulamadaki doğrulanmış Kur’an metnine ve mevcut eğitim seslerine bağlıdır. Yeni ayet, latin okunuş veya ses uydurulmaz.",
+  "categories": [
+    {
+      "id": 1,
+      "title": "29 harf ve harf tanıma",
+      "description": "Elif’ten ye’ye harfleri ve lâm-elif’i tanıyalım.",
+      "lesson_count": 29,
+      "prerequisite_level": null,
+      "unlock_rule": "start",
+      "screen": "letters",
+      "progress_items": [
+        {
+          "kind": "ql_letter",
+          "ids": [
+            "*"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_letter_01",
+        "game_letter_02",
+        "game_letter_03"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Başta / ortada / sonda harf şekilleri",
+      "description": "Harfin kelimedeki dört şeklini görelim.",
+      "lesson_count": 29,
+      "prerequisite_level": 1,
+      "unlock_rule": "level_completed",
+      "screen": "letter_forms",
+      "progress_items": [
+        {
+          "kind": "ql_letter_form",
+          "ids": [
+            "*"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Üstün, esre, ötre",
+      "description": "Fetha, kesra ve damme ile harfleri okuyalım.",
+      "lesson_count": 3,
+      "prerequisite_level": 2,
+      "unlock_rule": "level_completed",
+      "screen": "harakat",
+      "progress_items": [
+        {
+          "kind": "ql_haraka",
+          "ids": [
+            "fatha",
+            "kasra",
+            "damma"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_harakat_01",
+        "game_harakat_02",
+        "game_harakat_03"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Tenvin, cezm, şedde",
+      "description": "İki hareke, sükûn ve şeddeyi uygulayalım.",
+      "lesson_count": 5,
+      "prerequisite_level": 3,
+      "unlock_rule": "level_completed",
+      "screen": "harakat",
+      "progress_items": [
+        {
+          "kind": "ql_haraka",
+          "ids": [
+            "tanwin_fath",
+            "tanwin_kasr",
+            "tanwin_damm",
+            "sukun",
+            "shadda"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_harakat_04",
+        "game_harakat_05",
+        "game_harakat_06"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Med harfleri ve medd-i tabîî",
+      "description": "Elif, ye ve vav ile doğal uzatmayı görelim.",
+      "lesson_count": 3,
+      "prerequisite_level": 4,
+      "unlock_rule": "level_completed",
+      "screen": "harakat",
+      "progress_items": [
+        {
+          "kind": "ql_haraka",
+          "ids": [
+            "fatha_madd",
+            "kasra_madd",
+            "damma_madd"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Mahreçler ve harf sıfatları",
+      "description": "Harflerin çıkış yerlerini gruplayarak tanıyalım.",
+      "lesson_count": 3,
+      "prerequisite_level": 5,
+      "unlock_rule": "level_completed",
+      "screen": "mahraj",
+      "progress_items": [
+        {
+          "kind": "ql_mahraj",
+          "ids": [
+            "halq",
+            "lisaan",
+            "shafatan"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Kalın / ince harfler",
+      "description": "Kalın ve ince harfleri ayırt edelim.",
+      "lesson_count": 2,
+      "prerequisite_level": 6,
+      "unlock_rule": "level_completed",
+      "screen": "heavy_light",
+      "progress_items": [
+        {
+          "kind": "ql_heavy",
+          "ids": [
+            "heavy",
+            "light"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Lâm-ı celâle",
+      "description": "Allah lafzındaki lâm’ın ince veya kalın okunuşunu görelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 7,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_14"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_14"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Râ hükümleri",
+      "description": "Râ’nın kalın ve ince okunduğu yerleri karşılaştıralım.",
+      "lesson_count": 1,
+      "prerequisite_level": 8,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_13"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_13"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Hemze-i vasl / kat‘",
+      "description": "Birleşen hemze ile kesilen hemzeyi ayırt edelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 9,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_23"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Nûn sakin ve tenvin",
+      "description": "İzhâr, idğâm, iklâb ve ihfâ kurallarını uygulayalım.",
+      "lesson_count": 5,
+      "prerequisite_level": 10,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_11",
+            "tajweed_07",
+            "tajweed_15",
+            "tajweed_09",
+            "tajweed_08"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_03",
+        "game_tajweed_04",
+        "game_tajweed_09",
+        "game_tajweed_11",
+        "game_tajweed_18"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Mîm sakin",
+      "description": "İzhâr-ı şefevî, ihfâ-i şefevî ve idğâmı görelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 11,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_25"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_16"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Ğunne",
+      "description": "Nûn ve mîmdeki geniz sesini dinleyelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 12,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_05"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_08"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Kalkale",
+      "description": "ق ط ب ج د harflerinin sakin yankısını uygulayalım.",
+      "lesson_count": 1,
+      "prerequisite_level": 13,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_06"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_05"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Muttasıl, munfasıl, ârız, lâzım ve diğer medler",
+      "description": "Uzatma türlerini gerçek ayetlerde ayırt edelim.",
+      "lesson_count": 2,
+      "prerequisite_level": 14,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_01",
+            "tajweed_22"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_06",
+        "game_tajweed_17"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "İdğâm-ı misleyn, mütecâniseyn, mütekâribeyn",
+      "description": "Aynı, yakın ve kardeş harflerin birleşmesini görelim.",
+      "lesson_count": 3,
+      "prerequisite_level": 15,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_16",
+            "tajweed_18",
+            "tajweed_19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "title": "Lâm-ı şemsiyye / kameriyye",
+      "description": "Güneş ve ay harfleriyle elif-lâm’ı okuyalım.",
+      "lesson_count": 1,
+      "prerequisite_level": 16,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_24"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Vakıf ve ibtidâ",
+      "description": "Uygun yerde durmayı ve yeniden başlamayı öğrenelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 17,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_10"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_tajweed_10"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Secâvend işaretleri",
+      "description": "Mushaftaki durak işaretlerini tanıyalım.",
+      "lesson_count": 1,
+      "prerequisite_level": 18,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed",
+          "ids": [
+            "tajweed_21"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Heceleme ve kelime okuma",
+      "description": "Harfleri birleştirip gerçek Kur’an kelimelerini okuyalım.",
+      "lesson_count": 28,
+      "prerequisite_level": 19,
+      "unlock_rule": "level_completed",
+      "screen": "syllables",
+      "progress_items": [
+        {
+          "kind": "ql_comb",
+          "ids": [
+            "*"
+          ]
+        },
+        {
+          "kind": "ql_word",
+          "ids": [
+            "*"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_combination_01",
+        "game_word_01",
+        "game_word_02"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Fâtiha, İhlâs, Felak, Nâs",
+      "description": "Dört sureyi dinleyelim, takip edelim ve okuyalım.",
+      "lesson_count": 4,
+      "prerequisite_level": 20,
+      "unlock_rule": "level_completed",
+      "screen": "surahs",
+      "progress_items": [
+        {
+          "kind": "ql_surah",
+          "ids": [
+            "1",
+            "112",
+            "113",
+            "114"
+          ]
+        }
+      ],
+      "game_ids": [
+        "game_surah_01"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Tecvid hata tespiti",
+      "description": "Bu surelerde öğrendiğin kuralları fark edelim.",
+      "lesson_count": 4,
+      "prerequisite_level": 21,
+      "unlock_rule": "level_completed",
+      "screen": "tajweed_read",
+      "progress_items": [
+        {
+          "kind": "ql_tajweed_read",
+          "ids": [
+            "1",
+            "112",
+            "113",
+            "114"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "title": "Bitirme sınavı",
+      "description": "Öğrendiklerini puanlı sınavla pekiştirelim.",
+      "lesson_count": 1,
+      "prerequisite_level": 22,
+      "unlock_rule": "level_completed",
+      "screen": "exam",
+      "progress_items": [
+        {
+          "kind": "ql_exam",
+          "ids": [
+            "final"
+          ]
+        }
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "tajweed_23",
+      "order": 23,
+      "title": "Hemze-i Vasl / Kat‘",
+      "short_description": "Bazı hemzeler kelime başında okunur, bazıları önceki kelimeye bağlanırken düşer.",
+      "explanation": "Hemze-i kat‘ her durumda okunur. Hemze-i vasl, kelime tek başına veya duruşta okunur; önceki kelimeye bitişince okunmaz. Örnekler Fâtiha ve İhlâs’tandır.",
+      "examples": [
+        {
+          "arabic": "أَحَدٌ",
+          "reference": "112:1",
+          "focus": "أَ",
+          "audio": "assets/audio/quran_learn/words/word_20.mp3"
+        },
+        {
+          "arabic": "الْحَمْدُ",
+          "reference": "1:2",
+          "focus": "الْ",
+          "audio": "assets/audio/quran_learn/words/word_03.mp3"
+        },
+        {
+          "arabic": "اهْدِنَا",
+          "reference": "1:6",
+          "focus": "اهْ",
+          "audio": "assets/audio/quran_learn/words/word_15.mp3"
+        }
+      ],
+      "audio": "assets/audio/quran_learn/words/word_20.mp3"
+    },
+    {
+      "id": "tajweed_24",
+      "order": 24,
+      "title": "Lâm-ı Şemsiyye / Kameriyye",
+      "short_description": "Elif-lâmdan sonra gelen harfe göre lâm okunur veya sonraki harfe katılır.",
+      "explanation": "Ay harflerinden önce elif-lâm’ın lâm’ı okunur. Güneş harflerinden önce lâm okunmaz, sonraki harf şeddeli okunur. Örnekler Fâtiha kelimelerindendir.",
+      "examples": [
+        {
+          "arabic": "الْحَمْدُ",
+          "reference": "1:2",
+          "focus": "الْح",
+          "audio": "assets/audio/quran_learn/words/word_03.mp3"
+        },
+        {
+          "arabic": "الْعَالَمٖینَ",
+          "reference": "1:2",
+          "focus": "الْع",
+          "audio": "assets/audio/quran_learn/words/word_05.mp3"
+        },
+        {
+          "arabic": "الرَّحْمٰنِ",
+          "reference": "1:3",
+          "focus": "الرَّ",
+          "audio": "assets/audio/quran_learn/words/word_06.mp3"
+        },
+        {
+          "arabic": "الدِّینِ",
+          "reference": "1:4",
+          "focus": "الدِّ",
+          "audio": "assets/audio/quran_learn/words/word_10.mp3"
+        }
+      ],
+      "audio": "assets/audio/quran_learn/words/word_03.mp3"
+    },
+    {
+      "id": "tajweed_25",
+      "order": 25,
+      "title": "Mîm Sakin",
+      "short_description": "Sakin mîm; bâ önünde gizlenir, mîm önünde katılır, diğer harflerde açık okunur.",
+      "explanation": "İhfâ-i şefevî: sakin mîmden sonra bâ. İdğâm: sakin mîmden sonra mîm. İzhâr-ı şefevî: sakin mîmden sonra diğer harfler. Örnekler Fâtiha, Fil ve Kureyş’tendir.",
+      "examples": [
+        {
+          "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ",
+          "reference": "105:4",
+          "focus": "مْ ب"
+        },
+        {
+          "arabic": "اَطْعَمَهُمْ مِنْ",
+          "reference": "106:4",
+          "focus": "مْ م"
+        },
+        {
+          "arabic": "عَلَیْهِمْ وَلَا",
+          "reference": "1:7",
+          "focus": "مْ و"
+        }
+      ]
+    }
+  ],
+  "tajweed_rules": [
+    {
+      "id": "izhar",
+      "title": "İzhâr",
+      "summary": "Nûn-ı sâkin veya tenvin belirli harflerden önce açık okunur.",
+      "lesson_ids": [
+        "tajweed_11"
+      ]
+    },
+    {
+      "id": "idgham",
+      "title": "İdğâm",
+      "summary": "Nûn-ı sâkin veya tenvin sonraki harfe katılır.",
+      "lesson_ids": [
+        "tajweed_07",
+        "tajweed_15"
+      ]
+    },
+    {
+      "id": "iqlab",
+      "title": "İklâb",
+      "summary": "Nûn-ı sâkin veya tenvin bâ önünde mîme döner.",
+      "lesson_ids": [
+        "tajweed_09"
+      ]
+    },
+    {
+      "id": "ihfa",
+      "title": "İhfâ",
+      "summary": "Nûn-ı sâkin veya tenvin belirli harflerden önce gizlenir.",
+      "lesson_ids": [
+        "tajweed_08"
+      ]
+    },
+    {
+      "id": "qalqala",
+      "title": "Kalkale",
+      "summary": "ق ط ب ج د sakin olunca yankılı okunur.",
+      "lesson_ids": [
+        "tajweed_06"
+      ]
+    },
+    {
+      "id": "gunne",
+      "title": "Ğunne",
+      "summary": "Nûn ve mîmde burundan gelen sestir.",
+      "lesson_ids": [
+        "tajweed_05"
+      ]
+    },
+    {
+      "id": "madd",
+      "title": "Medd",
+      "summary": "Ses kurala göre uzatılır.",
+      "lesson_ids": [
+        "tajweed_01",
+        "tajweed_22"
+      ]
+    },
+    {
+      "id": "waqf",
+      "title": "Vakıf",
+      "summary": "Uygun yerde durulur.",
+      "lesson_ids": [
+        "tajweed_10"
+      ]
+    }
+  ],
+  "mahraj_groups": [
+    {
+      "id": "halq",
+      "title": "Boğaz",
+      "description": "Bu harfler boğazdan çıkar.",
+      "letter_ids": [
+        "letter_01",
+        "letter_26",
+        "letter_18",
+        "letter_06",
+        "letter_19",
+        "letter_07"
+      ]
+    },
+    {
+      "id": "lisaan",
+      "title": "Dil",
+      "description": "Bu harfler dilin farklı noktalarından çıkar.",
+      "letter_ids": [
+        "letter_21",
+        "letter_22",
+        "letter_05",
+        "letter_13",
+        "letter_28",
+        "letter_15",
+        "letter_23",
+        "letter_25",
+        "letter_10",
+        "letter_16",
+        "letter_08",
+        "letter_03",
+        "letter_14",
+        "letter_11",
+        "letter_12",
+        "letter_17",
+        "letter_09",
+        "letter_04"
+      ]
+    },
+    {
+      "id": "shafatan",
+      "title": "Dudak",
+      "description": "Bu harfler dudaktan çıkar.",
+      "letter_ids": [
+        "letter_20",
+        "letter_02",
+        "letter_24",
+        "letter_27"
+      ]
+    }
+  ],
+  "progress_model": {
+    "completion_key": "kind|id",
+    "unlock": "previous_category_completed",
+    "exam_id": "final",
+    "exam_pass_percent": 70,
+    "points_correct": 10,
+    "points_wrong": 0,
+    "counters": {
+      "last_score": "ql_exam_last",
+      "best_score": "ql_exam_best"
+    }
+  },
+  "exam": {
+    "id": "final",
+    "title": "Bitirme sınavı",
+    "intro": "Öğrendiğin harf, hareke ve tecvid kurallarından sorular gelir. Geçmek için yüzde 70 gerekir.",
+    "questions": [
+      {
+        "id": "ex_01",
+        "question": "ب harfinin adı nedir?",
+        "options": [
+          "Be",
+          "Te",
+          "Nun"
+        ],
+        "correct_answer": "Be",
+        "feedback_correct": "Doğru, bu Be harfidir.",
+        "feedback_wrong": "Harf tanıma dersine dönelim."
+      },
+      {
+        "id": "ex_02",
+        "question": "Fetha hangi sesi verir?",
+        "options": [
+          "Kısa a",
+          "Kısa i",
+          "Kısa u"
+        ],
+        "correct_answer": "Kısa a",
+        "feedback_correct": "Fetha kısa a sesidir.",
+        "feedback_wrong": "Üstün dersine bakalım."
+      },
+      {
+        "id": "ex_03",
+        "question": "Cezm ne gösterir?",
+        "options": [
+          "Harf sakindir",
+          "Ses uzar",
+          "İki fetha"
+        ],
+        "correct_answer": "Harf sakindir",
+        "feedback_correct": "Cezm sükûn işaretidir.",
+        "feedback_wrong": "Cezm dersine bakalım."
+      },
+      {
+        "id": "ex_04",
+        "question": "Şedde ne gösterir?",
+        "options": [
+          "Harf kuvvetli okunur",
+          "Harf düşer",
+          "Sadece fetha"
+        ],
+        "correct_answer": "Harf kuvvetli okunur",
+        "feedback_correct": "Şedde harfi kuvvetlendirir.",
+        "feedback_wrong": "Şedde dersine bakalım."
+      },
+      {
+        "id": "ex_05",
+        "question": "اَنْعَمْتَ hangi kuralın örneğidir?",
+        "options": [
+          "İzhâr",
+          "İklâb",
+          "Kalkale"
+        ],
+        "correct_answer": "İzhâr",
+        "feedback_correct": "نْ + ع izhârdır.",
+        "feedback_wrong": "Nûn sakin dersine bakalım."
+      },
+      {
+        "id": "ex_06",
+        "question": "یَكُنْ لَهُ hangi kuralın örneğidir?",
+        "options": [
+          "İdğâm-ı bila ğunne",
+          "Medd-i lîn",
+          "Hurûf-u mukattaa"
+        ],
+        "correct_answer": "İdğâm-ı bila ğunne",
+        "feedback_correct": "نْ + ل bila ğunnedır.",
+        "feedback_wrong": "İdğâm dersine bakalım."
+      },
+      {
+        "id": "ex_07",
+        "question": "İklâb hangi harften önce olur?",
+        "options": [
+          "ب",
+          "ع",
+          "ر"
+        ],
+        "correct_answer": "ب",
+        "feedback_correct": "Nûn-ı sâkin + bâ iklâbdır.",
+        "feedback_wrong": "İklâb dersine bakalım."
+      },
+      {
+        "id": "ex_08",
+        "question": "ق ط ب ج د hangi kuralın harfleridir?",
+        "options": [
+          "Kalkale",
+          "İzhâr",
+          "Tenvin"
+        ],
+        "correct_answer": "Kalkale",
+        "feedback_correct": "Bunlar kalkale harfleridir.",
+        "feedback_wrong": "Kalkale dersine bakalım."
+      },
+      {
+        "id": "ex_09",
+        "question": "الضَّٓالّٖینَ hangi medde yakındır?",
+        "options": [
+          "Medd-i lâzım",
+          "İzhâr",
+          "Cezm"
+        ],
+        "correct_answer": "Medd-i lâzım",
+        "feedback_correct": "Bu medd-i lâzım örneğidir.",
+        "feedback_wrong": "Medd dersine bakalım."
+      },
+      {
+        "id": "ex_10",
+        "question": "بِسْمِ اللّٰهِ ifadesinde lâm-ı celâle nasıldır?",
+        "options": [
+          "Kesradan sonra ince",
+          "İdğâm",
+          "Cezm"
+        ],
+        "correct_answer": "Kesradan sonra ince",
+        "feedback_correct": "Kesradan sonra lâm incedir.",
+        "feedback_wrong": "Lâm-ı celâle dersine bakalım."
+      },
+      {
+        "id": "ex_11",
+        "question": "الْحَمْدُ elif-lâm’ı nasıldır?",
+        "options": [
+          "Kameriyye, lâm okunur",
+          "Şemsiyye, lâm düşer",
+          "Kalkale"
+        ],
+        "correct_answer": "Kameriyye, lâm okunur",
+        "feedback_correct": "ح ay harfidir.",
+        "feedback_wrong": "Şemsiyye / kameriyye dersine bakalım."
+      },
+      {
+        "id": "ex_12",
+        "question": "تَرْمٖیهِمْ بِحِجَارَةٍ hangi kuraldır?",
+        "options": [
+          "İhfâ-i şefeviyye",
+          "İzhâr",
+          "Medd-i lîn"
+        ],
+        "correct_answer": "İhfâ-i şefeviyye",
+        "feedback_correct": "Sakin mîm + bâ.",
+        "feedback_wrong": "Mîm sakin dersine bakalım."
+      }
+    ]
+  }
+}

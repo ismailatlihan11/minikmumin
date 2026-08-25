@@ -50,7 +50,8 @@
     "quranLast10": "assets/data/quran_last_10_ayahs.json",
     "dhikr": "assets/data/dhikr.json",
     "basics": "assets/data/temel_dini_bilgiler.json",
-    "quranLearning": "assets/data/kur_an_ogrenme_veri_paketi.json"
+    "quranLearning": "assets/data/kur_an_ogrenme_veri_paketi.json",
+    "quranLearnCurriculum": "assets/data/kuran_ogrenme_tecvid.json"
   },
   "assetRoot": "assets/",
   "firstLaunch": {

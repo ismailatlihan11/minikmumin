@@ -14,9 +14,18 @@ import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnLettersPage extends StatelessWidget {
-  const QuranLearnLettersPage({super.key, required this.pack});
+  const QuranLearnLettersPage({
+    super.key,
+    required this.pack,
+    this.levelId = 1,
+    this.formsFocus = false,
+  });
 
   final QuranLearningPack pack;
+  final int levelId;
+  final bool formsFocus;
+
+  String get _kind => formsFocus ? 'ql_letter_form' : 'ql_letter';
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +33,18 @@ class QuranLearnLettersPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
-        title: Text(pack.titleForLevel(1, fallback: 'Harfler')),
+        title: Text(
+          pack.titleForLevel(
+            levelId,
+            fallback: formsFocus ? 'Harf şekilleri' : 'Harfler',
+          ),
+        ),
       ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
-          final done = snap?.completedCount(1) ?? 0;
+          final done = snap?.completedCount(levelId) ?? 0;
           final total = pack.letters.length;
           return ListView(
             padding: AppSpacing.page,
@@ -46,8 +60,10 @@ class QuranLearnLettersPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      pack.levelById(1)?.description ??
-                          'Harfler ve isimleri, sesleri, şekilleri.',
+                      pack.levelById(levelId)?.description ??
+                          (formsFocus
+                              ? 'Harfin kelimedeki dört şeklini görelim.'
+                              : 'Harfler ve isimleri, sesleri, şekilleri.'),
                       style: const TextStyle(
                         fontFamily: 'NotoSans',
                         fontWeight: FontWeight.w700,
@@ -55,10 +71,17 @@ class QuranLearnLettersPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text('· Harfler ve İsimleri'),
-                    const Text('· Harfler ve Sesleri'),
-                    const Text('· Harfler ve Şekilleri'),
-                    const Text('· Pekiştirme'),
+                    if (formsFocus) ...[
+                      const Text('· Tek başına'),
+                      const Text('· Başta'),
+                      const Text('· Ortada'),
+                      const Text('· Sonda'),
+                    ] else ...[
+                      const Text('· Harfler ve İsimleri'),
+                      const Text('· Harfler ve Sesleri'),
+                      const Text('· Harfler ve Şekilleri'),
+                      const Text('· Pekiştirme'),
+                    ],
                   ],
                 ),
               ),
@@ -75,7 +98,7 @@ class QuranLearnLettersPage extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   final letter = pack.letters[index];
-                  final learned = snap?.isDone('ql_letter', letter.id) ?? false;
+                  final learned = snap?.isDone(_kind, letter.id) ?? false;
                   return MinikCard(
                     color: learned ? MinikColors.mint : Colors.white,
                     padding: const EdgeInsets.all(6),
@@ -85,6 +108,8 @@ class QuranLearnLettersPage extends StatelessWidget {
                         builder: (_) => QuranLearnLetterDetailPage(
                           pack: pack,
                           letter: letter,
+                          levelId: levelId,
+                          formsFocus: formsFocus,
                         ),
                       ),
                     ),
@@ -121,10 +146,16 @@ class QuranLearnLetterDetailPage extends StatefulWidget {
     super.key,
     required this.pack,
     required this.letter,
+    this.levelId,
+    this.formsFocus = false,
   });
 
   final QuranLearningPack pack;
   final QuranArabicLetter letter;
+  final int? levelId;
+  final bool formsFocus;
+
+  String get progressKind => formsFocus ? 'ql_letter_form' : 'ql_letter';
 
   @override
   State<QuranLearnLetterDetailPage> createState() =>
@@ -155,14 +186,16 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
     await QuranLearnProgress.complete(
       store,
       pack: widget.pack,
-      kind: 'ql_letter',
+      kind: widget.progressKind,
       id: letter.id,
     );
     if (!mounted) return;
     await showQlCelebration(
       context,
       title: 'Harika!',
-      subtitle: '${letter.name} harfini öğrendin.',
+      subtitle: widget.formsFocus
+          ? '${letter.name} harfinin şekillerini öğrendin.'
+          : '${letter.name} harfini öğrendin.',
       onContinue: () {
         final index = widget.pack.letters.indexWhere((item) => item.id == letter.id);
         if (index >= 0 && index + 1 < widget.pack.letters.length) {
@@ -172,6 +205,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
               builder: (_) => QuranLearnLetterDetailPage(
                 pack: widget.pack,
                 letter: widget.pack.letters[index + 1],
+                levelId: widget.levelId,
+                formsFocus: widget.formsFocus,
               ),
             ),
           );
@@ -184,25 +219,32 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
 
   @override
   Widget build(BuildContext context) {
-    final forms = <(String, String)>[
-      ('Tek başına', letter.forms.isolated),
-      if (letter.joinsBothSides) ...[
-        ('Başta', letter.forms.initial),
-        ('Ortada', letter.forms.medial),
-      ],
-      if (letter.forms.finalForm.isNotEmpty &&
-          letter.forms.finalForm != letter.forms.isolated)
-        ('Sonda', letter.forms.finalForm)
-      else if (letter.joinsBothSides)
-        ('Sonda', letter.forms.finalForm),
-    ];
+    final forms = widget.formsFocus
+        ? <(String, String)>[
+            ('Tek başına', letter.forms.isolated),
+            ('Başta', letter.forms.initial),
+            ('Ortada', letter.forms.medial),
+            ('Sonda', letter.forms.finalForm),
+          ]
+        : <(String, String)>[
+            ('Tek başına', letter.forms.isolated),
+            if (letter.joinsBothSides) ...[
+              ('Başta', letter.forms.initial),
+              ('Ortada', letter.forms.medial),
+            ],
+            if (letter.forms.finalForm.isNotEmpty &&
+                letter.forms.finalForm != letter.forms.isolated)
+              ('Sonda', letter.forms.finalForm)
+            else if (letter.joinsBothSides)
+              ('Sonda', letter.forms.finalForm),
+          ];
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
         title: Text(letter.name),
         actions: [
           FavoriteButton(
-            kind: 'ql_letter',
+            kind: widget.progressKind,
             id: letter.id,
             title: '${letter.name} (${letter.letter})',
           ),
@@ -211,66 +253,85 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
       body: ListView(
         padding: AppSpacing.page,
         children: [
-          const SectionLabel('Harfler ve İsimleri'),
-          MinikCard(
-            color: MinikColors.mint,
-            child: Column(
-              children: [
-                TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0.85, end: 1),
-                  duration: const Duration(milliseconds: 380),
-                  curve: Curves.easeOutBack,
-                  builder: (context, value, child) =>
-                      Transform.scale(scale: value, child: child),
-                  child: QlBigArabic(
-                    letter.letter,
-                    fontSize: 86,
-                    onTap: QuranLearnAudio.resolve(letter.audio) == null
-                        ? null
-                        : _play,
+          if (widget.formsFocus) ...[
+            const SectionLabel('Harfler ve Şekilleri'),
+            MinikCard(
+              color: MinikColors.mint,
+              child: Column(
+                children: [
+                  QlBigArabic(letter.letter, fontSize: 64),
+                  Text(
+                    letter.name,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                ),
-                Text(
-                  letter.name,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 4),
-                Text('Bu harf ${letter.name}.'),
-                const SizedBox(height: AppSpacing.md),
-                QlPlayListen(audio: _audio, path: letter.audio),
-              ],
+                  const SizedBox(height: 4),
+                  const Text('Bu harfin kelimedeki dört şekli.'),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.md),
-          const SectionLabel('Harfler ve Sesleri'),
-          MinikCard(
-            child: Column(
-              children: [
-                Text('Yaklaşık ses: ${letter.approximateTurkishSound}'),
-                if (letter.isHeavySound) ...[
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: MinikColors.peach,
-                      borderRadius: BorderRadius.circular(99),
+            const SizedBox(height: AppSpacing.md),
+          ] else ...[
+            const SectionLabel('Harfler ve İsimleri'),
+            MinikCard(
+              color: MinikColors.mint,
+              child: Column(
+                children: [
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.85, end: 1),
+                    duration: const Duration(milliseconds: 380),
+                    curve: Curves.easeOutBack,
+                    builder: (context, value, child) =>
+                        Transform.scale(scale: value, child: child),
+                    child: QlBigArabic(
+                      letter.letter,
+                      fontSize: 86,
+                      onTap: QuranLearnAudio.resolve(letter.audio) == null
+                          ? null
+                          : _play,
                     ),
-                    child: const Text(
-                      'Kalın harf',
-                      style: TextStyle(
-                        fontFamily: 'NotoSans',
-                        fontWeight: FontWeight.w800,
-                        color: MinikColors.darkGreen,
+                  ),
+                  Text(
+                    letter.name,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(height: 4),
+                  Text('Bu harf ${letter.name}.'),
+                  const SizedBox(height: AppSpacing.md),
+                  QlPlayListen(audio: _audio, path: letter.audio),
+                ],
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            const SectionLabel('Harfler ve Sesleri'),
+            MinikCard(
+              child: Column(
+                children: [
+                  Text('Yaklaşık ses: ${letter.approximateTurkishSound}'),
+                  if (letter.isHeavySound) ...[
+                    const SizedBox(height: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: MinikColors.peach,
+                        borderRadius: BorderRadius.circular(99),
+                      ),
+                      child: const Text(
+                        'Kalın harf',
+                        style: TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
                       ),
                     ),
-                  ),
+                  ],
+                  const SizedBox(height: AppSpacing.md),
+                  QlPlayListen(audio: _audio, path: letter.audio),
                 ],
-                const SizedBox(height: AppSpacing.md),
-                QlPlayListen(audio: _audio, path: letter.audio),
-              ],
+              ),
             ),
-          ),
-          const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: AppSpacing.md),
+          ],
           const SectionLabel('Harfler ve Şekilleri'),
           Row(
             children: [

@@ -346,6 +346,93 @@ class QuranLearningBadge {
   }
 }
 
+class QuranLearnItemSpec {
+  const QuranLearnItemSpec({required this.kind, required this.ids});
+
+  final String kind;
+  final List<String> ids;
+
+  bool get allIds => ids.isEmpty || ids.contains('*');
+
+  factory QuranLearnItemSpec.fromJson(Map<String, dynamic> json) {
+    return QuranLearnItemSpec(
+      kind: JsonMap.str(json['kind']),
+      ids: JsonMap.strings(json['ids']),
+    );
+  }
+}
+
+class QuranMahrajGroup {
+  const QuranMahrajGroup({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.letterIds,
+  });
+
+  final String id;
+  final String title;
+  final String description;
+  final List<String> letterIds;
+
+  factory QuranMahrajGroup.fromJson(Map<String, dynamic> json) {
+    return QuranMahrajGroup(
+      id: JsonMap.str(json['id']),
+      title: JsonMap.str(json['title']),
+      description: JsonMap.str(json['description']),
+      letterIds: JsonMap.strings(json['letter_ids']),
+    );
+  }
+}
+
+class QuranLearnExam {
+  const QuranLearnExam({
+    required this.id,
+    required this.title,
+    required this.intro,
+    required this.passPercent,
+    required this.pointsCorrect,
+    required this.questions,
+  });
+
+  final String id;
+  final String title;
+  final String intro;
+  final int passPercent;
+  final int pointsCorrect;
+  final List<QuranLearningGame> questions;
+
+  int get maxScore => questions.length * pointsCorrect;
+
+  factory QuranLearnExam.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic>? progress,
+  }) {
+    final pass = progress == null
+        ? JsonMap.integer(json['pass_percent'], 70)
+        : JsonMap.integer(progress['exam_pass_percent'], 70);
+    final points = progress == null
+        ? JsonMap.integer(json['points_correct'], 10)
+        : JsonMap.integer(progress['points_correct'], 10);
+    return QuranLearnExam(
+      id: JsonMap.str(json['id'], 'final'),
+      title: JsonMap.str(json['title'], 'Bitirme sınavı'),
+      intro: JsonMap.str(json['intro']),
+      passPercent: pass,
+      pointsCorrect: points <= 0 ? 10 : points,
+      questions: JsonMap.extractList(json, itemsKey: 'questions')
+          .map(
+            (item) => QuranLearningGame.fromJson({
+              ...item,
+              'type': item['type'] ?? 'find_tajweed',
+              'level': item['level'] ?? 23,
+            }),
+          )
+          .toList(growable: false),
+    );
+  }
+}
+
 class QuranLearningLevel {
   const QuranLearningLevel({
     required this.id,
@@ -354,6 +441,9 @@ class QuranLearningLevel {
     required this.lessonCount,
     required this.unlockRule,
     this.prerequisiteLevel,
+    this.screen = '',
+    this.progressSpecs = const [],
+    this.gameIds = const [],
   });
 
   final int id;
@@ -362,6 +452,9 @@ class QuranLearningLevel {
   final int lessonCount;
   final String unlockRule;
   final int? prerequisiteLevel;
+  final String screen;
+  final List<QuranLearnItemSpec> progressSpecs;
+  final List<String> gameIds;
 
   factory QuranLearningLevel.fromJson(Map<String, dynamic> json) {
     final prereq = json['prerequisite_level'];
@@ -372,7 +465,21 @@ class QuranLearningLevel {
       lessonCount: JsonMap.integer(json['lesson_count']),
       unlockRule: JsonMap.str(json['unlock_rule'], 'level_completed'),
       prerequisiteLevel: prereq == null ? null : JsonMap.integer(prereq),
+      screen: JsonMap.str(json['screen']),
+      progressSpecs: JsonMap.extractList(json, itemsKey: 'progress_items')
+          .map(QuranLearnItemSpec.fromJson)
+          .toList(growable: false),
+      gameIds: JsonMap.strings(json['game_ids']),
     );
+  }
+
+  List<String>? idsForKind(String kind) {
+    for (final spec in progressSpecs) {
+      if (spec.kind != kind) continue;
+      if (spec.allIds) return null;
+      return spec.ids;
+    }
+    return null;
   }
 }
 
@@ -449,6 +556,8 @@ class QuranLearningPack {
     required this.levels,
     required this.surahs,
     required this.badges,
+    this.mahrajGroups = const [],
+    this.exam,
   });
 
   final List<QuranArabicLetter> letters;
@@ -460,6 +569,8 @@ class QuranLearningPack {
   final List<QuranLearningLevel> levels;
   final List<QuranLearningSurah> surahs;
   final List<QuranLearningBadge> badges;
+  final List<QuranMahrajGroup> mahrajGroups;
+  final QuranLearnExam? exam;
 
   QuranArabicLetter? letterById(String id) {
     for (final letter in letters) {
@@ -520,15 +631,114 @@ class QuranLearningPack {
     return null;
   }
 
+  QuranCombination? combinationById(String id) {
+    for (final item in combinations) {
+      if (item.id == id) return item;
+    }
+    return null;
+  }
+
+  QuranMahrajGroup? mahrajById(String id) {
+    for (final group in mahrajGroups) {
+      if (group.id == id) return group;
+    }
+    return null;
+  }
+
+  List<QuranHaraka> harakatForLevel(int levelId) =>
+      _select(levelId, 'ql_haraka', harakat, (item) => item.id);
+
+  List<QuranTajweedLesson> tajweedForLevel(int levelId) =>
+      _select(levelId, 'ql_tajweed', tajweed, (item) => item.id);
+
+  List<QuranLearningSurah> surahsForLevel(
+    int levelId, {
+    String kind = 'ql_surah',
+  }) =>
+      _select(levelId, kind, surahs, (item) => item.id);
+
+  List<QuranArabicLetter> get heavyLetters =>
+      letters.where((letter) => letter.isHeavySound).toList(growable: false);
+
+  List<QuranArabicLetter> get lightLetters =>
+      letters.where((letter) => !letter.isHeavySound).toList(growable: false);
+
+  List<T> _select<T>(
+    int levelId,
+    String kind,
+    List<T> all,
+    String Function(T) idOf,
+  ) {
+    final ids = levelById(levelId)?.idsForKind(kind);
+    if (ids == null) return all;
+    final byId = {for (final item in all) idOf(item): item};
+    return [
+      for (final id in ids)
+        if (byId[id] != null) byId[id]!,
+    ];
+  }
+
   String titleForLevel(int id, {required String fallback}) {
     return levelById(id)?.title ?? fallback;
   }
 
   List<QuranLearningGame> gamesForLevel(int level) {
+    final category = levelById(level);
+    if (category != null && category.gameIds.isNotEmpty) {
+      return [
+        for (final id in category.gameIds)
+          if (gameById(id) != null) gameById(id)!,
+      ];
+    }
     return games.where((game) => game.level == level).toList(growable: false);
   }
 
   List<QuranLearnProgressItem> itemsForLevel(int levelId) {
+    final level = levelById(levelId);
+    if (level != null && level.progressSpecs.isNotEmpty) {
+      return [
+        for (final spec in level.progressSpecs) ..._expandSpec(spec),
+      ];
+    }
+    return _legacyItems(levelId);
+  }
+
+  List<QuranLearnProgressItem> _expandSpec(QuranLearnItemSpec spec) {
+    final ids = spec.allIds ? _idsForKind(spec.kind) : spec.ids;
+    return [
+      for (final id in ids) QuranLearnProgressItem(kind: spec.kind, id: id),
+    ];
+  }
+
+  List<String> _idsForKind(String kind) {
+    switch (kind) {
+      case 'ql_letter':
+      case 'ql_letter_form':
+        return [for (final letter in letters) letter.id];
+      case 'ql_haraka':
+        return [for (final item in harakat) item.id];
+      case 'ql_comb':
+        return [for (final item in combinations) item.id];
+      case 'ql_word':
+        return [for (final word in words) word.id];
+      case 'ql_tajweed':
+        return [for (final lesson in tajweed) lesson.id];
+      case 'ql_surah':
+      case 'ql_practice':
+      case 'ql_tajweed_read':
+        return [for (final surah in surahs) surah.id];
+      case 'ql_mahraj':
+        return [for (final group in mahrajGroups) group.id];
+      case 'ql_heavy':
+        return const ['heavy', 'light'];
+      case 'ql_exam':
+        return exam == null ? const <String>[] : [exam!.id];
+      default:
+        return const [];
+    }
+  }
+
+  List<QuranLearnProgressItem> _legacyItems(int levelId) {
     switch (levelId) {
       case 1:
         return [
@@ -577,7 +787,10 @@ class QuranLearningPack {
 
   int realLessonCount(int levelId) => itemsForLevel(levelId).length;
 
-  factory QuranLearningPack.fromJson(Map<String, dynamic> json) {
+  factory QuranLearningPack.fromJson(
+    Map<String, dynamic> json, {
+    Map<String, dynamic>? curriculum,
+  }) {
     final letters = JsonMap.extractList(
       JsonMap.object(json['quran_arabic_letters']),
       itemsKey: 'letters',
@@ -607,15 +820,34 @@ class QuranLearningPack {
     ).map(QuranTajweedLesson.fromJson).toList();
     tajweed.sort((a, b) => a.order.compareTo(b.order));
 
+    final extraLessons = JsonMap.extractList(
+      curriculum ?? const <String, dynamic>{},
+      itemsKey: 'lessons',
+    ).map(QuranTajweedLesson.fromJson);
+    final seenTajweed = {for (final lesson in tajweed) lesson.id};
+    for (final lesson in extraLessons) {
+      if (seenTajweed.add(lesson.id)) tajweed.add(lesson);
+    }
+    tajweed.sort((a, b) => a.order.compareTo(b.order));
+
     final games = JsonMap.extractList(
       JsonMap.object(json['quran_learning_games']),
       itemsKey: 'games',
     ).map(QuranLearningGame.fromJson).toList(growable: false);
 
-    final levels = JsonMap.extractList(
+    var levels = JsonMap.extractList(
       JsonMap.object(json['quran_learning_levels']),
       itemsKey: 'levels',
     ).map(QuranLearningLevel.fromJson).toList();
+    if (curriculum != null) {
+      final categories = JsonMap.extractList(
+        curriculum,
+        itemsKey: 'categories',
+      );
+      if (categories.isNotEmpty) {
+        levels = categories.map(QuranLearningLevel.fromJson).toList();
+      }
+    }
     levels.sort((a, b) => a.id.compareTo(b.id));
 
     final surahs = JsonMap.extractList(
@@ -629,6 +861,22 @@ class QuranLearningPack {
       itemsKey: 'badges',
     ).map(QuranLearningBadge.fromJson).toList(growable: false);
 
+    final mahrajGroups = JsonMap.extractList(
+      curriculum ?? const <String, dynamic>{},
+      itemsKey: 'mahraj_groups',
+    ).map(QuranMahrajGroup.fromJson).toList(growable: false);
+
+    QuranLearnExam? exam;
+    if (curriculum != null) {
+      final examJson = JsonMap.object(curriculum['exam']);
+      if (examJson.isNotEmpty) {
+        exam = QuranLearnExam.fromJson(
+          examJson,
+          progress: JsonMap.object(curriculum['progress_model']),
+        );
+      }
+    }
+
     return QuranLearningPack(
       letters: List<QuranArabicLetter>.unmodifiable(letters),
       harakat: List<QuranHaraka>.unmodifiable(harakat),
@@ -639,6 +887,8 @@ class QuranLearningPack {
       levels: List<QuranLearningLevel>.unmodifiable(levels),
       surahs: List<QuranLearningSurah>.unmodifiable(surahs),
       badges: badges,
+      mahrajGroups: mahrajGroups,
+      exam: exam,
     );
   }
 }

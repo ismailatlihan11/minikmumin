@@ -434,12 +434,16 @@
       "category": "surah",
       "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحٖیمِ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمٖینَۙ اَلرَّحْمٰنِ الرَّحٖیمِۙ مَالِكِ یَوْمِ الدّٖینِؕ اِیَّاكَ نَعْبُدُ وَاِیَّاكَ نَسْتَعٖینُؕ اِهْدِنَا الصِّرَاطَ الْمُسْتَقٖیمَۙ صِرَاطَ الَّذٖینَ اَنْعَمْتَ عَلَیْهِمْۙ غَیْرِ الْمَغْضُوبِ عَلَیْهِمْ وَلَا الضَّٓالّٖینَ",
       "path": "assets/audio/quran_learn/surahs/surah_001.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "voice": "ar.alafasy",
       "language": "ar-XA",
       "rate": 0.82,
       "format": "mp3",
-      "sha256": "afeae3f78cfe7cebe938837f3f8563991c1af0a66c6723b7f4b65ff6e25d4168",
-      "generated_at": "2026-08-25T10:46:43.589652+00:00"
+      "sha256": "7c2e67cbde506d25f7e181c3ce876c2a9943a5529ee24a753b2856075a4567fa",
+      "generated_at": "2026-08-25T19:03:57.462770+00:00",
+      "reciter": "Mishary Rashid Alafasy",
+      "source": "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/1.mp3",
+      "kind": "quran_recitation",
+      "not_educational_tts": true
     },
     {
       "id": "surah_112",

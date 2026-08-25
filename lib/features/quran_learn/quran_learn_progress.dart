@@ -6,6 +6,8 @@ const quranLearnUnlockFlag = 'ql_unlock_all';
 const quranLearnAudioPlays = 'ql_audio_plays';
 const quranLearnCombinations = 'ql_combinations_correct';
 const quranLearnCorrectAnswers = 'ql_correct_answers';
+const quranLearnExamLast = 'ql_exam_last';
+const quranLearnExamBest = 'ql_exam_best';
 
 class QuranLearnSnapshot {
   const QuranLearnSnapshot({
@@ -139,6 +141,11 @@ String _dailyTitle(
       return letter == null
           ? 'Bugün 3 harfi tekrar et.'
           : 'Bugün ${letter.name} harfini öğren.';
+    case 'ql_letter_form':
+      final letter = pack.letterById(item.id);
+      return letter == null
+          ? 'Bugün harf şekillerine bak.'
+          : 'Bugün ${letter.name} harfinin şekillerini öğren.';
     case 'ql_haraka':
       final haraka = pack.harakaById(item.id);
       return haraka == null
@@ -162,6 +169,17 @@ String _dailyTitle(
     case 'ql_practice':
     case 'ql_tajweed_read':
       return 'Bugün bir ayeti takip ederek oku.';
+    case 'ql_mahraj':
+      final group = pack.mahrajById(item.id);
+      return group == null
+          ? 'Bugün harflerin çıkış yerlerine bak.'
+          : 'Bugün ${group.title} mahrecine bak.';
+    case 'ql_heavy':
+      return item.id == 'heavy'
+          ? 'Bugün kalın harfleri ayırt et.'
+          : 'Bugün ince harfleri ayırt et.';
+    case 'ql_exam':
+      return 'Bugün bitirme sınavına bak.';
     default:
       return 'Bugün biraz pratik yapalım.';
   }

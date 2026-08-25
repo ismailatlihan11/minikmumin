@@ -397,6 +397,12 @@ class LocalProgressStore extends ChangeNotifier {
     return next;
   }
 
+  Future<void> setCounter(String name, int value) async {
+    final prefs = await _ensure();
+    await prefs.setInt(_key(name), value < 0 ? 0 : value);
+    notifyListeners();
+  }
+
   Future<bool> getFlag(String name, {bool fallback = false}) async {
     final prefs = await _ensure();
     return prefs.getBool(_key(name)) ?? fallback;

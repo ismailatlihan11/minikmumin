@@ -262,7 +262,29 @@ Future<void> showQlCelebration(
   );
 }
 
-IconData qlLevelIcon(int id) {
+IconData qlLevelIcon(int id, [String screen = '']) {
+  switch (screen) {
+    case 'letters':
+      return Icons.abc_rounded;
+    case 'letter_forms':
+      return Icons.grid_view_rounded;
+    case 'harakat':
+      return Icons.edit_rounded;
+    case 'mahraj':
+      return Icons.record_voice_over_rounded;
+    case 'heavy_light':
+      return Icons.tonality_rounded;
+    case 'tajweed':
+      return Icons.music_note_rounded;
+    case 'syllables':
+      return Icons.extension_rounded;
+    case 'surahs':
+      return Icons.menu_book_rounded;
+    case 'tajweed_read':
+      return Icons.auto_stories_rounded;
+    case 'exam':
+      return Icons.emoji_events_rounded;
+  }
   switch (id) {
     case 1:
       return Icons.abc_rounded;

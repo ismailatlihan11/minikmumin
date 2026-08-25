@@ -33,6 +33,10 @@ PHONETIC_RATE = 0.86
 PRAYER_RATE = 0.85
 DUA_RATE = 0.82
 SURAH_RATE = 0.82
+# Fâtiha follows Alafasy murattal pace (reference only; playback is child TTS).
+FATIHA_RATE = 0.5
+FATIHA_GAP_MS = 1100
+FATIHA_TARGET_SEC = 52.0
 ASMA_RATE = 0.86
 CHILD_PITCH = 8.0
 # Chirp ignores API pitch; ffmpeg raises this many semitones for a cartoon-boy timbre.
@@ -220,6 +224,8 @@ class Clip:
     phonetic: bool = False
     repeat: int = 2
     speaking_rate: float | None = None
+    gap_ms: int | None = None
+    target_seconds: float | None = None
 
 
 # Spoken dua starts must already exist inside duas.json arabic.
@@ -564,7 +570,12 @@ def load_kuran_ayet() -> list[dict]:
     return ayet
 
 
-def surah_arabic_from_kuran(surah_number: int, ayet: list[dict]) -> str:
+def surah_arabic_from_kuran(
+    surah_number: int,
+    ayet: list[dict],
+    *,
+    separate_ayahs: bool = False,
+) -> str:
     verses = [
         item
         for item in ayet
@@ -577,14 +588,18 @@ def surah_arabic_from_kuran(surah_number: int, ayet: list[dict]) -> str:
         arabic = str(metin.get("arapca") or "").strip()
         if arabic:
             parts.append(arabic)
-    return " ".join(parts)
+    return "\n".join(parts) if separate_ayahs else " ".join(parts)
 
 
 def build_surah_clips() -> list[Clip]:
     ayet = load_kuran_ayet()
     clips: list[Clip] = []
     for number in LEARN_SURAH_NUMBERS:
-        arabic = surah_arabic_from_kuran(number, ayet)
+        arabic = surah_arabic_from_kuran(
+            number,
+            ayet,
+            separate_ayahs=number == 1,
+        )
         if not arabic:
             log_line("FAILED", f"sure {number} için kuran.json Arapçası boş")
             continue
@@ -595,7 +610,9 @@ def build_surah_clips() -> list[Clip]:
                 category="surah",
                 arabic=arabic,
                 rel_path=f"assets/audio/quran_learn/surahs/surah_{padded}.mp3",
-                speaking_rate=SURAH_RATE,
+                speaking_rate=FATIHA_RATE if number == 1 else SURAH_RATE,
+                gap_ms=FATIHA_GAP_MS if number == 1 else None,
+                target_seconds=FATIHA_TARGET_SEC if number == 1 else None,
             )
         )
     return clips
@@ -653,11 +670,14 @@ def build_replace_clips() -> list[Clip]:
             item_id = str(item.get("id") or "").strip()
             if not arabic or not dest:
                 continue
+            spoken = apply_waqf_to_phrase(normalize_mushaf_for_tts(arabic))
+            if spoken != arabic:
+                log_line("WAQF", f"asma_{item_id}: stop without final haraka")
             clips.append(
                 Clip(
                     clip_id=f"asma_{item_id}",
                     category="asma",
-                    arabic=arabic,
+                    arabic=spoken,
                     rel_path=dest,
                     speaking_rate=ASMA_RATE,
                 )
@@ -977,14 +997,22 @@ def tts_input_text(arabic: str) -> str:
 
 
 def spoken_chunks(arabic: str) -> list[str]:
-    """Prefer one pass. Split only long text; never turn waqf into English periods."""
+    """Prefer one pass. Newline-separated ayahs keep murattal pauses."""
     collapsed = tts_input_text(arabic)
+    keep_phrases = "\n" in arabic.replace("\r", "\n")
+    if keep_phrases:
+        chunks: list[str] = []
+        for piece in arabic.replace("\r", "\n").split("\n"):
+            cleaned = tts_input_text(piece)
+            if cleaned:
+                chunks.append(cleaned)
+        return chunks or [collapsed]
     if len(collapsed) <= 420:
         return [collapsed] if collapsed else [tts_input_text(arabic)]
     raw = arabic.replace("\r", "\n")
     for mark in PAUSE_MARKS:
         raw = raw.replace(mark, "\n")
-    chunks: list[str] = []
+    chunks = []
     for piece in raw.split("\n"):
         cleaned = tts_input_text(piece)
         if cleaned:
@@ -1166,6 +1194,17 @@ def encode_mp3(pcm: bytes, dest: Path, channels: int, rate: int) -> None:
     dest.write_bytes(mp3_data)
 
 
+def match_mp3_duration(path: Path, target_sec: float, *, max_slow: float = 2.0) -> None:
+    pcm, channels, rate = decode_mp3_pcm(path)
+    current = len(pcm) / (2 * channels * rate)
+    if current <= 0 or target_sec <= current * 1.08:
+        return
+    slow = min(max_slow, target_sec / current)
+    pcm = pitch_pcm(pcm, channels, 1 / slow)
+    encode_mp3(pcm, path, channels, rate)
+    log_line("TEMPO", f"{path.name} {current:.1f}s -> {current * slow:.1f}s (Alafasy pace)")
+
+
 def join_pcm(parts: list[bytes], channels: int, rate: int, gap_ms: int) -> bytes:
     gap = bytes(int(rate * gap_ms / 1000) * 2 * channels)
     return gap.join(parts)
@@ -1191,9 +1230,12 @@ def render_spoken_mp3(
     *,
     arabic: str,
     speaking_rate: float,
+    gap_ms: int | None = None,
+    target_seconds: float | None = None,
 ) -> None:
     chunks = spoken_chunks(arabic)
-    log_line("START", f"{dest} chunks={len(chunks)}")
+    pause = CHUNK_GAP_MS if gap_ms is None else gap_ms
+    log_line("START", f"{dest} chunks={len(chunks)} gap_ms={pause}")
     if len(chunks) == 1:
         synthesize(
             client,
@@ -1204,34 +1246,36 @@ def render_spoken_mp3(
             allow_pitch=True,
             process_text=False,
         )
-        cartoonize_mp3(dest)
-        return
-    decoded: list[tuple[bytes, int, int]] = []
-    temps: list[Path] = []
-    try:
-        for index, chunk in enumerate(chunks):
-            tmp = dest.with_suffix(f".chunk{index}.mp3")
-            temps.append(tmp)
-            synthesize(
-                client,
-                voice_name,
-                tmp,
-                text=chunk,
-                speaking_rate=speaking_rate,
-                allow_pitch=True,
-                process_text=False,
-            )
-            pcm, channels, rate = decode_mp3_pcm(tmp)
-            decoded.append((trim_pcm(pcm, channels, rate, pad_ms=50), channels, rate))
-        channels = decoded[0][1]
-        rate = decoded[0][2]
-        pcm = join_pcm([item[0] for item in decoded], channels, rate, CHUNK_GAP_MS)
-        pcm = trim_pcm(pcm, channels, rate)
-        pcm = pitch_pcm(pcm, channels, 2 ** (CARTOON_SEMITONES / 12))
-        encode_mp3(pcm, dest, channels, rate)
-    finally:
-        for tmp in temps:
-            tmp.unlink(missing_ok=True)
+    else:
+        decoded: list[tuple[bytes, int, int]] = []
+        temps: list[Path] = []
+        try:
+            for index, chunk in enumerate(chunks):
+                tmp = dest.with_suffix(f".chunk{index}.mp3")
+                temps.append(tmp)
+                synthesize(
+                    client,
+                    voice_name,
+                    tmp,
+                    text=chunk,
+                    speaking_rate=speaking_rate,
+                    allow_pitch=True,
+                    process_text=False,
+                )
+                pcm, channels, rate = decode_mp3_pcm(tmp)
+                decoded.append((trim_pcm(pcm, channels, rate, pad_ms=50), channels, rate))
+            channels = decoded[0][1]
+            rate = decoded[0][2]
+            pcm = join_pcm([item[0] for item in decoded], channels, rate, pause)
+            pcm = trim_pcm(pcm, channels, rate)
+            encode_mp3(pcm, dest, channels, rate)
+        finally:
+            for tmp in temps:
+                tmp.unlink(missing_ok=True)
+    if target_seconds:
+        pre_cartoon = target_seconds * (2 ** (CARTOON_SEMITONES / 12))
+        match_mp3_duration(dest, pre_cartoon)
+    cartoonize_mp3(dest)
 
 
 def write_manifest(entries: list[dict], voice: str) -> None:
@@ -1264,6 +1308,7 @@ def write_sources_doc(voice: str, generated: int, skipped: int, failed: int) -> 
                 "",
                 "This audio is **educational pronunciation**, not Quran recitation, adhan, "
                 "or qari imitation. Short surahs here use the same cartoon-boy TTS. "
+                "Fâtiha pacing follows Alafasy murattal as a reference, but the clip is child TTS. "
                 "Kur'an-ı Kerim tilavet stays on Husary (`assets/audio/quran/`).",
                 "",
                 f"- Voice: `{voice}`",
@@ -1318,9 +1363,10 @@ def run(
     clips = clips if clips is not None else build_catalog(test=test)
     generated = skipped = failed = 0
     entries: list[dict] = []
-    if not write_arabic_manifest and MANIFEST_PATH.exists():
+    manifest_path = ARABIC_TTS_MANIFEST if write_arabic_manifest else MANIFEST_PATH
+    if manifest_path.exists():
         try:
-            previous = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+            previous = json.loads(manifest_path.read_text(encoding="utf-8"))
             entries = list(previous.get("items") or [])
         except json.JSONDecodeError:
             entries = []
@@ -1370,6 +1416,8 @@ def run(
                     dest,
                     arabic=clip.arabic,
                     speaking_rate=rate,
+                    gap_ms=clip.gap_ms,
+                    target_seconds=clip.target_seconds,
                 )
             if not looks_like_mp3(dest):
                 dest.unlink(missing_ok=True)
@@ -1457,6 +1505,11 @@ def main() -> int:
         action="store_true",
         help="Overwrite namaz/dua/asma clips with Fenrir cartoon-boy Arabic TTS.",
     )
+    parser.add_argument(
+        "--asma",
+        action="store_true",
+        help="Overwrite Esmaül Hüsna clips; stop on the last letter (no final haraka).",
+    )
     parser.add_argument("--force", action="store_true", help="Regenerate files that already exist.")
     parser.add_argument(
         "--phonetics",
@@ -1472,6 +1525,11 @@ def main() -> int:
         "--surahs",
         action="store_true",
         help="Overwrite short-surah clips with Fenrir cartoon-boy educational TTS.",
+    )
+    parser.add_argument(
+        "--fatiha",
+        action="store_true",
+        help="Regenerate Fâtiha child TTS using Alafasy murattal pace as reference.",
     )
     parser.add_argument("--check-auth", action="store_true", help="Only verify ADC and list voices.")
     args = parser.parse_args()
@@ -1490,6 +1548,15 @@ def main() -> int:
                 write_docs=False,
                 write_arabic_manifest=True,
             )
+        if args.asma:
+            clips = [clip for clip in build_replace_clips() if clip.category == "asma"]
+            return run(
+                test=False,
+                force=True,
+                clips=clips,
+                write_docs=False,
+                write_arabic_manifest=True,
+            )
         if args.letters:
             clips = [clip for clip in build_catalog(test=False) if clip.category == "alphabet"]
             return run(test=False, force=True, clips=clips, write_docs=False)
@@ -1500,12 +1567,21 @@ def main() -> int:
                 clips=build_surah_clips(),
                 write_docs=False,
             )
+        if args.fatiha:
+            clips = [clip for clip in build_surah_clips() if clip.clip_id == "surah_001"]
+            return run(
+                test=False,
+                force=True,
+                clips=clips,
+                write_docs=False,
+                write_arabic_manifest=True,
+            )
         if args.phonetics:
             clips = [clip for clip in build_catalog(test=False) if clip.phonetic]
             return run(test=False, force=True, clips=clips)
         if not args.test and not args.all:
             print(
-                "Use --test, --all, --letters, --phonetics, --surahs or --replace-old",
+                "Use --test, --all, --letters, --phonetics, --surahs, --fatiha, --asma or --replace-old",
                 file=sys.stderr,
             )
             return 64

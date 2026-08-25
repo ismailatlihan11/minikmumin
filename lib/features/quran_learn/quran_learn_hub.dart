@@ -67,7 +67,7 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
                                   ),
                                   const SizedBox(height: 4),
                                   const Text(
-                                    'Diyanet Elifba sırasıyla adım adım öğrenelim.',
+                                    'Harflerden tecvide, adım adım öğrenelim.',
                                   ),
                                 ],
                               ),
@@ -191,7 +191,10 @@ class _LevelCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: MinikColors.pastelAt(level.id),
-                  child: Icon(qlLevelIcon(level.id), color: MinikColors.darkGreen),
+                  child: Icon(
+                    qlLevelIcon(level.id, level.screen),
+                    color: MinikColors.darkGreen,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(

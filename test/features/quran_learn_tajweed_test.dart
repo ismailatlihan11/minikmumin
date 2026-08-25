@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:minik_kalpler/data/models/quran_learning.dart';
+import 'package:minik_kalpler/features/quran_learn/quran_learn_practice.dart';
 import 'package:minik_kalpler/features/quran_learn/quran_learn_tajweed_marks.dart';
 
 void main() {
@@ -56,6 +57,13 @@ void main() {
     expect(kursi.id, '2-255');
     expect(fatiha.id, '1');
     expect(bakara15.listSubtitle, contains('2:1–5'));
+  });
+
+  test('hareke teaching glyphs and elif rules', () {
+    expect(quranLearnTeachingGlyph('fatha'), 'أَ');
+    expect(quranLearnTeachingGlyph('sukun'), 'بْ');
+    expect(quranLearnHarakaUsesElif('fatha'), isTrue);
+    expect(quranLearnHarakaUsesElif('tanwin_fath'), isFalse);
   });
 }
 

@@ -28,19 +28,32 @@ class QuranLearnSurahsPage extends StatelessWidget {
     super.key,
     required this.pack,
     this.mode = QuranLearnReadMode.surah,
+    this.levelId,
   });
 
   final QuranLearningPack pack;
   final QuranLearnReadMode mode;
+  final int? levelId;
+
+  int get _levelId =>
+      levelId ??
+      switch (mode) {
+        QuranLearnReadMode.surah => 5,
+        QuranLearnReadMode.practice => 7,
+        QuranLearnReadMode.tajweedRead => 8,
+      };
 
   String get _title {
     switch (mode) {
       case QuranLearnReadMode.surah:
-        return pack.titleForLevel(5, fallback: 'Uygulama');
+        return pack.titleForLevel(_levelId, fallback: 'Uygulama');
       case QuranLearnReadMode.practice:
-        return pack.titleForLevel(7, fallback: 'Uygulama — Okuma Pratiği');
+        return pack.titleForLevel(_levelId, fallback: 'Uygulama — Okuma Pratiği');
       case QuranLearnReadMode.tajweedRead:
-        return pack.titleForLevel(8, fallback: 'Uygulama — Tecvidli Okuma');
+        return pack.titleForLevel(
+          _levelId,
+          fallback: 'Uygulama — Tecvidli Okuma',
+        );
     }
   }
 
@@ -58,11 +71,7 @@ class QuranLearnSurahsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
-    final levelId = switch (mode) {
-      QuranLearnReadMode.surah => 5,
-      QuranLearnReadMode.practice => 7,
-      QuranLearnReadMode.tajweedRead => 8,
-    };
+    final items = pack.surahsForLevel(_levelId, kind: _kind);
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(title: Text(_title)),
@@ -70,8 +79,8 @@ class QuranLearnSurahsPage extends StatelessWidget {
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
-          final done = snap?.completedCount(levelId) ?? 0;
-          final total = pack.surahs.length;
+          final done = snap?.completedCount(_levelId) ?? 0;
+          final total = items.length;
           return ListView(
             padding: AppSpacing.page,
             children: [
@@ -80,7 +89,7 @@ class QuranLearnSurahsPage extends StatelessWidget {
                 label: '$done / $total parça',
               ),
               const SizedBox(height: AppSpacing.md),
-              for (final surah in pack.surahs)
+              for (final surah in items)
                 ContentTile(
                   title: surah.nameTr,
                   subtitle: surah.listSubtitle,

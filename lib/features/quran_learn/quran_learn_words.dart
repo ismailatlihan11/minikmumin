@@ -13,9 +13,14 @@ import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnWordsPage extends StatelessWidget {
-  const QuranLearnWordsPage({super.key, required this.pack});
+  const QuranLearnWordsPage({
+    super.key,
+    required this.pack,
+    this.levelId = 4,
+  });
 
   final QuranLearningPack pack;
+  final int levelId;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +28,13 @@ class QuranLearnWordsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
-        title: Text(pack.titleForLevel(4, fallback: 'Pekiştirme')),
+        title: Text(pack.titleForLevel(levelId, fallback: 'Pekiştirme')),
       ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
-          final done = snap?.completedCount(4) ?? 0;
+          final done = snap?.completedCount(levelId) ?? 0;
           return ListView(
             padding: AppSpacing.page,
             children: [
@@ -41,7 +46,7 @@ class QuranLearnWordsPage extends StatelessWidget {
               MinikCard(
                 color: MinikColors.sky,
                 child: Text(
-                  pack.levelById(4)?.description ??
+                  pack.levelById(levelId)?.description ??
                       'Şeddeyi pekiştirerek Kur\'an kelimelerini okuyalım.',
                   style: const TextStyle(
                     fontFamily: 'NotoSans',

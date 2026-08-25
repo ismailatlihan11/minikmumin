@@ -49,6 +49,34 @@ bool _containsMark(String arabic, String marks) {
   return false;
 }
 
+bool quranLearnLessonMatchesAyah({
+  required QuranTajweedLesson lesson,
+  required String arabic,
+}) {
+  return quranLearnTajweedHits(
+    arabic: arabic,
+    lessons: [lesson],
+  ).isNotEmpty;
+}
+
+String? quranLearnLessonFocusInAyah({
+  required QuranTajweedLesson lesson,
+  required String arabic,
+}) {
+  for (final example in lesson.examples) {
+    final focus = example.focus.split('(').first.trim();
+    if (focus.isNotEmpty &&
+        focus != 'son' &&
+        arabic.contains(focus)) {
+      return focus;
+    }
+    if (example.arabic.isNotEmpty && arabic.contains(example.arabic)) {
+      return example.focus.split('(').first.trim();
+    }
+  }
+  return null;
+}
+
 List<QuranTajweedHit> quranLearnTajweedHits({
   required String arabic,
   required List<QuranTajweedLesson> lessons,

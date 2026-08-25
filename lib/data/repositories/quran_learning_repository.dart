@@ -18,7 +18,16 @@ class QuranLearningRepository {
         key: 'quranLearning',
         fallbackPath: AssetPaths.quranLearning,
       );
-      _cache = QuranLearningPack.fromJson(json);
+      Map<String, dynamic>? curriculum;
+      try {
+        curriculum = await _datasource.loadObject(
+          key: 'quranLearnCurriculum',
+          fallbackPath: AssetPaths.quranLearnCurriculum,
+        );
+      } catch (error, stack) {
+        debugPrint("Kur'an Öğren müfredatı yüklenemedi: $error\n$stack");
+      }
+      _cache = QuranLearningPack.fromJson(json, curriculum: curriculum);
       return _cache!;
     } catch (error, stack) {
       debugPrint("Kur'an Öğren JSON yüklenemedi: $error\n$stack");

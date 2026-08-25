@@ -26,6 +26,55 @@ class QuranLearnPracticeItem {
   final String? compareAudio;
 }
 
+bool quranLearnHarakaUsesElif(String harakaId) {
+  return harakaId == 'fatha' || harakaId == 'kasra' || harakaId == 'damma';
+}
+
+String quranLearnTeachingGlyph(String harakaId) {
+  switch (harakaId) {
+    case 'fatha':
+      return 'أَ';
+    case 'kasra':
+      return 'إِ';
+    case 'damma':
+      return 'أُ';
+    case 'fatha_madd':
+      return 'بَا';
+    case 'kasra_madd':
+      return 'بِي';
+    case 'damma_madd':
+      return 'بُو';
+    case 'tanwin_fath':
+      return 'بًا';
+    case 'tanwin_kasr':
+      return 'بٍ';
+    case 'tanwin_damm':
+      return 'بٌ';
+    case 'sukun':
+      return 'بْ';
+    case 'shadda':
+      return 'بَّ';
+    default:
+      return '';
+  }
+}
+
+String? quranLearnTeachingAudio(
+  List<QuranArabicLetter> letters,
+  String harakaId,
+) {
+  final wantElif = quranLearnHarakaUsesElif(harakaId);
+  for (final letter in letters) {
+    if (wantElif && letter.letter == 'ا') {
+      return QuranLearnAudio.practicePath(letter.audio, harakaId);
+    }
+    if (!wantElif && letter.letter == 'ب') {
+      return QuranLearnAudio.practicePath(letter.audio, harakaId);
+    }
+  }
+  return null;
+}
+
 String quranLearnPracticeGlyph(QuranArabicLetter letter, String harakaId) {
   final base = letter.letter;
   if (base == 'ا') {
@@ -92,8 +141,10 @@ List<QuranLearnPracticeItem> quranLearnPracticeItems({
 }) {
   final items = <QuranLearnPracticeItem>[];
   for (final letter in letters) {
+    if (letter.letter == 'ا' && !quranLearnHarakaUsesElif(harakaId)) {
+      continue;
+    }
     final audio = QuranLearnAudio.practicePath(letter.audio, harakaId);
-    if (audio == null) continue;
     items.add(
       QuranLearnPracticeItem(
         letter: letter,
