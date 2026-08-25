@@ -6,10 +6,8 @@ import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
-import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
@@ -39,6 +37,19 @@ class QuranLearnCombinePage extends StatelessWidget {
               QlSoftProgress(
                 value: pack.combinations.isEmpty ? 0 : done / pack.combinations.length,
                 label: '$done / ${pack.combinations.length} ders',
+              ),
+              const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Text(
+                  pack.levelById(3)?.description ??
+                      'Cezm ile harfleri birleştirelim.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               for (final lesson in pack.combinations)
@@ -150,7 +161,7 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
           MinikCard(
             child: Column(
               children: [
-                const Text('Parçaları doğru sıraya koy.'),
+                const Text('Harfleri cezm ile doğru sıraya koy.'),
                 const SizedBox(height: 8),
                 Text(
                   example.reading,

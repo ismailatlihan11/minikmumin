@@ -77,13 +77,13 @@ class QuranLearnSurahsPage extends StatelessWidget {
             children: [
               QlSoftProgress(
                 value: total == 0 ? 0 : done / total,
-                label: '$done / $total sure',
+                label: '$done / $total parça',
               ),
               const SizedBox(height: AppSpacing.md),
               for (final surah in pack.surahs)
                 ContentTile(
                   title: surah.nameTr,
-                  subtitle: '${surah.nameAr} · ${surah.ayahCount} ayet',
+                  subtitle: surah.listSubtitle,
                   color: snap?.isDone(_kind, surah.id) == true
                       ? MinikColors.mint
                       : null,
@@ -152,6 +152,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
     return QuranLearnAudio.surahPath(
       widget.surah.surahNumber,
       jsonAudio: widget.surah.audio,
+      allowFullSurahFallback: widget.surah.ayahFrom == null,
     );
   }
 
@@ -168,10 +169,17 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
     super.dispose();
   }
 
-  Future<List<QuranVerse>> _load() {
-    return context.read<ContentRepositories>().quran.getSurah(
+  Future<List<QuranVerse>> _load() async {
+    final verses = await context.read<ContentRepositories>().quran.getSurah(
           widget.surah.surahNumber,
         );
+    final from = widget.surah.ayahFrom;
+    if (from == null) return verses;
+    final to = widget.surah.ayahTo ?? from;
+    return [
+      for (final verse in verses)
+        if (verse.ayahNo >= from && verse.ayahNo <= to) verse,
+    ];
   }
 
   Future<void> _cancelSession() async {
@@ -349,7 +357,9 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
     await showQlCelebration(
       context,
       title: 'Harika!',
-      subtitle: '${widget.surah.nameTr} suresini tamamladın.',
+      subtitle: widget.surah.ayahFrom == null
+          ? '${widget.surah.nameTr} suresini tamamladın.'
+          : '${widget.surah.nameTr} okumasını tamamladın.',
       onContinue: () => Navigator.pop(context),
     );
   }
@@ -363,6 +373,9 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
       case _AlongMode.echoWait:
         return 'Şimdi sen oku. Hazır olunca sonraki ayete geç.';
       case _AlongMode.idle:
+        if (_audioPath == null) {
+          return 'Bu parçada eşleşen eğitim sesi yok. Ayet ve meali oku; Öğrendim ile tamamla.';
+        }
         return 'Dinle veya Takip Et: sureyi dinlerken ayetler işaretlenir. Benimle Oku: bir ayet dinle, sonra sen oku.';
     }
   }
@@ -541,6 +554,18 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                             quranLearnTajweedHits(
                               arabic: verses[i].arabic,
                               lessons: widget.pack.tajweed,
+                            ),
+                          ),
+                        ],
+                        if (widget.surah.ayahFrom != null &&
+                            verses[i].hasMeal) ...[
+                          const SizedBox(height: 8),
+                          Text(
+                            verses[i].meal,
+                            style: const TextStyle(
+                              fontFamily: 'NotoSans',
+                              color: MinikColors.textMuted,
+                              height: 1.35,
                             ),
                           ),
                         ],

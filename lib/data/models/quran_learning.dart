@@ -384,6 +384,8 @@ class QuranLearningSurah {
     required this.ayahCount,
     required this.priority,
     this.audio,
+    this.ayahFrom,
+    this.ayahTo,
   });
 
   final int surahNumber;
@@ -392,10 +394,28 @@ class QuranLearningSurah {
   final int ayahCount;
   final int priority;
   final String? audio;
+  final int? ayahFrom;
+  final int? ayahTo;
 
-  String get id => '$surahNumber';
+  String get id {
+    final from = ayahFrom;
+    if (from == null) return '$surahNumber';
+    final to = ayahTo ?? from;
+    if (to == from) return '$surahNumber-$from';
+    return '$surahNumber-$from-$to';
+  }
+
+  String get listSubtitle {
+    final from = ayahFrom;
+    if (from == null) return '$nameAr · $ayahCount ayet';
+    final to = ayahTo ?? from;
+    if (to == from) return '$nameAr · $surahNumber:$from';
+    return '$nameAr · $surahNumber:$from–$to';
+  }
 
   factory QuranLearningSurah.fromJson(Map<String, dynamic> json) {
+    final from = json['ayah_from'];
+    final to = json['ayah_to'];
     return QuranLearningSurah(
       surahNumber: JsonMap.integer(json['surah_number']),
       nameAr: JsonMap.str(json['name_ar']),
@@ -403,6 +423,8 @@ class QuranLearningSurah {
       ayahCount: JsonMap.integer(json['ayah_count']),
       priority: JsonMap.integer(json['priority']),
       audio: _nullableAudio(json['audio']),
+      ayahFrom: from == null ? null : JsonMap.integer(from),
+      ayahTo: to == null ? null : JsonMap.integer(to),
     );
   }
 }
@@ -474,11 +496,21 @@ class QuranLearningPack {
     return null;
   }
 
-  QuranLearningSurah? surahByNumber(int number) {
+  QuranLearningSurah? surahById(String id) {
     for (final surah in surahs) {
-      if (surah.surahNumber == number) return surah;
+      if (surah.id == id) return surah;
     }
     return null;
+  }
+
+  QuranLearningSurah? surahByNumber(int number) {
+    QuranLearningSurah? passage;
+    for (final surah in surahs) {
+      if (surah.surahNumber != number) continue;
+      if (surah.ayahFrom == null) return surah;
+      passage ??= surah;
+    }
+    return passage;
   }
 
   QuranLearningLevel? levelById(int id) {

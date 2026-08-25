@@ -92,8 +92,7 @@ Future<void> openQuranLearnDaily(
     case 'ql_surah':
     case 'ql_practice':
     case 'ql_tajweed_read':
-      final number = int.tryParse(item.id) ?? 0;
-      final surah = pack.surahByNumber(number);
+      final surah = pack.surahById(item.id);
       if (surah == null) break;
       final mode = switch (item.kind) {
         'ql_practice' => QuranLearnReadMode.practice,

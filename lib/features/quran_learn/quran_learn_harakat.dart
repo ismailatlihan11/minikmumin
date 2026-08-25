@@ -8,9 +8,10 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
-import 'quran_learn_color_page.dart';
-import 'quran_learn_progress.dart';
 import 'quran_learn_audio.dart';
+import 'quran_learn_color_page.dart';
+import 'quran_learn_practice.dart';
+import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnHarakatPage extends StatelessWidget {
@@ -116,7 +117,23 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
       context,
       title: 'Harika!',
       subtitle: '${haraka.name} dersini tamamladın.',
-      onContinue: () => Navigator.pop(context),
+      onContinue: () {
+        final items = widget.pack.harakat;
+        final index = items.indexWhere((item) => item.id == haraka.id);
+        if (index >= 0 && index + 1 < items.length) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => QuranLearnHarakaDetailPage(
+                pack: widget.pack,
+                haraka: items[index + 1],
+              ),
+            ),
+          );
+        } else {
+          Navigator.pop(context);
+        }
+      },
     );
   }
 
@@ -172,29 +189,31 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          const SectionLabel('Örnekler'),
-          for (final example in haraka.examples)
-            MinikCard(
-              child: Row(
-                children: [
-                  QlBigArabic(example.arabic, fontSize: 36),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      example.reading,
-                      style: Theme.of(context).textTheme.titleMedium,
+          QlPracticeSection(
+            audio: _audio,
+            letters: widget.pack.letters,
+            harakaId: haraka.id,
+          ),
+          if (haraka.id == 'sukun') ...[
+            const SizedBox(height: AppSpacing.md),
+            const SectionLabel('Birleştirme'),
+            for (final example in haraka.examples)
+              MinikCard(
+                child: Row(
+                  children: [
+                    QlBigArabic(example.arabic, fontSize: 36),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        example.reading,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
                     ),
-                  ),
-                  QlListenIcon(audio: _audio, path: example.audio ?? haraka.audio),
-                  QlColorIconButton(
-                    arabic: example.arabic,
-                    title: haraka.name,
-                    prompt: 'Bu örneği boya.',
-                    audio: haraka.audio,
-                  ),
-                ],
+                    QlListenIcon(audio: _audio, path: example.audio ?? haraka.audio),
+                  ],
+                ),
               ),
-            ),
+          ],
           const SizedBox(height: AppSpacing.lg),
           QlPrimaryBar(label: 'Öğrendim', onPressed: _mark),
         ],

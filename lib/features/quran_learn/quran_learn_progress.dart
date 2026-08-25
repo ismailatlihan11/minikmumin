@@ -149,10 +149,11 @@ String _dailyTitle(
     case 'ql_word':
       return 'Bugün 5 kelime oku.';
     case 'ql_surah':
-      final surah = pack.surahByNumber(int.tryParse(item.id) ?? 0);
-      return surah == null
-          ? 'Bugün kısa bir sure dinle.'
-          : 'Bugün ${surah.nameTr} suresine bak.';
+      final surah = pack.surahById(item.id);
+      if (surah == null) return 'Bugün kısa bir sure dinle.';
+      return surah.ayahFrom == null
+          ? 'Bugün ${surah.nameTr} suresine bak.'
+          : 'Bugün ${surah.nameTr} okumasına bak.';
     case 'ql_tajweed':
       final lesson = pack.tajweedById(item.id);
       return lesson == null

@@ -235,6 +235,17 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 4),
+                Text('Bu harf ${letter.name}.'),
+                const SizedBox(height: AppSpacing.md),
+                QlPlayListen(audio: _audio, path: letter.audio),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSpacing.md),
+          const SectionLabel('Harfler ve Sesleri'),
+          MinikCard(
+            child: Column(
+              children: [
                 Text('Yaklaşık ses: ${letter.approximateTurkishSound}'),
                 if (letter.isHeavySound) ...[
                   const SizedBox(height: 8),
@@ -254,50 +265,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                     ),
                   ),
                 ],
-                const SizedBox(height: 8),
-                Text('Bu harf ${letter.name}.'),
                 const SizedBox(height: AppSpacing.md),
                 QlPlayListen(audio: _audio, path: letter.audio),
-                const SizedBox(height: AppSpacing.md),
-                const Text(
-                  'Harfler ve Sesleri',
-                  style: TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w800,
-                    color: MinikColors.darkGreen,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    for (final item in <(String, String)>[
-                      ('Fetha', 'fatha'),
-                      ('Kesra', 'kasra'),
-                      ('Damme', 'damma'),
-                    ]) ...[
-                      if (item.$2 != 'fatha') const SizedBox(width: 8),
-                      Expanded(
-                        child: _LetterHarakatChip(
-                          audio: _audio,
-                          label: item.$1,
-                          arabic: _letterWithHaraka(letter, item.$2),
-                          path: QuranLearnAudio.exercisePath(letter.audio, item.$2),
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-                const SizedBox(height: 8),
-                QlColorButton(
-                  arabic: letter.letter,
-                  title: '${letter.name} boya',
-                  prompt: 'Parmağınla ${letter.name} harfini boya.',
-                  audio: letter.audio,
-                  pack: widget.pack,
-                  progressKind: 'ql_color',
-                  progressId: letter.id,
-                  celebrationSubtitle: '${letter.name} harfini boyadın.',
-                ),
               ],
             ),
           ),
@@ -321,75 +290,23 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
               ],
             ],
           ),
+          const SizedBox(height: AppSpacing.md),
+          const SectionLabel('Pekiştirme'),
+          Center(
+            child: QlColorButton(
+              arabic: letter.letter,
+              title: '${letter.name} boya',
+              prompt: 'Parmağınla ${letter.name} harfini boya.',
+              audio: letter.audio,
+              pack: widget.pack,
+              progressKind: 'ql_color',
+              progressId: letter.id,
+              celebrationSubtitle: '${letter.name} harfini boyadın.',
+            ),
+          ),
           const SizedBox(height: AppSpacing.lg),
           QlPrimaryBar(label: 'Öğrendim', onPressed: _markLearned),
         ],
-      ),
-    );
-  }
-}
-
-String _letterWithHaraka(QuranArabicLetter letter, String harakaId) {
-  if (letter.letter == 'ا') {
-    switch (harakaId) {
-      case 'fatha':
-        return 'أَ';
-      case 'kasra':
-        return 'إِ';
-      case 'damma':
-        return 'أُ';
-    }
-  }
-  const marks = {'fatha': 'َ', 'kasra': 'ِ', 'damma': 'ُ'};
-  return '${letter.letter}${marks[harakaId] ?? ''}';
-}
-
-class _LetterHarakatChip extends StatelessWidget {
-  const _LetterHarakatChip({
-    required this.audio,
-    required this.label,
-    required this.arabic,
-    required this.path,
-  });
-
-  final AudioPlayerService audio;
-  final String label;
-  final String arabic;
-  final String? path;
-
-  @override
-  Widget build(BuildContext context) {
-    final playable = QuranLearnAudio.resolve(path);
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: playable == null
-            ? null
-            : () => QuranLearnAudio.play(
-                  audio,
-                  context.read<LocalProgressStore>(),
-                  playable,
-                ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-          child: Column(
-            children: [
-              QlBigArabic(arabic, fontSize: 28),
-              const SizedBox(height: 2),
-              Text(
-                label,
-                style: const TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 11,
-                  fontWeight: FontWeight.w800,
-                  color: MinikColors.darkGreen,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

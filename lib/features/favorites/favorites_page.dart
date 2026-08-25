@@ -183,7 +183,7 @@ class FavoritesPage extends StatelessWidget {
           ),
         );
       case 'ql_surah':
-        final surah = pack.surahByNumber(int.tryParse(item.id) ?? 0);
+        final surah = pack.surahById(item.id);
         if (surah == null) return;
         await Navigator.push(
           context,

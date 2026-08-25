@@ -25,6 +25,38 @@ void main() {
     expect(titles, contains('İdğam'));
     expect(titles, contains('Tenvin'));
   });
+
+  test('builds passage ids without colliding Bakara entries', () {
+    const bakara15 = QuranLearningSurah(
+      surahNumber: 2,
+      nameAr: 'البقرة',
+      nameTr: 'Bakara 1–5',
+      ayahCount: 5,
+      priority: 2,
+      ayahFrom: 1,
+      ayahTo: 5,
+    );
+    const kursi = QuranLearningSurah(
+      surahNumber: 2,
+      nameAr: 'البقرة',
+      nameTr: "Âyetü'l-Kürsî",
+      ayahCount: 1,
+      priority: 14,
+      ayahFrom: 255,
+      ayahTo: 255,
+    );
+    const fatiha = QuranLearningSurah(
+      surahNumber: 1,
+      nameAr: 'الفاتحة',
+      nameTr: 'Fâtiha',
+      ayahCount: 7,
+      priority: 1,
+    );
+    expect(bakara15.id, '2-1-5');
+    expect(kursi.id, '2-255');
+    expect(fatiha.id, '1');
+    expect(bakara15.listSubtitle, contains('2:1–5'));
+  });
 }
 
 final _lessons = [

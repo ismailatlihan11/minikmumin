@@ -41,6 +41,19 @@ class QuranLearnTajweedPage extends StatelessWidget {
                 label: '$done / ${pack.tajweed.length} ders',
               ),
               const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Text(
+                  pack.levelById(6)?.description ??
+                      'Zamir, vakf, râ, lafzatullah, ihfâ, izhâr, idğâm, iklâb, kalkale ve medd.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
               for (final lesson in pack.tajweed)
                 ContentTile(
                   title: lesson.title,
@@ -159,32 +172,36 @@ class _QuranLearnTajweedDetailPageState
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          SectionLabel(lesson.examples.length > 1 ? 'Örnekler' : 'Örnek'),
-          for (final example in lesson.examples)
+          SectionLabel(lesson.examples.length > 1 ? 'Uygulama' : 'Uygulama'),
+          for (var i = 0; i < lesson.examples.length; i++)
             MinikCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  if (_exampleLabel(lesson, i) != null) ...[
+                    SoftBadge(label: _exampleLabel(lesson, i)!),
+                    const SizedBox(height: 8),
+                  ],
                   QlTajweedFocusArabic(
-                    example.arabic,
-                    focus: example.focus,
+                    lesson.examples[i].arabic,
+                    focus: lesson.examples[i].focus,
                     fontSize: 32,
                   ),
                   const SizedBox(height: 6),
-                  Text('Odak: ${example.focus}'),
-                  Text(quranLearnTajweedReference(example.reference)),
+                  Text('Odak: ${lesson.examples[i].focus}'),
+                  Text(quranLearnTajweedReference(lesson.examples[i].reference)),
                   const SizedBox(height: 8),
                   QlPlayListen(
                     audio: _audio,
-                    path: example.audio ?? lesson.audio,
+                    path: lesson.examples[i].audio,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: QlColorButton(
-                      arabic: example.arabic,
+                      arabic: lesson.examples[i].arabic,
                       title: lesson.title,
                       prompt: 'Bu örneği boya.',
-                      audio: example.audio ?? lesson.audio,
+                      audio: lesson.examples[i].audio,
                     ),
                   ),
                 ],
@@ -196,4 +213,20 @@ class _QuranLearnTajweedDetailPageState
       ),
     );
   }
+}
+
+String? _exampleLabel(QuranTajweedLesson lesson, int index) {
+  const labels = <String, List<String>>{
+    'tajweed_01': ['Medd-i Tabîî', 'Medd-i Muttasıl', 'Medd-i Munfasıl'],
+    'tajweed_07': ['نْ + ل', 'نْ + ر'],
+    'tajweed_09': ['İklâb', 'İhfâ-i Şefeviyye'],
+    'tajweed_12': ["Uzatılan hâ", 'Uzatılmayan hâ'],
+    'tajweed_13': ['Kalın râ', 'İnce râ'],
+    'tajweed_14': ['Kesradan sonra', 'Fethadan sonra'],
+    'tajweed_19': ['Mütekâribeyn', 'Mütecâniseyn'],
+    'tajweed_22': ["Medd-i Lâzım", "Medd-i Ârız", "Medd-i Lîn"],
+  };
+  final list = labels[lesson.id];
+  if (list == null || index < 0 || index >= list.length) return null;
+  return list[index];
 }

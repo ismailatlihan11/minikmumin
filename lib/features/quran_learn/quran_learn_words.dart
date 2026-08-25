@@ -38,6 +38,19 @@ class QuranLearnWordsPage extends StatelessWidget {
                 label: '$done / ${pack.words.length} kelime',
               ),
               const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Text(
+                  pack.levelById(4)?.description ??
+                      'Şeddeyi pekiştirerek Kur\'an kelimelerini okuyalım.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
               for (final word in pack.words)
                 ContentTile(
                   title: word.reading,

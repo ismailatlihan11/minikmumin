@@ -86,6 +86,7 @@ List<QuranTajweedHit> quranLearnTajweedHits({
             arabic.contains('نّ') ||
             arabic.contains('مّ');
       case 'tajweed_10':
+      case 'tajweed_21':
         matched = _containsMark(arabic, _waqfMarks);
       case 'tajweed_06':
         for (final letter in lesson.qalqalaLetters) {
