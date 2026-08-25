@@ -6,8 +6,10 @@ import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
+import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
+import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
