@@ -12,7 +12,7 @@
       "key_points": [
         "Allah'tan başka bir ilah olmadığına inanmak",
         "Allah'a kulluk etmek",
-        "Son peygamber Hz. Muhammed'in öğrettiklerine uymak",
+        "Son peygamber Hz. Muhammed ﷺ'in öğrettiklerine uymak",
         "Güzel ahlaklı olmaya çalışmak"
       ],
       "audio": null,
@@ -24,7 +24,7 @@
       "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
       "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
-      "meaning": "Allah'tan başka ilah olmadığına ve Muhammed'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
+      "meaning": "Allah'tan başka ilah olmadığına ve Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
       "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanır.",
       "key_points": [
         "Allah tektir.",
@@ -75,7 +75,7 @@
         {
           "order": 1,
           "title": "Şehadet",
-          "description": "Allah'tan başka ilah olmadığına ve Hz. Muhammed'in Allah'ın kulu ve elçisi olduğuna şahitlik etmek."
+          "description": "Allah'tan başka ilah olmadığına ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna şahitlik etmek."
         },
         {
           "order": 2,
@@ -125,7 +125,7 @@
         {
           "order": 4,
           "title": "Peygamberlere iman",
-          "description": "Allah'ın gönderdiği bütün peygamberlere inanmak. Son peygamber Hz. Muhammed'dir."
+          "description": "Allah'ın gönderdiği bütün peygamberlere inanmak. Son peygamber Hz. Muhammed ﷺ'dir."
         },
         {
           "order": 5,
@@ -170,8 +170,8 @@
     {
       "id": 9,
       "title": "Kur'an-ı Kerim Nedir?",
-      "short_description": "Kur'an-ı Kerim, Allah'ın Hz. Muhammed'e vahyettiği kutsal kitaptır.",
-      "content": "Kur'an-ı Kerim, Allah'ın kelamıdır ve Hz. Muhammed'e vahiy yoluyla gönderilmiştir. Müslümanlar Kur'an'ı okuyarak, anlayarak ve hayatlarında uygulamaya çalışarak ondan faydalanırlar.",
+      "short_description": "Kur'an-ı Kerim, Allah'ın Hz. Muhammed ﷺ'e vahyettiği kutsal kitaptır.",
+      "content": "Kur'an-ı Kerim, Allah'ın kelamıdır ve Hz. Muhammed ﷺ'e vahiy yoluyla gönderilmiştir. Müslümanlar Kur'an'ı okuyarak, anlayarak ve hayatlarında uygulamaya çalışarak ondan faydalanırlar.",
       "key_points": [
         "Allah'ın kelamıdır.",
         "Hz. Muhammed (S.A.V)'e vahyedilmiştir.",

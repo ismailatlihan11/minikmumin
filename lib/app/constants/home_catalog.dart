@@ -91,7 +91,7 @@ abstract final class HomeCatalog {
     ),
     HomeModule(
       title: 'Hadisler',
-      subtitle: 'Peygamberimizden öğütler',
+      subtitle: 'Peygamberimizden ﷺ öğütler',
       image: 'assets/images/home/card_hadith.png',
       color: Color(0xFFFADDE3),
       accent: Color(0xFFD36B84),

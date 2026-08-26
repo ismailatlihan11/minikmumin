@@ -228,6 +228,7 @@ void main() {
       'roleTitle': 'Son Peygamber',
     });
     expect(prophet.name, 'Muhammed');
+    expect(prophet.choiceName, 'Hz. Muhammed ﷺ');
     expect(prophet.honorificName, 'Hz. Muhammed (sallallahu aleyhi ve sellem)');
     expect(prophet.roleTitle, 'Son Peygamber');
   });

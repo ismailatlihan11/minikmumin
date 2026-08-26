@@ -256,10 +256,10 @@ List<KidGame> kidGames() {
                 ChoiceQuestion(
                   prompt: 'Bu hangi peygamber?\n${item.shortTitle}',
                   options: pickOptions(
-                    item.name,
-                    playable.map((row) => row.name).toList(),
+                    item.choiceName,
+                    playable.map((row) => row.choiceName).toList(),
                   ),
-                  correct: item.name,
+                  correct: item.choiceName,
                 ),
             ];
           },
