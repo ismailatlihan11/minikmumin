@@ -1214,6 +1214,8 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
         return 'Rabbenâ Âtinâ';
       case 'rabbena_gfirli':
         return 'Rabbenâğfir Lî';
+      case 'rabbena_lekel_hamd':
+        return 'Rabbenâ Lekel-Hamd';
       default:
         return widget.step.title;
     }

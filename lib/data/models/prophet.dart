@@ -44,7 +44,7 @@ class Prophet {
     final fromJson = displayName.trim();
     if (fromJson.isNotEmpty) return fromJson;
     if (isMuhammad) {
-      return 'Hz. Muhammed (sallallahu aleyhi ve sellem)';
+      return 'Hz. Muhammed ﷺ';
     }
     final trimmed = name.trim();
     if (trimmed.isEmpty) return trimmed;

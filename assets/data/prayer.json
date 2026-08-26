@@ -183,6 +183,7 @@
       "kind": "farz",
       "jsonStepId": "qiyam",
       "caption": "Rabbenâ lekel-hamd",
+      "duaId": "rabbena_lekel_hamd",
       "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
       "rakat": 1
     },
@@ -314,6 +315,7 @@
       "kind": "farz",
       "jsonStepId": "qiyam",
       "caption": "Rabbenâ lekel-hamd",
+      "duaId": "rabbena_lekel_hamd",
       "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
       "rakat": 2
     },
@@ -520,6 +522,10 @@
     {
       "id": "rabbena_gfirli",
       "title": "Rabbenağfir Lî"
+    },
+    {
+      "id": "rabbena_lekel_hamd",
+      "title": "Rabbenâ Lekel-Hamd"
     }
   ],
   "tips": [

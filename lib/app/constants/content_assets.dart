@@ -32,6 +32,7 @@ abstract final class ContentAssets {
     'salli': 'assets/audio/prayer/allahumme_salli.mp3',
     'barik': 'assets/audio/prayer/allahumme_barik.mp3',
     'iftitah_tekbir': 'assets/audio/prayer/iftitah_tekbir.mp3',
+    'rabbena_lekel_hamd': 'assets/audio/prayer/rabbena_lekel_hamd.mp3',
     'fatiha': 'assets/audio/quran_learn/surahs/surah_001.mp3',
     'ihlas': 'assets/audio/quran_learn/surahs/surah_112.mp3',
     'felak': 'assets/audio/quran_learn/surahs/surah_113.mp3',

@@ -269,6 +269,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.farz,
       jsonStepId: 'qiyam',
       caption: 'Rabbenâ lekel-hamd',
+      duaId: 'rabbena_lekel_hamd',
     ),
     PrayerVisualStep(
       id: 'secde1',
@@ -418,6 +419,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.farz,
       jsonStepId: 'qiyam',
       caption: 'Rabbenâ lekel-hamd',
+      duaId: 'rabbena_lekel_hamd',
       rakat: 2,
     ),
     PrayerVisualStep(
@@ -607,6 +609,7 @@ abstract final class PrayerVisualCatalog {
     (id: 'allahumme_barik', title: 'Barik'),
     (id: 'rabbena_atina', title: 'Rabbena Âtinâ'),
     (id: 'rabbena_gfirli', title: 'Rabbenağfir Lî'),
+    (id: 'rabbena_lekel_hamd', title: 'Rabbenâ Lekel-Hamd'),
   ];
 
   static const tips = [

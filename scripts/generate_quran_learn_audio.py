@@ -213,6 +213,7 @@ PRAYER_AUDIO_PATHS = {
     "qiyam_after_ruku": "assets/audio/prayer/rukudan_dogrulurken.mp3",
     "sujud": "assets/audio/prayer/sujud_tesbihi.mp3",
     "iftitah_tekbir": "assets/audio/prayer/iftitah_tekbir.mp3",
+    "rabbena_lekel_hamd": "assets/audio/prayer/rabbena_lekel_hamd.mp3",
 }
 
 # Human recitations now live at these paths. --replace-old must not

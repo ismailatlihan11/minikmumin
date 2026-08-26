@@ -4,7 +4,7 @@
   "description": "Çocuklara namazda öğrenilecek ifadeleri, sûreleri ve duaları kullanıcının belirlediği sırayla öğreten içerik listesi.",
   "language": "tr",
   "ordered": true,
-  "itemCount": 27,
+  "itemCount": 28,
   "learningAlgorithm": {
     "type": "strict_order",
     "rule": "Bir içerik tamamlanmadan sonraki order değerine geçilmez.",
@@ -49,8 +49,8 @@
       "type": "creed_expression",
       "title": "Kelime-i Tevhid",
       "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
-      "transliteration": "Lâ ilâhe illallah Muhammedün Resûlullah.",
-      "meaning": "Allah'tan başka ilâh yoktur. Muhammed ﷺ Allah'ın Resûlüdür.",
+      "transliteration": "Lâ ilâhe illallah Hz. Muhammedün Resûlullah.",
+      "meaning": "Allah'tan başka ilâh yoktur. Hz. Muhammed ﷺ Allah'ın Resûlüdür.",
       "usage": "Tevhid inancını ifade eder."
     },
     {
@@ -59,8 +59,8 @@
       "type": "creed_expression",
       "title": "Kelime-i Şehadet",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
-      "meaning": "Şahitlik ederim ki Allah'tan başka ilâh yoktur. Yine şahitlik ederim ki Muhammed ﷺ O'nun kulu ve resûlüdür.",
+      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
+      "meaning": "Şahitlik ederim ki Allah'tan başka ilâh yoktur. Yine şahitlik ederim ki Hz. Muhammed ﷺ O'nun kulu ve resûlüdür.",
       "usage": "İman ve şehadet ifadesidir."
     },
     {
@@ -560,8 +560,8 @@
       "type": "prayer_dua",
       "title": "Et-Tahiyyâtü Duası",
       "arabic": "اَلتَّحِيَّاتُ لِلّٰهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ ۚ اَلسَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ ۚ اَلسَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللّٰهِ الصَّالِحِينَ ۚ أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-      "transliteration": "Ettehiyyâtü lillâhi vessalavâtü vettayyibât. Esselâmü aleyke eyyühennebiyyü ve rahmetullâhi ve berakâtüh. Esselâmü aleynâ ve alâ ibâdillâhis-sâlihîn. Eşhedü en lâ ilâhe illallâh ve eşhedü enne Muhammeden abdühû ve resûlüh.",
-      "meaning": "Bütün hürmetler, ibadetler ve güzel sözler Allah'a aittir. Peygamber'e selâm; bize ve Allah'ın salih kullarına selâm olsun. Allah'tan başka ilâh olmadığına ve Muhammed ﷺ'in O'nun kulu ve elçisi olduğuna şahitlik ederim.",
+      "transliteration": "Ettehiyyâtü lillâhi vessalavâtü vettayyibât. Esselâmü aleyke eyyühennebiyyü ve rahmetullâhi ve berakâtüh. Esselâmü aleynâ ve alâ ibâdillâhis-sâlihîn. Eşhedü en lâ ilâhe illallâh ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
+      "meaning": "Bütün hürmetler, ibadetler ve güzel sözler Allah'a aittir. Peygamber'e selâm; bize ve Allah'ın salih kullarına selâm olsun. Allah'tan başka ilâh olmadığına ve Hz. Muhammed ﷺ'in O'nun kulu ve elçisi olduğuna şahitlik ederim.",
       "usage": "Namazdaki oturuşlarda okunur.",
       "source": "Hadis kaynakları / Diyanet namaz ilmihali"
     },
@@ -652,6 +652,17 @@
       "meaning": "En yüce Rabbimi tesbih ederim.",
       "usage": "Secdede 3 kere okunur.",
       "source": "Diyanet Namaz İlmihali"
+    },
+    {
+      "order": 27,
+      "id": "rabbena_lekel_hamd",
+      "type": "prayer_dua",
+      "title": "Rabbenâ Lekel-Hamd",
+      "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ",
+      "transliteration": "Rabbenâ ve lekel-hamd, hamden kesîran tayyiben mübâreken fîh.",
+      "meaning": "Rabbimiz! Hamd sanadır; bol, güzel ve bereketli hamd.",
+      "usage": "Rükûdan doğrulup kıyamda durunca okunur.",
+      "source": "Buhârî, Ezân 126 / Hisn al-Muslim"
     }
   ]
 }

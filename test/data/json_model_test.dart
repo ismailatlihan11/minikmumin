@@ -224,12 +224,12 @@ void main() {
       'illustrationPolicy': 'symbolic_only',
       'sourceName': "Kur'an-ı Kerim",
       'summary': 'Son peygamber',
-      'displayName': 'Hz. Muhammed (sallallahu aleyhi ve sellem)',
+      'displayName': 'Hz. Muhammed ﷺ',
       'roleTitle': 'Son Peygamber',
     });
     expect(prophet.name, 'Muhammed');
     expect(prophet.choiceName, 'Hz. Muhammed ﷺ');
-    expect(prophet.honorificName, 'Hz. Muhammed (sallallahu aleyhi ve sellem)');
+    expect(prophet.honorificName, 'Hz. Muhammed ﷺ');
     expect(prophet.roleTitle, 'Son Peygamber');
   });
 

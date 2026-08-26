@@ -101,6 +101,7 @@ PRAYER_FILES = [
     ("assets/audio/prayer/ruku_tesbihi.mp3", "Rükû Tesbihi"),
     ("assets/audio/prayer/rukudan_dogrulurken.mp3", "Rükûdan Doğrulma"),
     ("assets/audio/prayer/sujud_tesbihi.mp3", "Secde Tesbihi"),
+    ("assets/audio/prayer/rabbena_lekel_hamd.mp3", "Rabbenâ Lekel-Hamd"),
 ]
 
 

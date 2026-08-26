@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/story.dart';
@@ -258,7 +259,7 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
         Text(story.title, style: Theme.of(context).textTheme.displayMedium),
         const SizedBox(height: AppSpacing.sm),
         Text(story.summary, style: Theme.of(context).textTheme.bodyLarge),
-        if (story.audio.isNotEmpty) ...[
+        if (story.audio.isNotEmpty && AssetCatalog.contains(story.audio)) ...[
           const SizedBox(height: AppSpacing.md),
           ListenButton(audio: _audio, path: story.audio),
         ],

@@ -8,7 +8,7 @@
       "id": 1,
       "title": "İslam Nedir?",
       "short_description": "",
-      "content": "İslam, Allah'a inanmak, yalnızca O'na kulluk etmek, Peygamberimiz Hz. Muhammed'in ﷺ bildirdiklerine inanmak ve Allah'ın emirlerine uygun güzel bir hayat yaşamaktır. İslam'ın beş temel şartı vardır: Şehadet, namaz, oruç, zekât ve hac",
+      "content": "İslam, Allah'a inanmak, yalnızca O'na kulluk etmek, Peygamberimiz Hz. Muhammed ﷺ'in bildirdiklerine inanmak ve Allah'ın emirlerine uygun güzel bir hayat yaşamaktır. İslam'ın beş temel şartı vardır: Şehadet, namaz, oruç, zekât ve hac",
       "key_points": [
         "Allah'tan başka bir ilah olmadığına inanmak",
         "Allah'a kulluk etmek",
@@ -21,15 +21,15 @@
     {
       "id": 2,
       "title": "Şehadet Nedir?",
-      "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
+      "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
+      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
       "meaning": "Allah'tan başka ilah olmadığına ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
-      "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed (S.A.V)'in Allah'ın kulu ve elçisi olduğuna inanır.",
+      "content": "Kelime-i Şehadet, imanın temel ifadelerinden biridir. Müslüman, Allah'ın bir olduğuna ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna inanır.",
       "key_points": [
         "Allah tektir.",
         "Allah'tan başka ilah yoktur.",
-        "Hz. Muhammed (S.A.V) Allah'ın kulu ve elçisidir."
+        "Hz. Muhammed ﷺ Allah'ın kulu ve elçisidir."
       ],
       "audio": null,
       "icon": "shahada"
@@ -55,13 +55,13 @@
       "title": "Kelime-i Tevhid Nedir?",
       "short_description": "Kelime-i Tevhid, Allah'tan başka ilah olmadığını ifade eder.",
       "arabic": "لَا إِلٰهَ إِلَّا اللهُ مُحَمَّدٌ رَسُولُ اللهِ",
-      "transliteration": "Lâ ilâhe illallah, Muhammedün resûlullah.",
-      "meaning": "Allah'tan başka ilah yoktur. Hz. Muhammed (S.A.V) Allah'ın Resûlüdür.",
+      "transliteration": "Lâ ilâhe illallah, Hz. Muhammedün resûlullah.",
+      "meaning": "Allah'tan başka ilah yoktur. Hz. Muhammed ﷺ Allah'ın Resûlüdür.",
       "content": "Kelime-i Tevhid, Allah'ın bir olduğunu ve yalnızca O'nun ilah olduğunu anlatan çok önemli bir ifadedir.",
       "key_points": [
         "Allah tektir.",
         "Yalnızca Allah'a kulluk ederiz.",
-        "Hz. Muhammed (S.A.V) Allah'ın elçisidir."
+        "Hz. Muhammed ﷺ Allah'ın elçisidir."
       ],
       "audio": null,
       "icon": "tawhid"
@@ -156,12 +156,12 @@
     },
     {
       "id": 8,
-      "title": "Hz. Muhammed (S.A.V) Kimdir?",
+      "title": "Hz. Muhammed ﷺ Kimdir?",
       "short_description": "Peygamberimiz Hz. Muhammed ﷺ, Allah Teâlâ'nın insanlara gönderdiği son peygamber ve son elçidir. O, peygamberlerin sonuncusudur. Ondan sonra başka bir peygamber gelmeyecektir.",
-      "content": "Hz. Muhammed (s.a.v.), Allah'ın insanlara gönderdiği son peygamberdir. Kur'an-ı Kerim kendisine vahyedilmiştir. O, doğruluk, merhamet, adalet, sabır ve güzel ahlak konusunda Müslümanlara örnek olmuştur.",
+      "content": "Hz. Muhammed ﷺ, Allah'ın insanlara gönderdiği son peygamberdir. Kur'an-ı Kerim kendisine vahyedilmiştir. O, doğruluk, merhamet, adalet, sabır ve güzel ahlak konusunda Müslümanlara örnek olmuştur.",
       "key_points": [
         "Son peygamberdir.",
-        "Kur'an-ı Kerim Hz. Muhammed (S.A.V)'e vahyedilmiştir.",
+        "Kur'an-ı Kerim Hz. Muhammed ﷺ'e vahyedilmiştir.",
         "Güzel ahlakı ile insanlara örnek olmuştur."
       ],
       "audio": null,
@@ -174,7 +174,7 @@
       "content": "Kur'an-ı Kerim, Allah'ın kelamıdır ve Hz. Muhammed ﷺ'e vahiy yoluyla gönderilmiştir. Müslümanlar Kur'an'ı okuyarak, anlayarak ve hayatlarında uygulamaya çalışarak ondan faydalanırlar.",
       "key_points": [
         "Allah'ın kelamıdır.",
-        "Hz. Muhammed (S.A.V)'e vahyedilmiştir.",
+        "Hz. Muhammed ﷺ'e vahyedilmiştir.",
         "Müslümanlar için bir rehberdir."
       ],
       "audio": null,
