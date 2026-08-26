@@ -15,6 +15,45 @@ import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_widgets.dart';
 
+enum QuranLearnMemoryLevel {
+  easy,
+  medium,
+  hard;
+
+  String get label => switch (this) {
+        easy => 'Kolay',
+        medium => 'Orta',
+        hard => 'Zor',
+      };
+
+  /// Current game is the middle board: six pairs, three columns.
+  int get pairCount => switch (this) {
+        easy => 4,
+        medium => 6,
+        hard => 8,
+      };
+
+  int get columns => switch (this) {
+        easy => 2,
+        medium => 3,
+        hard => 4,
+      };
+
+  int get xp => pairCount;
+
+  double get letterSize => switch (this) {
+        easy => 48,
+        medium => 42,
+        hard => 32,
+      };
+
+  Duration get mismatchPause => switch (this) {
+        easy => const Duration(milliseconds: 900),
+        medium => const Duration(milliseconds: 700),
+        hard => const Duration(milliseconds: 500),
+      };
+}
+
 class QuranLearnMemoryPage extends StatefulWidget {
   const QuranLearnMemoryPage({super.key});
 
@@ -63,6 +102,7 @@ class _MemoryBoard extends StatefulWidget {
 
 class _MemoryBoardState extends State<_MemoryBoard> {
   final _audio = AudioPlayerService();
+  QuranLearnMemoryLevel _level = QuranLearnMemoryLevel.medium;
   late List<_Card> _cards;
   int? _first;
   bool _busy = false;
@@ -80,10 +120,18 @@ class _MemoryBoardState extends State<_MemoryBoard> {
     super.dispose();
   }
 
+  void _setLevel(QuranLearnMemoryLevel level) {
+    if (_level == level) return;
+    setState(() {
+      _level = level;
+      _deal();
+    });
+  }
+
   void _deal() {
     final letters = List<QuranArabicLetter>.from(widget.pack.letters)
       ..shuffle(Random());
-    final pick = letters.take(6).toList();
+    final pick = letters.take(_level.pairCount).toList();
     _cards = [
       for (final letter in pick) ...[
         _Card(letter: letter, key: '${letter.id}-a'),
@@ -122,7 +170,7 @@ class _MemoryBoardState extends State<_MemoryBoard> {
       return;
     }
     _busy = true;
-    await Future<void>.delayed(const Duration(milliseconds: 700));
+    await Future<void>.delayed(_level.mismatchPause);
     if (!mounted) return;
     setState(() {
       first.faceUp = false;
@@ -135,7 +183,7 @@ class _MemoryBoardState extends State<_MemoryBoard> {
   Future<void> _onWin() async {
     if (_won) return;
     setState(() => _won = true);
-    await context.read<LocalProgressStore>().addXp(6);
+    await context.read<LocalProgressStore>().addXp(_level.xp);
     if (!mounted) return;
     await showQlCelebration(
       context,
@@ -156,12 +204,26 @@ class _MemoryBoardState extends State<_MemoryBoard> {
           subtitle: 'Aynı iki harfi bul.',
           image: 'assets/images/home/card_quran_learn.png',
         ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final level in QuranLearnMemoryLevel.values)
+              ChoiceChip(
+                label: Text(level.label),
+                selected: _level == level,
+                selectedColor: MinikColors.mint,
+                onSelected: (_) => _setLevel(level),
+              ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.md),
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _cards.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: _level.columns,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
             childAspectRatio: 0.9,
@@ -179,7 +241,7 @@ class _MemoryBoardState extends State<_MemoryBoard> {
               onTap: () => _tap(index),
               child: Center(
                 child: open
-                    ? QlBigArabic(card.letter.letter, fontSize: 42)
+                    ? QlBigArabic(card.letter.letter, fontSize: _level.letterSize)
                     : const Icon(
                         Icons.help_rounded,
                         size: 36,

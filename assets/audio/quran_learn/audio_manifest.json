@@ -7,8 +7,20 @@
   "rate": 0.9,
   "pitch": 8.0,
   "cartoon_semitones": 5.0,
-  "generated_at": "2026-08-25T11:18:08.177978+00:00",
+  "generated_at": "2026-08-26T18:59:10.598071+00:00",
   "items": [
+    {
+      "id": "lam_elif",
+      "category": "alphabet",
+      "arabic": "لَامْ أَلِف",
+      "path": "assets/audio/quran_learn/alphabet/lam_elif.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.9,
+      "format": "mp3",
+      "sha256": "dce84f2e9cddb20b8e43538df2a94d79b196e22d3f66466e6d8bf121a97bc6e8",
+      "generated_at": "2026-08-26T18:59:10.597881+00:00"
+    },
     {
       "id": "wudu_abdest_duasi",
       "category": "dua",
@@ -176,7 +188,7 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "91a8c536e9b820ae01ff5c6664e66263c3e997a55ddf6bae069522cbba0bd17c",
+      "sha256": "17bd9904567fe1c48003205f38f8da5a7488eda653d78be4409cda651894e34e",
       "generated_at": "2026-08-25T10:45:59.588340+00:00"
     },
     {

@@ -142,7 +142,7 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
             ),
             ContentTile(
               title: 'Harf eşleştir',
-              subtitle: 'Aynı iki harfi bul.',
+              subtitle: 'Kolay, orta ve zor. Aynı iki harfi bul.',
               leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,

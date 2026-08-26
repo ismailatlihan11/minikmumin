@@ -495,6 +495,15 @@ def build_catalog(*, test: bool) -> list[Clip]:
             phonetic=False,
             repeat=1,
         )
+    # Ligature taught as its own card; not a base letter for harakat drills.
+    add(
+        "lam_elif",
+        "alphabet",
+        "لَامْ أَلِف",
+        "alphabet/lam_elif.mp3",
+        phonetic=False,
+        repeat=1,
+    )
 
     for haraka_id, _mark, name in HARAKA:
         add(haraka_id, "harakat", name, f"harakat/{haraka_id}.mp3")

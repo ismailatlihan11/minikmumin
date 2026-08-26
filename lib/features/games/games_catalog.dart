@@ -40,7 +40,7 @@ List<KidGame> kidGames() {
     ),
     KidGame(
       title: 'Harf Eşleştir',
-      blurb: 'Aynı iki harfi bul',
+      blurb: 'Kolay, orta, zor',
       icon: Icons.grid_view_rounded,
       color: const Color(0xFFD5E8F6),
       open: (context) => _push(context, const QuranLearnMemoryPage()),
@@ -228,7 +228,7 @@ List<KidGame> kidGames() {
     ),
     KidGame(
       title: 'Kıssa Sahneleri',
-      blurb: 'Hikâyeyi sıraya koy',
+      blurb: 'Tüm kıssaları sıraya koy',
       icon: Icons.auto_stories_rounded,
       color: MinikColors.lavender,
       open: (context) => _push(context, const StoryOrderGamePage()),
