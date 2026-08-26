@@ -19,6 +19,7 @@ abstract final class AssetCatalog {
     if (trimmed.isEmpty) return false;
     if (_assets.contains(trimmed)) return true;
     // Show Dinle even if AssetCatalog loaded before a newly bundled folder.
-    return trimmed.startsWith('assets/audio/wudu/');
+    return trimmed.startsWith('assets/audio/wudu/') ||
+        trimmed.startsWith('assets/audio/dhikr/');
   }
 }

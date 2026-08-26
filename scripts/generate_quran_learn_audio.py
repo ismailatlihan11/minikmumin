@@ -213,6 +213,68 @@ PRAYER_AUDIO_PATHS = {
     "iftitah_tekbir": "assets/audio/prayer/iftitah_tekbir.mp3",
 }
 
+# Human recitations now live at these paths. --replace-old must not
+# overwrite them with TTS.
+PROTECTED_PRAYER_AUDIO = frozenset(
+    path
+    for key, path in PRAYER_AUDIO_PATHS.items()
+    if path.startswith("assets/audio/prayer/")
+)
+
+# Quran-ayah dua recitations. --replace-old must not overwrite them with TTS.
+PROTECTED_DUA_AUDIO = frozenset(
+    {
+        "assets/audio/duas/rabbena_atina.mp3",
+        "assets/audio/duas/quran_002_201.mp3",
+        "assets/audio/duas/quran_002_286.mp3",
+        "assets/audio/duas/quran_003_008.mp3",
+        "assets/audio/duas/quran_003_016.mp3",
+        "assets/audio/duas/quran_003_053.mp3",
+        "assets/audio/duas/quran_007_023.mp3",
+        "assets/audio/duas/quran_007_126.mp3",
+        "assets/audio/duas/quran_014_040.mp3",
+        "assets/audio/duas/quran_014_041.mp3",
+        "assets/audio/duas/quran_018_010.mp3",
+        "assets/audio/duas/quran_020_025.mp3",
+        "assets/audio/duas/quran_020_114.mp3",
+        "assets/audio/duas/quran_021_083.mp3",
+        "assets/audio/duas/quran_021_087.mp3",
+        "assets/audio/duas/quran_023_097.mp3",
+        "assets/audio/duas/quran_023_118.mp3",
+        "assets/audio/duas/quran_025_074.mp3",
+        "assets/audio/duas/quran_028_024.mp3",
+        "assets/audio/duas/quran_059_010.mp3",
+        "assets/audio/duas/quran_066_008.mp3",
+    }
+)
+
+# Namaz / Kur'an Öğren short-surah tilavet (Alafasy copies of assets/audio/quran/).
+PROTECTED_LEARN_SURAH_AUDIO = frozenset(
+    f"assets/audio/quran_learn/surahs/surah_{number:03d}.mp3"
+    for number in LEARN_SURAH_NUMBERS
+)
+
+PROTECTED_WUDU_AUDIO = frozenset({"assets/audio/wudu/abdest_duasi.mp3"})
+
+PROTECTED_DHIKR_AUDIO = frozenset(
+    {
+        "assets/audio/dhikr/bismillah.mp3",
+        "assets/audio/dhikr/subhanallah.mp3",
+        "assets/audio/dhikr/alhamdulillah.mp3",
+        "assets/audio/dhikr/allahu_akbar.mp3",
+    }
+)
+
+
+def is_protected_audio(rel_path: str) -> bool:
+    return rel_path in (
+        PROTECTED_PRAYER_AUDIO
+        | PROTECTED_DUA_AUDIO
+        | PROTECTED_LEARN_SURAH_AUDIO
+        | PROTECTED_WUDU_AUDIO
+        | PROTECTED_DHIKR_AUDIO
+    )
+
 
 @dataclass(frozen=True)
 class Clip:
@@ -627,6 +689,8 @@ def build_replace_clips() -> list[Clip]:
             continue
         arabic = extract_spoken_arabic(str(item.get("arabic") or "").strip(), item_id)
         dest = PRAYER_AUDIO_PATHS.get(item_id, f"assets/audio/prayer/{item_id}.mp3")
+        if is_protected_audio(dest):
+            continue
         if not arabic:
             stale = ROOT / dest
             if stale.exists():
@@ -647,6 +711,8 @@ def build_replace_clips() -> list[Clip]:
         source_arabic = str(item.get("arabic") or "").strip()
         dest = str(item.get("audio") or "").strip()
         item_id = str(item.get("id") or "").strip()
+        if is_protected_audio(dest):
+            continue
         arabic = extract_spoken_arabic(source_arabic, item_id)
         if not arabic or not dest:
             continue
@@ -688,7 +754,7 @@ def build_replace_clips() -> list[Clip]:
         dua = wudu.get("completionDua") or {}
         arabic = str(dua.get("arabic") or "").strip()
         dest = str(dua.get("audio") or "").strip()
-        if arabic and dest:
+        if arabic and dest and not is_protected_audio(dest):
             clips.append(
                 Clip(
                     clip_id="wudu_abdest_duasi",
@@ -1375,6 +1441,21 @@ def run(
     for clip in clips:
         dest = ROOT / clip.rel_path
         dest.parent.mkdir(parents=True, exist_ok=True)
+        if is_protected_audio(clip.rel_path) and looks_like_mp3(dest):
+            skipped += 1
+            log_line("PROTECTED", clip.rel_path)
+            if clip.clip_id not in by_id:
+                by_id[clip.clip_id] = {
+                    "id": clip.clip_id,
+                    "category": clip.category,
+                    "arabic": clip.arabic,
+                    "path": clip.rel_path,
+                    "format": "mp3",
+                    "sha256": sha256_file(dest),
+                    "kind": "human_recitation",
+                    "not_educational_tts": True,
+                }
+            continue
         if not force and looks_like_mp3(dest):
             skipped += 1
             log_line("SKIPPED", clip.rel_path)
