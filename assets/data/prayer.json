@@ -77,6 +77,7 @@
       "image": "assets/images/prayer/step02_tekbir.png",
       "kind": "farz",
       "jsonStepId": "takbir",
+      "duaId": "iftitah_tekbir",
       "caption": "Allahu ekber",
       "imageGirl": "assets/images/prayer/step02_tekbir_girl.png",
       "girlNote": "Kızlar ellerini omuz hizasına kadar kaldırır.",
@@ -107,7 +108,7 @@
       "image": "assets/images/prayer/step04_euzu.png",
       "kind": "sunnah",
       "jsonStepId": "qiyam",
-      "duaId": "besmele",
+      "duaId": "euzu_besmele",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
       "rakat": 1
@@ -374,6 +375,7 @@
       "kind": "sunnah",
       "jsonStepId": "sitting",
       "duaId": "allahumme_salli",
+      "extraDuaIds": ["allahumme_barik"],
       "imageGirl": "assets/images/prayer/step11_oturus_girl.png",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "rakat": 2
@@ -387,6 +389,7 @@
       "kind": "sunnah",
       "jsonStepId": "sitting",
       "duaId": "rabbena_atina",
+      "extraDuaIds": ["rabbena_gfirli"],
       "imageGirl": "assets/images/prayer/step11_oturus_girl.png",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "rakat": 2

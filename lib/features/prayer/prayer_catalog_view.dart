@@ -874,6 +874,14 @@ class _PrayerStepCard extends StatelessWidget {
                       size: 18,
                       color: Color(0xFFC5D4CC),
                     ),
+                  if (step.duaIds.isNotEmpty) ...[
+                    const SizedBox(width: 4),
+                    const Icon(
+                      Icons.volume_up_rounded,
+                      size: 16,
+                      color: MinikColors.green,
+                    ),
+                  ],
                   const Spacer(),
                   InkWell(
                     onTap: onToggleFavorite,
@@ -954,7 +962,7 @@ class PrayerStepDetailPage extends StatefulWidget {
 
 class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
   final _audio = AudioPlayerService();
-  PrayerDua? _dua;
+  List<PrayerDua> _duas = const [];
 
   @override
   void initState() {
@@ -977,17 +985,16 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
   }
 
   Future<void> _loadDua() async {
-    final id = widget.step.duaId;
-    if (id == null) return;
+    final ids = widget.step.duaIds;
+    if (ids.isEmpty) return;
     final duas = await context.read<ContentRepositories>().duas.getPrayerDuas();
     if (!mounted) return;
+    final byId = {for (final dua in duas) dua.id: dua};
     setState(() {
-      for (final dua in duas) {
-        if (dua.id == id) {
-          _dua = dua;
-          break;
-        }
-      }
+      _duas = [
+        for (final id in ids)
+          if (byId[id] != null) byId[id]!,
+      ];
     });
   }
 
@@ -1000,8 +1007,9 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
   void _openColoring() {
     final step = widget.step;
     final image = step.imageFor(girl: widget.girl);
-    final audioPath =
-        step.duaId == null ? null : ContentAssets.audioFor(step.duaId!);
+    final audioPath = step.duaIds.isEmpty
+        ? null
+        : ContentAssets.audioFor(step.duaIds.first);
     openImageColoring(
       context,
       image: image,
@@ -1017,8 +1025,14 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
   @override
   Widget build(BuildContext context) {
     final step = widget.step;
-    final audioPath =
-        step.duaId == null ? null : ContentAssets.audioFor(step.duaId!);
+    final audioItems = [
+      for (final id in step.duaIds)
+        (
+          id: id,
+          title: _titleFor(id),
+          path: ContentAssets.audioFor(id),
+        ),
+    ].where((item) => AssetCatalog.contains(item.path)).toList();
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6F8),
       appBar: AppBar(title: Text(step.title)),
@@ -1121,12 +1135,14 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                   icon: const Icon(Icons.palette_rounded),
                   label: const Text('Boya'),
                 ),
-                if (_dua != null) ...[
-                  const SizedBox(height: 14),
-                  DuaContentBlocks(
-                    dua: DuaEntry.fromPrayerDua(_dua!),
-                    arabicFontSize: 22,
-                  ),
+                if (_duas.isNotEmpty) ...[
+                  for (final dua in _duas) ...[
+                    const SizedBox(height: 14),
+                    DuaContentBlocks(
+                      dua: DuaEntry.fromPrayerDua(dua),
+                      arabicFontSize: 22,
+                    ),
+                  ],
                 ] else if (step.caption.isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Text(
@@ -1137,7 +1153,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
               ],
             ),
           ),
-          if (audioPath != null && AssetCatalog.contains(audioPath))
+          if (audioItems.isNotEmpty)
             Material(
               color: MinikColors.surface,
               elevation: 6,
@@ -1146,9 +1162,36 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                 top: false,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ListenButton(audio: _audio, path: audioPath),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      for (var i = 0; i < audioItems.length; i++) ...[
+                        if (i > 0) const SizedBox(height: 8),
+                        if (audioItems.length > 1)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                audioItems[i].title,
+                                style: const TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  color: MinikColors.darkGreen,
+                                ),
+                              ),
+                            ),
+                          ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ListenButton(
+                            audio: _audio,
+                            path: audioItems[i].path,
+                          ),
+                        ),
+                      ],
+                    ],
                   ),
                 ),
               ),
@@ -1156,5 +1199,23 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
         ],
       ),
     );
+  }
+
+  String _titleFor(String id) {
+    for (final dua in _duas) {
+      if (dua.id == id) return dua.title;
+    }
+    switch (id) {
+      case 'allahumme_salli':
+        return 'Salli';
+      case 'allahumme_barik':
+        return 'Barik';
+      case 'rabbena_atina':
+        return 'Rabbenâ Âtinâ';
+      case 'rabbena_gfirli':
+        return 'Rabbenâğfir Lî';
+      default:
+        return widget.step.title;
+    }
   }
 }

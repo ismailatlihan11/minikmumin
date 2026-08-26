@@ -1,6 +1,8 @@
 abstract final class ContentAssets {
   static const Map<String, String> audio = {
     'besmele': 'assets/audio/prayer/besmele.mp3',
+    'euzu': 'assets/audio/prayer/euzu_besmele.mp3',
+    'euzu_besmele': 'assets/audio/prayer/euzu_besmele.mp3',
     'hamdele': 'assets/audio/prayer/hamdele.mp3',
     'kelime_i_tevhid': 'assets/audio/prayer/kelime_i_tevhid.mp3',
     'kelime_i_sehadet': 'assets/audio/prayer/kelime_i_sehadet.mp3',

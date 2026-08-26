@@ -198,6 +198,8 @@ COMBINE_DRILLS = (
 LEARN_SURAH_NUMBERS = (1, 112, 113, 114, 108, 103, 109, 110, 111, 105, 106, 107)
 PRAYER_AUDIO_PATHS = {
     "besmele": "assets/audio/prayer/besmele.mp3",
+    "euzu_besmele": "assets/audio/prayer/euzu_besmele.mp3",
+    "euzu": "assets/audio/prayer/euzu_besmele.mp3",
     "hamdele": "assets/audio/prayer/hamdele.mp3",
     "kelime_i_tevhid": "assets/audio/prayer/kelime_i_tevhid.mp3",
     "kelime_i_sehadet": "assets/audio/prayer/kelime_i_sehadet.mp3",

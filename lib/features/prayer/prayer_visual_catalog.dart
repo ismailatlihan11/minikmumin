@@ -12,6 +12,7 @@ class PrayerVisualStep {
     required this.kind,
     this.jsonStepId,
     this.duaId,
+    this.extraDuaIds = const [],
     this.caption = '',
     this.imageGirl = '',
     this.girlNote = '',
@@ -28,12 +29,18 @@ class PrayerVisualStep {
   final PrayerKind kind;
   final String? jsonStepId;
   final String? duaId;
+  final List<String> extraDuaIds;
   final String caption;
   final String imageGirl;
   final String girlNote;
   final List<String> motionFrames;
   final List<String> motionFramesGirl;
   final int rakat;
+
+  List<String> get duaIds => [
+        if (duaId != null && duaId!.isNotEmpty) duaId!,
+        ...extraDuaIds,
+      ];
 
   String imageFor({required bool girl}) {
     if (girl && imageGirl.isNotEmpty) return imageGirl;
@@ -57,6 +64,7 @@ class PrayerVisualStep {
       kind: kindFrom(json['kind']),
       jsonStepId: jsonStepId.isEmpty ? null : jsonStepId,
       duaId: duaId.isEmpty ? null : duaId,
+      extraDuaIds: JsonMap.strings(json['extraDuaIds']),
       caption: JsonMap.str(json['caption']),
       imageGirl: JsonMap.str(json['imageGirl']),
       girlNote: JsonMap.str(json['girlNote']),
@@ -181,7 +189,7 @@ abstract final class PrayerVisualCatalog {
       girlNote: 'Kızlar ellerini göğüs hizasında bağlar.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'qiyam',
-      duaId: 'besmele',
+      duaId: 'euzu_besmele',
     ),
     PrayerVisualStep(
       id: 'fatiha',
@@ -484,6 +492,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'allahumme_salli',
+      extraDuaIds: const ['allahumme_barik'],
       rakat: 2,
     ),
     PrayerVisualStep(
@@ -497,6 +506,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'rabbena_atina',
+      extraDuaIds: const ['rabbena_gfirli'],
       rakat: 2,
     ),
     PrayerVisualStep(
@@ -680,6 +690,8 @@ abstract final class PrayerVisualCatalog {
       kind: json.kind,
       jsonStepId: json.jsonStepId ?? fallback.jsonStepId,
       duaId: json.duaId ?? fallback.duaId,
+      extraDuaIds:
+          json.extraDuaIds.isNotEmpty ? json.extraDuaIds : fallback.extraDuaIds,
       caption: json.caption.isNotEmpty ? json.caption : fallback.caption,
       imageGirl:
           json.imageGirl.isNotEmpty ? json.imageGirl : fallback.imageGirl,

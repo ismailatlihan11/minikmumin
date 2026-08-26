@@ -4,7 +4,7 @@
   "description": "Çocuklara namazda öğrenilecek ifadeleri, sûreleri ve duaları kullanıcının belirlediği sırayla öğreten içerik listesi.",
   "language": "tr",
   "ordered": true,
-  "itemCount": 26,
+  "itemCount": 27,
   "learningAlgorithm": {
     "type": "strict_order",
     "rule": "Bir içerik tamamlanmadan sonraki order değerine geçilmez.",
@@ -21,6 +21,17 @@
       "transliteration": "Bismillâhirrahmânirrahîm.",
       "meaning": "Rahmân ve rahîm olan Allah'ın adıyla.",
       "usage": "Güzel bir işe başlarken söylenir."
+    },
+    {
+      "order": 1,
+      "id": "euzu_besmele",
+      "type": "prayer_dua",
+      "title": "Eûzü - Besmele",
+      "arabic": "أَعُوذُ بِاللّٰهِ مِنَ الشَّيْطَانِ الرَّجِيمِ\nبِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ",
+      "transliteration": "Eûzü billâhi mineş-şeytânir-racîm. Bismillâhirrahmânirrahîm.",
+      "meaning": "Kovulmuş şeytandan Allah'a sığınırım. Rahmân ve rahîm olan Allah'ın adıyla.",
+      "usage": "Namazda Fâtiha'dan önce eûzü besmele çekilir.",
+      "source": "Diyanet namaz ilmihali"
     },
     {
       "order": 2,
