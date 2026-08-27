@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
@@ -133,6 +132,41 @@ String? quranLearnCompareGlyph(QuranArabicLetter letter, String harakaId) {
 
 bool quranLearnHasComparison(String harakaId) {
   return harakaId.endsWith('_madd') || harakaId.startsWith('tanwin_');
+}
+
+/// Teaching line under a hareke title. Extra fetha contrast comes from JSON
+/// examples (`e / a` and `(kalın)`), not invented fıkıh.
+String quranLearnHarakatTeachLine(QuranHaraka haraka) {
+  final rule = haraka.readingRule.trim();
+  if (haraka.id != 'fatha') return rule;
+  final hasEa = haraka.examples.any((item) => item.reading.contains('e / a'));
+  final hasHeavy = haraka.examples.any((item) => item.reading.contains('kalın'));
+  if (hasEa && hasHeavy) {
+    return "$rule İnce harfleri 'e' sesine yakın, kalın harfleri 'a' sesine yakın okutur.";
+  }
+  return rule;
+}
+
+bool quranLearnIsSukunLetter(QuranArabicLetter letter) {
+  return letter.letter != 'ا' && letter.letter != 'لا';
+}
+
+/// Elifba cezm kartı: harekeli elif + sakin harf, üç hareke ile.
+String quranLearnSukunTriplet(QuranArabicLetter letter) {
+  final consonant = letter.letter;
+  return 'أَ$consonantْ إِ$consonantْ أُ$consonantْ';
+}
+
+/// JSON kuralı: ilk bölüm sakin, ikinci bölüm harekeli.
+String quranLearnShaddaUnfold(String letter) {
+  return '$letterْ + $letterَ';
+}
+
+List<QuranArabicLetter> quranLearnSukunLetters(List<QuranArabicLetter> letters) {
+  return [
+    for (final letter in letters)
+      if (quranLearnIsSukunLetter(letter)) letter,
+  ];
 }
 
 List<QuranLearnPracticeItem> quranLearnPracticeItems({
@@ -271,37 +305,188 @@ class _PracticeCell extends StatelessWidget {
   }
 }
 
+class QlPracticeGrid extends StatelessWidget {
+  const QlPracticeGrid({
+    super.key,
+    required this.audio,
+    required this.items,
+    this.columns = 5,
+    this.fontSize = 22,
+    this.aspect = 1,
+    this.checkerboard = false,
+    this.captionOf,
+  });
+
+  final AudioPlayerService audio;
+  final List<QuranLearnPracticeItem> items;
+  final int columns;
+  final double fontSize;
+  final double aspect;
+  final bool checkerboard;
+  final String? Function(QuranLearnPracticeItem item)? captionOf;
+
+  @override
+  Widget build(BuildContext context) {
+    if (items.isEmpty) return const SizedBox.shrink();
+    final store = context.read<LocalProgressStore>();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columns,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          childAspectRatio: aspect,
+        ),
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return QlDashTile(
+            arabic: item.arabic,
+            caption: captionOf?.call(item),
+            heavy: item.letter.isHeavySound,
+            fontSize: fontSize,
+            fillColor: checkerboard && index.isOdd
+                ? const Color(0xFFEAF4F8)
+                : Colors.white,
+            onTap: QuranLearnAudio.resolve(item.audio) == null
+                ? null
+                : () => QuranLearnAudio.play(audio, store, item.audio),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class QlSukunTripletGrid extends StatelessWidget {
+  const QlSukunTripletGrid({
+    super.key,
+    required this.audio,
+    required this.letters,
+  });
+
+  final AudioPlayerService audio;
+  final List<QuranArabicLetter> letters;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = quranLearnSukunLetters(letters);
+    if (items.isEmpty) return const SizedBox.shrink();
+    final store = context.read<LocalProgressStore>();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 6,
+          crossAxisSpacing: 6,
+          childAspectRatio: 1.45,
+        ),
+        itemBuilder: (context, index) {
+          final letter = items[index];
+          final audioPath = QuranLearnAudio.practicePath(letter.audio, 'sukun');
+          return QlDashTile(
+            arabic: quranLearnSukunTriplet(letter),
+            heavy: letter.isHeavySound,
+            fontSize: 15,
+            fillColor: index.isOdd ? const Color(0xFFF7EBC4) : Colors.white,
+            onTap: QuranLearnAudio.resolve(audioPath) == null
+                ? null
+                : () => QuranLearnAudio.play(audio, store, audioPath),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class QlExampleListenGrid extends StatelessWidget {
+  const QlExampleListenGrid({
+    super.key,
+    required this.audio,
+    required this.examples,
+    this.columns = 3,
+    this.aspect = 1.15,
+  });
+
+  final AudioPlayerService audio;
+  final List<QuranHarakaExample> examples;
+  final int columns;
+  final double aspect;
+
+  @override
+  Widget build(BuildContext context) {
+    if (examples.isEmpty) return const SizedBox.shrink();
+    final store = context.read<LocalProgressStore>();
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: examples.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columns,
+          mainAxisSpacing: 6,
+          crossAxisSpacing: 6,
+          childAspectRatio: aspect,
+        ),
+        itemBuilder: (context, index) {
+          final example = examples[index];
+          return QlDashTile(
+            arabic: example.arabic,
+            caption: example.reading,
+            fontSize: 22,
+            fillColor: index.isOdd ? const Color(0xFFEAF4F8) : Colors.white,
+            onTap: QuranLearnAudio.resolve(example.audio) == null
+                ? null
+                : () => QuranLearnAudio.play(audio, store, example.audio),
+          );
+        },
+      ),
+    );
+  }
+}
+
 class QlPracticeSection extends StatelessWidget {
   const QlPracticeSection({
     super.key,
     required this.audio,
     required this.letters,
     required this.harakaId,
+    this.examples = const [],
   });
 
   final AudioPlayerService audio;
   final List<QuranArabicLetter> letters;
   final String harakaId;
+  final List<QuranHarakaExample> examples;
 
   @override
   Widget build(BuildContext context) {
+    if (harakaId == 'sukun') {
+      return QlSukunTripletGrid(audio: audio, letters: letters);
+    }
     final items = quranLearnPracticeItems(letters: letters, harakaId: harakaId);
-    if (items.isEmpty) return const SizedBox.shrink();
-    final compare = quranLearnHasComparison(harakaId);
+    if (items.isEmpty && examples.isEmpty) return const SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (compare) ...[
-          const SectionLabel('Karşılaştırma'),
-          QlPracticeTable(
-            audio: audio,
-            items: items.take(6).toList(growable: false),
-            compare: true,
-          ),
-          const SizedBox(height: AppSpacing.md),
+        if (examples.isNotEmpty) ...[
+          QlExampleListenGrid(audio: audio, examples: examples),
+          const SizedBox(height: 10),
         ],
-        const SectionLabel('Uygulama'),
-        QlPracticeTable(audio: audio, items: items, compare: false),
+        QlPracticeGrid(
+          audio: audio,
+          items: items,
+          columns: harakaId == 'shadda' ? 4 : 5,
+          fontSize: harakaId == 'shadda' ? 24 : 22,
+        ),
       ],
     );
   }

@@ -41,11 +41,38 @@ enum QuranLearnMemoryLevel {
 
   int get xp => pairCount;
 
+  int get rows => ((pairCount * 2) / columns).ceil();
+
   double get letterSize => switch (this) {
-        easy => 48,
-        medium => 42,
-        hard => 32,
+        easy => 28,
+        medium => 32,
+        hard => 26,
       };
+
+  double get cardGap => switch (this) {
+        easy => 6,
+        medium => 8,
+        hard => 6,
+      };
+
+  double get cardIconSize => switch (this) {
+        easy => 22,
+        medium => 28,
+        hard => 22,
+      };
+
+  static double boardAspectRatio({
+    required double width,
+    required double height,
+    required int columns,
+    required int rows,
+    required double gap,
+  }) {
+    final cardWidth = (width - gap * (columns - 1)) / columns;
+    final cardHeight = (height - gap * (rows - 1)) / rows;
+    if (cardWidth <= 0 || cardHeight <= 0) return 1;
+    return cardWidth / cardHeight;
+  }
 
   Duration get mismatchPause => switch (this) {
         easy => const Duration(milliseconds: 900),
@@ -194,71 +221,90 @@ class _MemoryBoardState extends State<_MemoryBoard> {
     );
   }
 
+  Widget _tile(int index) {
+    if (index < 0 || index >= _cards.length) {
+      return const SizedBox.shrink();
+    }
+    final card = _cards[index];
+    final open = card.faceUp || card.matched;
+    return SizedBox.expand(
+      child: MinikCard(
+        color: card.matched
+            ? MinikColors.mint
+            : open
+                ? Colors.white
+                : MinikColors.sky,
+        padding: const EdgeInsets.all(4),
+        onTap: () => _tap(index),
+        child: Center(
+          child: FittedBox(
+            child: open
+                ? QlBigArabic(card.letter.letter, fontSize: _level.letterSize)
+                : Icon(
+                    Icons.help_rounded,
+                    size: _level.cardIconSize,
+                    color: MinikColors.darkGreen,
+                  ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Padding(
       padding: AppSpacing.page,
-      children: [
-        const PageHeader(
-          title: 'Harf Eşleştir',
-          subtitle: 'Aynı iki harfi bul.',
-          image: 'assets/images/home/card_quran_learn.png',
-        ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final level in QuranLearnMemoryLevel.values)
-              ChoiceChip(
-                label: Text(level.label),
-                selected: _level == level,
-                selectedColor: MinikColors.mint,
-                onSelected: (_) => _setLevel(level),
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            'Aynı iki harfi bul.',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final level in QuranLearnMemoryLevel.values)
+                ChoiceChip(
+                  label: Text(level.label),
+                  selected: _level == level,
+                  selectedColor: MinikColors.mint,
+                  onSelected: (_) => _setLevel(level),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Expanded(
+            child: Column(
+              children: [
+                for (var row = 0; row < _level.rows; row++) ...[
+                  if (row > 0) SizedBox(height: _level.cardGap),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        for (var col = 0; col < _level.columns; col++) ...[
+                          if (col > 0) SizedBox(width: _level.cardGap),
+                          Expanded(child: _tile(row * _level.columns + col)),
+                        ],
+                      ],
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+          if (_won) ...[
+            const SizedBox(height: 10),
+            PrimaryButton(
+              label: 'Yeni oyun',
+              onPressed: () => setState(_deal),
+            ),
           ],
-        ),
-        const SizedBox(height: AppSpacing.md),
-        GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: _cards.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: _level.columns,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 0.9,
-          ),
-          itemBuilder: (context, index) {
-            final card = _cards[index];
-            final open = card.faceUp || card.matched;
-            return MinikCard(
-              color: card.matched
-                  ? MinikColors.mint
-                  : open
-                      ? Colors.white
-                      : MinikColors.sky,
-              padding: const EdgeInsets.all(8),
-              onTap: () => _tap(index),
-              child: Center(
-                child: open
-                    ? QlBigArabic(card.letter.letter, fontSize: _level.letterSize)
-                    : const Icon(
-                        Icons.help_rounded,
-                        size: 36,
-                        color: MinikColors.darkGreen,
-                      ),
-              ),
-            );
-          },
-        ),
-        if (_won) ...[
-          const SizedBox(height: AppSpacing.lg),
-          PrimaryButton(
-            label: 'Yeni oyun',
-            onPressed: () => setState(_deal),
-          ),
         ],
-      ],
+      ),
     );
   }
 }

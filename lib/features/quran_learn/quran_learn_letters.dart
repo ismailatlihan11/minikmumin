@@ -10,10 +10,11 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
+import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
-class QuranLearnLettersPage extends StatelessWidget {
+class QuranLearnLettersPage extends StatefulWidget {
   const QuranLearnLettersPage({
     super.key,
     required this.pack,
@@ -25,114 +26,138 @@ class QuranLearnLettersPage extends StatelessWidget {
   final int levelId;
   final bool formsFocus;
 
-  String get _kind => formsFocus ? 'ql_letter_form' : 'ql_letter';
+  String get progressKind => formsFocus ? 'ql_letter_form' : 'ql_letter';
+
+  @override
+  State<QuranLearnLettersPage> createState() => _QuranLearnLettersPageState();
+}
+
+class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
+  final _audio = AudioPlayerService();
+  bool _showNames = true;
+  String? _selectedId;
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  Future<void> _listen(QuranArabicLetter letter) async {
+    setState(() => _selectedId = letter.id);
+    final store = context.read<LocalProgressStore>();
+    await QuranLearnAudio.play(_audio, store, letter.audio);
+    if (!mounted) return;
+    final snap = await QuranLearnProgress.load(store, widget.pack);
+    if (snap.isDone(widget.progressKind, letter.id)) return;
+    await QuranLearnProgress.complete(
+      store,
+      pack: widget.pack,
+      kind: widget.progressKind,
+      id: letter.id,
+    );
+  }
+
+  void _openDetail(QuranArabicLetter letter) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => QuranLearnLetterDetailPage(
+          pack: widget.pack,
+          letter: letter,
+          levelId: widget.levelId,
+          formsFocus: widget.formsFocus,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
+    final games = widget.pack.gamesForLevel(widget.levelId);
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
         title: Text(
-          pack.titleForLevel(
-            levelId,
-            fallback: formsFocus ? 'Harf şekilleri' : 'Harfler',
+          widget.pack.titleForLevel(
+            widget.levelId,
+            fallback: widget.formsFocus ? 'Harf şekilleri' : 'Harfler',
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton.small(
+        tooltip: _showNames ? 'İsimleri gizle' : 'İsimleri göster',
+        backgroundColor: Colors.white,
+        foregroundColor: MinikColors.green,
+        onPressed: () => setState(() => _showNames = !_showNames),
+        child: Icon(
+          _showNames ? Icons.visibility_rounded : Icons.visibility_off_rounded,
+        ),
+      ),
       body: FutureBuilder<QuranLearnSnapshot>(
-        future: QuranLearnProgress.load(store, pack),
+        future: QuranLearnProgress.load(store, widget.pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
-          final done = snap?.completedCount(levelId) ?? 0;
-          final total = pack.letters.length;
+          final done = snap?.completedCount(widget.levelId) ?? 0;
+          final total = widget.pack.letters.length;
           return ListView(
-            padding: AppSpacing.page,
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
             children: [
               QlSoftProgress(
                 value: total == 0 ? 0 : done / total,
                 label: '$done / $total harf',
               ),
-              const SizedBox(height: AppSpacing.md),
-              MinikCard(
-                color: MinikColors.sky,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      pack.levelById(levelId)?.description ??
-                          (formsFocus
-                              ? 'Harfin kelimedeki dört şeklini görelim.'
-                              : 'Harfler ve isimleri, sesleri, şekilleri.'),
-                      style: const TextStyle(
-                        fontFamily: 'NotoSans',
-                        fontWeight: FontWeight.w700,
-                        color: MinikColors.darkGreen,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    if (formsFocus) ...[
-                      const Text('· Tek başına'),
-                      const Text('· Başta'),
-                      const Text('· Ortada'),
-                      const Text('· Sonda'),
-                    ] else ...[
-                      const Text('· Harfler ve İsimleri'),
-                      const Text('· Harfler ve Sesleri'),
-                      const Text('· Harfler ve Şekilleri'),
-                      const Text('· Pekiştirme'),
-                    ],
-                  ],
+              const SizedBox(height: 8),
+              QlLessonIntro(
+                title: widget.formsFocus
+                    ? 'Ders 1: Harflerin kelimedeki şekilleri'
+                    : 'Ders 1: Harflerin bağımsız isimleri',
+                cue: 'Harfin üzerine tıkla / dinleyerek öğren',
+                note: 'Kırmızı olanlar kalın harflerdir.',
+                hint: _showNames
+                    ? 'Göz ile isimleri gizleyebilirsin. Uzun basınca şekilleri görürsün.'
+                    : 'Uzun basınca isim ve şekilleri görürsün.',
+              ),
+              const SizedBox(height: 10),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: widget.pack.letters.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    childAspectRatio: _showNames ? 0.78 : 1,
+                  ),
+                  itemBuilder: (context, index) {
+                    final letter = widget.pack.letters[index];
+                    final learned =
+                        snap?.isDone(widget.progressKind, letter.id) ?? false;
+                    final arabic = widget.formsFocus
+                        ? letter.forms.isolated
+                        : letter.letter;
+                    return QlDashTile(
+                      arabic: arabic,
+                      caption: _showNames ? letter.name : null,
+                      heavy: letter.isHeavySound,
+                      learned: learned,
+                      selected: _selectedId == letter.id,
+                      fontSize: 28,
+                      onTap: QuranLearnAudio.resolve(letter.audio) == null
+                          ? () => _openDetail(letter)
+                          : () => _listen(letter),
+                      onLongPress: () => _openDetail(letter),
+                    );
+                  },
                 ),
               ),
-              const SizedBox(height: AppSpacing.md),
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: pack.letters.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 0.82,
-                ),
-                itemBuilder: (context, index) {
-                  final letter = pack.letters[index];
-                  final learned = snap?.isDone(_kind, letter.id) ?? false;
-                  return MinikCard(
-                    color: learned ? MinikColors.mint : Colors.white,
-                    padding: const EdgeInsets.all(6),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => QuranLearnLetterDetailPage(
-                          pack: pack,
-                          letter: letter,
-                          levelId: levelId,
-                          formsFocus: formsFocus,
-                        ),
-                      ),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        QlBigArabic(letter.letter, fontSize: 28),
-                        Text(
-                          letter.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontFamily: 'NotoSans',
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            color: MinikColors.darkGreen,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+              if (games.isNotEmpty) ...[
+                const SizedBox(height: AppSpacing.md),
+                QlGamesStrip(games: games, title: 'Harf oyunları'),
+              ],
             ],
           );
         },
@@ -285,6 +310,9 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                     child: QlBigArabic(
                       letter.letter,
                       fontSize: 86,
+                      color: letter.isHeavySound
+                          ? QlDashTile.heavyLetter
+                          : MinikColors.darkGreen,
                       onTap: QuranLearnAudio.resolve(letter.audio) == null
                           ? null
                           : _play,

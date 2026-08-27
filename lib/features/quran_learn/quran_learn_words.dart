@@ -8,11 +8,12 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
-class QuranLearnWordsPage extends StatelessWidget {
+class QuranLearnWordsPage extends StatefulWidget {
   const QuranLearnWordsPage({
     super.key,
     required this.pack,
@@ -23,58 +24,104 @@ class QuranLearnWordsPage extends StatelessWidget {
   final int levelId;
 
   @override
+  State<QuranLearnWordsPage> createState() => _QuranLearnWordsPageState();
+}
+
+class _QuranLearnWordsPageState extends State<QuranLearnWordsPage> {
+  final _audio = AudioPlayerService();
+  String? _selectedId;
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  void _openDetail(QuranWord word) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => QuranLearnWordDetailPage(pack: widget.pack, word: word),
+      ),
+    );
+  }
+
+  Future<void> _listen(QuranWord word) async {
+    setState(() => _selectedId = word.id);
+    await QuranLearnAudio.play(
+      _audio,
+      context.read<LocalProgressStore>(),
+      word.audio,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
-        title: Text(pack.titleForLevel(levelId, fallback: 'Pekiştirme')),
+        title: Text(
+          widget.pack.titleForLevel(widget.levelId, fallback: 'Pekiştirme'),
+        ),
       ),
       body: FutureBuilder<QuranLearnSnapshot>(
-        future: QuranLearnProgress.load(store, pack),
+        future: QuranLearnProgress.load(store, widget.pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
-          final done = snap?.completedCount(levelId) ?? 0;
+          final done = snap?.completedCount(widget.levelId) ?? 0;
           return ListView(
-            padding: AppSpacing.page,
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
             children: [
               QlSoftProgress(
-                value: pack.words.isEmpty ? 0 : done / pack.words.length,
-                label: '$done / ${pack.words.length} kelime',
+                value: widget.pack.words.isEmpty
+                    ? 0
+                    : done / widget.pack.words.length,
+                label: '$done / ${widget.pack.words.length} kelime',
               ),
-              const SizedBox(height: AppSpacing.md),
-              MinikCard(
-                color: MinikColors.sky,
-                child: Text(
-                  pack.levelById(levelId)?.description ??
-                      'Şeddeyi pekiştirerek Kur\'an kelimelerini okuyalım.',
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w700,
-                    color: MinikColors.darkGreen,
+              const SizedBox(height: 8),
+              QlLessonIntro(
+                title: widget.pack.titleForLevel(
+                  widget.levelId,
+                  fallback: 'Kelime okuma',
+                ),
+                cue: 'Kelimenin üzerine tıkla / dinleyerek öğren',
+                rule: widget.pack.levelById(widget.levelId)?.description,
+                hint: 'Uzun basınca anlamı ve kaynağı görürsün.',
+              ),
+              const SizedBox(height: 10),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: widget.pack.words.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 6,
+                    crossAxisSpacing: 6,
+                    childAspectRatio: 1.05,
                   ),
+                  itemBuilder: (context, index) {
+                    final word = widget.pack.words[index];
+                    final learned =
+                        snap?.isDone('ql_word', word.id) ?? false;
+                    return QlDashTile(
+                      arabic: word.arabic,
+                      learned: learned,
+                      selected: _selectedId == word.id,
+                      fontSize: 22,
+                      fillColor: index.isOdd
+                          ? const Color(0xFFEAF4F8)
+                          : Colors.white,
+                      onTap: QuranLearnAudio.resolve(word.audio) == null
+                          ? () => _openDetail(word)
+                          : () => _listen(word),
+                      onLongPress: () => _openDetail(word),
+                    );
+                  },
                 ),
               ),
-              const SizedBox(height: AppSpacing.md),
-              for (final word in pack.words)
-                ContentTile(
-                  title: word.reading,
-                  subtitle: '${word.meaningTr} · ${word.quranReference}',
-                  color: snap?.isDone('ql_word', word.id) == true
-                      ? MinikColors.mint
-                      : null,
-                  leading: SizedBox(
-                    width: 52,
-                    child: QlBigArabic(word.arabic, fontSize: 22),
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          QuranLearnWordDetailPage(pack: pack, word: word),
-                    ),
-                  ),
-                ),
             ],
           );
         },

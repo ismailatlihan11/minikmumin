@@ -65,6 +65,107 @@ void main() {
     expect(quranLearnHarakaUsesElif('fatha'), isTrue);
     expect(quranLearnHarakaUsesElif('tanwin_fath'), isFalse);
   });
+
+  test('fetha teach line uses JSON e/a and kalın examples', () {
+    const fatha = QuranHaraka(
+      id: 'fatha',
+      order: 1,
+      name: 'Fetha',
+      symbol: 'َ',
+      readingRule: "Kısa 'a' sesi verir.",
+      examples: [
+        QuranHarakaExample(arabic: 'أَ', reading: 'e / a'),
+        QuranHarakaExample(arabic: 'طَ', reading: 'ta (kalın)'),
+      ],
+    );
+    const kasra = QuranHaraka(
+      id: 'kasra',
+      order: 4,
+      name: 'Kesra',
+      symbol: 'ِ',
+      readingRule: "Kısa 'i' sesi verir.",
+      examples: [],
+    );
+    expect(quranLearnHarakatTeachLine(fatha), contains("Kısa 'a' sesi verir."));
+    expect(quranLearnHarakatTeachLine(fatha), contains("'e'"));
+    expect(quranLearnHarakatTeachLine(fatha), contains("'a'"));
+    expect(quranLearnHarakatTeachLine(kasra), "Kısa 'i' sesi verir.");
+  });
+
+  test('practice glyphs mark heavy letters from JSON sound field', () {
+    const heavy = QuranArabicLetter(
+      id: 'letter_16',
+      order: 16,
+      letter: 'ط',
+      name: 'Tı',
+      approximateTurkishSound: 'ta (kalın)',
+      connectionType: 'connected',
+      forms: QuranLetterForms(
+        isolated: 'ط',
+        initial: 'طـ',
+        medial: 'ـطـ',
+        finalForm: 'ـط',
+      ),
+      connectsToNext: true,
+    );
+    const light = QuranArabicLetter(
+      id: 'letter_03',
+      order: 3,
+      letter: 'ت',
+      name: 'Te',
+      approximateTurkishSound: 't',
+      connectionType: 'connected',
+      forms: QuranLetterForms(
+        isolated: 'ت',
+        initial: 'تـ',
+        medial: 'ـتـ',
+        finalForm: 'ـت',
+      ),
+      connectsToNext: true,
+    );
+    expect(heavy.isHeavySound, isTrue);
+    expect(light.isHeavySound, isFalse);
+    expect(quranLearnPracticeGlyph(heavy, 'fatha'), 'طَ');
+    expect(quranLearnPracticeGlyph(light, 'fatha'), 'تَ');
+  });
+
+  test('cezm triplet and shadda unfold stay on existing letters', () {
+    const ba = QuranArabicLetter(
+      id: 'letter_02',
+      order: 2,
+      letter: 'ب',
+      name: 'Be',
+      approximateTurkishSound: 'b',
+      connectionType: 'connected',
+      forms: QuranLetterForms(
+        isolated: 'ب',
+        initial: 'بـ',
+        medial: 'ـبـ',
+        finalForm: 'ـب',
+      ),
+      connectsToNext: true,
+    );
+    const elif = QuranArabicLetter(
+      id: 'letter_01',
+      order: 1,
+      letter: 'ا',
+      name: 'Elif',
+      approximateTurkishSound: 'a',
+      connectionType: 'right_only',
+      forms: QuranLetterForms(
+        isolated: 'ا',
+        initial: 'ا',
+        medial: 'ـا',
+        finalForm: 'ـا',
+      ),
+      connectsToNext: false,
+    );
+    expect(quranLearnIsSukunLetter(ba), isTrue);
+    expect(quranLearnIsSukunLetter(elif), isFalse);
+    expect(quranLearnSukunTriplet(ba), 'أَبْ إِبْ أُبْ');
+    expect(quranLearnShaddaUnfold('ب'), 'بْ + بَ');
+    expect(quranLearnSukunLetters([elif, ba]), [ba]);
+  });
 }
 
 final _lessons = [

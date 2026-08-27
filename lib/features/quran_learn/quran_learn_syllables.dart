@@ -3,16 +3,18 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_audio.dart';
 import 'quran_learn_combine.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 import 'quran_learn_words.dart';
 
-class QuranLearnSyllablesPage extends StatelessWidget {
+class QuranLearnSyllablesPage extends StatefulWidget {
   const QuranLearnSyllablesPage({
     super.key,
     required this.pack,
@@ -23,8 +25,24 @@ class QuranLearnSyllablesPage extends StatelessWidget {
   final int levelId;
 
   @override
+  State<QuranLearnSyllablesPage> createState() => _QuranLearnSyllablesPageState();
+}
+
+class _QuranLearnSyllablesPageState extends State<QuranLearnSyllablesPage> {
+  final _audio = AudioPlayerService();
+  String? _selectedWordId;
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
+    final pack = widget.pack;
+    final levelId = widget.levelId;
     final games = pack.gamesForLevel(levelId);
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
@@ -40,24 +58,18 @@ class QuranLearnSyllablesPage extends StatelessWidget {
           final done = snap?.completedCount(levelId) ?? 0;
           final total = pack.realLessonCount(levelId);
           return ListView(
-            padding: AppSpacing.page,
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
             children: [
               QlSoftProgress(
                 value: total == 0 ? 0 : done / total,
                 label: '$done / $total ders',
               ),
-              const SizedBox(height: AppSpacing.md),
-              MinikCard(
-                color: MinikColors.sky,
-                child: Text(
-                  pack.levelById(levelId)?.description ??
-                      'Harfleri birleştirip gerçek Kur’an kelimelerini okuyalım.',
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w700,
-                    color: MinikColors.darkGreen,
-                  ),
-                ),
+              const SizedBox(height: 8),
+              QlLessonIntro(
+                title: pack.titleForLevel(levelId, fallback: 'Heceleme'),
+                cue: 'Kelimenin üzerine tıkla / dinleyerek öğren',
+                rule: pack.levelById(levelId)?.description,
+                hint: 'Uzun basınca anlamı görürsün.',
               ),
               const SizedBox(height: AppSpacing.md),
               const SectionLabel('Heceleme'),
@@ -81,25 +93,45 @@ class QuranLearnSyllablesPage extends StatelessWidget {
                 ),
               const SizedBox(height: AppSpacing.md),
               const SectionLabel('Kelime okuma'),
-              for (final word in pack.words)
-                ContentTile(
-                  title: word.reading,
-                  subtitle: '${word.meaningTr} · ${word.quranReference}',
-                  color: snap?.isDone('ql_word', word.id) == true
-                      ? MinikColors.mint
-                      : null,
-                  leading: SizedBox(
-                    width: 52,
-                    child: QlBigArabic(word.arabic, fontSize: 22),
+              Directionality(
+                textDirection: TextDirection.rtl,
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: pack.words.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 6,
+                    crossAxisSpacing: 6,
+                    childAspectRatio: 1.05,
                   ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          QuranLearnWordDetailPage(pack: pack, word: word),
-                    ),
-                  ),
+                  itemBuilder: (context, index) {
+                    final word = pack.words[index];
+                    return QlDashTile(
+                      arabic: word.arabic,
+                      learned: snap?.isDone('ql_word', word.id) ?? false,
+                      selected: _selectedWordId == word.id,
+                      fontSize: 22,
+                      fillColor: index.isOdd
+                          ? const Color(0xFFEAF4F8)
+                          : Colors.white,
+                      onTap: () {
+                        setState(() => _selectedWordId = word.id);
+                        QuranLearnAudio.play(_audio, store, word.audio);
+                      },
+                      onLongPress: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => QuranLearnWordDetailPage(
+                            pack: pack,
+                            word: word,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
+              ),
               if (games.isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.md),
                 QlGamesStrip(games: games, title: 'Heceleme oyunları'),

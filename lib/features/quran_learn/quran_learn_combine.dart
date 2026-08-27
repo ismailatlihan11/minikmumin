@@ -8,12 +8,14 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
+import 'quran_learn_practice.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
-class QuranLearnCombinePage extends StatelessWidget {
+class QuranLearnCombinePage extends StatefulWidget {
   const QuranLearnCombinePage({
     super.key,
     required this.pack,
@@ -24,8 +26,23 @@ class QuranLearnCombinePage extends StatelessWidget {
   final int levelId;
 
   @override
+  State<QuranLearnCombinePage> createState() => _QuranLearnCombinePageState();
+}
+
+class _QuranLearnCombinePageState extends State<QuranLearnCombinePage> {
+  final _audio = AudioPlayerService();
+
+  @override
+  void dispose() {
+    _audio.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
+    final pack = widget.pack;
+    final levelId = widget.levelId;
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(
@@ -38,27 +55,27 @@ class QuranLearnCombinePage extends StatelessWidget {
         builder: (context, snapshot) {
           final snap = snapshot.data;
           final done = snap?.completedCount(levelId) ?? 0;
+          final sukun = pack.harakaById('sukun');
           return ListView(
-            padding: AppSpacing.page,
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
             children: [
               QlSoftProgress(
-                value: pack.combinations.isEmpty ? 0 : done / pack.combinations.length,
+                value: pack.combinations.isEmpty
+                    ? 0
+                    : done / pack.combinations.length,
                 label: '$done / ${pack.combinations.length} ders',
               ),
-              const SizedBox(height: AppSpacing.md),
-              MinikCard(
-                color: MinikColors.sky,
-                child: Text(
-                  pack.levelById(levelId)?.description ??
-                      'Cezm ile harfleri birleştirelim.',
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w700,
-                    color: MinikColors.darkGreen,
-                  ),
-                ),
+              const SizedBox(height: 8),
+              QlLessonIntro(
+                title: 'Ders: Cezm (${sukun?.symbol ?? 'ْ'})',
+                cue: 'Kareye dokun, dinleyerek öğren',
+                rule: sukun?.readingRule ??
+                    pack.levelById(levelId)?.description,
               ),
+              const SizedBox(height: 10),
+              QlSukunTripletGrid(audio: _audio, letters: pack.letters),
               const SizedBox(height: AppSpacing.md),
+              const SectionLabel('Birleştirme'),
               for (final lesson in pack.combinations)
                 ContentTile(
                   title: lesson.title,
@@ -163,6 +180,50 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
           LessonProgressBar(
             current: _index + (_won ? 1 : 0),
             total: widget.lesson.examples.length,
+          ),
+          const SizedBox(height: 8),
+          QlLessonIntro(
+            title: widget.lesson.title,
+            cue: 'Kareye dokun, dinle; sonra harfleri sıraya koy',
+            rule: example.note,
+          ),
+          const SizedBox(height: 10),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: widget.lesson.examples.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 6,
+                crossAxisSpacing: 6,
+                childAspectRatio: 1.2,
+              ),
+              itemBuilder: (context, index) {
+                final item = widget.lesson.examples[index];
+                return QlDashTile(
+                  arabic: item.combined,
+                  caption: item.reading,
+                  selected: index == _index,
+                  fontSize: 20,
+                  fillColor: index.isOdd
+                      ? const Color(0xFFF7EBC4)
+                      : Colors.white,
+                  onTap: () {
+                    setState(() {
+                      _index = index;
+                      _won = false;
+                    });
+                    QuranLearnAudio.play(
+                      _audio,
+                      context.read<LocalProgressStore>(),
+                      item.audio,
+                    );
+                  },
+                );
+              },
+            ),
           ),
           const SizedBox(height: AppSpacing.md),
           MinikCard(
