@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-class TasbihBeadsView extends StatelessWidget {
+class TasbihBeadsView extends StatefulWidget {
   const TasbihBeadsView({
     super.key,
     required this.beadCount,
@@ -13,6 +13,9 @@ class TasbihBeadsView extends StatelessWidget {
     this.onTap,
   });
 
+  /// 0 = taneler yerinde kalır, 1 = her çekişte bir tane kadar imameye kayar.
+  static const double beadSlide = 0.55;
+
   final int beadCount;
   final int pulled;
   final int firstNumber;
@@ -21,10 +24,25 @@ class TasbihBeadsView extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
+  State<TasbihBeadsView> createState() => _TasbihBeadsViewState();
+}
+
+class _TasbihBeadsViewState extends State<TasbihBeadsView> {
+  var _animate = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _animate = true);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final count = beadCount.clamp(1, 100);
-    final drawn = pulled.clamp(0, count);
-    final fade = (1 - burst * 2.2).clamp(0.0, 1.0);
+    final count = widget.beadCount.clamp(1, 100);
+    final drawn = widget.pulled.clamp(0, count);
+    final fade = (1 - widget.burst * 2.2).clamp(0.0, 1.0);
     return AspectRatio(
       aspectRatio: 1,
       child: Opacity(
@@ -34,7 +52,7 @@ class TasbihBeadsView extends StatelessWidget {
           borderRadius: BorderRadius.circular(32),
           child: InkWell(
             borderRadius: BorderRadius.circular(32),
-            onTap: burst > 0.05 ? null : onTap,
+            onTap: widget.burst > 0.05 ? null : widget.onTap,
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
@@ -58,13 +76,24 @@ class TasbihBeadsView extends StatelessWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 18),
-                child: CustomPaint(
-                  painter: _TesbihPainter(
-                    beadCount: count,
-                    pulled: drawn,
-                    firstNumber: firstNumber,
-                    maxNumber: maxNumber ?? (firstNumber + count - 1),
-                  ),
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0, end: drawn.toDouble()),
+                  duration: _animate && widget.burst <= 0.05
+                      ? const Duration(milliseconds: 280)
+                      : Duration.zero,
+                  curve: Curves.easeOutCubic,
+                  builder: (context, pulledAnim, _) {
+                    return CustomPaint(
+                      painter: _TesbihPainter(
+                        beadCount: count,
+                        pulled: pulledAnim,
+                        firstNumber: widget.firstNumber,
+                        maxNumber: widget.maxNumber ??
+                            (widget.firstNumber + count - 1),
+                        slide: TasbihBeadsView.beadSlide,
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -115,12 +144,14 @@ class _TesbihPainter extends CustomPainter {
     required this.pulled,
     required this.firstNumber,
     required this.maxNumber,
+    required this.slide,
   });
 
   final int beadCount;
-  final int pulled;
+  final double pulled;
   final int firstNumber;
   final int maxNumber;
+  final double slide;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -133,18 +164,23 @@ class _TesbihPainter extends CustomPainter {
     final gap = ((imameR * 0.72 + radius * 0.95) / rx * 2).clamp(0.28, 0.58);
     final start = math.pi / 2 + gap / 2;
     final sweep = 2 * math.pi - gap;
-    final highlight = pulled - 1;
+    final pulledN = pulled.clamp(0.0, beadCount.toDouble());
+    final highlight = pulledN.ceil() - 1;
 
     _drawRope(canvas, Offset(cx, cy), rx, ry, 0, 2 * math.pi, radius * 0.22);
 
     for (var i = 0; i < beadCount; i++) {
-      final t = beadCount == 1 ? 0.5 : i / (beadCount - 1);
-      final angle = start + sweep * t;
-      final counted = i < pulled;
-      final isNext = i == pulled && pulled < beadCount;
+      final angle = _beadAngle(
+        i: i,
+        start: start,
+        sweep: sweep,
+        pulled: pulledN,
+      );
+      final counted = i < pulledN;
+      final isNext = i == pulledN.floor() && pulledN < beadCount;
       var r = radius;
-      if (counted && i == highlight) r *= 1.08;
-      if (isNext) r *= 1.06;
+      if (counted && i == highlight) r *= 1.04;
+      if (isNext) r *= 1.05;
       final center = Offset(
         cx + rx * math.cos(angle),
         cy + ry * math.sin(angle),
@@ -169,12 +205,41 @@ class _TesbihPainter extends CustomPainter {
     _drawImame(canvas, Offset(cx, cy + ry), imameR);
   }
 
+  double _beadAngle({
+    required int i,
+    required double start,
+    required double sweep,
+    required double pulled,
+  }) {
+    final restT = beadCount == 1 ? 0.5 : i / (beadCount - 1);
+    final rest = start + sweep * restT;
+    final amount = slide.clamp(0.0, 1.0);
+    if (amount <= 0 || beadCount <= 1) return rest;
+    final spacing = sweep / (beadCount - 1);
+    final packSpacing = spacing * (1 - amount * 0.7);
+    final packedEnd = pulled * packSpacing;
+    final double packed;
+    if (i < pulled) {
+      packed = start + i * packSpacing;
+    } else {
+      final remainCount = beadCount - pulled;
+      final remainSweep = sweep - packedEnd;
+      if (remainCount <= 1) {
+        packed = start + packedEnd + remainSweep * 0.5;
+      } else {
+        packed = start + packedEnd + (i - pulled) / (remainCount - 1) * remainSweep;
+      }
+    }
+    return rest + (packed - rest) * amount;
+  }
+
   @override
   bool shouldRepaint(_TesbihPainter oldDelegate) {
     return oldDelegate.beadCount != beadCount ||
         oldDelegate.pulled != pulled ||
         oldDelegate.firstNumber != firstNumber ||
-        oldDelegate.maxNumber != maxNumber;
+        oldDelegate.maxNumber != maxNumber ||
+        oldDelegate.slide != slide;
   }
 }
 
