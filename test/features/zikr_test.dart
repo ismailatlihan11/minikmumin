@@ -42,6 +42,9 @@ void main() {
     expect(DhikrTasbih.beadCount(33), 33);
     expect(DhikrTasbih.beadCount(100), 100);
     expect(DhikrTasbih.beadCount(333), 100);
+    expect(DhikrTasbih.lastRoundSize(123), 23);
+    expect(DhikrTasbih.lastRoundSize(200), 100);
+    expect(DhikrTasbih.lastRoundSize(33), 33);
     expect(DhikrTasbih.showsRounds(33), isFalse);
     expect(DhikrTasbih.showsRounds(101), isTrue);
     expect(DhikrTasbih.remainingRounds(0, 33), 1);
@@ -56,7 +59,15 @@ void main() {
     expect(DhikrTasbih.pulledThisRound(50, 333), 50);
     expect(DhikrTasbih.pulledThisRound(100, 333), 100);
     expect(DhikrTasbih.pulledThisRound(101, 333), 1);
-    expect(DhikrTasbih.pulledThisRound(333, 333), 100);
+    expect(DhikrTasbih.pulledThisRound(333, 333), 33);
+    expect(DhikrTasbih.visibleBeadCount(0, 123), 100);
+    expect(DhikrTasbih.visibleBeadCount(100, 123), 100);
+    expect(DhikrTasbih.visibleBeadCount(101, 123), 23);
+    expect(DhikrTasbih.visibleBeadCount(123, 123), 23);
+    expect(DhikrTasbih.pulledThisRound(101, 123), 1);
+    expect(DhikrTasbih.pulledThisRound(123, 123), 23);
+    expect(DhikrTasbih.remainingRounds(0, 123), 2);
+    expect(DhikrTasbih.remainingRounds(100, 123), 1);
     expect(DhikrTasbih.roundStartNumber(0, 33), 1);
     expect(DhikrTasbih.beadLabel(0, 0, 33), 1);
     expect(DhikrTasbih.beadLabel(32, 10, 33), 33);

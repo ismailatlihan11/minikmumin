@@ -30,52 +30,69 @@ abstract final class DhikrCounterService {
   }
 }
 
-/// Visual tesbih: one bead per zikir up to 100; larger targets use 100-bead rounds.
+/// Visual tesbih: full rounds of 100; the last round uses only the remainder.
 abstract final class DhikrTasbih {
   static const int maxBeads = 100;
 
+  static int lastRoundSize(int target) {
+    if (target <= 0) return 1;
+    if (target <= maxBeads) return target;
+    final rem = target % maxBeads;
+    return rem == 0 ? maxBeads : rem;
+  }
+
+  /// Max beads in a full round (not the remainder round).
   static int beadCount(int target) {
     if (target <= 0) return 1;
     return target > maxBeads ? maxBeads : target;
   }
 
-  static bool showsRounds(int target) => target > maxBeads;
-
   static int totalRounds(int target) {
     if (target <= 0) return 0;
-    final beads = beadCount(target);
-    return (target + beads - 1) ~/ beads;
+    if (target <= maxBeads) return 1;
+    return (target + maxBeads - 1) ~/ maxBeads;
+  }
+
+  static bool showsRounds(int target) => target > maxBeads;
+
+  static int currentRoundIndex(int current, int target) {
+    if (target <= maxBeads) return 0;
+    final capped = current.clamp(0, target);
+    if (capped <= 0) return 0;
+    if (capped >= target) return totalRounds(target) - 1;
+    if (capped % maxBeads == 0) return (capped ~/ maxBeads) - 1;
+    return capped ~/ maxBeads;
+  }
+
+  /// Beads drawn for the round currently on screen — never more than remaining.
+  static int visibleBeadCount(int current, int target) {
+    if (target <= 0) return 1;
+    if (target <= maxBeads) return target;
+    final lastIndex = totalRounds(target) - 1;
+    if (currentRoundIndex(current, target) >= lastIndex) {
+      return lastRoundSize(target);
+    }
+    return maxBeads;
   }
 
   static int remainingRounds(int current, int target) {
     if (target <= 0 || current >= target) return 0;
-    final beads = beadCount(target);
-    final finished = current.clamp(0, target) ~/ beads;
-    return totalRounds(target) - finished;
+    return totalRounds(target) - (current ~/ maxBeads);
   }
 
   static int pulledThisRound(int current, int target) {
-    final beads = beadCount(target);
+    final beads = visibleBeadCount(current, target);
     final capped = current.clamp(0, target < 0 ? 0 : target);
     if (capped <= 0) return 0;
-    if (capped >= target && target > 0) return beads;
-    final rem = capped % beads;
-    return rem == 0 ? beads : rem;
+    if (capped >= target) return beads;
+    if (target <= maxBeads) return capped.clamp(0, beads);
+    final rem = capped % maxBeads;
+    return rem == 0 ? beads : rem.clamp(0, beads);
   }
 
   /// First bead label in the visible round (1-based zikir count).
   static int roundStartNumber(int current, int target) {
-    final beads = beadCount(target);
-    if (target <= 0) return 1;
-    final capped = current.clamp(0, target);
-    if (capped <= 0) return 1;
-    if (capped >= target) {
-      return ((target - 1) ~/ beads) * beads + 1;
-    }
-    if (capped % beads == 0) {
-      return capped - beads + 1;
-    }
-    return (capped ~/ beads) * beads + 1;
+    return currentRoundIndex(current, target) * maxBeads + 1;
   }
 
   static int? beadLabel(int index, int current, int target) {

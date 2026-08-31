@@ -23,12 +23,24 @@ class ZikrCounterPage extends StatefulWidget {
   State<ZikrCounterPage> createState() => _ZikrCounterPageState();
 }
 
-class _ZikrCounterPageState extends State<ZikrCounterPage> {
+class _ZikrCounterPageState extends State<ZikrCounterPage>
+    with SingleTickerProviderStateMixin {
   final _phraseAudio = AudioPlayerService();
   bool _busy = false;
+  late final AnimationController _burst;
+
+  @override
+  void initState() {
+    super.initState();
+    _burst = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1300),
+    );
+  }
 
   @override
   void dispose() {
+    _burst.dispose();
     _phraseAudio.dispose();
     super.dispose();
   }
@@ -45,8 +57,11 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
   }
 
   Future<void> _onCompleted(Dhikr dhikr) async {
+    _burst.forward(from: 0);
+    if (!mounted) return;
     final choice = await showDialog<String>(
       context: context,
+      barrierColor: const Color(0x66000000),
       builder: (context) => AlertDialog(
         title: const Text('Çok güzel.'),
         content: Text('Bugünkü zikrini tamamladın. ${dhikr.title}'),
@@ -67,6 +82,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
       ),
     );
     if (!mounted) return;
+    _burst.reset();
     final store = context.read<DhikrStore>();
     if (choice == 'again' || choice == 'ok') {
       await store.startAgain(widget.dhikrId);
@@ -185,7 +201,12 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
             ),
           ],
         ),
-        body: ListView(
+        body: AnimatedBuilder(
+          animation: _burst,
+          builder: (context, _) {
+            return Stack(
+              children: [
+                ListView(
           padding: AppSpacing.page,
           children: [
             if (dhikr.arabic.isNotEmpty) ArabicText(dhikr.arabic, fontSize: 32),
@@ -254,7 +275,10 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
             ],
             const SizedBox(height: AppSpacing.md),
             TasbihBeadsView(
-              beadCount: DhikrTasbih.beadCount(dhikr.targetCount),
+              beadCount: DhikrTasbih.visibleBeadCount(
+                dhikr.currentCount,
+                dhikr.targetCount,
+              ),
               pulled: DhikrTasbih.pulledThisRound(
                 dhikr.currentCount,
                 dhikr.targetCount,
@@ -264,6 +288,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
                 dhikr.targetCount,
               ),
               maxNumber: dhikr.targetCount,
+              burst: _burst.value,
               onTap: () => _tap(
                 () => store.addCount(dhikr.id),
                 completeCheck: true,
@@ -334,6 +359,17 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
               child: const Text('Zikir ayarları'),
             ),
           ],
+                ),
+                ZikrCelebrateBackdrop(
+                  progress: _burst.value,
+                  beadCount: DhikrTasbih.visibleBeadCount(
+                    dhikr.currentCount,
+                    dhikr.targetCount,
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
