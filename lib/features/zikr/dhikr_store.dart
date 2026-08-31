@@ -28,6 +28,7 @@ class DhikrStore extends ChangeNotifier {
   DhikrAssetManifest _manifest = DhikrAssetManifest.empty;
   String? _lastUsedId;
   bool _ready = false;
+  Future<void> _persistWork = Future.value();
 
   @visibleForTesting
   void debugSetItems(List<Dhikr> items) {
@@ -128,6 +129,7 @@ class DhikrStore extends ChangeNotifier {
     }
     _ready = true;
     notifyListeners();
+    unawaited(_feedback.preload(_manifest.click));
   }
 
   Future<DhikrTapResult> addCount(String id, {int? step, DateTime? now}) {
@@ -296,7 +298,6 @@ class DhikrStore extends ChangeNotifier {
         durationSeconds: stamp.difference(started).inSeconds.clamp(0, 86400),
       );
       _sessions = [..._sessions, session];
-      await _persistence.saveSessions(_sessions);
     }
     if (added != 0) {
       _bumpDailyStat(
@@ -305,35 +306,28 @@ class DhikrStore extends ChangeNotifier {
         count: added > 0 ? added : 0,
         completed: completed ? 1 : 0,
       );
-      await _persistence.saveDailyStats(_stats);
     }
-    await _replace(next);
+    _items = [
+      for (final existing in _items)
+        if (existing.id == next.id) next else existing,
+    ];
     _lastUsedId = item.id;
-    await _persistence.saveLastUsedId(item.id);
-    await _persistence.saveInProgress(
-      next.isPaused
-          ? DhikrProgress(
-              dhikrId: next.id,
-              target: next.targetCount,
-              current: next.currentCount,
-              lastUsedAt: next.lastUsedAt,
-              status: 'paused',
-            )
-          : null,
-    );
+    notifyListeners();
 
     final vibrate = _settings.vibrationEnabled &&
         next.vibrationEnabled &&
         DhikrCounterService.shouldPulse(current, next.vibrationEvery);
     final click = added > 0 && _settings.soundEnabled && next.soundEnabled;
-    if (vibrate || completed) await _feedback.vibrate(_settings);
-    if (click || completed) {
-      unawaited(
-        _feedback.playClick(
-          completed ? _manifest.complete : _manifest.click,
-        ),
-      );
+    if (click) {
+      unawaited(_feedback.playClick(_manifest.click));
     }
+    if (completed) {
+      unawaited(_feedback.playClick(_manifest.complete));
+    }
+    if (vibrate || completed) {
+      unawaited(_feedback.vibrate(_settings));
+    }
+    unawaited(_enqueuePersist());
     return DhikrTapResult(
       dhikr: next,
       vibrated: vibrate || completed,
@@ -341,6 +335,33 @@ class DhikrStore extends ChangeNotifier {
       completed: completed,
       session: session,
     );
+  }
+
+  Future<void> _enqueuePersist() {
+    final done = Completer<void>();
+    _persistWork = _persistWork.then((_) async {
+      await _persistence.saveItems(_items);
+      await _persistence.saveSessions(_sessions);
+      await _persistence.saveDailyStats(_stats);
+      final id = _lastUsedId;
+      if (id != null) await _persistence.saveLastUsedId(id);
+      final current = id == null ? null : byId(id);
+      await _persistence.saveInProgress(
+        current != null && current.isPaused
+            ? DhikrProgress(
+                dhikrId: current.id,
+                target: current.targetCount,
+                current: current.currentCount,
+                lastUsedAt: current.lastUsedAt,
+                status: 'paused',
+              )
+            : null,
+      );
+      if (!done.isCompleted) done.complete();
+    }).catchError((Object error, StackTrace stack) {
+      if (!done.isCompleted) done.completeError(error, stack);
+    });
+    return done.future;
   }
 
   void _bumpDailyStat({
@@ -380,8 +401,8 @@ class DhikrStore extends ChangeNotifier {
       for (final item in _items)
         if (item.id == dhikr.id) dhikr else item,
     ];
-    await _persistence.saveItems(_items);
     notifyListeners();
+    await _enqueuePersist();
   }
 
   @override

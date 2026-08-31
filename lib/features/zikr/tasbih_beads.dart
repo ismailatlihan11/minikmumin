@@ -128,13 +128,14 @@ class _TesbihPainter extends CustomPainter {
     final cy = size.height / 2 - 6;
     final rx = size.width / 2 - 24;
     final ry = size.height / 2 - 28;
-    const gap = 0.55;
-    const start = math.pi / 2 + gap / 2;
-    const sweep = 2 * math.pi - gap;
     final radius = _beadRadius(rx, ry, beadCount);
+    final imameR = radius * 1.55;
+    final gap = ((imameR * 0.72 + radius * 0.95) / rx * 2).clamp(0.28, 0.58);
+    final start = math.pi / 2 + gap / 2;
+    final sweep = 2 * math.pi - gap;
     final highlight = pulled - 1;
 
-    _drawRope(canvas, Offset(cx, cy), rx, ry, start, sweep, radius * 0.22);
+    _drawRope(canvas, Offset(cx, cy), rx, ry, 0, 2 * math.pi, radius * 0.22);
 
     for (var i = 0; i < beadCount; i++) {
       final t = beadCount == 1 ? 0.5 : i / (beadCount - 1);
@@ -165,7 +166,7 @@ class _TesbihPainter extends CustomPainter {
       }
     }
 
-    _drawImame(canvas, Offset(cx, cy + ry), radius * 1.55);
+    _drawImame(canvas, Offset(cx, cy + ry), imameR);
   }
 
   @override
@@ -265,6 +266,7 @@ void _paintTesbihBead(
   double angle,
   Color color, {
   required bool dimmed,
+  bool smile = false,
 }) {
   final body = dimmed ? Color.lerp(color, const Color(0xFF7A5A38), 0.35)! : color;
   canvas.save();
@@ -314,14 +316,16 @@ void _paintTesbihBead(
       ..strokeWidth = math.max(1.4, r * 0.1)
       ..color = const Color(0xFF2A1608),
   );
-  canvas.drawOval(
-    Rect.fromCenter(center: Offset.zero, width: r * 0.22, height: r * 0.16),
-    Paint()..color = const Color(0xFF1A0C04),
-  );
-  canvas.drawOval(
-    Rect.fromCenter(center: Offset.zero, width: r * 0.12, height: r * 0.08),
-    Paint()..color = const Color(0xFFC4A36A),
-  );
+  if (!smile) {
+    canvas.drawOval(
+      Rect.fromCenter(center: Offset.zero, width: r * 0.22, height: r * 0.16),
+      Paint()..color = const Color(0xFF1A0C04),
+    );
+    canvas.drawOval(
+      Rect.fromCenter(center: Offset.zero, width: r * 0.12, height: r * 0.08),
+      Paint()..color = const Color(0xFFC4A36A),
+    );
+  }
   if (!dimmed) {
     canvas.drawOval(
       Rect.fromCenter(
@@ -333,6 +337,47 @@ void _paintTesbihBead(
     );
   }
   canvas.restore();
+  if (smile) {
+    _drawBeadSmile(canvas, c, r);
+  }
+}
+
+void _drawBeadSmile(Canvas canvas, Offset c, double r) {
+  final eyeR = (r * 0.13).clamp(1.8, 4.2);
+  final eyeY = -r * 0.1;
+  final eyeX = r * 0.22;
+  final blush = Paint()..color = const Color(0x55E07050);
+  canvas.drawCircle(c + Offset(-eyeX * 1.45, r * 0.06), r * 0.16, blush);
+  canvas.drawCircle(c + Offset(eyeX * 1.45, r * 0.06), r * 0.16, blush);
+  final eye = Paint()..color = const Color(0xFF1A0C04);
+  canvas.drawCircle(c + Offset(-eyeX, eyeY), eyeR, eye);
+  canvas.drawCircle(c + Offset(eyeX, eyeY), eyeR, eye);
+  final glint = Paint()..color = const Color(0xEEFFFFFF);
+  canvas.drawCircle(
+    c + Offset(-eyeX - eyeR * 0.22, eyeY - eyeR * 0.28),
+    eyeR * 0.38,
+    glint,
+  );
+  canvas.drawCircle(
+    c + Offset(eyeX - eyeR * 0.22, eyeY - eyeR * 0.28),
+    eyeR * 0.38,
+    glint,
+  );
+  canvas.drawArc(
+    Rect.fromCenter(
+      center: c + Offset(0, r * 0.08),
+      width: r * 0.72,
+      height: r * 0.58,
+    ),
+    0.35,
+    math.pi - 0.7,
+    false,
+    Paint()
+      ..color = const Color(0xFF1A0C04)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = (r * 0.11).clamp(1.8, 3.4)
+      ..strokeCap = StrokeCap.round,
+  );
 }
 
 void _drawNumber(
@@ -482,7 +527,7 @@ class _CelebratePainter extends CustomPainter {
     final ry = size.height * 0.18;
     const start = math.pi / 2 + 0.28;
     const sweep = 2 * math.pi - 0.55;
-    final r = _beadRadius(rx, ry, beadCount);
+    final r = _beadRadius(rx, ry, beadCount).clamp(9.0, 18.0);
 
     for (var i = 0; i < beadCount; i++) {
       final u = beadCount == 1 ? 0.5 : i / (beadCount - 1);
@@ -497,7 +542,7 @@ class _CelebratePainter extends CustomPainter {
       final spin = (rng.nextDouble() * 5 - 2.5) * t * math.pi;
       final fade = (1 - progress * 0.35).clamp(0.35, 1.0);
       canvas.saveLayer(
-        Rect.fromCircle(center: center, radius: r * 2.2),
+        Rect.fromCircle(center: center, radius: r * 2.6),
         Paint()..color = Color.fromRGBO(255, 255, 255, fade),
       );
       _paintTesbihBead(
@@ -507,6 +552,7 @@ class _CelebratePainter extends CustomPainter {
         angle + spin,
         _ambers[i % _ambers.length],
         dimmed: false,
+        smile: true,
       );
       canvas.restore();
     }
