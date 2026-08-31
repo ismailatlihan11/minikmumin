@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:minik_kalpler/data/models/dhikr.dart';
+import 'package:minik_kalpler/data/repositories/dhikr_repository.dart';
 import 'package:minik_kalpler/features/zikr/dhikr_feedback.dart';
 import 'package:minik_kalpler/features/zikr/dhikr_logic.dart';
 import 'package:minik_kalpler/features/zikr/dhikr_persistence.dart';
@@ -118,5 +119,32 @@ void main() {
     expect(overview.todayCount, 33);
     expect(overview.totalCount, 33);
     expect(overview.favoriteCount, 1);
+  });
+
+  test('catalog text refreshes on built-in dhikr without wiping progress', () {
+    const catalog = Dhikr(
+      id: 'salawat',
+      title: 'Salavat',
+      arabic: 'اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ',
+      transliteration:
+          'Allâhümme salli alâ Muhammedin ve alâ âli Muhammed, kemâ salleyte alâ İbrâhîme ve alâ âli İbrâhîm, inneke hamîdün mecîd.',
+      meaning:
+          'Allah\'ım! Hz. Muhammed ﷺ\'e ve ailesine, İbrahim\'e ve ailesine salât ettiğin gibi salât et. Şüphesiz Sen övülmüş ve yücesin.',
+    );
+    const saved = Dhikr(
+      id: 'salawat',
+      title: 'Salavat',
+      arabic: 'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',
+      transliteration: 'Allâhümme salli alâ Muhammed',
+      meaning: 'Allah\'ım, Muhammed\'e salât eyle.',
+      currentCount: 12,
+      isFavorite: true,
+    );
+    final merged = DhikrRepository().merge(catalog: [catalog], saved: [saved]);
+    expect(merged, hasLength(1));
+    expect(merged.single.transliteration, catalog.transliteration);
+    expect(merged.single.meaning, contains('ﷺ'));
+    expect(merged.single.currentCount, 12);
+    expect(merged.single.isFavorite, isTrue);
   });
 }

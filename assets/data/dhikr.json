@@ -101,16 +101,17 @@
     {
       "id": "salawat",
       "title": "Salavat",
-      "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",
-      "transliteration": "Allâhümme salli alâ Muhammed",
-      "meaning": "Allah'ım, Muhammed'e salât eyle.",
-      "description": "Peygamberimiz için salavat getiririz.",
+      "arabic": "اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
+      "transliteration": "Allâhümme salli alâ Muhammedin ve alâ âli Muhammed, kemâ salleyte alâ İbrâhîme ve alâ âli İbrâhîm, inneke hamîdün mecîd.",
+      "meaning": "Allah'ım! Hz. Muhammed ﷺ'e ve ailesine, İbrahim'e ve ailesine salât ettiğin gibi salât et. Şüphesiz Sen övülmüş ve yücesin.",
+      "description": "Peygamberimiz Hz. Muhammed ﷺ için salavat getiririz.",
       "category": "salawat",
       "targetCount": 33,
       "vibrationEvery": 33,
       "soundEvery": 33,
       "incrementStep": 1,
-      "colorTheme": "gold"
+      "colorTheme": "gold",
+      "audioAsset": "assets/audio/prayer/allahumme_salli.mp3"
     }
   ]
 }

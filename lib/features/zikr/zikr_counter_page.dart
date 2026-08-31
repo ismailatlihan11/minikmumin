@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +28,7 @@ class ZikrCounterPage extends StatefulWidget {
 class _ZikrCounterPageState extends State<ZikrCounterPage>
     with SingleTickerProviderStateMixin {
   final _phraseAudio = AudioPlayerService();
-  bool _busy = false;
+  var _locked = false;
   late final AnimationController _burst;
 
   @override
@@ -36,6 +38,10 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
       vsync: this,
       duration: const Duration(milliseconds: 1300),
     );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(context.read<DhikrStore>().warmupClick());
+    });
   }
 
   @override
@@ -46,13 +52,16 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
   }
 
   Future<void> _tap(Future<dynamic> Function() action, {bool completeCheck = false}) async {
-    if (_busy) return;
-    setState(() => _busy = true);
-    final result = await action();
-    if (!mounted) return;
-    setState(() => _busy = false);
-    if (completeCheck && result is DhikrTapResult && result.completed) {
-      await _onCompleted(result.dhikr);
+    if (_locked) return;
+    _locked = true;
+    try {
+      final result = await action();
+      if (!mounted) return;
+      if (completeCheck && result is DhikrTapResult && result.completed) {
+        await _onCompleted(result.dhikr);
+      }
+    } finally {
+      _locked = false;
     }
   }
 

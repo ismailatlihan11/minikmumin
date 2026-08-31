@@ -10,6 +10,6 @@
     {"id": "astaghfirullah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/astaghfirullah.png", "audio": "assets/audio/dhikr/astaghfirullah.mp3"},
     {"id": "bismillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/bismillah.png", "audio": "assets/audio/dhikr/bismillah.mp3"},
     {"id": "hawqala", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/hawqala.png", "audio": "assets/audio/dhikr/hawqala.mp3"},
-    {"id": "salawat", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/salawat.png", "audio": "assets/audio/dhikr/salawat.mp3"}
+    {"id": "salawat", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/salawat.png", "audio": "assets/audio/prayer/allahumme_salli.mp3"}
   ]
 }

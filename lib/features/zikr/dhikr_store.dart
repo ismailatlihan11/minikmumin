@@ -132,6 +132,8 @@ class DhikrStore extends ChangeNotifier {
     unawaited(_feedback.preload(_manifest.click));
   }
 
+  Future<void> warmupClick() => _feedback.preload(_manifest.click);
+
   Future<DhikrTapResult> addCount(String id, {int? step, DateTime? now}) {
     return _changeCount(id, delta: step ?? byId(id)?.incrementStep ?? 1, now: now);
   }
@@ -307,13 +309,6 @@ class DhikrStore extends ChangeNotifier {
         completed: completed ? 1 : 0,
       );
     }
-    _items = [
-      for (final existing in _items)
-        if (existing.id == next.id) next else existing,
-    ];
-    _lastUsedId = item.id;
-    notifyListeners();
-
     final vibrate = _settings.vibrationEnabled &&
         next.vibrationEnabled &&
         DhikrCounterService.shouldPulse(current, next.vibrationEvery);
@@ -327,6 +322,13 @@ class DhikrStore extends ChangeNotifier {
     if (vibrate || completed) {
       unawaited(_feedback.vibrate(_settings));
     }
+
+    _items = [
+      for (final existing in _items)
+        if (existing.id == next.id) next else existing,
+    ];
+    _lastUsedId = item.id;
+    notifyListeners();
     unawaited(_enqueuePersist());
     return DhikrTapResult(
       dhikr: next,

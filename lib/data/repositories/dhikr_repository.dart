@@ -36,9 +36,26 @@ class DhikrRepository {
   }) {
     final savedById = {for (final item in saved) item.id: item};
     final merged = <Dhikr>[
-      for (final item in catalog) savedById.remove(item.id) ?? item,
+      for (final item in catalog)
+        _withSavedProgress(item, savedById.remove(item.id)),
     ];
     merged.addAll(savedById.values);
     return merged;
+  }
+
+  Dhikr _withSavedProgress(Dhikr catalog, Dhikr? saved) {
+    if (saved == null) return catalog;
+    if (saved.isCustom) return saved;
+    return saved.copyWith(
+      title: catalog.title,
+      arabic: catalog.arabic,
+      transliteration: catalog.transliteration,
+      meaning: catalog.meaning,
+      description: catalog.description,
+      category: catalog.category,
+      colorTheme: catalog.colorTheme,
+      audioAsset: catalog.audioAsset.isEmpty ? saved.audioAsset : catalog.audioAsset,
+      imageAsset: catalog.imageAsset.isEmpty ? saved.imageAsset : catalog.imageAsset,
+    );
   }
 }
