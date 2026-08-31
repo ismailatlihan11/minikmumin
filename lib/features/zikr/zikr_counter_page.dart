@@ -9,7 +9,9 @@ import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/listen_button.dart';
+import 'dhikr_logic.dart';
 import 'dhikr_store.dart';
+import 'tasbih_beads.dart';
 import 'zikr_form_page.dart';
 
 class ZikrCounterPage extends StatefulWidget {
@@ -204,12 +206,25 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
               ),
             ],
             ListenButton(audio: _phraseAudio, path: store.audioFor(dhikr)),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: AppSpacing.md),
+            if (DhikrTasbih.showsRounds(dhikr.targetCount))
+              Text(
+                dhikr.currentCount >= dhikr.targetCount
+                    ? 'Turlar tamam'
+                    : 'Kalan tur: ${DhikrTasbih.remainingRounds(dhikr.currentCount, dhikr.targetCount)}',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
             Text(
               '${dhikr.currentCount}',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 72,
+                    fontSize: 56,
                     fontWeight: FontWeight.w800,
                     height: 1,
                     color: MinikColors.darkGreen,
@@ -220,11 +235,11 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: AppSpacing.sm),
             ClipRRect(
               borderRadius: BorderRadius.circular(99),
               child: LinearProgressIndicator(
-                minHeight: 14,
+                minHeight: 10,
                 value: dhikr.uiProgress,
                 backgroundColor: MinikColors.creamDark,
                 color: MinikColors.green,
@@ -237,30 +252,62 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
                 textAlign: TextAlign.center,
               ),
             ],
-            const SizedBox(height: AppSpacing.lg),
-            Material(
-              color: MinikColors.mint,
-              borderRadius: BorderRadius.circular(28),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(28),
-                onTap: () => _tap(() => store.addCount(dhikr.id), completeCheck: true),
-                child: const SizedBox(
-                  height: 160,
-                  child: Center(
-                    child: Text(
-                      'ZİKRET',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800,
-                        color: MinikColors.darkGreen,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                  ),
-                ),
+            const SizedBox(height: AppSpacing.md),
+            TasbihBeadsView(
+              beadCount: DhikrTasbih.beadCount(dhikr.targetCount),
+              pulled: DhikrTasbih.pulledThisRound(
+                dhikr.currentCount,
+                dhikr.targetCount,
+              ),
+              firstNumber: DhikrTasbih.roundStartNumber(
+                dhikr.currentCount,
+                dhikr.targetCount,
+              ),
+              maxNumber: dhikr.targetCount,
+              onTap: () => _tap(
+                () => store.addCount(dhikr.id),
+                completeCheck: true,
               ),
             ),
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: 8),
+            const Text(
+              'Tesbihe dokun, bir tane çek',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'NotoSans',
+                fontWeight: FontWeight.w700,
+                color: MinikColors.textMuted,
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Tesbih sesi'),
+              subtitle: const Text('Her çekişte tıklar'),
+              value: store.settings.soundEnabled && dhikr.soundEnabled,
+              onChanged: (value) {
+                store.updateSettings(
+                  store.settings.copyWith(soundEnabled: value),
+                );
+                store.updateDhikr(dhikr.copyWith(soundEnabled: value));
+              },
+              secondary: Icon(
+                store.settings.soundEnabled && dhikr.soundEnabled
+                    ? Icons.volume_up_rounded
+                    : Icons.volume_off_rounded,
+                color: MinikColors.green,
+              ),
+            ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Titreşim'),
+              value: store.settings.vibrationEnabled && dhikr.vibrationEnabled,
+              onChanged: (value) => store.updateDhikr(
+                dhikr.copyWith(vibrationEnabled: value),
+              ),
+              secondary: const Icon(Icons.vibration_rounded),
+            ),
+            const SizedBox(height: AppSpacing.sm),
             Row(
               children: [
                 _RoundControl(
@@ -281,33 +328,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage> {
                 ),
               ],
             ),
-            const SizedBox(height: AppSpacing.lg),
-            Row(
-              children: [
-                Expanded(
-                  child: SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: const Text('Ses'),
-                    value: store.settings.soundEnabled && dhikr.soundEnabled,
-                    onChanged: (value) => store.updateDhikr(
-                      dhikr.copyWith(soundEnabled: value),
-                    ),
-                    secondary: const Icon(Icons.volume_up_rounded),
-                  ),
-                ),
-                Expanded(
-                  child: SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: const Text('Titreşim'),
-                    value: store.settings.vibrationEnabled && dhikr.vibrationEnabled,
-                    onChanged: (value) => store.updateDhikr(
-                      dhikr.copyWith(vibrationEnabled: value),
-                    ),
-                    secondary: const Icon(Icons.vibration_rounded),
-                  ),
-                ),
-              ],
-            ),
+            const SizedBox(height: AppSpacing.sm),
             TextButton(
               onPressed: () => _editSettings(dhikr),
               child: const Text('Zikir ayarları'),

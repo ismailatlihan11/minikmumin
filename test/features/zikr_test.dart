@@ -38,6 +38,35 @@ void main() {
     expect(DhikrCounterService.shouldPulse(20, 10), isTrue);
   });
 
+  test('tesbih bead count matches target up to 100 and tracks remaining rounds', () {
+    expect(DhikrTasbih.beadCount(33), 33);
+    expect(DhikrTasbih.beadCount(100), 100);
+    expect(DhikrTasbih.beadCount(333), 100);
+    expect(DhikrTasbih.showsRounds(33), isFalse);
+    expect(DhikrTasbih.showsRounds(101), isTrue);
+    expect(DhikrTasbih.remainingRounds(0, 33), 1);
+    expect(DhikrTasbih.remainingRounds(0, 333), 4);
+    expect(DhikrTasbih.remainingRounds(99, 333), 4);
+    expect(DhikrTasbih.remainingRounds(100, 333), 3);
+    expect(DhikrTasbih.remainingRounds(250, 333), 2);
+    expect(DhikrTasbih.remainingRounds(333, 333), 0);
+    expect(DhikrTasbih.pulledThisRound(0, 33), 0);
+    expect(DhikrTasbih.pulledThisRound(10, 33), 10);
+    expect(DhikrTasbih.pulledThisRound(33, 33), 33);
+    expect(DhikrTasbih.pulledThisRound(50, 333), 50);
+    expect(DhikrTasbih.pulledThisRound(100, 333), 100);
+    expect(DhikrTasbih.pulledThisRound(101, 333), 1);
+    expect(DhikrTasbih.pulledThisRound(333, 333), 100);
+    expect(DhikrTasbih.roundStartNumber(0, 33), 1);
+    expect(DhikrTasbih.beadLabel(0, 0, 33), 1);
+    expect(DhikrTasbih.beadLabel(32, 10, 33), 33);
+    expect(DhikrTasbih.roundStartNumber(101, 333), 101);
+    expect(DhikrTasbih.beadLabel(0, 101, 333), 101);
+    expect(DhikrTasbih.roundStartNumber(333, 333), 301);
+    expect(DhikrTasbih.beadLabel(32, 333, 333), 333);
+    expect(DhikrTasbih.beadLabel(33, 333, 333), isNull);
+  });
+
   test('store persists count, pause, favorite, session and daily stats', () async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();

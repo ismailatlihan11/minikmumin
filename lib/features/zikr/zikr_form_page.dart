@@ -183,17 +183,9 @@ class _ZikrFormPageState extends State<ZikrFormPage> {
             ],
           ),
           const SizedBox(height: AppSpacing.lg),
-          const SectionLabel('Ses aralığı'),
-          Wrap(
-            spacing: 8,
-            children: [
-              for (final value in const [1, 10, 11, 33, 50, 99, 100])
-                ChoiceChip(
-                  label: Text('$value'),
-                  selected: _soundEvery == value,
-                  onSelected: (_) => setState(() => _soundEvery = value),
-                ),
-            ],
+          const SectionLabel('Tesbih sesi'),
+          const Text(
+            'Her çekişte tıklar. Zikir ekranındaki Tesbih sesi anahtarından açıp kapatabilirsin.',
           ),
           const SizedBox(height: AppSpacing.lg),
           PrimaryButton(label: 'Kaydet', onPressed: _save),

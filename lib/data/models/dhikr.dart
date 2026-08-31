@@ -407,7 +407,7 @@ class DhikrAssetManifest {
   final Map<String, DhikrAssetItem> items;
 
   static const empty = DhikrAssetManifest(
-    click: 'assets/audio/effects/dogru_cevap.mp3',
+    click: 'assets/audio/effects/tesbih_click.wav',
     complete: 'assets/audio/effects/ders_tamamlandi.mp3',
     fallbackImage: 'assets/images/home/circle_zikr.png',
     items: {},

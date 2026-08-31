@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import '../../data/models/dhikr.dart';
@@ -323,19 +325,19 @@ class DhikrStore extends ChangeNotifier {
     final vibrate = _settings.vibrationEnabled &&
         next.vibrationEnabled &&
         DhikrCounterService.shouldPulse(current, next.vibrationEvery);
-    final sound = _settings.soundEnabled &&
-        next.soundEnabled &&
-        DhikrCounterService.shouldPulse(current, next.soundEvery);
+    final click = added > 0 && _settings.soundEnabled && next.soundEnabled;
     if (vibrate || completed) await _feedback.vibrate(_settings);
-    if (sound || completed) {
-      await _feedback.playClick(
-        completed ? _manifest.complete : _manifest.click,
+    if (click || completed) {
+      unawaited(
+        _feedback.playClick(
+          completed ? _manifest.complete : _manifest.click,
+        ),
       );
     }
     return DhikrTapResult(
       dhikr: next,
       vibrated: vibrate || completed,
-      sounded: sound || completed,
+      sounded: click || completed,
       completed: completed,
       session: session,
     );

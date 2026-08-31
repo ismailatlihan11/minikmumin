@@ -7,12 +7,16 @@ class AudioPlayerService {
 
   final AudioPlayer _player;
 
-  Future<bool> playAsset(String path) async {
+  Future<bool> playAsset(String path, {bool waitUntilDone = true}) async {
     if (path.trim().isEmpty) return false;
     try {
       await _player.stop();
       await _player.setAsset(path);
-      await _player.play();
+      if (waitUntilDone) {
+        await _player.play();
+      } else {
+        unawaited(_player.play().then((_) {}, onError: (_, __) {}));
+      }
       return true;
     } catch (_) {
       // Missing or unplayable audio must never crash the lesson.
@@ -88,4 +92,5 @@ abstract final class EffectAudio {
   static const String correct = 'assets/audio/effects/dogru_cevap.mp3';
   static const String retry = 'assets/audio/effects/tekrar_deneyelim.mp3';
   static const String complete = 'assets/audio/effects/ders_tamamlandi.mp3';
+  static const String tesbihClick = 'assets/audio/effects/tesbih_click.wav';
 }

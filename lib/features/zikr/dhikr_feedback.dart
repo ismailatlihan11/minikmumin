@@ -26,7 +26,7 @@ class DhikrFeedbackService {
 
   Future<void> playClick(String path) async {
     if (silent) return;
-    await _audio?.playAsset(path);
+    await _audio?.playAsset(path, waitUntilDone: false);
   }
 
   Future<void> dispose() async {
