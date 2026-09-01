@@ -3,15 +3,88 @@ import 'package:flutter/material.dart';
 import '../../data/models/quran_learning.dart';
 import 'quran_learn_combine.dart';
 import 'quran_learn_exam.dart';
+import 'quran_learn_games.dart';
 import 'quran_learn_harakat.dart';
 import 'quran_learn_heavy.dart';
 import 'quran_learn_letters.dart';
 import 'quran_learn_mahraj.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_review.dart';
 import 'quran_learn_surahs.dart';
 import 'quran_learn_syllables.dart';
 import 'quran_learn_tajweed.dart';
 import 'quran_learn_words.dart';
+
+const elifbaPathIds = <int>[1, 9, 2, 5];
+const elifbaDrillIds = <int>[3, 4, 11, 12, 13];
+const elifbaTajweedIds = <int>[6];
+const elifbaReadIds = <int>[7, 8];
+
+String elifbaStepTitle(QuranLearningLevel level) {
+  switch (level.id) {
+    case 1:
+      return 'Harfler';
+    case 9:
+      return 'Harfler ve şekilleri';
+    case 10:
+      return 'Pekiştirme';
+    case 2:
+      return 'Harekeler';
+    case 3:
+      return 'Birleştirme';
+    case 4:
+      return 'Kelimeler';
+    case 5:
+      return 'Kısa sureler';
+    case 6:
+      return 'Kurallar';
+    case 7:
+      return 'Ayet parçaları';
+    case 8:
+      return 'Tecvidli okuma';
+    case 11:
+      return 'Kalın ve ince';
+    case 12:
+      return 'Mahreçler';
+    case 13:
+      return 'Mini oyunlar';
+    default:
+      return level.title;
+  }
+}
+
+String elifbaStepCue(QuranLearningLevel level) {
+  switch (level.id) {
+    case 1:
+      return 'Dokun, dinle';
+    case 9:
+      return 'Başta, ortada, sonda';
+    case 10:
+      return 'Kelimede tanı';
+    case 2:
+      return 'Üstün, esre, ötre';
+    case 3:
+      return 'Harfleri birleştir';
+    case 4:
+      return 'Kelimede oku';
+    case 5:
+      return 'Fâtiha ve İhlâs';
+    case 6:
+      return 'İzhâr, ihfâ, idğâm';
+    case 7:
+      return 'Bakara ve Kürsî';
+    case 8:
+      return 'Surede kuralı gör';
+    case 11:
+      return 'Kalın ses, ince ses';
+    case 12:
+      return 'Boğaz, dil, dudak';
+    case 13:
+      return 'Bul, eşleştir, boya';
+    default:
+      return 'Sırada';
+  }
+}
 
 Widget quranLearnPageFor({
   required QuranLearningPack pack,
@@ -25,12 +98,21 @@ Widget quranLearnPageFor({
         levelId: levelId,
         formsFocus: true,
       ),
+    'letter_review' => QuranLearnReviewPage(pack: pack, levelId: levelId),
     'harakat' => QuranLearnHarakatPage(pack: pack, levelId: levelId),
+    'combine' => QuranLearnCombinePage(pack: pack, levelId: levelId),
+    'words' => QuranLearnWordsPage(pack: pack, levelId: levelId),
     'mahraj' => QuranLearnMahrajPage(pack: pack, levelId: levelId),
     'heavy_light' => QuranLearnHeavyPage(pack: pack, levelId: levelId),
     'tajweed' => QuranLearnTajweedPage(pack: pack, levelId: levelId),
     'syllables' => QuranLearnSyllablesPage(pack: pack, levelId: levelId),
+    'games' => QuranLearnDrillGamesPage(pack: pack, levelId: levelId),
     'surahs' => QuranLearnSurahsPage(pack: pack, levelId: levelId),
+    'practice' => QuranLearnSurahsPage(
+        pack: pack,
+        levelId: levelId,
+        mode: QuranLearnReadMode.practice,
+      ),
     'tajweed_read' => QuranLearnSurahsPage(
         pack: pack,
         levelId: levelId,
@@ -54,6 +136,12 @@ Widget quranLearnPageFor({
             levelId: levelId,
             mode: QuranLearnReadMode.tajweedRead,
           ),
+        9 => QuranLearnLettersPage(
+            pack: pack,
+            levelId: levelId,
+            formsFocus: true,
+          ),
+        10 => QuranLearnReviewPage(pack: pack, levelId: levelId),
         _ => QuranLearnLettersPage(pack: pack, levelId: levelId),
       },
   };
@@ -127,6 +215,7 @@ Future<void> openQuranLearnDaily(
         ),
       );
     case 'ql_word':
+    case 'ql_letter_review':
       final word = pack.wordById(item.id);
       if (word == null) break;
       return Navigator.push(
@@ -162,6 +251,16 @@ Future<void> openQuranLearnDaily(
         pack: pack,
         levelId: lesson.level?.id ?? 1,
       );
+    case 'ql_game':
+      final game = pack.gameById(item.id);
+      if (game == null) {
+        return openQuranLearnLevel(
+          context,
+          pack: pack,
+          levelId: lesson.level?.id ?? 13,
+        );
+      }
+      return openQuranLearnGame(context, game);
     case 'ql_surah':
     case 'ql_practice':
     case 'ql_tajweed_read':

@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
-import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
-import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
+import 'quran_learn_harakat_review.dart';
 import 'quran_learn_practice.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
+
+const _cream = Color(0xFFF5EEDC);
+const _tan = Color(0xFFE6DBC5);
+const _ink = Color(0xFF3A332C);
+const _line = Color(0xFF5C5346);
 
 class QuranLearnHarakatPage extends StatelessWidget {
   const QuranLearnHarakatPage({
@@ -29,9 +31,8 @@ class QuranLearnHarakatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     final items = pack.harakatForLevel(levelId);
-    final games = pack.gamesForLevel(levelId);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: _cream,
       appBar: AppBar(
         title: Text(pack.titleForLevel(levelId, fallback: 'Harekeler')),
       ),
@@ -41,43 +42,124 @@ class QuranLearnHarakatPage extends StatelessWidget {
           final snap = snapshot.data;
           final done = snap?.completedCount(levelId) ?? 0;
           return ListView(
-            padding: AppSpacing.page,
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             children: [
               QlSoftProgress(
                 value: items.isEmpty ? 0 : done / items.length,
                 label: '$done / ${items.length} hareke',
               ),
-              const SizedBox(height: 8),
-              QlLessonIntro(
-                title: pack.titleForLevel(levelId, fallback: 'Harekeler'),
-                cue: 'Dersi aç, kareye dokun, dinleyerek öğren',
-                rule: pack.levelById(levelId)?.description,
-                note: 'Bütün dersler seslendirildi.',
+              const SizedBox(height: 14),
+              const Text(
+                'Harekeler',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                  color: _ink,
+                ),
               ),
               const SizedBox(height: 10),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+                decoration: BoxDecoration(
+                  color: _tan,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: const Color(0xFFC4B79A)),
+                ),
+                child: const Text(
+                  'Her hareke ayrı bir ders. Harfe dokun, dinle, bütün harflerle tekrarla.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 13,
+                    height: 1.4,
+                    fontWeight: FontWeight.w600,
+                    color: _ink,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               for (final item in items)
-                ContentTile(
-                  title: 'Ders ${item.order}: ${item.name} (${item.symbol})',
-                  subtitle: quranLearnHarakatTeachLine(item),
-                  color: snap?.isDone('ql_haraka', item.id) == true
-                      ? MinikColors.mint
-                      : null,
-                  leading: NumberBadge('${item.order}'),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => QuranLearnHarakaDetailPage(
-                        pack: pack,
-                        haraka: item,
-                        levelId: levelId,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Material(
+                    color: snap?.isDone('ql_haraka', item.id) == true
+                        ? const Color(0xFFE8F3E4)
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(12),
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => QuranLearnHarakaDetailPage(
+                            pack: pack,
+                            haraka: item,
+                            levelId: levelId,
+                          ),
+                        ),
+                      ),
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: _line, width: 0.9),
+                        ),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: MinikColors.pastelAt(item.order),
+                              child: Text(
+                                '${item.order}',
+                                style: const TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontWeight: FontWeight.w800,
+                                  color: MinikColors.darkGreen,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    item.name,
+                                    style: const TextStyle(
+                                      fontFamily: 'NotoSans',
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w800,
+                                      color: _ink,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    quranLearnHarakatTeachLine(item),
+                                    style: const TextStyle(
+                                      fontFamily: 'NotoSans',
+                                      fontSize: 13,
+                                      height: 1.3,
+                                      color: MinikColors.textMuted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            QlBigArabic(
+                              item.symbol,
+                              fontSize: 28,
+                              color: _ink,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              if (games.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.md),
-                QlGamesStrip(games: games, title: 'Hareke oyunları'),
-              ],
+              const SizedBox(height: 28),
+              QlHarakatReviewSection(pack: pack),
             ],
           );
         },
@@ -112,6 +194,14 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
   void dispose() {
     _audio.dispose();
     super.dispose();
+  }
+
+  Future<void> _play(String? path) {
+    return QuranLearnAudio.play(
+      _audio,
+      context.read<LocalProgressStore>(),
+      path,
+    );
   }
 
   Future<void> _mark() async {
@@ -154,8 +244,18 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
     final teachGlyph = quranLearnTeachingGlyph(haraka.id);
     final teachAudio = quranLearnTeachingAudio(widget.pack.letters, haraka.id);
     final teachLine = quranLearnHarakatTeachLine(haraka);
+    final listenPath = teachAudio ?? haraka.audio;
+    final compare = quranLearnHasComparison(haraka.id);
+    final examples = (haraka.id == 'sukun' || haraka.id == 'shadda')
+        ? const <QuranHarakaExample>[]
+        : haraka.examples;
+    final uygulamaWords = haraka.id == 'sukun'
+        ? quranLearnWordsWithMark(widget.pack.words, 'ْ')
+        : haraka.id == 'shadda'
+            ? quranLearnWordsWithMark(widget.pack.words, 'ّ')
+            : const <QuranWord>[];
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: _cream,
       appBar: AppBar(
         title: Text(haraka.name),
         actions: [
@@ -167,76 +267,218 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
         children: [
-          QlLessonIntro(
-            title: 'Ders ${haraka.order}: ${haraka.name} (${haraka.symbol})',
-            cue: 'Harfin üzerine tıkla / dinleyerek öğren',
-            rule: teachLine,
-            note: 'Kırmızı olanlar kalın harflerdir.',
+          Text(
+            'Ders ${haraka.order}: ${haraka.name}',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: _ink,
+            ),
           ),
           const SizedBox(height: 10),
-          Row(
-            children: [
-              SizedBox(
-                width: 72,
-                height: 72,
-                child: QlDashTile(
-                  arabic: teachGlyph.isEmpty ? haraka.symbol : teachGlyph,
-                  fontSize: 32,
-                  onTap: QuranLearnAudio.resolve(teachAudio) == null
-                      ? null
-                      : () => QuranLearnAudio.play(
-                            _audio,
-                            context.read<LocalProgressStore>(),
-                            teachAudio,
-                          ),
-                ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+            decoration: BoxDecoration(
+              color: _tan,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0xFFC4B79A)),
+            ),
+            child: Text(
+              teachLine,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'NotoSans',
+                fontSize: 13,
+                height: 1.4,
+                fontWeight: FontWeight.w600,
+                color: _ink,
               ),
-              const SizedBox(width: 10),
-              Expanded(
+            ),
+          ),
+          const SizedBox(height: 14),
+          Material(
+            color: _tan,
+            borderRadius: BorderRadius.circular(10),
+            child: InkWell(
+              onTap: QuranLearnAudio.resolve(listenPath) == null
+                  ? null
+                  : () => _play(listenPath),
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: _line, width: 0.9),
+                ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    QlPlayListen(
-                      audio: _audio,
-                      path: teachAudio ?? haraka.audio,
+                    QlBigArabic(
+                      teachGlyph.isEmpty ? haraka.symbol : teachGlyph,
+                      fontSize: 64,
+                      color: _ink,
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      haraka.name,
+                      style: const TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                        color: _ink,
+                      ),
                     ),
                     if (haraka.id == 'shadda') ...[
                       const SizedBox(height: 6),
                       Text(
-                        quranLearnShaddaUnfold('ب'),
+                        quranLearnShaddaEquation('ب'),
                         style: const TextStyle(
                           fontFamily: 'NotoSans',
                           fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
+                          color: _ink,
                         ),
                       ),
                     ],
+                    const SizedBox(height: 8),
+                    QlPlayListen(audio: _audio, path: listenPath),
                   ],
                 ),
               ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          QlPracticeSection(
-            audio: _audio,
-            letters: widget.pack.letters,
-            harakaId: haraka.id,
-            examples: haraka.id == 'shadda' ? haraka.examples : const [],
-          ),
-          const SizedBox(height: AppSpacing.md),
-          Center(
-            child: QlColorButton(
-              arabic: teachGlyph.isEmpty ? haraka.symbol : teachGlyph,
-              title: '${haraka.name} boya',
-              prompt: '${haraka.name} işaretini boya.',
-              audio: teachAudio ?? haraka.audio,
             ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          if (haraka.id == 'sukun') ...[
+            const SizedBox(height: 18),
+            const _SectionTitle('Kavrama'),
+            const SizedBox(height: 8),
+            QlCezmKavrama(audio: _audio, letters: widget.pack.letters),
+          ] else if (haraka.id == 'shadda') ...[
+            const SizedBox(height: 18),
+            const _SectionTitle('Kavrama'),
+            const SizedBox(height: 8),
+            QlShaddaKavrama(audio: _audio, letters: widget.pack.letters),
+          ],
+          const SizedBox(height: 18),
+          const _SectionTitle('Bütün harfler'),
+          const SizedBox(height: 8),
+          Text(
+            haraka.id == 'sukun'
+                ? 'Her karede üç hareke vardır. Dokun, dinle.'
+                : haraka.id == 'shadda'
+                    ? 'Üstün şedde. Kırmızı olanlar kalın harflerdir. Dokun, dinle.'
+                    : 'Kırmızı olanlar kalın harflerdir. Dokun, dinle.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 10),
+          if (haraka.id == 'sukun')
+            QlSukunTripletGrid(audio: _audio, letters: widget.pack.letters)
+          else
+            QlPracticeGrid(
+              audio: _audio,
+              items: quranLearnPracticeItems(
+                letters: widget.pack.letters,
+                harakaId: haraka.id,
+              ),
+              columns: 4,
+              fontSize: 26,
+              aspect: 0.92,
+            ),
+          if (compare) ...[
+            const SizedBox(height: 20),
+            const _SectionTitle('Karşılaştırma'),
+            const SizedBox(height: 8),
+            QlPracticeTable(
+              audio: _audio,
+              items: quranLearnPracticeItems(
+                letters: widget.pack.letters,
+                harakaId: haraka.id,
+              ),
+              compare: true,
+            ),
+          ],
+          if (examples.isNotEmpty || uygulamaWords.isNotEmpty) ...[
+            const SizedBox(height: 20),
+            const _SectionTitle('Uygulama'),
+            const SizedBox(height: 8),
+            if (uygulamaWords.isNotEmpty)
+              QlWordListenList(audio: _audio, words: uygulamaWords),
+            for (final example in examples)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Material(
+                  color: _tan,
+                  borderRadius: BorderRadius.circular(10),
+                  child: InkWell(
+                    onTap: QuranLearnAudio.resolve(example.audio) == null
+                        ? null
+                        : () => _play(example.audio),
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: _line, width: 0.9),
+                      ),
+                      child: Column(
+                        children: [
+                          QlBigArabic(
+                            example.arabic,
+                            fontSize: 36,
+                            color: _ink,
+                          ),
+                          if (example.reading.trim().isNotEmpty) ...[
+                            const SizedBox(height: 4),
+                            Text(
+                              example.reading,
+                              style: const TextStyle(
+                                fontFamily: 'NotoSans',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: MinikColors.textMuted,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+          const SizedBox(height: 18),
           QlPrimaryBar(label: 'Öğrendim', onPressed: _mark),
         ],
+      ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  const _SectionTitle(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontFamily: 'NotoSans',
+        fontSize: 16,
+        fontWeight: FontWeight.w800,
+        color: _ink,
       ),
     );
   }

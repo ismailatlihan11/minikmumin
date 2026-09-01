@@ -159,6 +159,90 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
   }
 }
 
+class QuranLearnDrillGamesPage extends StatelessWidget {
+  const QuranLearnDrillGamesPage({
+    super.key,
+    required this.pack,
+    this.levelId = 13,
+  });
+
+  final QuranLearningPack pack;
+  final int levelId;
+
+  @override
+  Widget build(BuildContext context) {
+    final store = context.watch<LocalProgressStore>();
+    final games = pack.gamesForLevel(levelId);
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F7F2),
+      appBar: AppBar(
+        title: Text(pack.titleForLevel(levelId, fallback: 'Mini oyunlar')),
+      ),
+      body: FutureBuilder<QuranLearnSnapshot>(
+        future: QuranLearnProgress.load(store, pack),
+        builder: (context, snapshot) {
+          final snap = snapshot.data;
+          final done = snap?.completedCount(levelId) ?? 0;
+          final total = pack.realLessonCount(levelId);
+          return ListView(
+            padding: AppSpacing.page,
+            children: [
+              QlSoftProgress(
+                value: total == 0 ? 0 : done / total,
+                label: '$done / $total oyun',
+              ),
+              const SizedBox(height: AppSpacing.md),
+              MinikCard(
+                color: MinikColors.sky,
+                child: Text(
+                  pack.levelById(levelId)?.description ??
+                      'Harf, hareke ve kelime oyunlarıyla pekiştirelim.',
+                  style: const TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontWeight: FontWeight.w700,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              ContentTile(
+                title: 'Harfleri boya',
+                subtitle: 'Bir harf seç, parmağınla boya.',
+                leading: const Icon(
+                  Icons.palette_rounded,
+                  color: MinikColors.green,
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnColorHubPage(),
+                  ),
+                ),
+              ),
+              ContentTile(
+                title: 'Harf eşleştir',
+                subtitle: 'Aynı iki harfi bul.',
+                leading: const Icon(
+                  Icons.grid_view_rounded,
+                  color: MinikColors.green,
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnMemoryPage(),
+                  ),
+                ),
+              ),
+              if (games.isNotEmpty)
+                QlGamesStrip(games: games, title: 'Alıştırma oyunları'),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
 class QuranLearnGamePage extends StatefulWidget {
   const QuranLearnGamePage({super.key, required this.game});
 

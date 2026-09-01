@@ -10,6 +10,7 @@ import '../../data/models/quran_verse.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
@@ -176,19 +177,30 @@ class _QuranLearnTajweedDetailPageState
                   ),
                 ],
                 const SizedBox(height: AppSpacing.md),
-                QlPlayListen(audio: _audio, path: lesson.audio),
+                QlPlayListen(
+                  audio: _audio,
+                  path: QuranLearnAudio.resolve(lesson.audio) ??
+                      QuranLearnAudio.tajweedExamplePath(lesson.id, index: 0),
+                ),
               ],
             ),
           ),
           const SizedBox(height: AppSpacing.md),
+          _QlTajweedCompareStrip(
+            pack: widget.pack,
+            lesson: lesson,
+            audio: _audio,
+          ),
           const SectionLabel('Kural örnekleri'),
           for (var i = 0; i < lesson.examples.length; i++)
             MinikCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (_exampleLabel(lesson, i) != null) ...[
-                    SoftBadge(label: _exampleLabel(lesson, i)!),
+                  if (quranLearnTajweedExampleLabel(lesson.id, i) != null) ...[
+                    SoftBadge(
+                      label: quranLearnTajweedExampleLabel(lesson.id, i)!,
+                    ),
                     const SizedBox(height: 8),
                   ],
                   QlTajweedFocusArabic(
@@ -202,7 +214,11 @@ class _QuranLearnTajweedDetailPageState
                   const SizedBox(height: 8),
                   QlPlayListen(
                     audio: _audio,
-                    path: lesson.examples[i].audio,
+                    path: QuranLearnAudio.tajweedExamplePath(
+                      lesson.id,
+                      index: i,
+                      jsonAudio: lesson.examples[i].audio,
+                    ),
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -210,7 +226,11 @@ class _QuranLearnTajweedDetailPageState
                       arabic: lesson.examples[i].arabic,
                       title: lesson.title,
                       prompt: 'Bu örneği boya.',
-                      audio: lesson.examples[i].audio,
+                      audio: QuranLearnAudio.tajweedExamplePath(
+                        lesson.id,
+                        index: i,
+                        jsonAudio: lesson.examples[i].audio,
+                      ),
                     ),
                   ),
                 ],
@@ -256,28 +276,74 @@ class _QuranLearnTajweedDetailPageState
   }
 }
 
-String? _exampleLabel(QuranTajweedLesson lesson, int index) {
-  const labels = <String, List<String>>{
-    'tajweed_01': [
-      'Medd-i Tabîî',
-      'Medd-i Muttasıl',
-      'Medd-i Munfasıl',
-      'Medd-i Tabîî',
-      'Medd-i Muttasıl',
-    ],
-    'tajweed_07': ['نْ + ل', 'نْ + ر', 'تنوين + ل', 'نْ + ر'],
-    'tajweed_08': ['نْ + ش', 'نْ + ق', 'نْ + ص', 'نْ + ق', 'نْ + س', 'نْ + ج'],
-    'tajweed_09': ['İklâb', 'İhfâ-i Şefeviyye'],
-    'tajweed_12': ["Uzatılan hâ", 'Uzatılmayan hâ', 'Uzatılmayan hâ', 'هُوَ'],
-    'tajweed_13': ['Kalın râ', 'İnce râ', 'Kalın râ'],
-    'tajweed_14': ['Kesradan sonra', 'Fethadan sonra'],
-    'tajweed_15': ['نْ + ی', 'تنوين + م', 'تنوين + م', 'نْ + ن', 'تنوين + و'],
-    'tajweed_19': ['Mütekâribeyn', 'Mütecâniseyn'],
-    'tajweed_22': ["Medd-i Lâzım", "Medd-i Ârız", "Medd-i Lîn"],
-  };
-  final list = labels[lesson.id];
-  if (list == null || index < 0 || index >= list.length) return null;
-  return list[index];
+class _QlTajweedCompareStrip extends StatelessWidget {
+  const _QlTajweedCompareStrip({
+    required this.pack,
+    required this.lesson,
+    required this.audio,
+  });
+
+  final QuranLearningPack pack;
+  final QuranTajweedLesson lesson;
+  final AudioPlayerService audio;
+
+  @override
+  Widget build(BuildContext context) {
+    final cards = quranLearnCompareCards(
+      lessonId: lesson.id,
+      lessons: pack.tajweed,
+    );
+    if (cards.isEmpty) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SectionLabel('Karşılaştırma'),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 8),
+          child: Text('Kuralları dinleyerek ayırt et.'),
+        ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final card in cards)
+              SizedBox(
+                width: 156,
+                child: MinikCard(
+                  color: MinikColors.mint,
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
+                  onTap: () {
+                    final path = QuranLearnAudio.tajweedExamplePath(
+                      card.lessonId ?? lesson.id,
+                      index: card.exampleIndex,
+                      jsonAudio: card.audio,
+                    );
+                    if (path == null) return;
+                    QuranLearnAudio.play(
+                      audio,
+                      context.read<LocalProgressStore>(),
+                      path,
+                    );
+                  },
+                  child: Column(
+                    children: [
+                      SoftBadge(label: card.label),
+                      const SizedBox(height: 8),
+                      QlTajweedFocusArabic(
+                        card.arabic,
+                        focus: card.arabic,
+                        fontSize: 22,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.md),
+      ],
+    );
+  }
 }
 
 class QlTajweedAyahPractice extends StatelessWidget {

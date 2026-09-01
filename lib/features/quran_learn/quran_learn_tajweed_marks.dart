@@ -21,13 +21,16 @@ String quranLearnNormalizeArabic(String value) {
       .trim();
 }
 
+(int, int)? quranLearnParseAyahRef(String raw) {
+  final match = RegExp(r'^(\d+)\s*:\s*(\d+)$').firstMatch(raw.trim());
+  if (match == null) return null;
+  return (int.parse(match.group(1)!), int.parse(match.group(2)!));
+}
+
 String quranLearnTajweedReference(String raw) {
-  final text = raw.trim();
-  final match = RegExp(r'^(\d+)\s*:\s*(\d+)$').firstMatch(text);
-  if (match == null) return text;
-  final surah = int.parse(match.group(1)!);
-  final ayah = match.group(2)!;
-  return '${surahName(surah)} $surah:$ayah';
+  final parsed = quranLearnParseAyahRef(raw);
+  if (parsed == null) return raw.trim();
+  return '${surahName(parsed.$1)} ${parsed.$1}:${parsed.$2}';
 }
 
 class QuranTajweedHit {
@@ -143,6 +146,108 @@ List<QuranTajweedHit> quranLearnTajweedHits({
     if (matched) add(lesson);
   }
   return hits;
+}
+
+const quranLearnNunSakinCompareIds = [
+  'tajweed_11',
+  'tajweed_08',
+  'tajweed_07',
+  'tajweed_15',
+];
+
+const quranLearnNunSakinCompareLabels = {
+  'tajweed_11': 'İzhâr',
+  'tajweed_08': 'İhfâ',
+  'tajweed_07': 'Gunnesiz',
+  'tajweed_15': 'Gunneli',
+};
+
+const quranLearnMaddCompareIds = ['tajweed_01', 'tajweed_22'];
+
+class QuranLearnCompareCard {
+  const QuranLearnCompareCard({
+    required this.label,
+    required this.arabic,
+    this.audio,
+    this.lessonId,
+    this.exampleIndex = 0,
+  });
+
+  final String label;
+  final String arabic;
+  final String? audio;
+  final String? lessonId;
+  final int exampleIndex;
+}
+
+String? quranLearnTajweedExampleLabel(String lessonId, int index) {
+  const labels = <String, List<String>>{
+    'tajweed_01': [
+      'Medd-i Tabîî',
+      'Medd-i Muttasıl',
+      'Medd-i Munfasıl',
+      'Medd-i Tabîî',
+      'Medd-i Muttasıl',
+    ],
+    'tajweed_07': ['نْ + ل', 'نْ + ر', 'تنوين + ل', 'نْ + ر'],
+    'tajweed_08': ['نْ + ش', 'نْ + ق', 'نْ + ص', 'نْ + ق', 'نْ + س', 'نْ + ج'],
+    'tajweed_09': ['İklâb', 'İhfâ-i Şefeviyye'],
+    'tajweed_12': ["Uzatılan hâ", 'Uzatılmayan hâ', 'Uzatılmayan hâ', 'هُوَ'],
+    'tajweed_13': ['Kalın râ', 'İnce râ', 'Kalın râ'],
+    'tajweed_14': ['Kesradan sonra', 'Fethadan sonra'],
+    'tajweed_15': ['نْ + ی', 'تنوين + م', 'تنوين + م', 'نْ + ن', 'تنوين + و'],
+    'tajweed_19': ['Mütekâribeyn', 'Mütecâniseyn'],
+    'tajweed_22': ['Medd-i Lâzım', 'Medd-i Ârız', 'Medd-i Lîn'],
+  };
+  final list = labels[lessonId];
+  if (list == null || index < 0 || index >= list.length) return null;
+  return list[index];
+}
+
+QuranTajweedLesson? quranLearnTajweedById(
+  List<QuranTajweedLesson> lessons,
+  String id,
+) {
+  for (final lesson in lessons) {
+    if (lesson.id == id) return lesson;
+  }
+  return null;
+}
+
+List<QuranLearnCompareCard> quranLearnCompareCards({
+  required String lessonId,
+  required List<QuranTajweedLesson> lessons,
+}) {
+  if (quranLearnNunSakinCompareIds.contains(lessonId)) {
+    final cards = <QuranLearnCompareCard>[];
+    for (final id in quranLearnNunSakinCompareIds) {
+      final examples = quranLearnTajweedById(lessons, id)?.examples;
+      if (examples == null || examples.isEmpty) continue;
+      cards.add(
+        QuranLearnCompareCard(
+          label: quranLearnNunSakinCompareLabels[id] ?? id,
+          arabic: examples.first.arabic,
+          audio: examples.first.audio,
+          lessonId: id,
+        ),
+      );
+    }
+    return cards;
+  }
+  if (!quranLearnMaddCompareIds.contains(lessonId)) return const [];
+  final lesson = quranLearnTajweedById(lessons, lessonId);
+  if (lesson == null) return const [];
+  final take = lesson.examples.length < 3 ? lesson.examples.length : 3;
+  return [
+    for (var i = 0; i < take; i++)
+      QuranLearnCompareCard(
+        label: quranLearnTajweedExampleLabel(lesson.id, i) ?? 'Örnek',
+        arabic: lesson.examples[i].arabic,
+        audio: lesson.examples[i].audio,
+        lessonId: lesson.id,
+        exampleIndex: i,
+      ),
+  ];
 }
 
 class QlTajweedFocusArabic extends StatelessWidget {

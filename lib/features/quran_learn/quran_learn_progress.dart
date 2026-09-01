@@ -155,6 +155,8 @@ String _dailyTitle(
       return 'Bugün harfleri birleştirelim.';
     case 'ql_word':
       return 'Bugün 5 kelime oku.';
+    case 'ql_letter_review':
+      return 'Bugün harfleri kelimede tanı.';
     case 'ql_surah':
       final surah = pack.surahById(item.id);
       if (surah == null) return 'Bugün kısa bir sure dinle.';
@@ -178,6 +180,8 @@ String _dailyTitle(
       return item.id == 'heavy'
           ? 'Bugün kalın harfleri ayırt et.'
           : 'Bugün ince harfleri ayırt et.';
+    case 'ql_game':
+      return 'Bugün bir alıştırma oyunu oyna.';
     case 'ql_exam':
       return 'Bugün bitirme sınavına bak.';
     default:

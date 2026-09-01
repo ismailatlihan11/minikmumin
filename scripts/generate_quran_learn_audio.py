@@ -56,7 +56,7 @@ PAUSE_MARKS = ("ؕ", "ۚ", "ۖ", "ۗ", "ۘ", "ۙ", "ۛ", "ۜ", "ۢ", "۝", "\u08
 CHUNK_GAP_MS = 180
 CARTOON_RATE = 48000
 TAFKHIM_IDS = frozenset(
-    {"kha", "sad", "dad", "ghayn", "ta_heavy", "za_heavy", "qaf"}
+    {"kha", "sad", "dad", "ghayn", "ta_heavy", "za_heavy", "qaf", "ra"}
 )
 PHONETIC_CATEGORIES = frozenset(
     {
@@ -67,6 +67,7 @@ PHONETIC_CATEGORIES = frozenset(
         "shadda_letter",
         "syllable",
         "combine",
+        "tajweed_example",
     }
 )
 
@@ -113,21 +114,10 @@ TANWIN = [
     ("kasratayn", "ٍ", "كَسْرَتَيْن"),
     ("dammatayn", "ٌ", "ضَمَّتَيْن"),
 ]
-MADD_LETTERS = (
-    "ba",
-    "ta",
-    "mim",
-    "nun",
-    "ra",
-    "sin",
-    "lam",
-    "jim",
-    "sad",
-    "dad",
-    "ta_heavy",
-    "qaf",
-    "kha",
+NON_ELIF_LETTER_IDS = tuple(
+    letter_id for letter_id, _glyph, _name in LETTERS if letter_id != "elif"
 )
+MADD_LETTERS = NON_ELIF_LETTER_IDS
 COMBINATION_LETTERS = (
     "ba",
     "ta",
@@ -147,35 +137,8 @@ COMBINATION_LETTERS = (
     "kha",
     "ghayn",
 )
-SUKUN_IDS = (
-    "ba",
-    "ta",
-    "mim",
-    "nun",
-    "sin",
-    "lam",
-    "ra",
-    "kaf",
-    "fa",
-    "dal",
-    "jim",
-    "qaf",
-    "ta_heavy",
-    "sad",
-)
-SHADDA_IDS = (
-    "ba",
-    "ta",
-    "mim",
-    "nun",
-    "lam",
-    "ra",
-    "sin",
-    "dal",
-    "sad",
-    "ta_heavy",
-    "qaf",
-)
+SUKUN_IDS = NON_ELIF_LETTER_IDS
+SHADDA_IDS = NON_ELIF_LETTER_IDS
 SYLLABLE_IDS = (
     "ba",
     "ta",
@@ -542,6 +505,31 @@ def build_catalog(*, test: bool) -> list[Clip]:
             glyph + "ْ",
             f"sukun/{letter_id}_sukun.mp3",
         )
+        add(
+            f"{letter_id}_sukun_triplet",
+            "sukun_letter",
+            f"أَ{glyph}ْ إِ{glyph}ْ أُ{glyph}ْ",
+            f"sukun/{letter_id}_triplet.mp3",
+            repeat=1,
+        )
+        add(
+            f"{letter_id}_join_fatha",
+            "sukun_letter",
+            f"أَ{glyph}ْ",
+            f"sukun/{letter_id}_join_fatha.mp3",
+        )
+        add(
+            f"{letter_id}_join_kasra",
+            "sukun_letter",
+            f"إِ{glyph}ْ",
+            f"sukun/{letter_id}_join_kasra.mp3",
+        )
+        add(
+            f"{letter_id}_join_damma",
+            "sukun_letter",
+            f"أُ{glyph}ْ",
+            f"sukun/{letter_id}_join_damma.mp3",
+        )
 
     add("shadda", "shadda", "شَدَّة", "shadda/shadda.mp3")
     for letter_id in SHADDA_IDS:
@@ -551,6 +539,18 @@ def build_catalog(*, test: bool) -> list[Clip]:
             "shadda_letter",
             glyph + "َّ",
             f"shadda/{letter_id}_shadda.mp3",
+        )
+        add(
+            f"{letter_id}_shadda_kasra",
+            "shadda_letter",
+            glyph + "ِّ",
+            f"shadda/{letter_id}_shadda_kasra.mp3",
+        )
+        add(
+            f"{letter_id}_shadda_damma",
+            "shadda_letter",
+            glyph + "ُّ",
+            f"shadda/{letter_id}_shadda_damma.mp3",
         )
 
     for letter_id in MADD_LETTERS:
@@ -631,8 +631,38 @@ def build_catalog(*, test: bool) -> list[Clip]:
     for word_id, arabic in words:
         add(word_id, "word", arabic, f"words/{word_id}.mp3")
     add("izhar", "tajweed", "أَنْعَمْتَ", "tajweed/izhar.mp3", phonetic=False, repeat=2)
+    add_tajweed_example_clips(add)
     clips.extend(build_surah_clips())
     return clips
+
+
+def add_tajweed_example_clips(add) -> None:
+    pack_path = ROOT / "assets" / "data" / "kur_an_ogrenme_veri_paketi.json"
+    if not pack_path.exists():
+        return
+    pack = json.loads(pack_path.read_text(encoding="utf-8"))
+    lessons = (pack.get("quran_tajweed") or {}).get("lessons") or []
+    for lesson in lessons:
+        if not isinstance(lesson, dict):
+            continue
+        lesson_id = str(lesson.get("id") or "").strip()
+        if not lesson_id:
+            continue
+        examples = lesson.get("examples") or []
+        for index, example in enumerate(examples, start=1):
+            if not isinstance(example, dict):
+                continue
+            arabic = str(example.get("arabic") or "").strip()
+            if not arabic:
+                continue
+            add(
+                f"{lesson_id}_{index}",
+                "tajweed_example",
+                arabic,
+                f"tajweed/{lesson_id}_{index}.mp3",
+                phonetic=True,
+                repeat=1,
+            )
 
 
 def load_kuran_ayet() -> list[dict]:
@@ -1624,6 +1654,11 @@ def main() -> int:
         action="store_true",
         help="Regenerate Fâtiha child TTS using Alafasy murattal pace as reference.",
     )
+    parser.add_argument(
+        "--tajweed-examples",
+        action="store_true",
+        help="Generate per-example tecvid educational clips (skip existing unless --force).",
+    )
     parser.add_argument("--check-auth", action="store_true", help="Only verify ADC and list voices.")
     args = parser.parse_args()
     try:
@@ -1672,9 +1707,16 @@ def main() -> int:
         if args.phonetics:
             clips = [clip for clip in build_catalog(test=False) if clip.phonetic]
             return run(test=False, force=True, clips=clips)
+        if args.tajweed_examples:
+            clips = [
+                clip
+                for clip in build_catalog(test=False)
+                if clip.category == "tajweed_example"
+            ]
+            return run(test=False, force=args.force, clips=clips, write_docs=False)
         if not args.test and not args.all:
             print(
-                "Use --test, --all, --letters, --phonetics, --surahs, --fatiha, --asma or --replace-old",
+                "Use --test, --all, --letters, --phonetics, --surahs, --fatiha, --asma, --tajweed-examples or --replace-old",
                 file=sys.stderr,
             )
             return 64

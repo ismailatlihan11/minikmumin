@@ -69,6 +69,60 @@ abstract final class QuranLearnAudio {
     }
   }
 
+  static String? sukunTripletPath(String? alphabetPath) {
+    final stem = letterStem(alphabetPath);
+    if (stem == null || stem == 'elif') return null;
+    return resolve('assets/audio/quran_learn/sukun/${stem}_triplet.mp3') ??
+        practicePath(alphabetPath, 'sukun');
+  }
+
+  static String? sukunJoinPath(String? alphabetPath, String hareke) {
+    final stem = letterStem(alphabetPath);
+    if (stem == null || stem == 'elif') return null;
+    switch (hareke) {
+      case 'kasra':
+        return resolve('assets/audio/quran_learn/sukun/${stem}_join_kasra.mp3');
+      case 'damma':
+        return resolve('assets/audio/quran_learn/sukun/${stem}_join_damma.mp3');
+      default:
+        return resolve(
+              'assets/audio/quran_learn/sukun/${stem}_join_fatha.mp3',
+            ) ??
+            (stem == 'ba'
+                ? resolve('assets/audio/quran_learn/sukun/eb.mp3')
+                : null);
+    }
+  }
+
+  static String? shaddaHarekePath(String? alphabetPath, String hareke) {
+    final stem = letterStem(alphabetPath);
+    if (stem == null || stem == 'elif') return null;
+    switch (hareke) {
+      case 'kasra':
+        return resolve(
+          'assets/audio/quran_learn/shadda/${stem}_shadda_kasra.mp3',
+        );
+      case 'damma':
+        return resolve(
+          'assets/audio/quran_learn/shadda/${stem}_shadda_damma.mp3',
+        );
+      default:
+        return practicePath(alphabetPath, 'shadda');
+    }
+  }
+
+  static Future<void> playSequence(
+    AudioPlayerService audio,
+    LocalProgressStore store,
+    List<String?> paths,
+  ) async {
+    for (final path in paths) {
+      final playable = resolve(path);
+      if (playable == null) continue;
+      await play(audio, store, playable);
+    }
+  }
+
   static String? shortPairPath(String? alphabetPath, String harakaId) {
     switch (harakaId) {
       case 'fatha_madd':
@@ -83,6 +137,17 @@ abstract final class QuranLearnAudio {
       default:
         return null;
     }
+  }
+
+  static String? tajweedExamplePath(
+    String lessonId, {
+    required int index,
+    String? jsonAudio,
+  }) {
+    if (index < 0) return resolve(jsonAudio);
+    final unique =
+        'assets/audio/quran_learn/tajweed/${lessonId}_${index + 1}.mp3';
+    return resolve(unique) ?? resolve(jsonAudio);
   }
 
   static String? surahPath(

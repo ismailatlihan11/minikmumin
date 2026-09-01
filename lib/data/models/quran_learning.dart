@@ -57,6 +57,8 @@ class QuranArabicLetter {
 
   bool get isHeavySound => approximateTurkishSound.contains('kalın');
 
+  bool get isLispSound => approximateTurkishSound.contains('peltek');
+
   factory QuranArabicLetter.fromJson(Map<String, dynamic> json) {
     return QuranArabicLetter(
       id: JsonMap.str(json['id']),
@@ -512,6 +514,10 @@ class QuranLearningSurah {
     return '$surahNumber-$from-$to';
   }
 
+  bool get isCompleteSurah => ayahFrom == null;
+
+  bool get isExcerpt => ayahFrom != null;
+
   String get listSubtitle {
     final from = ayahFrom;
     if (from == null) return '$nameAr · $ayahCount ayet';
@@ -720,6 +726,7 @@ class QuranLearningPack {
       case 'ql_comb':
         return [for (final item in combinations) item.id];
       case 'ql_word':
+      case 'ql_letter_review':
         return [for (final word in words) word.id];
       case 'ql_tajweed':
         return [for (final lesson in tajweed) lesson.id];
@@ -731,6 +738,8 @@ class QuranLearningPack {
         return [for (final group in mahrajGroups) group.id];
       case 'ql_heavy':
         return const ['heavy', 'light'];
+      case 'ql_game':
+        return [for (final game in games) game.id];
       case 'ql_exam':
         return exam == null ? const <String>[] : [exam!.id];
       default:
@@ -779,6 +788,16 @@ class QuranLearningPack {
         return [
           for (final surah in surahs)
             QuranLearnProgressItem(kind: 'ql_tajweed_read', id: surah.id),
+        ];
+      case 9:
+        return [
+          for (final letter in letters)
+            QuranLearnProgressItem(kind: 'ql_letter_form', id: letter.id),
+        ];
+      case 10:
+        return [
+          for (final word in words)
+            QuranLearnProgressItem(kind: 'ql_letter_review', id: word.id),
         ];
       default:
         return const [];
@@ -835,20 +854,11 @@ class QuranLearningPack {
       itemsKey: 'games',
     ).map(QuranLearningGame.fromJson).toList(growable: false);
 
-    var levels = JsonMap.extractList(
+    final levels = JsonMap.extractList(
       JsonMap.object(json['quran_learning_levels']),
       itemsKey: 'levels',
-    ).map(QuranLearningLevel.fromJson).toList();
-    if (curriculum != null) {
-      final categories = JsonMap.extractList(
-        curriculum,
-        itemsKey: 'categories',
-      );
-      if (categories.isNotEmpty) {
-        levels = categories.map(QuranLearningLevel.fromJson).toList();
-      }
-    }
-    levels.sort((a, b) => a.id.compareTo(b.id));
+    ).map(QuranLearningLevel.fromJson).toList()
+      ..sort((a, b) => a.id.compareTo(b.id));
 
     final surahs = JsonMap.extractList(
       JsonMap.object(json['quran_learning_surahs']),

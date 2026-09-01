@@ -2,7 +2,7 @@
 
 These files were generated using Google Cloud Text-to-Speech. The audio files are synthetic outputs generated from the supplied text. Review Google Cloud's current terms and pricing before commercial redistribution.
 
-This audio is **educational pronunciation**, not Quran recitation, adhan, or qari imitation. Short surahs here use the same cartoon-boy TTS. Kur'an-ı Kerim tilavet stays on Husary (`assets/audio/quran/`).
+This audio is **educational pronunciation**, not Quran recitation, adhan, or qari imitation. Short surahs here use the same cartoon-boy TTS. Fâtiha pacing follows Alafasy murattal as a reference, but the clip is child TTS. Kur'an-ı Kerim tilavet stays on Husary (`assets/audio/quran/`).
 
 - Voice: `ar-XA-Chirp3-HD-Fenrir`
 - Language: `ar-XA`
@@ -14,9 +14,9 @@ This audio is **educational pronunciation**, not Quran recitation, adhan, or qar
 - Haraka chips (üstün/esre/ötre) still use sounded syllables (e.g. طَ).
 - API: Google Cloud Text-to-Speech (`google-cloud-texttospeech`)
 - Auth: Application Default Credentials (no keys in the Flutter app)
-- Generated date: 2026-08-23
-- Generated: 353
-- Skipped: 12
+- Generated date: 2026-09-01
+- Generated: 162
+- Skipped: 437
 - Failed: 0
 
 Documentation:

@@ -45,108 +45,126 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
               if (snap == null) {
                 return const Center(child: CircularProgressIndicator());
               }
-              final percent = (snap.overallRatio * 100).round();
-              final daily = snap.dailyLesson();
+              final path = [
+                for (final id in elifbaPathIds)
+                  if (pack.levelById(id) != null) pack.levelById(id)!,
+              ];
+              final drills = [
+                for (final id in elifbaDrillIds)
+                  if (pack.levelById(id) != null) pack.levelById(id)!,
+              ];
+              final tajweed = [
+                for (final id in elifbaTajweedIds)
+                  if (pack.levelById(id) != null) pack.levelById(id)!,
+              ];
+              final reading = [
+                for (final id in elifbaReadIds)
+                  if (pack.levelById(id) != null) pack.levelById(id)!,
+              ];
+              final pathDone =
+                  path.where((level) => snap.isLevelComplete(level.id)).length;
               return ListView(
                 padding: AppSpacing.page,
                 children: [
                   MinikCard(
                     color: const Color(0xFFEAF6FF),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Kur'an Öğreniyorum",
-                                    style: Theme.of(context).textTheme.displayMedium,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  const Text(
-                                    'Harfe dokunup dinle. Harekelerde karelerden alıştırma yap.',
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                'assets/images/home/card_quran_learn.png',
-                                width: 72,
-                                height: 72,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'Seviyem: ${snap.currentLevelId}',
-                          style: const TextStyle(
-                            fontFamily: 'NotoSans',
-                            fontWeight: FontWeight.w800,
-                            color: MinikColors.darkGreen,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        QlSoftProgress(
-                          value: snap.overallRatio,
-                          label:
-                              '%$percent tamamlandı · ${snap.completedLessons} ders',
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  MinikCard(
-                    color: MinikColors.butter,
-                    onTap: () => openQuranLearnDaily(
-                      context,
-                      pack: pack,
-                      lesson: daily,
-                    ),
                     child: Row(
                       children: [
-                        const Icon(Icons.wb_sunny_rounded, color: MinikColors.gold),
-                        const SizedBox(width: 12),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                'Bugünün Dersi',
-                                style: TextStyle(
-                                  fontFamily: 'NotoSans',
-                                  fontWeight: FontWeight.w800,
-                                  color: MinikColors.darkGreen,
-                                ),
+                              Text(
+                                "Kur'an Öğreniyorum",
+                                style: Theme.of(context).textTheme.displayMedium,
                               ),
                               const SizedBox(height: 4),
-                              Text(daily.title),
+                              const Text(
+                                'Harf, şekil, hareke. Sonra kısa sure.',
+                              ),
+                              const SizedBox(height: 10),
+                              QlSoftProgress(
+                                value: path.isEmpty ? 0 : pathDone / path.length,
+                                label: '$pathDone / ${path.length} adım',
+                              ),
                             ],
                           ),
                         ),
-                        const Icon(Icons.chevron_right_rounded),
+                        const SizedBox(width: 8),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.asset(
+                            'assets/images/home/card_quran_learn.png',
+                            width: 72,
+                            height: 72,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   const SizedBox(height: AppSpacing.md),
-                  for (final level in pack.levels)
-                    _LevelCard(
-                      level: level,
+                  for (var i = 0; i < path.length; i++)
+                    _PathCard(
+                      step: i + 1,
+                      level: path[i],
                       snap: snap,
-                      onOpen: snap.isLevelUnlocked(level)
-                          ? () => openQuranLearnLevel(
-                                context,
-                                pack: pack,
-                                levelId: level.id,
-                              )
-                          : null,
+                      onOpen: () => openQuranLearnLevel(
+                        context,
+                        pack: pack,
+                        levelId: path[i].id,
+                      ),
+                    ),
+                  if (drills.isNotEmpty)
+                    _HubFold(
+                      title: 'Alıştırma',
+                      subtitle: 'Birleştir, oku, ayırt, oyna',
+                      children: [
+                        for (final level in drills)
+                          _LaterCard(
+                            level: level,
+                            snap: snap,
+                            onOpen: () => openQuranLearnLevel(
+                              context,
+                              pack: pack,
+                              levelId: level.id,
+                            ),
+                          ),
+                      ],
+                    ),
+                  if (tajweed.isNotEmpty)
+                    _HubFold(
+                      title: 'Tecvid',
+                      subtitle: 'Kuralları ayette gör',
+                      children: [
+                        for (final level in tajweed)
+                          _LaterCard(
+                            level: level,
+                            snap: snap,
+                            onOpen: () => openQuranLearnLevel(
+                              context,
+                              pack: pack,
+                              levelId: level.id,
+                            ),
+                          ),
+                      ],
+                    ),
+                  if (reading.isNotEmpty)
+                    _HubFold(
+                      title: 'Okuma pratiği',
+                      subtitle: 'Ayet ve sure oku',
+                      children: [
+                        for (final level in reading)
+                          _LaterCard(
+                            level: level,
+                            snap: snap,
+                            onOpen: () => openQuranLearnLevel(
+                              context,
+                              pack: pack,
+                              levelId: level.id,
+                            ),
+                          ),
+                      ],
                     ),
                 ],
               );
@@ -158,8 +176,127 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
   }
 }
 
-class _LevelCard extends StatelessWidget {
-  const _LevelCard({
+class _HubFold extends StatelessWidget {
+  const _HubFold({
+    required this.title,
+    required this.subtitle,
+    required this.children,
+  });
+
+  final String title;
+  final String subtitle;
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          childrenPadding: EdgeInsets.zero,
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontFamily: 'NotoSans',
+              fontWeight: FontWeight.w800,
+              color: MinikColors.textMuted,
+            ),
+          ),
+          subtitle: Text(subtitle),
+          children: children,
+        ),
+      ),
+    );
+  }
+}
+
+class _PathCard extends StatelessWidget {
+  const _PathCard({
+    required this.step,
+    required this.level,
+    required this.snap,
+    required this.onOpen,
+  });
+
+  final int step;
+  final QuranLearningLevel level;
+  final QuranLearnSnapshot snap;
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    final done = snap.completedCount(level.id);
+    final total = snap.totalCount(level.id);
+    final complete = snap.isLevelComplete(level.id);
+    final first = step == 1;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: MinikCard(
+        color: complete
+            ? MinikColors.mint
+            : first
+                ? MinikColors.surface
+                : const Color(0xFFF7F4EE),
+        onTap: onOpen,
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: MinikColors.pastelAt(step),
+              child: Text(
+                '$step',
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontWeight: FontWeight.w800,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    elifbaStepTitle(level),
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    elifbaStepCue(level),
+                    style: const TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 13,
+                      color: MinikColors.textMuted,
+                    ),
+                  ),
+                  if (total > 0) ...[
+                    const SizedBox(height: 6),
+                    QlSoftProgress(
+                      value: snap.levelRatio(level.id),
+                      label: '$done / $total',
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Text(
+              complete ? '✓' : first ? 'Başla' : 'Aç',
+              style: const TextStyle(
+                fontFamily: 'NotoSans',
+                fontWeight: FontWeight.w800,
+                color: MinikColors.green,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LaterCard extends StatelessWidget {
+  const _LaterCard({
     required this.level,
     required this.snap,
     required this.onOpen,
@@ -167,87 +304,46 @@ class _LevelCard extends StatelessWidget {
 
   final QuranLearningLevel level;
   final QuranLearnSnapshot snap;
-  final VoidCallback? onOpen;
+  final VoidCallback onOpen;
 
   @override
   Widget build(BuildContext context) {
-    final unlocked = onOpen != null;
-    final done = snap.completedCount(level.id);
-    final total = snap.totalCount(level.id);
-    final complete = snap.isLevelComplete(level.id);
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 8),
       child: MinikCard(
-        color: complete
-            ? MinikColors.mint
-            : unlocked
-                ? MinikColors.surface
-                : const Color(0xFFE8EDE8),
+        color: const Color(0xFFE8EDE8),
         onTap: onOpen,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: MinikColors.pastelAt(level.id),
-                  child: Icon(
-                    qlLevelIcon(level.id, level.screen),
-                    color: MinikColors.darkGreen,
+            Icon(qlLevelIcon(level.id, level.screen), color: MinikColors.textMuted),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    elifbaStepTitle(level),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'SEVİYE ${level.id}',
-                        style: const TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.textMuted,
-                        ),
-                      ),
-                      Text(
-                        level.title,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ],
+                  Text(
+                    elifbaStepCue(level),
+                    style: const TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 13,
+                      color: MinikColors.textMuted,
+                    ),
                   ),
-                ),
-                Text(
-                  complete
-                      ? '✓'
-                      : unlocked
-                          ? '🔓'
-                          : '🔒',
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(level.description),
-            const SizedBox(height: 8),
-            QlSoftProgress(
-              value: snap.levelRatio(level.id),
-              label: '$done / $total',
-            ),
-            if (unlocked) ...[
-              const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  complete ? 'Tekrar Et' : 'Devam Et',
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w800,
-                    color: MinikColors.green,
-                  ),
-                ),
+                ],
               ),
-            ],
+            ),
+            Text(
+              snap.isLevelComplete(level.id) ? '✓' : 'Aç',
+              style: const TextStyle(
+                fontFamily: 'NotoSans',
+                fontWeight: FontWeight.w800,
+                color: MinikColors.green,
+              ),
+            ),
           ],
         ),
       ),

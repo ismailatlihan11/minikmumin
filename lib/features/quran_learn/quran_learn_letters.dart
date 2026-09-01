@@ -10,8 +10,8 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
-import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_review.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnLettersPage extends StatefulWidget {
@@ -56,6 +56,7 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
       kind: widget.progressKind,
       id: letter.id,
     );
+    if (mounted) setState(() {});
   }
 
   void _openDetail(QuranArabicLetter letter) {
@@ -75,32 +76,49 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
   @override
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
-    final games = widget.pack.gamesForLevel(widget.levelId);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor:
+          widget.formsFocus ? const Color(0xFFF5EEDC) : const Color(0xFFF4F7F2),
       appBar: AppBar(
         title: Text(
           widget.pack.titleForLevel(
             widget.levelId,
-            fallback: widget.formsFocus ? 'Harf şekilleri' : 'Harfler',
+            fallback: widget.formsFocus ? 'Harfler ve şekilleri' : 'Harfler',
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.small(
-        tooltip: _showNames ? 'İsimleri gizle' : 'İsimleri göster',
-        backgroundColor: Colors.white,
-        foregroundColor: MinikColors.green,
-        onPressed: () => setState(() => _showNames = !_showNames),
-        child: Icon(
-          _showNames ? Icons.visibility_rounded : Icons.visibility_off_rounded,
-        ),
-      ),
+      floatingActionButton: widget.formsFocus
+          ? null
+          : FloatingActionButton.small(
+              tooltip: _showNames ? 'İsimleri gizle' : 'İsimleri göster',
+              backgroundColor: Colors.white,
+              foregroundColor: MinikColors.green,
+              onPressed: () => setState(() => _showNames = !_showNames),
+              child: Icon(
+                _showNames
+                    ? Icons.visibility_rounded
+                    : Icons.visibility_off_rounded,
+              ),
+            ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, widget.pack),
         builder: (context, snapshot) {
           final snap = snapshot.data;
           final done = snap?.completedCount(widget.levelId) ?? 0;
           final total = widget.pack.letters.length;
+          if (widget.formsFocus) {
+            return _ElifbaFormsLesson(
+              pack: widget.pack,
+              letters: widget.pack.letters,
+              snap: snap,
+              progressKind: widget.progressKind,
+              selectedId: _selectedId,
+              progressLabel: '$done / $total harf',
+              progressValue: total == 0 ? 0 : done / total,
+              onListen: _listen,
+              onLongPress: _openDetail,
+            );
+          }
           return ListView(
             padding: const EdgeInsets.fromLTRB(12, 6, 12, 16),
             children: [
@@ -109,55 +127,42 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
                 label: '$done / $total harf',
               ),
               const SizedBox(height: 8),
-              QlLessonIntro(
-                title: widget.formsFocus
-                    ? 'Ders 1: Harflerin kelimedeki şekilleri'
-                    : 'Ders 1: Harflerin bağımsız isimleri',
-                cue: 'Harfin üzerine tıkla / dinleyerek öğren',
+              const QlLessonIntro(
+                title: 'Harfler',
+                cue: 'Harfe dokun, dinle',
                 note: 'Kırmızı olanlar kalın harflerdir.',
-                hint: _showNames
-                    ? 'Göz ile isimleri gizleyebilirsin. Uzun basınca şekilleri görürsün.'
-                    : 'Uzun basınca isim ve şekilleri görürsün.',
+                hint: 'Uzun basınca şekilleri görürsün.',
               ),
               const SizedBox(height: 10),
               Directionality(
-                textDirection: TextDirection.rtl,
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: widget.pack.letters.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                    childAspectRatio: _showNames ? 0.78 : 1,
+                  textDirection: TextDirection.rtl,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: widget.pack.letters.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+                      childAspectRatio: _showNames ? 0.78 : 1,
+                    ),
+                    itemBuilder: (context, index) {
+                      final letter = widget.pack.letters[index];
+                      final learned =
+                          snap?.isDone(widget.progressKind, letter.id) ?? false;
+                      return QlDashTile(
+                        arabic: letter.letter,
+                        caption: _showNames ? letter.name : null,
+                        heavy: letter.isHeavySound,
+                        learned: learned,
+                        selected: _selectedId == letter.id,
+                        fontSize: 28,
+                        onTap: () => _listen(letter),
+                        onLongPress: () => _openDetail(letter),
+                      );
+                    },
                   ),
-                  itemBuilder: (context, index) {
-                    final letter = widget.pack.letters[index];
-                    final learned =
-                        snap?.isDone(widget.progressKind, letter.id) ?? false;
-                    final arabic = widget.formsFocus
-                        ? letter.forms.isolated
-                        : letter.letter;
-                    return QlDashTile(
-                      arabic: arabic,
-                      caption: _showNames ? letter.name : null,
-                      heavy: letter.isHeavySound,
-                      learned: learned,
-                      selected: _selectedId == letter.id,
-                      fontSize: 28,
-                      onTap: QuranLearnAudio.resolve(letter.audio) == null
-                          ? () => _openDetail(letter)
-                          : () => _listen(letter),
-                      onLongPress: () => _openDetail(letter),
-                    );
-                  },
                 ),
-              ),
-              if (games.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.md),
-                QlGamesStrip(games: games, title: 'Harf oyunları'),
-              ],
             ],
           );
         },
@@ -397,6 +402,455 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
           QlPrimaryBar(label: 'Öğrendim', onPressed: _markLearned),
         ],
       ),
+    );
+  }
+}
+
+class _ElifbaFormsLesson extends StatelessWidget {
+  const _ElifbaFormsLesson({
+    required this.pack,
+    required this.letters,
+    required this.snap,
+    required this.progressKind,
+    required this.selectedId,
+    required this.progressLabel,
+    required this.progressValue,
+    required this.onListen,
+    required this.onLongPress,
+  });
+
+  final QuranLearningPack pack;
+  final List<QuranArabicLetter> letters;
+  final QuranLearnSnapshot? snap;
+  final String progressKind;
+  final String? selectedId;
+  final String progressLabel;
+  final double progressValue;
+  final ValueChanged<QuranArabicLetter> onListen;
+  final ValueChanged<QuranArabicLetter> onLongPress;
+
+  List<QuranArabicLetter> get _thin =>
+      [for (final letter in letters) if (!letter.isHeavySound) letter];
+
+  List<QuranArabicLetter> get _heavy =>
+      [for (final letter in letters) if (letter.isHeavySound) letter];
+
+  List<QuranArabicLetter> get _lisp =>
+      [for (final letter in letters) if (letter.isLispSound) letter];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      children: [
+        QlSoftProgress(value: progressValue, label: progressLabel),
+        const SizedBox(height: 14),
+        const Text(
+          'Harfler ve Şekilleri',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'NotoSans',
+            fontSize: 22,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF3A332C),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+          decoration: BoxDecoration(
+            color: const Color(0xFFE6DBC5),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: const Color(0xFFC4B79A)),
+          ),
+          child: const Text(
+            'Harf kelimenin başına, ortasına ve sonuna göre değişir. Önce tabloya bak, sonra slaytta büyüt.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 13,
+              height: 1.4,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF3A332C),
+            ),
+          ),
+        ),
+        const SizedBox(height: 18),
+        _FormsGroup(
+          title: 'İnce sesli harfler',
+          letters: _thin,
+          snap: snap,
+          progressKind: progressKind,
+          selectedId: selectedId,
+          onListen: onListen,
+          onLongPress: onLongPress,
+        ),
+        const SizedBox(height: 22),
+        _FormsGroup(
+          title: 'Kalın sesli harfler',
+          letters: _heavy,
+          snap: snap,
+          progressKind: progressKind,
+          selectedId: selectedId,
+          onListen: onListen,
+          onLongPress: onLongPress,
+        ),
+        const SizedBox(height: 22),
+        _FormsGroup(
+          title: 'Peltek harfler',
+          letters: _lisp,
+          snap: snap,
+          progressKind: progressKind,
+          selectedId: selectedId,
+          onListen: onListen,
+          onLongPress: onLongPress,
+        ),
+        const SizedBox(height: 28),
+        QlLetterReviewSection(pack: pack, embedded: true),
+      ],
+    );
+  }
+}
+
+class _FormsGroup extends StatelessWidget {
+  const _FormsGroup({
+    required this.title,
+    required this.letters,
+    required this.snap,
+    required this.progressKind,
+    required this.selectedId,
+    required this.onListen,
+    required this.onLongPress,
+  });
+
+  final String title;
+  final List<QuranArabicLetter> letters;
+  final QuranLearnSnapshot? snap;
+  final String progressKind;
+  final String? selectedId;
+  final ValueChanged<QuranArabicLetter> onListen;
+  final ValueChanged<QuranArabicLetter> onLongPress;
+
+  @override
+  Widget build(BuildContext context) {
+    if (letters.isEmpty) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontFamily: 'NotoSans',
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+            color: Color(0xFF3A332C),
+          ),
+        ),
+        const SizedBox(height: 10),
+        _FormsTable(
+          letters: letters,
+          snap: snap,
+          progressKind: progressKind,
+          selectedId: selectedId,
+          onListen: onListen,
+          onLongPress: onLongPress,
+        ),
+        const SizedBox(height: 12),
+        _FormsSlider(
+          letters: letters,
+          selectedId: selectedId,
+          onListen: onListen,
+          onLongPress: onLongPress,
+        ),
+      ],
+    );
+  }
+}
+
+class _FormsTable extends StatelessWidget {
+  const _FormsTable({
+    required this.letters,
+    required this.snap,
+    required this.progressKind,
+    required this.selectedId,
+    required this.onListen,
+    required this.onLongPress,
+  });
+
+  final List<QuranArabicLetter> letters;
+  final QuranLearnSnapshot? snap;
+  final String progressKind;
+  final String? selectedId;
+  final ValueChanged<QuranArabicLetter> onListen;
+  final ValueChanged<QuranArabicLetter> onLongPress;
+
+  static const _border = Color(0xFF5C5346);
+  static const _header = Color(0xFFD9CDB3);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: _border, width: 0.9),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          Container(
+            color: _header,
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: const Row(
+              children: [
+                Expanded(child: _FormsHead('Harf')),
+                Expanded(child: _FormsHead('Başta')),
+                Expanded(child: _FormsHead('Ortada')),
+                Expanded(child: _FormsHead('Sonda')),
+              ],
+            ),
+          ),
+          for (final letter in letters)
+            Material(
+              color: snap?.isDone(progressKind, letter.id) == true
+                  ? const Color(0xFFE8F3E4)
+                  : selectedId == letter.id
+                      ? const Color(0xFFE6DBC5)
+                      : const Color(0xFFF8F3E6),
+              child: InkWell(
+                onTap: () => onListen(letter),
+                onLongPress: () => onLongPress(letter),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: _border, width: 0.6),
+                    ),
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _FormsGlyph(
+                          letter.letter,
+                          heavy: letter.isHeavySound,
+                        ),
+                      ),
+                      Expanded(child: _FormsGlyph(letter.forms.initial)),
+                      Expanded(child: _FormsGlyph(letter.forms.medial)),
+                      Expanded(child: _FormsGlyph(letter.forms.finalForm)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FormsHead extends StatelessWidget {
+  const _FormsHead(this.label);
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontFamily: 'NotoSans',
+        fontSize: 11,
+        fontWeight: FontWeight.w800,
+        color: Color(0xFF3A332C),
+      ),
+    );
+  }
+}
+
+class _FormsGlyph extends StatelessWidget {
+  const _FormsGlyph(this.arabic, {this.heavy = false});
+
+  final String arabic;
+  final bool heavy;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: QlBigArabic(
+          arabic,
+          fontSize: 26,
+          color: heavy ? QlDashTile.heavyLetter : const Color(0xFF1A1A1A),
+        ),
+      ),
+    );
+  }
+}
+
+class _FormsSlider extends StatefulWidget {
+  const _FormsSlider({
+    required this.letters,
+    required this.selectedId,
+    required this.onListen,
+    required this.onLongPress,
+  });
+
+  final List<QuranArabicLetter> letters;
+  final String? selectedId;
+  final ValueChanged<QuranArabicLetter> onListen;
+  final ValueChanged<QuranArabicLetter> onLongPress;
+
+  @override
+  State<_FormsSlider> createState() => _FormsSliderState();
+}
+
+class _FormsSliderState extends State<_FormsSlider> {
+  static const _tabs = ['Harf', 'Başta', 'Ortada', 'Sonda'];
+
+  int _index = 0;
+  int _slot = 0;
+
+  @override
+  void didUpdateWidget(_FormsSlider oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final id = widget.selectedId;
+    if (id == null || id == oldWidget.selectedId) return;
+    final next = widget.letters.indexWhere((letter) => letter.id == id);
+    if (next >= 0 && next != _index) {
+      setState(() => _index = next);
+    }
+  }
+
+  QuranArabicLetter get _letter => widget.letters[_index];
+
+  String get _glyph {
+    final forms = _letter.forms;
+    return switch (_slot) {
+      1 => forms.initial,
+      2 => forms.medial,
+      3 => forms.finalForm,
+      _ => forms.isolated,
+    };
+  }
+
+  void _go(int delta) {
+    if (widget.letters.isEmpty) return;
+    setState(() {
+      _index = (_index + delta) % widget.letters.length;
+      if (_index < 0) _index += widget.letters.length;
+    });
+    widget.onListen(_letter);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final letter = _letter;
+    final arabicColor =
+        letter.isHeavySound ? QlDashTile.heavyLetter : const Color(0xFF1A1A1A);
+    return Column(
+      children: [
+        Row(
+          children: [
+            IconButton(
+              tooltip: 'Önceki',
+              onPressed: () => _go(-1),
+              icon: const Icon(Icons.chevron_left_rounded),
+            ),
+            Expanded(
+              child: Text(
+                '${_index + 1} / ${widget.letters.length}',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontFamily: 'NotoSans',
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF3A332C),
+                ),
+              ),
+            ),
+            IconButton(
+              tooltip: 'Sonraki',
+              onPressed: () => _go(1),
+              icon: const Icon(Icons.chevron_right_rounded),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            for (var i = 0; i < _tabs.length; i++)
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: Material(
+                    color: _slot == i
+                        ? const Color(0xFFD9CDB3)
+                        : const Color(0xFFF8F3E6),
+                    borderRadius: BorderRadius.circular(8),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() => _slot = i);
+                        widget.onListen(letter);
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          _tabs[i],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'NotoSans',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: _slot == i
+                                ? const Color(0xFF3A332C)
+                                : MinikColors.textMuted,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Material(
+          color: const Color(0xFFE6DBC5),
+          borderRadius: BorderRadius.circular(10),
+          child: InkWell(
+            onTap: () => widget.onListen(letter),
+            onLongPress: () => widget.onLongPress(letter),
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: const Color(0xFF5C5346), width: 0.9),
+              ),
+              child: Column(
+                children: [
+                  QlBigArabic(_glyph, fontSize: 64, color: arabicColor),
+                  const SizedBox(height: 6),
+                  Text(
+                    letter.name,
+                    style: const TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF3A332C),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
