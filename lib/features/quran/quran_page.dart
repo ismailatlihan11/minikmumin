@@ -18,6 +18,7 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'mushaf_decor.dart';
 import 'mushaf_page.dart';
 
 class MinikQuranPage extends StatefulWidget {
@@ -196,10 +197,18 @@ class _DailyAyahCardState extends State<_DailyAyahCard> {
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: AppSpacing.sm),
-          ArabicText(verse.arabic),
+          ArabicText(
+            verse.arabic,
+            color: verse.isSajdahAyah ? kMushafSajdahRed : null,
+          ),
           if (verse.hasMeal) ...[
             const SizedBox(height: 10),
-            SelectableText(verse.meal),
+            SelectableText(
+              verse.meal,
+              style: verse.isSajdahAyah
+                  ? const TextStyle(color: kMushafSajdahRed, height: 1.45)
+                  : null,
+            ),
           ],
           if (note != null) ...[
             const SizedBox(height: 12),
@@ -398,10 +407,21 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
                     ],
                   ),
                   const SizedBox(height: AppSpacing.sm),
-                  ArabicText(verse.arabic),
+                  ArabicText(
+                    verse.arabic,
+                    color: verse.isSajdahAyah ? kMushafSajdahRed : null,
+                  ),
                   if (verse.hasMeal) ...[
                     const SizedBox(height: 10),
-                    SelectableText(verse.meal),
+                    SelectableText(
+                      verse.meal,
+                      style: verse.isSajdahAyah
+                          ? const TextStyle(
+                              color: kMushafSajdahRed,
+                              height: 1.45,
+                            )
+                          : null,
+                    ),
                   ],
                   Align(
                     alignment: Alignment.centerRight,

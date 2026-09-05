@@ -4,10 +4,11 @@ import '../../app/constants/asset_paths.dart';
 import '../../app/theme/app_colors.dart';
 
 class ArabicText extends StatelessWidget {
-  const ArabicText(this.text, {super.key, this.fontSize = 22});
+  const ArabicText(this.text, {super.key, this.fontSize = 22, this.color});
 
   final String text;
   final double fontSize;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ArabicText extends StatelessWidget {
         fontFamily: AssetPaths.arabicFontFamily,
         fontSize: fontSize,
         height: 1.8,
-        color: MinikColors.darkGreen,
+        color: color ?? MinikColors.darkGreen,
       ),
     );
   }
