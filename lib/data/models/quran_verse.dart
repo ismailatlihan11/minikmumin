@@ -19,6 +19,7 @@ class QuranVerse {
 
   bool get hasMeal => meal.trim().isNotEmpty;
   int get displayPage => page;
+  bool get isSajdahAyah => mushafIsSajdahAyah(surahId, ayahNo);
 
   factory QuranVerse.fromJson(Map<String, dynamic> json) {
     final text = JsonMap.object(json['metin']);
@@ -66,6 +67,9 @@ class MushafPageData {
 
   int get displayNumber => jsonPage;
 
+  /// Cüz 1 is pages 0–20; later juzes are 20 pages (21–40, 41–60, …).
+  int get juzNumber => mushafJuzForPage(jsonPage);
+
   Set<int> get surahIds => {for (final verse in verses) verse.surahId};
 
   static List<MushafPageData> group(List<QuranVerse> verses) {
@@ -83,6 +87,38 @@ class MushafPageData {
         ),
     ];
   }
+}
+
+/// Secde ayetleri (14): 7:206, 13:15, 16:49, 17:107, 19:58, 22:18,
+/// 38:24, 25:60, 27:25, 32:15, 41:37, 53:62, 84:21, 96:19.
+const mushafSajdahAyahs = <(int, int)>[
+  (7, 206),
+  (13, 15),
+  (16, 49),
+  (17, 107),
+  (19, 58),
+  (22, 18),
+  (38, 24),
+  (25, 60),
+  (27, 25),
+  (32, 15),
+  (41, 37),
+  (53, 62),
+  (84, 21),
+  (96, 19),
+];
+
+bool mushafIsSajdahAyah(int surahId, int ayahNo) {
+  for (final ayah in mushafSajdahAyahs) {
+    if (ayah.$1 == surahId && ayah.$2 == ayahNo) return true;
+  }
+  return false;
+}
+
+/// Cüz 1: 0–20. Cüz 2: 21–40. Cüz 3: 41–60. Last pages stay in cüz 30.
+int mushafJuzForPage(int jsonPage) {
+  if (jsonPage <= 20) return 1;
+  return ((jsonPage - 1) ~/ 20 + 1).clamp(1, 30);
 }
 
 class SurahIndexItem {

@@ -10,6 +10,7 @@ const kMushafGold = Color(0xFFC8A96E);
 const kMushafGoldDeep = Color(0xFF9B7B4A);
 const kMushafGreen = Color(0xFF1A4A2A);
 const kMushafInk = Color(0xFF1C0F02);
+const kMushafSajdahRed = Color(0xFFB42318);
 const kMushafNight = Color(0xFF0A1A0F);
 
 /// Parşömen sayfa: çift çerçeve, köşe süsü, kâğıt dokusu.

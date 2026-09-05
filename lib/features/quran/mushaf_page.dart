@@ -434,7 +434,7 @@ class _PageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final juz = ((page.jsonPage ~/ 20) + 1).clamp(1, 30);
+    final juz = page.juzNumber;
     final surah = page.verses.isEmpty ? '' : surahName(page.verses.first.surahId);
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 2, 8, 6),
@@ -574,11 +574,14 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
     for (final verse in widget.verses) {
       final selected =
           widget.followEnabled && verse.ayahId == widget.selectedAyahId;
+      final ink = verse.isSajdahAyah ? kMushafSajdahRed : kMushafInk;
+      final markColor =
+          verse.isSajdahAyah ? kMushafSajdahRed : const Color(0xFF8B4513);
       spans.add(
         TextSpan(
           text: verse.arabic,
           style: TextStyle(
-            color: kMushafInk,
+            color: ink,
             fontSize: widget.fontSize,
             fontFamily: AssetPaths.arabicFontFamily,
             height: 2.2,
@@ -590,7 +593,7 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
         TextSpan(
           text: _ayahMark(verse.ayahNo),
           style: TextStyle(
-            color: const Color(0xFF8B4513),
+            color: markColor,
             fontSize: widget.fontSize - 4,
             fontFamily: AssetPaths.arabicFontFamily,
             height: 2.2,

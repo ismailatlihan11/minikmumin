@@ -351,6 +351,45 @@ void main() {
     expect(pages.last.verses.first.displayPage, 1);
   });
 
+  test('mushaf juz ranges start at 0–20 then 21–40', () {
+    expect(mushafJuzForPage(0), 1);
+    expect(mushafJuzForPage(20), 1);
+    expect(mushafJuzForPage(21), 2);
+    expect(mushafJuzForPage(40), 2);
+    expect(mushafJuzForPage(41), 3);
+    expect(mushafJuzForPage(60), 3);
+    expect(mushafJuzForPage(61), 4);
+    expect(mushafJuzForPage(580), 29);
+    expect(mushafJuzForPage(581), 30);
+    expect(mushafJuzForPage(603), 30);
+  });
+
+  test('sajdah ayahs are the given 14 verses', () {
+    const expected = <(int, int)>[
+      (7, 206),
+      (13, 15),
+      (16, 49),
+      (17, 107),
+      (19, 58),
+      (22, 18),
+      (38, 24),
+      (25, 60),
+      (27, 25),
+      (32, 15),
+      (41, 37),
+      (53, 62),
+      (84, 21),
+      (96, 19),
+    ];
+    expect(mushafSajdahAyahs, expected);
+    for (final ayah in expected) {
+      expect(mushafIsSajdahAyah(ayah.$1, ayah.$2), isTrue);
+    }
+    expect(mushafIsSajdahAyah(22, 77), isFalse);
+    expect(mushafIsSajdahAyah(16, 50), isFalse);
+    expect(mushafIsSajdahAyah(1, 1), isFalse);
+  });
+
   test('TurkishNumber writes page labels in Turkish', () {
     expect(TurkishNumber.words(1), 'bir');
     expect(TurkishNumber.words(12), 'on iki');
