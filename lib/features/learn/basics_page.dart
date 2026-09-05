@@ -306,8 +306,10 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                 const SectionLabel('💬 Anlamı'),
                 MinikCard(child: Text(item.meaning)),
               ],
-              const SizedBox(height: AppSpacing.lg),
-              Text(item.content, style: Theme.of(context).textTheme.bodyLarge),
+              if (item.content.trim().isNotEmpty) ...[
+                const SizedBox(height: AppSpacing.lg),
+                Text(item.content, style: Theme.of(context).textTheme.bodyLarge),
+              ],
               if (item.example != null && item.example!.hasContent) ...[
                 const SizedBox(height: AppSpacing.lg),
                 const SectionLabel('Örnek'),
@@ -357,7 +359,6 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
               ],
               if (item.items.isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('Unutma'),
                 for (final sub in item.items)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -411,7 +412,6 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
               ],
               if (item.keyPoints.isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('Unutma'),
                 for (final point in item.keyPoints)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),

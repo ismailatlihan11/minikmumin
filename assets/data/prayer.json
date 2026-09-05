@@ -97,7 +97,7 @@
       "jsonStepId": "qiyam",
       "duaId": "subhaneke",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
     {
@@ -110,7 +110,7 @@
       "jsonStepId": "qiyam",
       "duaId": "euzu_besmele",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
     {
@@ -123,7 +123,7 @@
       "jsonStepId": "qiyam",
       "duaId": "surah_1",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
     {
@@ -136,7 +136,7 @@
       "jsonStepId": "qiyam",
       "duaId": "surah_112",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
     {
@@ -234,7 +234,7 @@
       "duaId": "iftitah_tekbir",
       "caption": "Allahu ekber",
       "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1,
       "motion_frames": [
         "assets/images/prayer/step10_secde2.png",
@@ -255,7 +255,7 @@
       "jsonStepId": "qiyam",
       "duaId": "surah_1",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 2
     },
     {
@@ -268,7 +268,7 @@
       "jsonStepId": "qiyam",
       "duaId": "surah_112",
       "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
-      "girlNote": "Kızlar ellerini göğüs hizasında bağlar.",
+      "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 2
     },
     {
@@ -404,11 +404,11 @@
       "image": "assets/images/prayer/step14_selam_sag.png",
       "kind": "farz",
       "jsonStepId": "salam",
-      "imageGirl": "assets/images/prayer/step14_selam_sag_girl.png",
+      "imageGirl": "assets/images/prayer/step15_selam_sol_girl.png",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "motion_frames_girl": [
         "assets/images/prayer/step11_oturus_girl.png",
-        "assets/images/prayer/step14_selam_sag_girl.png"
+        "assets/images/prayer/step15_selam_sol_girl.png"
       ],
       "rakat": 2
     },
@@ -420,11 +420,11 @@
       "image": "assets/images/prayer/step15_selam_sol.png",
       "kind": "sunnah",
       "jsonStepId": "salam",
-      "imageGirl": "assets/images/prayer/step15_selam_sol_girl.png",
+      "imageGirl": "assets/images/prayer/step14_selam_sag_girl.png",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "motion_frames_girl": [
-        "assets/images/prayer/step14_selam_sag_girl.png",
-        "assets/images/prayer/step15_selam_sol_girl.png"
+        "assets/images/prayer/step15_selam_sol_girl.png",
+        "assets/images/prayer/step14_selam_sag_girl.png"
       ],
       "rakat": 2
     },

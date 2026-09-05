@@ -150,7 +150,6 @@ class IlmihalLessonPage extends StatelessWidget {
         Text(lesson.summary, style: theme.bodyLarge),
         if (lesson.keyPoints.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.lg),
-          const SectionLabel('Unutma'),
           for (final point in lesson.keyPoints)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
