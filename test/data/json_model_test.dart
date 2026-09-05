@@ -362,6 +362,20 @@ void main() {
     expect(mushafJuzForPage(580), 29);
     expect(mushafJuzForPage(581), 30);
     expect(mushafJuzForPage(603), 30);
+    expect(mushafFirstPageForJuz(1), 0);
+    expect(mushafFirstPageForJuz(2), 21);
+    expect(mushafFirstPageForJuz(30), 581);
+    expect(mushafPageRangeForJuz(1), (0, 20));
+    expect(mushafPageRangeForJuz(2), (21, 40));
+    expect(mushafPageRangeForJuz(29), (561, 580));
+    expect(mushafPageRangeForJuz(30), (581, 603));
+    expect(mushafJuzFromInput('1'), 1);
+    expect(mushafJuzFromInput('0'), 1);
+    expect(mushafJuzFromInput('0-20'), 1);
+    expect(mushafJuzFromInput('0 – 20'), 1);
+    expect(mushafJuzFromInput('21-40'), 2);
+    expect(mushafJuzFromInput('30'), 30);
+    expect(mushafJuzFromInput('31'), isNull);
   });
 
   test('sajdah ayahs are the given 14 verses', () {

@@ -121,6 +121,38 @@ int mushafJuzForPage(int jsonPage) {
   return ((jsonPage - 1) ~/ 20 + 1).clamp(1, 30);
 }
 
+int mushafFirstPageForJuz(int juz) {
+  final j = juz.clamp(1, 30);
+  if (j <= 1) return 0;
+  return (j - 1) * 20 + 1;
+}
+
+(int start, int end) mushafPageRangeForJuz(int juz, {int lastPage = 603}) {
+  final j = juz.clamp(1, 30);
+  final start = mushafFirstPageForJuz(j);
+  if (j >= 30) return (start, lastPage < start ? start : lastPage);
+  if (j == 1) return (0, 20);
+  return (start, j * 20);
+}
+
+/// Cüz no (1–30), ilk sayfa (0) veya "0-20" gibi sayfa aralığı.
+int? mushafJuzFromInput(String raw) {
+  final compact = raw
+      .trim()
+      .replaceAll(RegExp(r'[–—−]'), '-')
+      .replaceAll(' ', '');
+  if (compact.isEmpty) return null;
+  final range = RegExp(r'^(\d+)-(\d+)$').firstMatch(compact);
+  if (range != null) {
+    return mushafJuzForPage(int.parse(range[1]!));
+  }
+  final n = int.tryParse(compact);
+  if (n == null) return null;
+  if (n == 0) return 1;
+  if (n >= 1 && n <= 30) return n;
+  return null;
+}
+
 class SurahIndexItem {
   const SurahIndexItem({
     required this.id,

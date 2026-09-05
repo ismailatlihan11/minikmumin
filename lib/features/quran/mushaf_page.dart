@@ -119,6 +119,22 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     );
   }
 
+  void _goToJsonPage(int jsonPage) {
+    if (_pages.isEmpty) return;
+    var next = _pages.indexWhere((page) => page.jsonPage == jsonPage);
+    if (next < 0) {
+      next = _pages.indexWhere((page) => page.jsonPage >= jsonPage);
+      if (next < 0) next = _pages.length - 1;
+    }
+    _controller?.jumpToPage(next);
+    setState(() {
+      _index = next;
+      _savedHere = false;
+      if (_fingerFollow) _followAyahOnPage(_pages[next]);
+    });
+    _rememberLastPage();
+  }
+
   Future<void> _jumpToPage() async {
     if (_pages.isEmpty) return;
     final first = _pages.first.jsonPage;
@@ -161,18 +177,101 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     );
     controller.dispose();
     if (selected == null || !mounted) return;
-    var next = _pages.indexWhere((page) => page.jsonPage == selected);
-    if (next < 0) {
-      next = _pages.indexWhere((page) => page.jsonPage >= selected);
-      if (next < 0) next = _pages.length - 1;
-    }
-    _controller?.jumpToPage(next);
-    setState(() {
-      _index = next;
-      _savedHere = false;
-      if (_fingerFollow) _followAyahOnPage(_pages[next]);
-    });
-    _rememberLastPage();
+    _goToJsonPage(selected);
+  }
+
+  Future<void> _jumpToJuz() async {
+    if (_pages.isEmpty) return;
+    final last = _pages.last.jsonPage;
+    final currentJuz = _pages[_index].juzNumber;
+    final range = mushafPageRangeForJuz(currentJuz, lastPage: last);
+    final controller = TextEditingController(text: '${range.$1}-${range.$2}');
+    final selected = await showDialog<int>(
+      context: context,
+      builder: (context) {
+        const labelStyle = TextStyle(color: Color(0xFFD4C4A0));
+        return AlertDialog(
+          backgroundColor: MinikColors.nightSurface,
+          title: const Text(
+            'Cüze git',
+            style: TextStyle(color: Colors.white),
+          ),
+          content: SizedBox(
+            width: double.maxFinite,
+            height: (MediaQuery.sizeOf(context).height * 0.55).clamp(280, 420),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextField(
+                  controller: controller,
+                  autofocus: true,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.go,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                    labelText: 'Cüz veya sayfa aralığı',
+                    hintText: '1–30 veya 0–20',
+                    labelStyle: labelStyle,
+                    hintStyle: labelStyle,
+                  ),
+                  onSubmitted: (value) =>
+                      Navigator.pop(context, mushafJuzFromInput(value)),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Cüz 1 sayfaları 0–20’dir. Aralık da yazabilirsin.',
+                  style: TextStyle(color: Color(0xFFD4C4A0), fontSize: 12),
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 30,
+                    itemBuilder: (context, index) {
+                      final juz = index + 1;
+                      final pages = mushafPageRangeForJuz(juz, lastPage: last);
+                      final selectedJuz = juz == currentJuz;
+                      return ListTile(
+                        dense: true,
+                        selected: selectedJuz,
+                        selectedTileColor: kMushafGold.withValues(alpha: 0.16),
+                        title: Text(
+                          'Cüz $juz',
+                          style: TextStyle(
+                            color: selectedJuz ? kMushafGold : Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        subtitle: Text(
+                          '${pages.$1}–${pages.$2}',
+                          style: const TextStyle(color: Color(0xFFD4C4A0)),
+                        ),
+                        onTap: () => Navigator.pop(context, juz),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Vazgeç', style: TextStyle(color: kMushafGold)),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(
+                context,
+                mushafJuzFromInput(controller.text),
+              ),
+              child: const Text('Git', style: TextStyle(color: kMushafGold)),
+            ),
+          ],
+        );
+      },
+    );
+    controller.dispose();
+    if (selected == null || !mounted) return;
+    _goToJsonPage(mushafFirstPageForJuz(selected));
   }
 
   void _go(int delta) {
@@ -230,6 +329,18 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
             icon: Icon(
               _savedHere ? Icons.bookmark_rounded : Icons.bookmark_add_outlined,
               color: kMushafGold,
+            ),
+          ),
+          TextButton(
+            onPressed: _jumpToJuz,
+            style: TextButton.styleFrom(
+              foregroundColor: kMushafGold,
+              minimumSize: const Size(48, 48),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+            ),
+            child: const Text(
+              'Cüz',
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
             ),
           ),
           IconButton(
