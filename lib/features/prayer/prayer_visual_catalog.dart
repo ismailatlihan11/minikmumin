@@ -19,6 +19,7 @@ class PrayerVisualStep {
     this.motionFrames = const [],
     this.motionFramesGirl = const [],
     this.rakat = 1,
+    this.hideForGirl = false,
   });
 
   final String id;
@@ -36,6 +37,7 @@ class PrayerVisualStep {
   final List<String> motionFrames;
   final List<String> motionFramesGirl;
   final int rakat;
+  final bool hideForGirl;
 
   List<String> get duaIds => [
         if (duaId != null && duaId!.isNotEmpty) duaId!,
@@ -71,6 +73,7 @@ class PrayerVisualStep {
       motionFrames: JsonMap.strings(json['motion_frames']),
       motionFramesGirl: JsonMap.strings(json['motion_frames_girl']),
       rakat: JsonMap.integer(json['rakat'], 1),
+      hideForGirl: JsonMap.flag(json['hideForGirl']),
     );
   }
 
@@ -279,7 +282,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step09_secde1.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -301,7 +304,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step10_secde2.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -430,7 +433,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step09_secde1.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -454,7 +457,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step10_secde2.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede kollarını vücuda yakın tutar, daha derli toplu durur.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -560,6 +563,7 @@ abstract final class PrayerVisualCatalog {
       imageGirl: 'assets/images/prayer/step16_tamam_girl.png',
       kind: PrayerKind.done,
       rakat: 0,
+      hideForGirl: true,
     ),
   ];
 
@@ -706,6 +710,7 @@ abstract final class PrayerVisualCatalog {
           ? json.motionFramesGirl
           : fallback.motionFramesGirl,
       rakat: json.rakat,
+      hideForGirl: json.hideForGirl || fallback.hideForGirl,
     );
   }
 

@@ -36,6 +36,10 @@ class PrayerCatalogView extends StatefulWidget {
 class _PrayerCatalogViewState extends State<PrayerCatalogView> {
   final _scroll = ScrollController();
   List<PrayerVisualStep> _steps = PrayerVisualCatalog.steps;
+  List<PrayerVisualStep> get _visibleSteps => [
+        for (final step in _steps)
+          if (!_girlLearner || !step.hideForGirl) step,
+      ];
   List<PrayerTip> _tips = PrayerVisualCatalog.tips;
   List<PrayerRakat> _rakats = PrayerVisualCatalog.rakats;
   List<String> _farzLabels = PrayerVisualCatalog.farzLabels;
@@ -106,15 +110,15 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     final blocks = <(String, List<PrayerVisualStep>)>[
       (
         '1. Rekat',
-        [for (final step in _steps) if (step.rakat == 1) step],
+        [for (final step in _visibleSteps) if (step.rakat == 1) step],
       ),
       (
         '2. Rekat',
-        [for (final step in _steps) if (step.rakat == 2) step],
+        [for (final step in _visibleSteps) if (step.rakat == 2) step],
       ),
     ];
     final rest = [
-      for (final step in _steps)
+      for (final step in _visibleSteps)
         if (step.rakat != 1 && step.rakat != 2) step,
     ];
     if (rest.isNotEmpty) {
@@ -150,7 +154,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   onTap: () => widget.onOpenStep(
                     step,
                     girl: _girlLearner,
-                    totalSteps: _steps.length,
+                    totalSteps: _visibleSteps.length,
                   ),
                   onToggleFavorite: () {
                     _store?.toggleFavorite(
@@ -248,8 +252,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 8),
           _PrayerProgressBar(
-            done: _doneIds.where((id) => _steps.any((step) => step.id == id)).length,
-            total: _steps.length,
+            done: _doneIds.where((id) => _visibleSteps.any((step) => step.id == id)).length,
+            total: _visibleSteps.length,
           ),
           const SizedBox(height: 10),
           const Wrap(
