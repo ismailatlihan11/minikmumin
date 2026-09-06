@@ -282,7 +282,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step09_secde1.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -304,7 +304,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step10_secde2.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -433,7 +433,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step09_secde1.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',
@@ -457,7 +457,7 @@ abstract final class PrayerVisualCatalog {
       image: 'assets/images/prayer/step10_secde2.png',
       imageGirl: 'assets/images/prayer/step09_secde_girl.png',
       girlNote:
-          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.',
+          'Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.',
       kind: PrayerKind.farz,
       jsonStepId: 'sujud',
       duaId: 'sujud',

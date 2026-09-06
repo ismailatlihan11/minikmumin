@@ -198,7 +198,7 @@
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
       "imageGirl": "assets/images/prayer/step09_secde_girl.png",
-      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.",
+      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
         "assets/images/prayer/step08_kiyam_girl.png",
         "assets/images/prayer/step09_secde_girl.png"
@@ -216,7 +216,7 @@
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
       "imageGirl": "assets/images/prayer/step09_secde_girl.png",
-      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.",
+      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
         "assets/images/prayer/step11_oturus_girl.png",
         "assets/images/prayer/step09_secde_girl.png"
@@ -330,7 +330,7 @@
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
       "imageGirl": "assets/images/prayer/step09_secde_girl.png",
-      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.",
+      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
         "assets/images/prayer/step08_kiyam_girl.png",
         "assets/images/prayer/step09_secde_girl.png"
@@ -348,7 +348,7 @@
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
       "imageGirl": "assets/images/prayer/step09_secde_girl.png",
-      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyup sağa yatırır.",
+      "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
         "assets/images/prayer/step11_oturus_girl.png",
         "assets/images/prayer/step09_secde_girl.png"
