@@ -15,6 +15,7 @@ import '../../features/duas/duas_page.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 const _kind = 'basics';
@@ -262,8 +263,14 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
         final learned = snapshot.data ?? false;
         return Scaffold(
           backgroundColor: const Color(0xFFF4F7F2),
-          appBar: AppBar(title: Text(item.title)),
-          body: ListView(
+          appBar: AppBar(
+            title: Text(item.title),
+            actions: [
+              CopyIconButton(text: _basicsCopyText(item)),
+            ],
+          ),
+          body: SelectionArea(
+            child: ListView(
             padding: AppSpacing.page,
             children: [
               if (item.shortDescription.trim().isNotEmpty)
@@ -467,10 +474,28 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                 ),
             ],
           ),
+          ),
         );
       },
     );
   }
+}
+
+String _basicsCopyText(BasicsItem item) {
+  return joinCopyParts([
+    item.title,
+    item.shortDescription,
+    item.arabic,
+    item.transliteration,
+    item.meaning,
+    item.content,
+    for (final sub in item.items) '${sub.title}\n${sub.description}',
+    ...item.keyPoints,
+    if (item.example != null) item.example!.arabic,
+    if (item.example != null) item.example!.text,
+    if (item.example != null) item.example!.meaning,
+    if (item.example != null) item.example!.reference,
+  ]);
 }
 
 class _SectionCard extends StatelessWidget {

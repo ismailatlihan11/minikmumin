@@ -359,7 +359,11 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                     ),
                   ],
                   const SizedBox(height: AppSpacing.md),
-                  QlPlayListen(audio: _audio, path: letter.audio),
+                  QlPlayListen(
+                    audio: _audio,
+                    path: QuranLearnAudio.exercisePath(letter.audio, 'fatha') ??
+                        letter.audio,
+                  ),
                 ],
               ),
             ),

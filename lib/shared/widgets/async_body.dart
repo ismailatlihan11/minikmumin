@@ -62,16 +62,18 @@ class DetailScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title), actions: actions),
-      body: ListView(
-        padding: AppSpacing.page,
-        children: [
-          MinikCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: children,
+      body: SelectionArea(
+        child: ListView(
+          padding: AppSpacing.page,
+          children: [
+            MinikCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: children,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

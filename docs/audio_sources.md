@@ -457,16 +457,16 @@ License: public recitation API. A separate commercial license document was not i
 
 ### `assets/audio/prayer/kelime_i_tevhid.mp3`
 
-- Content: Kelime-i Tevhid
+- Content: Kelime-i Tevhid (`لَا إِلٰهَ إِلَّا اللّٰهُ` only; not Kelime-i Şehadet)
 - Surah / ayah: —
-- Reader: unknown (pre-existing file)
-- Source: local asset (license not verified)
-- Source URL: —
-- License: UNVERIFIED
-- Download date: 2026-08-18
-- Size: 76.5 KB
-- Status: MANUAL_REVIEW_REQUIRED
-- Note: Pre-existing local file. License was not verified; file was not replaced.
+- Reader: Jarih (Wikimedia Commons)
+- Source: Wikimedia Commons `File:Adhan_wiki.oga` — closing tahlil of the Sunni adhan
+- Source URL: https://commons.wikimedia.org/wiki/File:Adhan_wiki.oga
+- License: CC BY-SA 3.0
+- Download date: 2026-09-06
+- Size: 33.0 KB
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. The adhan's last line is Kelime-i Tevhid; that phrase was taken so the clip does not say Muhammedün resûlullah.
 
 ### `assets/audio/prayer/kelime_i_sehadet.mp3`
 

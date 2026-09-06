@@ -48,9 +48,9 @@
       "id": "kelime_i_tevhid",
       "type": "creed_expression",
       "title": "Kelime-i Tevhid",
-      "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
-      "transliteration": "Lâ ilâhe illallah Hz. Muhammedün Resûlullah.",
-      "meaning": "Allah'tan başka ilâh yoktur. Hz. Muhammed ﷺ Allah'ın Resûlüdür.",
+      "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ",
+      "transliteration": "Lâ ilâhe illallah.",
+      "meaning": "Allah'tan başka ilah yoktur.",
       "usage": "Tevhid inancını ifade eder."
     },
     {

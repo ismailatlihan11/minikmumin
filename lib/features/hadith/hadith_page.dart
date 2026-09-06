@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../core/storage/local_progress_store.dart';
 import '../../data/models/hadith.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
@@ -25,8 +26,18 @@ class _HadithPageState extends State<HadithPage> {
   static const _shortLimit = 420;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<LocalProgressStore>().getHadithShowArabic();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final repos = context.read<ContentRepositories>();
+    final store = context.watch<LocalProgressStore>();
     _future ??= repos.hadith.getAll();
     return Scaffold(
       appBar: AppBar(title: const Text('Hadisler')),
@@ -65,6 +76,13 @@ class _HadithPageState extends State<HadithPage> {
                       value: _shortOnly,
                       onChanged: (value) => setState(() => _shortOnly = value),
                     ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Arapça metni göster'),
+                      subtitle: const Text('Hadislerin Arapçasını gizleyebilirsin'),
+                      value: store.hadithShowArabic,
+                      onChanged: store.setHadithShowArabic,
+                    ),
                   ],
                 ),
               ),
@@ -97,37 +115,61 @@ class _HadithPageState extends State<HadithPage> {
   }
 }
 
-class HadithDetailPage extends StatelessWidget {
+class HadithDetailPage extends StatefulWidget {
   const HadithDetailPage({super.key, required this.hadith});
 
   final Hadith hadith;
 
   @override
+  State<HadithDetailPage> createState() => _HadithDetailPageState();
+}
+
+class _HadithDetailPageState extends State<HadithDetailPage> {
+  String _copyText({required bool showArabic}) {
+    return joinCopyParts([
+      'Hadis ${widget.hadith.id}',
+      if (showArabic) widget.hadith.arabic,
+      widget.hadith.plainTurkish,
+    ]);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      context.read<LocalProgressStore>().getHadithShowArabic();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final hadith = widget.hadith;
+    final store = context.watch<LocalProgressStore>();
+    final showArabic = store.hadithShowArabic;
     return DetailScaffold(
       title: 'Hadis ${hadith.id}',
       actions: [
-        CopyIconButton(
-          text: joinCopyParts([
-            'Hadis ${hadith.id}',
-            hadith.arabic,
-            hadith.plainTurkish,
-          ]),
+        IconButton(
+          tooltip: showArabic ? 'Arapçayı gizle' : 'Arapçayı göster',
+          onPressed: () => store.setHadithShowArabic(!showArabic),
+          icon: Icon(
+            showArabic
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
+          ),
         ),
+        CopyIconButton(text: _copyText(showArabic: showArabic)),
         FavoriteButton(kind: 'hadith', id: hadith.id, title: 'Hadis ${hadith.id}'),
       ],
       children: [
-        ArabicPanel(hadith.arabic),
-        const SizedBox(height: AppSpacing.md),
+        if (showArabic && hadith.arabic.trim().isNotEmpty) ...[
+          ArabicPanel(hadith.arabic),
+          const SizedBox(height: AppSpacing.md),
+        ],
         SelectableText(hadith.plainTurkish, style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: AppSpacing.md),
-        CopyTextButton(
-          text: joinCopyParts([
-            'Hadis ${hadith.id}',
-            hadith.arabic,
-            hadith.plainTurkish,
-          ]),
-        ),
+        CopyTextButton(text: _copyText(showArabic: showArabic)),
       ],
     );
   }

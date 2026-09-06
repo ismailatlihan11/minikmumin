@@ -12,6 +12,7 @@ import '../../data/models/quran_verse.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
@@ -549,6 +550,13 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                                     '${widget.surah.nameTr} ${verses[i].ayahNo}',
                                 prompt: 'Bu ayeti boya.',
                                 audio: _audioPath,
+                              ),
+                              CopyIconButton(
+                                text: joinCopyParts([
+                                  '${widget.surah.nameTr} ${verses[i].ayahNo}',
+                                  verses[i].arabic,
+                                  verses[i].meal,
+                                ]),
                               ),
                             ],
                           ),

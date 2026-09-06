@@ -14,7 +14,7 @@
         "Namaz kılmak",
         "Oruç tutmak",
         "Zekât vermek",
-        "Hac etmek"
+        "Hacca gitmek"
       ],
       "audio": null,
       "icon": "islam"
@@ -75,22 +75,22 @@
         },
         {
           "order": 2,
-          "title": "Namaz",
+          "title": "Namaz kılmak",
           "description": "Beş vakit namazı kılmak."
         },
         {
           "order": 3,
-          "title": "Oruç",
+          "title": "Oruç tutmak",
           "description": "Ramazan ayında oruç tutmak."
         },
         {
           "order": 4,
-          "title": "Zekât",
+          "title": "Zekât vermek",
           "description": "Şartlarını taşıyan Müslümanların mallarından belirli bir payı ihtiyaç sahiplerine vermesi."
         },
         {
           "order": 5,
-          "title": "Hac",
+          "title": "Hacca gitmek",
           "description": "Gücü yeten Müslümanların ömründe bir kez, hac mevsiminde Kâbe'yi ziyaret ederek hac ibadetini yerine getirmesi."
         }
       ],
@@ -158,7 +158,7 @@
       "key_points": [
         "Son peygamberdir.",
         "Kur'an-ı Kerim Hz. Muhammed ﷺ'e vahyedilmiştir.",
-        "Güzel ahlakı ile insanlara örnek olmuştur."
+        "Güzel ahlakı ile insanlara örnek olmuştur ve kıyamete kadar da olmaya devam edecektir."
       ],
       "audio": null,
       "icon": "muhammad"
@@ -193,7 +193,7 @@
       "id": 11,
       "title": "Namaz Nedir?",
       "short_description": "Namaz, Allah'a olan sevgimizi ve bağlılığımızı gösterdiğimiz özel bir ibadettir.",
-      "content": "Namaz, Allah'a olan sevgimizi ve bağlılığımızı gösterdiğimiz özel bir ibadettir.\n\nGünde 5 vakit namaz kılarız:\n🌅 Sabah\n☀️ Öğle\n🌇 İkindi\n🌆 Akşam\n🌙 Yatsı\n\nNamaz kılarken Allah'ı anar, O'na şükreder ve O'ndan yardım isteriz.\n\nNamaz; bizi güzel davranışlara, temizliğe, sabra ve iyiliğe yönlendirir. ❤️\n\nNamaz, Allah ile konuşmak ve O'na kulluğumuzu göstermek için güzel bir fırsattır.",
+      "content": "Günde 5 vakit namaz kılarız:\n🌅 Sabah\n☀️ Öğle\n🌇 İkindi\n🌆 Akşam\n🌙 Yatsı\n\nNamaz kılarken Allah'ı anar, O'na şükreder ve O'ndan yardım isteriz.\n\nNamaz; bizi güzel davranışlara, temizliğe, sabra ve iyiliğe yönlendirir. ❤️\n\nNamaz, Allah ile konuşmak ve O'na kulluğumuzu göstermek için güzel bir fırsattır.",
       "key_points": [],
       "audio": null,
       "icon": "prayer"
@@ -339,7 +339,7 @@
       "id": 22,
       "title": "Sünnet Nedir?",
       "short_description": "Sünnet, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, davranışları, yaşayışı ve onaylarıyla ortaya koyduğu örnek yoldur.",
-      "content": "Sünnet, Peygamberimiz Hz. Muhammed ﷺ'in sözleri, davranışları, yaşayışı ve onaylarıyla ortaya koyduğu örnek yoldur. Müslümanlar Peygamberimizin ﷺ ibadetlerini, güzel ahlâkını ve davranışlarını öğrenip hayatlarında örnek almaya çalışırlar.",
+      "content": "Müslümanlar Peygamberimizin ﷺ ibadetlerini, güzel ahlâkını ve davranışlarını öğrenip hayatlarında örnek almaya çalışırlar.",
       "key_points": [
         "Sünnet, Peygamberimiz ﷺ'in örnek yoludur.",
         "Peygamberimizin ﷺ ibadetlerini ve güzel ahlâkını öğreniriz.",

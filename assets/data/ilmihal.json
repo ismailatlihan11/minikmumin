@@ -110,7 +110,7 @@
         "Namaz kılmak",
         "Oruç tutmak",
         "Zekât vermek",
-        "Hac etmek"
+        "Hacca gitmek"
       ],
       "source": "Diyanet Temel Dini Bilgiler"
     },
@@ -186,11 +186,12 @@
       "title": "Namazın Temel Şartları",
       "summary": "Namaza hazırlık için temel şartları öğren.",
       "keyPoints": [
-        "Temizlik",
-        "Vakit",
-        "Kıble",
-        "Niyet",
-        "Örtünme ile ilgili dinî şartlar"
+        "Hadesten taharet: Abdest almak veya gerekiyorsa gusletmek (boy abdesti almak).",
+        "Necasetten taharet: Bedenin, elbiselerin ve namaz kılınacak yerin pislikten temiz olması.",
+        "Setr-i avret: Vücutta örtülmesi gereken yerlerin (avret mahallerinin) örtülmesi.",
+        "İstikbal-i kıble: Namazda Kâbe yönüne (kıbleye) dönmek.",
+        "Vakit: Namazın vaktinin girmiş olması.",
+        "Niyet: Hangi namazın kılınacağını kalben bilmek ve istemek."
       ],
       "source": "Diyanet İlmihal - Namazın Şartları"
     },

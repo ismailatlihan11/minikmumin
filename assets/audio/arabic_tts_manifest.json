@@ -6,8 +6,26 @@
   "voice": "ar-XA-Chirp3-HD-Fenrir",
   "language": "ar-XA",
   "cartoon_semitones": 5.0,
-  "generated_at": "2026-08-25T19:10:20.377140+00:00",
+  "generated_at": "2026-09-06T17:35:05.578273+00:00",
   "items": [
+    {
+      "id": "prayer_kelime_i_tevhid",
+      "category": "prayer",
+      "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ",
+      "path": "assets/audio/prayer/kelime_i_tevhid.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.85,
+      "format": "mp3",
+      "sha256": "14a34a580cb3ff25309489dceb3af2465c54c3812706fe45d81fb4a4096641a2",
+      "generated_at": "2026-09-06T17:49:16.016117+00:00",
+      "kind": "human_recitation",
+      "not_educational_tts": true,
+      "source": "Wikimedia Commons File:Adhan_wiki.oga (closing tahlil)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Adhan_wiki.oga",
+      "reader": "Jarih",
+      "license": "CC BY-SA 3.0"
+    },
     {
       "id": "surah_001",
       "category": "surah",
@@ -1235,18 +1253,6 @@
       "format": "mp3",
       "sha256": "3bc81477990e9573196de6ea952b552aa99c45bb7f18de77f2b6c4598edfb2c2",
       "generated_at": "2026-08-25T10:56:53.611109+00:00"
-    },
-    {
-      "id": "prayer_kelime_i_tevhid",
-      "category": "prayer",
-      "arabic": "لَا إِلٰهَ إِلَّا اللّٰهُ مُحَمَّدٌ رَسُولُ اللّٰهِ",
-      "path": "assets/audio/prayer/kelime_i_tevhid.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.85,
-      "format": "mp3",
-      "sha256": "8f1e21914fa1e07d45773c4d160898e199d48a03e6e7ab4ef518db493bb4c1c6",
-      "generated_at": "2026-08-25T10:56:54.815415+00:00"
     },
     {
       "id": "prayer_kelime_i_sehadet",

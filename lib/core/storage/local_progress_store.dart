@@ -350,6 +350,31 @@ class LocalProgressStore extends ChangeNotifier {
     await prefs.setBool(_key('mushaf_follow'), on);
   }
 
+  bool _hadithShowArabic = true;
+  bool _hadithShowArabicLoaded = false;
+
+  bool get hadithShowArabic => _hadithShowArabic;
+
+  Future<bool> getHadithShowArabic() async {
+    if (_hadithShowArabicLoaded) return _hadithShowArabic;
+    final prefs = await _ensure();
+    final value = prefs.getBool(_key('hadith_show_arabic')) ?? true;
+    _hadithShowArabicLoaded = true;
+    if (_hadithShowArabic != value) {
+      _hadithShowArabic = value;
+      notifyListeners();
+    }
+    return _hadithShowArabic;
+  }
+
+  Future<void> setHadithShowArabic(bool show) async {
+    _hadithShowArabic = show;
+    _hadithShowArabicLoaded = true;
+    notifyListeners();
+    final prefs = await _ensure();
+    await prefs.setBool(_key('hadith_show_arabic'), show);
+  }
+
   Future<List<FavoriteEntry>> getFavorites() async {
     final prefs = await _ensure();
     final raw = prefs.getString(_key('favorites_json')) ?? '[]';

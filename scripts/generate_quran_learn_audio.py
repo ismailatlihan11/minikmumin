@@ -104,6 +104,40 @@ LETTERS = [
     ("ya", "ي", "يَاء"),
 ]
 
+# Turkish elifba names (Be, He, Kef, Tı…). Keep the real letter so mahraj
+# and tafkhim stay intact. Textbook names like بَاء / هَاء / كَاف / طَاء
+# collapse into "baa / haa / kaaf" and children cannot tell them apart.
+ELIFBA_SPOKEN_NAMES = {
+    "elif": "أَلِفْ",
+    "ba": "بِهْ",
+    "ta": "تِهْ",
+    "tha": "ثِيهْ",
+    "jim": "جِيمْ",
+    "ha": "حَهْ",
+    "kha": "خِي",
+    "dal": "دَالْ",
+    "dhal": "ذِلْ",
+    "ra": "رَهْ",
+    "zay": "زِهْ",
+    "sin": "سِينْ",
+    "shin": "شِينْ",
+    "sad": "صَادْ",
+    "dad": "ضَادْ",
+    "ta_heavy": "طِيْ",
+    "za_heavy": "ظِيْ",
+    "ayn": "عَيْنْ",
+    "ghayn": "غَيْنْ",
+    "fa": "فِهْ",
+    "qaf": "قَافْ",
+    "kaf": "كِيفْ",
+    "lam": "لَامْ",
+    "mim": "مِيمْ",
+    "nun": "نُونْ",
+    "hah": "هِهْ",
+    "waw": "وَاوْ",
+    "ya": "يِهْ",
+}
+
 HARAKA = [
     ("fatha", "َ", "فَتْحَة"),
     ("kasra", "ِ", "كَسْرَة"),
@@ -449,7 +483,7 @@ def build_catalog(*, test: bool) -> list[Clip]:
         return clips
 
     for letter_id, glyph, name in LETTERS:
-        spoken_name = "مِيمْ" if letter_id == "mim" else name
+        spoken_name = ELIFBA_SPOKEN_NAMES.get(letter_id, name)
         add(
             letter_id,
             "alphabet",

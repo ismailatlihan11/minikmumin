@@ -10,6 +10,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/dua.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../features/duas/duas_page.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
@@ -1035,11 +1036,30 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
     ].where((item) => AssetCatalog.contains(item.path)).toList();
     return Scaffold(
       backgroundColor: const Color(0xFFF3F6F8),
-      appBar: AppBar(title: Text(step.title)),
+      appBar: AppBar(
+        title: Text(step.title),
+        actions: [
+          CopyIconButton(
+            text: joinCopyParts([
+              step.title,
+              step.prompt,
+              if (widget.girl) step.girlNote,
+              step.caption,
+              for (final dua in _duas) ...[
+                dua.title,
+                dua.displayArabic,
+                dua.transliteration,
+                dua.displayMeaning,
+              ],
+            ]),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Expanded(
-            child: ListView(
+            child: SelectionArea(
+              child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
               children: [
                 MinikCard(
@@ -1151,6 +1171,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                   ),
                 ],
               ],
+            ),
             ),
           ),
           if (audioItems.isNotEmpty)

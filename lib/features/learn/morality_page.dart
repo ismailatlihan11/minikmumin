@@ -11,6 +11,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../data/repositories/learn_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../quiz/quiz_page.dart';
 
@@ -139,6 +140,20 @@ class MoralityLessonPage extends StatelessWidget {
         final done = snapshot.data ?? false;
         return DetailScaffold(
           title: lesson.title,
+          actions: [
+            CopyIconButton(
+              text: joinCopyParts([
+                lesson.title,
+                lesson.shortMessage,
+                lesson.childExplanation.isNotEmpty
+                    ? lesson.childExplanation
+                    : lesson.lesson,
+                lesson.dailyChallenge,
+                ...lesson.quranReferences,
+                lesson.hadithReference,
+              ]),
+            ),
+          ],
           children: [
             Image.asset(
               imagePath,

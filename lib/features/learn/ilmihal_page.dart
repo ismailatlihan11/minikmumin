@@ -11,6 +11,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../data/repositories/learn_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../quiz/quiz_page.dart';
 
@@ -146,6 +147,18 @@ class IlmihalLessonPage extends StatelessWidget {
     final linkedRoute = _routeFor(lesson.linkedModule);
     return DetailScaffold(
       title: lesson.title,
+      actions: [
+        CopyIconButton(
+          text: joinCopyParts([
+            lesson.title,
+            lesson.summary,
+            ...lesson.keyPoints,
+            lesson.memorization,
+            lesson.activity,
+            lesson.quranReference,
+          ]),
+        ),
+      ],
       children: [
         Text(lesson.summary, style: theme.bodyLarge),
         if (lesson.keyPoints.isNotEmpty) ...[
@@ -188,10 +201,6 @@ class IlmihalLessonPage extends StatelessWidget {
         if (lesson.adultGuidance.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.md),
           Text(lesson.adultGuidance, style: theme.bodySmall),
-        ],
-        if (lesson.sourceReference.isNotEmpty) ...[
-          const SizedBox(height: AppSpacing.md),
-          Text('Kaynak: ${lesson.sourceReference}', style: theme.bodySmall),
         ],
         if (linkedRoute != null) ...[
           const SizedBox(height: AppSpacing.lg),
