@@ -529,9 +529,7 @@ class ElifbaExampleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final path = example.audio.isEmpty
-        ? ElifbaAudio.letterGlyph(example.text)
-        : example.audio;
+    final path = ElifbaAudio.forExample(example.text, audio: example.audio);
     return ElifbaSoftCard(
       child: Column(
         children: [
@@ -967,7 +965,7 @@ class ElifbaMedTableView extends StatelessWidget {
                           ),
                           onPressed: () => ElifbaAudio.play(
                             audio,
-                            ElifbaAudio.letterGlyph(example),
+                            ElifbaAudio.forExample(example),
                           ),
                         ),
                     ],

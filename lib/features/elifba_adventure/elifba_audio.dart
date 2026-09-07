@@ -123,6 +123,27 @@ abstract final class ElifbaAudio {
     return sounded ?? letterGlyph(marked) ?? letterName(name ?? '');
   }
 
+  /// Kelime ve ifadeler için ses: kayıt yoksa harf adı sesi çalınmaz,
+  /// çünkü harfin adı ile kelimenin okunuşu aynı şey değildir.
+  static String? forExample(String text, {String audio = ''}) {
+    final recorded = resolve(audio);
+    if (recorded != null) return recorded;
+    if (!isSingleCluster(text)) return null;
+    return forMarked(text);
+  }
+
+  /// Tek harf + üzerindeki harekelerden oluşan kısa parça mı?
+  static bool isSingleCluster(String text) {
+    final trimmed = text.trim();
+    if (trimmed.isEmpty || trimmed.contains(' ')) return false;
+    var letters = 0;
+    for (final rune in trimmed.runes) {
+      final isMark = (rune >= 0x064B && rune <= 0x0652) || rune == 0x0670;
+      if (!isMark) letters += 1;
+    }
+    return letters == 1;
+  }
+
   static String? mark(String id) {
     return resolve('assets/audio/quran_learn/harakat/$id.mp3');
   }

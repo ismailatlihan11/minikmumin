@@ -9,7 +9,7 @@ class ElifbaWorld {
     required this.title,
     required this.emoji,
     required this.color,
-    required this.lessonIds,
+    required this.lessons,
     this.badge = '',
   });
 
@@ -17,111 +17,157 @@ class ElifbaWorld {
   final String title;
   final String emoji;
   final Color color;
-  final List<int> lessonIds;
+  final List<ElifbaLesson> lessons;
   final String badge;
 
-  bool contains(int lessonId) => lessonIds.contains(lessonId);
+  List<int> get lessonIds => [for (final lesson in lessons) lesson.id];
+
+  bool contains(int lessonId) =>
+      lessons.any((lesson) => lesson.id == lessonId);
 
   bool isComplete(Set<int> done) =>
-      lessonIds.every(done.contains) && lessonIds.isNotEmpty;
+      lessons.isNotEmpty && lessonIds.every(done.contains);
+
+  int get lastId => lessons.isEmpty ? 0 : lessons.last.id;
 }
 
+/// Harita bölgeleri ders numarasına göre değil, JSON içeriğine göre kurulur:
+/// hareke işareti taşıyan ilk ders, seviye alanları ve final dersi belirleyici.
 abstract final class ElifbaWorlds {
-  static const all = <ElifbaWorld>[
-    ElifbaWorld(
-      id: 'letters',
-      title: 'Harfler Diyarı',
-      emoji: '🌱',
-      color: MinikColors.mint,
-      lessonIds: [1, 2, 3],
-      badge: 'İlk Harfim',
+  static const _blueprint = <_WorldSpec>[
+    _WorldSpec('letters', 'Harfler Köyü', '🌱', MinikColors.mint, 'Harf Kaşifi'),
+    _WorldSpec(
+      'harakat',
+      'Harekeler Ormanı',
+      '🌳',
+      MinikColors.peach,
+      'Hareke Ustası',
     ),
-    ElifbaWorld(
-      id: 'harakat',
-      title: 'Harekeler Ormanı',
-      emoji: '🌿',
-      color: MinikColors.peach,
-      lessonIds: [4, 5, 6],
-      badge: 'Hareke Ustası',
+    _WorldSpec(
+      'tajweed',
+      'Tecvid Dağları',
+      '🏔',
+      MinikColors.lavender,
+      'Tecvid Kaşifi',
     ),
-    ElifbaWorld(
-      id: 'reading',
-      title: 'Okuma Vadisi',
-      emoji: '🌳',
-      color: MinikColors.sky,
-      lessonIds: [7, 8, 9, 10, 11, 12],
-      badge: 'Harf Birleştirici',
+    _WorldSpec(
+      'reading',
+      'Okuma Vadisi',
+      '📖',
+      MinikColors.sky,
+      'Kelime Okuyucu',
     ),
-    ElifbaWorld(
-      id: 'tajweed',
-      title: 'Tecvid Dağları',
-      emoji: '🏔',
-      color: MinikColors.lavender,
-      lessonIds: [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
-      badge: 'Tecvid Kaşifi',
-    ),
-    ElifbaWorld(
-      id: 'makhraj',
-      title: 'Mahreç Bahçesi',
-      emoji: '🌸',
-      color: MinikColors.blush,
-      lessonIds: [25, 26],
-      badge: 'İlk Kelimem',
-    ),
-    ElifbaWorld(
-      id: 'practice',
-      title: 'Okuma Kalesine Yol',
-      emoji: '📖',
-      color: MinikColors.butter,
-      lessonIds: [27, 28, 29, 30],
-      badge: 'İlk Kelimem',
-    ),
-    ElifbaWorld(
-      id: 'final',
-      title: 'Final Kalesi',
-      emoji: '🏰',
-      color: MinikColors.goldSoft,
-      lessonIds: [31],
-      badge: 'Elifbâ Kahramanı',
+    _WorldSpec(
+      'final',
+      'Final Kalesi',
+      '🏰',
+      MinikColors.goldSoft,
+      'Elifbâ Kahramanı',
     ),
   ];
 
-  static ElifbaWorld forLesson(int id) {
-    for (final world in all) {
+  static final _cache = <int, List<ElifbaWorld>>{};
+
+  static List<ElifbaWorld> of(ElifbaPack pack) {
+    final key = pack.lessons.length;
+    final cached = _cache[key];
+    if (cached != null) return cached;
+    final buckets = <String, List<ElifbaLesson>>{
+      for (final spec in _blueprint) spec.id: <ElifbaLesson>[],
+    };
+    // İlk işaret dersinden sonraki başlangıç dersleri de Harekeler Ormanı'na.
+    var markSeen = false;
+    for (final lesson in pack.lessons) {
+      if (_teachesMark(lesson)) markSeen = true;
+      buckets[_bucketOf(lesson, markSeen)]!.add(lesson);
+    }
+    final worlds = <ElifbaWorld>[
+      for (final spec in _blueprint)
+        if (buckets[spec.id]!.isNotEmpty)
+          ElifbaWorld(
+            id: spec.id,
+            title: spec.title,
+            emoji: spec.emoji,
+            color: spec.color,
+            badge: spec.badge,
+            lessons: List.unmodifiable(buckets[spec.id]!),
+          ),
+    ];
+    _cache[key] = worlds;
+    return worlds;
+  }
+
+  static String _bucketOf(ElifbaLesson lesson, bool markSeen) {
+    final level = _fold(lesson.level);
+    if (level.contains('final') || lesson.isFinal) return 'final';
+    if (level.contains('orta')) return 'tajweed';
+    if (level.startsWith('ileri baslangic')) return 'tajweed';
+    if (level.contains('ileri')) return 'reading';
+    return markSeen ? 'harakat' : 'letters';
+  }
+
+  /// Hareke, cezm, şedde, tenvin, med gibi işaret öğreten dersler.
+  static bool _teachesMark(ElifbaLesson lesson) {
+    if (lesson.rule?.symbol.isNotEmpty ?? false) return true;
+    if (lesson.harakeTables.isNotEmpty) return true;
+    if (lesson.medTable.isNotEmpty || lesson.medLetters.isNotEmpty) return true;
+    if (lesson.types.isNotEmpty) return true;
+    if (lesson.blending.isNotEmpty) return true;
+    return false;
+  }
+
+  static String _fold(String value) {
+    return value
+        .toLowerCase()
+        .replaceAll('ı', 'i')
+        .replaceAll('ç', 'c')
+        .replaceAll('ğ', 'g')
+        .replaceAll('ş', 's')
+        .replaceAll('ü', 'u')
+        .replaceAll('ö', 'o')
+        .trim();
+  }
+
+  static ElifbaWorld forLesson(ElifbaPack pack, int id) {
+    final worlds = of(pack);
+    for (final world in worlds) {
       if (world.contains(id)) return world;
     }
-    return all.first;
+    return worlds.first;
   }
 
-  static List<ElifbaLesson> lessonsIn(
-    ElifbaWorld world,
-    List<ElifbaLesson> lessons,
-  ) {
-    final byId = {for (final lesson in lessons) lesson.id: lesson};
-    return [
-      for (final id in world.lessonIds)
-        if (byId[id] != null) byId[id]!,
-    ];
-  }
-
-  static String badgeForLesson(int id) {
-    switch (id) {
-      case 1:
-        return 'İlk Harfim';
-      case 6:
-        return 'Hareke Ustası';
-      case 12:
-        return 'Harf Birleştirici';
-      case 18:
-        return 'Tecvid Kaşifi';
-      case 27:
-        return 'İlk Kelimem';
-      case 31:
-        return 'Elifbâ Kahramanı';
-      default:
-        return '';
+  /// Bir bölgenin son dersi tamamlanınca o bölgenin rozeti verilir.
+  static String badgeForLesson(ElifbaPack pack, int id) {
+    if (pack.lessons.isNotEmpty && pack.lessons.first.id == id) {
+      return 'İlk Harfim';
     }
+    final lesson = pack.byId(id);
+    if (lesson != null && lesson.blending.isNotEmpty) return 'Harf Birleştirici';
+    for (final world in of(pack)) {
+      if (world.lastId == id) return world.badge;
+    }
+    return '';
   }
+
+  static List<String> get allBadges => const [
+        'İlk Harfim',
+        'Harf Kaşifi',
+        'Hareke Ustası',
+        'Harf Birleştirici',
+        'Tecvid Kaşifi',
+        'Kelime Okuyucu',
+        'Elifbâ Kahramanı',
+      ];
+}
+
+class _WorldSpec {
+  const _WorldSpec(this.id, this.title, this.emoji, this.color, this.badge);
+
+  final String id;
+  final String title;
+  final String emoji;
+  final Color color;
+  final String badge;
 }
 
 abstract final class ElifbaVoice {
@@ -142,9 +188,8 @@ abstract final class ElifbaVoice {
     'Bir daha bakalım 😊',
     'Az kaldı!',
     'Harfi birlikte inceleyelim.',
-    'Tekrar denersen başarabilirsin.',
+    'İpucuna bakalım.',
     'Bir daha deneyelim.',
-    'İpucu ister misin?',
   ];
 
   static String introFor(ElifbaLesson lesson) =>

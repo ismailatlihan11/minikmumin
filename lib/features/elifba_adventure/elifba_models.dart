@@ -18,7 +18,21 @@ class ElifbaPack {
     return null;
   }
 
-  /// Prefer the 28-letter table whose marked forms match a haraka/cezm/shadda.
+  /// Şedde asla tek başına öğretilmez; harekesiz şeddeli tablolar gizlenir.
+  static bool isStandaloneShaddaTable(List<ElifbaLetterRow> table) {
+    if (table.isEmpty) return false;
+    final marked = table.first.marked;
+    if (!marked.contains('ّ')) return false;
+    return !marked.contains('َ') &&
+        !marked.contains('ِ') &&
+        !marked.contains('ُ');
+  }
+
+  /// Prefer the 28-letter table whose marked forms match a haraka/cezm.
+  ///
+  /// Kaynak JSON'da bu tablolar bir ders erken bağlanmış durumda
+  /// (fetha tablosu "harf şekilleri" dersinde vb.), bu yüzden tablo
+  /// ders sırasına göre değil, işaretin kendisine göre eşleştirilir.
   List<ElifbaLetterRow> tableMatchingMark(String mark) {
     if (mark.isEmpty) return const [];
     List<ElifbaLetterRow> best = const [];
@@ -26,6 +40,7 @@ class ElifbaPack {
     for (final lesson in lessons) {
       final table = lesson.letterTable;
       if (table.length < 20) continue;
+      if (isStandaloneShaddaTable(table)) continue;
       final score = table.where((row) => row.marked.contains(mark)).length;
       if (score > bestScore) {
         bestScore = score;
@@ -36,11 +51,24 @@ class ElifbaPack {
   }
 
   List<ElifbaLetterRow> teachingTableFor(ElifbaLesson lesson) {
+    // Şedde dersi kendi harake_tables bölümlerini kullanır.
+    if (lesson.harakeTables.isNotEmpty) return const [];
     final mark = lesson.rule?.symbol ?? '';
     final matched = tableMatchingMark(mark);
     if (matched.isNotEmpty) return matched;
-    if (_tableFitsLesson(lesson, lesson.letterTable)) {
-      return lesson.letterTable;
+    final byCategory = categoryTableFor(lesson);
+    if (byCategory.isNotEmpty) return byCategory;
+    final own = lesson.letterTable;
+    if (isStandaloneShaddaTable(own)) return const [];
+    // Üçlü hareke sütunlu tablolar ayrı bir bileşenle gösterilir.
+    if (own.isNotEmpty && own.first.hasTriple) return const [];
+    // Başka bir dersin konusu olan işaretin tablosunu burada gösterme.
+    final ownMark = own.isEmpty ? '' : _markOf(own.first.marked);
+    if (ownMark.isNotEmpty && _lessonTeaching(ownMark)?.id != lesson.id) {
+      return const [];
+    }
+    if (_tableFitsLesson(lesson, own)) {
+      return own;
     }
     for (final other in lessons) {
       final table = other.letterTable;
@@ -49,6 +77,64 @@ class ElifbaPack {
       if (_tableFitsLesson(lesson, table)) return table;
     }
     return const [];
+  }
+
+  /// İzhâr/İdğam/İhfâ harf tabloları da bir ders erken bağlanmış durumda;
+  /// tablo, satırlarındaki kategori etiketiyle doğru derse yönlendirilir.
+  List<ElifbaLetterRow> categoryTableFor(ElifbaLesson lesson) {
+    final title = _fold(lesson.title);
+    if (title.isEmpty) return const [];
+    for (final other in lessons) {
+      final table = other.letterTable;
+      if (table.isEmpty) continue;
+      final category = _fold(table.first.category);
+      if (category.isEmpty) continue;
+      final keyword = category.split(' ').first;
+      if (keyword.length > 2 && title.contains(keyword)) return table;
+    }
+    return const [];
+  }
+
+  /// Med tablosu JSON'da tenvin dersine iliştirilmiş; med dersine taşınır.
+  List<ElifbaMedRow> medTableFor(ElifbaLesson lesson) {
+    if (!_teachesMed(lesson)) return const [];
+    if (lesson.medTable.isNotEmpty) return lesson.medTable;
+    for (final other in lessons) {
+      if (other.medTable.isNotEmpty) return other.medTable;
+    }
+    return const [];
+  }
+
+  bool _teachesMed(ElifbaLesson lesson) =>
+      lesson.medLetters.isNotEmpty || _fold(lesson.title).contains('med');
+
+  /// Kural ağacı, nun sâkin/tenvin giriş dersine aittir.
+  List<String> decisionTreeFor(ElifbaLesson lesson) {
+    if (!_teachesNunSakin(lesson)) return const [];
+    if (lesson.decisionTree.isNotEmpty) return lesson.decisionTree;
+    for (final other in lessons) {
+      if (other.decisionTree.isNotEmpty) return other.decisionTree;
+    }
+    return const [];
+  }
+
+  bool _teachesNunSakin(ElifbaLesson lesson) =>
+      lesson.rulesSummary.isNotEmpty ||
+      _fold(lesson.title).contains('nun sakin');
+
+  /// Bu işareti asıl konu olarak işleyen ders (rule.symbol üzerinden).
+  ElifbaLesson? _lessonTeaching(String mark) {
+    for (final lesson in lessons) {
+      if ((lesson.rule?.symbol ?? '') == mark) return lesson;
+    }
+    return null;
+  }
+
+  static String _markOf(String marked) {
+    for (final mark in const ['ّ', 'ْ', 'ُ', 'ِ', 'َ']) {
+      if (marked.contains(mark)) return mark;
+    }
+    return '';
   }
 
   bool _tableFitsLesson(ElifbaLesson lesson, List<ElifbaLetterRow> table) {
@@ -82,6 +168,7 @@ class ElifbaPack {
     for (final lesson in lessons) {
       final table = lesson.letterTable;
       if (table.length < 20) continue;
+      if (isStandaloneShaddaTable(table)) continue;
       final score = table.where((row) => row.marked.contains(mark)).length;
       if (score > bestScore) {
         bestScore = score;
@@ -190,9 +277,83 @@ class ElifbaLesson {
   List<ElifbaLetterRow> get letterTable =>
       _maps('letter_table').map(ElifbaLetterRow.fromJson).toList(growable: false);
 
+  /// Rows that carry fetha/esre/ötre columns at once (kalın, ince, peltek dersleri).
+  List<ElifbaLetterRow> get tripleFormTable =>
+      [for (final row in letterTable) if (row.hasTriple) row];
+
+  /// Şedde dersi: hareke ile birlikte üç ayrı tablo.
+  Map<String, List<ElifbaLetterRow>> get harakeTables {
+    final value = raw['harake_tables'];
+    if (value is! Map) return const {};
+    return {
+      for (final entry in JsonMap.object(value).entries)
+        if (entry.value is List)
+          entry.key: (entry.value as List)
+              .map((item) => ElifbaLetterRow.fromJson(JsonMap.object(item)))
+              .toList(growable: false),
+    };
+  }
+
+  List<ElifbaWordExample> get wordExamples => _maps('word_examples')
+      .map(ElifbaWordExample.fromJson)
+      .where((item) => item.text.isNotEmpty)
+      .toList(growable: false);
+
+  List<ElifbaExample> get coreExamples =>
+      _maps('core_examples').map(ElifbaExample.fromJson).toList(growable: false);
+
+  /// comparison_pairs ve comparison_game aynı soru-cevap kalıbını paylaşır.
+  List<ElifbaAskPair> get askPairs => [
+        ..._maps('comparison_pairs').map(ElifbaAskPair.fromJson),
+        ..._maps('comparison_game').map(ElifbaAskPair.fromJson),
+      ].where((item) => item.question.isNotEmpty).toList(growable: false);
+
+  List<ElifbaExample> get specialPreview => _maps('special_preview')
+      .map(
+        (item) => ElifbaExample(
+          text: JsonMap.str(item['form']),
+          reading: JsonMap.str(item['reading']),
+          note: JsonMap.str(item['note']),
+        ),
+      )
+      .toList(growable: false);
+
+  List<ElifbaRaRow> get raTable =>
+      _maps('ra_table').map(ElifbaRaRow.fromJson).toList(growable: false);
+
+  List<ElifbaGroup> get reviewGroups =>
+      _maps('review_groups').map(ElifbaGroup.fromJson).toList(growable: false);
+
+  List<ElifbaActivity> get interactiveActivities => _maps('interactive_activities')
+      .map(ElifbaActivity.fromJson)
+      .where((item) => item.title.isNotEmpty)
+      .toList(growable: false);
+
+  int get passPercent {
+    final mastery = JsonMap.object(raw['mastery']);
+    final value = JsonMap.integer(mastery['quiz_pass_percent'], 70);
+    return value <= 0 ? 70 : value;
+  }
+
   String get tableTitle => JsonMap.str(raw['table_title']);
 
   String get tableInstruction => JsonMap.str(raw['table_instruction']);
+
+  String get wordSectionTitle => JsonMap.str(raw['word_section_title']);
+
+  String get wordSectionInstruction =>
+      JsonMap.str(raw['word_section_instruction']);
+
+  String get classificationNote => JsonMap.str(raw['classification_note']);
+
+  String get manyExampleRule => JsonMap.str(raw['many_example_rule']);
+
+  String get pronunciationTip => JsonMap.str(raw['pronunciation_tip']);
+
+  List<String> get practiceRule => JsonMap.strings(raw['practice_rule']);
+
+  /// Bazı derslerde `rule` düz metindir (kalın/ince/peltek dersleri).
+  String get ruleText => raw['rule'] is String ? JsonMap.str(raw['rule']) : '';
 
   String get importantNote => JsonMap.str(raw['important_note']);
 
@@ -204,13 +365,10 @@ class ElifbaLesson {
   ElifbaRich get rich =>
       ElifbaRich.fromJson(JsonMap.object(raw['rich_content']));
 
-  List<ElifbaLetter> get specialLetters {
-    final value = raw['special_letters'];
-    if (value is! List) return const [];
-    return value
-        .map((item) => ElifbaLetter.fromJson(JsonMap.object(item)))
-        .toList(growable: false);
-  }
+  List<ElifbaSpecialLetter> get specialLetters => _maps('special_letters')
+      .map(ElifbaSpecialLetter.fromJson)
+      .where((item) => item.letter.isNotEmpty)
+      .toList(growable: false);
 
   Map<String, List<ElifbaLetterRow>> get categoryTables {
     final value = raw['category_tables'];
@@ -548,6 +706,14 @@ class ElifbaLetterRow {
     this.example = '',
     this.audioLetter = '',
     this.audioExample = '',
+    this.vowel = '',
+    this.fatha = '',
+    this.kasra = '',
+    this.damma = '',
+    this.fathaReading = '',
+    this.kasraReading = '',
+    this.dammaReading = '',
+    this.compare = '',
   });
 
   final String letter;
@@ -561,9 +727,31 @@ class ElifbaLetterRow {
   final String example;
   final String audioLetter;
   final String audioExample;
+  final String vowel;
+  final String fatha;
+  final String kasra;
+  final String damma;
+  final String fathaReading;
+  final String kasraReading;
+  final String dammaReading;
+  final String compare;
+
+  bool get hasTriple =>
+      fatha.isNotEmpty || kasra.isNotEmpty || damma.isNotEmpty;
 
   String get markedCaption {
-    if (marked.contains('ّ')) return 'Şeddeli hali';
+    if (marked.contains('ّ')) {
+      final label = vowel.isNotEmpty
+          ? vowel
+          : marked.contains('َ')
+              ? 'Üstün'
+              : marked.contains('ِ')
+                  ? 'Esre'
+                  : marked.contains('ُ')
+                      ? 'Ötre'
+                      : '';
+      return label.isEmpty ? 'Şeddeli hali' : 'Şedde + $label';
+    }
     if (marked.contains('ْ')) return 'Cezmli hali';
     if (marked.contains('ُ')) return 'Ötreli hali';
     if (marked.contains('ِ')) return 'Esreli hali';
@@ -589,6 +777,14 @@ class ElifbaLetterRow {
       audioExample: JsonMap.str(
         json['audio_example'] ?? json['audio'] ?? json['audio_word'],
       ),
+      vowel: JsonMap.str(json['vowel']),
+      fatha: JsonMap.str(json['fatha']),
+      kasra: JsonMap.str(json['kasra']),
+      damma: JsonMap.str(json['damma']),
+      fathaReading: JsonMap.str(json['fatha_reading'] ?? json['reading_fatha']),
+      kasraReading: JsonMap.str(json['kasra_reading'] ?? json['reading_kasra']),
+      dammaReading: JsonMap.str(json['damma_reading'] ?? json['reading_damma']),
+      compare: JsonMap.str(json['compare']),
     );
   }
 }
@@ -752,15 +948,170 @@ class ElifbaNamed {
 }
 
 class ElifbaGroup {
-  const ElifbaGroup({required this.name, required this.letters});
+  const ElifbaGroup({
+    required this.name,
+    required this.letters,
+    this.note = '',
+  });
 
   final String name;
   final List<String> letters;
+  final String note;
 
   factory ElifbaGroup.fromJson(Map<String, dynamic> json) {
     return ElifbaGroup(
-      name: JsonMap.str(json['name']),
+      name: JsonMap.str(json['name'] ?? json['group']),
       letters: JsonMap.strings(json['letters']),
+      note: JsonMap.str(json['note']),
+    );
+  }
+}
+
+/// Kelime kartı verisi: Arapça + okunuş + anlam + dikkat edilecek kural.
+class ElifbaWordExample {
+  const ElifbaWordExample({
+    required this.text,
+    this.reading = '',
+    this.meaning = '',
+    this.focus = '',
+    this.audio = '',
+  });
+
+  final String text;
+  final String reading;
+  final String meaning;
+  final String focus;
+  final String audio;
+
+  factory ElifbaWordExample.fromJson(Map<String, dynamic> json) {
+    return ElifbaWordExample(
+      text: JsonMap.str(json['word'] ?? json['text']),
+      reading: JsonMap.str(json['reading']),
+      meaning: JsonMap.str(json['meaning']),
+      focus: JsonMap.str(json['focus'] ?? json['rule'] ?? json['note']),
+      audio: JsonMap.str(json['audio_word'] ?? json['audio']),
+    );
+  }
+}
+
+/// İki seçenekli karşılaştırma sorusu (comparison_pairs / comparison_game).
+class ElifbaAskPair {
+  const ElifbaAskPair({
+    required this.question,
+    required this.answer,
+    required this.options,
+    this.label = '',
+  });
+
+  final String question;
+  final String answer;
+  final List<String> options;
+  final String label;
+
+  factory ElifbaAskPair.fromJson(Map<String, dynamic> json) {
+    final left = JsonMap.str(json['left']);
+    final right = JsonMap.str(json['right']);
+    final options = JsonMap.strings(json['answers']);
+    return ElifbaAskPair(
+      question: JsonMap.str(json['question']),
+      answer: JsonMap.str(json['answer'] ?? json['correct']),
+      options: options.isNotEmpty
+          ? options
+          : [
+              if (left.isNotEmpty) left,
+              if (right.isNotEmpty) right,
+            ],
+      label: JsonMap.str(json['pair']),
+    );
+  }
+}
+
+/// Ra gibi duruma göre kalın/ince okunan harfler.
+class ElifbaSpecialLetter {
+  const ElifbaSpecialLetter({
+    required this.letter,
+    required this.name,
+    this.classification = '',
+    this.thickWhen = const [],
+    this.thinWhen = const [],
+    this.note = '',
+  });
+
+  final String letter;
+  final String name;
+  final String classification;
+  final List<String> thickWhen;
+  final List<String> thinWhen;
+  final String note;
+
+  factory ElifbaSpecialLetter.fromJson(Map<String, dynamic> json) {
+    return ElifbaSpecialLetter(
+      letter: JsonMap.str(json['letter']),
+      name: JsonMap.str(json['name']),
+      classification: JsonMap.str(json['classification']),
+      thickWhen: JsonMap.strings(json['thick_when']),
+      thinWhen: JsonMap.strings(json['thin_when']),
+      note: JsonMap.str(json['note']),
+    );
+  }
+}
+
+class ElifbaRaRow {
+  const ElifbaRaRow({
+    required this.form,
+    required this.name,
+    required this.reading,
+    this.reason = '',
+  });
+
+  final String form;
+  final String name;
+  final String reading;
+  final String reason;
+
+  bool get isThick => reading.contains('kalın');
+
+  factory ElifbaRaRow.fromJson(Map<String, dynamic> json) {
+    return ElifbaRaRow(
+      form: JsonMap.str(json['form']),
+      name: JsonMap.str(json['name']),
+      reading: JsonMap.str(json['reading']),
+      reason: JsonMap.str(json['reason']),
+    );
+  }
+}
+
+class ElifbaActivity {
+  const ElifbaActivity({
+    required this.type,
+    required this.title,
+    this.count = 0,
+  });
+
+  final String type;
+  final String title;
+  final int count;
+
+  String get emoji {
+    switch (type) {
+      case 'listen_repeat':
+        return '🔊';
+      case 'read_aloud':
+        return '🗣';
+      case 'multiple_choice':
+        return '🎯';
+      case 'find_rule':
+        return '🔍';
+      default:
+        return '⭐';
+    }
+  }
+
+  factory ElifbaActivity.fromJson(Map<String, dynamic> json) {
+    return ElifbaActivity(
+      type: JsonMap.str(json['type']),
+      title: JsonMap.str(json['title']),
+      count: JsonMap.integer(json['count']),
     );
   }
 }

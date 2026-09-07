@@ -193,7 +193,7 @@ class _HubBody extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              const Text("Kur'an okumayı eğlenerek öğren!"),
+              const Text('Kur’an okumayı adım adım ve eğlenerek öğren.'),
               const SizedBox(height: 10),
               ElifbaMascot(
                 line: progress.doneCount == 0
@@ -201,7 +201,13 @@ class _HubBody extends StatelessWidget {
                     : ElifbaVoice.greetings[1],
               ),
               const SizedBox(height: 12),
-              Text('⭐ ${progress.doneCount} / ${pack.lessons.length} Ders'),
+              Text(
+                '${progress.doneCount} / ${pack.lessons.length} Ders',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              Text(
+                '%${(progress.ratio(pack.lessons.length) * 100).round()} Tamamlandı',
+              ),
               const SizedBox(height: 6),
               ClipRRect(
                 borderRadius: BorderRadius.circular(99),
@@ -211,6 +217,15 @@ class _HubBody extends StatelessWidget {
                   color: MinikColors.gold,
                   backgroundColor: MinikColors.creamDark,
                 ),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 12,
+                alignment: WrapAlignment.center,
+                children: [
+                  Text('⭐ ${progress.stars}'),
+                  Text('🏅 ${progress.badges.length}'),
+                ],
               ),
             ],
           ),
@@ -237,10 +252,10 @@ class _HubBody extends StatelessWidget {
             children: [
               const Text('👣 Kaldığın Yer'),
               Text('Ders ${resume.id} – ${resume.title}'),
-              Text('⭐ %${(progress.ratio(pack.lessons.length) * 100).round()}'),
+              Text('${resume.level} · ${ElifbaWorlds.forLesson(pack, resume.id).title}'),
               const SizedBox(height: 8),
               PrimaryButton(
-                label: 'Maceraya Devam Et',
+                label: 'Kaldığın Yerden Devam Et',
                 onPressed: unlocked
                     ? () => openElifbaLesson(
                           context,
@@ -299,7 +314,7 @@ class ElifbaMapPage extends StatelessWidget {
       body: ListView(
         padding: AppSpacing.page,
         children: [
-          for (final world in ElifbaWorlds.all)
+          for (final world in ElifbaWorlds.of(pack))
             _WorldBlock(
               world: world,
               pack: pack,
@@ -324,7 +339,7 @@ class _WorldBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lessons = ElifbaWorlds.lessonsIn(world, pack.lessons);
+    final lessons = world.lessons;
     if (lessons.isEmpty) return const SizedBox.shrink();
     final complete = world.isComplete(progress.completedLessons);
     return Padding(
@@ -369,31 +384,19 @@ class _LessonNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final done = progress.isCompleted(lesson.id);
+    final inProgress = progress.isInProgress(lesson.id);
     final open = progress.isUnlocked(lesson.id) || done;
+    final status = done
+        ? '✅ Tamamlandı'
+        : inProgress
+            ? '▶ Devam ediyor'
+            : open
+                ? '▶ Başla'
+                : '🔒 Kilitli';
+    final quizScore = progress.quizResults['${lesson.id}'];
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
-      child: ListTile(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        tileColor: Colors.white,
-        leading: Text(
-          done
-              ? '⭐'
-              : progress.isInProgress(lesson.id)
-                  ? '⏳'
-                  : open
-                      ? '▶'
-                      : '🔒',
-          style: const TextStyle(fontSize: 22),
-        ),
-        title: Text('Ders ${lesson.id}'),
-        subtitle: Text(
-          done
-              ? '${lesson.title} · Tekrar Et'
-              : progress.isInProgress(lesson.id)
-                  ? '${lesson.title} · Devam ediyor'
-                  : lesson.title,
-        ),
-        enabled: open,
+      child: ElifbaSoftCard(
         onTap: open
             ? () => openElifbaLesson(
                   context,
@@ -402,6 +405,48 @@ class _LessonNode extends StatelessWidget {
                   replay: done,
                 )
             : null,
+        child: Opacity(
+          opacity: open ? 1 : 0.55,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Ders ${lesson.id} · ${lesson.title}',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ),
+                  Text(status),
+                ],
+              ),
+              Text(lesson.level),
+              if (lesson.goal.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(lesson.goal),
+                ),
+              const SizedBox(height: 8),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(99),
+                child: LinearProgressIndicator(
+                  minHeight: 8,
+                  value: done ? 1 : (inProgress ? 0.5 : 0),
+                  color: MinikColors.green,
+                  backgroundColor: MinikColors.creamDark,
+                ),
+              ),
+              if (done && quizScore != null && lesson.quiz.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    '🎯 $quizScore / ${lesson.quiz.length} doğru · 🔁 Tekrar Et',
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

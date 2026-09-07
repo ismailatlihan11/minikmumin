@@ -3,7 +3,7 @@
   "language": "tr-TR",
   "title": "Elifbâ ve Temel Tecvid",
   "description": "Çocuklar ve başlangıç seviyesindeki öğrenciler için derslere bölünmüş Elifbâ ve temel tecvid eğitim içeriği.",
-  "lesson_count": 31,
+  "lesson_count": 34,
   "features": {
     "progress_tracking": true,
     "lesson_quiz": true,
@@ -379,10 +379,674 @@
     },
     {
       "id": 2,
-      "title": "İnce, Kalın ve Peltek Harfler",
+      "title": "Kalın Harfleri Öğreniyorum",
       "level": "Başlangıç",
-      "goal": "Harflerin temel ses özelliklerini ayırt etmek; kalın, ince ve peltek harfleri tanımak.",
-      "explanation": "Arapça harflerin hepsi aynı ağız yapısıyla okunmaz. Bazı harfler kalın (tefhim), bazıları ince (terkik) okunur. Peltek harflerde ise dilin ucu ön dişlere yaklaşır veya hafifçe dişlerin arasına gelir. Bu sınıflandırma doğru telaffuzun temelidir.",
+      "goal": "Kur'an okurken temel olarak kalın okunan yedi harfi tanımak, isimlerini öğrenmek ve harekeli örneklerle kalın sesleri fark etmek.",
+      "explanation": "Arapçada yedi harf temel olarak kalın okunur. Bunlar خ ص ض غ ط ق ظ harfleridir. Bu derste her harfi adıyla, fethalı-esreli-ötreli biçimiyle ve örneklerle çalışacağız.",
+      "memory_phrase": "خُصَّ ضَغْطٍ قِظْ",
+      "rule": "Sabit kalın harfler: خ ص ض غ ط ق ظ. Ayrıca ر, bulunduğu duruma göre kalın veya ince okunabilen özel bir harftir.",
+      "letter_table": [
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "fatha": "خَ",
+          "fatha_reading": "hı",
+          "kasra": "خِ",
+          "kasra_reading": "hı",
+          "damma": "خُ",
+          "damma_reading": "hu",
+          "note": "Kalın okunur."
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "fatha": "صَ",
+          "fatha_reading": "sa (kalın)",
+          "kasra": "صِ",
+          "kasra_reading": "sı (kalın)",
+          "damma": "صُ",
+          "damma_reading": "su (kalın)",
+          "note": "Kalın okunur."
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "fatha": "ضَ",
+          "fatha_reading": "dad (kalın)",
+          "kasra": "ضِ",
+          "kasra_reading": "dıd (kalın)",
+          "damma": "ضُ",
+          "damma_reading": "dud (kalın)",
+          "note": "Kalın okunur."
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "fatha": "غَ",
+          "fatha_reading": "ğa",
+          "kasra": "غِ",
+          "kasra_reading": "ği",
+          "damma": "غُ",
+          "damma_reading": "ğu",
+          "note": "Boğazdan gelen kalın harf."
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "fatha": "طَ",
+          "fatha_reading": "tı",
+          "kasra": "طِ",
+          "kasra_reading": "tı (kalın)",
+          "damma": "طُ",
+          "damma_reading": "tu (kalın)",
+          "note": "Kalın okunur."
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "fatha": "قَ",
+          "fatha_reading": "ka (kalın)",
+          "kasra": "قِ",
+          "kasra_reading": "kı (kalın)",
+          "damma": "قُ",
+          "damma_reading": "ku (kalın)",
+          "note": "Kalın okunur."
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "fatha": "ظَ",
+          "fatha_reading": "zı (peltek, kalın)",
+          "kasra": "ظِ",
+          "kasra_reading": "zı (peltek, kalın)",
+          "damma": "ظُ",
+          "damma_reading": "zu (peltek, kalın)",
+          "note": "Hem peltek hem kalındır."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "س / ص",
+          "left": "سَ",
+          "right": "صَ",
+          "question": "Hangisi kalın?",
+          "answer": "ص"
+        },
+        {
+          "pair": "ت / ط",
+          "left": "تَ",
+          "right": "طَ",
+          "question": "Hangisi kalın?",
+          "answer": "ط"
+        },
+        {
+          "pair": "ك / ق",
+          "left": "كَ",
+          "right": "قَ",
+          "question": "Hangisi kalın?",
+          "answer": "ق"
+        }
+      ],
+      "word_examples": [
+        {
+          "text": "خَلَقَ",
+          "reading": "halaqa",
+          "focus": "خ ve ق kalın"
+        },
+        {
+          "text": "صَبَرَ",
+          "reading": "sabara",
+          "focus": "ص kalın"
+        },
+        {
+          "text": "ضَرَبَ",
+          "reading": "daraba",
+          "focus": "ض kalın"
+        },
+        {
+          "text": "طَيِّب",
+          "reading": "tayyib",
+          "focus": "ط kalın"
+        },
+        {
+          "text": "قَالَ",
+          "reading": "qâle",
+          "focus": "ق kalın"
+        },
+        {
+          "text": "ظَلَمَ",
+          "reading": "zalema",
+          "focus": "ظ peltek ve kalın"
+        },
+        {
+          "text": "غَفُور",
+          "reading": "ğafûr",
+          "focus": "غ kalın"
+        },
+        {
+          "text": "رَحْمَٰن",
+          "reading": "Rahmân",
+          "focus": "رَ kalın örneği"
+        },
+        {
+          "text": "رُسُل",
+          "reading": "rusul",
+          "focus": "رُ kalın örneği"
+        }
+      ],
+      "activities": [
+        "Kalın harfi bul.",
+        "Kalın harfin adını söyle.",
+        "Kalın harfin fethalı, esreli ve ötreli biçimlerini sırayla oku.",
+        "İnce-kalın çiftlerinden doğru olanı seç."
+      ],
+      "quiz": [
+        {
+          "question": "Hangisi kalın harftir?",
+          "options": [
+            "س",
+            "ق",
+            "م"
+          ],
+          "answer": "ق"
+        },
+        {
+          "question": "Kalın harfler kaç tanedir?",
+          "options": [
+            "5",
+            "7",
+            "10"
+          ],
+          "answer": "7"
+        },
+        {
+          "question": "ظ harfinin özelliği nedir?",
+          "options": [
+            "Sadece ince",
+            "Peltek ve kalın",
+            "Sadece peltek"
+          ],
+          "answer": "Peltek ve kalın"
+        },
+        {
+          "question": "ت / ط çiftinde hangisi kalındır?",
+          "options": [
+            "ت",
+            "ط"
+          ],
+          "answer": "ط"
+        }
+      ],
+      "character_message": "“Kalın harfleri keşfetmeye hazır mısın? Bu harflerin sesinde farklı bir dolgunluk hissedeceğiz!”",
+      "special_letters": [
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "classification": "Özel harf",
+          "thick_when": [
+            "رَ",
+            "رُ"
+          ],
+          "thin_when": [
+            "رِ"
+          ],
+          "note": "Ra bazı durumlarda kalın, bazı durumlarda ince okunur. Bu nedenle yedi sabit kalın harf grubuna doğrudan dahil edilmez."
+        }
+      ],
+      "special_preview": [
+        {
+          "form": "رَ",
+          "reading": "kalın",
+          "note": "Üstünlü Ra: temel başlangıç örneği."
+        },
+        {
+          "form": "رُ",
+          "reading": "kalın",
+          "note": "Ötreli Ra: temel başlangıç örneği."
+        },
+        {
+          "form": "رِ",
+          "reading": "ince",
+          "note": "Esreli Ra: temel başlangıç örneği."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "İnce Harfleri Öğreniyorum",
+      "level": "Başlangıç",
+      "goal": "Temel olarak ince okunan harfleri tanımak, harf adlarını ve harekeli örneklerini öğrenmek.",
+      "explanation": "Kalın harflerin dışında kalan harflerin büyük bölümü temel olarak ince okunur. Ancak ر ve Allah lafzındaki ل özel kurallara sahiptir; bunları ayrı derslerde öğreneceğiz.",
+      "rule": "İnce harfler: kalın harfler dışında kalan harflerin büyük bölümü; ر ve Allah lafzındaki ل özel olarak ayrıca öğrenilir.",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "fatha": "اَ",
+          "kasra": "اِ",
+          "damma": "اُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "fatha": "بَ",
+          "kasra": "بِ",
+          "damma": "بُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "fatha": "تَ",
+          "kasra": "تِ",
+          "damma": "تُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "fatha": "ثَ",
+          "kasra": "ثِ",
+          "damma": "ثُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "fatha": "جَ",
+          "kasra": "جِ",
+          "damma": "جُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "fatha": "حَ",
+          "kasra": "حِ",
+          "damma": "حُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "fatha": "دَ",
+          "kasra": "دِ",
+          "damma": "دُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "fatha": "ذَ",
+          "kasra": "ذِ",
+          "damma": "ذُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "fatha": "زَ",
+          "kasra": "زِ",
+          "damma": "زُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "fatha": "سَ",
+          "kasra": "سِ",
+          "damma": "سُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "fatha": "شَ",
+          "kasra": "شِ",
+          "damma": "شُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "fatha": "عَ",
+          "kasra": "عِ",
+          "damma": "عُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "fatha": "فَ",
+          "kasra": "فِ",
+          "damma": "فُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "fatha": "كَ",
+          "kasra": "كِ",
+          "damma": "كُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "fatha": "لَ",
+          "kasra": "لِ",
+          "damma": "لُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "fatha": "مَ",
+          "kasra": "مِ",
+          "damma": "مُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "fatha": "نَ",
+          "kasra": "نِ",
+          "damma": "نُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "fatha": "هَ",
+          "kasra": "هِ",
+          "damma": "هُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "fatha": "وَ",
+          "kasra": "وِ",
+          "damma": "وُ",
+          "note": "Temel olarak ince okunur."
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "fatha": "يَ",
+          "kasra": "يِ",
+          "damma": "يُ",
+          "note": "Temel olarak ince okunur."
+        }
+      ],
+      "special_letters": [
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "note": "Ra'yı normal ince harfler arasına sabit olarak koyma. رِ örneğinde temel olarak ince; رَ ve رُ örneklerinde kalın."
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "note": "Allah lafzındaki ل özel kural ile ayrıca öğretilir."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "س / ص",
+          "left": "سَ",
+          "right": "صَ",
+          "question": "Hangisi ince?",
+          "answer": "س"
+        },
+        {
+          "pair": "ت / ط",
+          "left": "تَ",
+          "right": "طَ",
+          "question": "Hangisi ince?",
+          "answer": "ت"
+        },
+        {
+          "pair": "ك / ق",
+          "left": "كَ",
+          "right": "قَ",
+          "question": "Hangisi ince?",
+          "answer": "ك"
+        }
+      ],
+      "word_examples": [
+        {
+          "text": "بِسْمِ",
+          "reading": "bismi",
+          "focus": "ب ve س ince"
+        },
+        {
+          "text": "تِين",
+          "reading": "tîn",
+          "focus": "ت ince"
+        },
+        {
+          "text": "كِتَاب",
+          "reading": "kitâb",
+          "focus": "ك ince"
+        },
+        {
+          "text": "نَاس",
+          "reading": "nâs",
+          "focus": "ن ve س ince"
+        },
+        {
+          "text": "مَلِك",
+          "reading": "melik",
+          "focus": "م ve ل ince"
+        },
+        {
+          "text": "فِيل",
+          "reading": "fîl",
+          "focus": "ف ince"
+        },
+        {
+          "text": "جَنَّة",
+          "reading": "cenne",
+          "focus": "ج ince"
+        }
+      ],
+      "activities": [
+        "İnce harfi bul.",
+        "Kalın ve ince harfi yan yana karşılaştır.",
+        "Harf adı ile sesini ayır.",
+        "İnce harfin üç harekesini sırayla oku."
+      ],
+      "quiz": [
+        {
+          "question": "Hangisi temel olarak ince okunur?",
+          "options": [
+            "ص",
+            "ط",
+            "ب"
+          ],
+          "answer": "ب"
+        },
+        {
+          "question": "س / ص çiftinde hangisi ince?",
+          "options": [
+            "س",
+            "ص"
+          ],
+          "answer": "س"
+        },
+        {
+          "question": "ك / ق çiftinde hangisi ince?",
+          "options": [
+            "ك",
+            "ق"
+          ],
+          "answer": "ك"
+        },
+        {
+          "question": "ر hangi gruba özel olarak dahil edilir?",
+          "options": [
+            "Her zaman kalın",
+            "Her zaman ince",
+            "Özel kuralları vardır"
+          ],
+          "answer": "Özel kuralları vardır"
+        }
+      ],
+      "character_message": "“Şimdi daha yumuşak okunan harfleri keşfedelim. İnce ve kalın sesleri birbirinden ayırabilecek misin?”"
+    },
+    {
+      "id": 4,
+      "title": "Peltek Harfleri Öğreniyorum",
+      "level": "Başlangıç",
+      "goal": "ث ذ ظ harflerini tanımak, peltek telaffuzu fark etmek ve benzer normal s/z harflerinden ayırmak.",
+      "explanation": "Peltek harfler Türkçedeki s ve z sesleriyle tamamen aynı değildir. ث, ذ ve ظ okunurken dil ucu ön dişlere yaklaşır. ظ ayrıca kalın okunur.",
+      "letter_table": [
+        {
+          "letter": "ث",
+          "name": "Se",
+          "fatha": "ثَ",
+          "reading_fatha": "peltek se",
+          "kasra": "ثِ",
+          "reading_kasra": "peltek si",
+          "damma": "ثُ",
+          "reading_damma": "peltek su",
+          "compare": "س"
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "fatha": "ذَ",
+          "reading_fatha": "peltek zel",
+          "kasra": "ذِ",
+          "reading_kasra": "peltek zil",
+          "damma": "ذُ",
+          "reading_damma": "peltek zul",
+          "compare": "ز"
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "fatha": "ظَ",
+          "reading_fatha": "peltek ve kalın zı",
+          "kasra": "ظِ",
+          "reading_kasra": "peltek ve kalın zı",
+          "damma": "ظُ",
+          "reading_damma": "peltek ve kalın zu",
+          "compare": "ز",
+          "note": "Peltek ve sabit kalın harflerdendir."
+        }
+      ],
+      "pronunciation_tip": "Dil ucunu üst ve alt ön dişlerin arasına çok az yaklaştır; sesi Türkçedeki s veya z ile tamamen aynı yapma.",
+      "comparison_pairs": [
+        {
+          "pair": "ث / س",
+          "left": "ثَ",
+          "right": "سَ",
+          "question": "Hangisi peltek?",
+          "answer": "ث"
+        },
+        {
+          "pair": "ذ / ز",
+          "left": "ذَ",
+          "right": "زَ",
+          "question": "Hangisi peltek?",
+          "answer": "ذ"
+        },
+        {
+          "pair": "ظ / ز",
+          "left": "ظَ",
+          "right": "زَ",
+          "question": "Hangisi hem peltek hem kalın?",
+          "answer": "ظ"
+        }
+      ],
+      "word_examples": [
+        {
+          "text": "ثُمَّ",
+          "reading": "summe",
+          "focus": "ث"
+        },
+        {
+          "text": "كَثِير",
+          "reading": "kesîr / kathîr",
+          "focus": "ث"
+        },
+        {
+          "text": "ذَهَبَ",
+          "reading": "zehebe",
+          "focus": "ذ"
+        },
+        {
+          "text": "الَّذِي",
+          "reading": "ellezî",
+          "focus": "ذ"
+        },
+        {
+          "text": "ظَلَمَ",
+          "reading": "zaleme",
+          "focus": "ظ"
+        },
+        {
+          "text": "عَظِيم",
+          "reading": "azîm",
+          "focus": "ظ"
+        }
+      ],
+      "activities": [
+        "Peltek harfi bul.",
+        "Dil ucunun konumunu taklit ederek sesi tekrar et.",
+        "ث / س karşılaştırması yap.",
+        "ذ / ز karşılaştırması yap.",
+        "ظ / ز karşılaştırması yap.",
+        "ظ harfinin neden iki özelliği olduğunu hatırla: peltek + kalın."
+      ],
+      "quiz": [
+        {
+          "question": "Peltek harfler hangileridir?",
+          "options": [
+            "ث ذ ظ",
+            "س ش ص",
+            "ت ط ظ"
+          ],
+          "answer": "ث ذ ظ"
+        },
+        {
+          "question": "ث / س çiftinde hangisi peltektir?",
+          "options": [
+            "ث",
+            "س"
+          ],
+          "answer": "ث"
+        },
+        {
+          "question": "ذ / ز çiftinde hangisi peltektir?",
+          "options": [
+            "ذ",
+            "ز"
+          ],
+          "answer": "ذ"
+        },
+        {
+          "question": "Hangisi hem peltek hem kalındır?",
+          "options": [
+            "ث",
+            "ذ",
+            "ظ"
+          ],
+          "answer": "ظ"
+        }
+      ],
+      "character_message": "“Dil ucunu biraz öne getiriyoruz! Bakalım peltek harfleri normal s ve z seslerinden ayırabilecek misin?”",
+      "rule": "Peltek harfler: ث ذ ظ. Bunlardan ظ aynı zamanda sabit kalın harflerdendir."
+    },
+    {
+      "id": 5,
+      "title": "İnce, Kalın ve Peltek Harfler - Genel Tekrar",
+      "level": "Tekrar",
+      "goal": "İnce, kalın ve peltek harfleri birlikte tekrar etmek.",
+      "explanation": "Bu ders, Ders 2, Ders 3 ve Ders 4'te öğrendiğin ses özelliklerini birlikte tekrar eder.",
       "important_note": "Bu ders başlangıç düzeyindeki pratik sınıflandırmadır. Ra (ر) ve Allah lafzındaki lâm (ل) gibi harflerin okunuşu bulunduğu hareke ve bağlama göre değişebildiği için ayrıca öğretilecektir.",
       "categories": [
         {
@@ -873,12 +1537,12 @@
         {
           "letter": "ر",
           "name": "Ra",
-          "note": "Kalın veya ince okunabilen özel harf; ayrı derste detaylandırılır."
+          "note": "Özel: رَ/رُ kalın, رِ ince (temel başlangıç kuralı)."
         },
         {
           "letter": "ل",
           "name": "Lam",
-          "note": "Allah lafzında kalın veya ince okunabilir; ayrı derste detaylandırılır."
+          "note": "Allah lafzında özel kalın/ince kuralları vardır."
         }
       ],
       "ui_learning_pattern": {
@@ -889,10 +1553,42 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "lesson_type": "review",
+      "review_only": true,
+      "classification_note": "Genel tekrar: Sabit kalın harfler خ ص ض غ ط ق ظ; peltek harfler ث ذ ظ; Ra (ر) ise özel olarak bazı durumlarda kalın, bazı durumlarda ince okunur.",
+      "review_groups": [
+        {
+          "group": "Sabit kalın harfler",
+          "letters": [
+            "خ",
+            "ص",
+            "ض",
+            "غ",
+            "ط",
+            "ق",
+            "ظ"
+          ]
+        },
+        {
+          "group": "Peltek harfler",
+          "letters": [
+            "ث",
+            "ذ",
+            "ظ"
+          ]
+        },
+        {
+          "group": "Özel harf",
+          "letters": [
+            "ر"
+          ],
+          "note": "رَ/رُ kalın, رِ ince (temel başlangıç kuralı)."
+        }
+      ]
     },
     {
-      "id": 3,
+      "id": 6,
       "title": "Harflerin Kelimedeki Şekilleri",
       "level": "Başlangıç",
       "goal": "Bağlanan harflerin başta, ortada ve sonda nasıl yazıldığını fark etmek.",
@@ -1282,7 +1978,7 @@
       }
     },
     {
-      "id": 4,
+      "id": 7,
       "title": "Üstün (Fetha)",
       "level": "Başlangıç",
       "goal": "Üstün işaretini tanımak ve kısa 'a' sesini okumak.",
@@ -1678,10 +2374,107 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "word_examples": [
+        {
+          "word": "كَتَبَ",
+          "reading": "ketebe",
+          "meaning": "yazdı",
+          "focus": "Bütün kısa sesler fetha."
+        },
+        {
+          "word": "ذَهَبَ",
+          "reading": "zehebe",
+          "meaning": "gitti",
+          "focus": "ذ peltek okunur."
+        },
+        {
+          "word": "جَلَسَ",
+          "reading": "celese",
+          "meaning": "oturdu",
+          "focus": "جَ لَ سَ."
+        },
+        {
+          "word": "خَلَقَ",
+          "reading": "halaka",
+          "meaning": "yarattı",
+          "focus": "خ ve ق kalın."
+        },
+        {
+          "word": "دَخَلَ",
+          "reading": "dehale",
+          "meaning": "girdi",
+          "focus": "دَ خَ لَ."
+        },
+        {
+          "word": "عَلَمَ",
+          "reading": "aleme",
+          "meaning": "öğrendi/bildi",
+          "focus": "عَ başlangıç çalışması."
+        },
+        {
+          "word": "نَصَرَ",
+          "reading": "nasara",
+          "meaning": "yardım etti",
+          "focus": "ص kalın."
+        },
+        {
+          "word": "ذَكَرَ",
+          "reading": "zekera",
+          "meaning": "andı",
+          "focus": "ذ peltek."
+        },
+        {
+          "word": "فَتَحَ",
+          "reading": "fetaha",
+          "meaning": "açtı",
+          "focus": "فَ تَ حَ."
+        },
+        {
+          "word": "سَجَدَ",
+          "reading": "secede",
+          "meaning": "secde etti",
+          "focus": "سَ جَ دَ."
+        },
+        {
+          "word": "دَرَسَ",
+          "reading": "derese",
+          "meaning": "ders yaptı/çalıştı",
+          "focus": "دَ رَ سَ."
+        },
+        {
+          "word": "حَمَدَ",
+          "reading": "hamede",
+          "meaning": "hamdetti",
+          "focus": "حَ مَ دَ."
+        },
+        {
+          "word": "عَبَدَ",
+          "reading": "abede",
+          "meaning": "kulluk etti",
+          "focus": "عَ بَ دَ."
+        },
+        {
+          "word": "طَلَبَ",
+          "reading": "talebe",
+          "meaning": "istedi",
+          "focus": "ط kalın."
+        }
+      ],
+      "word_section_title": "Fetha ile Kelime Okuma",
+      "word_section_instruction": "Kelimenin Arapça yazımını gör, hemen altında Latin harfleriyle okunuşunu ve varsa kısa anlamını öğren.",
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
+      },
+      "many_example_rule": "Konu anlatımından sonra en az 10 kelime örneği göster."
     },
     {
-      "id": 5,
+      "id": 8,
       "title": "Esre (Kesra)",
       "level": "Başlangıç",
       "goal": "Esre işaretini tanımak ve kısa 'i' sesini okumak.",
@@ -2067,10 +2860,95 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "word_examples": [
+        {
+          "word": "بِسْمِ",
+          "reading": "bismi",
+          "meaning": "adıyla",
+          "focus": "بِ ve سِ esreli."
+        },
+        {
+          "word": "مِنْ",
+          "reading": "min",
+          "meaning": "-den/-dan",
+          "focus": "مِ + نْ."
+        },
+        {
+          "word": "فِيل",
+          "reading": "fîl",
+          "meaning": "fil",
+          "focus": "فِ + med ya."
+        },
+        {
+          "word": "كَبِير",
+          "reading": "kebîr",
+          "meaning": "büyük",
+          "focus": "بِ + ya med."
+        },
+        {
+          "word": "رِزْق",
+          "reading": "rizq",
+          "meaning": "rızık",
+          "focus": "رِ + زْ + ق."
+        },
+        {
+          "word": "دِين",
+          "reading": "dîn",
+          "meaning": "din",
+          "focus": "دِ + ya med."
+        },
+        {
+          "word": "سِرَاج",
+          "reading": "sirâc",
+          "meaning": "lamba",
+          "focus": "سِ başlangıç örneği."
+        },
+        {
+          "word": "حِكْمَة",
+          "reading": "hikme",
+          "meaning": "hikmet",
+          "focus": "حِ başlangıç örneği."
+        },
+        {
+          "word": "عِبَاد",
+          "reading": "ibâd",
+          "meaning": "kullar",
+          "focus": "عِ ile başlayan kelime."
+        },
+        {
+          "word": "مِيزَان",
+          "reading": "mîzân",
+          "meaning": "mizan/ölçü",
+          "focus": "مِ + ya med."
+        },
+        {
+          "word": "كِتَاب",
+          "reading": "kitâb",
+          "meaning": "kitap",
+          "focus": "كِ başlangıç örneği."
+        },
+        {
+          "word": "لِسَان",
+          "reading": "lisân",
+          "meaning": "dil",
+          "focus": "لِ başlangıç örneği."
+        }
+      ],
+      "word_section_title": "Esre ile Kelime Okuma",
+      "word_section_instruction": "Esreli heceleri kelime içinde gör ve kelimenin hemen altında okunuşunu öğren.",
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
+      },
+      "many_example_rule": "Konu anlatımından sonra en az 10 kelime örneği göster."
     },
     {
-      "id": 6,
+      "id": 9,
       "title": "Ötre (Damme)",
       "level": "Başlangıç",
       "goal": "Ötre işaretini tanımak ve kısa 'u' sesini okumak.",
@@ -2211,10 +3089,95 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "word_examples": [
+        {
+          "word": "كُتُب",
+          "reading": "kutub",
+          "meaning": "kitaplar",
+          "focus": "كُ تُ ب."
+        },
+        {
+          "word": "رُسُل",
+          "reading": "rusul",
+          "meaning": "elçiler",
+          "focus": "رُ ve سُ ötreli."
+        },
+        {
+          "word": "نُور",
+          "reading": "nûr",
+          "meaning": "nur/ışık",
+          "focus": "نُ + vav med."
+        },
+        {
+          "word": "رُوح",
+          "reading": "rûh",
+          "meaning": "ruh",
+          "focus": "رُ + vav med."
+        },
+        {
+          "word": "قُلْ",
+          "reading": "qul",
+          "meaning": "de ki",
+          "focus": "قُ + لْ."
+        },
+        {
+          "word": "مُلْك",
+          "reading": "mulk",
+          "meaning": "mülk",
+          "focus": "مُ + لْ."
+        },
+        {
+          "word": "كُفْر",
+          "reading": "küfr",
+          "meaning": "inkâr",
+          "focus": "كُ + فْ."
+        },
+        {
+          "word": "شُكْر",
+          "reading": "şükr",
+          "meaning": "şükür",
+          "focus": "شُ + كْ."
+        },
+        {
+          "word": "غُفْرَان",
+          "reading": "ğufrân",
+          "meaning": "bağışlanma",
+          "focus": "غُ ile başlayan kelime."
+        },
+        {
+          "word": "حُسْن",
+          "reading": "hüsn",
+          "meaning": "güzellik",
+          "focus": "حُ + سْ."
+        },
+        {
+          "word": "مُؤْمِن",
+          "reading": "mü'min",
+          "meaning": "mümin",
+          "focus": "مُ başlangıç örneği."
+        },
+        {
+          "word": "يُوسُف",
+          "reading": "Yûsuf",
+          "meaning": "Yusuf",
+          "focus": "يُ + و med."
+        }
+      ],
+      "word_section_title": "Ötre ile Kelime Okuma",
+      "word_section_instruction": "Ötreli heceleri kelime içinde gör ve kelimenin hemen altında okunuşunu öğren.",
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
+      },
+      "many_example_rule": "Konu anlatımından sonra en az 10 kelime örneği göster."
     },
     {
-      "id": 7,
+      "id": 10,
       "title": "Hareke ile Birleştirme",
       "level": "Başlangıç",
       "goal": "Harf ve harekeleri birleştirerek kısa heceler okumak.",
@@ -2569,7 +3532,7 @@
       }
     },
     {
-      "id": 8,
+      "id": 11,
       "title": "Cezm (Sükûn)",
       "level": "Başlangıç",
       "goal": "Cezmli harfi harekesiz okumayı ve önceki sesle birleştirmeyi öğrenmek.",
@@ -2935,11 +3898,11 @@
       }
     },
     {
-      "id": 9,
-      "title": "Şedde",
+      "id": 12,
+      "title": "Şedde + Harekeler",
       "level": "Başlangıç",
-      "goal": "Şeddeli harfin iki harf değerinde okunmasını kavramak.",
-      "explanation": "Şedde ّ işareti harfin kuvvetli/çift okunacağını gösterir. Uygulamada şeddeli harf, biri sükûnlu biri harekeli iki harf gibi düşünülür.",
+      "goal": "Şeddenin tek başına değil, üstün, esre veya ötre ile birlikte nasıl okunduğunu öğrenmek.",
+      "explanation": "Şedde, bir harfin kuvvetli/çift değerini gösteren işarettir. Okuma sırasında şedde tek başına bırakılmaz; şeddeli harfin üzerinde/altında bir hareke bulunur. Bu nedenle üç temel biçimi birlikte çalışacağız: شَدَّ örneğinde şedde + üstün, şedde + esre ve şedde + ötre.",
       "rule": {
         "symbol": "ّ",
         "name": "Şedde",
@@ -2965,30 +3928,46 @@
       },
       "quiz": [
         {
-          "question": "Şedde neyi gösterir?",
+          "question": "Şedde tek başına mı öğretilmeli?",
           "options": [
-            "Uzatmayı",
-            "Çift/kuvvetli okumayı",
-            "Durmayı"
+            "Evet",
+            "Hayır, bir hareke ile birlikte"
           ],
-          "answer": "Çift/kuvvetli okumayı"
+          "answer": "Hayır, bir hareke ile birlikte"
         },
         {
-          "question": "إِنَّ kelimesinde hangi harf şeddelidir?",
+          "question": "رَبَّ kelimesindeki şeddeli harf hangisidir?",
+          "options": [
+            "ر",
+            "ب"
+          ],
+          "answer": "ب"
+        },
+        {
+          "question": "رَبِّ hangi yapıyı gösterir?",
+          "options": [
+            "Şedde + esre",
+            "Şedde + ötre",
+            "Sadece şedde"
+          ],
+          "answer": "Şedde + esre"
+        },
+        {
+          "question": "رَبُّ hangi yapıyı gösterir?",
+          "options": [
+            "Şedde + üstün",
+            "Şedde + ötre",
+            "Cezm + ötre"
+          ],
+          "answer": "Şedde + ötre"
+        },
+        {
+          "question": "إِنِّي kelimesindeki şedde hangi harftedir?",
           "options": [
             "ا",
             "ن"
           ],
           "answer": "ن"
-        },
-        {
-          "question": "كِتَابٌ hangi tenvin?",
-          "options": [
-            "İki üstün",
-            "İki esre",
-            "İki ötre"
-          ],
-          "answer": "İki ötre"
         }
       ],
       "rich_content": {
@@ -3063,10 +4042,794 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "important_note": "Uygulama şeddeyi tek başına 'بّ' şeklinde ana örnek olarak göstermemeli. Çocuk her zaman بَّ / بِّ / بُّ gibi harekeli şeddeyi görmeli.",
+      "harake_tables": {
+        "fetha": [
+          {
+            "letter": "ب",
+            "name": "Be",
+            "marked": "بَّ",
+            "reading": "ba (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ت",
+            "name": "Te",
+            "marked": "تَّ",
+            "reading": "ta (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ث",
+            "name": "Se",
+            "marked": "ثَّ",
+            "reading": "sa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ج",
+            "name": "Cim",
+            "marked": "جَّ",
+            "reading": "ca (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ح",
+            "name": "Ha",
+            "marked": "حَّ",
+            "reading": "ha (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "خ",
+            "name": "Hı",
+            "marked": "خَّ",
+            "reading": "hıa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "د",
+            "name": "Dal",
+            "marked": "دَّ",
+            "reading": "da (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel",
+            "marked": "ذَّ",
+            "reading": "za (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ر",
+            "name": "Ra",
+            "marked": "رَّ",
+            "reading": "ra (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ز",
+            "name": "Ze",
+            "marked": "زَّ",
+            "reading": "za (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "س",
+            "name": "Sin",
+            "marked": "سَّ",
+            "reading": "sa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ش",
+            "name": "Şın",
+            "marked": "شَّ",
+            "reading": "şa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ص",
+            "name": "Sad",
+            "marked": "صَّ",
+            "reading": "sa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ض",
+            "name": "Dad",
+            "marked": "ضَّ",
+            "reading": "da (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ط",
+            "name": "Tı",
+            "marked": "طَّ",
+            "reading": "ta (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı",
+            "marked": "ظَّ",
+            "reading": "za (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ع",
+            "name": "Ayn",
+            "marked": "عَّ",
+            "reading": "aa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "غ",
+            "name": "Gayın",
+            "marked": "غَّ",
+            "reading": "ğa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ف",
+            "name": "Fe",
+            "marked": "فَّ",
+            "reading": "fa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ق",
+            "name": "Kaf",
+            "marked": "قَّ",
+            "reading": "qa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ك",
+            "name": "Kef",
+            "marked": "كَّ",
+            "reading": "ka (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ل",
+            "name": "Lam",
+            "marked": "لَّ",
+            "reading": "la (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "م",
+            "name": "Mim",
+            "marked": "مَّ",
+            "reading": "ma (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ن",
+            "name": "Nun",
+            "marked": "نَّ",
+            "reading": "na (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ه",
+            "name": "He",
+            "marked": "هَّ",
+            "reading": "ha (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "و",
+            "name": "Vav",
+            "marked": "وَّ",
+            "reading": "wa (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ي",
+            "name": "Ya",
+            "marked": "يَّ",
+            "reading": "ya (şeddeli)",
+            "vowel": "Üstün",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          }
+        ],
+        "kasra": [
+          {
+            "letter": "ب",
+            "name": "Be",
+            "marked": "بِّ",
+            "reading": "bi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ت",
+            "name": "Te",
+            "marked": "تِّ",
+            "reading": "ti (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ث",
+            "name": "Se",
+            "marked": "ثِّ",
+            "reading": "si (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ج",
+            "name": "Cim",
+            "marked": "جِّ",
+            "reading": "ci (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ح",
+            "name": "Ha",
+            "marked": "حِّ",
+            "reading": "hi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "خ",
+            "name": "Hı",
+            "marked": "خِّ",
+            "reading": "hıi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "د",
+            "name": "Dal",
+            "marked": "دِّ",
+            "reading": "di (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel",
+            "marked": "ذِّ",
+            "reading": "zi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ر",
+            "name": "Ra",
+            "marked": "رِّ",
+            "reading": "ri (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ز",
+            "name": "Ze",
+            "marked": "زِّ",
+            "reading": "zi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "س",
+            "name": "Sin",
+            "marked": "سِّ",
+            "reading": "si (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ش",
+            "name": "Şın",
+            "marked": "شِّ",
+            "reading": "şi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ص",
+            "name": "Sad",
+            "marked": "صِّ",
+            "reading": "si (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ض",
+            "name": "Dad",
+            "marked": "ضِّ",
+            "reading": "di (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ط",
+            "name": "Tı",
+            "marked": "طِّ",
+            "reading": "ti (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı",
+            "marked": "ظِّ",
+            "reading": "zi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ع",
+            "name": "Ayn",
+            "marked": "عِّ",
+            "reading": "ai (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "غ",
+            "name": "Gayın",
+            "marked": "غِّ",
+            "reading": "ği (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ف",
+            "name": "Fe",
+            "marked": "فِّ",
+            "reading": "fi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ق",
+            "name": "Kaf",
+            "marked": "قِّ",
+            "reading": "qi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ك",
+            "name": "Kef",
+            "marked": "كِّ",
+            "reading": "ki (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ل",
+            "name": "Lam",
+            "marked": "لِّ",
+            "reading": "li (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "م",
+            "name": "Mim",
+            "marked": "مِّ",
+            "reading": "mi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ن",
+            "name": "Nun",
+            "marked": "نِّ",
+            "reading": "ni (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ه",
+            "name": "He",
+            "marked": "هِّ",
+            "reading": "hi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "و",
+            "name": "Vav",
+            "marked": "وِّ",
+            "reading": "wi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ي",
+            "name": "Ya",
+            "marked": "يِّ",
+            "reading": "yi (şeddeli)",
+            "vowel": "Esre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          }
+        ],
+        "damma": [
+          {
+            "letter": "ب",
+            "name": "Be",
+            "marked": "بُّ",
+            "reading": "bu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ت",
+            "name": "Te",
+            "marked": "تُّ",
+            "reading": "tu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ث",
+            "name": "Se",
+            "marked": "ثُّ",
+            "reading": "su (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ج",
+            "name": "Cim",
+            "marked": "جُّ",
+            "reading": "cu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ح",
+            "name": "Ha",
+            "marked": "حُّ",
+            "reading": "hu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "خ",
+            "name": "Hı",
+            "marked": "خُّ",
+            "reading": "hıu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "د",
+            "name": "Dal",
+            "marked": "دُّ",
+            "reading": "du (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel",
+            "marked": "ذُّ",
+            "reading": "zu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ر",
+            "name": "Ra",
+            "marked": "رُّ",
+            "reading": "ru (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ز",
+            "name": "Ze",
+            "marked": "زُّ",
+            "reading": "zu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "س",
+            "name": "Sin",
+            "marked": "سُّ",
+            "reading": "su (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ش",
+            "name": "Şın",
+            "marked": "شُّ",
+            "reading": "şu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ص",
+            "name": "Sad",
+            "marked": "صُّ",
+            "reading": "su (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ض",
+            "name": "Dad",
+            "marked": "ضُّ",
+            "reading": "du (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ط",
+            "name": "Tı",
+            "marked": "طُّ",
+            "reading": "tu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı",
+            "marked": "ظُّ",
+            "reading": "zu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ع",
+            "name": "Ayn",
+            "marked": "عُّ",
+            "reading": "au (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "غ",
+            "name": "Gayın",
+            "marked": "غُّ",
+            "reading": "ğu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ف",
+            "name": "Fe",
+            "marked": "فُّ",
+            "reading": "fu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ق",
+            "name": "Kaf",
+            "marked": "قُّ",
+            "reading": "qu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ك",
+            "name": "Kef",
+            "marked": "كُّ",
+            "reading": "ku (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ل",
+            "name": "Lam",
+            "marked": "لُّ",
+            "reading": "lu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "م",
+            "name": "Mim",
+            "marked": "مُّ",
+            "reading": "mu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ن",
+            "name": "Nun",
+            "marked": "نُّ",
+            "reading": "nu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ه",
+            "name": "He",
+            "marked": "هُّ",
+            "reading": "hu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "و",
+            "name": "Vav",
+            "marked": "وُّ",
+            "reading": "wu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          },
+          {
+            "letter": "ي",
+            "name": "Ya",
+            "marked": "يُّ",
+            "reading": "yu (şeddeli)",
+            "vowel": "Ötre",
+            "note": "Şedde tek başına gösterilmez; hareke ile birlikte okunur."
+          }
+        ]
+      },
+      "core_examples": [
+        {
+          "text": "رَبَّ",
+          "reading": "rabba",
+          "focus": "بَّ = şedde + üstün"
+        },
+        {
+          "text": "رَبِّ",
+          "reading": "rabbi",
+          "focus": "بِّ = şedde + esre"
+        },
+        {
+          "text": "رَبُّ",
+          "reading": "rabbu",
+          "focus": "بُّ = şedde + ötre"
+        },
+        {
+          "text": "إِنَّ",
+          "reading": "inne",
+          "focus": "نَّ = şedde + üstün"
+        },
+        {
+          "text": "إِنِّي",
+          "reading": "innî",
+          "focus": "نِّ = şedde + esre"
+        },
+        {
+          "text": "أَنَّ",
+          "reading": "enne",
+          "focus": "نَّ = şedde + üstün"
+        },
+        {
+          "text": "ثُمَّ",
+          "reading": "summe",
+          "focus": "مَّ = şedde + üstün"
+        },
+        {
+          "text": "مُمَّا",
+          "reading": "mum-mâ",
+          "focus": "Şeddeli mim örneği"
+        },
+        {
+          "text": "رُبُّ",
+          "reading": "rubu",
+          "focus": "بُّ = şedde + ötre"
+        }
+      ],
+      "word_examples": [
+        {
+          "word": "رَبَّنَا",
+          "reading": "rabbenâ",
+          "meaning": "Rabbimiz",
+          "focus": "بَّ: şedde + üstün"
+        },
+        {
+          "word": "إِنَّ",
+          "reading": "inne",
+          "meaning": "şüphesiz",
+          "focus": "نَّ: şedde + üstün"
+        },
+        {
+          "word": "إِنِّي",
+          "reading": "innî",
+          "meaning": "şüphesiz ben",
+          "focus": "نِّ: şedde + esre"
+        },
+        {
+          "word": "ثُمَّ",
+          "reading": "summe",
+          "meaning": "sonra",
+          "focus": "مَّ: şedde + üstün"
+        },
+        {
+          "word": "النَّاس",
+          "reading": "en-nâs",
+          "meaning": "insanlar",
+          "focus": "نَّ: şedde + üstün"
+        },
+        {
+          "word": "الرَّحْمَٰن",
+          "reading": "er-Rahmân",
+          "meaning": "Rahmân",
+          "focus": "رَّ: şedde + üstün"
+        },
+        {
+          "word": "الرَّحِيم",
+          "reading": "er-Rahîm",
+          "meaning": "Rahîm",
+          "focus": "رَّ: şedde + üstün"
+        },
+        {
+          "word": "الضَّالِّينَ",
+          "reading": "ed-dâllîn",
+          "meaning": "sapanlar",
+          "focus": "ضَّ ve لِّ: şedde ile birlikte hareke"
+        },
+        {
+          "word": "الْحَقِّ",
+          "reading": "el-haqq",
+          "meaning": "hak",
+          "focus": "قِّ: şedde + esre"
+        },
+        {
+          "word": "مُحَمَّد",
+          "reading": "Muhammed",
+          "meaning": "Muhammed",
+          "focus": "مَّ: şedde + üstün"
+        },
+        {
+          "word": "مُعَلِّم",
+          "reading": "muallim",
+          "meaning": "öğretmen",
+          "focus": "لِّ: şedde + esre"
+        },
+        {
+          "word": "أُمِّي",
+          "reading": "ümmî",
+          "meaning": "ümmi",
+          "focus": "مِّ: şedde + esre"
+        }
+      ],
+      "practice_rule": [
+        "Önce harekeyi bul.",
+        "Sonra şeddeyi bul.",
+        "Şeddeli harfi güçlü/çift değerli oku.",
+        "Kelimeyi bütün olarak tekrar et."
+      ]
     },
     {
-      "id": 10,
+      "id": 13,
       "title": "Tenvin",
       "level": "Başlangıç",
       "goal": "İki üstün, iki esre ve iki ötreyi tanımak.",
@@ -3294,7 +5057,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 14,
       "title": "Med Harfleri",
       "level": "Başlangıç",
       "goal": "Elif, vav ve ya ile oluşan temel med yapısını öğrenmek.",
@@ -3432,7 +5195,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 15,
       "title": "Temel Med Okuma",
       "level": "Başlangıç",
       "goal": "Temel doğal medleri doğru miktarda uzatarak okumaya hazırlanmak.",
@@ -3565,7 +5328,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 16,
       "title": "Kalkale Harfleri",
       "level": "Orta",
       "goal": "Kalkale harflerini tanımak ve cezimli olduklarında yankılı sesi fark etmek.",
@@ -3712,7 +5475,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 17,
       "title": "Nun Sâkin ve Tenvine Giriş",
       "level": "Orta",
       "goal": "نْ ve tenvin sonrasında gelen harfe göre hüküm değişebileceğini öğrenmek.",
@@ -3861,7 +5624,7 @@
       }
     },
     {
-      "id": 15,
+      "id": 18,
       "title": "İzhâr-ı Halkî",
       "level": "Orta",
       "goal": "Nun sâkin veya tenvinin boğaz harflerinden önce açık okunmasını öğrenmek.",
@@ -4033,7 +5796,7 @@
       }
     },
     {
-      "id": 16,
+      "id": 19,
       "title": "İdğam",
       "level": "Orta",
       "goal": "Nun sâkin ve tenvinden sonra idğam harflerini tanımak.",
@@ -4182,7 +5945,7 @@
       }
     },
     {
-      "id": 17,
+      "id": 20,
       "title": "İklâb",
       "level": "Orta",
       "goal": "Nun sâkin veya tenvinden sonra ب geldiğinde iklâb hükmünü tanımak.",
@@ -4391,7 +6154,7 @@
       }
     },
     {
-      "id": 18,
+      "id": 21,
       "title": "İhfâ",
       "level": "Orta",
       "goal": "Nun sâkin ve tenvinden sonra ihfâ harfleri geldiğinde ara sesli okumayı öğrenmek.",
@@ -4532,7 +6295,7 @@
       }
     },
     {
-      "id": 19,
+      "id": 22,
       "title": "Mim Sâkin",
       "level": "Orta",
       "goal": "Mim sâkinin üç temel hükmünü öğrenmek.",
@@ -4657,7 +6420,7 @@
       }
     },
     {
-      "id": 20,
+      "id": 23,
       "title": "Gunne",
       "level": "Orta",
       "goal": "Mim ve nunun şeddeli hallerinde belirgin burun sesini tanımak.",
@@ -4785,11 +6548,11 @@
       }
     },
     {
-      "id": 21,
-      "title": "Ra Harfi",
+      "id": 24,
+      "title": "Ra Harfi: Kalın ve İnce Okunuş",
       "level": "İleri Başlangıç",
-      "goal": "Ra harfinin temel kalın ve ince okuma durumlarını tanımak.",
-      "explanation": "Ra (ر) bazı durumlarda kalın, bazı durumlarda ince okunur. Başlangıç öğretiminde en temel ayrım, ra'nın üstün/ötre ile kalın; esre ile ince okunmasıdır. İleri ayrıntılar sonraki pratiklerde ele alınabilir.",
+      "goal": "Ra harfinin kalın ve ince okunabildiğini öğrenmek ve temel örneklerle iki durumu ayırt etmek.",
+      "explanation": "Ra (ر) özel bir harftir. Her zaman kalın değildir. Temel başlangıç düzeyinde رَ ve رُ kalın; رِ ise ince okunur. Daha ileri seviyede sâkin Ra, önceki hareke, vakıf ve diğer ayrıntılı hükümler ayrıca ele alınabilir.",
       "basic_rules": [
         {
           "pattern": "رَ",
@@ -4917,10 +6680,95 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "ra_table": [
+        {
+          "form": "رَ",
+          "name": "Ra",
+          "reading": "kalın",
+          "reason": "Üstünlü Ra"
+        },
+        {
+          "form": "رُ",
+          "name": "Ra",
+          "reading": "kalın",
+          "reason": "Ötreli Ra"
+        },
+        {
+          "form": "رِ",
+          "name": "Ra",
+          "reading": "ince",
+          "reason": "Esreli Ra"
+        }
+      ],
+      "word_examples": [
+        {
+          "text": "رَبِّ",
+          "reading": "rabbi",
+          "focus": "رَ → kalın"
+        },
+        {
+          "text": "رَسُول",
+          "reading": "rasûl",
+          "focus": "رَ → kalın"
+        },
+        {
+          "text": "رُسُل",
+          "reading": "rusul",
+          "focus": "رُ → kalın"
+        },
+        {
+          "text": "رِزْق",
+          "reading": "rizq",
+          "focus": "رِ → ince"
+        },
+        {
+          "text": "كَرِيم",
+          "reading": "kerîm",
+          "focus": "رِ → ince"
+        },
+        {
+          "text": "فِرْعَوْن",
+          "reading": "fir'avn",
+          "focus": "Ra ile ileri düzey çalışma"
+        }
+      ],
+      "comparison_game": [
+        {
+          "left": "رَ",
+          "right": "رِ",
+          "question": "Hangisi temel kuralda kalın okunur?",
+          "answers": [
+            "رَ",
+            "رِ"
+          ],
+          "correct": "رَ"
+        },
+        {
+          "left": "رُ",
+          "right": "رِ",
+          "question": "Hangisi temel kuralda ince okunur?",
+          "answers": [
+            "رُ",
+            "رِ"
+          ],
+          "correct": "رِ"
+        },
+        {
+          "left": "رَ",
+          "right": "رُ",
+          "question": "İkisinin ortak özelliği nedir?",
+          "answers": [
+            "İkisi de temel olarak kalındır",
+            "İkisi de incedir"
+          ],
+          "correct": "İkisi de temel olarak kalındır"
+        }
+      ],
+      "important_note": "Bu ders başlangıç düzeyidir. Ra'nın bütün tecvid hükümleri burada tüketilmez. Özellikle sâkin Ra'nın hükümleri ve vakıf sonrası durumlar ileri düzeyde ayrıca işlenmelidir."
     },
     {
-      "id": 22,
+      "id": 25,
       "title": "Lafzatullah (اللّٰه)",
       "level": "İleri Başlangıç",
       "goal": "Allah lafzının temel kalın ve ince okuma örneklerini tanımak.",
@@ -5033,7 +6881,7 @@
       }
     },
     {
-      "id": 23,
+      "id": 26,
       "title": "Vakıf ve İbtidâ",
       "level": "İleri",
       "goal": "Kur'an okurken nerede durulacağı ve yeniden nereden başlanacağı kavramını öğrenmek.",
@@ -5154,7 +7002,7 @@
       }
     },
     {
-      "id": 24,
+      "id": 27,
       "title": "Durak İşaretleri",
       "level": "İleri",
       "goal": "Temel mushaf durak işaretlerini tanımak.",
@@ -5288,7 +7136,7 @@
       }
     },
     {
-      "id": 25,
+      "id": 28,
       "title": "Mahreçlere Giriş",
       "level": "İleri",
       "goal": "Harflerin çıktığı temel bölgeleri tanımaya başlamak.",
@@ -5431,7 +7279,7 @@
       }
     },
     {
-      "id": 26,
+      "id": 29,
       "title": "Benzer Harfleri Ayırt Ediyorum",
       "level": "İleri",
       "goal": "Nokta ve şekil farklarından hareketle benzer harfleri ayırmak.",
@@ -5572,7 +7420,7 @@
       }
     },
     {
-      "id": 27,
+      "id": 30,
       "title": "Kelime Okumaya Geçiyorum",
       "level": "İleri",
       "goal": "Öğrenilen hareke, cezm, şedde ve med yapılarını kelimelerde birleştirmek.",
@@ -5714,7 +7562,7 @@
       }
     },
     {
-      "id": 28,
+      "id": 31,
       "title": "Kısa Kur'an Kelimeleriyle Pratik",
       "level": "İleri",
       "goal": "Günlük ve Kur'an okumasında sık karşılaşılan kısa kelimeleri okumak.",
@@ -5859,7 +7707,7 @@
       }
     },
     {
-      "id": 29,
+      "id": 32,
       "title": "Fâtiha ile Uygulama",
       "level": "İleri",
       "goal": "Öğrenilen temel kuralları Fâtiha sûresi üzerinde uygulamak.",
@@ -6010,7 +7858,7 @@
       }
     },
     {
-      "id": 30,
+      "id": 33,
       "title": "Kısa Sûrelerle Okuma",
       "level": "İleri",
       "goal": "Kısa sûrelerde harf, hareke ve temel tecvid kurallarını birlikte uygulamak.",
@@ -6158,7 +8006,7 @@
       }
     },
     {
-      "id": 31,
+      "id": 34,
       "title": "Elifbâ ve Temel Tecvid Finali",
       "level": "Final",
       "goal": "Öğrenilen harf, hareke ve temel tecvid konularını ölçmek.",
@@ -6437,6 +8285,34 @@
       "marked",
       "reading"
     ],
-    "example": "ب = Be | بَ = ba | بِ = bi | بُ = bu"
+    "example": "ب = Be | بَ = ba | بِ = bi | بُ = bu",
+    "thick_thin_note": "Ra (ر) 'her zaman kalın' diye sınıflandırılmamalıdır. Sabit kalın harfler خ ص ض غ ط ق ظ; Ra ise duruma göre kalın/ince okunan özel harftir.",
+    "shadda_policy": "Şedde hiçbir derste tek başına temel öğrenme örneği olarak gösterilmemeli. Şedde mutlaka üstün/esre/ötre gibi bir harekeyle birlikte öğretilmeli.",
+    "word_example_policy": "Fetha, Esre ve Ötre derslerinde konu tablosundan sonra bol kelime örneği göster; Arapça kelimenin hemen altında Türkçe/Latin harfli okunuşunu, mevcut içerik uygunsa anlamını göster."
+  },
+  "course_revision": "Children's separate thin/thick/th/letters lessons update",
+  "recommended_app_flow": [
+    "Ders 1 - Harflerle Tanışıyorum",
+    "Ders 2 - Kalın Harfleri Öğreniyorum",
+    "Ders 3 - İnce Harfleri Öğreniyorum",
+    "Ders 4 - Peltek Harfleri Öğreniyorum",
+    "Ders 5 - İnce, Kalın ve Peltek Harfler - Genel Tekrar",
+    "Ardından mevcut Elifbâ + Tecvid dersleri"
+  ],
+  "classification_policy": {
+    "fixed_thick_letters": [
+      "خ",
+      "ص",
+      "ض",
+      "غ",
+      "ط",
+      "ق",
+      "ظ"
+    ],
+    "thicker_in_special_conditions": [
+      "ر"
+    ],
+    "special_condition_note": "ر sabit kalın değildir; temel örneklerde رَ ve رُ kalın, رِ ince okunur.",
+    "th_letter_note": "ظ hem peltek hem sabit kalın harflerdendir."
   }
 }

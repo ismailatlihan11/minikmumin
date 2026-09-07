@@ -9,6 +9,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../shared/widgets/buttons.dart';
 import 'elifba_audio.dart';
 import 'elifba_cards.dart';
+import 'elifba_content.dart';
 import 'elifba_games.dart';
 import 'elifba_models.dart';
 import 'elifba_progress.dart';
@@ -75,17 +76,22 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
   }
 
   void _answered({required bool correct}) {
+    _scored(correct: correct);
+    if (correct) {
+      Future<void>.delayed(const Duration(milliseconds: 700), () {
+        if (mounted) _next();
+      });
+    }
+  }
+
+  /// Çok turlu oyunlarda puanı işler ama adımı otomatik ilerletmez.
+  void _scored({required bool correct}) {
     setState(() {
       _mascot = correct
           ? ElifbaVoice.pick(ElifbaVoice.correct, _step)
           : ElifbaVoice.pick(ElifbaVoice.retry, _step);
       if (correct) _stars = (_stars + 1).clamp(0, 99);
     });
-    if (correct) {
-      Future<void>.delayed(const Duration(milliseconds: 700), () {
-        if (mounted) _next();
-      });
-    }
   }
 
   Future<void> _finish() async {
@@ -96,7 +102,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
         lessonId: lesson.id,
         starsEarned: earned,
         quizCorrect: _quizCorrect,
-        badge: ElifbaWorlds.badgeForLesson(lesson.id),
+        badge: ElifbaWorlds.badgeForLesson(widget.pack, lesson.id),
       );
     }
     if (!mounted) return;
@@ -191,7 +197,30 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       );
     }
 
-    if (lesson.categories.isNotEmpty) {
+    if (lesson.ruleText.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Bugünün kuralı bu.',
+          builder: (state) => ElifbaSoftCard(
+            color: MinikColors.lavender,
+            child: Text(lesson.ruleText, textAlign: TextAlign.center),
+          ),
+        ),
+      );
+    }
+
+    if (lesson.categoryTables.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'İnce, kalın ve peltek harfleri birlikte hatırlayalım.',
+          builder: (state) => ElifbaCategoryTablesView(
+            tables: lesson.categoryTables,
+            audio: state._audio,
+            note: lesson.classificationNote,
+          ),
+        ),
+      );
+    } else if (lesson.categories.isNotEmpty) {
       steps.add(
         _FlowStep(
           cue: 'Bir gruba dokun, harflerini gör.',
@@ -204,13 +233,18 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           ),
         ),
       );
+    }
+
+    final sortPool = _sortPool(lesson);
+    if (sortPool.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Bu harf ince mi, kalın mı, peltek mi?',
+          cue: 'Harfi doğru kutuya bırak: ince mi, kalın mı, peltek mi?',
           showContinue: false,
-          builder: (state) => ElifbaSortDrop(
-            letter: 'ث',
-            onAnswer: state._answered,
+          builder: (state) => ElifbaSortMission(
+            letters: sortPool,
+            onAnswer: state._scored,
+            onFinished: state._next,
           ),
         ),
       );
@@ -219,7 +253,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.specialLetters.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Bu harflerin özel bir hikâyesi var.',
+          cue: 'Bu harfin özel bir hikâyesi var.',
           builder: (state) => Column(
             children: [
               if (lesson.importantNote.isNotEmpty)
@@ -232,18 +266,40 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                 ),
               for (final item in lesson.specialLetters)
                 Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: ElifbaSpecialLetterCard(
+                    item: item,
+                    audio: state._audio,
+                  ),
+                ),
+              for (final preview in lesson.specialPreview)
+                Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElifbaSoftCard(
                     child: Column(
                       children: [
-                        ElifbaArabicTap(text: item.letter, fontSize: 56),
-                        Text('Harfin adı: ${item.name}'),
-                        if (item.note.isNotEmpty) Text(item.note, textAlign: TextAlign.center),
+                        ElifbaArabicTap(text: preview.text, fontSize: 44),
+                        Text(preview.reading),
+                        if (preview.note.isNotEmpty)
+                          Text(preview.note, textAlign: TextAlign.center),
                       ],
                     ),
                   ),
                 ),
             ],
+          ),
+        ),
+      );
+    }
+
+    for (final pair in lesson.askPairs) {
+      steps.add(
+        _FlowStep(
+          cue: 'Bakalım doğru olanı bulabilecek misin?',
+          showContinue: false,
+          builder: (state) => ElifbaAskPairGame(
+            pair: pair,
+            onAnswer: state._answered,
           ),
         ),
       );
@@ -397,6 +453,90 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       }
     }
 
+    final triple = lesson.tripleFormTable;
+    if (triple.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Önce harfin adını söyle, sonra fetha–esre–ötre hâllerini oku.',
+          builder: (state) => ElifbaTripleFormTable(
+            rows: triple,
+            audio: state._audio,
+            title: lesson.tableTitle.isEmpty
+                ? 'Harfler, İsimleri ve Okunuşları'
+                : lesson.tableTitle,
+            note: lesson.tableInstruction.isEmpty
+                ? 'Örnek: ب = Be, بَ = ba'
+                : lesson.tableInstruction,
+          ),
+        ),
+      );
+    }
+
+    final shaddaTables = lesson.harakeTables;
+    if (shaddaTables.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Şedde tek başına okunmaz; hep bir hareke ile birlikte gelir.',
+          builder: (state) => ElifbaShaddaSections(
+            tables: shaddaTables,
+            audio: state._audio,
+            note: lesson.importantNote,
+          ),
+        ),
+      );
+      if (lesson.practiceRule.isNotEmpty) {
+        steps.add(
+          _FlowStep(
+            cue: 'Şeddeli kelimeyi okurken sırayla ilerle.',
+            builder: (state) => ElifbaSoftCard(
+              color: MinikColors.mint,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = 0; i < lesson.practiceRule.length; i++)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Text('${i + 1}. ${lesson.practiceRule[i]}'),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
+      if (lesson.coreExamples.isNotEmpty) {
+        steps.add(
+          _FlowStep(
+            cue: 'Şeddeli heceleri birlikte okuyalım.',
+            builder: (state) => Column(
+              children: [
+                for (final example in lesson.coreExamples)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ElifbaExampleCard(
+                      example: example,
+                      audio: state._audio,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        );
+      }
+    }
+
+    if (lesson.raTable.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Ra her zaman kalın değildir. Bak, hareke belirliyor.',
+          builder: (state) => ElifbaRaTableView(
+            rows: lesson.raTable,
+            audio: state._audio,
+          ),
+        ),
+      );
+    }
+
     final table = widget.pack.teachingTableFor(lesson);
     if (table.isNotEmpty) {
       final mark = table.first.marked;
@@ -435,6 +575,38 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           ),
         ),
       );
+    }
+
+    final words = lesson.wordExamples;
+    if (words.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Şimdi kelime okuma zamanı! Önce dinle, sonra sen oku.',
+          builder: (state) => ElifbaWordSection(
+            words: words,
+            audio: state._audio,
+            title: lesson.wordSectionTitle,
+            instruction: lesson.wordSectionInstruction.isEmpty
+                ? lesson.manyExampleRule
+                : lesson.wordSectionInstruction,
+          ),
+        ),
+      );
+    }
+
+    if (shaddaTables.isNotEmpty) {
+      final shaddaWord = words.where((w) => w.text.contains('ّ')).toList();
+      if (shaddaWord.isNotEmpty) {
+        steps.add(
+          _FlowStep(
+            cue: 'Şedde oyunu! Şeddeli harfi bulalım.',
+            builder: (state) => ElifbaShaddaHunt(
+              word: shaddaWord.first,
+              onAnswer: state._scored,
+            ),
+          ),
+        );
+      }
     }
 
     if (lesson.comparison.isNotEmpty) {
@@ -560,23 +732,25 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       );
     }
 
-    if (lesson.medTable.isNotEmpty && lesson.types.isEmpty) {
+    final medRows = widget.pack.medTableFor(lesson);
+    if (medRows.isNotEmpty) {
       steps.add(
         _FlowStep(
           cue: 'Elif, vav ve ya ile uzun ses.',
           builder: (state) => ElifbaMedTableView(
-            rows: lesson.medTable,
+            rows: medRows,
             audio: state._audio,
           ),
         ),
       );
     }
 
+    // Şedde için ayrı oyun var; burada yalnızca cezm aranır.
     final mark = lesson.rule?.symbol ?? '';
-    if ((mark == 'ْ' || mark == 'ّ') && lesson.examples.isNotEmpty) {
+    if (mark == 'ْ' && lesson.examples.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: mark == 'ّ' ? 'Şeddeli harfi bul.' : 'Cezm nerede?',
+          cue: 'Cezm nerede?',
           showContinue: false,
           builder: (state) => ElifbaFindMark(
             word: lesson.examples.first.text,
@@ -680,7 +854,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       );
     }
 
-    if (lesson.decisionTree.isNotEmpty) {
+    final decisionTree = widget.pack.decisionTreeFor(lesson);
+    if (decisionTree.isNotEmpty) {
       steps.add(
         _FlowStep(
           cue: 'Sırayla soralım, kuralı bulalım.',
@@ -688,7 +863,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final item in lesson.decisionTree)
+                for (final item in decisionTree)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
                     child: Text('• $item'),
@@ -761,6 +936,17 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           builder: (state) => ElifbaSurahPractice(
             surahs: lesson.surahs,
             flow: lesson.practiceFlow,
+          ),
+        ),
+      );
+    }
+
+    if (lesson.interactiveActivities.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Bunları da birlikte yapalım.',
+          builder: (state) => ElifbaActivityList(
+            activities: lesson.interactiveActivities,
           ),
         ),
       );
@@ -839,6 +1025,23 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
 
     return steps;
   }
+
+  /// Sürükle-bırak görevinin harfleri JSON gruplarından toplanır.
+  List<String> _sortPool(ElifbaLesson lesson) {
+    final groups = lesson.reviewGroups;
+    if (groups.isEmpty) return const [];
+    final pool = <String>[];
+    for (final group in groups) {
+      for (final letter in group.letters) {
+        if (!pool.contains(letter)) pool.add(letter);
+      }
+    }
+    final thin = lesson.categoryTables['ince_harfler'] ?? const [];
+    for (final row in thin.take(2)) {
+      if (!pool.contains(row.letter)) pool.add(row.letter);
+    }
+    return pool.take(6).toList(growable: false);
+  }
 }
 
 class _FlowStep {
@@ -882,7 +1085,7 @@ class ElifbaIntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ElifbaWorlds.forLesson(lesson.id).color,
+      backgroundColor: ElifbaWorlds.forLesson(pack, lesson.id).color,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         actions: [
@@ -943,11 +1146,9 @@ class ElifbaCompletePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final next = pack.byId(lesson.id + 1);
-    final world = ElifbaWorlds.forLesson(lesson.id);
-    final badge = ElifbaWorlds.badgeForLesson(lesson.id);
-    final worldDone = world.lessonIds.every(
-      (id) => id == lesson.id || id < lesson.id,
-    );
+    final world = ElifbaWorlds.forLesson(pack, lesson.id);
+    final badge = ElifbaWorlds.badgeForLesson(pack, lesson.id);
+    final worldDone = world.lastId == lesson.id;
     return Scaffold(
       body: SafeArea(
         child: Padding(

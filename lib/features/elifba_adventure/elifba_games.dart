@@ -755,9 +755,10 @@ class ElifbaExampleList extends StatelessWidget {
                           fontSize: 36,
                           onTap: () => ElifbaAudio.play(
                             audio,
-                            example.audio.isEmpty
-                                ? ElifbaAudio.letterGlyph(example.text)
-                                : example.audio,
+                            ElifbaAudio.forExample(
+                              example.text,
+                              audio: example.audio,
+                            ),
                           ),
                         ),
                       ),
