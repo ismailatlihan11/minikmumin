@@ -95,8 +95,14 @@ void main() {
         .firstWhere((row) => row.letter == 'ب');
     expect(be.name, 'Be');
     expect(be.marked, 'بَ');
-    expect(be.reading, 'ba');
-    expect(be.name.toLowerCase(), isNot(be.reading.toLowerCase()));
+    // İnce harfte üstün 'e' sesi verir; Be harfinde ad ile ses aynı okunur.
+    expect(be.reading, 'be');
+    final sad = pack
+        .teachingTableFor(fetha)
+        .firstWhere((row) => row.letter == 'ص');
+    expect(sad.name, 'Sad');
+    expect(sad.reading, startsWith('sa'));
+    expect(sad.name.toLowerCase(), isNot(sad.reading.toLowerCase()));
   });
 
   test('shadda is only taught together with a haraka', () {

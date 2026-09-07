@@ -53,6 +53,18 @@ void main() {
       problems += 1;
     }
 
+    for (final word in [...lesson.wordExamples, ...lesson.coreExamples]) {
+      final text = word is ElifbaWordExample ? word.text : (word as ElifbaExample).text;
+      final reading = word is ElifbaWordExample ? word.reading : (word as ElifbaExample).reading;
+      for (final missing in _missingDoubles(text, reading)) {
+        stdout.writeln(
+          '${lesson.id}. ${lesson.title} → $text = "$reading" '
+          '($missing sesi şeddeli, iki kez okunmalı)',
+        );
+        problems += 1;
+      }
+    }
+
     for (final item in lesson.quiz) {
       for (final option in item.options) {
         if (_hasOldVowel(option)) {
@@ -63,6 +75,28 @@ void main() {
     }
   }
   stdout.writeln(problems == 0 ? 'temiz' : 'kural dışı: $problems');
+}
+
+/// Şeddeli harflerin okunuşta iki kez geçip geçmediğine bakar. Kelimelerde
+/// ünlüler komşu kalın harflerden etkilendiği için (نَصَرَ = "nasara") ünlü
+/// denetimi yapılmaz, yalnızca şeddenin çift sesi aranır.
+List<String> _missingDoubles(String word, String reading) {
+  final plain = reading.toLowerCase().replaceAll(RegExp(r"[-' ]"), '');
+  final missing = <String>[];
+  final runes = word.runes.toList();
+  for (var i = 0; i < runes.length; i++) {
+    if (String.fromCharCode(runes[i]) != ElifbaReading.shadda) continue;
+    for (var j = i - 1; j >= 0; j--) {
+      final letter = String.fromCharCode(runes[j]);
+      final base = ElifbaReading.consonants[letter];
+      if (base == null) continue;
+      if (base.isNotEmpty && !plain.contains('$base$base')) {
+        missing.add(letter);
+      }
+      break;
+    }
+  }
+  return missing;
 }
 
 /// "tü", "sı" gibi eski hece okunuşları; harf adları (Hı, Tı) hariç.

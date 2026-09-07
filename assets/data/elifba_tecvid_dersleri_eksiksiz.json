@@ -3645,7 +3645,7 @@
           ],
           [
             "الْحَقِّ",
-            "el-haqq"
+            "el-hakk"
           ]
         ]
       },
@@ -4703,7 +4703,7 @@
       "core_examples": [
         {
           "text": "رَبَّ",
-          "reading": "rabba",
+          "reading": "rabbe",
           "focus": "بَّ = şedde + üstün"
         },
         {
@@ -4743,7 +4743,7 @@
         },
         {
           "text": "رُبُّ",
-          "reading": "rubu",
+          "reading": "rubbu",
           "focus": "بُّ = şedde + ötre"
         }
       ],
@@ -4798,7 +4798,7 @@
         },
         {
           "word": "الْحَقِّ",
-          "reading": "el-haqq",
+          "reading": "el-hakk",
           "meaning": "hak",
           "focus": "قِّ: şedde + esre"
         },
