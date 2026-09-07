@@ -9,6 +9,10 @@ abstract final class ElifbaLetterFormsLesson {
 
   static const String title = 'Harfler ve Şekilleri';
 
+  /// Bu ders, macera JSON'undaki dar kapsamlı "Harflerin Kelimedeki
+  /// Şekilleri" dersinin yerini alır; o ders haritadan çıkarılır.
+  static const String replacesTitle = 'Harflerin Kelimedeki Şekilleri';
+
   static Map<String, dynamic>? build(QuranLearningPack? pack) {
     final letters = pack?.letters ?? const <QuranArabicLetter>[];
     if (letters.isEmpty) return null;

@@ -59,7 +59,11 @@ void main(List<String> args) {
       if (formsJson != null)
         ElifbaExtraLesson(afterLessonId: 1, json: formsJson),
     ],
+    hiddenTitles: const {ElifbaLetterFormsLesson.replacesTitle},
   );
+  check('Eski "Harflerin Kelimedeki Şekilleri" dersi haritada yok',
+      pack.lessons.every((lesson) => lesson.id != 6) && pack.hidden.length == 1,
+      '${pack.hidden.length} gizli ders');
 
   stdout.writeln('Ders sayısı: ${pack.lessons.length}');
 

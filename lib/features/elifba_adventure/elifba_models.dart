@@ -34,17 +34,33 @@ class ElifbaPack {
     required this.title,
     required this.description,
     required this.lessons,
+    this.hidden = const [],
   });
 
   final String title;
   final String description;
   final List<ElifbaLesson> lessons;
 
+  /// Haritadan çıkarılan ama tabloları hâlâ kaynak olan dersler. JSON'da
+  /// bazı tablolar yanlış derse bağlı olduğu için içerik burada korunur.
+  final List<ElifbaLesson> hidden;
+
+  List<ElifbaLesson> get contentLessons => [...lessons, ...hidden];
+
   ElifbaLesson? byId(int id) {
-    for (final lesson in lessons) {
+    for (final lesson in contentLessons) {
       if (lesson.id == id) return lesson;
     }
     return null;
+  }
+
+  /// Kaydedilmiş ilerleme haritadan çıkarılmış bir dersi gösterebilir;
+  /// bu durumda macera ilk dersten devam eder.
+  ElifbaLesson resumeFrom(int id) {
+    for (final lesson in lessons) {
+      if (lesson.id == id) return lesson;
+    }
+    return lessons.first;
   }
 
   /// Ders id'leri JSON'dan gelir ve araya ders eklenince artık ardışık
@@ -81,7 +97,7 @@ class ElifbaPack {
     if (mark.isEmpty) return const [];
     List<ElifbaLetterRow> best = const [];
     var bestScore = 0;
-    for (final lesson in lessons) {
+    for (final lesson in contentLessons) {
       final table = lesson.letterTable;
       if (table.length < 20) continue;
       if (isStandaloneShaddaTable(table)) continue;
@@ -114,7 +130,7 @@ class ElifbaPack {
     if (_tableFitsLesson(lesson, own)) {
       return own;
     }
-    for (final other in lessons) {
+    for (final other in contentLessons) {
       final table = other.letterTable;
       if (table.isEmpty) continue;
       if (table.first.marked.isNotEmpty) continue;
@@ -128,7 +144,7 @@ class ElifbaPack {
   List<ElifbaLetterRow> categoryTableFor(ElifbaLesson lesson) {
     final title = _fold(lesson.title);
     if (title.isEmpty) return const [];
-    for (final other in lessons) {
+    for (final other in contentLessons) {
       final table = other.letterTable;
       if (table.isEmpty) continue;
       final category = _fold(table.first.category);
@@ -143,7 +159,7 @@ class ElifbaPack {
   List<ElifbaMedRow> medTableFor(ElifbaLesson lesson) {
     if (!_teachesMed(lesson)) return const [];
     if (lesson.medTable.isNotEmpty) return lesson.medTable;
-    for (final other in lessons) {
+    for (final other in contentLessons) {
       if (other.medTable.isNotEmpty) return other.medTable;
     }
     return const [];
@@ -156,7 +172,7 @@ class ElifbaPack {
   List<String> decisionTreeFor(ElifbaLesson lesson) {
     if (!_teachesNunSakin(lesson)) return const [];
     if (lesson.decisionTree.isNotEmpty) return lesson.decisionTree;
-    for (final other in lessons) {
+    for (final other in contentLessons) {
       if (other.decisionTree.isNotEmpty) return other.decisionTree;
     }
     return const [];
@@ -168,7 +184,7 @@ class ElifbaPack {
 
   /// Bu işareti asıl konu olarak işleyen ders (rule.symbol üzerinden).
   ElifbaLesson? _lessonTeaching(String mark) {
-    for (final lesson in lessons) {
+    for (final lesson in contentLessons) {
       if ((lesson.rule?.symbol ?? '') == mark) return lesson;
     }
     return null;
@@ -209,7 +225,7 @@ class ElifbaPack {
     if (mark.isEmpty) return null;
     ElifbaLesson? best;
     var bestScore = 0;
-    for (final lesson in lessons) {
+    for (final lesson in contentLessons) {
       final table = lesson.letterTable;
       if (table.length < 20) continue;
       if (isStandaloneShaddaTable(table)) continue;
@@ -239,10 +255,17 @@ class ElifbaPack {
   factory ElifbaPack.fromJson(
     Map<String, dynamic> json, {
     List<ElifbaExtraLesson> extras = const [],
+    Set<String> hiddenTitles = const {},
   }) {
     final lessons = JsonMap.extractList(json, itemsKey: 'lessons')
         .map(ElifbaLesson.fromJson)
         .toList();
+    final folded = hiddenTitles.map(_fold).toSet();
+    final hidden = [
+      for (final lesson in lessons)
+        if (folded.contains(_fold(lesson.title))) lesson,
+    ];
+    lessons.removeWhere(hidden.contains);
     for (final extra in extras) {
       if (lessons.any((lesson) => lesson.id == extra.lesson.id)) continue;
       final anchor =
@@ -256,6 +279,7 @@ class ElifbaPack {
         "Kur'an okumayı eğlenerek öğren!",
       ),
       lessons: List.unmodifiable(lessons),
+      hidden: List.unmodifiable(hidden),
     );
   }
 }

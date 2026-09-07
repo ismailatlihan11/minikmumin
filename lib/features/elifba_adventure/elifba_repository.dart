@@ -21,7 +21,11 @@ class ElifbaRepository {
       key: 'elifbaTecvid',
       fallbackPath: AssetPaths.elifbaTecvid,
     );
-    _cache = ElifbaPack.fromJson(json, extras: await _extraLessons());
+    _cache = ElifbaPack.fromJson(
+      json,
+      extras: await _extraLessons(),
+      hiddenTitles: const {ElifbaLetterFormsLesson.replacesTitle},
+    );
     return _cache!;
   }
 

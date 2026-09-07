@@ -171,7 +171,7 @@ class _HubBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resume = pack.byId(progress.currentLesson) ?? pack.lessons.first;
+    final resume = pack.resumeFrom(progress.currentLesson);
     final unlocked =
         progress.isUnlockedIn(pack, resume.id) || progress.isCompleted(resume.id);
     return ListView(
