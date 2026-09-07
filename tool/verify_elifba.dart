@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:minik_kalpler/data/models/quran_learning.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_letter_forms.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_models.dart';
+import 'package:minik_kalpler/features/elifba_adventure/elifba_reading.dart';
 
 var failures = 0;
 
@@ -22,7 +23,29 @@ ElifbaLesson byTitle(ElifbaPack pack, String needle) => pack.lessons.firstWhere(
       (lesson) => lesson.title.toLowerCase().contains(needle.toLowerCase()),
     );
 
-void main() {
+/// `dart run tool/verify_elifba.dart --tablo` bütün harflerin üstün, esre ve
+/// ötre okunuşunu listeler.
+void printReadingTable() {
+  stdout.writeln('Harf | Üstün | Esre | Ötre');
+  for (final letter in ElifbaReading.consonants.keys) {
+    if (letter.length != 1) continue;
+    final row = [
+      for (final mark in [
+        ElifbaReading.fatha,
+        ElifbaReading.kasra,
+        ElifbaReading.damma,
+      ])
+        '$letter$mark = ${ElifbaReading.of(letter, mark)}',
+    ];
+    stdout.writeln('  ${row.join('  ·  ')}');
+  }
+}
+
+void main(List<String> args) {
+  if (args.contains('--tablo')) {
+    printReadingTable();
+    return;
+  }
   final raw = File('assets/data/elifba_tecvid_dersleri_eksiksiz.json')
       .readAsStringSync();
   final quranRaw =
@@ -97,9 +120,15 @@ void main() {
 
   final fetha = byTitle(pack, 'Üstün');
   final be = pack.teachingTableFor(fetha).firstWhere((r) => r.letter == 'ب');
-  check('ب = Be, بَ = ba ayrımı',
-      be.name == 'Be' && be.marked == 'بَ' && be.reading == 'ba',
+  // ب ince harftir: adı "Be", üstünlü okunuşu da "be". Ayrım kalın harflerde
+  // görünür: ص harfinin adı "Sad", üstünlü okunuşu "sa (kalın)".
+  final sad = pack.teachingTableFor(fetha).firstWhere((r) => r.letter == 'ص');
+  check('Harf adı ve okunuş ayrı alanlarda',
+      be.name == 'Be' && be.marked == 'بَ' && be.reading == 'be',
       '${be.name} / ${be.marked} / ${be.reading}');
+  check('Kalın harfte ad ≠ okunuş',
+      sad.name == 'Sad' && sad.reading.startsWith('sa'),
+      '${sad.name} / ${sad.reading}');
 
   final shadda = byTitle(pack, 'Şedde');
   final tables = shadda.harakeTables;
@@ -190,6 +219,70 @@ void main() {
   }
   check('Her sorunun doğru şıkkı var', unanswerable.isEmpty,
       unanswerable.take(3).join(' | '));
+
+  final wrongReadings = <String>[];
+  for (final lesson in pack.lessons) {
+    for (final row in [...lesson.letterTable, ...lesson.tripleFormTable]) {
+      final cases = <String, String>{
+        if (row.marked.isNotEmpty) row.marked: row.reading,
+        if (row.fatha.isNotEmpty) row.fatha: row.fathaReading,
+        if (row.kasra.isNotEmpty) row.kasra: row.kasraReading,
+        if (row.damma.isNotEmpty) row.damma: row.dammaReading,
+      };
+      for (final entry in cases.entries) {
+        if (!ElifbaReading.isShortSyllable(entry.key)) continue;
+        if (entry.value.isEmpty) continue;
+        final want = ElifbaReading.of(
+          ElifbaReading.letterOf(entry.key),
+          ElifbaReading.markOf(entry.key),
+        );
+        if (entry.value != want) {
+          wrongReadings.add('Ders ${lesson.id}: ${entry.key} ${entry.value}');
+        }
+      }
+    }
+  }
+  check('Okunuşlar kalın/ince kuralına uyuyor', wrongReadings.isEmpty,
+      wrongReadings.take(4).join(' | '));
+
+  final sample = pack.lessons
+      .expand((lesson) => lesson.letterTable)
+      .where((row) => ElifbaReading.isShortSyllable(row.marked))
+      .take(6)
+      .map((row) => '${row.marked}=${row.reading}')
+      .join('  ');
+  stdout.writeln('  örnek okunuşlar: $sample');
+
+  final wrongQuiz = <String>[];
+  for (final lesson in pack.lessons) {
+    for (final item in lesson.quiz) {
+      if (!item.question.contains('nasıl okunur')) continue;
+      // Uzatmalı sorular (بَا → bâ) bu kuralın dışındadır.
+      final arabic = RegExp(r'[\u0600-\u06FF]+')
+          .allMatches(item.question)
+          .map((match) => match.group(0)!)
+          .toList();
+      if (!arabic.every(ElifbaReading.isShortSyllable)) continue;
+      const marks = [
+        ElifbaReading.fatha,
+        ElifbaReading.kasra,
+        ElifbaReading.damma,
+      ];
+      final letter = ElifbaReading.letterOf(item.question);
+      if (letter.isEmpty) continue;
+      final valid = {
+        for (final mark in marks) ElifbaReading.of(letter, mark, withTag: false),
+      };
+      final looksSyllabic = item.options.every(
+        (option) => option.length <= 3 && !option.contains(' '),
+      );
+      if (looksSyllabic && !valid.contains(item.answer)) {
+        wrongQuiz.add('Ders ${lesson.id}: ${item.question} → ${item.answer}');
+      }
+    }
+  }
+  check('Okunuş soruları kurala uygun', wrongQuiz.isEmpty,
+      wrongQuiz.take(4).join(' | '));
 
   stdout.writeln('\nDers içerik blokları:');
   for (final lesson in pack.lessons) {

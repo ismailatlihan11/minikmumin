@@ -1,4 +1,5 @@
 import '../../core/utils/json_map.dart';
+import 'elifba_reading.dart';
 
 /// Hareke, şedde, cezm ve uzatma işaretlerini ayıklar.
 String elifbaStripMarks(String value) {
@@ -619,13 +620,66 @@ class ElifbaQuizItem {
   final String answer;
 
   factory ElifbaQuizItem.fromJson(Map<String, dynamic> json) {
-    final options = JsonMap.strings(json['options']);
+    final question = JsonMap.str(json['question']);
+    var options = JsonMap.strings(json['options']);
+    var answer = elifbaResolveAnswer(options, JsonMap.str(json['answer']));
+    // "بَ nasıl okunur?" tipi sorularda şıklar kalın/ince kuralına göre
+    // yeniden üretilir; doğru cevap sorudaki harekeden gelir.
+    final asked = _askedSyllables(question);
+    if (asked.isNotEmpty) {
+      final fixed = [
+        for (final option in options) _retuneOption(option, asked),
+      ];
+      if (fixed.toSet().length == options.length) {
+        final correct = asked
+            .map((syllable) => ElifbaReading.of(
+                  ElifbaReading.letterOf(syllable),
+                  ElifbaReading.markOf(syllable),
+                  withTag: false,
+                ))
+            .join('-');
+        if (fixed.contains(correct)) {
+          options = fixed;
+          answer = correct;
+        }
+      }
+    }
     return ElifbaQuizItem(
       id: JsonMap.integer(json['id']),
-      question: JsonMap.str(json['question']),
+      question: question,
       options: options,
-      answer: elifbaResolveAnswer(options, JsonMap.str(json['answer'])),
+      answer: answer,
     );
+  }
+
+  /// Şıktaki her heceyi, kendi ünlüsünün işaret ettiği harekeye göre üretir.
+  static String _retuneOption(String option, List<String> asked) {
+    final parts = option.split('-');
+    if (parts.length != asked.length) return option;
+    return [
+      for (var i = 0; i < parts.length; i++)
+        ElifbaReading.forOption(ElifbaReading.letterOf(asked[i]), parts[i]),
+    ].join('-');
+  }
+
+  /// Soru metnindeki harf + hareke parçaları (ör. "بَ", "بَ + تَ").
+  static List<String> _askedSyllables(String question) {
+    if (!question.toLowerCase().contains('okunur')) return const [];
+    final clusters = <String>[];
+    final buffer = StringBuffer();
+    for (final rune in question.runes) {
+      if (rune >= 0x0600 && rune <= 0x06FF) {
+        buffer.writeCharCode(rune);
+      } else if (buffer.isNotEmpty) {
+        clusters.add(buffer.toString());
+        buffer.clear();
+      }
+    }
+    if (buffer.isNotEmpty) clusters.add(buffer.toString());
+    if (clusters.isEmpty) return const [];
+    // Uzatmalı ya da cezmli parçalar üretecin dışındadır.
+    if (!clusters.every(ElifbaReading.isShortSyllable)) return const [];
+    return clusters;
   }
 }
 
@@ -831,11 +885,13 @@ class ElifbaLetterRow {
   }
 
   factory ElifbaLetterRow.fromJson(Map<String, dynamic> json) {
+    final letter = JsonMap.str(json['letter']);
+    final marked = JsonMap.str(json['marked']);
     return ElifbaLetterRow(
-      letter: JsonMap.str(json['letter']),
+      letter: letter,
       name: JsonMap.str(json['name']),
-      marked: JsonMap.str(json['marked']),
-      reading: JsonMap.str(json['reading']),
+      marked: marked,
+      reading: ElifbaReading.forMarked(marked, JsonMap.str(json['reading'])),
       note: JsonMap.str(json['note']),
       category: JsonMap.str(json['category']),
       type: JsonMap.str(json['type']),
@@ -849,9 +905,18 @@ class ElifbaLetterRow {
       fatha: JsonMap.str(json['fatha']),
       kasra: JsonMap.str(json['kasra']),
       damma: JsonMap.str(json['damma']),
-      fathaReading: JsonMap.str(json['fatha_reading'] ?? json['reading_fatha']),
-      kasraReading: JsonMap.str(json['kasra_reading'] ?? json['reading_kasra']),
-      dammaReading: JsonMap.str(json['damma_reading'] ?? json['reading_damma']),
+      fathaReading: ElifbaReading.forMarked(
+        '$letter${ElifbaReading.fatha}',
+        JsonMap.str(json['fatha_reading'] ?? json['reading_fatha']),
+      ),
+      kasraReading: ElifbaReading.forMarked(
+        '$letter${ElifbaReading.kasra}',
+        JsonMap.str(json['kasra_reading'] ?? json['reading_kasra']),
+      ),
+      dammaReading: ElifbaReading.forMarked(
+        '$letter${ElifbaReading.damma}',
+        JsonMap.str(json['damma_reading'] ?? json['reading_damma']),
+      ),
       compare: JsonMap.str(json['compare']),
     );
   }
