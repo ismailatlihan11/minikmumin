@@ -63,15 +63,9 @@ abstract final class ElifbaReading {
   }
 
   static String vowelFor(String mark, {required bool heavy}) {
-    switch (mark) {
-      case fatha:
-        return heavy ? 'a' : 'e';
-      case kasra:
-        return heavy ? 'ı' : 'i';
-      case damma:
-        return heavy ? 'u' : 'ü';
-    }
-    return '';
+    final pair = vowelPairs[mark];
+    if (pair == null) return '';
+    return heavy ? pair.heavy : pair.thin;
   }
 
   /// Harekeli parçadaki kısa hareke; yoksa boş döner.
@@ -141,16 +135,18 @@ abstract final class ElifbaReading {
     return reading.isEmpty ? option : reading;
   }
 
-  /// Harekenin iki sesi: kalın harflerde ve ince harflerde.
+  /// Harekenin sesi: kalın harflerde ve ince harflerde. Esre her harfte
+  /// aynı sesi verir, bu yüzden iki değeri de 'i'.
   static const vowelPairs = <String, ({String heavy, String thin})>{
     fatha: (heavy: 'a', thin: 'e'),
-    kasra: (heavy: 'ı', thin: 'i'),
+    kasra: (heavy: 'i', thin: 'i'),
     damma: (heavy: 'u', thin: 'ü'),
   };
 
   static String describeMark(String mark) {
     final pair = vowelPairs[mark];
     if (pair == null) return '';
+    if (pair.heavy == pair.thin) return "her harfte '${pair.heavy}'";
     return "kalın harflerde '${pair.heavy}', ince harflerde '${pair.thin}'";
   }
 
@@ -170,11 +166,12 @@ abstract final class ElifbaReading {
         'u' => vowelPairs[damma],
         _ => null,
       };
-      if (pair == null) return match.group(0)!;
+      // Esrede iki ses aynı olduğu için metin olduğu gibi kalır.
+      if (pair == null || pair.heavy == pair.thin) return match.group(0)!;
       return "kalın harflerde kısa '${pair.heavy}', "
           "ince harflerde kısa '${pair.thin}'${match.group(2)}";
     });
-    fixed = fixed.replaceAll(_tenvinText, '-an/-en, -ın/-in, -un/-ün');
+    fixed = fixed.replaceAll(_tenvinText, '-an/-en, -in, -un/-ün');
     return fixed;
   }
 

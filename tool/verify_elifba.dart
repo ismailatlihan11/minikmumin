@@ -261,7 +261,8 @@ void main(List<String> args) {
   for (final lesson in pack.lessons) {
     for (final text in [lesson.goal, lesson.explanation, lesson.rich.objective]) {
       if (text.contains('ince harflerde')) continue;
-      if (RegExp("kısa ['\u2018]?[aiu]['\u2019]? ses").hasMatch(text)) {
+      // Esre her harfte 'i' okunur; tek ses anlatımı burada doğrudur.
+      if (RegExp("kısa ['\u2018]?[au]['\u2019]? ses").hasMatch(text)) {
         singleSound.add('Ders ${lesson.id}: $text');
       }
     }
