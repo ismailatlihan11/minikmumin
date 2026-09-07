@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:minik_kalpler/data/models/quran_learning.dart';
-import 'package:minik_kalpler/features/elifba_adventure/elifba_cezm_examples.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_letter_forms.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_models.dart';
+import 'package:minik_kalpler/features/elifba_adventure/elifba_quran_bridge.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_reading.dart';
 
 var failures = 0;
@@ -60,13 +60,7 @@ void main(List<String> args) {
       if (formsJson != null)
         ElifbaExtraLesson(afterLessonId: 1, json: formsJson),
     ],
-    patches: [
-      if (ElifbaCezmExamples.build(quranPack) case final cezm?)
-        ElifbaLessonPatch(
-          titleContains: ElifbaCezmExamples.lessonTitleContains,
-          content: cezm,
-        ),
-    ],
+    patches: ElifbaQuranBridge.patches(quranPack),
     hiddenTitles: const {ElifbaLetterFormsLesson.replacesTitle},
   );
 
@@ -81,6 +75,27 @@ void main(List<String> args) {
   check('Cezm dersinde sâkin harf örnekleri', cezmLesson.examples.length >= 6,
       '${cezmLesson.examples.length} harf');
   for (final word in cezmLesson.wordExamples) {
+    stdout.writeln('  ${word.text}  ${word.reading}  ${word.focus}');
+  }
+
+  final shaddaLesson = byTitle(pack, 'Şedde');
+  check('Şedde dersinde en az 10 kelime örneği',
+      shaddaLesson.wordExamples.length >= 10,
+      '${shaddaLesson.wordExamples.length} kelime');
+  check(
+      'Şedde kelimelerinin hepsinde şedde var',
+      shaddaLesson.wordExamples.every((word) => word.text.contains('ّ')),
+      shaddaLesson.wordExamples.map((w) => w.text).take(3).join(' '));
+  check(
+      'Şeddeli harf örnekleri harekeli',
+      shaddaLesson.examples
+          .where((item) => item.text.contains('ّ'))
+          .every((item) =>
+              item.text.contains('َ') ||
+              item.text.contains('ِ') ||
+              item.text.contains('ُ')),
+      shaddaLesson.examples.map((e) => e.text).join(' '));
+  for (final word in shaddaLesson.wordExamples) {
     stdout.writeln('  ${word.text}  ${word.reading}  ${word.focus}');
   }
   check('Eski "Harflerin Kelimedeki Şekilleri" dersi haritada yok',

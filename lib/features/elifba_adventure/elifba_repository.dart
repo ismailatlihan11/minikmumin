@@ -2,9 +2,9 @@ import '../../app/constants/asset_paths.dart';
 import '../../data/datasources/json_content_datasource.dart';
 import '../../data/models/quran_learning.dart';
 import '../../data/repositories/quran_learning_repository.dart';
-import 'elifba_cezm_examples.dart';
 import 'elifba_letter_forms.dart';
 import 'elifba_models.dart';
+import 'elifba_quran_bridge.dart';
 
 class ElifbaRepository {
   ElifbaRepository({
@@ -27,7 +27,7 @@ class ElifbaRepository {
     _cache = ElifbaPack.fromJson(
       json,
       extras: _extraLessons(source),
-      patches: _patches(source),
+      patches: ElifbaQuranBridge.patches(source),
       hiddenTitles: const {ElifbaLetterFormsLesson.replacesTitle},
     );
     return _cache!;
@@ -41,19 +41,6 @@ class ElifbaRepository {
     } catch (_) {
       return null;
     }
-  }
-
-  /// Cezm dersi macera JSON'unda yalnızca birkaç örnek içeriyor; Kur'an
-  /// serisindeki sâkin harfler ve gerçek kelimelerle zenginleştirilir.
-  List<ElifbaLessonPatch> _patches(QuranLearningPack? pack) {
-    final cezm = ElifbaCezmExamples.build(pack);
-    return [
-      if (cezm != null)
-        ElifbaLessonPatch(
-          titleContains: ElifbaCezmExamples.lessonTitleContains,
-          content: cezm,
-        ),
-    ];
   }
 
   /// Kur'an Öğrenme Serisi'nden alınan ek dersler; içerik JSON'u değişse de

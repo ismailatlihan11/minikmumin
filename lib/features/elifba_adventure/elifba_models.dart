@@ -317,7 +317,7 @@ class ElifbaLessonPatch {
       final existing = merged[entry.key];
       final addition = entry.value;
       if (addition is List && existing is List) {
-        merged[entry.key] = [...existing, ...addition];
+        merged[entry.key] = [...existing, ..._newItems(existing, addition)];
       } else if (existing == null ||
           (existing is String && existing.isEmpty) ||
           (existing is List && existing.isEmpty)) {
@@ -325,6 +325,22 @@ class ElifbaLessonPatch {
       }
     }
     return merged;
+  }
+
+  /// Ders zaten aynı kelimeyi içeriyorsa (ör. الرَّحْمَٰن ile الرَّحْمَٰنِ)
+  /// tekrar eklemez.
+  static List<dynamic> _newItems(List<dynamic> existing, List<dynamic> added) {
+    final seen = existing.map(_key).where((key) => key.isNotEmpty).toSet();
+    return [
+      for (final item in added)
+        if (seen.add(_key(item)) || _key(item).isEmpty) item,
+    ];
+  }
+
+  static String _key(dynamic item) {
+    if (item is! Map) return '';
+    final text = item['word'] ?? item['text'] ?? item['arabic'] ?? '';
+    return elifbaStripMarks('$text');
   }
 }
 
