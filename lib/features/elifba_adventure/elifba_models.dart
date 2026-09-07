@@ -1,5 +1,33 @@
 import '../../core/utils/json_map.dart';
 
+/// Hareke, şedde, cezm ve uzatma işaretlerini ayıklar.
+String elifbaStripMarks(String value) {
+  final buffer = StringBuffer();
+  for (final rune in value.runes) {
+    final isMark = (rune >= 0x064B && rune <= 0x0652) ||
+        rune == 0x0670 ||
+        rune == 0x0640;
+    if (!isMark) buffer.writeCharCode(rune);
+  }
+  return buffer.toString().trim();
+}
+
+/// JSON'da cevap bazen harekesiz (ص), şıklar harekeli (صَ) yazılmış.
+/// Doğru şıkkı işaretlerden bağımsız eşleştirir; eşleşme yoksa cevabı korur.
+String elifbaResolveAnswer(List<String> options, String answer) {
+  if (options.contains(answer)) return answer;
+  final target = elifbaStripMarks(answer);
+  if (target.isEmpty) return answer;
+  for (final option in options) {
+    if (elifbaStripMarks(option) == target) return option;
+  }
+  final partial = [
+    for (final option in options)
+      if (elifbaStripMarks(option).contains(target)) option,
+  ];
+  return partial.length == 1 ? partial.first : answer;
+}
+
 class ElifbaPack {
   const ElifbaPack({
     required this.title,
@@ -16,6 +44,21 @@ class ElifbaPack {
       if (lesson.id == id) return lesson;
     }
     return null;
+  }
+
+  /// Ders id'leri JSON'dan gelir ve araya ders eklenince artık ardışık
+  /// olmayabilir; sıra, ekranda gösterilen numara ve kilit için kullanılır.
+  int orderOf(int id) => lessons.indexWhere((lesson) => lesson.id == id) + 1;
+
+  ElifbaLesson? previousOf(int id) {
+    final index = lessons.indexWhere((lesson) => lesson.id == id);
+    return index > 0 ? lessons[index - 1] : null;
+  }
+
+  ElifbaLesson? nextOf(int id) {
+    final index = lessons.indexWhere((lesson) => lesson.id == id);
+    if (index < 0 || index >= lessons.length - 1) return null;
+    return lessons[index + 1];
   }
 
   /// Şedde asla tek başına öğretilmez; harekesiz şeddeli tablolar gizlenir.
@@ -192,19 +235,40 @@ class ElifbaPack {
     return lesson.tableInstruction;
   }
 
-  factory ElifbaPack.fromJson(Map<String, dynamic> json) {
+  factory ElifbaPack.fromJson(
+    Map<String, dynamic> json, {
+    List<ElifbaExtraLesson> extras = const [],
+  }) {
     final lessons = JsonMap.extractList(json, itemsKey: 'lessons')
         .map(ElifbaLesson.fromJson)
-        .toList(growable: false);
+        .toList();
+    for (final extra in extras) {
+      if (lessons.any((lesson) => lesson.id == extra.lesson.id)) continue;
+      final anchor =
+          lessons.indexWhere((lesson) => lesson.id == extra.afterLessonId);
+      lessons.insert(anchor < 0 ? lessons.length : anchor + 1, extra.lesson);
+    }
     return ElifbaPack(
       title: JsonMap.str(json['title'], "Elifbâ + Tecvid Macerası"),
       description: JsonMap.str(
         json['description'],
         "Kur'an okumayı eğlenerek öğren!",
       ),
-      lessons: lessons,
+      lessons: List.unmodifiable(lessons),
     );
   }
+}
+
+/// Macera JSON'una dışarıdan eklenen ders (ör. Kur'an serisinden alınan
+/// "Harfler ve Şekilleri"). Ders, verilen id'nin hemen ardına yerleşir.
+class ElifbaExtraLesson {
+  ElifbaExtraLesson({
+    required this.afterLessonId,
+    required Map<String, dynamic> json,
+  }) : lesson = ElifbaLesson.fromJson(json);
+
+  final int afterLessonId;
+  final ElifbaLesson lesson;
 }
 
 class ElifbaLesson {
@@ -323,6 +387,9 @@ class ElifbaLesson {
 
   List<ElifbaGroup> get reviewGroups =>
       _maps('review_groups').map(ElifbaGroup.fromJson).toList(growable: false);
+
+  List<ElifbaFormRow> get letterForms =>
+      _maps('letter_forms').map(ElifbaFormRow.fromJson).toList(growable: false);
 
   List<ElifbaActivity> get interactiveActivities => _maps('interactive_activities')
       .map(ElifbaActivity.fromJson)
@@ -552,11 +619,12 @@ class ElifbaQuizItem {
   final String answer;
 
   factory ElifbaQuizItem.fromJson(Map<String, dynamic> json) {
+    final options = JsonMap.strings(json['options']);
     return ElifbaQuizItem(
       id: JsonMap.integer(json['id']),
       question: JsonMap.str(json['question']),
-      options: JsonMap.strings(json['options']),
-      answer: JsonMap.str(json['answer']),
+      options: options,
+      answer: elifbaResolveAnswer(options, JsonMap.str(json['answer'])),
     );
   }
 }
@@ -1011,16 +1079,20 @@ class ElifbaAskPair {
   factory ElifbaAskPair.fromJson(Map<String, dynamic> json) {
     final left = JsonMap.str(json['left']);
     final right = JsonMap.str(json['right']);
-    final options = JsonMap.strings(json['answers']);
+    final answers = JsonMap.strings(json['answers']);
+    final options = answers.isNotEmpty
+        ? answers
+        : [
+            if (left.isNotEmpty) left,
+            if (right.isNotEmpty) right,
+          ];
     return ElifbaAskPair(
       question: JsonMap.str(json['question']),
-      answer: JsonMap.str(json['answer'] ?? json['correct']),
-      options: options.isNotEmpty
-          ? options
-          : [
-              if (left.isNotEmpty) left,
-              if (right.isNotEmpty) right,
-            ],
+      answer: elifbaResolveAnswer(
+        options,
+        JsonMap.str(json['answer'] ?? json['correct']),
+      ),
+      options: options,
       label: JsonMap.str(json['pair']),
     );
   }
@@ -1077,6 +1149,45 @@ class ElifbaRaRow {
       name: JsonMap.str(json['name']),
       reading: JsonMap.str(json['reading']),
       reason: JsonMap.str(json['reason']),
+    );
+  }
+}
+
+/// Harfin kelimedeki dört şekli (Kur'an serisindeki letter_forms verisi).
+class ElifbaFormRow {
+  const ElifbaFormRow({
+    required this.letter,
+    required this.name,
+    required this.sound,
+    required this.isolated,
+    required this.initial,
+    required this.medial,
+    required this.finalForm,
+    required this.connects,
+    required this.audio,
+  });
+
+  final String letter;
+  final String name;
+  final String sound;
+  final String isolated;
+  final String initial;
+  final String medial;
+  final String finalForm;
+  final bool connects;
+  final String audio;
+
+  factory ElifbaFormRow.fromJson(Map<String, dynamic> json) {
+    return ElifbaFormRow(
+      letter: JsonMap.str(json['letter']),
+      name: JsonMap.str(json['name']),
+      sound: JsonMap.str(json['sound']),
+      isolated: JsonMap.str(json['isolated']),
+      initial: JsonMap.str(json['initial']),
+      medial: JsonMap.str(json['medial']),
+      finalForm: JsonMap.str(json['final']),
+      connects: json['connects'] == true,
+      audio: JsonMap.str(json['audio']),
     );
   }
 }

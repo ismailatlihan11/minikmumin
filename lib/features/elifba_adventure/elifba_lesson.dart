@@ -103,6 +103,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
         starsEarned: earned,
         quizCorrect: _quizCorrect,
         badge: ElifbaWorlds.badgeForLesson(widget.pack, lesson.id),
+        nextLessonId: widget.pack.nextOf(lesson.id)?.id,
+        lessonLabel: 'Ders ${widget.pack.orderOf(lesson.id)}',
       );
     }
     if (!mounted) return;
@@ -127,7 +129,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFF7F3EA),
       appBar: AppBar(
-        title: Text('Ders ${lesson.id}'),
+        title: Text('Ders ${widget.pack.orderOf(lesson.id)}'),
         actions: [
           if (kDebugMode)
             TextButton(
@@ -192,6 +194,29 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           builder: (state) => ElifbaLessonHeader(
             title: lesson.title,
             subtitle: lesson.rich.objective,
+          ),
+        ),
+      );
+    }
+
+    if (lesson.letterForms.isNotEmpty) {
+      steps.add(
+        _FlowStep(
+          cue: 'Harfe dokun, adını dinle. Dört şekline birlikte bakalım.',
+          builder: (state) => ElifbaFormBoard(
+            rows: lesson.letterForms,
+            audio: state._audio,
+          ),
+        ),
+      );
+      steps.add(
+        _FlowStep(
+          cue: 'Şimdi şekli gören gözlerimizi deneyelim.',
+          showContinue: false,
+          builder: (state) => ElifbaFormHunt(
+            rows: lesson.letterForms,
+            onAnswer: state._scored,
+            onFinished: state._next,
           ),
         ),
       );
@@ -1106,7 +1131,7 @@ class ElifbaIntroPage extends StatelessWidget {
               ElifbaMascot(line: ElifbaVoice.introFor(lesson), size: 96),
               const SizedBox(height: 24),
               Text(
-                'Ders ${lesson.id}',
+                'Ders ${pack.orderOf(lesson.id)}',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               Text(
@@ -1145,7 +1170,7 @@ class ElifbaCompletePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final next = pack.byId(lesson.id + 1);
+    final next = pack.nextOf(lesson.id);
     final world = ElifbaWorlds.forLesson(pack, lesson.id);
     final badge = ElifbaWorlds.badgeForLesson(pack, lesson.id);
     final worldDone = world.lastId == lesson.id;
@@ -1162,7 +1187,7 @@ class ElifbaCompletePage extends StatelessWidget {
                 quizTotal: quizTotal,
               ),
               Text(
-                'Ders ${lesson.id} · ${lesson.title}',
+                'Ders ${pack.orderOf(lesson.id)} · ${lesson.title}',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),

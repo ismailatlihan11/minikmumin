@@ -30,7 +30,10 @@ class ContentRepositories {
     dhikr = DhikrRepository(datasource: source);
     basics = BasicsRepository(datasource: source);
     quranLearning = QuranLearningRepository(datasource: source);
-    elifba = ElifbaRepository(datasource: source);
+    elifba = ElifbaRepository(
+      datasource: source,
+      quranLearning: quranLearning,
+    );
   }
 
   final JsonContentDatasource datasource;

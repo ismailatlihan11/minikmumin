@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:minik_kalpler/data/models/quran_learning.dart';
+import 'package:minik_kalpler/features/elifba_adventure/elifba_letter_forms.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_models.dart';
 
 var failures = 0;
@@ -23,9 +25,35 @@ ElifbaLesson byTitle(ElifbaPack pack, String needle) => pack.lessons.firstWhere(
 void main() {
   final raw = File('assets/data/elifba_tecvid_dersleri_eksiksiz.json')
       .readAsStringSync();
-  final pack = ElifbaPack.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+  final quranRaw =
+      File('assets/data/kur_an_ogrenme_veri_paketi.json').readAsStringSync();
+  final quranPack =
+      QuranLearningPack.fromJson(jsonDecode(quranRaw) as Map<String, dynamic>);
+  final formsJson = ElifbaLetterFormsLesson.build(quranPack);
+  final pack = ElifbaPack.fromJson(
+    jsonDecode(raw) as Map<String, dynamic>,
+    extras: [
+      if (formsJson != null)
+        ElifbaExtraLesson(afterLessonId: 1, json: formsJson),
+    ],
+  );
 
   stdout.writeln('Ders sayısı: ${pack.lessons.length}');
+
+  final forms = byTitle(pack, 'Harfler ve Şekilleri');
+  check('"Harfler ve Şekilleri" 1. dersten hemen sonra',
+      pack.orderOf(forms.id) == 2, 'sıra ${pack.orderOf(forms.id)}');
+  check('Dört şekil tablosu Kur\'an serisiyle aynı',
+      forms.letterForms.length == quranPack.letters.length,
+      '${forms.letterForms.length} harf');
+  check(
+      'Her harfin dört şekli dolu',
+      forms.letterForms.every((row) =>
+          row.isolated.isNotEmpty &&
+          row.initial.isNotEmpty &&
+          row.medial.isNotEmpty &&
+          row.finalForm.isNotEmpty &&
+          row.name.isNotEmpty));
   check('Bütün derslerde quiz var',
       pack.lessons.every((lesson) => lesson.quiz.isNotEmpty));
 
@@ -146,6 +174,22 @@ void main() {
 
   final last = pack.lessons.last;
   check('Final sınavı', last.isFinal && last.quiz.length >= 10);
+
+  final unanswerable = <String>[];
+  for (final lesson in pack.lessons) {
+    for (final pair in lesson.askPairs) {
+      if (!pair.options.contains(pair.answer)) {
+        unanswerable.add('Ders ${lesson.id}: ${pair.question} → ${pair.answer}');
+      }
+    }
+    for (final item in lesson.quiz) {
+      if (!item.options.contains(item.answer)) {
+        unanswerable.add('Ders ${lesson.id}: ${item.question} → ${item.answer}');
+      }
+    }
+  }
+  check('Her sorunun doğru şıkkı var', unanswerable.isEmpty,
+      unanswerable.take(3).join(' | '));
 
   stdout.writeln('\nDers içerik blokları:');
   for (final lesson in pack.lessons) {

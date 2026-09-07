@@ -400,6 +400,10 @@ class ElifbaChoiceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Cevap harekeli/harekesiz yazılmış olabilir; şıklarla eşleştirip
+    // hiçbir şık doğru olmadığında adımın kilitlenmesini önlüyoruz.
+    final answer = elifbaResolveAnswer(options, this.answer);
+    final choices = options.contains(answer) ? options : [...options, answer];
     return Column(
       children: [
         Text(
@@ -408,7 +412,7 @@ class ElifbaChoiceRow extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(height: 12),
-        for (final option in options)
+        for (final option in choices)
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: SizedBox(

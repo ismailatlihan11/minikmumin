@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../../core/storage/local_progress_store.dart';
+import 'elifba_models.dart';
 
 class ElifbaSnapshot {
   const ElifbaSnapshot({
@@ -34,6 +35,15 @@ class ElifbaSnapshot {
   bool isUnlocked(int id) {
     if (unlockAll || id <= 1) return true;
     return completedLessons.contains(id - 1);
+  }
+
+  /// Ders id'leri araya ders eklenince ardışık olmadığından kilit,
+  /// paketteki sıraya göre çözülür.
+  bool isUnlockedIn(ElifbaPack pack, int id) {
+    if (unlockAll) return true;
+    final previous = pack.previousOf(id);
+    if (previous == null) return true;
+    return completedLessons.contains(previous.id);
   }
 
   int get doneCount => completedLessons.length;
@@ -124,7 +134,10 @@ class ElifbaProgress {
     required int starsEarned,
     required int quizCorrect,
     String? badge,
+    int? nextLessonId,
+    String? lessonLabel,
   }) async {
+    final next = nextLessonId ?? lessonId + 1;
     final snap = await load();
     final prefs = await _store.prefs;
     final done = {
@@ -147,19 +160,19 @@ class ElifbaProgress {
       final badges = {...snap.badges, badge}.toList();
       await prefs.setStringList(_store.prefKey(badgesKey), badges);
     }
-    await prefs.setInt(_store.prefKey(currentKey), lessonId + 1);
+    await prefs.setInt(_store.prefKey(currentKey), next);
     await prefs.setString(_store.prefKey(dailyStampKey), _todayStamp());
     await prefs.setBool(_store.prefKey(dailyDoneKey), true);
     await _store.setContinue(
       title: 'Elifbâ + Tecvid Macerası',
-      subtitle: 'Ders $lessonId tamamlandı',
+      subtitle: '${lessonLabel ?? 'Ders $lessonId'} tamamlandı',
       route: '/minik/learn/elifba-adventure',
       progress: 0,
     );
     await _writeProgressMap(
       started: {...snap.startedLessons, lessonId},
       completed: {...snap.completedLessons, lessonId},
-      current: lessonId + 1,
+      current: next,
     );
     _store.announce();
   }

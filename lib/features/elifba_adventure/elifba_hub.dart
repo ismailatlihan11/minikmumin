@@ -171,9 +171,9 @@ class _HubBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resume = pack.byId(progress.currentLesson.clamp(1, pack.lessons.last.id)) ??
-        pack.lessons.first;
-    final unlocked = progress.isUnlocked(resume.id) || progress.isCompleted(resume.id);
+    final resume = pack.byId(progress.currentLesson) ?? pack.lessons.first;
+    final unlocked =
+        progress.isUnlockedIn(pack, resume.id) || progress.isCompleted(resume.id);
     return ListView(
       padding: AppSpacing.page,
       children: [
@@ -251,7 +251,7 @@ class _HubBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text('👣 Kaldığın Yer'),
-              Text('Ders ${resume.id} – ${resume.title}'),
+              Text('Ders ${pack.orderOf(resume.id)} – ${resume.title}'),
               Text('${resume.level} · ${ElifbaWorlds.forLesson(pack, resume.id).title}'),
               const SizedBox(height: 8),
               PrimaryButton(
@@ -385,7 +385,7 @@ class _LessonNode extends StatelessWidget {
   Widget build(BuildContext context) {
     final done = progress.isCompleted(lesson.id);
     final inProgress = progress.isInProgress(lesson.id);
-    final open = progress.isUnlocked(lesson.id) || done;
+    final open = progress.isUnlockedIn(pack, lesson.id) || done;
     final status = done
         ? '✅ Tamamlandı'
         : inProgress
@@ -414,7 +414,7 @@ class _LessonNode extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      'Ders ${lesson.id} · ${lesson.title}',
+                      'Ders ${pack.orderOf(lesson.id)} · ${lesson.title}',
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),

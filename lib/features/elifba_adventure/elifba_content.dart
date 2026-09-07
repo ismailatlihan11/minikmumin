@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/constants/asset_paths.dart';
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_radius.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../shared/widgets/favorite_button.dart';
 import 'elifba_audio.dart';
@@ -868,6 +869,215 @@ class _ElifbaSortMissionState extends State<ElifbaSortMission> {
         ElifbaSortDrop(
           key: ValueKey(letter),
           letter: letter,
+          onAnswer: ({required bool correct}) {
+            widget.onAnswer(correct: correct);
+            if (!correct) return;
+            setState(() {
+              _solved += 1;
+              _index += 1;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+/// ✍️ Harfin kelimedeki dört şekli: tek başına, başta, ortada, sonda.
+class ElifbaFormBoard extends StatelessWidget {
+  const ElifbaFormBoard({
+    super.key,
+    required this.rows,
+    required this.audio,
+  });
+
+  final List<ElifbaFormRow> rows;
+  final AudioPlayerService audio;
+
+  @override
+  Widget build(BuildContext context) {
+    if (rows.isEmpty) return const SizedBox.shrink();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final row in rows)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: ElifbaFormCard(row: row, audio: audio),
+          ),
+      ],
+    );
+  }
+}
+
+class ElifbaFormCard extends StatelessWidget {
+  const ElifbaFormCard({
+    super.key,
+    required this.row,
+    required this.audio,
+  });
+
+  final ElifbaFormRow row;
+  final AudioPlayerService audio;
+
+  @override
+  Widget build(BuildContext context) {
+    final path = ElifbaAudio.resolve(row.audio);
+    return ElifbaSoftCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              ElifbaArabicTap(
+                text: row.letter,
+                fontSize: 40,
+                onTap: () => ElifbaAudio.play(audio, path),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      row.name,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    if (row.sound.isNotEmpty)
+                      Text('Sesi: ${row.sound}'),
+                    if (!row.connects)
+                      const Text('Sonraki harfe bağlanmaz'),
+                  ],
+                ),
+              ),
+              IconButton(
+                tooltip: '${row.name} sesini dinle',
+                icon: const Icon(Icons.volume_up_rounded),
+                onPressed: () => ElifbaAudio.play(audio, path),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              _ShapeCell(label: 'Tek başına', form: row.isolated),
+              _ShapeCell(label: 'Başta', form: row.initial),
+              _ShapeCell(label: 'Ortada', form: row.medial),
+              _ShapeCell(label: 'Sonda', form: row.finalForm),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ShapeCell extends StatelessWidget {
+  const _ShapeCell({required this.label, required this.form});
+
+  final String label;
+  final String form;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Semantics(
+        label: '$label: $form',
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 3),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: MinikColors.cream,
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+          child: Column(
+            children: [
+              Text(
+                form,
+                textDirection: TextDirection.rtl,
+                style: const TextStyle(
+                  fontFamily: AssetPaths.arabicFontFamily,
+                  fontSize: 30,
+                  color: MinikColors.darkGreen,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(label, style: const TextStyle(fontSize: 11)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// 🎯 "Bu şekil hangi harfin?" — dört şekil dersinin mini oyunu.
+class ElifbaFormHunt extends StatefulWidget {
+  const ElifbaFormHunt({
+    super.key,
+    required this.rows,
+    required this.onAnswer,
+    this.onFinished,
+    this.rounds = 4,
+  });
+
+  final List<ElifbaFormRow> rows;
+  final ElifbaAnswer onAnswer;
+  final VoidCallback? onFinished;
+  final int rounds;
+
+  @override
+  State<ElifbaFormHunt> createState() => _ElifbaFormHuntState();
+}
+
+class _ElifbaFormHuntState extends State<ElifbaFormHunt> {
+  var _index = 0;
+  var _solved = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final usable = [
+      for (final row in widget.rows)
+        if (row.initial.isNotEmpty && row.finalForm.isNotEmpty) row,
+    ];
+    if (usable.length < 3) return const SizedBox.shrink();
+    final total = widget.rounds.clamp(1, usable.length);
+    if (_index >= total) {
+      return ElifbaSoftCard(
+        color: MinikColors.mint,
+        child: Column(
+          children: [
+            Text('🎉 $_solved şekli doğru buldun!'),
+            const SizedBox(height: 8),
+            ElifbaPrimary(label: 'Devam', onPressed: widget.onFinished),
+          ],
+        ),
+      );
+    }
+    final target = usable[(_index * 6 + 2) % usable.length];
+    final others = [
+      for (final row in usable)
+        if (row.letter != target.letter) row,
+    ];
+    final atStart = _index.isEven;
+    final shape = atStart ? target.initial : target.finalForm;
+    final options = <String>{
+      target.name,
+      others[(_index * 4) % others.length].name,
+      others[(_index * 9 + 3) % others.length].name,
+    }.toList();
+    return Column(
+      children: [
+        Text('${_index + 1} / $total'),
+        const SizedBox(height: 8),
+        ElifbaArabicTap(text: shape, fontSize: 56),
+        const SizedBox(height: 8),
+        ElifbaChoiceRow(
+          prompt: atStart
+              ? 'Bu başta yazılış hangi harfin?'
+              : 'Bu sonda yazılış hangi harfin?',
+          options: options,
+          answer: target.name,
           onAnswer: ({required bool correct}) {
             widget.onAnswer(correct: correct);
             if (!correct) return;
