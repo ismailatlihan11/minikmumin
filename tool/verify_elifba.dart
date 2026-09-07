@@ -257,6 +257,24 @@ void main(List<String> args) {
       .join('  ');
   stdout.writeln('  örnek okunuşlar: $sample');
 
+  final singleSound = <String>[];
+  for (final lesson in pack.lessons) {
+    for (final text in [lesson.goal, lesson.explanation, lesson.rich.objective]) {
+      if (text.contains('ince harflerde')) continue;
+      if (RegExp("kısa ['\u2018]?[aiu]['\u2019]? ses").hasMatch(text)) {
+        singleSound.add('Ders ${lesson.id}: $text');
+      }
+    }
+  }
+  check('Hareke anlatımları iki sesi de veriyor', singleSound.isEmpty,
+      singleSound.take(2).join(' | '));
+  for (final lesson in pack.lessons) {
+    final mark = lesson.rule?.symbol ?? '';
+    if (ElifbaReading.vowelPairs.containsKey(mark)) {
+      stdout.writeln('  ${lesson.title}: ${lesson.goal}');
+    }
+  }
+
   final wrongQuiz = <String>[];
   for (final lesson in pack.lessons) {
     for (final item in lesson.quiz) {

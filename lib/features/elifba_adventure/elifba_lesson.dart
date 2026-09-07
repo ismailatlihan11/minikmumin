@@ -13,6 +13,7 @@ import 'elifba_content.dart';
 import 'elifba_games.dart';
 import 'elifba_models.dart';
 import 'elifba_progress.dart';
+import 'elifba_reading.dart';
 import 'elifba_widgets.dart';
 import 'elifba_worlds.dart';
 
@@ -463,14 +464,18 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
         ),
       );
       if (rule.symbol.isNotEmpty && 'َُِ'.contains(rule.symbol)) {
+        // Oyun tek harf üzerinden gider; hedef okunuş o harfin ince/kalın
+        // durumuna göre üretilir (بَ → be).
+        const dragLetter = 'ب';
+        final target = ElifbaReading.of(dragLetter, rule.symbol, withTag: false);
         steps.add(
           _FlowStep(
-            cue: '${rule.sound} sesi için harekeyi sürükle.',
+            cue: '$target sesi için harekeyi sürükle.',
             showContinue: false,
             builder: (state) => ElifbaHarakaDrag(
-              letter: 'ب',
+              letter: dragLetter,
               targetMark: rule.symbol,
-              targetReading: rule.sound.isEmpty ? rule.name : rule.sound,
+              targetReading: target.isEmpty ? rule.name : target,
               onAnswer: state._answered,
             ),
           ),

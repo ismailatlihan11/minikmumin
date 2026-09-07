@@ -566,8 +566,9 @@ class ElifbaLesson {
       id: JsonMap.integer(json['id']),
       title: JsonMap.str(json['title']),
       level: JsonMap.str(json['level']),
-      goal: JsonMap.str(json['goal']),
-      explanation: JsonMap.str(json['explanation']),
+      goal: ElifbaReading.fixSoundText(JsonMap.str(json['goal'])),
+      explanation:
+          ElifbaReading.fixSoundText(JsonMap.str(json['explanation'])),
       raw: json,
       quiz: JsonMap.extractList(json, itemsKey: 'quiz')
           .map(ElifbaQuizItem.fromJson)
@@ -727,10 +728,13 @@ class ElifbaRule {
   final String note;
 
   factory ElifbaRule.fromJson(Map<String, dynamic> json) {
+    final symbol = JsonMap.str(json['symbol']);
+    // Hareke kartında tek ses yazılıydı ("a"); iki sesi birden gösteriyoruz.
+    final described = ElifbaReading.describeMark(symbol);
     return ElifbaRule(
-      symbol: JsonMap.str(json['symbol']),
+      symbol: symbol,
       name: JsonMap.str(json['name']),
-      sound: JsonMap.str(json['sound']),
+      sound: described.isNotEmpty ? described : JsonMap.str(json['sound']),
       concept: JsonMap.str(json['concept']),
       letter: JsonMap.str(json['letter']),
       transformation: JsonMap.str(json['transformation']),
@@ -1052,7 +1056,8 @@ class ElifbaRich {
   factory ElifbaRich.fromJson(Map<String, dynamic> json) {
     final words = json['examples_with_words'];
     return ElifbaRich(
-      objective: JsonMap.str(json['lesson_objective']),
+      objective:
+          ElifbaReading.fixSoundText(JsonMap.str(json['lesson_objective'])),
       teacherNote: JsonMap.str(json['teacher_note']),
       repeatInstruction: JsonMap.str(json['repeat_instruction']),
       sequence: JsonMap.strings(json['learning_sequence']),

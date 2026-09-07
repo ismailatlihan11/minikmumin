@@ -141,6 +141,43 @@ abstract final class ElifbaReading {
     return reading.isEmpty ? option : reading;
   }
 
+  /// Harekenin iki sesi: kalın harflerde ve ince harflerde.
+  static const vowelPairs = <String, ({String heavy, String thin})>{
+    fatha: (heavy: 'a', thin: 'e'),
+    kasra: (heavy: 'ı', thin: 'i'),
+    damma: (heavy: 'u', thin: 'ü'),
+  };
+
+  static String describeMark(String mark) {
+    final pair = vowelPairs[mark];
+    if (pair == null) return '';
+    return "kalın harflerde '${pair.heavy}', ince harflerde '${pair.thin}'";
+  }
+
+  static final _shortVowelText =
+      RegExp("kısa ['\u2018]?([aiu])['\u2019]?( ses)");
+  static final _tenvinText = RegExp(r'-an, -in, -un');
+
+  /// Ders metinlerinde harekeyi tek sese indirgeyen anlatımları düzeltir:
+  /// "kısa 'a' sesi verir" → "kalın harflerde kısa 'a', ince harflerde
+  /// kısa 'e' sesi verir".
+  static String fixSoundText(String text) {
+    if (text.isEmpty) return text;
+    var fixed = text.replaceAllMapped(_shortVowelText, (match) {
+      final pair = switch (match.group(1)) {
+        'a' => vowelPairs[fatha],
+        'i' => vowelPairs[kasra],
+        'u' => vowelPairs[damma],
+        _ => null,
+      };
+      if (pair == null) return match.group(0)!;
+      return "kalın harflerde kısa '${pair.heavy}', "
+          "ince harflerde kısa '${pair.thin}'${match.group(2)}";
+    });
+    fixed = fixed.replaceAll(_tenvinText, '-an/-en, -ın/-in, -un/-ün');
+    return fixed;
+  }
+
   static String _markOfVowel(String vowel) {
     switch (vowel) {
       case 'a':
