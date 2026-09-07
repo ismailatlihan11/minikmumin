@@ -135,12 +135,13 @@ abstract final class ElifbaReading {
     return reading.isEmpty ? option : reading;
   }
 
-  /// Harekenin sesi: kalın harflerde ve ince harflerde. Esre her harfte
-  /// aynı sesi verir, bu yüzden iki değeri de 'i'.
+  /// Harekenin sesi: kalın harflerde ve ince harflerde. Yalnızca üstün
+  /// harfin kalınlığına göre değişir; esre her harfte 'i', ötre her harfte
+  /// 'u' okunur.
   static const vowelPairs = <String, ({String heavy, String thin})>{
     fatha: (heavy: 'a', thin: 'e'),
     kasra: (heavy: 'i', thin: 'i'),
-    damma: (heavy: 'u', thin: 'ü'),
+    damma: (heavy: 'u', thin: 'u'),
   };
 
   static String describeMark(String mark) {
@@ -171,7 +172,7 @@ abstract final class ElifbaReading {
       return "kalın harflerde kısa '${pair.heavy}', "
           "ince harflerde kısa '${pair.thin}'${match.group(2)}";
     });
-    fixed = fixed.replaceAll(_tenvinText, '-an/-en, -in, -un/-ün');
+    fixed = fixed.replaceAll(_tenvinText, '-an/-en, -in, -un');
     return fixed;
   }
 
