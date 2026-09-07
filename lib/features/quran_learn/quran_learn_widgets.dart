@@ -63,7 +63,8 @@ class QlPlayListen extends StatelessWidget {
       stream: audio.playingStream,
       initialData: audio.isPlaying,
       builder: (context, snapshot) {
-        final playing = snapshot.data ?? false;
+        final playing =
+            (snapshot.data ?? false) && audio.currentAsset == playable;
         return SizedBox(
           height: 48,
           child: FilledButton.icon(

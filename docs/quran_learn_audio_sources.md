@@ -10,7 +10,7 @@ This audio is **educational pronunciation**, not Quran recitation, adhan, or qar
 - Pitch: `8.0` (Neural2/Wavenet only; Chirp omits API pitch)
 - Cartoon pitch shift: `5.0` semitones after TTS (cartoon-boy timbre)
 - Voice style: cartoon-boy educational speaker, not a deep adult qari.
-- Isolated letter cards speak the letter name only (e.g. بَاء).
+- Isolated letter cards speak Diyanet-style short names (با، تا، ثا), generated with our own Fenrir TTS. Diyanet audio files are not copied.
 - Haraka chips (üstün/esre/ötre) still use sounded syllables (e.g. طَ).
 - API: Google Cloud Text-to-Speech (`google-cloud-texttospeech`)
 - Auth: Application Default Credentials (no keys in the Flutter app)

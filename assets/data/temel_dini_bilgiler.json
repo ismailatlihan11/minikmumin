@@ -24,8 +24,8 @@
       "title": "Şehadet Nedir?",
       "short_description": "Şehadet, Allah'tan başka ilah olmadığına ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna inanmayı ifade eder.",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
-      "meaning": "Allah'tan başka ilah olmadığına ve Hz. Muhammed ﷺ'in Allah'ın kulu ve elçisi olduğuna şahitlik ederim.",
+      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
+      "meaning": "Şahitlik ederim ki Allah'tan başka ilah yoktur. Yine şahitlik ederim ki Muhammed (ﷺ), Allah'ın kulu ve resûlüdür.",
       "content": "",
       "key_points": [],
       "audio": null,
@@ -106,7 +106,7 @@
         {
           "order": 1,
           "title": "Allah'a iman",
-          "description": "Allah'ın var ve tek ilah olduğuna inanmak. O'na hiçbir şey benzemez."
+          "description": "Allah'ın var olduğuna ve tek ilah olduğuna inanmak. O'na hiçbir şey benzemez."
         },
         {
           "order": 2,

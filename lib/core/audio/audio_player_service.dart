@@ -6,11 +6,15 @@ class AudioPlayerService {
   AudioPlayerService({AudioPlayer? player}) : _player = player ?? AudioPlayer();
 
   final AudioPlayer _player;
+  String? _currentAsset;
+
+  String? get currentAsset => _currentAsset;
 
   Future<bool> playAsset(String path, {bool waitUntilDone = true}) async {
     if (path.trim().isEmpty) return false;
     try {
       await _player.stop();
+      _currentAsset = path;
       await _player.setAsset(path);
       if (waitUntilDone) {
         await _player.play();
@@ -19,6 +23,7 @@ class AudioPlayerService {
       }
       return true;
     } catch (_) {
+      _currentAsset = null;
       // Missing or unplayable audio must never crash the lesson.
       return false;
     }
@@ -76,6 +81,7 @@ class AudioPlayerService {
   }
 
   Future<void> stop() async {
+    _currentAsset = null;
     try {
       await _player.stop();
     } catch (_) {}

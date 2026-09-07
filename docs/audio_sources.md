@@ -179,15 +179,16 @@ License: public recitation API. A separate commercial license document was not i
 
 ### `assets/audio/duas/rabbena_atina.mp3`
 
-- Content: Rabbenâ Âtinâ (namaz)
+- Content: Rabbenâ Âtinâ (namaz duası, 2:201 dua kısmı only)
 - Surah / ayah: 2:201
-- Reader: Mahmoud Khalil Al-Husary (Muallim)
-- Source: Quran.com API v4
-- Source URL: https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/002201.mp3
-- License: UNVERIFIED (public recitation API; no separate license file found)
-- Download date: 2026-08-18
-- Size: 602.0 KB
+- Reader: Hisn al-Muslim recitation (hisnmuslim.com collection)
+- Source: Hisnul Muslim 235 — `sheikhhanif/Hisnul_Muslim_Database` `audio/235hm.mp3`
+- Source URL: https://github.com/sheikhhanif/Hisnul_Muslim_Database
+- License: UNVERIFIED (same Hisn al-Muslim dawah collection as other clips)
+- Download date: 2026-09-06
+- Size: 53.4 KB
 - Status: DOWNLOADED
+- Note: Real recitation, not TTS. Speaks only `رَبَّنَا آتِنَا...` as in `namaz_dualari.json`, without the ayah's narrative opening.
 
 ### `assets/audio/duas/quran_002_201.mp3`
 
@@ -442,6 +443,19 @@ License: public recitation API. A separate commercial license document was not i
 - Status: MANUAL_REVIEW_REQUIRED
 - Note: Pre-existing local file. License was not verified; file was not replaced.
 
+### `assets/audio/prayer/euzu_besmele.mp3`
+
+- Content: Eûzü + Besmele (`أَعُوذُ بِاللّٰهِ مِنَ الشَّيْطَانِ الرَّجِيمِ` then `بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيمِ`)
+- Surah / ayah: —
+- Reader: Mahmoud Khalil Al-Husary (same voice for both phrases)
+- Source: Everyayah `Husary_128kbps` `audhubillah.mp3` + `bismillah.mp3` joined with a short pause
+- Source URL: https://everyayah.com/data/Husary_128kbps/
+- License: UNVERIFIED (public recitation API; no separate license file found)
+- Download date: 2026-09-06
+- Size: 167.3 KB
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. Previous clip mixed two reciters; this one is Husary throughout.
+
 ### `assets/audio/prayer/hamdele.mp3`
 
 - Content: Hamdele
@@ -459,14 +473,27 @@ License: public recitation API. A separate commercial license document was not i
 
 - Content: Kelime-i Tevhid (`لَا إِلٰهَ إِلَّا اللّٰهُ` only; not Kelime-i Şehadet)
 - Surah / ayah: —
-- Reader: Jarih (Wikimedia Commons)
-- Source: Wikimedia Commons `File:Adhan_wiki.oga` — closing tahlil of the Sunni adhan
-- Source URL: https://commons.wikimedia.org/wiki/File:Adhan_wiki.oga
-- License: CC BY-SA 3.0
-- Download date: 2026-09-06
-- Size: 33.0 KB
+- Reader: Hisn al-Muslim recitation (hisnmuslim.com collection)
+- Source: Hisnul Muslim 153 — `sheikhhanif/Hisnul_Muslim_Database` `audio/153hm.mp3`
+- Source URL: https://github.com/sheikhhanif/Hisnul_Muslim_Database
+- License: UNVERIFIED (same Hisn al-Muslim dawah collection as other clips)
+- Download date: 2026-09-07
+- Size: 19.7 KB
 - Status: DOWNLOADED
-- Note: Real recitation, not TTS. The adhan's last line is Kelime-i Tevhid; that phrase was taken so the clip does not say Muhammedün resûlullah.
+- Note: Real recitation, not TTS. Hisn 153 is the isolated tahlil (`لَا إلَهَ إلَّا اللهُ`), not the adhan and not Kelime-i Şehadet.
+
+### `assets/audio/prayer/rabbena_lekel_hamd.mp3`
+
+- Content: Rabbenâ Lekel-Hamd (`رَبَّنَا وَلَكَ الْحَمْدُ` only)
+- Surah / ayah: —
+- Reader: Hisn al-Muslim recitation (hisnmuslim.com collection)
+- Source: Hisn al-Muslim 39 — first phrase cropped from `hisnmuslim.com/audio/ar/39.mp3`
+- Source URL: http://www.hisnmuslim.com/audio/ar/39.mp3
+- License: UNVERIFIED (same Hisn al-Muslim dawah collection as other clips)
+- Download date: 2026-09-06
+- Size: 39.6 KB
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. The source file continues with `حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ`; that ending was cut after the pause so the clip matches the short namaz phrase.
 
 ### `assets/audio/prayer/kelime_i_sehadet.mp3`
 
@@ -496,16 +523,16 @@ License: public recitation API. A separate commercial license document was not i
 
 ### `assets/audio/prayer/tahiyyat.mp3`
 
-- Content: Et-Tahiyyâtü
+- Content: Et-Tahiyyâtü (tashahhud)
 - Surah / ayah: —
-- Reader: unknown (pre-existing file)
-- Source: local asset (license not verified)
-- Source URL: —
-- License: UNVERIFIED
-- Download date: 2026-08-18
-- Size: 368.4 KB
-- Status: MANUAL_REVIEW_REQUIRED
-- Note: Pre-existing local file. License was not verified; file was not replaced.
+- Reader: Hisn al-Muslim recitation (hisnmuslim.com collection)
+- Source: Hisnul Muslim 52 — `sheikhhanif/Hisnul_Muslim_Database` `audio/52hm.mp3`
+- Source URL: https://github.com/sheikhhanif/Hisnul_Muslim_Database
+- License: UNVERIFIED (same Hisn al-Muslim dawah collection as other clips)
+- Download date: 2026-09-06
+- Size: 141.7 KB
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. Matches the dua in `namaz_dualari.json` (Buhârî 831 / Müslim 402 / Hisn al-Muslim 52).
 
 ### `assets/audio/prayer/allahumme_salli.mp3`
 

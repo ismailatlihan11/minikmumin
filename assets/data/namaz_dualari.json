@@ -658,11 +658,11 @@
       "id": "rabbena_lekel_hamd",
       "type": "prayer_dua",
       "title": "Rabbenâ Lekel-Hamd",
-      "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ",
-      "transliteration": "Rabbenâ ve lekel-hamd, hamden kesîran tayyiben mübâreken fîh.",
-      "meaning": "Rabbimiz! Hamd sanadır; bol, güzel ve bereketli hamd.",
+      "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ",
+      "transliteration": "Rabbenâ ve lekel-hamd.",
+      "meaning": "Rabbimiz! Hamd sanadır.",
       "usage": "Rükûdan doğrulup kıyamda durunca okunur.",
-      "source": "Buhârî, Ezân 126 / Hisn al-Muslim"
+      "source": "Diyanet Namaz İlmihali"
     }
   ]
 }

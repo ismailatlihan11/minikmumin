@@ -104,39 +104,43 @@ LETTERS = [
     ("ya", "ي", "يَاء"),
 ]
 
-# Turkish elifba names (Be, He, Kef, Tı…). Keep the real letter so mahraj
-# and tafkhim stay intact. Textbook names like بَاء / هَاء / كَاف / طَاء
-# collapse into "baa / haa / kaaf" and children cannot tell them apart.
+# Spoken names follow Diyanet Elifba "Harfler ve İsimleri" short names
+# (با تا ثا…), not بَاء/ثِيهْ. Those extra ي/ء glides made Te/Se sound like Ye.
+# Harakat are TTS hints only so Chirp speaks the same short name; Diyanet
+# files are not copied. Isolated names skip tilavet madd/waqf processing.
 ELIFBA_SPOKEN_NAMES = {
-    "elif": "أَلِفْ",
-    "ba": "بِهْ",
-    "ta": "تِهْ",
-    "tha": "ثِيهْ",
-    "jim": "جِيمْ",
-    "ha": "حَهْ",
-    "kha": "خِي",
-    "dal": "دَالْ",
-    "dhal": "ذِلْ",
-    "ra": "رَهْ",
-    "zay": "زِهْ",
-    "sin": "سِينْ",
-    "shin": "شِينْ",
-    "sad": "صَادْ",
-    "dad": "ضَادْ",
-    "ta_heavy": "طِيْ",
-    "za_heavy": "ظِيْ",
-    "ayn": "عَيْنْ",
-    "ghayn": "غَيْنْ",
-    "fa": "فِهْ",
-    "qaf": "قَافْ",
-    "kaf": "كِيفْ",
-    "lam": "لَامْ",
+    "elif": "اَلِف",
+    "ba": "بَا",
+    "ta": "تَا",
+    "tha": "ثَا",
+    "jim": "جِيم",
+    "ha": "حَا",
+    "kha": "خَا",
+    "dal": "دَال",
+    "dhal": "ذَال",
+    "ra": "رَا",
+    "zay": "زَاى",
+    "sin": "سِين",
+    "shin": "شِين",
+    "sad": "صَاد",
+    "dad": "ضَاد",
+    "ta_heavy": "طَا",
+    "za_heavy": "ظَا",
+    "ayn": "عَيْن",
+    "ghayn": "غَيْن",
+    "fa": "فَا",
+    "qaf": "قَاف",
+    "kaf": "كَاف",
+    "lam": "لَام",
     "mim": "مِيمْ",
-    "nun": "نُونْ",
-    "hah": "هِهْ",
-    "waw": "وَاوْ",
-    "ya": "يِهْ",
+    "nun": "نُون",
+    "hah": "هَاء",
+    "waw": "وَاو",
+    "ya": "يَا",
 }
+RAW_TTS_CATEGORIES = frozenset({"alphabet", "harakat", "tanwin", "sukun", "shadda"})
+MIN_CLIP_SEC = 0.22
+MIN_CLIP_PEAK = 1500
 
 HARAKA = [
     ("fatha", "َ", "فَتْحَة"),
@@ -288,6 +292,7 @@ class Clip:
     speaking_rate: float | None = None
     gap_ms: int | None = None
     target_seconds: float | None = None
+    apply_tajweed: bool = True
 
 
 # Spoken dua starts must already exist inside duas.json arabic.
@@ -470,6 +475,7 @@ def build_catalog(*, test: bool) -> list[Clip]:
                 extra=extra,
                 phonetic=is_phonetic,
                 repeat=2 if repeat is None else repeat,
+                apply_tajweed=category not in RAW_TTS_CATEGORIES,
             )
         )
 
@@ -496,7 +502,7 @@ def build_catalog(*, test: bool) -> list[Clip]:
     add(
         "lam_elif",
         "alphabet",
-        "لَامْ أَلِف",
+        "لَام اَلِف",
         "alphabet/lam_elif.mp3",
         phonetic=False,
         repeat=1,
@@ -1269,7 +1275,7 @@ def decode_mp3_pcm(path: Path, rate: int = CARTOON_RATE) -> tuple[bytes, int, in
     return pcm, channels, rate
 
 
-def trim_pcm(pcm: bytes, channels: int, rate: int, *, thresh: int = 380, pad_ms: int = 70) -> bytes:
+def trim_pcm(pcm: bytes, channels: int, rate: int, *, thresh: int = 180, pad_ms: int = 140) -> bytes:
     frame = 2 * channels
     total = len(pcm) // frame
     if total == 0:
@@ -1286,7 +1292,7 @@ def trim_pcm(pcm: bytes, channels: int, rate: int, *, thresh: int = 380, pad_ms:
     peak = 0
     for i in range(total):
         peak = max(peak, amp(i))
-    cut = max(thresh, int(peak * 0.06) if peak else thresh)
+    cut = max(thresh, int(peak * 0.03) if peak else thresh)
 
     start = 0
     while start < total and amp(start) < cut:
@@ -1358,11 +1364,42 @@ def cartoonize_mp3(path: Path) -> None:
         return
     try:
         pcm, channels, rate = decode_mp3_pcm(path)
-        pcm = trim_pcm(pcm, channels, rate)
-        pcm = pitch_pcm(pcm, channels, 2 ** (CARTOON_SEMITONES / 12))
+        trimmed = trim_pcm(pcm, channels, rate)
+        trimmed_sec = len(trimmed) / (2 * channels * rate) if channels and rate else 0.0
+        if trimmed_sec < MIN_CLIP_SEC:
+            trimmed = pcm
+        pcm = pitch_pcm(trimmed, channels, 2 ** (CARTOON_SEMITONES / 12))
         encode_mp3(pcm, path, channels, rate)
     except Exception as exc:  # noqa: BLE001
         log_line("RETRY", f"cartoon pitch skipped for {path}: {exc}")
+
+
+def mp3_duration_sec(path: Path) -> float:
+    pcm, channels, rate = decode_mp3_pcm(path)
+    if not channels or not rate:
+        return 0.0
+    return len(pcm) / (2 * channels * rate)
+
+
+def mp3_peak(path: Path) -> int:
+    pcm, channels, _rate = decode_mp3_pcm(path)
+    frame = 2 * channels
+    peak = 0
+    for i in range(0, len(pcm), frame):
+        s = int.from_bytes(pcm[i : i + 2], "little", signed=True)
+        peak = max(peak, abs(s))
+    return peak
+
+
+def usable_educational_mp3(path: Path) -> bool:
+    if not looks_like_mp3(path):
+        return False
+    try:
+        if mp3_duration_sec(path) < MIN_CLIP_SEC:
+            return False
+        return mp3_peak(path) >= MIN_CLIP_PEAK
+    except Exception:
+        return False
 
 
 def render_spoken_mp3(
@@ -1374,8 +1411,9 @@ def render_spoken_mp3(
     speaking_rate: float,
     gap_ms: int | None = None,
     target_seconds: float | None = None,
+    apply_tajweed: bool = True,
 ) -> None:
-    chunks = spoken_chunks(arabic)
+    chunks = spoken_chunks(arabic) if apply_tajweed else [arabic.strip()]
     pause = CHUNK_GAP_MS if gap_ms is None else gap_ms
     log_line("START", f"{dest} chunks={len(chunks)} gap_ms={pause}")
     if len(chunks) == 1:
@@ -1482,6 +1520,57 @@ def write_sources_doc(voice: str, generated: int, skipped: int, failed: int) -> 
     )
 
 
+def render_educational_clip(client, voice_name: str, dest: Path, clip: Clip) -> float:
+    """Speak one educational clip. Isolated names skip tilavet; short takes retry."""
+    rate = clip.speaking_rate or SPEAKING_RATE
+    voices = (voice_name,) + tuple(v for v in PREFERRED_VOICES if v != voice_name)
+    last_error: Exception | None = None
+    for candidate in voices[:3]:
+        ssml_tries = (True, False) if clip.phonetic else (False,)
+        for use_ssml in ssml_tries:
+            try:
+                if clip.phonetic:
+                    rate = PHONETIC_RATE
+                    synthesize(
+                        client,
+                        candidate,
+                        dest,
+                        text=phonetic_fallback_text(
+                            clip.arabic, clip.extra, repeat=clip.repeat
+                        ),
+                        ssml=(
+                            phonetic_ssml(clip.arabic, clip.extra, repeat=clip.repeat)
+                            if use_ssml
+                            else None
+                        ),
+                        speaking_rate=rate,
+                        allow_pitch=True,
+                        process_text=False,
+                    )
+                    cartoonize_mp3(dest)
+                else:
+                    render_spoken_mp3(
+                        client,
+                        candidate,
+                        dest,
+                        arabic=clip.arabic,
+                        speaking_rate=rate,
+                        gap_ms=clip.gap_ms,
+                        target_seconds=clip.target_seconds,
+                        apply_tajweed=clip.apply_tajweed,
+                    )
+                if not usable_educational_mp3(dest):
+                    dest.unlink(missing_ok=True)
+                    raise RuntimeError("silent or too-short MP3")
+                if candidate != voice_name:
+                    log_line("RETRY", f"{dest} used fallback voice {candidate}")
+                return rate
+            except Exception as exc:  # noqa: BLE001
+                last_error = exc
+                log_line("RETRY", f"{dest} voice={candidate} ssml={use_ssml}: {exc}")
+    raise RuntimeError(f"TTS failed for {dest}: {last_error}") from last_error
+
+
 def make_client():
     from google.cloud import texttospeech
 
@@ -1551,34 +1640,7 @@ def run(
             }
             continue
         try:
-            rate = clip.speaking_rate or SPEAKING_RATE
-            if clip.phonetic:
-                rate = PHONETIC_RATE
-                synthesize(
-                    client,
-                    voice,
-                    dest,
-                    text=phonetic_fallback_text(
-                        clip.arabic, clip.extra, repeat=clip.repeat
-                    ),
-                    ssml=phonetic_ssml(clip.arabic, clip.extra, repeat=clip.repeat),
-                    speaking_rate=rate,
-                    allow_pitch=True,
-                )
-                cartoonize_mp3(dest)
-            else:
-                render_spoken_mp3(
-                    client,
-                    voice,
-                    dest,
-                    arabic=clip.arabic,
-                    speaking_rate=rate,
-                    gap_ms=clip.gap_ms,
-                    target_seconds=clip.target_seconds,
-                )
-            if not looks_like_mp3(dest):
-                dest.unlink(missing_ok=True)
-                raise RuntimeError("output was not a valid MP3")
+            rate = render_educational_clip(client, voice, dest, clip)
             generated += 1
             log_line("GENERATED", f"{clip.rel_path} ({dest.stat().st_size} bytes)")
             by_id[clip.clip_id] = {
