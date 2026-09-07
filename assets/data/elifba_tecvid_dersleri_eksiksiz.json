@@ -1,0 +1,6442 @@
+{
+  "schema_version": "1.0.0",
+  "language": "tr-TR",
+  "title": "Elifbâ ve Temel Tecvid",
+  "description": "Çocuklar ve başlangıç seviyesindeki öğrenciler için derslere bölünmüş Elifbâ ve temel tecvid eğitim içeriği.",
+  "lesson_count": 31,
+  "features": {
+    "progress_tracking": true,
+    "lesson_quiz": true,
+    "audio_placeholders": true,
+    "favorites": true,
+    "resume_learning": true
+  },
+  "audio_fields_recommended": [
+    "audio_letter",
+    "audio_word",
+    "audio_rule",
+    "audio_example"
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Harflerle Tanışıyorum",
+      "level": "Başlangıç",
+      "goal": "Arapça harflerini şekilleri ve isimleriyle tanımak.",
+      "explanation": "Kur'an okumayı öğrenmenin ilk adımı harfleri tanımaktır. Her harfin bir adı ve kendine özgü yazılış şekli vardır.",
+      "letters": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "note": "Tek başına temel olarak sesli harf taşıyıcısıdır; med konusunda ayrıca öğrenilecektir."
+        },
+        {
+          "letter": "ب",
+          "name": "Be"
+        },
+        {
+          "letter": "ت",
+          "name": "Te"
+        },
+        {
+          "letter": "ث",
+          "name": "Se"
+        },
+        {
+          "letter": "ج",
+          "name": "Cim"
+        },
+        {
+          "letter": "ح",
+          "name": "Ha"
+        },
+        {
+          "letter": "خ",
+          "name": "Hı"
+        },
+        {
+          "letter": "د",
+          "name": "Dal"
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel"
+        },
+        {
+          "letter": "ر",
+          "name": "Ra"
+        },
+        {
+          "letter": "ز",
+          "name": "Ze"
+        },
+        {
+          "letter": "س",
+          "name": "Sin"
+        },
+        {
+          "letter": "ش",
+          "name": "Şın"
+        },
+        {
+          "letter": "ص",
+          "name": "Sad"
+        },
+        {
+          "letter": "ض",
+          "name": "Dad"
+        },
+        {
+          "letter": "ط",
+          "name": "Tı"
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı"
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn"
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın"
+        },
+        {
+          "letter": "ف",
+          "name": "Fe"
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf"
+        },
+        {
+          "letter": "ك",
+          "name": "Kef"
+        },
+        {
+          "letter": "ل",
+          "name": "Lam"
+        },
+        {
+          "letter": "م",
+          "name": "Mim"
+        },
+        {
+          "letter": "ن",
+          "name": "Nun"
+        },
+        {
+          "letter": "ه",
+          "name": "He"
+        },
+        {
+          "letter": "و",
+          "name": "Vav"
+        },
+        {
+          "letter": "ي",
+          "name": "Ya"
+        }
+      ],
+      "activities": [
+        "Harfi gör ve adını söyle.",
+        "Öğretmenin/sesli örneğin ardından harfin adını tekrar et.",
+        "Benzer görünen harfleri ayır."
+      ],
+      "quiz": [
+        {
+          "question": "Aşağıdakilerden hangisinin adı Be'dir?",
+          "options": [
+            "ا",
+            "ب",
+            "ت"
+          ],
+          "answer": "ب"
+        },
+        {
+          "question": "ث harfinin adı nedir?",
+          "options": [
+            "Se",
+            "Te",
+            "Cim"
+          ],
+          "answer": "Se"
+        },
+        {
+          "question": "ق harfinin adı nedir?",
+          "options": [
+            "Kaf",
+            "Fe",
+            "Kef"
+          ],
+          "answer": "Kaf"
+        },
+        {
+          "question": "ي harfinin adı nedir?",
+          "options": [
+            "Ya",
+            "Vav",
+            "He"
+          ],
+          "answer": "Ya"
+        },
+        {
+          "question": "ص harfinin adı nedir?",
+          "options": [
+            "Sad",
+            "Dad",
+            "Sin"
+          ],
+          "answer": "Sad"
+        },
+        {
+          "question": "ه harfinin adı nedir?",
+          "options": [
+            "He",
+            "Ha",
+            "Hı"
+          ],
+          "answer": "He"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Arapça harflerini şekilleri ve isimleriyle tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          {
+            "letter": "ا",
+            "name": "Elif"
+          },
+          {
+            "letter": "ب",
+            "name": "Be"
+          },
+          {
+            "letter": "ت",
+            "name": "Te"
+          },
+          {
+            "letter": "ث",
+            "name": "Se"
+          },
+          {
+            "letter": "ج",
+            "name": "Cim"
+          },
+          {
+            "letter": "ح",
+            "name": "Ha"
+          },
+          {
+            "letter": "خ",
+            "name": "Hı"
+          },
+          {
+            "letter": "د",
+            "name": "Dal"
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel"
+          },
+          {
+            "letter": "ر",
+            "name": "Ra"
+          },
+          {
+            "letter": "ز",
+            "name": "Ze"
+          },
+          {
+            "letter": "س",
+            "name": "Sin"
+          },
+          {
+            "letter": "ش",
+            "name": "Şın"
+          },
+          {
+            "letter": "ص",
+            "name": "Sad"
+          },
+          {
+            "letter": "ض",
+            "name": "Dad"
+          },
+          {
+            "letter": "ط",
+            "name": "Tı"
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı"
+          },
+          {
+            "letter": "ع",
+            "name": "Ayn"
+          },
+          {
+            "letter": "غ",
+            "name": "Gayın"
+          },
+          {
+            "letter": "ف",
+            "name": "Fe"
+          },
+          {
+            "letter": "ق",
+            "name": "Kaf"
+          },
+          {
+            "letter": "ك",
+            "name": "Kef"
+          },
+          {
+            "letter": "ل",
+            "name": "Lam"
+          },
+          {
+            "letter": "م",
+            "name": "Mim"
+          },
+          {
+            "letter": "ن",
+            "name": "Nun"
+          },
+          {
+            "letter": "ه",
+            "name": "He"
+          },
+          {
+            "letter": "و",
+            "name": "Vav"
+          },
+          {
+            "letter": "ي",
+            "name": "Ya"
+          }
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 28,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 2,
+      "title": "İnce, Kalın ve Peltek Harfler",
+      "level": "Başlangıç",
+      "goal": "Harflerin temel ses özelliklerini ayırt etmek; kalın, ince ve peltek harfleri tanımak.",
+      "explanation": "Arapça harflerin hepsi aynı ağız yapısıyla okunmaz. Bazı harfler kalın (tefhim), bazıları ince (terkik) okunur. Peltek harflerde ise dilin ucu ön dişlere yaklaşır veya hafifçe dişlerin arasına gelir. Bu sınıflandırma doğru telaffuzun temelidir.",
+      "important_note": "Bu ders başlangıç düzeyindeki pratik sınıflandırmadır. Ra (ر) ve Allah lafzındaki lâm (ل) gibi harflerin okunuşu bulunduğu hareke ve bağlama göre değişebildiği için ayrıca öğretilecektir.",
+      "categories": [
+        {
+          "name": "Kalın Harfler",
+          "arabic_name": "Hurûf-u İsti'lâ",
+          "letters": [
+            "خ",
+            "ص",
+            "ض",
+            "غ",
+            "ط",
+            "ق",
+            "ظ"
+          ],
+          "memory_phrase": "خُصَّ ضَغْطٍ قِظْ",
+          "meaning": "Bu yedi harf temel olarak kalın okunur.",
+          "examples": [
+            {
+              "text": "خَ",
+              "reading": "hâ / kalın h sesi",
+              "note": "Hı (خ)"
+            },
+            {
+              "text": "صَ",
+              "reading": "sâ",
+              "note": "Sad (ص)"
+            },
+            {
+              "text": "ضَ",
+              "reading": "dâd",
+              "note": "Dad (ض)"
+            },
+            {
+              "text": "غَ",
+              "reading": "ğayn / gayn",
+              "note": "Gayn (غ)"
+            },
+            {
+              "text": "طَ",
+              "reading": "tâ",
+              "note": "Tı (ط)"
+            },
+            {
+              "text": "قَ",
+              "reading": "kâf / kalın k",
+              "note": "Kaf (ق)"
+            },
+            {
+              "text": "ظَ",
+              "reading": "zâ / peltek kalın z",
+              "note": "Zı (ظ)"
+            }
+          ]
+        },
+        {
+          "name": "İnce Harfler",
+          "arabic_name": "Hurûf-u Terkîk",
+          "letters": [
+            "ء",
+            "ب",
+            "ت",
+            "ث",
+            "ج",
+            "ح",
+            "د",
+            "ذ",
+            "س",
+            "ش",
+            "ع",
+            "ف",
+            "ك",
+            "ل",
+            "م",
+            "ن",
+            "ه",
+            "و",
+            "ي"
+          ],
+          "meaning": "Bu harfler temel olarak ince okunur. Ancak Ra (ر) ve Allah lafzındaki lâm (ل) ayrıca özel kurallara sahiptir.",
+          "examples": [
+            {
+              "text": "بَ",
+              "reading": "ba",
+              "note": "Be ince okunur."
+            },
+            {
+              "text": "سَ",
+              "reading": "sa",
+              "note": "Sin ince okunur."
+            },
+            {
+              "text": "مِ",
+              "reading": "mi",
+              "note": "Mim ince okunur."
+            }
+          ]
+        },
+        {
+          "name": "Peltek Harfler",
+          "letters": [
+            "ث",
+            "ذ",
+            "ظ"
+          ],
+          "meaning": "Bu harflerde dil ucu ön dişlere yaklaşır. Türkçedeki s, z ve t sesleriyle tam olarak aynı değildir.",
+          "examples": [
+            {
+              "text": "ثَ",
+              "reading": "Peltek se",
+              "note": "Dil ucu dişlere yaklaşır."
+            },
+            {
+              "text": "ذَ",
+              "reading": "Peltek zel",
+              "note": "Dil ucu dişlere yaklaşır."
+            },
+            {
+              "text": "ظَ",
+              "reading": "Peltek, kalın zı",
+              "note": "Hem peltektir hem kalın okunur."
+            }
+          ]
+        }
+      ],
+      "comparison": [
+        {
+          "group": "ث / س",
+          "difference": "ث peltek okunur; س normal ince 's' sesidir.",
+          "examples": [
+            "ثَ",
+            "سَ"
+          ]
+        },
+        {
+          "group": "ذ / ز",
+          "difference": "ذ peltek okunur; ز normal ince 'z' sesidir.",
+          "examples": [
+            "ذَ",
+            "زَ"
+          ]
+        },
+        {
+          "group": "ظ / ز",
+          "difference": "ظ peltek ve kalındır; ز ince okunur.",
+          "examples": [
+            "ظَ",
+            "زَ"
+          ]
+        },
+        {
+          "group": "ت / ط",
+          "difference": "ت ince; ط kalın okunur.",
+          "examples": [
+            "تَ",
+            "طَ"
+          ]
+        },
+        {
+          "group": "س / ص",
+          "difference": "س ince; ص kalın okunur.",
+          "examples": [
+            "سَ",
+            "صَ"
+          ]
+        },
+        {
+          "group": "ك / ق",
+          "difference": "ك ince; ق kalın okunur.",
+          "examples": [
+            "كَ",
+            "قَ"
+          ]
+        }
+      ],
+      "activities": [
+        "Kalın harfleri tek tek söyle ve sesin dolgunlaşmasını fark et.",
+        "ث، ذ، ظ harflerini dil ucunun dişlere yaklaşmasıyla çalış.",
+        "İnce-kalın çiftlerini karşılaştır: ت/ط, س/ص, ك/ق.",
+        "Peltek çiftleri karşılaştır: ث/س, ذ/ز, ظ/ز."
+      ],
+      "quiz": [
+        {
+          "question": "Aşağıdakilerden hangisi kalın harflerden biridir?",
+          "options": [
+            "س",
+            "ق",
+            "م"
+          ],
+          "answer": "ق"
+        },
+        {
+          "question": "Aşağıdakilerden hangisi peltek harflerden biridir?",
+          "options": [
+            "ث",
+            "س",
+            "ش"
+          ],
+          "answer": "ث"
+        },
+        {
+          "question": "ظ harfinin iki temel özelliği hangisidir?",
+          "options": [
+            "İnce ve normal z",
+            "Peltek ve kalın",
+            "İnce ve peltek"
+          ],
+          "answer": "Peltek ve kalın"
+        },
+        {
+          "question": "ت ile ط arasındaki temel fark nedir?",
+          "options": [
+            "ت kalın, ط ince",
+            "İkisi de aynı",
+            "ت ince, ط kalın"
+          ],
+          "answer": "ت ince, ط kalın"
+        },
+        {
+          "question": "Hangisi peltek harftir?",
+          "options": [
+            "ث",
+            "س",
+            "ش"
+          ],
+          "answer": "ث"
+        },
+        {
+          "question": "Hangisi kalın harftir?",
+          "options": [
+            "ط",
+            "ت",
+            "ب"
+          ],
+          "answer": "ط"
+        },
+        {
+          "question": "ظ harfinin özelliği?",
+          "options": [
+            "Peltek ve kalın",
+            "İnce ve normal z",
+            "Noktasız"
+          ],
+          "answer": "Peltek ve kalın"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Harflerin temel ses özelliklerini ayırt etmek; kalın, ince ve peltek harfleri tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "ث / س",
+          "ذ / ز",
+          "ظ / ز",
+          "ت / ط",
+          "س / ص",
+          "ك / ق",
+          "ج / ح / خ",
+          "ص / ض",
+          "د / ذ",
+          "ع / غ"
+        ],
+        "rule_cards": [
+          {
+            "title": "Kalın harfler",
+            "letters": "خ ص ض غ ط ق ظ",
+            "memory": "خُصَّ ضَغْطٍ قِظْ",
+            "note": "Bu yedi harf temel olarak kalın okunur."
+          },
+          {
+            "title": "Peltek harfler",
+            "letters": "ث ذ ظ",
+            "note": "Dil ucu ön dişlere yaklaşır."
+          },
+          {
+            "title": "İnce harfler",
+            "letters": "Diğer harflerin büyük bölümü",
+            "note": "ر ve Allah lafzındaki ل için özel kurallar ayrıca öğrenilir."
+          }
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "category_tables": {
+        "kalin_harfler": [
+          {
+            "letter": "خ",
+            "name": "Hı",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "ص",
+            "name": "Sad",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "ض",
+            "name": "Dad",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "غ",
+            "name": "Gayın",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "ط",
+            "name": "Tı",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "ق",
+            "name": "Kaf",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı",
+            "memory": "خُصَّ ضَغْطٍ قِظْ"
+          }
+        ],
+        "peltek_harfler": [
+          {
+            "letter": "ث",
+            "name": "Se",
+            "example": "ثَ"
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel",
+            "example": "ذَ"
+          },
+          {
+            "letter": "ظ",
+            "name": "Zı",
+            "example": "ظَ"
+          }
+        ],
+        "ince_harfler": [
+          {
+            "letter": "ا",
+            "name": "Elif",
+            "example": "اَ"
+          },
+          {
+            "letter": "ب",
+            "name": "Be",
+            "example": "بَ"
+          },
+          {
+            "letter": "ت",
+            "name": "Te",
+            "example": "تَ"
+          },
+          {
+            "letter": "ث",
+            "name": "Se",
+            "example": "ثَ"
+          },
+          {
+            "letter": "ج",
+            "name": "Cim",
+            "example": "جَ"
+          },
+          {
+            "letter": "ح",
+            "name": "Ha",
+            "example": "حَ"
+          },
+          {
+            "letter": "د",
+            "name": "Dal",
+            "example": "دَ"
+          },
+          {
+            "letter": "ذ",
+            "name": "Zel",
+            "example": "ذَ"
+          },
+          {
+            "letter": "ز",
+            "name": "Ze",
+            "example": "زَ"
+          },
+          {
+            "letter": "س",
+            "name": "Sin",
+            "example": "سَ"
+          },
+          {
+            "letter": "ش",
+            "name": "Şın",
+            "example": "شَ"
+          },
+          {
+            "letter": "ع",
+            "name": "Ayn",
+            "example": "عَ"
+          },
+          {
+            "letter": "ف",
+            "name": "Fe",
+            "example": "فَ"
+          },
+          {
+            "letter": "ك",
+            "name": "Kef",
+            "example": "كَ"
+          },
+          {
+            "letter": "ل",
+            "name": "Lam",
+            "example": "لَ"
+          },
+          {
+            "letter": "م",
+            "name": "Mim",
+            "example": "مَ"
+          },
+          {
+            "letter": "ن",
+            "name": "Nun",
+            "example": "نَ"
+          },
+          {
+            "letter": "ه",
+            "name": "He",
+            "example": "هَ"
+          },
+          {
+            "letter": "و",
+            "name": "Vav",
+            "example": "وَ"
+          },
+          {
+            "letter": "ي",
+            "name": "Ya",
+            "example": "يَ"
+          }
+        ]
+      },
+      "special_letters": [
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "note": "Kalın veya ince okunabilen özel harf; ayrı derste detaylandırılır."
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "note": "Allah lafzında kalın veya ince okunabilir; ayrı derste detaylandırılır."
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 3,
+      "title": "Harflerin Kelimedeki Şekilleri",
+      "level": "Başlangıç",
+      "goal": "Bağlanan harflerin başta, ortada ve sonda nasıl yazıldığını fark etmek.",
+      "explanation": "Bazı Arapça harfler kendilerinden sonraki harfe bağlanır. Bu nedenle kelime içinde harfin görünüşü değişebilir. Harfin adı ve kimliği değişmez.",
+      "focus_letter": {
+        "letter": "ب",
+        "forms": {
+          "isolated": "ب",
+          "initial": "بـ",
+          "medial": "ـبـ",
+          "final": "ـب"
+        }
+      },
+      "examples": [
+        {
+          "text": "بَاب",
+          "reading": "bâb",
+          "note": "Baştaki ve sondaki biçimlerin değişebildiğine dikkat et."
+        },
+        {
+          "text": "كِتَاب",
+          "reading": "kitâb"
+        },
+        {
+          "text": "مَاء",
+          "reading": "mâ"
+        }
+      ],
+      "activities": [
+        "Aynı harfin dört biçimini eşleştir.",
+        "Kelimede b harfini bul.",
+        "Bağlanan ve bağlanmayan harfleri karşılaştır."
+      ],
+      "quiz": [
+        {
+          "question": "ب harfinin kelime sonundaki örnek biçimi hangisidir?",
+          "options": [
+            "بـ",
+            "ـبـ",
+            "ـب"
+          ],
+          "answer": "ـب"
+        },
+        {
+          "question": "Harf kelime içinde şekil değiştirince adı değişir mi?",
+          "options": [
+            "Evet",
+            "Hayır"
+          ],
+          "answer": "Hayır"
+        },
+        {
+          "question": "بَ nasıl okunur?",
+          "options": [
+            "ba",
+            "bi",
+            "bu"
+          ],
+          "answer": "ba"
+        },
+        {
+          "question": "Bu örnekte hangi hareke var?",
+          "options": [
+            "Üstün",
+            "Esre",
+            "Ötre"
+          ],
+          "answer": "Üstün"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Bağlanan harflerin başta, ortada ve sonda nasıl yazıldığını fark etmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بَ",
+          "تَ",
+          "ثَ",
+          "جَ",
+          "حَ",
+          "خَ",
+          "دَ",
+          "ذَ",
+          "رَ",
+          "زَ",
+          "سَ",
+          "شَ",
+          "صَ",
+          "ضَ",
+          "طَ",
+          "ظَ",
+          "عَ",
+          "غَ",
+          "فَ",
+          "قَ",
+          "كَ",
+          "لَ",
+          "مَ",
+          "نَ",
+          "هَ",
+          "وَ",
+          "يَ"
+        ],
+        "examples_with_words": [
+          [
+            "كَتَبَ",
+            "ka-ta-ba"
+          ],
+          [
+            "جَلَسَ",
+            "ce-le-se"
+          ],
+          [
+            "نَزَلَ",
+            "ne-ze-le"
+          ],
+          [
+            "ذَهَبَ",
+            "ze-he-be"
+          ],
+          [
+            "خَلَقَ",
+            "ha-la-qa"
+          ],
+          [
+            "صَبَرَ",
+            "sa-ba-ra"
+          ]
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 27,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "table_title": "Bütün Harflerin Fethalı Okunuşu",
+      "table_instruction": "Önce harfin adını, sonra fethalı biçimini ve sesini gör.",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "marked": "اَ",
+          "reading": "aa",
+          "note": "Elif kısa harekeyle normal bir ünsüz gibi okunmaz; bu satır işareti tanıma amaçlıdır."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "marked": "بَ",
+          "reading": "ba",
+          "note": null
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "marked": "تَ",
+          "reading": "ta",
+          "note": null
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "marked": "ثَ",
+          "reading": "s (peltek)a",
+          "note": null
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "marked": "جَ",
+          "reading": "ca",
+          "note": null
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "marked": "حَ",
+          "reading": "h (boğaz)a",
+          "note": null
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "marked": "خَ",
+          "reading": "hı (kalın)a",
+          "note": null
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "marked": "دَ",
+          "reading": "da",
+          "note": null
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "marked": "ذَ",
+          "reading": "z (peltek)a",
+          "note": null
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "marked": "رَ",
+          "reading": "ra",
+          "note": null
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "marked": "زَ",
+          "reading": "za",
+          "note": null
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "marked": "سَ",
+          "reading": "sa",
+          "note": null
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "marked": "شَ",
+          "reading": "şa",
+          "note": null
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "marked": "صَ",
+          "reading": "s (kalın)a",
+          "note": null
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "marked": "ضَ",
+          "reading": "d (kalın)a",
+          "note": null
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "marked": "طَ",
+          "reading": "t (kalın)a",
+          "note": null
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "marked": "ظَ",
+          "reading": "z (peltek, kalın)a",
+          "note": null
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "marked": "عَ",
+          "reading": "ayna",
+          "note": null
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "marked": "غَ",
+          "reading": "ğa",
+          "note": null
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "marked": "فَ",
+          "reading": "fa",
+          "note": null
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "marked": "قَ",
+          "reading": "k (kalın)a",
+          "note": null
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "marked": "كَ",
+          "reading": "ka",
+          "note": null
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "marked": "لَ",
+          "reading": "la",
+          "note": null
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "marked": "مَ",
+          "reading": "ma",
+          "note": null
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "marked": "نَ",
+          "reading": "na",
+          "note": null
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "marked": "هَ",
+          "reading": "ha",
+          "note": null
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "marked": "وَ",
+          "reading": "v / wa",
+          "note": null
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "marked": "يَ",
+          "reading": "ya",
+          "note": null
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 4,
+      "title": "Üstün (Fetha)",
+      "level": "Başlangıç",
+      "goal": "Üstün işaretini tanımak ve kısa 'a' sesini okumak.",
+      "explanation": "Üstün (fetha) harfin üstünde bulunan kısa çizgi şeklindeki harekedir. Temel başlangıç düzeyinde harfe kısa 'a' sesi verir.",
+      "rule": {
+        "symbol": "َ",
+        "name": "Üstün / Fetha",
+        "sound": "a"
+      },
+      "examples": [
+        {
+          "text": "بَ",
+          "reading": "ba"
+        },
+        {
+          "text": "تَ",
+          "reading": "ta"
+        },
+        {
+          "text": "مَ",
+          "reading": "ma"
+        },
+        {
+          "text": "نَ",
+          "reading": "na"
+        },
+        {
+          "text": "رَ",
+          "reading": "ra"
+        }
+      ],
+      "practice": [
+        {
+          "text": "سَ",
+          "reading": "sa"
+        },
+        {
+          "text": "لَ",
+          "reading": "la"
+        },
+        {
+          "text": "كَ",
+          "reading": "ka"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "َ işaretinin adı nedir?",
+          "options": [
+            "Esre",
+            "Ötre",
+            "Üstün"
+          ],
+          "answer": "Üstün"
+        },
+        {
+          "question": "بَ nasıl okunur?",
+          "options": [
+            "bi",
+            "ba",
+            "bu"
+          ],
+          "answer": "ba"
+        },
+        {
+          "question": "بِ nasıl okunur?",
+          "options": [
+            "ba",
+            "bi",
+            "bu"
+          ],
+          "answer": "bi"
+        },
+        {
+          "question": "Bu örnekte hangi hareke var?",
+          "options": [
+            "Üstün",
+            "Esre",
+            "Ötre"
+          ],
+          "answer": "Esre"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Üstün işaretini tanımak ve kısa 'a' sesini okumak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بِ",
+          "تِ",
+          "ثِ",
+          "جِ",
+          "حِ",
+          "خِ",
+          "دِ",
+          "ذِ",
+          "رِ",
+          "زِ",
+          "سِ",
+          "شِ",
+          "صِ",
+          "ضِ",
+          "طِ",
+          "ظِ",
+          "عِ",
+          "غِ",
+          "فِ",
+          "قِ",
+          "كِ",
+          "لِ",
+          "مِ",
+          "نِ",
+          "هِ",
+          "وِ",
+          "يِ"
+        ],
+        "examples_with_words": [
+          [
+            "فِيل",
+            "fîl"
+          ],
+          [
+            "رِزْق",
+            "rizq"
+          ],
+          [
+            "كِتَاب",
+            "kitâb"
+          ],
+          [
+            "مِنْ",
+            "min"
+          ],
+          [
+            "بِسْمِ",
+            "bismi"
+          ]
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 27,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "table_title": "Bütün Harflerin Esreli Okunuşu",
+      "table_instruction": "Örnek: ب = Be, بِ = bi.",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "marked": "اِ",
+          "reading": "ai",
+          "note": "Elif kısa harekeyle normal bir ünsüz gibi okunmaz; bu satır işareti tanıma amaçlıdır."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "marked": "بِ",
+          "reading": "bi",
+          "note": null
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "marked": "تِ",
+          "reading": "ti",
+          "note": null
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "marked": "ثِ",
+          "reading": "s (peltek)i",
+          "note": null
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "marked": "جِ",
+          "reading": "ci",
+          "note": null
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "marked": "حِ",
+          "reading": "h (boğaz)i",
+          "note": null
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "marked": "خِ",
+          "reading": "hı (kalın)i",
+          "note": null
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "marked": "دِ",
+          "reading": "di",
+          "note": null
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "marked": "ذِ",
+          "reading": "z (peltek)i",
+          "note": null
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "marked": "رِ",
+          "reading": "ri",
+          "note": null
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "marked": "زِ",
+          "reading": "zi",
+          "note": null
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "marked": "سِ",
+          "reading": "si",
+          "note": null
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "marked": "شِ",
+          "reading": "şi",
+          "note": null
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "marked": "صِ",
+          "reading": "s (kalın)i",
+          "note": null
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "marked": "ضِ",
+          "reading": "d (kalın)i",
+          "note": null
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "marked": "طِ",
+          "reading": "t (kalın)i",
+          "note": null
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "marked": "ظِ",
+          "reading": "z (peltek, kalın)i",
+          "note": null
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "marked": "عِ",
+          "reading": "ayni",
+          "note": null
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "marked": "غِ",
+          "reading": "ği",
+          "note": null
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "marked": "فِ",
+          "reading": "fi",
+          "note": null
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "marked": "قِ",
+          "reading": "k (kalın)i",
+          "note": null
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "marked": "كِ",
+          "reading": "ki",
+          "note": null
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "marked": "لِ",
+          "reading": "li",
+          "note": null
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "marked": "مِ",
+          "reading": "mi",
+          "note": null
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "marked": "نِ",
+          "reading": "ni",
+          "note": null
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "marked": "هِ",
+          "reading": "hi",
+          "note": null
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "marked": "وِ",
+          "reading": "v / wi",
+          "note": null
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "marked": "يِ",
+          "reading": "yi",
+          "note": null
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 5,
+      "title": "Esre (Kesra)",
+      "level": "Başlangıç",
+      "goal": "Esre işaretini tanımak ve kısa 'i' sesini okumak.",
+      "explanation": "Esre (kesra) harfin altında bulunan kısa çizgidir. Temel başlangıç düzeyinde harfe kısa 'i' sesi verir.",
+      "rule": {
+        "symbol": "ِ",
+        "name": "Esre / Kesra",
+        "sound": "i"
+      },
+      "examples": [
+        {
+          "text": "بِ",
+          "reading": "bi"
+        },
+        {
+          "text": "تِ",
+          "reading": "ti"
+        },
+        {
+          "text": "مِ",
+          "reading": "mi"
+        },
+        {
+          "text": "نِ",
+          "reading": "ni"
+        },
+        {
+          "text": "رِ",
+          "reading": "ri"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "ِ işaretinin adı nedir?",
+          "options": [
+            "Esre",
+            "Üstün",
+            "Ötre"
+          ],
+          "answer": "Esre"
+        },
+        {
+          "question": "مِ nasıl okunur?",
+          "options": [
+            "ma",
+            "mi",
+            "mu"
+          ],
+          "answer": "mi"
+        },
+        {
+          "question": "بُ nasıl okunur?",
+          "options": [
+            "ba",
+            "bi",
+            "bu"
+          ],
+          "answer": "bu"
+        },
+        {
+          "question": "Bu örnekte hangi hareke var?",
+          "options": [
+            "Üstün",
+            "Esre",
+            "Ötre"
+          ],
+          "answer": "Ötre"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Esre işaretini tanımak ve kısa 'i' sesini okumak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بُ",
+          "تُ",
+          "ثُ",
+          "جُ",
+          "حُ",
+          "خُ",
+          "دُ",
+          "ذُ",
+          "رُ",
+          "زُ",
+          "سُ",
+          "شُ",
+          "صُ",
+          "ضُ",
+          "طُ",
+          "ظُ",
+          "عُ",
+          "غُ",
+          "فُ",
+          "قُ",
+          "كُ",
+          "لُ",
+          "مُ",
+          "نُ",
+          "هُ",
+          "وُ",
+          "يُ"
+        ],
+        "examples_with_words": [
+          [
+            "كُتُب",
+            "kutub"
+          ],
+          [
+            "رُسُل",
+            "rusul"
+          ],
+          [
+            "قُلْ",
+            "qul"
+          ],
+          [
+            "نُور",
+            "nûr"
+          ],
+          [
+            "رُوح",
+            "rûh"
+          ],
+          [
+            "مُلْك",
+            "mulk"
+          ]
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 27,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "table_title": "Bütün Harflerin Ötreli Okunuşu",
+      "table_instruction": "Örnek: ب = Be, بُ = bu.",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "marked": "اُ",
+          "reading": "au",
+          "note": "Elif kısa harekeyle normal bir ünsüz gibi okunmaz; bu satır işareti tanıma amaçlıdır."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "marked": "بُ",
+          "reading": "bu",
+          "note": null
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "marked": "تُ",
+          "reading": "tu",
+          "note": null
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "marked": "ثُ",
+          "reading": "s (peltek)u",
+          "note": null
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "marked": "جُ",
+          "reading": "cu",
+          "note": null
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "marked": "حُ",
+          "reading": "h (boğaz)u",
+          "note": null
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "marked": "خُ",
+          "reading": "hı (kalın)u",
+          "note": null
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "marked": "دُ",
+          "reading": "du",
+          "note": null
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "marked": "ذُ",
+          "reading": "z (peltek)u",
+          "note": null
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "marked": "رُ",
+          "reading": "ru",
+          "note": null
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "marked": "زُ",
+          "reading": "zu",
+          "note": null
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "marked": "سُ",
+          "reading": "su",
+          "note": null
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "marked": "شُ",
+          "reading": "şu",
+          "note": null
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "marked": "صُ",
+          "reading": "s (kalın)u",
+          "note": null
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "marked": "ضُ",
+          "reading": "d (kalın)u",
+          "note": null
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "marked": "طُ",
+          "reading": "t (kalın)u",
+          "note": null
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "marked": "ظُ",
+          "reading": "z (peltek, kalın)u",
+          "note": null
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "marked": "عُ",
+          "reading": "aynu",
+          "note": null
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "marked": "غُ",
+          "reading": "ğu",
+          "note": null
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "marked": "فُ",
+          "reading": "fu",
+          "note": null
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "marked": "قُ",
+          "reading": "k (kalın)u",
+          "note": null
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "marked": "كُ",
+          "reading": "ku",
+          "note": null
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "marked": "لُ",
+          "reading": "lu",
+          "note": null
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "marked": "مُ",
+          "reading": "mu",
+          "note": null
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "marked": "نُ",
+          "reading": "nu",
+          "note": null
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "marked": "هُ",
+          "reading": "hu",
+          "note": null
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "marked": "وُ",
+          "reading": "v / wu",
+          "note": null
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "marked": "يُ",
+          "reading": "yu",
+          "note": null
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 6,
+      "title": "Ötre (Damme)",
+      "level": "Başlangıç",
+      "goal": "Ötre işaretini tanımak ve kısa 'u' sesini okumak.",
+      "explanation": "Ötre (damme) harfin üzerinde bulunan küçük kıvrımlı işarettir. Temel başlangıç düzeyinde harfe kısa 'u' sesi verir.",
+      "rule": {
+        "symbol": "ُ",
+        "name": "Ötre / Damme",
+        "sound": "u"
+      },
+      "examples": [
+        {
+          "text": "بُ",
+          "reading": "bu"
+        },
+        {
+          "text": "تُ",
+          "reading": "tu"
+        },
+        {
+          "text": "مُ",
+          "reading": "mu"
+        },
+        {
+          "text": "نُ",
+          "reading": "nu"
+        },
+        {
+          "text": "رُ",
+          "reading": "ru"
+        }
+      ],
+      "comparison": [
+        {
+          "text": "بَ",
+          "reading": "ba"
+        },
+        {
+          "text": "بِ",
+          "reading": "bi"
+        },
+        {
+          "text": "بُ",
+          "reading": "bu"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "بُ nasıl okunur?",
+          "options": [
+            "ba",
+            "bi",
+            "bu"
+          ],
+          "answer": "bu"
+        },
+        {
+          "question": "Üç kısa sesi karşılaştır: بَ - بِ - بُ",
+          "options": [
+            "a-i-u",
+            "i-a-u",
+            "u-i-a"
+          ],
+          "answer": "a-i-u"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Ötre işaretini tanımak ve kısa 'u' sesini okumak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بَتَ",
+          "بِتِ",
+          "بُتُ",
+          "مَنَ",
+          "مِنِ",
+          "مُنُ",
+          "كَتَ",
+          "كِتِ",
+          "كُتُ",
+          "جَلَ",
+          "جِلَ",
+          "جُلَ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 12,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 7,
+      "title": "Hareke ile Birleştirme",
+      "level": "Başlangıç",
+      "goal": "Harf ve harekeleri birleştirerek kısa heceler okumak.",
+      "explanation": "Tek tek harfleri tanıdıktan sonra sesleri birleştirmeye geçilir. Amaç harfi sadece adıyla söylemek değil, üzerindeki harekeyle oluşan sesi okumaktır.",
+      "examples": [
+        {
+          "text": "بَ",
+          "reading": "ba"
+        },
+        {
+          "text": "تُ",
+          "reading": "tu"
+        },
+        {
+          "text": "مِ",
+          "reading": "mi"
+        },
+        {
+          "text": "لَ",
+          "reading": "la"
+        },
+        {
+          "text": "كِ",
+          "reading": "ki"
+        }
+      ],
+      "blending": [
+        {
+          "text": "بَ + تَ",
+          "reading": "ba-ta"
+        },
+        {
+          "text": "مَ + نَ",
+          "reading": "ma-na"
+        },
+        {
+          "text": "كَ + تَ",
+          "reading": "ka-ta"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "بَ + تَ birlikte nasıl okunur?",
+          "options": [
+            "bi-tu",
+            "ba-ta",
+            "bu-ti"
+          ],
+          "answer": "ba-ta"
+        },
+        {
+          "question": "Buradaki amaç nedir?",
+          "options": [
+            "Harf adlarını ezberlemek",
+            "Sesleri doğru birleştirmek",
+            "Sadece yazmak"
+          ],
+          "answer": "Sesleri doğru birleştirmek"
+        },
+        {
+          "question": "ْ işareti nedir?",
+          "options": [
+            "Cezm",
+            "Şedde",
+            "Tenvin"
+          ],
+          "answer": "Cezm"
+        },
+        {
+          "question": "قُلْ kelimesinin sonundaki harf?",
+          "options": [
+            "ق",
+            "ل"
+          ],
+          "answer": "ل"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Harf ve harekeleri birleştirerek kısa heceler okumak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "أَبْ",
+          "أَتْ",
+          "أَمْ",
+          "أَنْ",
+          "مَنْ",
+          "مِنْ",
+          "عَنْ",
+          "لَمْ",
+          "هَلْ",
+          "قُلْ",
+          "يَجْ",
+          "يَسْ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 12,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "table_title": "Bütün Harflerin Cezmli Hali",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "marked": "اْ",
+          "reading": "cezmli a",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "marked": "بْ",
+          "reading": "cezmli b",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "marked": "تْ",
+          "reading": "cezmli t",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "marked": "ثْ",
+          "reading": "cezmli s (peltek)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "marked": "جْ",
+          "reading": "cezmli c",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "marked": "حْ",
+          "reading": "cezmli h (boğaz)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "marked": "خْ",
+          "reading": "cezmli hı (kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "marked": "دْ",
+          "reading": "cezmli d",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "marked": "ذْ",
+          "reading": "cezmli z (peltek)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "marked": "رْ",
+          "reading": "cezmli r",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "marked": "زْ",
+          "reading": "cezmli z",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "marked": "سْ",
+          "reading": "cezmli s",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "marked": "شْ",
+          "reading": "cezmli ş",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "marked": "صْ",
+          "reading": "cezmli s (kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "marked": "ضْ",
+          "reading": "cezmli d (kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "marked": "طْ",
+          "reading": "cezmli t (kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "marked": "ظْ",
+          "reading": "cezmli z (peltek, kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "marked": "عْ",
+          "reading": "cezmli ayn",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "marked": "غْ",
+          "reading": "cezmli ğ",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "marked": "فْ",
+          "reading": "cezmli f",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "marked": "قْ",
+          "reading": "cezmli k (kalın)",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "marked": "كْ",
+          "reading": "cezmli k",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "marked": "لْ",
+          "reading": "cezmli l",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "marked": "مْ",
+          "reading": "cezmli m",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "marked": "نْ",
+          "reading": "cezmli n",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "marked": "هْ",
+          "reading": "cezmli h",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "marked": "وْ",
+          "reading": "cezmli v / w",
+          "note": "Cezmli harf önceki sesle birleşir."
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "marked": "يْ",
+          "reading": "cezmli y",
+          "note": "Cezmli harf önceki sesle birleşir."
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 8,
+      "title": "Cezm (Sükûn)",
+      "level": "Başlangıç",
+      "goal": "Cezmli harfi harekesiz okumayı ve önceki sesle birleştirmeyi öğrenmek.",
+      "explanation": "Cezm (sükûn) işareti ْ, harfte kısa hareke bulunmadığını gösterir. Cezmli harf kendinden önceki sesle birleşerek kapalı hece oluşturur.",
+      "rule": {
+        "symbol": "ْ",
+        "name": "Cezm / Sükûn",
+        "sound": "harekesiz"
+      },
+      "examples": [
+        {
+          "text": "بْ",
+          "reading": "b"
+        },
+        {
+          "text": "مْ",
+          "reading": "m"
+        },
+        {
+          "text": "نْ",
+          "reading": "n"
+        }
+      ],
+      "blending": [
+        {
+          "text": "أَبْ",
+          "reading": "eb"
+        },
+        {
+          "text": "مَنْ",
+          "reading": "men"
+        },
+        {
+          "text": "لَمْ",
+          "reading": "lem"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "ْ işaretine ne ad verilir?",
+          "options": [
+            "Şedde",
+            "Cezm",
+            "Tenvin"
+          ],
+          "answer": "Cezm"
+        },
+        {
+          "question": "مَنْ kelimesinin sonunda hangi harf cezimlidir?",
+          "options": [
+            "م",
+            "ن"
+          ],
+          "answer": "ن"
+        },
+        {
+          "question": "Şedde neyi gösterir?",
+          "options": [
+            "Çift/kuvvetli okuma",
+            "Uzatma",
+            "Durma"
+          ],
+          "answer": "Çift/kuvvetli okuma"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Cezmli harfi harekesiz okumayı ve önceki sesle birleştirmeyi öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بَّ",
+          "تَّ",
+          "جَّ",
+          "دَّ",
+          "رَّ",
+          "سَّ",
+          "مَّ",
+          "نَّ",
+          "لَّ"
+        ],
+        "examples_with_words": [
+          [
+            "إِنَّ",
+            "inne"
+          ],
+          [
+            "رَبَّنَا",
+            "rabbenâ"
+          ],
+          [
+            "مُحَمَّد",
+            "Muhammed"
+          ],
+          [
+            "ثُمَّ",
+            "summe"
+          ],
+          [
+            "النَّاس",
+            "en-nâs"
+          ],
+          [
+            "الْحَقِّ",
+            "el-haqq"
+          ]
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "table_title": "Bütün Harflerin Şeddeli Hali",
+      "letter_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "marked": "اّ",
+          "reading": "şeddeli a",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ب",
+          "name": "Be",
+          "marked": "بّ",
+          "reading": "şeddeli b",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ت",
+          "name": "Te",
+          "marked": "تّ",
+          "reading": "şeddeli t",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "marked": "ثّ",
+          "reading": "şeddeli s (peltek)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "marked": "جّ",
+          "reading": "şeddeli c",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "marked": "حّ",
+          "reading": "şeddeli h (boğaz)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "marked": "خّ",
+          "reading": "şeddeli hı (kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "marked": "دّ",
+          "reading": "şeddeli d",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "marked": "ذّ",
+          "reading": "şeddeli z (peltek)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "marked": "رّ",
+          "reading": "şeddeli r",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "marked": "زّ",
+          "reading": "şeddeli z",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "marked": "سّ",
+          "reading": "şeddeli s",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "marked": "شّ",
+          "reading": "şeddeli ş",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "marked": "صّ",
+          "reading": "şeddeli s (kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "marked": "ضّ",
+          "reading": "şeddeli d (kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "marked": "طّ",
+          "reading": "şeddeli t (kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "marked": "ظّ",
+          "reading": "şeddeli z (peltek, kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "marked": "عّ",
+          "reading": "şeddeli ayn",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "marked": "غّ",
+          "reading": "şeddeli ğ",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "marked": "فّ",
+          "reading": "şeddeli f",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "marked": "قّ",
+          "reading": "şeddeli k (kalın)",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "marked": "كّ",
+          "reading": "şeddeli k",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "marked": "لّ",
+          "reading": "şeddeli l",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "marked": "مّ",
+          "reading": "şeddeli m",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "marked": "نّ",
+          "reading": "şeddeli n",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "marked": "هّ",
+          "reading": "şeddeli h",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "marked": "وّ",
+          "reading": "şeddeli v / w",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "marked": "يّ",
+          "reading": "şeddeli y",
+          "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": true,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 9,
+      "title": "Şedde",
+      "level": "Başlangıç",
+      "goal": "Şeddeli harfin iki harf değerinde okunmasını kavramak.",
+      "explanation": "Şedde ّ işareti harfin kuvvetli/çift okunacağını gösterir. Uygulamada şeddeli harf, biri sükûnlu biri harekeli iki harf gibi düşünülür.",
+      "rule": {
+        "symbol": "ّ",
+        "name": "Şedde",
+        "concept": "Çift/kuvvetli okuma"
+      },
+      "examples": [
+        {
+          "text": "رَبِّ",
+          "reading": "rabbi"
+        },
+        {
+          "text": "إِنَّ",
+          "reading": "inne"
+        },
+        {
+          "text": "ثُمَّ",
+          "reading": "summe"
+        }
+      ],
+      "step_example": {
+        "text": "بَّ",
+        "explanation": "Şeddeli ب, iki ب değerinde düşünülür: ilk ses kapalı, ikinci ses harekelidir."
+      },
+      "quiz": [
+        {
+          "question": "Şedde neyi gösterir?",
+          "options": [
+            "Uzatmayı",
+            "Çift/kuvvetli okumayı",
+            "Durmayı"
+          ],
+          "answer": "Çift/kuvvetli okumayı"
+        },
+        {
+          "question": "إِنَّ kelimesinde hangi harf şeddelidir?",
+          "options": [
+            "ا",
+            "ن"
+          ],
+          "answer": "ن"
+        },
+        {
+          "question": "كِتَابٌ hangi tenvin?",
+          "options": [
+            "İki üstün",
+            "İki esre",
+            "İki ötre"
+          ],
+          "answer": "İki ötre"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Şeddeli harfin iki harf değerinde okunmasını kavramak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "كِتَابٌ",
+          "كِتَابٍ",
+          "كِتَابًا",
+          "عَلِيمٌ",
+          "عَلِيمٍ",
+          "عَلِيمًا",
+          "غَفُورٌ",
+          "غَفُورٍ",
+          "غَفُورًا"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 10,
+      "title": "Tenvin",
+      "level": "Başlangıç",
+      "goal": "İki üstün, iki esre ve iki ötreyi tanımak.",
+      "explanation": "Tenvin, kelime sonunda görülen çift harekedir. Okunuşta yazıda görünmeyen ek bir n sesi oluşturur: -an, -in, -un.",
+      "types": [
+        {
+          "symbol": "ً",
+          "name": "Fethateyn / İki Üstün",
+          "reading": "an/en"
+        },
+        {
+          "symbol": "ٍ",
+          "name": "Kesrateyn / İki Esre",
+          "reading": "in"
+        },
+        {
+          "symbol": "ٌ",
+          "name": "Dammateyn / İki Ötre",
+          "reading": "un"
+        }
+      ],
+      "examples": [
+        {
+          "text": "كِتَابًا",
+          "reading": "kitâben"
+        },
+        {
+          "text": "كِتَابٍ",
+          "reading": "kitâbin"
+        },
+        {
+          "text": "كِتَابٌ",
+          "reading": "kitâbun"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "ٌ hangi tenvindir?",
+          "options": [
+            "İki üstün",
+            "İki esre",
+            "İki ötre"
+          ],
+          "answer": "İki ötre"
+        },
+        {
+          "question": "كِتَابٍ hangi sesle biter?",
+          "options": [
+            "-un",
+            "-in",
+            "-an"
+          ],
+          "answer": "-in"
+        },
+        {
+          "question": "نُور kelimesinde uzun ses?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "û"
+        },
+        {
+          "question": "قِيلَ kelimesinde uzun ses?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "î"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "İki üstün, iki esre ve iki ötreyi tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "قَالَ",
+          "كَانَ",
+          "بَاب",
+          "دَار",
+          "يَقُولُ",
+          "نُور",
+          "رَسُول",
+          "يَكُونُ",
+          "قِيلَ",
+          "فِي",
+          "كَبِير",
+          "دِين"
+        ],
+        "formula_cards": [
+          {
+            "formula": "َ + ا",
+            "sound": "â",
+            "examples": [
+              "قَالَ",
+              "كَانَ",
+              "بَاب",
+              "دَار"
+            ]
+          },
+          {
+            "formula": "ُ + وْ",
+            "sound": "û",
+            "examples": [
+              "نُور",
+              "رَسُول",
+              "يَقُولُ",
+              "يَكُونُ"
+            ]
+          },
+          {
+            "formula": "ِ + يْ",
+            "sound": "î",
+            "examples": [
+              "قِيلَ",
+              "فِي",
+              "كَبِير",
+              "دِين"
+            ]
+          }
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 12,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "med_table": [
+        {
+          "letter": "ا",
+          "name": "Elif",
+          "formula": "Üstün + Elif",
+          "pattern": "ـَا",
+          "reading": "â",
+          "examples": [
+            "قَالَ",
+            "كَانَ",
+            "بَاب",
+            "دَار",
+            "مَال"
+          ]
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "formula": "Ötre + Vav sâkin",
+          "pattern": "ـُو",
+          "reading": "û",
+          "examples": [
+            "نُور",
+            "رَسُول",
+            "يَقُولُ",
+            "يَكُونُ",
+            "دُور"
+          ]
+        },
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "formula": "Esre + Ya sâkin",
+          "pattern": "ـِي",
+          "reading": "î",
+          "examples": [
+            "قِيلَ",
+            "فِي",
+            "كَبِير",
+            "دِين",
+            "حَكِيم"
+          ]
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 11,
+      "title": "Med Harfleri",
+      "level": "Başlangıç",
+      "goal": "Elif, vav ve ya ile oluşan temel med yapısını öğrenmek.",
+      "explanation": "Temel med harfleri ا و ي'dir. Harften önce uygun hareke bulunduğunda uzun ses oluşur: üstün + elif = â, ötre + vav = û, esre + ya = î.",
+      "med_letters": [
+        {
+          "letter": "ا",
+          "condition": "Öncesinde üstün",
+          "sound": "â",
+          "example": "بَا",
+          "reading": "bâ"
+        },
+        {
+          "letter": "و",
+          "condition": "Öncesinde ötre",
+          "sound": "û",
+          "example": "بُو",
+          "reading": "bû"
+        },
+        {
+          "letter": "ي",
+          "condition": "Öncesinde esre",
+          "sound": "î",
+          "example": "بِي",
+          "reading": "bî"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "بَا nasıl okunur?",
+          "options": [
+            "ba",
+            "bâ",
+            "bi"
+          ],
+          "answer": "bâ"
+        },
+        {
+          "question": "Esre + ya hangi uzun sesi verir?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "î"
+        },
+        {
+          "question": "نُور kelimesinde uzun ses?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "û"
+        },
+        {
+          "question": "قِيلَ kelimesinde uzun ses?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "î"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Elif, vav ve ya ile oluşan temel med yapısını öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "بَ / بَا",
+          "بِ / بِي",
+          "بُ / بُو",
+          "قَ / قَا",
+          "قِ / قِي",
+          "قُ / قُو"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 12,
+      "title": "Temel Med Okuma",
+      "level": "Başlangıç",
+      "goal": "Temel doğal medleri doğru miktarda uzatarak okumaya hazırlanmak.",
+      "explanation": "Med kelimesi uzatma anlamına gelir. Bu derste temel doğal med örnekleriyle sesin kısa değil uzun okunduğu fark ettirilir.",
+      "examples": [
+        {
+          "text": "قَالَ",
+          "reading": "kâle"
+        },
+        {
+          "text": "قِيلَ",
+          "reading": "kîle"
+        },
+        {
+          "text": "يَقُولُ",
+          "reading": "yekûlü"
+        },
+        {
+          "text": "نُور",
+          "reading": "nûr"
+        }
+      ],
+      "activities": [
+        "Kısa ve uzun sesi karşılaştır.",
+        "Aynı harekeyle medli ve medsiz örnekleri sırayla oku.",
+        "Uzun sesi acele etmeden çıkar."
+      ],
+      "quiz": [
+        {
+          "question": "قَالَ kelimesinde hangi harf temel uzatmayı sağlar?",
+          "options": [
+            "ا",
+            "ل",
+            "ق"
+          ],
+          "answer": "ا"
+        },
+        {
+          "question": "نُور kelimesindeki uzun ses hangisidir?",
+          "options": [
+            "â",
+            "î",
+            "û"
+          ],
+          "answer": "û"
+        },
+        {
+          "question": "Kalkale harfleri hangisidir?",
+          "options": [
+            "قطب جد",
+            "يرملون",
+            "ءهعحغخ"
+          ],
+          "answer": "قطب جد"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Temel doğal medleri doğru miktarda uzatarak okumaya hazırlanmak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "قْ",
+          "طْ",
+          "بْ",
+          "جْ",
+          "دْ",
+          "أَحَدْ",
+          "خَلَقْ",
+          "يَجْعَلْ",
+          "يَقْطَعْ",
+          "قَدْ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 13,
+      "title": "Kalkale Harfleri",
+      "level": "Orta",
+      "goal": "Kalkale harflerini tanımak ve cezimli olduklarında yankılı sesi fark etmek.",
+      "explanation": "Kalkale harfleri ق ط ب ج د harfleridir. Bu harfler sükûnlu/cezimli olduğunda sesin belirgin şekilde yankılanması sağlanır.",
+      "letters": [
+        "ق",
+        "ط",
+        "ب",
+        "ج",
+        "د"
+      ],
+      "memory_phrase": "قُطْبُ جَدٍ",
+      "examples": [
+        {
+          "text": "يَجْعَلْ",
+          "focus": "جْ",
+          "note": "Cezimli ج kalkale etkisi gösterir."
+        },
+        {
+          "text": "أَحَدْ",
+          "focus": "دْ",
+          "note": "Vakıfta son dâl cezimli hale geldiğinde kalkale duyulur."
+        },
+        {
+          "text": "قَدْ",
+          "focus": "دْ",
+          "note": "Cezimli dâl üzerinde kalkale duyulur."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Hangisi kalkale harflerinden biridir?",
+          "options": [
+            "س",
+            "ج",
+            "م"
+          ],
+          "answer": "ج"
+        },
+        {
+          "question": "Kalkale özellikle ne zaman belirginleşir?",
+          "options": [
+            "Harf cezimli/sükûnlu olduğunda",
+            "Harf üstünlü olduğunda",
+            "Her zaman aynı şekilde"
+          ],
+          "answer": "Harf cezimli/sükûnlu olduğunda"
+        },
+        {
+          "question": "نْ + ب hangi hüküm?",
+          "options": [
+            "İklâb",
+            "İzhâr",
+            "İhfâ"
+          ],
+          "answer": "İklâb"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Kalkale harflerini tanımak ve cezimli olduklarında yankılı sesi fark etmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مَنْ آمَنَ",
+          "مَنْ يَقُولُ",
+          "مِنْ بَعْدِ",
+          "مِنْ تَحْتِهَا",
+          "مِنْ هَادٍ",
+          "مِنْ رَبِّهِمْ"
+        ],
+        "decision_tree": [
+          "نْ veya tenvin var mı?",
+          "Sonraki harfi bul.",
+          "ء ه ع ح غ خ → İzhâr",
+          "ي ر م ل و ن → İdğam",
+          "ب → İklâb",
+          "Diğer ilgili 15 harf → İhfâ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "decision_tree": [
+        "نْ veya tenvin var mı?",
+        "Sonraki harfi bul.",
+        "ء ه ع ح غ خ → İzhâr",
+        "ي ر م ل و ن → İdğam",
+        "ب → İklâb",
+        "ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك → İhfâ"
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 14,
+      "title": "Nun Sâkin ve Tenvine Giriş",
+      "level": "Orta",
+      "goal": "نْ ve tenvin sonrasında gelen harfe göre hüküm değişebileceğini öğrenmek.",
+      "explanation": "Nun sâkin (نْ) veya tenvinden sonra gelen harf, okuma kuralını belirler. Dört ana başlık öğrenilecektir: İzhâr, İdğam, İklâb, İhfâ.",
+      "rules_summary": [
+        {
+          "name": "İzhâr",
+          "meaning": "Açık okuma"
+        },
+        {
+          "name": "İdğam",
+          "meaning": "Birleştirerek okuma"
+        },
+        {
+          "name": "İklâb",
+          "meaning": "Dönüştürme"
+        },
+        {
+          "name": "İhfâ",
+          "meaning": "Gizleyerek/ara sesli okuma"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Nun sâkin ve tenvin için kaç temel hüküm öğreniyoruz?",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": "4"
+        },
+        {
+          "question": "İzhâr harfleri hangi bölgeyle ilişkilidir?",
+          "options": [
+            "Boğaz",
+            "Dudak",
+            "Burun"
+          ],
+          "answer": "Boğaz"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "نْ ve tenvin sonrasında gelen harfe göre hüküm değişebileceğini öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مَنْ آمَنَ",
+          "مِنْ هَادٍ",
+          "أَنْعَمْتَ",
+          "مِنْ عِلْمٍ",
+          "مَنْ حَادَ",
+          "عَلِيمٌ حَكِيمٌ",
+          "مَنْ غَفَرَ",
+          "مِنْ خَيْرٍ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "letter_table": [
+        {
+          "letter": "ء",
+          "name": "Hemze",
+          "category": "İzhâr harfi"
+        },
+        {
+          "letter": "ه",
+          "name": "He",
+          "category": "İzhâr harfi"
+        },
+        {
+          "letter": "ع",
+          "name": "Ayn",
+          "category": "İzhâr harfi"
+        },
+        {
+          "letter": "ح",
+          "name": "Ha",
+          "category": "İzhâr harfi"
+        },
+        {
+          "letter": "غ",
+          "name": "Gayın",
+          "category": "İzhâr harfi"
+        },
+        {
+          "letter": "خ",
+          "name": "Hı",
+          "category": "İzhâr harfi"
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 15,
+      "title": "İzhâr-ı Halkî",
+      "level": "Orta",
+      "goal": "Nun sâkin veya tenvinin boğaz harflerinden önce açık okunmasını öğrenmek.",
+      "explanation": "İzhâr-ı halkîde nun sâkin veya tenvinden sonra boğaz harflerinden biri geldiğinde n sesi açıkça ortaya çıkar.",
+      "letters": [
+        "ء",
+        "ه",
+        "ع",
+        "ح",
+        "غ",
+        "خ"
+      ],
+      "examples": [
+        {
+          "text": "مَنْ آمَنَ",
+          "focus": "نْ + ء",
+          "note": "Nun sesi açık okunur."
+        },
+        {
+          "text": "مَنْ هَادَ",
+          "focus": "نْ + ه",
+          "note": "Nun sesi açık okunur."
+        },
+        {
+          "text": "عَلِيمٌ حَكِيمٌ",
+          "focus": "tenvin + ح",
+          "note": "Tenvin açık okunur."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Hangisi İzhâr harfidir?",
+          "options": [
+            "ح",
+            "ب",
+            "ي"
+          ],
+          "answer": "ح"
+        },
+        {
+          "question": "مَنْ هَادَ ifadesinde hangi hüküm vardır?",
+          "options": [
+            "İzhâr",
+            "İklâb",
+            "İdğam"
+          ],
+          "answer": "İzhâr"
+        },
+        {
+          "question": "يرملون neyi ifade eder?",
+          "options": [
+            "İdğam harfleri",
+            "Kalkale",
+            "İzhâr"
+          ],
+          "answer": "İdğam harfleri"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Nun sâkin veya tenvinin boğaz harflerinden önce açık okunmasını öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مَنْ يَعْمَلْ",
+          "مَنْ نَصَرَ",
+          "مِنْ مَالٍ",
+          "مِنْ وَالٍ",
+          "مِنْ رَبِّهِمْ",
+          "مِنْ لَدُنْهُ",
+          "عَلِيمٌ لَدُنْهُ",
+          "غَفُورٌ رَحِيمٌ"
+        ],
+        "memorization": "يرملون"
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "letter_table": [
+        {
+          "letter": "ي",
+          "name": "Ya",
+          "category": "İdğam harfi",
+          "type": "Gunneli"
+        },
+        {
+          "letter": "ر",
+          "name": "Ra",
+          "category": "İdğam harfi",
+          "type": "Gunnesiz"
+        },
+        {
+          "letter": "م",
+          "name": "Mim",
+          "category": "İdğam harfi",
+          "type": "Gunneli"
+        },
+        {
+          "letter": "ل",
+          "name": "Lam",
+          "category": "İdğam harfi",
+          "type": "Gunnesiz"
+        },
+        {
+          "letter": "و",
+          "name": "Vav",
+          "category": "İdğam harfi",
+          "type": "Gunneli"
+        },
+        {
+          "letter": "ن",
+          "name": "Nun",
+          "category": "İdğam harfi",
+          "type": "Gunneli"
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 16,
+      "title": "İdğam",
+      "level": "Orta",
+      "goal": "Nun sâkin ve tenvinden sonra idğam harflerini tanımak.",
+      "explanation": "İdğam, nun sâkin veya tenvinin kendisinden sonra gelen harfe katılarak okunmasıdır. İdğam harfleri ي ر م ل و ن yani 'يرملون' şeklinde ezberlenir.",
+      "letters": [
+        "ي",
+        "ر",
+        "م",
+        "ل",
+        "و",
+        "ن"
+      ],
+      "categories": [
+        {
+          "name": "Gunneli İdğam",
+          "letters": [
+            "ي",
+            "ن",
+            "م",
+            "و"
+          ],
+          "note": "Burun sesi (gunne) ile birleştirilir."
+        },
+        {
+          "name": "Gunnesiz İdğam",
+          "letters": [
+            "ل",
+            "ر"
+          ],
+          "note": "Gunne yapılmadan birleştirilir."
+        }
+      ],
+      "examples": [
+        {
+          "text": "مَنْ يَقُولُ",
+          "focus": "نْ + ي",
+          "rule": "Gunneli İdğam"
+        },
+        {
+          "text": "مِنْ رَبِّهِمْ",
+          "focus": "نْ + ر",
+          "rule": "Gunnesiz İdğam"
+        },
+        {
+          "text": "مَنْ يَعْمَلْ",
+          "focus": "نْ + ي",
+          "rule": "Gunneli İdğam"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "İdğam harfleri nasıl ezberlenir?",
+          "options": [
+            "قطب جد",
+            "يرملون",
+            "ءهعحغخ"
+          ],
+          "answer": "يرملون"
+        },
+        {
+          "question": "ل hangi idğam çeşidindedir?",
+          "options": [
+            "Gunneli",
+            "Gunnesiz"
+          ],
+          "answer": "Gunnesiz"
+        },
+        {
+          "question": "İklâbın ilgili harfi?",
+          "options": [
+            "ب",
+            "ر",
+            "ح"
+          ],
+          "answer": "ب"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Nun sâkin ve tenvinden sonra idğam harflerini tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مِنْ بَعْدِ",
+          "أَنْبِئْهُمْ",
+          "سَمِيعٌ بَصِيرٌ",
+          "أَنْبَتَ",
+          "مِنْ بَيْنِ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 17,
+      "title": "İklâb",
+      "level": "Orta",
+      "goal": "Nun sâkin veya tenvinden sonra ب geldiğinde iklâb hükmünü tanımak.",
+      "explanation": "İklâb yalnızca ب harfiyle ilgilidir. Nun sâkin veya tenvinden sonra ب geldiğinde n sesi mim sesine çevrilerek, gunne ile ve ihfâlı bir şekilde okunur.",
+      "rule": {
+        "letter": "ب",
+        "transformation": "نْ / tenvin → gizli م sesi",
+        "note": "Uygulamada dudakların mim sesine hazırlanmasına dikkat edilir."
+      },
+      "examples": [
+        {
+          "text": "أَنْبِئْهُمْ",
+          "focus": "نْ + ب",
+          "rule": "İklâb"
+        },
+        {
+          "text": "سَمِيعٌ بَصِيرٌ",
+          "focus": "ً + ب",
+          "rule": "İklâb"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "İklâb hangi harfle yapılır?",
+          "options": [
+            "م",
+            "ب",
+            "ر"
+          ],
+          "answer": "ب"
+        },
+        {
+          "question": "İklâbda nun sesi hangi sese dönüşür?",
+          "options": [
+            "Mim",
+            "Lam",
+            "Ra"
+          ],
+          "answer": "Mim"
+        },
+        {
+          "question": "مِنْ شَرِّ hangi hüküm?",
+          "options": [
+            "İhfâ",
+            "İklâb",
+            "İzhâr"
+          ],
+          "answer": "İhfâ"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Nun sâkin veya tenvinden sonra ب geldiğinde iklâb hükmünü tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مِنْ تَحْتِهَا",
+          "مِنْ ثَمَرَاتٍ",
+          "مَنْ جَاءَ",
+          "مِنْ دُونِ",
+          "مَنْ ذَا",
+          "مِنْ شَرِّ",
+          "أَنْفُسَكُمْ",
+          "مِنْ صَلْصَالٍ",
+          "مِنْ ضَرٍّ",
+          "مِنْ طَيِّبٍ",
+          "مِنْ ظُلُمَاتٍ",
+          "مِنْ فَضْلٍ",
+          "مِنْ قَبْلُ",
+          "مِنْ كُلِّ"
+        ],
+        "memorization": "ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك"
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 14,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "letter_table": [
+        {
+          "letter": "ت",
+          "name": "Te",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ث",
+          "name": "Se",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ج",
+          "name": "Cim",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "د",
+          "name": "Dal",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ذ",
+          "name": "Zel",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ز",
+          "name": "Ze",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "س",
+          "name": "Sin",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ش",
+          "name": "Şın",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ص",
+          "name": "Sad",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ض",
+          "name": "Dad",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ط",
+          "name": "Tı",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ظ",
+          "name": "Zı",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ف",
+          "name": "Fe",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ق",
+          "name": "Kaf",
+          "category": "İhfâ harfi"
+        },
+        {
+          "letter": "ك",
+          "name": "Kef",
+          "category": "İhfâ harfi"
+        }
+      ],
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 18,
+      "title": "İhfâ",
+      "level": "Orta",
+      "goal": "Nun sâkin ve tenvinden sonra ihfâ harfleri geldiğinde ara sesli okumayı öğrenmek.",
+      "explanation": "İhfâ, nun sâkin veya tenvinin tam açık okunmayıp sonraki harfe göre gizli/ara sesli okunmasıdır. Gunne belirgindir.",
+      "letters": [
+        "ت",
+        "ث",
+        "ج",
+        "د",
+        "ذ",
+        "ز",
+        "س",
+        "ش",
+        "ص",
+        "ض",
+        "ط",
+        "ظ",
+        "ف",
+        "ق",
+        "ك"
+      ],
+      "examples": [
+        {
+          "text": "مِنْ تَحْتِهَا",
+          "focus": "نْ + ت",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "أَنْفُسَكُمْ",
+          "focus": "نْ + ف",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ شَرِّ",
+          "focus": "نْ + ش",
+          "rule": "İhfâ"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Hangisi İhfâ harflerinden biridir?",
+          "options": [
+            "ت",
+            "ل",
+            "ب"
+          ],
+          "answer": "ت"
+        },
+        {
+          "question": "İhfâda nun sesi nasıl okunur?",
+          "options": [
+            "Tam açık",
+            "Tamamen kaybolmuş",
+            "Ara/gizli ses ve gunne ile"
+          ],
+          "answer": "Ara/gizli ses ve gunne ile"
+        },
+        {
+          "question": "مْ + م hangi hüküm?",
+          "options": [
+            "İdğam-ı Şefevî",
+            "İhfâ-i Şefevî",
+            "İzhâr-ı Şefevî"
+          ],
+          "answer": "İdğam-ı Şefevî"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Nun sâkin ve tenvinden sonra ihfâ harfleri geldiğinde ara sesli okumayı öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "تَرْمِيهِمْ بِحِجَارَةٍ",
+          "لَهُمْ بِهَا",
+          "هُمْ مَا",
+          "لَهُمْ مَا",
+          "عَلَيْهِمْ غَيْرِ",
+          "هُمْ فِيهَا",
+          "عَلَيْهِمْ بِمُصَيْطِرٍ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 19,
+      "title": "Mim Sâkin",
+      "level": "Orta",
+      "goal": "Mim sâkinin üç temel hükmünü öğrenmek.",
+      "explanation": "Mim sâkin (مْ) kendisinden sonra gelen harfe göre üç şekilde değerlendirilir: İhfâ-i Şefevî, İdğam-ı Şefevî ve İzhâr-ı Şefevî.",
+      "rules": [
+        {
+          "name": "İhfâ-i Şefevî",
+          "condition": "مْ + ب",
+          "example": "تَرْمِيهِمْ بِحِجَارَةٍ"
+        },
+        {
+          "name": "İdğam-ı Şefevî",
+          "condition": "مْ + م",
+          "example": "لَهُمْ مَا"
+        },
+        {
+          "name": "İzhâr-ı Şefevî",
+          "condition": "مْ + diğer harfler (ب ve م hariç)",
+          "example": "عَلَيْهِمْ غَيْرِ"
+        }
+      ],
+      "quiz": [
+        {
+          "question": "مْ + ب hangi hükümdür?",
+          "options": [
+            "İhfâ-i Şefevî",
+            "İklâb",
+            "İdğam-ı Şefevî"
+          ],
+          "answer": "İhfâ-i Şefevî"
+        },
+        {
+          "question": "مْ + م hangi hükümdür?",
+          "options": [
+            "İzhâr-ı Şefevî",
+            "İdğam-ı Şefevî",
+            "İhfâ"
+          ],
+          "answer": "İdğam-ı Şefevî"
+        },
+        {
+          "question": "Gunne özellikle hangi harflerde belirgindir?",
+          "options": [
+            "نّ ve مّ",
+            "ر ve ل",
+            "ا ve و"
+          ],
+          "answer": "نّ ve مّ"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Mim sâkinin üç temel hükmünü öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "إِنَّ",
+          "أَنَّ",
+          "إِنَّا",
+          "إِنَّكَ",
+          "ثُمَّ",
+          "عَمَّ",
+          "هُمَّ",
+          "أَمَّا"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 20,
+      "title": "Gunne",
+      "level": "Orta",
+      "goal": "Mim ve nunun şeddeli hallerinde belirgin burun sesini tanımak.",
+      "explanation": "Gunne, burun yoluyla çıkan belirgin sestir. Özellikle نّ ve مّ gibi şeddeli mim ve nunlarda açık şekilde görülür.",
+      "examples": [
+        {
+          "text": "إِنَّ",
+          "focus": "نّ",
+          "note": "Nun şeddeli olduğu için gunne belirgindir."
+        },
+        {
+          "text": "ثُمَّ",
+          "focus": "مّ",
+          "note": "Mim şeddeli olduğu için gunne belirgindir."
+        },
+        {
+          "text": "عَمَّ",
+          "focus": "مّ",
+          "note": "Şeddeli mimde gunne vardır."
+        }
+      ],
+      "activities": [
+        "Burnu hafifçe kapatıp sesi deneyerek gunnenin burun yoluyla ilgisini fark et.",
+        "نّ ve مّ örneklerini yavaşça dinle ve tekrar et."
+      ],
+      "quiz": [
+        {
+          "question": "Gunne özellikle hangi harflerde belirgindir?",
+          "options": [
+            "نّ ve مّ",
+            "ر ve ل",
+            "ا ve و"
+          ],
+          "answer": "نّ ve مّ"
+        },
+        {
+          "question": "رِ temel düzeyde?",
+          "options": [
+            "İnce",
+            "Kalın"
+          ],
+          "answer": "İnce"
+        },
+        {
+          "question": "رُ temel düzeyde?",
+          "options": [
+            "İnce",
+            "Kalın"
+          ],
+          "answer": "Kalın"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Mim ve nunun şeddeli hallerinde belirgin burun sesini tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "رَ",
+          "رُ",
+          "رِ",
+          "رَبِّ",
+          "رُسُل",
+          "رِزْق",
+          "فَرَح",
+          "كَرِيم",
+          "غَفُور"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 21,
+      "title": "Ra Harfi",
+      "level": "İleri Başlangıç",
+      "goal": "Ra harfinin temel kalın ve ince okuma durumlarını tanımak.",
+      "explanation": "Ra (ر) bazı durumlarda kalın, bazı durumlarda ince okunur. Başlangıç öğretiminde en temel ayrım, ra'nın üstün/ötre ile kalın; esre ile ince okunmasıdır. İleri ayrıntılar sonraki pratiklerde ele alınabilir.",
+      "basic_rules": [
+        {
+          "pattern": "رَ",
+          "reading": "kalın"
+        },
+        {
+          "pattern": "رُ",
+          "reading": "kalın"
+        },
+        {
+          "pattern": "رِ",
+          "reading": "ince"
+        }
+      ],
+      "examples": [
+        {
+          "text": "رَبِّ",
+          "focus": "رَ",
+          "note": "Ra üstünlü: temel düzeyde kalın."
+        },
+        {
+          "text": "رُسُل",
+          "focus": "رُ",
+          "note": "Ra ötreli: temel düzeyde kalın."
+        },
+        {
+          "text": "رِزْق",
+          "focus": "رِ",
+          "note": "Ra esreli: temel düzeyde ince."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "رِ temel düzeyde nasıl okunur?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "İnce"
+        },
+        {
+          "question": "رُ temel düzeyde nasıl okunur?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        },
+        {
+          "question": "بِسْمِ اللّٰهِ örneğinde lâm?",
+          "options": [
+            "İnce",
+            "Kalın"
+          ],
+          "answer": "İnce"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Ra harfinin temel kalın ve ince okuma durumlarını tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "اللّٰه",
+          "قَالَ اللّٰهُ",
+          "رَسُولُ اللّٰهِ",
+          "بِسْمِ اللّٰهِ",
+          "لِلّٰهِ",
+          "دِينُ اللّٰهِ",
+          "عَبْدُ اللّٰهِ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 22,
+      "title": "Lafzatullah (اللّٰه)",
+      "level": "İleri Başlangıç",
+      "goal": "Allah lafzının temel kalın ve ince okuma örneklerini tanımak.",
+      "explanation": "اللّٰه lafzındaki lâmın kalın veya ince okunması, kendisinden önceki harekeye göre değişebilir. Bu derste güvenli başlangıç örnekleri üzerinde çalışılır.",
+      "examples": [
+        {
+          "text": "قَالَ اللّٰهُ",
+          "note": "Öncesinde üstün olduğu için temel kural çerçevesinde kalın okuma örneğidir."
+        },
+        {
+          "text": "بِسْمِ اللّٰهِ",
+          "note": "Öncesinde esre olduğu için lâm ince okunur."
+        }
+      ],
+      "note_for_app": "Bu ders ayrıntılı tecvid kuralı olarak ileri seviyede genişletilebilir; örnek ses kaydı kullanılması önerilir.",
+      "quiz": [
+        {
+          "question": "بِسْمِ اللّٰهِ ifadesinde Allah lafzının lâmı temel kuralda nasıldır?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "İnce"
+        },
+        {
+          "question": "قَالَ اللّٰهُ örneğinde temel düzeyde lâm nasıl okunur?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        },
+        {
+          "question": "Vakıf nedir?",
+          "options": [
+            "Durmak",
+            "Uzatmak",
+            "Birleştirmek"
+          ],
+          "answer": "Durmak"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Allah lafzının temel kalın ve ince okuma örneklerini tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          "مَالِكِ يَوْمِ الدِّينِ",
+          "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+          "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 23,
+      "title": "Vakıf ve İbtidâ",
+      "level": "İleri",
+      "goal": "Kur'an okurken nerede durulacağı ve yeniden nereden başlanacağı kavramını öğrenmek.",
+      "explanation": "Vakıf, okumayı uygun bir yerde durdurarak kesmek; ibtidâ ise duruştan sonra uygun yerden yeniden başlamaktır. Anlamı bozacak yerlerde durmamaya dikkat edilir.",
+      "concepts": [
+        {
+          "term": "Vakıf",
+          "meaning": "Durmak"
+        },
+        {
+          "term": "İbtidâ",
+          "meaning": "Yeniden başlamak"
+        }
+      ],
+      "activities": [
+        "Ayet sonlarında kontrollü dur.",
+        "Cümle anlamını bozabilecek yerlerde durmama alıştırması yap.",
+        "Durduktan sonra uygun kelimeden yeniden başla."
+      ],
+      "quiz": [
+        {
+          "question": "Vakıf ne demektir?",
+          "options": [
+            "Uzatmak",
+            "Durmak",
+            "Birleştirmek"
+          ],
+          "answer": "Durmak"
+        },
+        {
+          "question": "İbtidâ ne demektir?",
+          "options": [
+            "Yeniden başlamak",
+            "Sesi kesmek",
+            "Şeddelemek"
+          ],
+          "answer": "Yeniden başlamak"
+        },
+        {
+          "question": "ج işareti?",
+          "options": [
+            "Dur veya geç",
+            "Kesin dur",
+            "Kesin geç"
+          ],
+          "answer": "Dur veya geç"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Kur'an okurken nerede durulacağı ve yeniden nereden başlanacağı kavramını öğrenmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "م",
+          "لا",
+          "ج",
+          "قلى",
+          "صلى",
+          "ۛ ۛ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 24,
+      "title": "Durak İşaretleri",
+      "level": "İleri",
+      "goal": "Temel mushaf durak işaretlerini tanımak.",
+      "explanation": "Mushaflarda farklı vakıf işaretleri bulunur. Bu işaretler okurun nerede durmasının uygun olabileceğini gösterir. Uygulama, kullanılan mushaf standardına göre açıklanmalıdır.",
+      "signs": [
+        {
+          "symbol": "م",
+          "meaning": "Vakıf lâzım: durmak kuvvetle gereklidir."
+        },
+        {
+          "symbol": "لا",
+          "meaning": "Durmamak tercih edilir; anlam bütünlüğüne dikkat edilir."
+        },
+        {
+          "symbol": "ج",
+          "meaning": "Câiz: durmak veya geçmek mümkündür."
+        }
+      ],
+      "note_for_app": "Bazı mushaflarda ilave işaretler ve farklı işaretleme ayrıntıları bulunabilir; uygulamada seçilen mushaf işaret sistemi esas alınmalıdır.",
+      "quiz": [
+        {
+          "question": "ج işareti temel olarak neyi belirtir?",
+          "options": [
+            "Sadece dur",
+            "Dur veya geç",
+            "Kesinlikle geç"
+          ],
+          "answer": "Dur veya geç"
+        },
+        {
+          "question": "Gunne hangi bölgeyle ilişkilidir?",
+          "options": [
+            "Hayşûm",
+            "Cevf",
+            "Şefeteyn"
+          ],
+          "answer": "Hayşûm"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Temel mushaf durak işaretlerini tanımak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "حَ / هَ",
+          "عَ / أَ",
+          "قَ / كَ",
+          "بَ / مَ",
+          "قِ / كِ",
+          "نّ / مّ"
+        ],
+        "makharij_groups": [
+          {
+            "name": "Cevf",
+            "description": "Ağız boşluğu"
+          },
+          {
+            "name": "Halk",
+            "description": "Boğaz"
+          },
+          {
+            "name": "Lisan",
+            "description": "Dil"
+          },
+          {
+            "name": "Şefeteyn",
+            "description": "İki dudak"
+          },
+          {
+            "name": "Hayşûm",
+            "description": "Burun yolu; gunne"
+          }
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 25,
+      "title": "Mahreçlere Giriş",
+      "level": "İleri",
+      "goal": "Harflerin çıktığı temel bölgeleri tanımaya başlamak.",
+      "explanation": "Mahreç, harfin sesinin çıktığı yerdir. Harfi doğru telaffuz etmek için sesin ağız, boğaz veya dilin doğru bölgesinden çıkarılması önemlidir.",
+      "groups": [
+        {
+          "name": "Boğaz harfleri",
+          "letters": [
+            "ء",
+            "ه",
+            "ع",
+            "ح",
+            "غ",
+            "خ"
+          ]
+        },
+        {
+          "name": "Dudaklarla ilişkili harfler",
+          "letters": [
+            "ب",
+            "م",
+            "و"
+          ]
+        },
+        {
+          "name": "Dilin arka tarafıyla ilişkili örnekler",
+          "letters": [
+            "ق",
+            "ك"
+          ]
+        }
+      ],
+      "activities": [
+        "Harfi çıkarırken ağız ve boğaz bölgesini fark et.",
+        "Birbirine yakın harfleri ses üzerinden ayır.",
+        "Ses kaydını dinleyip tekrar et."
+      ],
+      "quiz": [
+        {
+          "question": "ع hangi temel bölgeyle ilişkilidir?",
+          "options": [
+            "Boğaz",
+            "Dudak",
+            "Burun"
+          ],
+          "answer": "Boğaz"
+        },
+        {
+          "question": "ب harfinin çıkışında hangi bölge öne çıkar?",
+          "options": [
+            "Dudaklar",
+            "Dil kökü",
+            "Gırtlak"
+          ],
+          "answer": "Dudaklar"
+        },
+        {
+          "question": "ث ile س arasındaki fark?",
+          "options": [
+            "ث peltek",
+            "س peltek",
+            "Aynıdır"
+          ],
+          "answer": "ث peltek"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Harflerin çıktığı temel bölgeleri tanımaya başlamak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "ب / ت / ث",
+          "ج / ح / خ",
+          "د / ذ",
+          "ر / ز",
+          "س / ش",
+          "ص / ض",
+          "ط / ظ",
+          "ع / غ",
+          "ف / ق",
+          "ك / ق"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 26,
+      "title": "Benzer Harfleri Ayırt Ediyorum",
+      "level": "İleri",
+      "goal": "Nokta ve şekil farklarından hareketle benzer harfleri ayırmak.",
+      "explanation": "Bazı harfler şekil olarak birbirine çok benzer. Nokta sayısı ve yeri dikkatle incelenerek ayrım yapılır.",
+      "pairs": [
+        {
+          "group": "ب ت ث",
+          "details": "ب: 1 nokta altta; ت: 2 nokta üstte; ث: 3 nokta üstte."
+        },
+        {
+          "group": "ج ح خ",
+          "details": "ج: 1 nokta altta; ح: noktasız; خ: 1 nokta üstte."
+        },
+        {
+          "group": "س ش",
+          "details": "س: noktasız; ش: 3 nokta üstte."
+        },
+        {
+          "group": "ص ض",
+          "details": "ص: noktasız; ض: 1 nokta üstte."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "3 nokta üstte olan harf hangisidir?",
+          "options": [
+            "ت",
+            "ث",
+            "ب"
+          ],
+          "answer": "ث"
+        },
+        {
+          "question": "Noktasız olan hangisidir?",
+          "options": [
+            "خ",
+            "ح",
+            "ج"
+          ],
+          "answer": "ح"
+        },
+        {
+          "question": "ش ile س arasındaki temel fark nedir?",
+          "options": [
+            "Şın üç noktalıdır",
+            "Sin iki noktalıdır",
+            "Şın noktasızdır"
+          ],
+          "answer": "Şın üç noktalıdır"
+        },
+        {
+          "question": "Kelime okurken önce ne yapılır?",
+          "options": [
+            "İşaretleri incelemek",
+            "Hızlı okumak",
+            "Atlamak"
+          ],
+          "answer": "İşaretleri incelemek"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Nokta ve şekil farklarından hareketle benzer harfleri ayırmak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "مَنْ",
+          "قُلْ",
+          "رَبِّ",
+          "نُور",
+          "فِي",
+          "كِتَاب",
+          "مُسْلِم",
+          "غَفُور",
+          "رَسُول",
+          "كَبِير",
+          "مِنْ رَبِّهِمْ",
+          "مِنْ شَرِّ",
+          "سَمِيعٌ بَصِيرٌ",
+          "مِنْ بَعْدِ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 14,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 27,
+      "title": "Kelime Okumaya Geçiyorum",
+      "level": "İleri",
+      "goal": "Öğrenilen hareke, cezm, şedde ve med yapılarını kelimelerde birleştirmek.",
+      "explanation": "Artık hedef tek bir işareti tanımak değil, bir kelimedeki bütün işaretleri birlikte okuyabilmektir.",
+      "examples": [
+        {
+          "text": "رَبّ",
+          "reading": "Rabb",
+          "focus": "Şedde"
+        },
+        {
+          "text": "كِتَاب",
+          "reading": "Kitâb",
+          "focus": "Med"
+        },
+        {
+          "text": "مُسْلِم",
+          "reading": "Müslim",
+          "focus": "Cezm"
+        },
+        {
+          "text": "حَمْد",
+          "reading": "Hamd",
+          "focus": "Cezm"
+        },
+        {
+          "text": "نُور",
+          "reading": "Nûr",
+          "focus": "Med"
+        }
+      ],
+      "activities": [
+        "Kelimeyi önce parçalara ayır.",
+        "Hareke ve medleri tek tek kontrol et.",
+        "Sonra kelimeyi kesmeden oku."
+      ],
+      "quiz": [
+        {
+          "question": "كِتَاب kelimesindeki belirgin uzatma yapısı hangisidir?",
+          "options": [
+            "Med",
+            "Şedde",
+            "Tenvin"
+          ],
+          "answer": "Med"
+        },
+        {
+          "question": "رَبّ kelimesindeki temel kural hangisidir?",
+          "options": [
+            "Şedde",
+            "İklâb",
+            "İzhâr"
+          ],
+          "answer": "Şedde"
+        },
+        {
+          "question": "النَّاس kelimesinde şeddeli harf?",
+          "options": [
+            "ن",
+            "س",
+            "ا"
+          ],
+          "answer": "ن"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Öğrenilen hareke, cezm, şedde ve med yapılarını kelimelerde birleştirmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "اللّٰه",
+          "رَبِّ",
+          "النَّاس",
+          "الْحَمْدُ",
+          "الصِّرَاط",
+          "الْكِتَاب",
+          "الرَّحْمَٰن",
+          "الرَّحِيم",
+          "الْعَالَمِينَ",
+          "مُسْتَقِيم"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 28,
+      "title": "Kısa Kur'an Kelimeleriyle Pratik",
+      "level": "İleri",
+      "goal": "Günlük ve Kur'an okumasında sık karşılaşılan kısa kelimeleri okumak.",
+      "explanation": "Bu derste gerçek Kur'an kelimeleri üzerinden pratik yapılır. Amaç harf bilgisi ile tecvid bilgisini bir arada kullanmaktır.",
+      "examples": [
+        {
+          "text": "اللّٰه",
+          "reading": "Allah",
+          "focus": "Lafzatullah"
+        },
+        {
+          "text": "رَبِّ",
+          "reading": "Rabbî",
+          "focus": "Şedde/med"
+        },
+        {
+          "text": "النَّاس",
+          "reading": "en-nâs",
+          "focus": "Şedde/med"
+        },
+        {
+          "text": "الْحَمْدُ",
+          "reading": "el-hamdü",
+          "focus": "Cezm"
+        },
+        {
+          "text": "الصِّرَاط",
+          "reading": "es-sırât",
+          "focus": "Şedde/med"
+        },
+        {
+          "text": "الْكِتَاب",
+          "reading": "el-kitâb",
+          "focus": "Cezm/med"
+        }
+      ],
+      "activities": [
+        "Kelimedeki tecvid işaretini bul.",
+        "Kelimeyi yavaş, sonra normal tempoda oku.",
+        "Dinle-tekrar et yöntemiyle pratik yap."
+      ],
+      "quiz": [
+        {
+          "question": "النَّاس kelimesinde hangi harf şeddelidir?",
+          "options": [
+            "ن",
+            "س"
+          ],
+          "answer": "ن"
+        },
+        {
+          "question": "الْكِتَاب kelimesindeki med harfi hangisidir?",
+          "options": [
+            "ا",
+            "ل",
+            "ك"
+          ],
+          "answer": "ا"
+        },
+        {
+          "question": "رَبِّ kelimesinde şedde?",
+          "options": [
+            "ر",
+            "ب"
+          ],
+          "answer": "ب"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Günlük ve Kur'an okumasında sık karşılaşılan kısa kelimeleri okumak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "الْحَمْدُ",
+          "لِلَّهِ",
+          "رَبِّ",
+          "الْعَالَمِينَ",
+          "الرَّحْمَٰنِ",
+          "الرَّحِيمِ",
+          "مَالِكِ",
+          "يَوْمِ",
+          "الدِّينِ",
+          "إِيَّاكَ"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 29,
+      "title": "Fâtiha ile Uygulama",
+      "level": "İleri",
+      "goal": "Öğrenilen temel kuralları Fâtiha sûresi üzerinde uygulamak.",
+      "explanation": "Fâtiha sûresi, harf ve tecvid çalışmalarını birleştirmek için güçlü bir uygulama metnidir. Her ayet kelime kelime incelenebilir.",
+      "verses": [
+        {
+          "text": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          "focus": [
+            "Cezm",
+            "Şedde",
+            "Med"
+          ]
+        },
+        {
+          "text": "الرَّحْمَٰنِ الرَّحِيمِ",
+          "focus": [
+            "Şedde",
+            "Med"
+          ]
+        },
+        {
+          "text": "مَالِكِ يَوْمِ الدِّينِ",
+          "focus": [
+            "Med",
+            "Şedde"
+          ]
+        },
+        {
+          "text": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+          "focus": [
+            "Şedde",
+            "Med"
+          ]
+        },
+        {
+          "text": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+          "focus": [
+            "Cezm",
+            "Şedde",
+            "Med"
+          ]
+        },
+        {
+          "text": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          "focus": [
+            "Şedde",
+            "Med",
+            "Nun sâkin hükümleri"
+          ]
+        },
+        {
+          "text": "غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          "focus": [
+            "Med",
+            "Şedde"
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Fâtiha çalışmasının amacı nedir?",
+          "options": [
+            "Sadece ezber",
+            "Öğrenilen okuma kurallarını metin üzerinde uygulamak",
+            "Yalnızca yazı yazmak"
+          ],
+          "answer": "Öğrenilen okuma kurallarını metin üzerinde uygulamak"
+        },
+        {
+          "question": "Sûre çalışmasının ilk adımı?",
+          "options": [
+            "Dinlemek",
+            "Hızlı okumak",
+            "Sadece ezber"
+          ],
+          "answer": "Dinlemek"
+        }
+      ],
+      "note_for_app": "Ayet metinleri uygulamadaki güvenilir Kur'an veri kaynağından çekilmeli; burada eğitim yapısı için örneklenmiştir.",
+      "rich_content": {
+        "lesson_objective": "Öğrenilen temel kuralları Fâtiha sûresi üzerinde uygulamak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "İhlâs",
+          "Felak",
+          "Nâs",
+          "Kevser",
+          "Asr"
+        ]
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 10,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 30,
+      "title": "Kısa Sûrelerle Okuma",
+      "level": "İleri",
+      "goal": "Kısa sûrelerde harf, hareke ve temel tecvid kurallarını birlikte uygulamak.",
+      "surahs": [
+        {
+          "name": "İhlâs",
+          "focus": [
+            "Şedde",
+            "Med",
+            "Cezm"
+          ]
+        },
+        {
+          "name": "Felak",
+          "focus": [
+            "Med",
+            "Nun sâkin/tenvin örnekleri"
+          ]
+        },
+        {
+          "name": "Nâs",
+          "focus": [
+            "Şedde",
+            "Med"
+          ]
+        },
+        {
+          "name": "Kevser",
+          "focus": [
+            "Med",
+            "Şedde"
+          ]
+        },
+        {
+          "name": "Asr",
+          "focus": [
+            "Cezm",
+            "Med"
+          ]
+        }
+      ],
+      "practice_flow": [
+        "Önce dinle.",
+        "Ayet veya kelimeyi parçalara ayır.",
+        "Tecvid işaretlerini bul.",
+        "Yavaş oku.",
+        "Sonra normal hızda tekrar et."
+      ],
+      "quiz": [
+        {
+          "question": "Kısa sûre çalışmasında doğru sıra hangisidir?",
+          "options": [
+            "Direkt hızlı oku",
+            "Dinle → incele → yavaş oku → tekrar et",
+            "Sadece yaz"
+          ],
+          "answer": "Dinle → incele → yavaş oku → tekrar et"
+        },
+        {
+          "question": "Kalkale harflerinin ezber cümlesi?",
+          "options": [
+            "قطب جد",
+            "يرملون",
+            "خص ضغط قظ"
+          ],
+          "answer": "قطب جد"
+        }
+      ],
+      "rich_content": {
+        "lesson_objective": "Kısa sûrelerde harf, hareke ve temel tecvid kurallarını birlikte uygulamak.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "Harfler",
+          "İnce-kalın-peltek",
+          "Harekeler",
+          "Cezm",
+          "Şedde",
+          "Tenvin",
+          "Med",
+          "Kalkale",
+          "Nun sâkin",
+          "Mim sâkin",
+          "Gunne",
+          "Vakıf"
+        ],
+        "final_review": true
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 12,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    },
+    {
+      "id": 31,
+      "title": "Elifbâ ve Temel Tecvid Finali",
+      "level": "Final",
+      "goal": "Öğrenilen harf, hareke ve temel tecvid konularını ölçmek.",
+      "explanation": "Final dersinde çocuk harfleri tanıma, hareke okuma, med, cezm, şedde, tenvin, kalkale, nun sâkin hükümleri, mim sâkin, gunne, temel ra/lafzatullah ve vakıf konularını tekrarlar.",
+      "quiz": [
+        {
+          "id": 1,
+          "question": "ب harfinin adı nedir?",
+          "options": [
+            "Te",
+            "Be",
+            "Se"
+          ],
+          "answer": "Be"
+        },
+        {
+          "id": 2,
+          "question": "َ işareti nedir?",
+          "options": [
+            "Üstün",
+            "Esre",
+            "Ötre"
+          ],
+          "answer": "Üstün"
+        },
+        {
+          "id": 3,
+          "question": "بُ nasıl okunur?",
+          "options": [
+            "ba",
+            "bi",
+            "bu"
+          ],
+          "answer": "bu"
+        },
+        {
+          "id": 4,
+          "question": "ْ hangi işarettir?",
+          "options": [
+            "Cezm",
+            "Şedde",
+            "Tenvin"
+          ],
+          "answer": "Cezm"
+        },
+        {
+          "id": 5,
+          "question": "ّ hangi işarettir?",
+          "options": [
+            "Şedde",
+            "Ötre",
+            "Esre"
+          ],
+          "answer": "Şedde"
+        },
+        {
+          "id": 6,
+          "question": "Temel med harfleri hangileridir?",
+          "options": [
+            "ا و ي",
+            "ب ت ث",
+            "ق ط ب"
+          ],
+          "answer": "ا و ي"
+        },
+        {
+          "id": 7,
+          "question": "Kalkale harfleri hangileridir?",
+          "options": [
+            "قطب جد",
+            "يرملون",
+            "ءهعحغخ"
+          ],
+          "answer": "قطب جد"
+        },
+        {
+          "id": 8,
+          "question": "İzhâr harflerinden biri hangisidir?",
+          "options": [
+            "ح",
+            "ب",
+            "م"
+          ],
+          "answer": "ح"
+        },
+        {
+          "id": 9,
+          "question": "İdğam harfleri nasıl ezberlenir?",
+          "options": [
+            "يرملون",
+            "قطب جد",
+            "ب م"
+          ],
+          "answer": "يرملون"
+        },
+        {
+          "id": 10,
+          "question": "İklâb hangi harfle ilgilidir?",
+          "options": [
+            "ب",
+            "ل",
+            "ر"
+          ],
+          "answer": "ب"
+        },
+        {
+          "id": 11,
+          "question": "مْ + ب hangi hükümdür?",
+          "options": [
+            "İhfâ-i Şefevî",
+            "İdğam-ı Şefevî",
+            "İzhâr"
+          ],
+          "answer": "İhfâ-i Şefevî"
+        },
+        {
+          "id": 12,
+          "question": "نْ + ي hangi hüküm olabilir?",
+          "options": [
+            "Gunneli İdğam",
+            "İklâb",
+            "İzhâr"
+          ],
+          "answer": "Gunneli İdğam"
+        },
+        {
+          "id": 13,
+          "question": "Gunne özellikle hangi şeddeli harflerde belirgindir?",
+          "options": [
+            "نّ ve مّ",
+            "رّ ve لّ",
+            "ا ve و"
+          ],
+          "answer": "نّ ve مّ"
+        },
+        {
+          "id": 14,
+          "question": "Vakıf ne demektir?",
+          "options": [
+            "Durmak",
+            "Uzatmak",
+            "Birleştirmek"
+          ],
+          "answer": "Durmak"
+        },
+        {
+          "id": 15,
+          "question": "ج işareti temel olarak neyi gösterir?",
+          "options": [
+            "Dur veya geç",
+            "Asla durma",
+            "Kesin dur"
+          ],
+          "answer": "Dur veya geç"
+        },
+        {
+          "question": "İklâbın harfi?",
+          "options": [
+            "ب",
+            "ر",
+            "ح"
+          ],
+          "answer": "ب"
+        },
+        {
+          "question": "İhfâ harflerinden biri?",
+          "options": [
+            "ت",
+            "ل",
+            "ر"
+          ],
+          "answer": "ت"
+        }
+      ],
+      "completion_rule": {
+        "suggested_pass_score_percent": 80,
+        "message_success": "Tebrikler! Elifbâ ve temel tecvid eğitimini tamamladın.",
+        "message_retry": "Güzel deneme! Zorlandığın dersleri tekrar edip yeniden deneyebilirsin."
+      },
+      "rich_content": {
+        "lesson_objective": "Öğrenilen harf, hareke ve temel tecvid konularını ölçmek.",
+        "teacher_note": "Bu ders ekranda küçük parçalara bölünmeli; çocuk önce görmeli, sonra dinlemeli, ardından kendisi tekrar etmeli.",
+        "learning_sequence": [
+          "Konu tanıtımı",
+          "Kuralı gör",
+          "Örneği dinle",
+          "Birlikte tekrar et",
+          "Tek başına oku",
+          "Benzer örneği çöz",
+          "Mini test"
+        ],
+        "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
+        "example_items": [
+          "Harf tanıma",
+          "Hareke",
+          "Cezm",
+          "Şedde",
+          "Tenvin",
+          "Med",
+          "Kalkale",
+          "İzhâr",
+          "İdğam",
+          "İklâb",
+          "İhfâ",
+          "Mim sâkin",
+          "Gunne",
+          "Ra",
+          "Lafzatullah",
+          "Vakıf",
+          "Mahreç"
+        ],
+        "final_exam": true
+      },
+      "interactive_activities": [
+        {
+          "type": "listen_repeat",
+          "title": "Dinle ve Tekrar Et",
+          "count": 5
+        },
+        {
+          "type": "find_rule",
+          "title": "Kuralı Bul",
+          "count": 5
+        },
+        {
+          "type": "read_aloud",
+          "title": "Kendin Oku",
+          "count": 5
+        },
+        {
+          "type": "multiple_choice",
+          "title": "Mini Test",
+          "count": 5
+        }
+      ],
+      "practice_count_target": 17,
+      "summary_points": [
+        "Bugünkü kuralı tekrar et.",
+        "Örnekleri sesli oku.",
+        "Zorlandığın örnekleri yeniden çalış.",
+        "Mini testi tamamla."
+      ],
+      "audio_plan": {
+        "teacher_audio": true,
+        "example_audio": true,
+        "repeat_pause_seconds": 2
+      },
+      "mastery": {
+        "suggested_practice_items": 10,
+        "quiz_pass_percent": 70,
+        "retry_allowed": true
+      },
+      "ui_learning_pattern": {
+        "show_large_arabic": true,
+        "show_letter_name": false,
+        "show_reading": true,
+        "show_examples_before_quiz": true,
+        "show_audio_button": true,
+        "show_repeat_button": true,
+        "allow_favorite_example": true
+      }
+    }
+  ],
+  "content_quality": {
+    "status": "rich_complete",
+    "lesson_count": 31,
+    "description": "31 ders; yoğun örnek, tekrar, alıştırma, sesli çalışma ve mini testlerle zenginleştirildi.",
+    "app_ready": true
+  },
+  "course_instruction": {
+    "principle": "Her yeni işaret veya kural, mümkün olan yerlerde bütün ilgili harflerle tablo halinde öğretilmeli.",
+    "mandatory_for_fatha_kasra_damma": true,
+    "mandatory_columns": [
+      "letter",
+      "name",
+      "marked",
+      "reading"
+    ],
+    "example": "ب = Be | بَ = ba | بِ = bi | بُ = bu"
+  }
+}

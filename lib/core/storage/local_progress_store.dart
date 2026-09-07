@@ -72,6 +72,12 @@ class LocalProgressStore extends ChangeNotifier {
 
   String _key(String name) => '${AppConstants.progressPrefix}$name';
 
+  String prefKey(String name) => _key(name);
+
+  Future<SharedPreferences> get prefs => _ensure();
+
+  void announce() => notifyListeners();
+
   Future<bool> getOnboardingDone() async {
     final prefs = await _ensure();
     return prefs.getBool(_key('onboarding_done')) ?? false;

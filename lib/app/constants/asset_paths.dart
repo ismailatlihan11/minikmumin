@@ -23,6 +23,8 @@ abstract final class AssetPaths {
   static const String quranLearning = 'assets/data/kur_an_ogrenme_veri_paketi.json';
   static const String quranLearnCurriculum =
       'assets/data/kuran_ogrenme_tecvid.json';
+  static const String elifbaTecvid =
+      'assets/data/elifba_tecvid_dersleri_eksiksiz.json';
 
   static const String arabicFontFamily = 'NotoNaskhArabic';
 }

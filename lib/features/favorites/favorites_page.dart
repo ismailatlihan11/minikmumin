@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/routes.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
@@ -92,6 +93,8 @@ class FavoritesPage extends StatelessWidget {
         return 'Tecvid';
       case 'ql_surah':
         return 'Kısa sure';
+      case 'elifba_example':
+        return 'Elifbâ örneği';
       default:
         return kind;
     }
@@ -132,6 +135,9 @@ class FavoritesPage extends StatelessWidget {
         final pack = await repos.quranLearning.load();
         if (!context.mounted) return;
         await _openQuranLearnFavorite(context, pack, item);
+      case 'elifba_example':
+        if (!context.mounted) return;
+        await Navigator.pushNamed(context, AppRoutes.learnElifbaAdventure);
       default:
         return;
     }

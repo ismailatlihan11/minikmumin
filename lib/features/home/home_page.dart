@@ -324,6 +324,11 @@ class _MinikHomePageState extends State<MinikHomePage> {
           ? "Kur'an Öğreniyorum"
           : "Kur'an Öğren – ${point.subtitle}";
     }
+    if (point.route == AppRoutes.learnElifbaAdventure) {
+      return point.subtitle.isEmpty
+          ? 'Elifbâ + Tecvid Macerası'
+          : 'Elifbâ – ${point.subtitle}';
+    }
     if (point.subtitle.isEmpty) return point.title;
     return '${point.title} – ${point.subtitle}';
   }

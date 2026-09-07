@@ -30,7 +30,8 @@
     "morality": true,
     "ilmihal": true,
     "quiz": true,
-    "dhikr": true
+    "dhikr": true,
+    "elifbaTecvid": true
   },
   "contentFiles": {
     "quran": "assets/data/kuran.json",
@@ -51,7 +52,8 @@
     "dhikr": "assets/data/dhikr.json",
     "basics": "assets/data/temel_dini_bilgiler.json",
     "quranLearning": "assets/data/kur_an_ogrenme_veri_paketi.json",
-    "quranLearnCurriculum": "assets/data/kuran_ogrenme_tecvid.json"
+    "quranLearnCurriculum": "assets/data/kuran_ogrenme_tecvid.json",
+    "elifbaTecvid": "assets/data/elifba_tecvid_dersleri_eksiksiz.json"
   },
   "assetRoot": "assets/",
   "firstLaunch": {

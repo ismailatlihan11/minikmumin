@@ -7,6 +7,7 @@ import 'hadith_repository.dart';
 import 'learn_repositories.dart';
 import 'quran_learning_repository.dart';
 import 'quran_repository.dart';
+import '../../features/elifba_adventure/elifba_repository.dart';
 
 /// Shared repository graph. UI reads through this facade, never from JSON.
 class ContentRepositories {
@@ -29,6 +30,7 @@ class ContentRepositories {
     dhikr = DhikrRepository(datasource: source);
     basics = BasicsRepository(datasource: source);
     quranLearning = QuranLearningRepository(datasource: source);
+    elifba = ElifbaRepository(datasource: source);
   }
 
   final JsonContentDatasource datasource;
@@ -48,4 +50,5 @@ class ContentRepositories {
   late final DhikrRepository dhikr;
   late final BasicsRepository basics;
   late final QuranLearningRepository quranLearning;
+  late final ElifbaRepository elifba;
 }

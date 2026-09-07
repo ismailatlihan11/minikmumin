@@ -24,7 +24,7 @@ import '../../features/prophets/prophets_page.dart';
 import '../../features/quiz/quiz_page.dart';
 import '../../features/quran/mushaf_page.dart';
 import '../../features/quran/quran_page.dart';
-import '../../features/quran_learn/quran_learn_hub.dart';
+import '../../features/elifba_adventure/elifba_hub.dart';
 import '../../features/settings/settings_page.dart';
 import '../../features/wudu/wudu_flow_page.dart';
 import '../../features/zikr/zikr_page.dart';
@@ -162,7 +162,8 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.learnMorality: (_) => const MoralityPage(),
     AppRoutes.learnIlmihal: (_) => const IlmihalPage(),
     AppRoutes.learnBasics: (_) => const BasicsPage(),
-    AppRoutes.learnQuran: (_) => const QuranLearnHubPage(),
+    AppRoutes.learnQuran: (_) => const ElifbaChooserPage(),
+    AppRoutes.learnElifbaAdventure: (_) => const ElifbaHubPage(),
     AppRoutes.learnProphetsStories: (_) => const ProphetsStoriesHubPage(),
     AppRoutes.quiz: (_) => const QuizPage(),
     AppRoutes.quran: (_) => const MinikQuranPage(),
