@@ -263,21 +263,22 @@ void main(List<String> args) {
           .map((match) => match.group(0)!)
           .toList();
       if (!arabic.every(ElifbaReading.isShortSyllable)) continue;
-      const marks = [
-        ElifbaReading.fatha,
-        ElifbaReading.kasra,
-        ElifbaReading.damma,
-      ];
-      final letter = ElifbaReading.letterOf(item.question);
-      if (letter.isEmpty) continue;
-      final valid = {
-        for (final mark in marks) ElifbaReading.of(letter, mark, withTag: false),
-      };
-      final looksSyllabic = item.options.every(
-        (option) => option.length <= 3 && !option.contains(' '),
-      );
-      if (looksSyllabic && !valid.contains(item.answer)) {
-        wrongQuiz.add('Ders ${lesson.id}: ${item.question} → ${item.answer}');
+      if (arabic.isEmpty) continue;
+      // "Kalın / İnce" gibi sınıflandırma soruları hece üretmez.
+      final syllabic = RegExp(r'^[a-zçğışöü]+(-[a-zçğışöü]+)*$');
+      if (!item.options.every((option) => syllabic.hasMatch(option))) continue;
+      final want = arabic
+          .map((syllable) => ElifbaReading.of(
+                ElifbaReading.letterOf(syllable),
+                ElifbaReading.markOf(syllable),
+                withTag: false,
+              ))
+          .join('-');
+      if (item.answer != want || !item.options.contains(want)) {
+        wrongQuiz.add(
+          'Ders ${lesson.id}: ${item.question} ${item.options} → '
+          '${item.answer} (beklenen $want)',
+        );
       }
     }
   }
