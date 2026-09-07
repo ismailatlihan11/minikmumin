@@ -678,9 +678,10 @@ class ElifbaExample {
   }
 
   factory ElifbaExample.fromJson(Map<String, dynamic> json) {
+    final text = JsonMap.str(json['text']);
     return ElifbaExample(
-      text: JsonMap.str(json['text']),
-      reading: JsonMap.str(json['reading']),
+      text: text,
+      reading: ElifbaReading.forMarked(text, JsonMap.str(json['reading'])),
       note: JsonMap.str(json['note']),
       focus: JsonMap.str(json['focus']),
       rule: JsonMap.str(json['rule']),

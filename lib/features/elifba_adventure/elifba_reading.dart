@@ -1,7 +1,7 @@
 /// Harekeli harflerin Türkçe okunuşunu kurala göre üretir.
 ///
-/// Kural: üstün kalın harflerde "a", ince harflerde "e"; esre kalın harflerde
-/// "ı", ince harflerde "i"; ötre kalın harflerde "u", ince harflerde "ü".
+/// Kural: üstün kalın harflerde "a", ince harflerde "e"; esre her harfte "i";
+/// ötre her harfte "u".
 /// Kaynak JSON'daki okunuşlar tutarsız olduğu için (ör. ضَ "dad", خَ "hı")
 /// gösterimde bu üreteç esas alınır.
 abstract final class ElifbaReading {
