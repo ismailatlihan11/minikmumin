@@ -16,19 +16,13 @@ void main() {
     expect(QuranLearnMemoryLevel.hard.columns, 4);
   });
 
-  test('easy board aspect ratio is wide enough for four short rows', () {
-    final ratio = QuranLearnMemoryLevel.boardAspectRatio(
-      width: 360,
-      height: 400,
-      columns: QuranLearnMemoryLevel.easy.columns,
-      rows: QuranLearnMemoryLevel.easy.rows,
-      gap: QuranLearnMemoryLevel.easy.cardGap,
-    );
-    expect(ratio, greaterThan(1));
-    expect(
-      4 * (360 / QuranLearnMemoryLevel.easy.columns / ratio) +
-          3 * QuranLearnMemoryLevel.easy.cardGap,
-      lessThanOrEqualTo(400 + 0.5),
-    );
+  test('every card gets a slot on the board', () {
+    for (final level in QuranLearnMemoryLevel.values) {
+      expect(
+        level.rows * level.columns,
+        level.pairCount * 2,
+        reason: '${level.label} tahtasında boş ya da eksik kart var',
+      );
+    }
   });
 }

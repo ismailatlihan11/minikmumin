@@ -61,19 +61,6 @@ enum QuranLearnMemoryLevel {
         hard => 22,
       };
 
-  static double boardAspectRatio({
-    required double width,
-    required double height,
-    required int columns,
-    required int rows,
-    required double gap,
-  }) {
-    final cardWidth = (width - gap * (columns - 1)) / columns;
-    final cardHeight = (height - gap * (rows - 1)) / rows;
-    if (cardWidth <= 0 || cardHeight <= 0) return 1;
-    return cardWidth / cardHeight;
-  }
-
   Duration get mismatchPause => switch (this) {
         easy => const Duration(milliseconds: 900),
         medium => const Duration(milliseconds: 700),
