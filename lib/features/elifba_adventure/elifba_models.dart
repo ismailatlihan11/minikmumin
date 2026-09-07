@@ -722,6 +722,7 @@ class ElifbaQuizItem {
                   ElifbaReading.letterOf(syllable),
                   ElifbaReading.markOf(syllable),
                   withTag: false,
+                  doubled: syllable.contains(ElifbaReading.shadda),
                 ))
             .join('-');
         if (fixed.contains(correct)) {
@@ -744,7 +745,11 @@ class ElifbaQuizItem {
     if (parts.length != asked.length) return option;
     return [
       for (var i = 0; i < parts.length; i++)
-        ElifbaReading.forOption(ElifbaReading.letterOf(asked[i]), parts[i]),
+        ElifbaReading.forOption(
+          ElifbaReading.letterOf(asked[i]),
+          parts[i],
+          doubled: asked[i].contains(ElifbaReading.shadda),
+        ),
     ].join('-');
   }
 
@@ -1299,10 +1304,12 @@ class ElifbaRaRow {
   bool get isThick => reading.contains('kalın');
 
   factory ElifbaRaRow.fromJson(Map<String, dynamic> json) {
+    final form = JsonMap.str(json['form']);
     return ElifbaRaRow(
-      form: JsonMap.str(json['form']),
+      form: form,
       name: JsonMap.str(json['name']),
-      reading: JsonMap.str(json['reading']),
+      // JSON yalnızca "kalın/ince" yazıyor; çocuk sesi de görsün.
+      reading: ElifbaReading.forMarked(form, JsonMap.str(json['reading'])),
       reason: JsonMap.str(json['reason']),
     );
   }

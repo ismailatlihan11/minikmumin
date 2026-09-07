@@ -8,6 +8,7 @@ abstract final class ElifbaReading {
   static const fatha = 'َ';
   static const kasra = 'ِ';
   static const damma = 'ُ';
+  static const shadda = 'ّ';
 
   /// Her durumda kalın okunan yedi harf.
   static const heavyLetters = {'خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'};
@@ -101,18 +102,26 @@ abstract final class ElifbaReading {
     return true;
   }
 
-  /// Örn. بَ → "be", صُ → "su (kalın)", ثِ → "si (peltek)".
-  static String of(String letter, String mark, {bool withTag = true}) {
+  /// Örn. بَ → "be", صُ → "su (kalın)", ثِ → "si (peltek)", نَّ → "nne".
+  /// Şeddeli harf iki kez okunduğu için ünsüz tekrarlanır.
+  static String of(
+    String letter,
+    String mark, {
+    bool withTag = true,
+    bool doubled = false,
+  }) {
     final base = consonants[letter];
     if (base == null || mark.isEmpty) return '';
     final heavy = isHeavy(letter, mark);
-    final syllable = '$base${vowelFor(mark, heavy: heavy)}';
+    final root = doubled ? '$base$base' : base;
+    final syllable = '$root${vowelFor(mark, heavy: heavy)}';
     if (!withTag) return syllable;
     final tags = [
       if (lispLetters.contains(letter)) 'peltek',
       if (throatLetters.contains(letter)) 'boğaz',
       if (heavyLetters.contains(letter)) 'kalın',
       if (letter == 'ر') heavy ? 'kalın' : 'ince',
+      if (doubled) 'şeddeli',
     ];
     return tags.isEmpty ? syllable : '$syllable (${tags.join(', ')})';
   }
@@ -120,18 +129,23 @@ abstract final class ElifbaReading {
   /// Harekeli parçanın okunuşu; üretilemezse JSON'daki metin korunur.
   static String forMarked(String marked, String fallback, {bool withTag = true}) {
     if (!isShortSyllable(marked)) return fallback;
-    final reading = of(letterOf(marked), markOf(marked), withTag: withTag);
+    final reading = of(
+      letterOf(marked),
+      markOf(marked),
+      withTag: withTag,
+      doubled: marked.contains(shadda),
+    );
     return reading.isEmpty ? fallback : reading;
   }
 
   /// Şıklardaki okunuşu, o şıkkın ünlüsünün işaret ettiği harekeye göre
   /// yeniden üretir; böylece çeldiriciler de doğru sesi öğretir.
-  static String forOption(String letter, String option) {
+  static String forOption(String letter, String option, {bool doubled = false}) {
     final trimmed = option.trim();
     if (trimmed.isEmpty || trimmed.contains(' ')) return option;
     final mark = _markOfVowel(trimmed[trimmed.length - 1]);
     if (mark.isEmpty) return option;
-    final reading = of(letter, mark, withTag: false);
+    final reading = of(letter, mark, withTag: false, doubled: doubled);
     return reading.isEmpty ? option : reading;
   }
 
