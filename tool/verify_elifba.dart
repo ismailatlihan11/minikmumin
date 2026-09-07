@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:minik_kalpler/data/models/quran_learning.dart';
+import 'package:minik_kalpler/features/elifba_adventure/elifba_cezm_examples.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_letter_forms.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_models.dart';
 import 'package:minik_kalpler/features/elifba_adventure/elifba_reading.dart';
@@ -59,8 +60,29 @@ void main(List<String> args) {
       if (formsJson != null)
         ElifbaExtraLesson(afterLessonId: 1, json: formsJson),
     ],
+    patches: [
+      if (ElifbaCezmExamples.build(quranPack) case final cezm?)
+        ElifbaLessonPatch(
+          titleContains: ElifbaCezmExamples.lessonTitleContains,
+          content: cezm,
+        ),
+    ],
     hiddenTitles: const {ElifbaLetterFormsLesson.replacesTitle},
   );
+
+  final cezmLesson = byTitle(pack, 'Cezm');
+  check('Cezm dersinde en az 10 kelime örneği',
+      cezmLesson.wordExamples.length >= 10,
+      '${cezmLesson.wordExamples.length} kelime');
+  check(
+      'Cezm kelimelerinin hepsinde cezm var',
+      cezmLesson.wordExamples.every((word) => word.text.contains('ْ')),
+      cezmLesson.wordExamples.map((w) => w.text).take(3).join(' '));
+  check('Cezm dersinde sâkin harf örnekleri', cezmLesson.examples.length >= 6,
+      '${cezmLesson.examples.length} harf');
+  for (final word in cezmLesson.wordExamples) {
+    stdout.writeln('  ${word.text}  ${word.reading}  ${word.focus}');
+  }
   check('Eski "Harflerin Kelimedeki Şekilleri" dersi haritada yok',
       pack.lessons.every((lesson) => lesson.id != 6) && pack.hidden.length == 1,
       '${pack.hidden.length} gizli ders');

@@ -190,6 +190,20 @@ class ElifbaPack {
     return null;
   }
 
+  static Map<String, dynamic> _patched(
+    Map<String, dynamic> raw,
+    List<ElifbaLessonPatch> patches,
+  ) {
+    final title = _fold(JsonMap.str(raw['title']));
+    var result = raw;
+    for (final patch in patches) {
+      if (title.contains(_fold(patch.titleContains))) {
+        result = patch.applyTo(result);
+      }
+    }
+    return result;
+  }
+
   static String _markOf(String marked) {
     for (final mark in const ['ّ', 'ْ', 'ُ', 'ِ', 'َ']) {
       if (marked.contains(mark)) return mark;
@@ -255,11 +269,13 @@ class ElifbaPack {
   factory ElifbaPack.fromJson(
     Map<String, dynamic> json, {
     List<ElifbaExtraLesson> extras = const [],
+    List<ElifbaLessonPatch> patches = const [],
     Set<String> hiddenTitles = const {},
   }) {
-    final lessons = JsonMap.extractList(json, itemsKey: 'lessons')
-        .map(ElifbaLesson.fromJson)
-        .toList();
+    final lessons = [
+      for (final raw in JsonMap.extractList(json, itemsKey: 'lessons'))
+        ElifbaLesson.fromJson(_patched(raw, patches)),
+    ];
     final folded = hiddenTitles.map(_fold).toSet();
     final hidden = [
       for (final lesson in lessons)
@@ -281,6 +297,34 @@ class ElifbaPack {
       lessons: List.unmodifiable(lessons),
       hidden: List.unmodifiable(hidden),
     );
+  }
+}
+
+/// Mevcut bir dersi Kur'an serisinden gelen içerikle zenginleştirir.
+/// Listeler birleştirilir, diğer alanlar yalnızca ders boşsa yazılır.
+class ElifbaLessonPatch {
+  const ElifbaLessonPatch({
+    required this.titleContains,
+    required this.content,
+  });
+
+  final String titleContains;
+  final Map<String, dynamic> content;
+
+  Map<String, dynamic> applyTo(Map<String, dynamic> raw) {
+    final merged = Map<String, dynamic>.from(raw);
+    for (final entry in content.entries) {
+      final existing = merged[entry.key];
+      final addition = entry.value;
+      if (addition is List && existing is List) {
+        merged[entry.key] = [...existing, ...addition];
+      } else if (existing == null ||
+          (existing is String && existing.isEmpty) ||
+          (existing is List && existing.isEmpty)) {
+        merged[entry.key] = addition;
+      }
+    }
+    return merged;
   }
 }
 
