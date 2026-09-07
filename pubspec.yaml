@@ -59,7 +59,6 @@ flutter:
     - assets/audio/quran_learn/tajweed/
     - assets/images/elifba/
     - assets/images/elifba/characters/
-    - assets/audio/elifba/
 
   fonts:
     - family: NotoNaskhArabic
