@@ -1,75 +1,13 @@
 import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
+import 'elifba_audio_map.dart';
 
 /// Maps Elifbâ JSON names to existing offline Kur'an Öğren clips.
 /// Missing files never crash; the listen control stays disabled.
 abstract final class ElifbaAudio {
-  static const names = <String, String>{
-    'elif': 'elif',
-    'be': 'ba',
-    'te': 'ta',
-    'se': 'tha',
-    'cim': 'jim',
-    'ha': 'ha',
-    'hı': 'kha',
-    'hi': 'kha',
-    'dal': 'dal',
-    'zel': 'dhal',
-    'ra': 'ra',
-    'ze': 'zay',
-    'sin': 'sin',
-    'şın': 'shin',
-    'sad': 'sad',
-    'dad': 'dad',
-    'tı': 'ta_heavy',
-    'zı': 'za_heavy',
-    'ayn': 'ayn',
-    'gayın': 'ghayn',
-    'fe': 'fa',
-    'kaf': 'qaf',
-    'kef': 'kaf',
-    'lam': 'lam',
-    'mim': 'mim',
-    'nun': 'nun',
-    'he': 'hah',
-    'vav': 'waw',
-    'ye': 'ya',
-    'ya': 'ya',
-  };
+  static const names = elifbaAudioNames;
 
-  static const glyphs = <String, String>{
-    'ا': 'elif',
-    'أ': 'elif',
-    'إ': 'elif',
-    'ب': 'ba',
-    'ت': 'ta',
-    'ث': 'tha',
-    'ج': 'jim',
-    'ح': 'ha',
-    'خ': 'kha',
-    'د': 'dal',
-    'ذ': 'dhal',
-    'ر': 'ra',
-    'ز': 'zay',
-    'س': 'sin',
-    'ش': 'shin',
-    'ص': 'sad',
-    'ض': 'dad',
-    'ط': 'ta_heavy',
-    'ظ': 'za_heavy',
-    'ع': 'ayn',
-    'غ': 'ghayn',
-    'ف': 'fa',
-    'ق': 'qaf',
-    'ك': 'kaf',
-    'ل': 'lam',
-    'م': 'mim',
-    'ن': 'nun',
-    'ه': 'hah',
-    'و': 'waw',
-    'ي': 'ya',
-    'ى': 'ya',
-  };
+  static const glyphs = elifbaAudioGlyphs;
 
   static String? resolve(String? path) {
     final trimmed = path?.trim() ?? '';
@@ -102,7 +40,9 @@ abstract final class ElifbaAudio {
     if (haraka == 'name') {
       return resolve('assets/audio/quran_learn/alphabet/$stem.mp3');
     }
-    return resolve('assets/audio/quran_learn/exercises/${stem}_$haraka.mp3');
+    // Hece kayıtları Elifbâ'ya özeldir: kartta yazan okunuşu (be, si, su)
+    // Türkçe seslendirmeyle söyler. Kur'an serisinin kayıtları değişmez.
+    return resolve('assets/audio/elifba/exercises/${stem}_$haraka.mp3');
   }
 
   static String? forMarked(String marked, {String? name}) {
