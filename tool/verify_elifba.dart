@@ -200,9 +200,9 @@ void main(List<String> args) {
   check('Med tablosu tenvin dersinde görünmüyor',
       pack.medTableFor(tenvin).isEmpty);
 
-  // Bu iki ders kaynak JSON'da birkaç örnekle geçiliyordu; pratik sayısı
+  // Bu dersler kaynak JSON'da birkaç örnekle geçiliyordu; pratik sayısı
   // düşerse fark edelim.
-  for (final lesson in [tenvin, med]) {
+  for (final lesson in [tenvin, med, byTitle(pack, 'Kalkale')]) {
     final drills = lesson.examples.length + lesson.practice.length;
     check(
       '${lesson.title}: bol alıştırma',

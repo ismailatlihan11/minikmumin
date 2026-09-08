@@ -5447,21 +5447,109 @@
         "د"
       ],
       "memory_phrase": "قُطْبُ جَدٍ",
+      "rule": {
+        "symbol": "ْ",
+        "name": "Kalkale",
+        "concept": "Kalkale harfi cezimli olduğunda ses hafifçe sekerek yankılanır.",
+        "letter": "قْ"
+      },
       "examples": [
         {
           "text": "يَجْعَلْ",
+          "reading": "yec'al",
           "focus": "جْ",
           "note": "Cezimli ج kalkale etkisi gösterir."
         },
         {
           "text": "أَحَدْ",
+          "reading": "ehad",
           "focus": "دْ",
           "note": "Vakıfta son dâl cezimli hale geldiğinde kalkale duyulur."
         },
         {
           "text": "قَدْ",
+          "reading": "kad",
           "focus": "دْ",
           "note": "Cezimli dâl üzerinde kalkale duyulur."
+        }
+      ],
+      "word_section_title": "Kalkale ile Kelime Okuma",
+      "word_section_instruction": "Cezimli kalkale harfini bul, sesi hafifçe sektirerek oku.",
+      "word_examples": [
+        {
+          "word": "يَلِدْ",
+          "reading": "yelid",
+          "meaning": "doğurmadı",
+          "focus": "Yankılanan harf: دْ",
+          "reference": "İhlâs 3",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_06_2.mp3"
+        },
+        {
+          "word": "يَجْعَلْ",
+          "reading": "yec'al",
+          "meaning": "kılmadı",
+          "focus": "Yankılanan harf: جْ",
+          "reference": "Fil 2",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_06_3.mp3"
+        },
+        {
+          "word": "الْأَبْتَرُ",
+          "reading": "el-ebter",
+          "meaning": "soyu kesik",
+          "focus": "Yankılanan harf: بْ",
+          "reference": "Kevser 3",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_06_4.mp3"
+        },
+        {
+          "word": "يَدْخُلُونَ",
+          "reading": "yedhulûne",
+          "meaning": "giriyorlar",
+          "focus": "Yankılanan harf: دْ",
+          "reference": "Nasr 2",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_06_5.mp3"
+        },
+        {
+          "word": "بِالصَّبْرِ",
+          "reading": "bi's-sabr",
+          "meaning": "sabır ile",
+          "focus": "Yankılanan harf: بْ",
+          "reference": "Asr 3",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_06_6.mp3"
+        },
+        {
+          "word": "اقْرَأْ",
+          "reading": "ikra'",
+          "meaning": "oku",
+          "focus": "Yankılanan harf: قْ",
+          "reference": "Alak 1"
+        },
+        {
+          "word": "قَدْ",
+          "reading": "kad",
+          "meaning": "muhakkak",
+          "focus": "Yankılanan harf: دْ",
+          "reference": "Mü'minûn 1"
+        },
+        {
+          "word": "أَبْصَارِهِمْ",
+          "reading": "ebsârihim",
+          "meaning": "gözleri",
+          "focus": "Yankılanan harf: بْ",
+          "reference": "Bakara 7"
+        },
+        {
+          "word": "يَقْدِرُ",
+          "reading": "yakdiru",
+          "meaning": "güç yetirir",
+          "focus": "Yankılanan harf: قْ",
+          "reference": "Ra'd 26"
+        },
+        {
+          "word": "مُطْمَئِنَّةً",
+          "reading": "mutmainneten",
+          "meaning": "huzura ermiş",
+          "focus": "Yankılanan harf: طْ",
+          "reference": "Fecr 27"
         }
       ],
       "quiz": [

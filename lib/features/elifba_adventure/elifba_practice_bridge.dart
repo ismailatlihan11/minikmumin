@@ -20,6 +20,11 @@ abstract final class ElifbaPracticeBridge {
         exactTitle: true,
         content: _med(pack),
       ),
+      ElifbaLessonPatch(
+        titleContains: 'Kalkale Harfleri',
+        exactTitle: true,
+        content: _kalkale(pack),
+      ),
     ];
   }
 
@@ -330,6 +335,128 @@ abstract final class ElifbaPracticeBridge {
         'question': 'مَالِكِ kelimesinde uzatmayı hangi harf sağlar?',
         'options': ['ا', 'ل', 'ك'],
         'answer': 'ا',
+      },
+    ];
+  }
+
+  // --------------------------------------------------------------- kalkale
+
+  /// Yankılanan beş harf ve onlara en çok karıştırılan sakin komşuları.
+  static const _qalqala = ['ق', 'ط', 'ب', 'ج', 'د'];
+  static const _quietPairs = {'ق': 'ك', 'ط': 'ت', 'ب': 'ف', 'ج': 'ش', 'د': 'ز'};
+
+  static Map<String, dynamic> _kalkale(QuranLearningPack? pack) {
+    return {
+      'examples': [
+        for (final letter in _qalqala) _sakin(letter, yankili: true),
+      ],
+      'practice': [
+        // Önce yankılanmayan sakin komşular, sonra aynı harflerin harekeli
+        // hâli: kalkale yalnızca harf cezimliyken duyulur.
+        for (final letter in _qalqala)
+          _sakin(_quietPairs[letter]!, yankili: false),
+        for (final letter in _qalqala) _harekeli(letter),
+      ],
+      'comparison': [
+        for (final letter in _qalqala) ...[
+          _sakin(letter, yankili: true),
+          _sakin(_quietPairs[letter]!, yankili: false),
+        ],
+      ],
+      'comparison_pairs': [
+        for (final letter in _qalqala)
+          {
+            'question': '$letter${ElifbaReading.sukun} ile '
+                '${_quietPairs[letter]}${ElifbaReading.sukun}: hangisi yankılanır?',
+            'answers': [
+              '$letter${ElifbaReading.sukun}',
+              '${_quietPairs[letter]}${ElifbaReading.sukun}',
+            ],
+            'answer': '$letter${ElifbaReading.sukun}',
+            'pair': 'Kalkale harfi',
+          },
+      ],
+      'word_examples': _kalkaleWords(pack),
+      'quiz': _kalkaleQuiz(),
+    };
+  }
+
+  static Map<String, dynamic> _sakin(String letter, {required bool yankili}) {
+    final reading = ElifbaReading.of(letter, ElifbaReading.sukun, withTag: false);
+    return {
+      'text': '$letter${ElifbaReading.sukun}',
+      'reading': reading,
+      'note': yankili
+          ? 'Kalkale harfi: sesi hafifçe sekerek yankılanır.'
+          : 'Kalkale harfi değil: ses yankılanmadan durur.',
+    };
+  }
+
+  static Map<String, dynamic> _harekeli(String letter) {
+    return {
+      'text': '$letter${ElifbaReading.fatha}',
+      'reading': ElifbaReading.of(letter, ElifbaReading.fatha, withTag: false),
+      'note': 'Harf harekeli: burada yankı yok.',
+    };
+  }
+
+  /// Sakin kalkale harfi taşıyan gerçek kelimeler (يَلِدْ, يُولَدْ ...).
+  static List<Map<String, dynamic>> _kalkaleWords(QuranLearningPack? pack) {
+    if (pack == null) return const [];
+    final rows = <String, Map<String, dynamic>>{};
+    for (final word in pack.words) {
+      final found = _sakinQalqalaIn(word.arabic);
+      if (found.isEmpty || word.reading.isEmpty) continue;
+      rows[word.arabic] = {
+        'word': word.arabic,
+        'reading': word.reading,
+        'meaning': word.meaningTr,
+        'focus': 'Yankılanan harf: ${found.join(' · ')}',
+        'audio': word.audio ?? '',
+      };
+    }
+    return rows.values.toList(growable: false);
+  }
+
+  static List<String> _sakinQalqalaIn(String word) {
+    final runes = word.runes.toList();
+    final found = <String>[];
+    for (var i = 1; i < runes.length; i++) {
+      if (String.fromCharCode(runes[i]) != ElifbaReading.sukun) continue;
+      final letter = String.fromCharCode(runes[i - 1]);
+      if (!_qalqala.contains(letter)) continue;
+      final piece = '$letter${ElifbaReading.sukun}';
+      if (!found.contains(piece)) found.add(piece);
+    }
+    return found;
+  }
+
+  static List<Map<String, dynamic>> _kalkaleQuiz() {
+    return [
+      {
+        'question': 'Kalkale harfleri hangi cümleyle hatırlanır?',
+        'options': ['قُطْبُ جَدٍ', 'يَرْمَلُونَ', 'حُرُوفُ الْمَدّ'],
+        'answer': 'قُطْبُ جَدٍ',
+      },
+      {
+        'question': 'Hangi harf cezimliyken yankılanmaz?',
+        'options': ['س', 'ق', 'د'],
+        'answer': 'س',
+      },
+      {
+        'question': 'قَدْ kelimesinde yankı hangi harfte duyulur?',
+        'options': ['ق', 'د', 'İkisinde de'],
+        'answer': 'د',
+      },
+      {
+        'question': 'Kalkale harfi harekeliyken ne olur?',
+        'options': ['Yankı duyulmaz', 'Yine yankılanır', 'Ses uzar'],
+        'answer': 'Yankı duyulmaz',
+      },
+      {
+        'question': 'Kalkale kaç harfte olur?',
+        'options': ['3', '5', '7'],
+        'answer': '5',
       },
     ];
   }
