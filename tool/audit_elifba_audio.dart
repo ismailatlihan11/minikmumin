@@ -67,7 +67,11 @@ void main(List<String> args) {
         need(path, 'kelime', word.text, word.text, voice: 'ar');
       }
     }
-    for (final example in [...lesson.examples, ...lesson.coreExamples]) {
+    for (final example in [
+      ...lesson.examples,
+      ...lesson.coreExamples,
+      ...lesson.practice,
+    ]) {
       if (_letterCount(example.text) < 2) continue;
       if (example.audio.isNotEmpty && File(example.audio).existsSync()) continue;
       final path = elifbaWordPath(example.reading);

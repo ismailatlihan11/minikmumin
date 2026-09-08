@@ -5677,19 +5677,228 @@
       "rules_summary": [
         {
           "name": "İzhâr",
-          "meaning": "Açık okuma"
+          "meaning": "Açık okuma: nun sesi olduğu gibi duyulur."
         },
         {
           "name": "İdğam",
-          "meaning": "Birleştirerek okuma"
+          "meaning": "Birleştirerek okuma: nun, sonraki harfe katılır."
         },
         {
           "name": "İklâb",
-          "meaning": "Dönüştürme"
+          "meaning": "Dönüştürme: nun, mim sesine döner."
         },
         {
           "name": "İhfâ",
-          "meaning": "Gizleyerek/ara sesli okuma"
+          "meaning": "Gizleyerek okuma: nun geniz sesiyle gizlenir."
+        }
+      ],
+      "categories": [
+        {
+          "name": "İzhâr harfleri",
+          "letters": ["ء", "ه", "ع", "ح", "غ", "خ"],
+          "meaning": "Açık okuma",
+          "note": "Altı boğaz harfi. Nun sâkin ya da tenvin bunlardan önce gelirse n sesi açıkça okunur."
+        },
+        {
+          "name": "İdğam harfleri",
+          "letters": ["ي", "ر", "م", "ل", "و", "ن"],
+          "memory_phrase": "يَرْمَلُونَ",
+          "meaning": "Birleştirerek okuma",
+          "note": "Nun, sonraki harfe katılır. ي ن م و ile gunneli, ل ر ile gunnesiz okunur."
+        },
+        {
+          "name": "İklâb harfi",
+          "letters": ["ب"],
+          "meaning": "Dönüştürme",
+          "note": "Tek harf: ب. Nun sesi mim sesine döner ve gunne yapılır."
+        },
+        {
+          "name": "İhfâ harfleri",
+          "letters": [
+            "ت", "ث", "ج", "د", "ذ", "ز", "س", "ش",
+            "ص", "ض", "ط", "ظ", "ف", "ق", "ك"
+          ],
+          "meaning": "Gizleyerek okuma",
+          "note": "Geriye kalan on beş harf. Nun tam duyulmaz, geniz sesiyle gizlenir."
+        }
+      ],
+      "examples": [
+        {
+          "text": "أَنْعَمْتَ",
+          "reading": "en'amte",
+          "focus": "نْ + ع",
+          "rule": "İzhâr",
+          "note": "Boğaz harfi geldi, nun açıkça okunur.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_11_1.mp3"
+        },
+        {
+          "text": "مِنْ خَوْفٍ",
+          "reading": "min havf",
+          "focus": "نْ + خ",
+          "rule": "İzhâr",
+          "note": "Boğaz harfi geldi, nun açıkça okunur.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_11_3.mp3"
+        },
+        {
+          "text": "كُفُوًا أَحَدٌ",
+          "reading": "küfüven ehad",
+          "focus": "tenvin + ء",
+          "rule": "İzhâr",
+          "note": "Tenvin de nun sâkin gibi hüküm alır.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_11_2.mp3"
+        },
+        {
+          "text": "فَمَنْ يَعْمَلْ",
+          "reading": "femey ya'mel",
+          "focus": "نْ + ي",
+          "rule": "İdğam",
+          "note": "Nun, ya harfine gunneli katılır.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_15_1.mp3"
+        },
+        {
+          "text": "حَبْلٌ مِنْ",
+          "reading": "hablüm min",
+          "focus": "tenvin + م",
+          "rule": "İdğam",
+          "note": "Tenvin, mim harfine gunneli katılır.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_15_3.mp3"
+        },
+        {
+          "text": "مِنْ رَبِّهِمْ",
+          "reading": "mir rabbihim",
+          "focus": "نْ + ر",
+          "rule": "İdğam",
+          "note": "Ra ile birleşir, burada gunne yapılmaz.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_07_2.mp3"
+        },
+        {
+          "text": "يَكُنْ لَهُ",
+          "reading": "yekül lehû",
+          "focus": "نْ + ل",
+          "rule": "İdğam",
+          "note": "Lam ile birleşir, burada gunne yapılmaz.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_07_1.mp3"
+        },
+        {
+          "text": "أَنْبِئْهُمْ",
+          "reading": "embi'hum",
+          "focus": "نْ + ب",
+          "rule": "İklâb",
+          "note": "Nun sesi mim sesine döndü.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_09_1.mp3"
+        },
+        {
+          "text": "مِنْ شَرِّ",
+          "reading": "min şerri",
+          "focus": "نْ + ش",
+          "rule": "İhfâ",
+          "note": "Nun gizlendi, geniz sesi duyuluyor.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_1.mp3"
+        },
+        {
+          "text": "مِنْ قَبْلِكَ",
+          "reading": "min kablike",
+          "focus": "نْ + ق",
+          "rule": "İhfâ",
+          "note": "Nun gizlendi, geniz sesi duyuluyor.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_4.mp3"
+        },
+        {
+          "text": "مِنْ جُوعٍ",
+          "reading": "min cû'",
+          "focus": "نْ + ج",
+          "rule": "İhfâ",
+          "note": "Nun gizlendi, geniz sesi duyuluyor.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_6.mp3"
+        },
+        {
+          "text": "عَنْ صَلَاتِهِمْ",
+          "reading": "an salâtihim",
+          "focus": "نْ + ص",
+          "rule": "İhfâ",
+          "note": "Nun gizlendi, geniz sesi duyuluyor.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_3.mp3"
+        }
+      ],
+      "practice": [
+        {
+          "text": "يَنْقُضُونَ",
+          "reading": "yenkudûne",
+          "focus": "نْ + ق",
+          "note": "İhfâ: nun gizlenir.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_2.mp3"
+        },
+        {
+          "text": "مِنْ سِجِّيلٍ",
+          "reading": "min siccîl",
+          "focus": "نْ + س",
+          "note": "İhfâ: nun gizlenir.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_08_5.mp3"
+        },
+        {
+          "text": "إِنْ نَسِينَا",
+          "reading": "in nesînâ",
+          "focus": "نْ + ن",
+          "note": "İdğam: gunne ile birleşir.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_15_4.mp3"
+        },
+        {
+          "text": "سِنَةٌ وَلَا",
+          "reading": "sinetüv velâ",
+          "focus": "tenvin + و",
+          "note": "İdğam: gunne ile birleşir.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_15_5.mp3"
+        },
+        {
+          "text": "عَابِدٌ مَا",
+          "reading": "âbidum mâ",
+          "focus": "tenvin + م",
+          "note": "İdğam: gunne ile birleşir.",
+          "audio": "assets/audio/quran_learn/tajweed/tajweed_15_2.mp3"
+        },
+        {
+          "text": "مَنْ آمَنَ",
+          "reading": "men âmene",
+          "focus": "نْ + ء",
+          "note": "İzhâr: nun açık okunur."
+        },
+        {
+          "text": "مِنْ هَادٍ",
+          "reading": "min hâd",
+          "focus": "نْ + ه",
+          "note": "İzhâr: nun açık okunur."
+        },
+        {
+          "text": "عَلِيمٌ حَكِيمٌ",
+          "reading": "alîmun hakîm",
+          "focus": "tenvin + ح",
+          "note": "İzhâr: tenvin açık okunur."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "question": "نْ + ب geldiğinde hangi hüküm olur?",
+          "answers": ["İklâb", "İzhâr", "İhfâ"],
+          "answer": "İklâb",
+          "pair": "Tek harfli hüküm"
+        },
+        {
+          "question": "نْ + ع geldiğinde hangi hüküm olur?",
+          "answers": ["İzhâr", "İdğam", "İklâb"],
+          "answer": "İzhâr",
+          "pair": "Boğaz harfi"
+        },
+        {
+          "question": "نْ + ي geldiğinde hangi hüküm olur?",
+          "answers": ["İdğam", "İhfâ", "İzhâr"],
+          "answer": "İdğam",
+          "pair": "Yermelûn harfi"
+        },
+        {
+          "question": "نْ + ق geldiğinde hangi hüküm olur?",
+          "answers": ["İhfâ", "İzhâr", "İklâb"],
+          "answer": "İhfâ",
+          "pair": "Kalan on beş harf"
         }
       ],
       "quiz": [
@@ -5710,6 +5919,60 @@
             "Burun"
           ],
           "answer": "Boğaz"
+        },
+        {
+          "question": "İdğam harfleri hangi cümleyle hatırlanır?",
+          "options": [
+            "يَرْمَلُونَ",
+            "قُطْبُ جَدٍ",
+            "حُرُوفُ الْمَدّ"
+          ],
+          "answer": "يَرْمَلُونَ"
+        },
+        {
+          "question": "İklâb kaç harfte olur?",
+          "options": [
+            "1",
+            "6",
+            "15"
+          ],
+          "answer": "1"
+        },
+        {
+          "question": "أَنْبِئْهُمْ kelimesinde nun hangi sese döner?",
+          "options": [
+            "m",
+            "l",
+            "r"
+          ],
+          "answer": "m"
+        },
+        {
+          "question": "İhfâda nun sesi nasıl okunur?",
+          "options": [
+            "Gizlenir, geniz sesi duyulur",
+            "Açıkça duyulur",
+            "Hiç okunmaz"
+          ],
+          "answer": "Gizlenir, geniz sesi duyulur"
+        },
+        {
+          "question": "Tenvin, nun sâkin ile aynı hükümleri alır mı?",
+          "options": [
+            "Evet",
+            "Hayır",
+            "Sadece izhârda"
+          ],
+          "answer": "Evet"
+        },
+        {
+          "question": "مِنْ رَبِّهِمْ ifadesinde gunne yapılır mı?",
+          "options": [
+            "Hayır, ra ile gunnesiz idğam olur",
+            "Evet, gunne yapılır",
+            "Bu izhârdır"
+          ],
+          "answer": "Hayır, ra ile gunnesiz idğam olur"
         }
       ],
       "rich_content": {

@@ -236,6 +236,26 @@ void main(List<String> args) {
           'oyun ${lesson.askPairs.length} · quiz ${lesson.quiz.length}',
     );
   }
+
+  // Nun sâkin dersi dört hükmü de tanıtmalı: harf grupları, kural bulmaca
+  // oyunu ve örnekler olmadan konu havada kalıyor.
+  final nunSakin = byTitle(pack, 'Nun Sâkin');
+  final hukumler = {'izhâr', 'idğam', 'iklâb', 'ihfâ'};
+  final taughtRules = nunSakin.examples
+      .map((item) => item.rule.toLowerCase())
+      .where((rule) => rule.isNotEmpty)
+      .toSet();
+  check(
+    'Nun sâkin: dört hüküm de işleniyor',
+    nunSakin.categories.length == 4 &&
+        hukumler.every((rule) => taughtRules.any((item) => item.contains(rule))) &&
+        nunSakin.examples.length + nunSakin.practice.length >= 15 &&
+        nunSakin.askPairs.length >= 4 &&
+        nunSakin.quiz.length >= 8,
+    'grup ${nunSakin.categories.length} · kural $taughtRules · '
+        'örnek ${nunSakin.examples.length + nunSakin.practice.length} · '
+        'oyun ${nunSakin.askPairs.length} · quiz ${nunSakin.quiz.length}',
+  );
   check('Kural ağacı nun sâkin dersinde',
       pack.decisionTreeFor(byTitle(pack, 'Nun Sâkin')).isNotEmpty &&
           pack.decisionTreeFor(byTitle(pack, 'Kalkale')).isEmpty);

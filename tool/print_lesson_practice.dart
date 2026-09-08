@@ -37,6 +37,10 @@ void main(List<String> args) {
       'tenvin kartı': lesson.types.length,
       'med kartı': lesson.medLetters.length,
       'med tablosu': pack.medTableFor(lesson).length,
+      'harf grubu': lesson.categories.length,
+      'kural kartı': lesson.rulesSummary.length + lesson.rules.length,
+      'kural ağacı': pack.decisionTreeFor(lesson).length,
+      'kural bulmaca': lesson.examples.where((e) => e.rule.isNotEmpty).length,
       'quiz': lesson.quiz.length,
     };
     counts.forEach((key, value) {
