@@ -113,9 +113,13 @@ class ElifbaPack {
   List<ElifbaLetterRow> teachingTableFor(ElifbaLesson lesson) {
     // Şedde dersi kendi harake_tables bölümlerini kullanır.
     if (lesson.harakeTables.isNotEmpty) return const [];
+    // İşaretin tablosu yalnızca o işareti öğreten derse gider; kalkale gibi
+    // aynı işareti kullanan dersler cezm tablosunu tekrar göstermez.
     final mark = lesson.rule?.symbol ?? '';
-    final matched = tableMatchingMark(mark);
-    if (matched.isNotEmpty) return matched;
+    if (_lessonTeaching(mark)?.id == lesson.id) {
+      final matched = tableMatchingMark(mark);
+      if (matched.isNotEmpty) return matched;
+    }
     final byCategory = categoryTableFor(lesson);
     if (byCategory.isNotEmpty) return byCategory;
     final own = lesson.letterTable;
@@ -130,12 +134,8 @@ class ElifbaPack {
     if (_tableFitsLesson(lesson, own)) {
       return own;
     }
-    for (final other in contentLessons) {
-      final table = other.letterTable;
-      if (table.isEmpty) continue;
-      if (table.first.marked.isNotEmpty) continue;
-      if (_tableFitsLesson(lesson, table)) return table;
-    }
+    // Kendi tablosu olmayan derse başka dersin tablosu verilmez: kaydırılmış
+    // tablolar yukarıda işaretine ve kategorisine göre zaten yerine oturuyor.
     return const [];
   }
 

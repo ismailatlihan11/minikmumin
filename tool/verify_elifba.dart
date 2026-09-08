@@ -196,6 +196,26 @@ void main(List<String> args) {
   final med = byTitle(pack, 'Med Harfleri');
   check('Med: elif, vav, ya',
       pack.medTableFor(med).map((r) => r.letter).toSet().containsAll({'ا', 'و', 'ي'}));
+  // Harf tablosu yalnızca kendi dersinde görünmeli: konusu olmayan derste
+  // "Bütün ilgili harfler" başlığıyla kalın harfler tablosu çıkıyordu.
+  final leakedTables = <String>[];
+  for (final lesson in pack.lessons) {
+    final table = pack.teachingTableFor(lesson);
+    if (table.isEmpty) continue;
+    final mark = lesson.rule?.symbol ?? '';
+    final teachesMark = mark.isNotEmpty && table.first.marked.contains(mark);
+    final category = table.first.category.toLowerCase();
+    final keyword = category.isEmpty ? '' : category.split(' ').first;
+    final matchesCategory =
+        keyword.length > 2 && lesson.title.toLowerCase().contains(keyword);
+    if (!teachesMark && !matchesCategory) {
+      leakedTables.add('Ders ${lesson.id} ${lesson.title} → '
+          '${table.length} satır (${table.first.letter}...)');
+    }
+  }
+  check('Harf tablosu başka derse taşmıyor', leakedTables.isEmpty,
+      leakedTables.take(4).join(' | '));
+
   final tenvin = byTitle(pack, 'Tenvin');
   check('Med tablosu tenvin dersinde görünmüyor',
       pack.medTableFor(tenvin).isEmpty);
@@ -373,6 +393,8 @@ void main(List<String> args) {
       if (lesson.rule != null) 'isaret',
       if (lesson.letters.isNotEmpty) 'harfler',
       if (lesson.tripleFormTable.isNotEmpty) 'uclu-tablo',
+      if (lesson.letterForms.isNotEmpty) 'harf-sekilleri-tablosu',
+      if (lesson.isFinal && lesson.quiz.isNotEmpty) 'final-sinavi',
       if (pack.teachingTableFor(lesson).isNotEmpty) 'harf-tablosu',
       if (lesson.harakeTables.isNotEmpty) 'sedde-tablolari',
       if (lesson.categoryTables.isNotEmpty) 'kategori-tablolari',
