@@ -10,6 +10,9 @@ abstract final class ElifbaReading {
   static const damma = 'ُ';
   static const shadda = 'ّ';
   static const sukun = 'ْ';
+  static const fathatayn = 'ً';
+  static const kasratayn = 'ٍ';
+  static const dammatayn = 'ٌ';
 
   /// Her durumda kalın okunan yedi harf.
   static const heavyLetters = {'خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'};
@@ -60,7 +63,7 @@ abstract final class ElifbaReading {
 
   /// Ra esreliyken ince, üstünlü ve ötreliyken kalın okunur.
   static bool isHeavy(String letter, String mark) {
-    if (letter == 'ر') return mark != kasra;
+    if (letter == 'ر') return mark != kasra && mark != kasratayn;
     return heavyLetters.contains(letter);
   }
 
@@ -70,9 +73,18 @@ abstract final class ElifbaReading {
     return heavy ? pair.heavy : pair.thin;
   }
 
-  /// Harekeli parçadaki hareke; yoksa boş döner.
+  /// Harekeli parçadaki hareke; yoksa boş döner. Tenvin çift harekedir,
+  /// tek harekeden önce aranır.
   static String markOf(String marked) {
-    for (final mark in const [fatha, kasra, damma, sukun]) {
+    for (final mark in const [
+      fathatayn,
+      kasratayn,
+      dammatayn,
+      fatha,
+      kasra,
+      damma,
+      sukun,
+    ]) {
       if (marked.contains(mark)) return mark;
     }
     return '';
@@ -86,9 +98,9 @@ abstract final class ElifbaReading {
     return '';
   }
 
-  /// Uzatma ve tenvin içeren parçalar bu üretecin dışındadır.
+  /// Uzatma içeren parçalar bu üretecin dışındadır.
   static bool isShortSyllable(String marked) {
-    const skip = ['ً', 'ٍ', 'ٌ', 'ٰ', 'ا', 'و', 'ي'];
+    const skip = ['ٰ', 'ا', 'و', 'ي'];
     final letter = letterOf(marked);
     if (letter.isEmpty || markOf(marked).isEmpty) return false;
     var letters = 0;
@@ -169,10 +181,14 @@ abstract final class ElifbaReading {
   /// Harekenin sesi: kalın harflerde ve ince harflerde. Yalnızca üstün
   /// harfin kalınlığına göre değişir; esre her harfte 'i', ötre her harfte
   /// 'u' okunur.
+  /// Tenvin, harekenin sesine bir 'n' ekler: بً "ben", صً "san", بٍ "bin".
   static const vowelPairs = <String, ({String heavy, String thin})>{
     fatha: (heavy: 'a', thin: 'e'),
     kasra: (heavy: 'i', thin: 'i'),
     damma: (heavy: 'u', thin: 'u'),
+    fathatayn: (heavy: 'an', thin: 'en'),
+    kasratayn: (heavy: 'in', thin: 'in'),
+    dammatayn: (heavy: 'un', thin: 'un'),
   };
 
   static String describeMark(String mark) {

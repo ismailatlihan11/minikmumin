@@ -4865,6 +4865,66 @@
           "reading": "kitâbun"
         }
       ],
+      "word_section_title": "Tenvinli Kelime Okuma",
+      "word_section_instruction": "Kelimenin sonundaki çift harekeyi bul, sonuna n sesini ekleyerek oku.",
+      "word_examples": [
+        {
+          "word": "أَحَدٌ",
+          "reading": "ehadun",
+          "meaning": "bir, tek",
+          "focus": "Sonda iki ötre: دٌ",
+          "reference": "İhlâs 1"
+        },
+        {
+          "word": "صَمَدٌ",
+          "reading": "samedun",
+          "meaning": "hiçbir şeye muhtaç olmayan",
+          "focus": "Sonda iki ötre: دٌ",
+          "reference": "İhlâs 2"
+        },
+        {
+          "word": "كُفُوًا",
+          "reading": "küfüven",
+          "meaning": "denk",
+          "focus": "Sonda iki üstün: وًا",
+          "reference": "İhlâs 4"
+        },
+        {
+          "word": "حَاسِدٍ",
+          "reading": "hâsidin",
+          "meaning": "kıskanan",
+          "focus": "Sonda iki esre: دٍ",
+          "reference": "Felak 5"
+        },
+        {
+          "word": "سَلَامٌ",
+          "reading": "selâmun",
+          "meaning": "selam, esenlik",
+          "focus": "Sonda iki ötre: مٌ",
+          "reference": "Kadir 5"
+        },
+        {
+          "word": "عَظِيمٌ",
+          "reading": "azîmun",
+          "meaning": "çok büyük",
+          "focus": "Sonda iki ötre: مٌ",
+          "reference": "Bakara 255"
+        },
+        {
+          "word": "خُسْرٍ",
+          "reading": "husrin",
+          "meaning": "ziyan",
+          "focus": "Sonda iki esre: رٍ",
+          "reference": "Asr 2"
+        },
+        {
+          "word": "رَحِيمٌ",
+          "reading": "rahîmun",
+          "meaning": "çok merhametli",
+          "focus": "Sonda iki ötre: مٌ",
+          "reference": "Bakara 143"
+        }
+      ],
       "quiz": [
         {
           "question": "ٌ hangi tenvindir?",
@@ -5083,6 +5143,52 @@
           "sound": "î",
           "example": "بِي",
           "reading": "bî"
+        }
+      ],
+      "word_section_title": "Uzatmalı Kelime Okuma",
+      "word_section_instruction": "Uzun sesi bir elif miktarı uzat, aceleye getirme.",
+      "word_examples": [
+        {
+          "word": "قَالَ",
+          "reading": "kâle",
+          "meaning": "dedi",
+          "focus": "Uzatma: قَا (üstün + elif)",
+          "reference": "Bakara 30"
+        },
+        {
+          "word": "نُوحٌ",
+          "reading": "nûhun",
+          "meaning": "Nuh (a.s.)",
+          "focus": "Uzatma: نُو (ötre + vav)",
+          "reference": "Nuh 1"
+        },
+        {
+          "word": "سَمِيعٌ",
+          "reading": "semî'un",
+          "meaning": "işiten",
+          "focus": "Uzatma: مِي (esre + ya)",
+          "reference": "Bakara 127"
+        },
+        {
+          "word": "بَصِيرٌ",
+          "reading": "basîrun",
+          "meaning": "gören",
+          "focus": "Uzatma: صِي (esre + ya)",
+          "reference": "İsrâ 1"
+        },
+        {
+          "word": "يَقُولُ",
+          "reading": "yekûlu",
+          "meaning": "söyler",
+          "focus": "Uzatma: قُو (ötre + vav)",
+          "reference": "Bakara 8"
+        },
+        {
+          "word": "كِتَابٌ",
+          "reading": "kitâbun",
+          "meaning": "kitap",
+          "focus": "Uzatma: تَا (üstün + elif)",
+          "reference": "Bakara 2"
         }
       ],
       "quiz": [

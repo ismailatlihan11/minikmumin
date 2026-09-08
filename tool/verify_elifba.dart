@@ -196,8 +196,26 @@ void main(List<String> args) {
   final med = byTitle(pack, 'Med Harfleri');
   check('Med: elif, vav, ya',
       pack.medTableFor(med).map((r) => r.letter).toSet().containsAll({'ا', 'و', 'ي'}));
+  final tenvin = byTitle(pack, 'Tenvin');
   check('Med tablosu tenvin dersinde görünmüyor',
-      pack.medTableFor(byTitle(pack, 'Tenvin')).isEmpty);
+      pack.medTableFor(tenvin).isEmpty);
+
+  // Bu iki ders kaynak JSON'da birkaç örnekle geçiliyordu; pratik sayısı
+  // düşerse fark edelim.
+  for (final lesson in [tenvin, med]) {
+    final drills = lesson.examples.length + lesson.practice.length;
+    check(
+      '${lesson.title}: bol alıştırma',
+      drills >= 15 &&
+          lesson.wordExamples.length >= 10 &&
+          lesson.comparison.length >= 4 &&
+          lesson.askPairs.length >= 2 &&
+          lesson.quiz.length >= 8,
+      'hece $drills · kelime ${lesson.wordExamples.length} · '
+          'karşılaştırma ${lesson.comparison.length} · '
+          'oyun ${lesson.askPairs.length} · quiz ${lesson.quiz.length}',
+    );
+  }
   check('Kural ağacı nun sâkin dersinde',
       pack.decisionTreeFor(byTitle(pack, 'Nun Sâkin')).isNotEmpty &&
           pack.decisionTreeFor(byTitle(pack, 'Kalkale')).isEmpty);

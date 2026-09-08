@@ -197,7 +197,7 @@ class ElifbaPack {
     final title = _fold(JsonMap.str(raw['title']));
     var result = raw;
     for (final patch in patches) {
-      if (title.contains(_fold(patch.titleContains))) {
+      if (patch.matches(title, _fold(patch.titleContains))) {
         result = patch.applyTo(result);
       }
     }
@@ -306,10 +306,18 @@ class ElifbaLessonPatch {
   const ElifbaLessonPatch({
     required this.titleContains,
     required this.content,
+    this.exactTitle = false,
   });
 
   final String titleContains;
   final Map<String, dynamic> content;
+
+  /// "Tenvin" ile "Nun Sâkin ve Tenvine Giriş" karışmasın diye başlığın
+  /// tamamının eşleşmesi istenebilir.
+  final bool exactTitle;
+
+  bool matches(String foldedTitle, String foldedNeedle) =>
+      exactTitle ? foldedTitle == foldedNeedle : foldedTitle.contains(foldedNeedle);
 
   Map<String, dynamic> applyTo(Map<String, dynamic> raw) {
     final merged = Map<String, dynamic>.from(raw);
@@ -339,8 +347,11 @@ class ElifbaLessonPatch {
 
   static String _key(dynamic item) {
     if (item is! Map) return '';
-    final text = item['word'] ?? item['text'] ?? item['arabic'] ?? '';
-    return elifbaStripMarks('$text');
+    final text = '${item['word'] ?? item['text'] ?? item['arabic'] ?? ''}';
+    final stripped = elifbaStripMarks(text);
+    // Tek harflik parçalarda hareke farkı asıl konudur: بً ile بٍ ayrı
+    // alıştırmalardır. Kelimelerde ise sondaki hareke farkı yok sayılır.
+    return stripped.runes.length == 1 ? text.trim() : stripped;
   }
 }
 

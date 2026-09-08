@@ -1,5 +1,6 @@
 import '../../data/models/quran_learning.dart';
 import 'elifba_models.dart';
+import 'elifba_practice_bridge.dart';
 
 /// Macera derslerini Kur'an Öğrenme Serisi'ndeki çalışmalarla besler.
 /// Kaynak JSON'daki dersler zayıf kaldığında (cezm, şedde) aynı harf, hece
@@ -9,11 +10,15 @@ abstract final class ElifbaQuranBridge {
   static const shadda = 'ّ';
 
   static List<ElifbaLessonPatch> patches(QuranLearningPack? pack) {
-    if (pack == null) return const [];
     return [
-      for (final topic in _topics)
-        if (_build(pack, topic) case final content?)
-          ElifbaLessonPatch(titleContains: topic.titleContains, content: content),
+      if (pack != null)
+        for (final topic in _topics)
+          if (_build(pack, topic) case final content?)
+            ElifbaLessonPatch(
+              titleContains: topic.titleContains,
+              content: content,
+            ),
+      ...ElifbaPracticeBridge.patches(pack),
     ];
   }
 
