@@ -33,6 +33,7 @@ abstract final class ElifbaAudio {
     'nun': 'nun',
     'he': 'hah',
     'vav': 'waw',
+    'ye': 'ya',
     'ya': 'ya',
   };
 

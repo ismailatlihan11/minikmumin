@@ -136,7 +136,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya"
+          "name": "Ye"
         }
       ],
       "activities": [
@@ -175,11 +175,11 @@
         {
           "question": "ي harfinin adı nedir?",
           "options": [
-            "Ya",
+            "Ye",
             "Vav",
             "He"
           ],
-          "answer": "Ya"
+          "answer": "Ye"
         },
         {
           "question": "ص harfinin adı nedir?",
@@ -324,7 +324,7 @@
           },
           {
             "letter": "ي",
-            "name": "Ya"
+            "name": "Ye"
           }
         ]
       },
@@ -773,7 +773,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "fatha": "يَ",
           "kasra": "يِ",
           "damma": "يُ",
@@ -1528,7 +1528,7 @@
           },
           {
             "letter": "ي",
-            "name": "Ya",
+            "name": "Ye",
             "example": "يَ"
           }
         ]
@@ -1961,7 +1961,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "marked": "يَ",
           "reading": "ya",
           "note": null
@@ -2360,7 +2360,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "marked": "يِ",
           "reading": "yi",
           "note": null
@@ -2846,7 +2846,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "marked": "يُ",
           "reading": "yu",
           "note": null
@@ -3515,7 +3515,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "marked": "يْ",
           "reading": "cezmli y",
           "note": "Cezmli harf önceki sesle birleşir."
@@ -3881,7 +3881,7 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "marked": "يّ",
           "reading": "şeddeli y",
           "note": "Şedde, harfin kuvvetli/çift değerini gösterir."
@@ -4256,7 +4256,7 @@
           },
           {
             "letter": "ي",
-            "name": "Ya",
+            "name": "Ye",
             "marked": "يَّ",
             "reading": "ya (şeddeli)",
             "vowel": "Üstün",
@@ -4474,7 +4474,7 @@
           },
           {
             "letter": "ي",
-            "name": "Ya",
+            "name": "Ye",
             "marked": "يِّ",
             "reading": "yi (şeddeli)",
             "vowel": "Esre",
@@ -4692,7 +4692,7 @@
           },
           {
             "letter": "ي",
-            "name": "Ya",
+            "name": "Ye",
             "marked": "يُّ",
             "reading": "yu (şeddeli)",
             "vowel": "Ötre",
@@ -5033,8 +5033,8 @@
         },
         {
           "letter": "ي",
-          "name": "Ya",
-          "formula": "Esre + Ya sâkin",
+          "name": "Ye",
+          "formula": "Esre + Ye sâkin",
           "pattern": "ـِي",
           "reading": "î",
           "examples": [
@@ -5750,7 +5750,7 @@
       "letter_table": [
         {
           "letter": "ي",
-          "name": "Ya",
+          "name": "Ye",
           "category": "İdğam harfi",
           "type": "Gunneli"
         },
