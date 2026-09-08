@@ -384,7 +384,11 @@ class ElifbaShaddaSections extends StatelessWidget {
             rows: tables[key] ?? const [],
             audio: audio,
             title: _titles[key] ?? key,
-            instruction: 'Şedde tek başına okunmaz; önce harekeyi söyle.',
+            // Şeddeli hecelerin kaydı iyi çıkmadığı için bu bölümde ses
+            // düğmesi yok; çocuk kartı kendisi okur.
+            allowListen: false,
+            instruction: 'Şedde tek başına okunmaz; harekeyi söyle, '
+                'sonra harfi iki kez oku.',
           ),
           const SizedBox(height: 18),
         ],

@@ -138,12 +138,17 @@ class ElifbaLetterCard extends StatefulWidget {
     required this.audio,
     this.compact = false,
     this.allowFavorite = true,
+    this.allowListen = true,
   });
 
   final ElifbaLetterRow row;
   final AudioPlayerService audio;
   final bool compact;
   final bool allowFavorite;
+
+  /// Kaydı olmayan ya da kaydı iyi çıkmayan bölümlerde ses düğmeleri
+  /// gösterilmez; çocuk kartı kendisi okur.
+  final bool allowListen;
 
   @override
   State<ElifbaLetterCard> createState() => _ElifbaLetterCardState();
@@ -157,6 +162,7 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
   ElifbaLetterRow get row => widget.row;
 
   String? get _listenPath {
+    if (!widget.allowListen) return null;
     if (row.audioLetter.isNotEmpty) {
       return ElifbaAudio.resolve(row.audioLetter) ?? row.audioLetter;
     }
@@ -287,15 +293,17 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
               runSpacing: 8,
               alignment: WrapAlignment.center,
               children: [
-                ElifbaAudioButton(audio: widget.audio, path: _listenPath),
-                SizedBox(
-                  height: 48,
-                  child: OutlinedButton.icon(
-                    onPressed: _listenPath == null ? null : _repeat,
-                    icon: const Icon(Icons.replay_rounded),
-                    label: const Text('Tekrar Et'),
+                if (widget.allowListen) ...[
+                  ElifbaAudioButton(audio: widget.audio, path: _listenPath),
+                  SizedBox(
+                    height: 48,
+                    child: OutlinedButton.icon(
+                      onPressed: _listenPath == null ? null : _repeat,
+                      icon: const Icon(Icons.replay_rounded),
+                      label: const Text('Tekrar Et'),
+                    ),
                   ),
-                ),
+                ],
                 if (widget.allowFavorite)
                   FavoriteButton(
                     kind: 'elifba_example',
@@ -324,6 +332,7 @@ class ElifbaLetterTable extends StatefulWidget {
     this.title = '',
     this.instruction = '',
     this.allowFavorite = true,
+    this.allowListen = true,
   });
 
   final List<ElifbaLetterRow> rows;
@@ -331,6 +340,7 @@ class ElifbaLetterTable extends StatefulWidget {
   final String title;
   final String instruction;
   final bool allowFavorite;
+  final bool allowListen;
 
   static const groups = <List<String>>[
     ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ'],
@@ -423,6 +433,7 @@ class _ElifbaLetterTableState extends State<ElifbaLetterTable> {
                       audio: widget.audio,
                       compact: columns == 2,
                       allowFavorite: widget.allowFavorite,
+                      allowListen: widget.allowListen,
                     ),
                   ),
               ],

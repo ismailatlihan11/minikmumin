@@ -17,9 +17,13 @@ String? elifbaLetterStem(String glyphOrName) {
 String elifbaNamePath(String stem) =>
     'assets/audio/quran_learn/alphabet/$stem.mp3';
 
-/// Harekeli hece kaydı ("sa", "si", "su", "es", "sse").
+/// Harekeli hece kaydı ("sa", "si", "su", "es").
 String elifbaSyllablePath(String stem, String haraka) =>
     'assets/audio/elifba/exercises/${stem}_$haraka.mp3';
+
+/// Şeddeli hecelerin ("bbe", "tti") seslendirmesi doğal çıkmadığı için bu
+/// heceler kayıtsız bırakıldı; kartlarda ses düğmesi gösterilmez.
+bool elifbaSyllableHasRecording(String haraka) => !haraka.startsWith('shadda');
 
 /// Kelime ve ifade kaydı. Dosya adı okunuştan türetilir ("rabbenâ" →
 /// rabbena.mp3), böylece aynı kelime iki kez üretilmez.

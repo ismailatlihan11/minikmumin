@@ -144,7 +144,7 @@ void _needCluster(
   final stem = elifbaLetterStem(text);
   if (stem == null) return;
   final haraka = elifbaHarakaOf(text);
-  if (haraka == 'name') return;
+  if (haraka == 'name' || !elifbaSyllableHasRecording(haraka)) return;
   final say = ElifbaReading.forMarked(text, '', withTag: false);
   if (say.isEmpty) return;
   need(elifbaSyllablePath(stem, haraka), 'hece ($haraka)', text, say);

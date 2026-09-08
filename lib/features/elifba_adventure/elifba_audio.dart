@@ -37,6 +37,7 @@ abstract final class ElifbaAudio {
     final stem = elifbaLetterStem(glyphOrName);
     if (stem == null) return null;
     if (haraka == 'name') return resolve(elifbaNamePath(stem));
+    if (!elifbaSyllableHasRecording(haraka)) return null;
     // Hece kayıtları Elifbâ'ya özeldir: kartta yazan okunuşu (be, si, su)
     // Türkçe seslendirmeyle söyler. Kur'an serisinin kayıtları değişmez.
     return resolve(elifbaSyllablePath(stem, haraka));
@@ -44,10 +45,15 @@ abstract final class ElifbaAudio {
 
   static String? forMarked(String marked, {String? name}) {
     final haraka = elifbaHarakaOf(marked);
-    final sounded = haraka == 'name'
-        ? (letterName(name ?? '') ?? letterGlyph(marked))
-        : letterSound(name ?? marked, haraka: haraka);
-    return sounded ?? letterGlyph(marked) ?? letterName(name ?? '');
+    if (haraka == 'name') {
+      return letterName(name ?? '') ?? letterGlyph(marked);
+    }
+    // Kaydı olmayan hecede harfin adını çalmıyoruz: بَّ ile "Be" aynı şey
+    // değil, yanlış öğretir.
+    if (!elifbaSyllableHasRecording(haraka)) return null;
+    return letterSound(name ?? marked, haraka: haraka) ??
+        letterGlyph(marked) ??
+        letterName(name ?? '');
   }
 
   /// Kelime ve ifadeler için ses: kayıt yoksa harf adı sesi çalınmaz,
