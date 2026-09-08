@@ -277,6 +277,9 @@ void main(List<String> args) {
           ElifbaReading.letterOf(entry.key),
           ElifbaReading.markOf(entry.key),
         );
+        // Elif ve ayn gibi ünsüz karşılığı olmayan harflerin cezmli hâli
+        // kuralla üretilemez; açıklama metni JSON'dan gelir.
+        if (want.isEmpty) continue;
         if (entry.value != want) {
           wrongReadings.add('Ders ${lesson.id}: ${entry.key} ${entry.value}');
         }

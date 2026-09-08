@@ -44,7 +44,11 @@ class ElifbaWordCard extends StatefulWidget {
 class _ElifbaWordCardState extends State<ElifbaWordCard> {
   var _sayNow = false;
 
-  String? get _path => ElifbaAudio.resolve(widget.word.audio);
+  String? get _path => ElifbaAudio.forExample(
+        widget.word.text,
+        audio: widget.word.audio,
+        reading: widget.word.reading,
+      );
 
   Future<void> _play() async {
     await ElifbaAudio.play(widget.audio, _path);

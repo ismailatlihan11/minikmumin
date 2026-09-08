@@ -9,6 +9,7 @@ abstract final class ElifbaReading {
   static const kasra = 'ِ';
   static const damma = 'ُ';
   static const shadda = 'ّ';
+  static const sukun = 'ْ';
 
   /// Her durumda kalın okunan yedi harf.
   static const heavyLetters = {'خ', 'ص', 'ض', 'غ', 'ط', 'ق', 'ظ'};
@@ -69,9 +70,9 @@ abstract final class ElifbaReading {
     return heavy ? pair.heavy : pair.thin;
   }
 
-  /// Harekeli parçadaki kısa hareke; yoksa boş döner.
+  /// Harekeli parçadaki hareke; yoksa boş döner.
   static String markOf(String marked) {
-    for (final mark in const [fatha, kasra, damma]) {
+    for (final mark in const [fatha, kasra, damma, sukun]) {
       if (marked.contains(mark)) return mark;
     }
     return '';
@@ -85,9 +86,9 @@ abstract final class ElifbaReading {
     return '';
   }
 
-  /// Uzatma, cezm ve tenvin içeren parçalar bu üretecin dışındadır.
+  /// Uzatma ve tenvin içeren parçalar bu üretecin dışındadır.
   static bool isShortSyllable(String marked) {
-    const skip = ['ْ', 'ً', 'ٍ', 'ٌ', 'ٰ', 'ا', 'و', 'ي'];
+    const skip = ['ً', 'ٍ', 'ٌ', 'ٰ', 'ا', 'و', 'ي'];
     final letter = letterOf(marked);
     if (letter.isEmpty || markOf(marked).isEmpty) return false;
     var letters = 0;
@@ -113,9 +114,25 @@ abstract final class ElifbaReading {
     final base = consonants[letter];
     if (base == null || mark.isEmpty) return '';
     final heavy = isHeavy(letter, mark);
+    // Cezmli harfin kendi sesi yoktur; önceki harekeyle birlikte kapanır:
+    // بْ = "eb", صْ = "as". Sesi olmayan elif ve ayn kural dışıdır.
+    if (mark == sukun) {
+      if (base.isEmpty) return '';
+      final lead = heavy ? 'a' : 'e';
+      return withTag ? _tagged('$lead$base', letter, heavy: heavy) : '$lead$base';
+    }
     final root = doubled ? '$base$base' : base;
     final syllable = '$root${vowelFor(mark, heavy: heavy)}';
     if (!withTag) return syllable;
+    return _tagged(syllable, letter, heavy: heavy, doubled: doubled);
+  }
+
+  static String _tagged(
+    String syllable,
+    String letter, {
+    required bool heavy,
+    bool doubled = false,
+  }) {
     final tags = [
       if (lispLetters.contains(letter)) 'peltek',
       if (throatLetters.contains(letter)) 'boğaz',

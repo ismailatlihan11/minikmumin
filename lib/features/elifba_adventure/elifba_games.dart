@@ -762,6 +762,7 @@ class ElifbaExampleList extends StatelessWidget {
                             ElifbaAudio.forExample(
                               example.text,
                               audio: example.audio,
+                              reading: example.reading,
                             ),
                           ),
                         ),

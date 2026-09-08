@@ -22,42 +22,28 @@ abstract final class ElifbaAudio {
   }
 
   static String? letterName(String name) {
-    final stem = names[name.trim().toLowerCase()];
+    final stem = elifbaAudioNames[name.trim().toLowerCase()];
     if (stem == null) return null;
-    return resolve('assets/audio/quran_learn/alphabet/$stem.mp3');
+    return resolve(elifbaNamePath(stem));
   }
 
   static String? letterGlyph(String glyph) {
     final stem = glyphs[_firstArabicLetter(glyph)];
     if (stem == null) return null;
-    return resolve('assets/audio/quran_learn/alphabet/$stem.mp3');
+    return resolve(elifbaNamePath(stem));
   }
 
   static String? letterSound(String glyphOrName, {String haraka = 'fatha'}) {
-    final fromName = names[glyphOrName.trim().toLowerCase()];
-    final stem = fromName ?? glyphs[_firstArabicLetter(glyphOrName)];
+    final stem = elifbaLetterStem(glyphOrName);
     if (stem == null) return null;
-    if (haraka == 'name') {
-      return resolve('assets/audio/quran_learn/alphabet/$stem.mp3');
-    }
+    if (haraka == 'name') return resolve(elifbaNamePath(stem));
     // Hece kayıtları Elifbâ'ya özeldir: kartta yazan okunuşu (be, si, su)
     // Türkçe seslendirmeyle söyler. Kur'an serisinin kayıtları değişmez.
-    return resolve('assets/audio/elifba/exercises/${stem}_$haraka.mp3');
+    return resolve(elifbaSyllablePath(stem, haraka));
   }
 
   static String? forMarked(String marked, {String? name}) {
-    var haraka = 'name';
-    if (marked.contains('ّ')) {
-      haraka = 'shadda';
-    } else if (marked.contains('ْ')) {
-      haraka = 'sukun';
-    } else if (marked.contains('ِ')) {
-      haraka = 'kasra';
-    } else if (marked.contains('ُ')) {
-      haraka = 'damma';
-    } else if (marked.contains('َ')) {
-      haraka = 'fatha';
-    }
+    final haraka = elifbaHarakaOf(marked);
     final sounded = haraka == 'name'
         ? (letterName(name ?? '') ?? letterGlyph(marked))
         : letterSound(name ?? marked, haraka: haraka);
@@ -66,11 +52,13 @@ abstract final class ElifbaAudio {
 
   /// Kelime ve ifadeler için ses: kayıt yoksa harf adı sesi çalınmaz,
   /// çünkü harfin adı ile kelimenin okunuşu aynı şey değildir.
-  static String? forExample(String text, {String audio = ''}) {
+  /// Okunuşu bilinen kelimelerin Elifbâ'ya özel kaydı kullanılır.
+  static String? forExample(String text, {String audio = '', String reading = ''}) {
     final recorded = resolve(audio);
     if (recorded != null) return recorded;
-    if (!isSingleCluster(text)) return null;
-    return forMarked(text);
+    if (isSingleCluster(text)) return forMarked(text);
+    final word = reading.isEmpty ? null : elifbaWordPath(reading);
+    return word == null ? null : resolve(word);
   }
 
   /// Tek harf + üzerindeki harekelerden oluşan kısa parça mı?

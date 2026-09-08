@@ -60,6 +60,7 @@ flutter:
     - assets/images/elifba/
     - assets/images/elifba/characters/
     - assets/audio/elifba/exercises/
+    - assets/audio/elifba/words/
 
   fonts:
     - family: NotoNaskhArabic

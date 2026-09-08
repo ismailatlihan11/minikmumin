@@ -529,7 +529,11 @@ class ElifbaExampleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final path = ElifbaAudio.forExample(example.text, audio: example.audio);
+    final path = ElifbaAudio.forExample(
+      example.text,
+      audio: example.audio,
+      reading: example.reading,
+    );
     return ElifbaSoftCard(
       child: Column(
         children: [
