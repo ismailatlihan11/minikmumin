@@ -225,101 +225,131 @@ class _MinikPaintPaletteState extends State<MinikPaintPalette> {
           ),
         ),
         const SizedBox(height: 6),
-        Row(
-          children: [
-            TextButton.icon(
-              onPressed: () => setState(() => _showMix = !_showMix),
-              style: TextButton.styleFrom(
-                visualDensity: VisualDensity.compact,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                minimumSize: const Size(0, 32),
-              ),
-              icon: Icon(
-                _showMix
-                    ? Icons.expand_less_rounded
-                    : Icons.auto_awesome_rounded,
-                size: 18,
-              ),
-              label: Text(_showMix ? 'Karışımı gizle' : 'Karıştır'),
-            ),
-            const Spacer(),
-            const Text(
-              'Uzun bas → karıştır',
-              style: TextStyle(
-                fontFamily: 'NotoSans',
-                fontSize: 11,
-                color: MinikColors.textMuted,
-              ),
-            ),
-          ],
-        ),
-        if (_showMix) ...[
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              _swatch(
-                _slotA ?? const Color(0xFFE8EEEA),
-                selected: false,
-                size: 34,
-                child: _slotA == null
-                    ? const Icon(Icons.add, size: 16, color: MinikColors.textMuted)
-                    : null,
-                onTap: () {
-                  if (_slotA != null) _pick(_slotA!);
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: Text('+', style: TextStyle(fontWeight: FontWeight.w900)),
-              ),
-              _swatch(
-                _slotB ?? const Color(0xFFE8EEEA),
-                selected: false,
-                size: 34,
-                child: _slotB == null
-                    ? const Icon(Icons.add, size: 16, color: MinikColors.textMuted)
-                    : null,
-                onTap: () {
-                  if (_slotB != null) _pick(_slotB!);
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: Text('=', style: TextStyle(fontWeight: FontWeight.w900)),
-              ),
-              _swatch(
-                result ?? const Color(0xFFE8EEEA),
-                selected: result != null && _nearColor(widget.selected, result),
-                size: 34,
-                child: result == null
-                    ? const Icon(
-                        Icons.auto_awesome,
-                        size: 16,
+        // Sabit yükseklik: karışım açılınca tuval küçülmesin (boya kayması olmasın).
+        SizedBox(
+          height: 40,
+          child: _showMix
+              ? ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => setState(() => _showMix = false),
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        minimumSize: const Size(0, 36),
+                      ),
+                      icon: const Icon(Icons.expand_more_rounded, size: 18),
+                      label: const Text('Gizle'),
+                    ),
+                    const SizedBox(width: 4),
+                    _swatch(
+                      _slotA ?? const Color(0xFFE8EEEA),
+                      selected: false,
+                      size: 34,
+                      child: _slotA == null
+                          ? const Icon(
+                              Icons.add,
+                              size: 16,
+                              color: MinikColors.textMuted,
+                            )
+                          : null,
+                      onTap: () {
+                        if (_slotA != null) _pick(_slotA!);
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                      child: Center(
+                        child: Text(
+                          '+',
+                          style: TextStyle(fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                    ),
+                    _swatch(
+                      _slotB ?? const Color(0xFFE8EEEA),
+                      selected: false,
+                      size: 34,
+                      child: _slotB == null
+                          ? const Icon(
+                              Icons.add,
+                              size: 16,
+                              color: MinikColors.textMuted,
+                            )
+                          : null,
+                      onTap: () {
+                        if (_slotB != null) _pick(_slotB!);
+                      },
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 4),
+                      child: Center(
+                        child: Text(
+                          '=',
+                          style: TextStyle(fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                    ),
+                    _swatch(
+                      result ?? const Color(0xFFE8EEEA),
+                      selected:
+                          result != null && _nearColor(widget.selected, result),
+                      size: 34,
+                      child: result == null
+                          ? const Icon(
+                              Icons.auto_awesome,
+                              size: 16,
+                              color: MinikColors.textMuted,
+                            )
+                          : null,
+                      onTap:
+                          result == null ? null : () => widget.onSelected(result),
+                    ),
+                    if (_slotA != null || _slotB != null)
+                      IconButton(
+                        tooltip: 'Temizle',
+                        visualDensity: VisualDensity.compact,
+                        onPressed: _clearMix,
+                        icon: const Icon(Icons.refresh_rounded, size: 20),
+                      ),
+                    const SizedBox(width: 4),
+                    FilledButton(
+                      onPressed: result == null ? null : _applyMix,
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(0, 34),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        visualDensity: VisualDensity.compact,
+                      ),
+                      child: const Text('Kullan'),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                )
+              : Row(
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => setState(() => _showMix = true),
+                      style: TextButton.styleFrom(
+                        visualDensity: VisualDensity.compact,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        minimumSize: const Size(0, 36),
+                      ),
+                      icon: const Icon(Icons.auto_awesome_rounded, size: 18),
+                      label: const Text('Karıştır'),
+                    ),
+                    const Spacer(),
+                    const Text(
+                      'Uzun bas → karıştır',
+                      style: TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontSize: 11,
                         color: MinikColors.textMuted,
-                      )
-                    : null,
-                onTap: result == null ? null : () => widget.onSelected(result),
-              ),
-              const Spacer(),
-              if (_slotA != null || _slotB != null)
-                IconButton(
-                  tooltip: 'Temizle',
-                  visualDensity: VisualDensity.compact,
-                  onPressed: _clearMix,
-                  icon: const Icon(Icons.refresh_rounded, size: 20),
+                      ),
+                    ),
+                  ],
                 ),
-              FilledButton(
-                onPressed: result == null ? null : _applyMix,
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size(0, 32),
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  visualDensity: VisualDensity.compact,
-                ),
-                child: const Text('Kullan'),
-              ),
-            ],
-          ),
-        ],
+        ),
       ],
     );
   }
