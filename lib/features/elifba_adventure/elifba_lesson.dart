@@ -404,6 +404,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
+                  textDirection: TextDirection.rtl,
                   alignment: WrapAlignment.center,
                   children: [
                     for (final glyph in lesson.letterGlyphs)

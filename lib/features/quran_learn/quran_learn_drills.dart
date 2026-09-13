@@ -64,9 +64,9 @@ List<String> quranLearnPickOptions({
     quranLearnFormDrill(QuranArabicLetter letter, {Random? random}) {
   final pairs = <(String, String)>[
     ('Tek başına', letter.forms.isolated),
-    ('Başta', letter.forms.initial),
-    ('Ortada', letter.forms.medial),
     ('Sonda', letter.forms.finalForm),
+    ('Ortada', letter.forms.medial),
+    ('Başta', letter.forms.initial),
   ];
   final byLabel = <String, String>{
     for (final pair in pairs)

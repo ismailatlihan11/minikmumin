@@ -189,7 +189,7 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
           ),
           const SizedBox(height: 10),
           Directionality(
-            textDirection: TextDirection.rtl,
+            textDirection: TextDirection.ltr,
             child: GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),

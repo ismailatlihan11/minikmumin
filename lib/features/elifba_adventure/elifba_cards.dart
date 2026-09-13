@@ -424,6 +424,7 @@ class _ElifbaLetterTableState extends State<ElifbaLetterTable> {
             return Wrap(
               spacing: 10,
               runSpacing: 10,
+              textDirection: TextDirection.ltr,
               children: [
                 for (final row in _visible)
                   SizedBox(
@@ -825,6 +826,7 @@ class ElifbaCategoryBoard extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
+            textDirection: TextDirection.ltr,
             alignment: WrapAlignment.center,
             children: [
               for (final row in rows)

@@ -94,7 +94,7 @@ class _QuranLearnSyllablesPageState extends State<QuranLearnSyllablesPage> {
               const SizedBox(height: AppSpacing.md),
               const SectionLabel('Kelime okuma'),
               Directionality(
-                textDirection: TextDirection.rtl,
+                textDirection: TextDirection.ltr,
                 child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

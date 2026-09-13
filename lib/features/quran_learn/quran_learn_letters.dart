@@ -8,6 +8,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../elifba_adventure/elifba_letter_truck_drop.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_progress.dart';
@@ -35,7 +36,28 @@ class QuranLearnLettersPage extends StatefulWidget {
 class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
   final _audio = AudioPlayerService();
   bool _showNames = true;
+  bool _shuffled = false;
+  bool _introDone = false;
+  List<QuranArabicLetter>? _ordered;
   String? _selectedId;
+
+  List<QuranArabicLetter> get _letters {
+    final ordered = _ordered;
+    if (ordered != null) return ordered;
+    return widget.pack.letters;
+  }
+
+  void _toggleOrder() {
+    setState(() {
+      if (_shuffled) {
+        _ordered = null;
+        _shuffled = false;
+      } else {
+        _ordered = List<QuranArabicLetter>.of(widget.pack.letters)..shuffle();
+        _shuffled = true;
+      }
+    });
+  }
 
   @override
   void dispose() {
@@ -87,19 +109,7 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
           ),
         ),
       ),
-      floatingActionButton: widget.formsFocus
-          ? null
-          : FloatingActionButton.small(
-              tooltip: _showNames ? 'İsimleri gizle' : 'İsimleri göster',
-              backgroundColor: Colors.white,
-              foregroundColor: MinikColors.green,
-              onPressed: () => setState(() => _showNames = !_showNames),
-              child: Icon(
-                _showNames
-                    ? Icons.visibility_rounded
-                    : Icons.visibility_off_rounded,
-              ),
-            ),
+      floatingActionButton: null,
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, widget.pack),
         builder: (context, snapshot) {
@@ -133,21 +143,84 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
                 note: 'Kırmızı olanlar kalın harflerdir.',
                 hint: 'Uzun basınca şekilleri görürsün.',
               ),
-              const SizedBox(height: 10),
-              Directionality(
+              Align(
+                alignment: Alignment.centerRight,
+                child: Wrap(
+                  alignment: WrapAlignment.end,
+                  spacing: 4,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => setState(() => _introDone = false),
+                      icon: const Icon(Icons.local_shipping_rounded, size: 20),
+                      label: const Text('Kamyonu getir'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: MinikColors.green,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: _toggleOrder,
+                      icon: Icon(
+                        _shuffled
+                            ? Icons.sort_rounded
+                            : Icons.shuffle_rounded,
+                        size: 20,
+                      ),
+                      label: Text(_shuffled ? 'Sıraya diz' : 'Karıştır'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: MinikColors.green,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                    ),
+                    TextButton.icon(
+                      onPressed: () =>
+                          setState(() => _showNames = !_showNames),
+                      icon: Icon(
+                        _showNames
+                            ? Icons.visibility_off_rounded
+                            : Icons.visibility_rounded,
+                        size: 20,
+                      ),
+                      label: Text(
+                        _showNames ? 'İsimleri gizle' : 'İsimleri göster',
+                      ),
+                      style: TextButton.styleFrom(
+                        foregroundColor: MinikColors.green,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (!_introDone)
+                LetterTruckDropIntro(
+                  glyphs: [for (final letter in _letters) letter.letter],
+                  names: _showNames
+                      ? [for (final letter in _letters) letter.name]
+                      : const [],
+                  columns: 5,
+                  cellWidth: 64,
+                  cellHeight: _showNames ? 80 : 68,
+                  rtl: true,
+                  onFinished: () {
+                    if (mounted) setState(() => _introDone = true);
+                  },
+                )
+              else
+                Directionality(
                   textDirection: TextDirection.rtl,
                   child: GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.pack.letters.length,
+                    itemCount: _letters.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
+                      crossAxisCount: 5,
                       mainAxisSpacing: 5,
                       crossAxisSpacing: 5,
                       childAspectRatio: _showNames ? 0.78 : 1,
                     ),
                     itemBuilder: (context, index) {
-                      final letter = widget.pack.letters[index];
+                      final letter = _letters[index];
                       final learned =
                           snap?.isDone(widget.progressKind, letter.id) ?? false;
                       return QlDashTile(
@@ -252,21 +325,21 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
     final forms = widget.formsFocus
         ? <(String, String)>[
             ('Tek başına', letter.forms.isolated),
-            ('Başta', letter.forms.initial),
-            ('Ortada', letter.forms.medial),
             ('Sonda', letter.forms.finalForm),
+            ('Ortada', letter.forms.medial),
+            ('Başta', letter.forms.initial),
           ]
         : <(String, String)>[
             ('Tek başına', letter.forms.isolated),
-            if (letter.joinsBothSides) ...[
-              ('Başta', letter.forms.initial),
-              ('Ortada', letter.forms.medial),
-            ],
             if (letter.forms.finalForm.isNotEmpty &&
                 letter.forms.finalForm != letter.forms.isolated)
               ('Sonda', letter.forms.finalForm)
             else if (letter.joinsBothSides)
               ('Sonda', letter.forms.finalForm),
+            if (letter.joinsBothSides) ...[
+              ('Ortada', letter.forms.medial),
+              ('Başta', letter.forms.initial),
+            ],
           ];
     return Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
@@ -608,10 +681,10 @@ class _FormsTable extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: const Row(
               children: [
-                Expanded(child: _FormsHead('Harf')),
-                Expanded(child: _FormsHead('Başta')),
-                Expanded(child: _FormsHead('Ortada')),
+                Expanded(child: _FormsHead('Tek başına')),
                 Expanded(child: _FormsHead('Sonda')),
+                Expanded(child: _FormsHead('Ortada')),
+                Expanded(child: _FormsHead('Başta')),
               ],
             ),
           ),
@@ -636,13 +709,13 @@ class _FormsTable extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _FormsGlyph(
-                          letter.letter,
+                          letter.forms.isolated,
                           heavy: letter.isHeavySound,
                         ),
                       ),
-                      Expanded(child: _FormsGlyph(letter.forms.initial)),
-                      Expanded(child: _FormsGlyph(letter.forms.medial)),
                       Expanded(child: _FormsGlyph(letter.forms.finalForm)),
+                      Expanded(child: _FormsGlyph(letter.forms.medial)),
+                      Expanded(child: _FormsGlyph(letter.forms.initial)),
                     ],
                   ),
                 ),
@@ -714,7 +787,7 @@ class _FormsSlider extends StatefulWidget {
 }
 
 class _FormsSliderState extends State<_FormsSlider> {
-  static const _tabs = ['Harf', 'Başta', 'Ortada', 'Sonda'];
+  static const _tabs = ['Tek başına', 'Sonda', 'Ortada', 'Başta'];
 
   int _index = 0;
   int _slot = 0;
@@ -735,9 +808,9 @@ class _FormsSliderState extends State<_FormsSlider> {
   String get _glyph {
     final forms = _letter.forms;
     return switch (_slot) {
-      1 => forms.initial,
+      1 => forms.finalForm,
       2 => forms.medial,
-      3 => forms.finalForm,
+      3 => forms.initial,
       _ => forms.isolated,
     };
   }

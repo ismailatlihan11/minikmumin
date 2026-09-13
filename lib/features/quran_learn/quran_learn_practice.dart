@@ -418,7 +418,7 @@ class QlPracticeGrid extends StatelessWidget {
     if (items.isEmpty) return const SizedBox.shrink();
     final store = context.read<LocalProgressStore>();
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.ltr,
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -465,7 +465,7 @@ class QlSukunTripletGrid extends StatelessWidget {
     if (items.isEmpty) return const SizedBox.shrink();
     final store = context.read<LocalProgressStore>();
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.ltr,
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -513,7 +513,7 @@ class QlExampleListenGrid extends StatelessWidget {
     if (examples.isEmpty) return const SizedBox.shrink();
     final store = context.read<LocalProgressStore>();
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.ltr,
       child: GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -695,7 +695,7 @@ class QlThreeHarekeRow extends StatelessWidget {
     if (glyphs.isEmpty) return const SizedBox.shrink();
     final store = context.read<LocalProgressStore>();
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: TextDirection.ltr,
       child: Row(
         children: [
           for (var i = 0; i < glyphs.length; i++) ...[

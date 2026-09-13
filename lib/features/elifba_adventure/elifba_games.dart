@@ -7,13 +7,14 @@ import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../shared/widgets/favorite_button.dart';
 import 'elifba_audio.dart';
+import 'elifba_letter_truck_drop.dart';
 import 'elifba_models.dart';
 import 'elifba_widgets.dart';
 import 'elifba_worlds.dart';
 
 typedef ElifbaAnswer = void Function({required bool correct});
 
-class ElifbaLetterGrid extends StatelessWidget {
+class ElifbaLetterGrid extends StatefulWidget {
   const ElifbaLetterGrid({
     super.key,
     required this.letters,
@@ -24,33 +25,144 @@ class ElifbaLetterGrid extends StatelessWidget {
   final AudioPlayerService audio;
 
   @override
+  State<ElifbaLetterGrid> createState() => _ElifbaLetterGridState();
+}
+
+class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
+  bool _showNames = true;
+  bool _shuffled = false;
+  bool _introDone = false;
+  late List<ElifbaLetter> _ordered;
+
+  @override
+  void initState() {
+    super.initState();
+    _ordered = List<ElifbaLetter>.of(widget.letters);
+  }
+
+  @override
+  void didUpdateWidget(covariant ElifbaLetterGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.letters, widget.letters)) {
+      _ordered = List<ElifbaLetter>.of(widget.letters);
+      _shuffled = false;
+      _introDone = false;
+    }
+  }
+
+  void _toggleOrder() {
+    setState(() {
+      if (_shuffled) {
+        _ordered = List<ElifbaLetter>.of(widget.letters);
+        _shuffled = false;
+      } else {
+        _ordered = List<ElifbaLetter>.of(widget.letters)..shuffle();
+        _shuffled = true;
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 8,
-      alignment: WrapAlignment.center,
+    final buttonStyle = TextButton.styleFrom(
+      foregroundColor: MinikColors.green,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+    );
+    if (!_introDone) {
+      return LetterTruckDropIntro(
+        glyphs: [for (final letter in _ordered) letter.letter],
+        names: [for (final letter in _ordered) letter.name],
+        columns: 5,
+        cellWidth: 64,
+        cellHeight: 72,
+        rtl: true,
+        onFinished: () {
+          if (mounted) setState(() => _introDone = true);
+        },
+      );
+    }
+    return Column(
       children: [
-        for (final letter in letters)
-          _LetterChip(
-            letter: letter,
-            onTap: () {
-              ElifbaAudio.play(
-                audio,
-                ElifbaAudio.letterName(letter.name) ??
-                    ElifbaAudio.letterGlyph(letter.letter),
+        Wrap(
+          alignment: WrapAlignment.end,
+          spacing: 4,
+          children: [
+            TextButton.icon(
+              onPressed: () => setState(() => _introDone = false),
+              icon: const Icon(Icons.local_shipping_rounded, size: 20),
+              label: const Text('Kamyonu getir'),
+              style: buttonStyle,
+            ),
+            TextButton.icon(
+              onPressed: _toggleOrder,
+              icon: Icon(
+                _shuffled ? Icons.sort_rounded : Icons.shuffle_rounded,
+                size: 20,
+              ),
+              label: Text(_shuffled ? 'Sıraya diz' : 'Karıştır'),
+              style: buttonStyle,
+            ),
+            TextButton.icon(
+              onPressed: () => setState(() => _showNames = !_showNames),
+              icon: Icon(
+                _showNames
+                    ? Icons.visibility_off_rounded
+                    : Icons.visibility_rounded,
+                size: 20,
+              ),
+              label: Text(_showNames ? 'İsimleri gizle' : 'İsimleri göster'),
+              style: buttonStyle,
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        // Diyanet Elifbâ gibi: ا sağ üstten başlar, satırda 5 harf.
+        Directionality(
+          textDirection: TextDirection.rtl,
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _ordered.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 5,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              childAspectRatio: 0.85,
+            ),
+            itemBuilder: (context, index) {
+              final letter = _ordered[index];
+              return _LetterChip(
+                letter: letter,
+                showName: _showNames,
+                fillWidth: true,
+                onTap: () {
+                  ElifbaAudio.play(
+                    widget.audio,
+                    ElifbaAudio.letterName(letter.name) ??
+                        ElifbaAudio.letterGlyph(letter.letter),
+                  );
+                },
               );
             },
           ),
+        ),
       ],
     );
   }
 }
 
 class _LetterChip extends StatefulWidget {
-  const _LetterChip({required this.letter, required this.onTap});
+  const _LetterChip({
+    required this.letter,
+    required this.onTap,
+    this.showName = true,
+    this.fillWidth = false,
+  });
 
   final ElifbaLetter letter;
   final VoidCallback onTap;
+  final bool showName;
+  final bool fillWidth;
 
   @override
   State<_LetterChip> createState() => _LetterChipState();
@@ -73,8 +185,8 @@ class _LetterChipState extends State<_LetterChip> {
         scale: _scale,
         duration: const Duration(milliseconds: 160),
         child: Container(
-          width: 72,
-          constraints: const BoxConstraints(minHeight: 72),
+          width: widget.fillWidth ? null : 72,
+          constraints: const BoxConstraints(minHeight: 64),
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -82,6 +194,7 @@ class _LetterChipState extends State<_LetterChip> {
             border: Border.all(color: MinikColors.mint),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 widget.letter.letter,
@@ -92,7 +205,7 @@ class _LetterChipState extends State<_LetterChip> {
                   color: MinikColors.darkGreen,
                 ),
               ),
-              if (widget.letter.name.isNotEmpty)
+              if (widget.showName && widget.letter.name.isNotEmpty)
                 Text(
                   widget.letter.name,
                   style: const TextStyle(
@@ -180,6 +293,7 @@ class ElifbaLetterHunt extends StatelessWidget {
         Wrap(
           spacing: 10,
           runSpacing: 10,
+          textDirection: TextDirection.ltr,
           alignment: WrapAlignment.center,
           children: [
             for (final letter in letters)
@@ -336,49 +450,52 @@ class ElifbaFormsCard extends StatelessWidget {
 
   final ElifbaFocusLetter focus;
 
-  static const _labels = {
-    'isolated': 'Tek',
-    'initial': 'Başta',
-    'medial': 'Ortada',
-    'final': 'Sonda',
-  };
+  /// Tek başına → sonda → ortada → başta
+  static const _formOrder = [
+    ('isolated', 'Tek başına'),
+    ('final', 'Sonda'),
+    ('medial', 'Ortada'),
+    ('initial', 'Başta'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
+      textDirection: TextDirection.ltr,
       alignment: WrapAlignment.center,
       children: [
-        for (final entry in focus.forms.entries)
-          Container(
-            width: 88,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: MinikColors.sky,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  entry.value,
-                  textDirection: TextDirection.rtl,
-                  style: const TextStyle(
-                    fontFamily: AssetPaths.arabicFontFamily,
-                    fontSize: 28,
+        for (final item in _formOrder)
+          if ((focus.forms[item.$1] ?? '').isNotEmpty)
+            Container(
+              width: 88,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: MinikColors.sky,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    focus.forms[item.$1]!,
+                    textDirection: TextDirection.rtl,
+                    style: const TextStyle(
+                      fontFamily: AssetPaths.arabicFontFamily,
+                      fontSize: 28,
+                    ),
                   ),
-                ),
-                Text(
-                  _labels[entry.key] ?? entry.key,
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontWeight: FontWeight.w700,
-                    fontSize: 12,
+                  Text(
+                    item.$2,
+                    style: const TextStyle(
+                      fontFamily: 'NotoSans',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
       ],
     );
   }
@@ -880,6 +997,7 @@ class ElifbaKalkalaRow extends StatelessWidget {
     final reduce = MediaQuery.disableAnimationsOf(context);
     return Wrap(
       spacing: 10,
+      textDirection: TextDirection.ltr,
       alignment: WrapAlignment.center,
       children: [
         for (var i = 0; i < letters.length; i++)

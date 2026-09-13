@@ -259,6 +259,7 @@ class _TripleFormCard extends StatelessWidget {
           Wrap(
             spacing: 10,
             runSpacing: 10,
+            textDirection: TextDirection.ltr,
             alignment: WrapAlignment.center,
             children: [
               for (final form in forms)
@@ -601,6 +602,7 @@ class ElifbaCategoryTablesView extends StatelessWidget {
                   Wrap(
                     spacing: 8,
                     runSpacing: 8,
+                    textDirection: TextDirection.ltr,
                     alignment: WrapAlignment.center,
                     children: [
                       for (final row in entry.value)
@@ -775,7 +777,7 @@ class _ElifbaShaddaHuntState extends State<ElifbaShaddaHunt> {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            textDirection: TextDirection.rtl,
+            textDirection: TextDirection.ltr,
             alignment: WrapAlignment.center,
             children: [
               for (final cluster in _clusters)
@@ -967,11 +969,13 @@ class ElifbaFormCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Row(
+            textDirection: TextDirection.ltr,
             children: [
+              // Diyanet / Elifbâ pedagojisi: tek → sonda → ortada → başta
               _ShapeCell(label: 'Tek başına', form: row.isolated),
-              _ShapeCell(label: 'Başta', form: row.initial),
-              _ShapeCell(label: 'Ortada', form: row.medial),
               _ShapeCell(label: 'Sonda', form: row.finalForm),
+              _ShapeCell(label: 'Ortada', form: row.medial),
+              _ShapeCell(label: 'Başta', form: row.initial),
             ],
           ),
         ],
