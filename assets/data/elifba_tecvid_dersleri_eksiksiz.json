@@ -3911,7 +3911,8 @@
       "examples": [
         {
           "text": "رَبِّ",
-          "reading": "rabbi"
+          "reading": "rabbi",
+          "audio": "assets/audio/quran_learn/words/word_04.mp3"
         },
         {
           "text": "إِنَّ",
@@ -5695,28 +5696,57 @@
       "categories": [
         {
           "name": "İzhâr harfleri",
-          "letters": ["ء", "ه", "ع", "ح", "غ", "خ"],
+          "letters": [
+            "ء",
+            "ه",
+            "ع",
+            "ح",
+            "غ",
+            "خ"
+          ],
           "meaning": "Açık okuma",
           "note": "Altı boğaz harfi. Nun sâkin ya da tenvin bunlardan önce gelirse n sesi açıkça okunur."
         },
         {
           "name": "İdğam harfleri",
-          "letters": ["ي", "ر", "م", "ل", "و", "ن"],
+          "letters": [
+            "ي",
+            "ر",
+            "م",
+            "ل",
+            "و",
+            "ن"
+          ],
           "memory_phrase": "يَرْمَلُونَ",
           "meaning": "Birleştirerek okuma",
           "note": "Nun, sonraki harfe katılır. ي ن م و ile gunneli, ل ر ile gunnesiz okunur."
         },
         {
           "name": "İklâb harfi",
-          "letters": ["ب"],
+          "letters": [
+            "ب"
+          ],
           "meaning": "Dönüştürme",
           "note": "Tek harf: ب. Nun sesi mim sesine döner ve gunne yapılır."
         },
         {
           "name": "İhfâ harfleri",
           "letters": [
-            "ت", "ث", "ج", "د", "ذ", "ز", "س", "ش",
-            "ص", "ض", "ط", "ظ", "ف", "ق", "ك"
+            "ت",
+            "ث",
+            "ج",
+            "د",
+            "ذ",
+            "ز",
+            "س",
+            "ش",
+            "ص",
+            "ض",
+            "ط",
+            "ظ",
+            "ف",
+            "ق",
+            "ك"
           ],
           "meaning": "Gizleyerek okuma",
           "note": "Geriye kalan on beş harf. Nun tam duyulmaz, geniz sesiyle gizlenir."
@@ -5878,25 +5908,41 @@
       "comparison_pairs": [
         {
           "question": "نْ + ب geldiğinde hangi hüküm olur?",
-          "answers": ["İklâb", "İzhâr", "İhfâ"],
+          "answers": [
+            "İklâb",
+            "İzhâr",
+            "İhfâ"
+          ],
           "answer": "İklâb",
           "pair": "Tek harfli hüküm"
         },
         {
           "question": "نْ + ع geldiğinde hangi hüküm olur?",
-          "answers": ["İzhâr", "İdğam", "İklâb"],
+          "answers": [
+            "İzhâr",
+            "İdğam",
+            "İklâb"
+          ],
           "answer": "İzhâr",
           "pair": "Boğaz harfi"
         },
         {
           "question": "نْ + ي geldiğinde hangi hüküm olur?",
-          "answers": ["İdğam", "İhfâ", "İzhâr"],
+          "answers": [
+            "İdğam",
+            "İhfâ",
+            "İzhâr"
+          ],
           "answer": "İdğam",
           "pair": "Yermelûn harfi"
         },
         {
           "question": "نْ + ق geldiğinde hangi hüküm olur?",
-          "answers": ["İhfâ", "İzhâr", "İklâb"],
+          "answers": [
+            "İhfâ",
+            "İzhâr",
+            "İklâb"
+          ],
           "answer": "İhfâ",
           "pair": "Kalan on beş harf"
         }
@@ -6085,7 +6131,7 @@
       "title": "İzhâr-ı Halkî",
       "level": "Orta",
       "goal": "Nun sâkin veya tenvinin boğaz harflerinden önce açık okunmasını öğrenmek.",
-      "explanation": "İzhâr-ı halkîde nun sâkin veya tenvinden sonra boğaz harflerinden biri geldiğinde n sesi açıkça ortaya çıkar.",
+      "explanation": "İzhâr \"açığa çıkarmak\" demektir. Nun sâkin (نْ) veya tenvinden sonra altı boğaz harfinden biri gelirse nun sesi gizlenmez, burundan da uzatılmaz; olduğu gibi net okunur.",
       "letters": [
         "ء",
         "ه",
@@ -6109,6 +6155,48 @@
           "text": "عَلِيمٌ حَكِيمٌ",
           "focus": "tenvin + ح",
           "note": "Tenvin açık okunur."
+        },
+        {
+          "text": "أَنْعَمْتَ",
+          "reading": "en'amte",
+          "focus": "نْ + ع",
+          "note": "Nun net duyulur, burundan uzatılmaz.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "يَنْأَوْنَ",
+          "reading": "yen'evne",
+          "focus": "نْ + ء",
+          "note": "Hemzeden önce nun açık okunur.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "مِنْ عِلْمٍ",
+          "reading": "min ilmin",
+          "focus": "نْ + ع",
+          "note": "Nun gizlenmeden söylenir.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "مِنْ خَيْرٍ",
+          "reading": "min hayrin",
+          "focus": "نْ + خ",
+          "note": "Boğaz harfi خ geldi, nun açıktır.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "مِنْ غِلٍّ",
+          "reading": "min ğillin",
+          "focus": "نْ + غ",
+          "note": "Boğaz harfi غ geldi, nun açıktır.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "يَنْهَوْنَ",
+          "reading": "yenhevne",
+          "focus": "نْ + ه",
+          "note": "Nun ile ه ayrı ayrı duyulur.",
+          "rule": "İzhâr"
         }
       ],
       "quiz": [
@@ -6131,13 +6219,49 @@
           "answer": "İzhâr"
         },
         {
-          "question": "يرملون neyi ifade eder?",
+          "question": "İzhâr harfleri kaç tanedir?",
           "options": [
-            "İdğam harfleri",
-            "Kalkale",
-            "İzhâr"
+            "6",
+            "15",
+            "2"
           ],
-          "answer": "İdğam harfleri"
+          "answer": "6"
+        },
+        {
+          "question": "Hangisi boğaz harfi değildir?",
+          "options": [
+            "ت",
+            "ح",
+            "ع"
+          ],
+          "answer": "ت"
+        },
+        {
+          "question": "أَنْعَمْتَ kelimesinde hangi hüküm var?",
+          "options": [
+            "İzhâr",
+            "İhfâ",
+            "İklâb"
+          ],
+          "answer": "İzhâr"
+        },
+        {
+          "question": "İzhâr ne demektir?",
+          "options": [
+            "Açığa çıkarmak",
+            "Gizlemek",
+            "Çevirmek"
+          ],
+          "answer": "Açığa çıkarmak"
+        },
+        {
+          "question": "كُفُوًا أَحَدٌ ifadesinde tenvinden sonra hangi harf var?",
+          "options": [
+            "ء",
+            "ب",
+            "ش"
+          ],
+          "answer": "ء"
         }
       ],
       "rich_content": {
@@ -6250,7 +6374,132 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "ء ه ع ح غ خ — altısı da boğazdan çıkar",
+      "categories": [
+        {
+          "name": "Boğazın Sonu",
+          "arabic_name": "أَقْصَى الْحَلْق",
+          "letters": [
+            "ء",
+            "ه"
+          ],
+          "note": "Boğazın en derin yeri. Ses göğse en yakın buradan çıkar.",
+          "examples": [
+            "مَنْ آمَنَ",
+            "مِنْ هَادٍ"
+          ]
+        },
+        {
+          "name": "Boğazın Ortası",
+          "arabic_name": "وَسَطُ الْحَلْق",
+          "letters": [
+            "ع",
+            "ح"
+          ],
+          "note": "Boğazın tam ortası. Ses biraz daha öne gelir.",
+          "examples": [
+            "مِنْ عِلْمٍ",
+            "عَلِيمٌ حَكِيمٌ"
+          ]
+        },
+        {
+          "name": "Boğazın Başı",
+          "arabic_name": "أَدْنَى الْحَلْق",
+          "letters": [
+            "غ",
+            "خ"
+          ],
+          "note": "Ağza en yakın boğaz bölgesi. Ses gırtlağın üstünden gelir.",
+          "examples": [
+            "مِنْ غِلٍّ",
+            "مِنْ خَيْرٍ"
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "text": "كُفُوًا أَحَدٌ",
+          "reading": "küfüven ehad",
+          "focus": "tenvin + ء",
+          "note": "Tenvinin nunu açık okunur.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "عَذَابٌ أَلِيمٌ",
+          "reading": "azâbün elîm",
+          "focus": "tenvin + ء",
+          "note": "Tenvin gizlenmez.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "عَلِيمٌ خَبِيرٌ",
+          "reading": "alîmün habîr",
+          "focus": "tenvin + خ",
+          "note": "Tenvin açık okunur.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "قَوْمٍ هَادٍ",
+          "reading": "kavmin hâd",
+          "focus": "tenvin + ه",
+          "note": "Tenvin açık okunur.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "سَلَامٌ هِيَ",
+          "reading": "selâmün hiye",
+          "focus": "tenvin + ه",
+          "note": "Tenvin açık okunur.",
+          "rule": "İzhâr"
+        },
+        {
+          "text": "مَنْ عَمِلَ",
+          "reading": "men amile",
+          "focus": "نْ + ع",
+          "note": "Nun açık okunur.",
+          "rule": "İzhâr"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "مَنْ آمَنَ / مِنْ شَرِّ",
+          "question": "Hangisinde nun açık okunur?",
+          "answers": [
+            "مَنْ آمَنَ",
+            "مِنْ شَرِّ"
+          ],
+          "answer": "مَنْ آمَنَ"
+        },
+        {
+          "pair": "عَلِيمٌ حَكِيمٌ",
+          "question": "Tenvinden sonra ح geldi. Hüküm nedir?",
+          "answers": [
+            "İzhâr",
+            "İklâb",
+            "İdğam"
+          ],
+          "answer": "İzhâr"
+        },
+        {
+          "pair": "مِنْ غِلٍّ",
+          "question": "غ boğaz harfi mi?",
+          "answers": [
+            "Evet, izhâr olur",
+            "Hayır, ihfâ olur"
+          ],
+          "answer": "Evet, izhâr olur"
+        },
+        {
+          "pair": "مِنْ بَعْدِ",
+          "question": "ب gelince izhâr olur mu?",
+          "answers": [
+            "Hayır, iklâb olur",
+            "Evet, izhâr olur"
+          ],
+          "answer": "Hayır, iklâb olur"
+        }
+      ]
     },
     {
       "id": 19,
@@ -6284,6 +6533,33 @@
             "ر"
           ],
           "note": "Gunne yapılmadan birleştirilir."
+        },
+        {
+          "name": "İdğam-ı Meal Gunne",
+          "arabic_name": "يَنْمُو",
+          "letters": [
+            "ي",
+            "ن",
+            "م",
+            "و"
+          ],
+          "note": "Nun, sonraki harfe katılır ve burun sesi (gunne) iki hareke kadar tutulur.",
+          "examples": [
+            "مَنْ يَقُولُ",
+            "مِنْ مَاءٍ"
+          ]
+        },
+        {
+          "name": "İdğam-ı Bila Gunne",
+          "letters": [
+            "ل",
+            "ر"
+          ],
+          "note": "Nun tamamen sonraki harfe katılır, burun sesi yapılmaz.",
+          "examples": [
+            "مِنْ رَبِّهِمْ",
+            "مِنْ لَدُنْهُ"
+          ]
         }
       ],
       "examples": [
@@ -6300,6 +6576,34 @@
         {
           "text": "مَنْ يَعْمَلْ",
           "focus": "نْ + ي",
+          "rule": "Gunneli İdğam"
+        },
+        {
+          "text": "مِنْ نُورٍ",
+          "reading": "min nûrin",
+          "focus": "نْ + ن",
+          "note": "Nun nuna katılır, gunne ile okunur.",
+          "rule": "Gunneli İdğam"
+        },
+        {
+          "text": "مِنْ مَاءٍ",
+          "reading": "mim mâin",
+          "focus": "نْ + م",
+          "note": "Nun mim gibi okunur, gunne vardır.",
+          "rule": "Gunneli İdğam"
+        },
+        {
+          "text": "مِنْ وَالٍ",
+          "reading": "miv vâlin",
+          "focus": "نْ + و",
+          "note": "Nun vav sesine katılır, gunne vardır.",
+          "rule": "Gunneli İdğam"
+        },
+        {
+          "text": "وُجُوهٌ يَوْمَئِذٍ",
+          "reading": "vücûhüy yevmeizin",
+          "focus": "tenvin + ي",
+          "note": "Tenvin ye sesine katılır.",
           "rule": "Gunneli İdğam"
         }
       ],
@@ -6322,13 +6626,47 @@
           "answer": "Gunnesiz"
         },
         {
-          "question": "İklâbın ilgili harfi?",
+          "question": "İdğam kaç harfle yapılır?",
           "options": [
-            "ب",
-            "ر",
-            "ح"
+            "6",
+            "4",
+            "2"
           ],
-          "answer": "ب"
+          "answer": "6"
+        },
+        {
+          "question": "Gunneli idğam harfleri hangileridir?",
+          "options": [
+            "ي ن م و",
+            "ل ر",
+            "ب"
+          ],
+          "answer": "ي ن م و"
+        },
+        {
+          "question": "غَفُورٌ رَحِيمٌ hangi idğamdır?",
+          "options": [
+            "Gunnesiz",
+            "Gunneli"
+          ],
+          "answer": "Gunnesiz"
+        },
+        {
+          "question": "İdğam ne demektir?",
+          "options": [
+            "Katmak, birleştirmek",
+            "Açık okumak",
+            "Uzatmak"
+          ],
+          "answer": "Katmak, birleştirmek"
+        },
+        {
+          "question": "مِنْ مَاءٍ nasıl okunur?",
+          "options": [
+            "mim mâin",
+            "min mâin"
+          ],
+          "answer": "mim mâin"
         }
       ],
       "rich_content": {
@@ -6399,7 +6737,67 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "يرملون (ي ر م ل و ن)",
+      "practice": [
+        {
+          "text": "مِنْ لَدُنْهُ",
+          "reading": "mil ledünhü",
+          "focus": "نْ + ل",
+          "note": "Nun lam sesine katılır, gunne yok.",
+          "rule": "Gunnesiz İdğam"
+        },
+        {
+          "text": "غَفُورٌ رَحِيمٌ",
+          "reading": "ğafûrur rahîm",
+          "focus": "tenvin + ر",
+          "note": "Tenvin ra sesine katılır, gunne yok.",
+          "rule": "Gunnesiz İdğam"
+        },
+        {
+          "text": "خَيْرٌ لَكُمْ",
+          "reading": "hayrul leküm",
+          "focus": "tenvin + ل",
+          "note": "Tenvin lam sesine katılır, gunne yok.",
+          "rule": "Gunnesiz İdğam"
+        },
+        {
+          "text": "هُدًى لِلْمُتَّقِينَ",
+          "reading": "hüdel lilmüttekîn",
+          "focus": "tenvin + ل",
+          "note": "Tenvin lam sesine katılır.",
+          "rule": "Gunnesiz İdğam"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "مِنْ رَبِّهِمْ",
+          "question": "Nasıl okunur?",
+          "answers": [
+            "mir rabbihim",
+            "min rabbihim"
+          ],
+          "answer": "mir rabbihim"
+        },
+        {
+          "pair": "ل",
+          "question": "Lam sesine katılırken burun sesi var mı?",
+          "answers": [
+            "Yok",
+            "Var"
+          ],
+          "answer": "Yok"
+        },
+        {
+          "pair": "و",
+          "question": "Vav sesine katılırken burun sesi var mı?",
+          "answers": [
+            "Var",
+            "Yok"
+          ],
+          "answer": "Var"
+        }
+      ]
     },
     {
       "id": 20,
@@ -6421,6 +6819,34 @@
         {
           "text": "سَمِيعٌ بَصِيرٌ",
           "focus": "ً + ب",
+          "rule": "İklâb"
+        },
+        {
+          "text": "مِنْ بَعْدِ",
+          "reading": "mim ba'di",
+          "focus": "نْ + ب",
+          "note": "Nun sesi mim sesine döner, gunne ile okunur.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "أَنْبَتَ",
+          "reading": "embete",
+          "focus": "نْ + ب",
+          "note": "Dudaklar mim sesine hazırlanır.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "مِنْ بَيْنِ",
+          "reading": "mim beyni",
+          "focus": "نْ + ب",
+          "note": "Nun mim gibi, hafif gizli okunur.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "لَيُنْبَذَنَّ",
+          "reading": "leyümbezenne",
+          "focus": "نْ + ب",
+          "note": "Nun mim sesine döner.",
           "rule": "İklâb"
         }
       ],
@@ -6444,13 +6870,39 @@
           "answer": "Mim"
         },
         {
-          "question": "مِنْ شَرِّ hangi hüküm?",
+          "question": "İklâb ne demektir?",
           "options": [
-            "İhfâ",
-            "İklâb",
-            "İzhâr"
+            "Çevirmek",
+            "Gizlemek",
+            "Uzatmak"
           ],
-          "answer": "İhfâ"
+          "answer": "Çevirmek"
+        },
+        {
+          "question": "İklâbda gunne var mıdır?",
+          "options": [
+            "Vardır",
+            "Yoktur"
+          ],
+          "answer": "Vardır"
+        },
+        {
+          "question": "كِرَامٍ بَرَرَةٍ hangi hükümdür?",
+          "options": [
+            "İklâb",
+            "İzhâr",
+            "İdğam"
+          ],
+          "answer": "İklâb"
+        },
+        {
+          "question": "İklâb kaç harfle olur?",
+          "options": [
+            "1",
+            "6",
+            "15"
+          ],
+          "answer": "1"
         }
       ],
       "rich_content": {
@@ -6608,14 +7060,92 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "Tek harf: ب",
+      "practice": [
+        {
+          "text": "كِرَامٍ بَرَرَةٍ",
+          "reading": "kirâmim berarah",
+          "focus": "tenvin + ب",
+          "note": "Tenvinin nunu mim olur.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "صُمٌّ بُكْمٌ",
+          "reading": "summum bükm",
+          "focus": "tenvin + ب",
+          "note": "Tenvinin nunu mim olur.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "عَلِيمٌ بِذَاتِ",
+          "reading": "alîmum bizât",
+          "focus": "tenvin + ب",
+          "note": "Tenvinin nunu mim olur.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "مِنْ بَعْدِهِمْ",
+          "reading": "mim ba'dihim",
+          "focus": "نْ + ب",
+          "note": "Nun mim sesine döner.",
+          "rule": "İklâb"
+        },
+        {
+          "text": "مَنْ بَخِلَ",
+          "reading": "mem bahile",
+          "focus": "نْ + ب",
+          "note": "Nun mim sesine döner.",
+          "rule": "İklâb"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "مِنْ بَعْدِ",
+          "question": "Nasıl okunur?",
+          "answers": [
+            "mim ba'di",
+            "min ba'di"
+          ],
+          "answer": "mim ba'di"
+        },
+        {
+          "pair": "صُمٌّ بُكْمٌ",
+          "question": "Tenvinden sonra ب geldi. Hüküm nedir?",
+          "answers": [
+            "İklâb",
+            "İzhâr",
+            "İdğam"
+          ],
+          "answer": "İklâb"
+        },
+        {
+          "pair": "مِنْ عِلْمٍ",
+          "question": "Burada iklâb var mı?",
+          "answers": [
+            "Yok, izhâr var",
+            "Var"
+          ],
+          "answer": "Yok, izhâr var"
+        },
+        {
+          "pair": "أَنْبَتَ",
+          "question": "Dudaklar hangi sese hazırlanır?",
+          "answers": [
+            "م",
+            "ن",
+            "ب"
+          ],
+          "answer": "م"
+        }
+      ]
     },
     {
       "id": 21,
       "title": "İhfâ",
       "level": "Orta",
       "goal": "Nun sâkin ve tenvinden sonra ihfâ harfleri geldiğinde ara sesli okumayı öğrenmek.",
-      "explanation": "İhfâ, nun sâkin veya tenvinin tam açık okunmayıp sonraki harfe göre gizli/ara sesli okunmasıdır. Gunne belirgindir.",
+      "explanation": "İhfâ \"gizlemek\" demektir. Nun sâkin veya tenvinden sonra bu 15 harften biri gelirse nun ne tam açık okunur ne de tamamen kaybolur: dil harfin yerine hazırlanır, ses burundan iki hareke kadar tutulur.",
       "letters": [
         "ت",
         "ث",
@@ -6648,6 +7178,41 @@
           "text": "مِنْ شَرِّ",
           "focus": "نْ + ش",
           "rule": "İhfâ"
+        },
+        {
+          "text": "مَنْ ذَا",
+          "reading": "men zâ",
+          "focus": "نْ + ذ",
+          "note": "Nun gizlenir, gunne duyulur.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ قَبْلُ",
+          "reading": "min kablü",
+          "focus": "نْ + ق",
+          "note": "Dil ق sesine hazırlanır, nun gizlidir.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ كُلِّ",
+          "reading": "min külli",
+          "focus": "نْ + ك",
+          "note": "Nun burunda tutulur.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ صَلْصَالٍ",
+          "reading": "min salsâlin",
+          "focus": "نْ + ص",
+          "note": "Nun gizlenir, gunne vardır.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ ظُلُمَاتٍ",
+          "reading": "min zulümâtin",
+          "focus": "نْ + ظ",
+          "note": "Nun gizlenir.",
+          "rule": "İhfâ"
         }
       ],
       "quiz": [
@@ -6670,13 +7235,49 @@
           "answer": "Ara/gizli ses ve gunne ile"
         },
         {
-          "question": "مْ + م hangi hüküm?",
+          "question": "İhfâ harfleri kaç tanedir?",
           "options": [
-            "İdğam-ı Şefevî",
-            "İhfâ-i Şefevî",
-            "İzhâr-ı Şefevî"
+            "15",
+            "6",
+            "2"
           ],
-          "answer": "İdğam-ı Şefevî"
+          "answer": "15"
+        },
+        {
+          "question": "İhfâ ne demektir?",
+          "options": [
+            "Gizlemek",
+            "Açığa çıkarmak",
+            "Katmak"
+          ],
+          "answer": "Gizlemek"
+        },
+        {
+          "question": "İhfâda gunne kaç hareke tutulur?",
+          "options": [
+            "İki hareke",
+            "Hiç",
+            "Beş hareke"
+          ],
+          "answer": "İki hareke"
+        },
+        {
+          "question": "رِيحًا صَرْصَرًا hangi hükümdür?",
+          "options": [
+            "İhfâ",
+            "İzhâr",
+            "İklâb"
+          ],
+          "answer": "İhfâ"
+        },
+        {
+          "question": "Hangisi ihfâ harfi değildir?",
+          "options": [
+            "ه",
+            "ك",
+            "ز"
+          ],
+          "answer": "ه"
         }
       ],
       "rich_content": {
@@ -6749,7 +7350,129 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "Geriye kalan 15 harf: ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك",
+      "categories": [
+        {
+          "name": "Dişten Çıkanlar",
+          "letters": [
+            "ت",
+            "ث",
+            "د",
+            "ذ",
+            "ط",
+            "ظ"
+          ],
+          "note": "Dil ucu dişe yaklaşır, nun gizlenir.",
+          "examples": [
+            "مِنْ تَحْتِهَا",
+            "مِنْ ظُلُمَاتٍ"
+          ]
+        },
+        {
+          "name": "Islıklı Harfler",
+          "letters": [
+            "ز",
+            "س",
+            "ص"
+          ],
+          "note": "Islık sesinden önce nun burunda gizlenir.",
+          "examples": [
+            "مِنْ صَلْصَالٍ"
+          ]
+        },
+        {
+          "name": "Diğerleri",
+          "letters": [
+            "ج",
+            "ش",
+            "ض",
+            "ف",
+            "ق",
+            "ك"
+          ],
+          "note": "Nun sesi harfin çıkış yerine göre gizlenir.",
+          "examples": [
+            "مِنْ شَرِّ",
+            "مِنْ قَبْلُ"
+          ]
+        }
+      ],
+      "practice": [
+        {
+          "text": "مِنْ فَضْلٍ",
+          "reading": "min fadlin",
+          "focus": "نْ + ف",
+          "note": "Nun gizli, gunne iki hareke.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "مِنْ طَيِّبٍ",
+          "reading": "min tayyibin",
+          "focus": "نْ + ط",
+          "note": "Nun gizli okunur.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "رِيحًا صَرْصَرًا",
+          "reading": "rîhan sarsarâ",
+          "focus": "tenvin + ص",
+          "note": "Tenvinin nunu gizlenir.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "عَذَابًا شَدِيدًا",
+          "reading": "azâben şedîdâ",
+          "focus": "tenvin + ش",
+          "note": "Tenvinin nunu gizlenir.",
+          "rule": "İhfâ"
+        },
+        {
+          "text": "جَنَّاتٍ تَجْرِي",
+          "reading": "cennâtin tecrî",
+          "focus": "tenvin + ت",
+          "note": "Tenvinin nunu gizlenir.",
+          "rule": "İhfâ"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "مِنْ شَرِّ / مِنْ هَادٍ",
+          "question": "Hangisinde nun gizlenir?",
+          "answers": [
+            "مِنْ شَرِّ",
+            "مِنْ هَادٍ"
+          ],
+          "answer": "مِنْ شَرِّ"
+        },
+        {
+          "pair": "مِنْ قَبْلُ",
+          "question": "Nun nasıl okunur?",
+          "answers": [
+            "Gizli, burun sesiyle",
+            "Açık ve net"
+          ],
+          "answer": "Gizli, burun sesiyle"
+        },
+        {
+          "pair": "أَنْفُسَكُمْ",
+          "question": "ف ihfâ harfi mi?",
+          "answers": [
+            "Evet",
+            "Hayır"
+          ],
+          "answer": "Evet"
+        },
+        {
+          "pair": "مِنْ بَعْدِ",
+          "question": "Burada ihfâ mı var?",
+          "answers": [
+            "Hayır, iklâb var",
+            "Evet, ihfâ var"
+          ],
+          "answer": "Hayır, iklâb var"
+        }
+      ]
     },
     {
       "id": 22,
@@ -6794,13 +7517,40 @@
           "answer": "İdğam-ı Şefevî"
         },
         {
-          "question": "Gunne özellikle hangi harflerde belirgindir?",
+          "question": "Mim sâkinin kaç hükmü vardır?",
           "options": [
-            "نّ ve مّ",
-            "ر ve ل",
-            "ا ve و"
+            "3",
+            "2",
+            "6"
           ],
-          "answer": "نّ ve مّ"
+          "answer": "3"
+        },
+        {
+          "question": "\"Şefevî\" ne demektir?",
+          "options": [
+            "Dudakla ilgili",
+            "Boğazla ilgili",
+            "Dille ilgili"
+          ],
+          "answer": "Dudakla ilgili"
+        },
+        {
+          "question": "هُمْ فِيهَا hangi hükümdür?",
+          "options": [
+            "İzhâr-ı Şefevî",
+            "İdğam-ı Şefevî",
+            "İhfâ-i Şefevî"
+          ],
+          "answer": "İzhâr-ı Şefevî"
+        },
+        {
+          "question": "İdğam-ı Şefevî hangi harfle olur?",
+          "options": [
+            "م",
+            "ب",
+            "ن"
+          ],
+          "answer": "م"
         }
       ],
       "rich_content": {
@@ -6874,14 +7624,194 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "مْ + ب = ihfâ · مْ + م = idğam · gerisi izhâr",
+      "categories": [
+        {
+          "name": "İhfâ-i Şefevî",
+          "letters": [
+            "ب"
+          ],
+          "note": "Mim sâkinden sonra ب gelirse dudaklar hafif kapanır, ses burunda gizlenir.",
+          "examples": [
+            "تَرْمِيهِمْ بِحِجَارَةٍ",
+            "هُمْ بِهَا"
+          ]
+        },
+        {
+          "name": "İdğam-ı Şefevî",
+          "letters": [
+            "م"
+          ],
+          "note": "İki mim birleşir, gunne ile tek mim gibi okunur.",
+          "examples": [
+            "لَهُمْ مَا",
+            "أَمْ مَنْ"
+          ]
+        },
+        {
+          "name": "İzhâr-ı Şefevî",
+          "letters": [
+            "ت",
+            "ث",
+            "ج",
+            "ح",
+            "خ",
+            "د",
+            "ذ",
+            "ر",
+            "ز",
+            "س",
+            "ش",
+            "ص",
+            "ض",
+            "ط",
+            "ظ",
+            "ع",
+            "غ",
+            "ف",
+            "ق",
+            "ك",
+            "ل",
+            "ن",
+            "ه",
+            "و",
+            "ي"
+          ],
+          "note": "ب ve م dışındaki harflerden önce mim açık okunur.",
+          "examples": [
+            "عَلَيْهِمْ غَيْرِ",
+            "هُمْ فِيهَا"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "text": "تَرْمِيهِمْ بِحِجَارَةٍ",
+          "reading": "termîhim bihicârah",
+          "focus": "مْ + ب",
+          "note": "Dudaklar hafif kapanır, ses burundan gelir.",
+          "rule": "İhfâ-i Şefevî"
+        },
+        {
+          "text": "هُمْ بِهَا",
+          "reading": "hüm bihâ",
+          "focus": "مْ + ب",
+          "note": "Mim gizlenir, gunne vardır.",
+          "rule": "İhfâ-i Şefevî"
+        },
+        {
+          "text": "لَهُمْ مَا",
+          "reading": "lehüm mâ",
+          "focus": "مْ + م",
+          "note": "İki mim birleşir, gunne ile okunur.",
+          "rule": "İdğam-ı Şefevî"
+        },
+        {
+          "text": "أَمْ مَنْ",
+          "reading": "em men",
+          "focus": "مْ + م",
+          "note": "İki mim tek mim gibi okunur.",
+          "rule": "İdğam-ı Şefevî"
+        },
+        {
+          "text": "عَلَيْهِمْ غَيْرِ",
+          "reading": "aleyhim ğayr",
+          "focus": "مْ + غ",
+          "note": "Mim açık okunur.",
+          "rule": "İzhâr-ı Şefevî"
+        },
+        {
+          "text": "هُمْ فِيهَا",
+          "reading": "hüm fîhâ",
+          "focus": "مْ + ف",
+          "note": "Mim açık okunur, gizlenmez.",
+          "rule": "İzhâr-ı Şefevî"
+        }
+      ],
+      "practice": [
+        {
+          "text": "قُلُوبِهِمْ مَرَضٌ",
+          "reading": "kulûbihim maradun",
+          "focus": "مْ + م",
+          "note": "İki mim birleşir.",
+          "rule": "İdğam-ı Şefevî"
+        },
+        {
+          "text": "رَبُّهُمْ بِهِمْ",
+          "reading": "rabbühüm bihim",
+          "focus": "مْ + ب",
+          "note": "Mim gizlenir.",
+          "rule": "İhfâ-i Şefevî"
+        },
+        {
+          "text": "لَكُمْ دِينُكُمْ",
+          "reading": "leküm dînüküm",
+          "focus": "مْ + د",
+          "note": "Mim açık okunur.",
+          "rule": "İzhâr-ı Şefevî"
+        },
+        {
+          "text": "هُمْ يُوقِنُونَ",
+          "reading": "hüm yûkinûn",
+          "focus": "مْ + ي",
+          "note": "Mim açık okunur.",
+          "rule": "İzhâr-ı Şefevî"
+        },
+        {
+          "text": "أَنْعَمْتَ عَلَيْهِمْ",
+          "reading": "en'amte aleyhim",
+          "focus": "مْ + ت",
+          "note": "Mim açık okunur.",
+          "rule": "İzhâr-ı Şefevî"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "لَهُمْ مَا / هُمْ فِيهَا",
+          "question": "Hangisinde iki mim birleşir?",
+          "answers": [
+            "لَهُمْ مَا",
+            "هُمْ فِيهَا"
+          ],
+          "answer": "لَهُمْ مَا"
+        },
+        {
+          "pair": "هُمْ بِهَا",
+          "question": "Mim nasıl okunur?",
+          "answers": [
+            "Gizli, gunne ile",
+            "Açık ve net"
+          ],
+          "answer": "Gizli, gunne ile"
+        },
+        {
+          "pair": "عَلَيْهِمْ غَيْرِ",
+          "question": "Hüküm nedir?",
+          "answers": [
+            "İzhâr-ı Şefevî",
+            "İdğam-ı Şefevî",
+            "İhfâ-i Şefevî"
+          ],
+          "answer": "İzhâr-ı Şefevî"
+        },
+        {
+          "pair": "مْ + ب",
+          "question": "Hangi hüküm olur?",
+          "answers": [
+            "İhfâ-i Şefevî",
+            "İzhâr-ı Şefevî"
+          ],
+          "answer": "İhfâ-i Şefevî"
+        }
+      ]
     },
     {
       "id": 23,
       "title": "Gunne",
       "level": "Orta",
       "goal": "Mim ve nunun şeddeli hallerinde belirgin burun sesini tanımak.",
-      "explanation": "Gunne, burun yoluyla çıkan belirgin sestir. Özellikle نّ ve مّ gibi şeddeli mim ve nunlarda açık şekilde görülür.",
+      "explanation": "Gunne burundan gelen yumuşak sestir. Şeddeli nun (نّ) ve şeddeli mim (مّ) görüldüğünde ses iki hareke kadar burunda tutulur.",
       "examples": [
         {
           "text": "إِنَّ",
@@ -6897,6 +7827,30 @@
           "text": "عَمَّ",
           "focus": "مّ",
           "note": "Şeddeli mimde gunne vardır."
+        },
+        {
+          "text": "جَنَّةٍ",
+          "reading": "cennetin",
+          "focus": "نّ",
+          "note": "Şeddeli nun: ses burunda tutulur."
+        },
+        {
+          "text": "النَّاسِ",
+          "reading": "en-nâs",
+          "focus": "نّ",
+          "note": "Şeddeli nun: gunne belirgindir."
+        },
+        {
+          "text": "مُحَمَّدٌ",
+          "reading": "muhammed",
+          "focus": "مّ",
+          "note": "Şeddeli mim: gunne belirgindir."
+        },
+        {
+          "text": "إِنَّا",
+          "reading": "innâ",
+          "focus": "نّ",
+          "note": "Şeddeli nun ile gunne."
         }
       ],
       "activities": [
@@ -6914,20 +7868,49 @@
           "answer": "نّ ve مّ"
         },
         {
-          "question": "رِ temel düzeyde?",
+          "question": "Gunne sesi nereden gelir?",
           "options": [
-            "İnce",
-            "Kalın"
+            "Burundan",
+            "Boğazdan",
+            "Dudaktan"
           ],
-          "answer": "İnce"
+          "answer": "Burundan"
         },
         {
-          "question": "رُ temel düzeyde?",
+          "question": "ثُمَّ kelimesinde gunne hangi harfte?",
           "options": [
-            "İnce",
-            "Kalın"
+            "مّ",
+            "ث",
+            "ه"
           ],
-          "answer": "Kalın"
+          "answer": "مّ"
+        },
+        {
+          "question": "Gunne yaklaşık kaç hareke tutulur?",
+          "options": [
+            "2",
+            "5",
+            "0"
+          ],
+          "answer": "2"
+        },
+        {
+          "question": "Hangi kelimede gunne yoktur?",
+          "options": [
+            "كَتَبَ",
+            "إِنَّ",
+            "عَمَّ"
+          ],
+          "answer": "كَتَبَ"
+        },
+        {
+          "question": "Şeddeli nun nasıl yazılır?",
+          "options": [
+            "نّ",
+            "نْ",
+            "نِ"
+          ],
+          "answer": "نّ"
         }
       ],
       "rich_content": {
@@ -7002,14 +7985,101 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "memory_phrase": "نّ ve مّ — gunnenin iki ustası",
+      "rules": [
+        {
+          "name": "Şeddeli nun ve mim",
+          "meaning": "نّ ve مّ her zaman gunneli okunur."
+        },
+        {
+          "name": "Gunne süresi",
+          "meaning": "Yaklaşık iki hareke; içinden \"bir-iki\" diyecek kadar."
+        },
+        {
+          "name": "Burun testi",
+          "meaning": "Burnu hafifçe tutunca ses kesiliyorsa gunne yapılıyor demektir."
+        }
+      ],
+      "practice": [
+        {
+          "text": "أَمَّا",
+          "reading": "emmâ",
+          "focus": "مّ",
+          "note": "Şeddeli mim: gunne var."
+        },
+        {
+          "text": "مِمَّا",
+          "reading": "mimmâ",
+          "focus": "مّ",
+          "note": "Şeddeli mim: gunne var."
+        },
+        {
+          "text": "لَمَّا",
+          "reading": "lemmâ",
+          "focus": "مّ",
+          "note": "Şeddeli mim: gunne var."
+        },
+        {
+          "text": "الْجَنَّةِ",
+          "reading": "el-cenneti",
+          "focus": "نّ",
+          "note": "Şeddeli nun: gunne var."
+        },
+        {
+          "text": "إِنَّكَ",
+          "reading": "inneke",
+          "focus": "نّ",
+          "note": "Şeddeli nun: gunne var."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "مُحَمَّدٌ / حَامِدٌ",
+          "question": "Hangisinde gunne var?",
+          "answers": [
+            "مُحَمَّدٌ",
+            "حَامِدٌ"
+          ],
+          "answer": "مُحَمَّدٌ"
+        },
+        {
+          "pair": "إِنَّ",
+          "question": "Gunne ne kadar tutulur?",
+          "answers": [
+            "İki hareke",
+            "Hiç",
+            "Beş hareke"
+          ],
+          "answer": "İki hareke"
+        },
+        {
+          "pair": "النَّاسِ",
+          "question": "Gunne hangi harften geliyor?",
+          "answers": [
+            "نّ",
+            "س",
+            "ا"
+          ],
+          "answer": "نّ"
+        },
+        {
+          "pair": "كَتَبَ",
+          "question": "Burada gunne var mı?",
+          "answers": [
+            "Yok",
+            "Var"
+          ],
+          "answer": "Yok"
+        }
+      ]
     },
     {
       "id": 24,
       "title": "Ra Harfi: Kalın ve İnce Okunuş",
       "level": "İleri Başlangıç",
       "goal": "Ra harfinin kalın ve ince okunabildiğini öğrenmek ve temel örneklerle iki durumu ayırt etmek.",
-      "explanation": "Ra (ر) özel bir harftir. Her zaman kalın değildir. Temel başlangıç düzeyinde رَ ve رُ kalın; رِ ise ince okunur. Daha ileri seviyede sâkin Ra, önceki hareke, vakıf ve diğer ayrıntılı hükümler ayrıca ele alınabilir.",
+      "explanation": "Ra (ر) duruma göre kalın ya da ince okunur. Harekeliyken kolaydır: رَ ve رُ kalın, رِ incedir. Sâkin ra ise kendinden önceki harekeye bakar: üstün veya ötreden sonra kalın, esreden sonra incedir.",
       "basic_rules": [
         {
           "pattern": "رَ",
@@ -7022,13 +8092,34 @@
         {
           "pattern": "رِ",
           "reading": "ince"
+        },
+        {
+          "pattern": "رْ · öncesi üstün",
+          "reading": "kalın",
+          "example": "أَرْض"
+        },
+        {
+          "pattern": "رْ · öncesi ötre",
+          "reading": "kalın",
+          "example": "قُرْآن"
+        },
+        {
+          "pattern": "رْ · öncesi esre",
+          "reading": "ince",
+          "example": "فِرْعَوْن"
+        },
+        {
+          "pattern": "رْ · esreden sonra ama ardından kalın harf",
+          "reading": "kalın",
+          "example": "قِرْطَاس"
         }
       ],
       "examples": [
         {
           "text": "رَبِّ",
           "focus": "رَ",
-          "note": "Ra üstünlü: temel düzeyde kalın."
+          "note": "Ra üstünlü: temel düzeyde kalın.",
+          "audio": "assets/audio/quran_learn/words/word_04.mp3"
         },
         {
           "text": "رُسُل",
@@ -7039,6 +8130,34 @@
           "text": "رِزْق",
           "focus": "رِ",
           "note": "Ra esreli: temel düzeyde ince."
+        },
+        {
+          "text": "أَرْض",
+          "reading": "ard",
+          "focus": "رْ",
+          "note": "Öncesi üstün olduğu için ra kalın okunur.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "قُرْآن",
+          "reading": "kur'ân",
+          "focus": "رْ",
+          "note": "Öncesi ötre olduğu için ra kalın okunur.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "فِرْعَوْن",
+          "reading": "fir'avn",
+          "focus": "رْ",
+          "note": "Öncesi esre olduğu için ra ince okunur.",
+          "rule": "İnce"
+        },
+        {
+          "text": "فَاصْبِرْ",
+          "reading": "fasbir",
+          "focus": "رْ",
+          "note": "Esreden sonra sâkin ra: ince okunur.",
+          "rule": "İnce"
         }
       ],
       "quiz": [
@@ -7059,12 +8178,37 @@
           "answer": "Kalın"
         },
         {
-          "question": "بِسْمِ اللّٰهِ örneğinde lâm?",
+          "question": "Sâkin ra, üstünden sonra gelirse nasıl okunur?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        },
+        {
+          "question": "فِرْعَوْن kelimesinde ra nasıldır?",
           "options": [
             "İnce",
             "Kalın"
           ],
           "answer": "İnce"
+        },
+        {
+          "question": "قُرْآن kelimesinde ra neden kalındır?",
+          "options": [
+            "Öncesi ötre",
+            "Öncesi esre",
+            "Şeddeli"
+          ],
+          "answer": "Öncesi ötre"
+        },
+        {
+          "question": "Ra her zaman kalın mıdır?",
+          "options": [
+            "Hayır, duruma göre değişir",
+            "Evet"
+          ],
+          "answer": "Hayır, duruma göre değişir"
         }
       ],
       "rich_content": {
@@ -7188,6 +8332,12 @@
           "text": "فِرْعَوْن",
           "reading": "fir'avn",
           "focus": "Ra ile ileri düzey çalışma"
+        },
+        {
+          "word": "رَحْمَة",
+          "reading": "rahmeh",
+          "meaning": "merhamet",
+          "focus": "رَ → kalın"
         }
       ],
       "comparison_game": [
@@ -7220,16 +8370,83 @@
             "İkisi de incedir"
           ],
           "correct": "İkisi de temel olarak kalındır"
+        },
+        {
+          "left": "أَرْض",
+          "right": "فِرْعَوْن",
+          "question": "Hangisinde ra ince okunur?",
+          "answers": [
+            "فِرْعَوْن",
+            "أَرْض"
+          ],
+          "correct": "فِرْعَوْن"
+        },
+        {
+          "left": "قُرْآن",
+          "right": "أَنْذِرْ",
+          "question": "Hangisinde ra kalın okunur?",
+          "answers": [
+            "قُرْآن",
+            "أَنْذِرْ"
+          ],
+          "correct": "قُرْآن"
+        },
+        {
+          "left": "رِزْق",
+          "right": "رُسُل",
+          "question": "Esreli ra hangisinde?",
+          "answers": [
+            "رِزْق",
+            "رُسُل"
+          ],
+          "correct": "رِزْق"
         }
       ],
-      "important_note": "Bu ders başlangıç düzeyidir. Ra'nın bütün tecvid hükümleri burada tüketilmez. Özellikle sâkin Ra'nın hükümleri ve vakıf sonrası durumlar ileri düzeyde ayrıca işlenmelidir."
+      "important_note": "Bu ders başlangıç düzeyidir. Ra'nın bütün tecvid hükümleri burada tüketilmez. Özellikle sâkin Ra'nın hükümleri ve vakıf sonrası durumlar ileri düzeyde ayrıca işlenmelidir.",
+      "practice": [
+        {
+          "text": "الرَّحْمَٰن",
+          "reading": "er-rahmân",
+          "focus": "رَّ",
+          "note": "Üstünlü ra: kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "رِجَال",
+          "reading": "ricâl",
+          "focus": "رِ",
+          "note": "Esreli ra: ince.",
+          "rule": "İnce"
+        },
+        {
+          "text": "رُوح",
+          "reading": "rûh",
+          "focus": "رُ",
+          "note": "Ötreli ra: kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "أَنْذِرْ",
+          "reading": "enzir",
+          "focus": "رْ",
+          "note": "Esreden sonra sâkin ra: ince.",
+          "rule": "İnce"
+        },
+        {
+          "text": "قِرْطَاس",
+          "reading": "kırtâs",
+          "focus": "رْ",
+          "note": "Esreden sonra gelse de kalın harf yüzünden kalın.",
+          "rule": "Kalın"
+        }
+      ]
     },
     {
       "id": 25,
       "title": "Lafzatullah (اللّٰه)",
       "level": "İleri Başlangıç",
       "goal": "Allah lafzının temel kalın ve ince okuma örneklerini tanımak.",
-      "explanation": "اللّٰه lafzındaki lâmın kalın veya ince okunması, kendisinden önceki harekeye göre değişebilir. Bu derste güvenli başlangıç örnekleri üzerinde çalışılır.",
+      "explanation": "اللّٰه lafzındaki lâm, kendisinden önceki harekeye bakar: üstün veya ötreden sonra kalın, esreden sonra ince okunur. Kalın lâmda ağız dolar, ince lâmda ses inceldir.",
       "examples": [
         {
           "text": "قَالَ اللّٰهُ",
@@ -7238,6 +8455,34 @@
         {
           "text": "بِسْمِ اللّٰهِ",
           "note": "Öncesinde esre olduğu için lâm ince okunur."
+        },
+        {
+          "text": "هُوَ اللّٰهُ أَحَدٌ",
+          "reading": "hüvallâhü ehad",
+          "focus": "Üstünden sonra",
+          "note": "Lâm kalın okunur.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "عَبْدُ اللّٰهِ",
+          "reading": "abdullâhi",
+          "focus": "Ötreden sonra",
+          "note": "Lâm kalın okunur.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "لِلّٰهِ",
+          "reading": "lillâhi",
+          "focus": "Esreden sonra",
+          "note": "Lâm ince okunur.",
+          "rule": "İnce"
+        },
+        {
+          "text": "بِاللّٰهِ",
+          "reading": "billâhi",
+          "focus": "Esreden sonra",
+          "note": "Lâm ince okunur.",
+          "rule": "İnce"
         }
       ],
       "note_for_app": "Bu ders ayrıntılı tecvid kuralı olarak ileri seviyede genişletilebilir; örnek ses kaydı kullanılması önerilir.",
@@ -7259,13 +8504,37 @@
           "answer": "Kalın"
         },
         {
-          "question": "Vakıf nedir?",
+          "question": "Lafzatullahın lâmı esreden sonra nasıl okunur?",
           "options": [
-            "Durmak",
-            "Uzatmak",
-            "Birleştirmek"
+            "İnce",
+            "Kalın"
           ],
-          "answer": "Durmak"
+          "answer": "İnce"
+        },
+        {
+          "question": "هُوَ اللّٰهُ أَحَدٌ ifadesinde lâm nasıldır?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        },
+        {
+          "question": "Lâmın kalın mı ince mi olacağını ne belirler?",
+          "options": [
+            "Önceki hareke",
+            "Sonraki harf",
+            "Kelimenin uzunluğu"
+          ],
+          "answer": "Önceki hareke"
+        },
+        {
+          "question": "لِلّٰهِ nasıl okunur?",
+          "options": [
+            "lillâhi",
+            "lallâhu"
+          ],
+          "answer": "lillâhi"
         }
       ],
       "rich_content": {
@@ -7335,7 +8604,96 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "rules": [
+        {
+          "name": "Üstünden sonra",
+          "meaning": "Kalın okunur: قَالَ اللّٰهُ"
+        },
+        {
+          "name": "Ötreden sonra",
+          "meaning": "Kalın okunur: عَبْدُ اللّٰهِ"
+        },
+        {
+          "name": "Esreden sonra",
+          "meaning": "İnce okunur: بِسْمِ اللّٰهِ"
+        }
+      ],
+      "practice": [
+        {
+          "text": "إِنَّ اللّٰهَ",
+          "reading": "innallâhe",
+          "focus": "Üstünden sonra",
+          "note": "Lâm kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "مِنَ اللّٰهِ",
+          "reading": "minallâhi",
+          "focus": "Üstünden sonra",
+          "note": "Lâm kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "نَصْرُ اللّٰهِ",
+          "reading": "nasrullâhi",
+          "focus": "Ötreden sonra",
+          "note": "Lâm kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "رَسُولُ اللّٰهِ",
+          "reading": "rasûlüllâhi",
+          "focus": "Ötreden sonra",
+          "note": "Lâm kalın.",
+          "rule": "Kalın"
+        },
+        {
+          "text": "فِي اللّٰهِ",
+          "reading": "fillâhi",
+          "focus": "Esreli ses sonrası",
+          "note": "Lâm ince.",
+          "rule": "İnce"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "بِسْمِ اللّٰهِ / قَالَ اللّٰهُ",
+          "question": "Hangisinde lâm ince okunur?",
+          "answers": [
+            "بِسْمِ اللّٰهِ",
+            "قَالَ اللّٰهُ"
+          ],
+          "answer": "بِسْمِ اللّٰهِ"
+        },
+        {
+          "pair": "عَبْدُ اللّٰهِ",
+          "question": "Öncesinde ötre var. Lâm nasıl?",
+          "answers": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        },
+        {
+          "pair": "لِلّٰهِ",
+          "question": "Öncesinde esre var. Lâm nasıl?",
+          "answers": [
+            "İnce",
+            "Kalın"
+          ],
+          "answer": "İnce"
+        },
+        {
+          "pair": "إِنَّ اللّٰهَ",
+          "question": "Lâm nasıl okunur?",
+          "answers": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
+        }
+      ]
     },
     {
       "id": 26,
@@ -7351,6 +8709,30 @@
         {
           "term": "İbtidâ",
           "meaning": "Yeniden başlamak"
+        },
+        {
+          "term": "Vakf-ı Tam",
+          "meaning": "Mana tamamlanmıştır; durmak da yeniden başlamak da güzeldir."
+        },
+        {
+          "term": "Vakf-ı Kabîh",
+          "meaning": "Mana bozulur; burada durulmaz."
+        },
+        {
+          "term": "Sekte",
+          "meaning": "Nefes almadan kısa bir bekleyiş."
+        },
+        {
+          "term": "Son harf sâkin olur",
+          "meaning": "Durduğunda kelimenin son harekesi düşer, harf sâkin okunur."
+        },
+        {
+          "term": "Üstün tenvinde durma",
+          "meaning": "Üstün tenvini olan kelimede durunca ses \"â\" diye uzatılır."
+        },
+        {
+          "term": "Yuvarlak te (ة)",
+          "meaning": "Durduğunda \"h\" sesiyle okunur: رَحْمَةً → rahmeh."
         }
       ],
       "activities": [
@@ -7378,13 +8760,48 @@
           "answer": "Yeniden başlamak"
         },
         {
-          "question": "ج işareti?",
+          "question": "Durunca kelimenin son harekesi ne olur?",
           "options": [
-            "Dur veya geç",
-            "Kesin dur",
-            "Kesin geç"
+            "Düşer, harf sâkin okunur",
+            "Uzar",
+            "Şeddelenir"
           ],
-          "answer": "Dur veya geç"
+          "answer": "Düşer, harf sâkin okunur"
+        },
+        {
+          "question": "حِسَابًا kelimesinde durulursa nasıl okunur?",
+          "options": [
+            "hisâbâ",
+            "hisâben"
+          ],
+          "answer": "hisâbâ"
+        },
+        {
+          "question": "Sekte ne demektir?",
+          "options": [
+            "Nefes almadan kısa bekleyiş",
+            "Uzun durak",
+            "Hızlı okuma"
+          ],
+          "answer": "Nefes almadan kısa bekleyiş"
+        },
+        {
+          "question": "Mananın bozulduğu yerde durmaya ne denir?",
+          "options": [
+            "Vakf-ı Kabîh",
+            "Vakf-ı Tam",
+            "Sekte"
+          ],
+          "answer": "Vakf-ı Kabîh"
+        },
+        {
+          "question": "Yuvarlak te (ة) durunca hangi sesi verir?",
+          "options": [
+            "h",
+            "t",
+            "s"
+          ],
+          "answer": "h"
         }
       ],
       "rich_content": {
@@ -7456,7 +8873,102 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "examples": [
+        {
+          "text": "نَسْتَعِينُ",
+          "reading": "nestaîn",
+          "focus": "Durunca son harf sâkin",
+          "note": "Ötre düşer, nun sâkin okunur.",
+          "audio": "assets/audio/quran_learn/words/word_14.mp3"
+        },
+        {
+          "text": "الدِّينِ",
+          "reading": "ed-dîn",
+          "focus": "Durunca son harf sâkin",
+          "note": "Esre düşer, nun sâkin okunur.",
+          "audio": "assets/audio/quran_learn/words/word_10.mp3"
+        },
+        {
+          "text": "أَفْوَاجًا",
+          "reading": "efvâcâ",
+          "focus": "Üstün tenvininde durma",
+          "note": "Tenvin düşer, ses \"â\" olarak uzar."
+        },
+        {
+          "text": "حِسَابًا",
+          "reading": "hisâbâ",
+          "focus": "Üstün tenvininde durma",
+          "note": "Durunca \"hisâbâ\" diye biter."
+        }
+      ],
+      "practice": [
+        {
+          "text": "رَحْمَةً",
+          "reading": "rahmeh",
+          "focus": "Yuvarlak te",
+          "note": "Durunca te, \"h\" sesine döner."
+        },
+        {
+          "text": "الْعَالَمِينَ",
+          "reading": "el-âlemîn",
+          "focus": "Durunca son harf sâkin",
+          "note": "Üstün düşer, nun sâkin okunur.",
+          "audio": "assets/audio/quran_learn/words/word_05.mp3"
+        },
+        {
+          "text": "الرَّحِيمِ",
+          "reading": "er-rahîm",
+          "focus": "Durunca son harf sâkin",
+          "note": "Esre düşer, mim sâkin okunur.",
+          "audio": "assets/audio/quran_learn/words/word_07.mp3"
+        },
+        {
+          "text": "كُفُوًا أَحَدٌ",
+          "reading": "küfüven ehad",
+          "focus": "Ayet sonunda durma",
+          "note": "Son kelimede tenvin düşer: \"ehad\"."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "أَفْوَاجًا",
+          "question": "Bu kelimede durunca nasıl okunur?",
+          "answers": [
+            "efvâcâ",
+            "efvâcen"
+          ],
+          "answer": "efvâcâ"
+        },
+        {
+          "pair": "رَحْمَةً",
+          "question": "Durunca son harf hangi sesi verir?",
+          "answers": [
+            "h",
+            "t",
+            "n"
+          ],
+          "answer": "h"
+        },
+        {
+          "pair": "الرَّحِيمِ",
+          "question": "Durunca sondaki esre ne olur?",
+          "answers": [
+            "Düşer, harf sâkin olur",
+            "Uzatılır"
+          ],
+          "answer": "Düşer, harf sâkin olur"
+        },
+        {
+          "pair": "İbtidâ",
+          "question": "Durduktan sonra nereden başlanır?",
+          "answers": [
+            "Anlamı bozmayan uygun kelimeden",
+            "Kaldığın harften"
+          ],
+          "answer": "Anlamı bozmayan uygun kelimeden"
+        }
+      ]
     },
     {
       "id": 27,
@@ -7476,6 +8988,36 @@
         {
           "symbol": "ج",
           "meaning": "Câiz: durmak veya geçmek mümkündür."
+        },
+        {
+          "symbol": "قلى",
+          "name": "قلى",
+          "meaning": "Durmak daha uygundur."
+        },
+        {
+          "symbol": "صلى",
+          "name": "صلى",
+          "meaning": "Geçmek daha uygundur."
+        },
+        {
+          "symbol": "ۛ ۛ",
+          "name": "ۛ ۛ (muânaka)",
+          "meaning": "İki noktadan yalnız birinde durulur."
+        },
+        {
+          "symbol": "ك",
+          "name": "ك",
+          "meaning": "Bir önceki işaretin aynısıdır."
+        },
+        {
+          "symbol": "س",
+          "name": "س (sekte)",
+          "meaning": "Nefes almadan kısa bir an bekle."
+        },
+        {
+          "symbol": "ۘ",
+          "name": "ۘ (vakf-ı lâzım)",
+          "meaning": "Burada durmak gerekir."
         }
       ],
       "note_for_app": "Bazı mushaflarda ilave işaretler ve farklı işaretleme ayrıntıları bulunabilir; uygulamada seçilen mushaf işaret sistemi esas alınmalıdır.",
@@ -7490,13 +9032,47 @@
           "answer": "Dur veya geç"
         },
         {
-          "question": "Gunne hangi bölgeyle ilişkilidir?",
+          "question": "م işareti neyi gösterir?",
           "options": [
-            "Hayşûm",
-            "Cevf",
-            "Şefeteyn"
+            "Durmak gerekir",
+            "Durmak yasaktır",
+            "Uzatma"
           ],
-          "answer": "Hayşûm"
+          "answer": "Durmak gerekir"
+        },
+        {
+          "question": "لا işareti neyi gösterir?",
+          "options": [
+            "Durmamak daha iyidir",
+            "Kesin dur",
+            "Sekte yap"
+          ],
+          "answer": "Durmamak daha iyidir"
+        },
+        {
+          "question": "قلى işareti neyi söyler?",
+          "options": [
+            "Durmak daha uygundur",
+            "Geçmek daha uygundur"
+          ],
+          "answer": "Durmak daha uygundur"
+        },
+        {
+          "question": "صلى işareti neyi söyler?",
+          "options": [
+            "Geçmek daha uygundur",
+            "Durmak zorunludur"
+          ],
+          "answer": "Geçmek daha uygundur"
+        },
+        {
+          "question": "س işareti ne demektir?",
+          "options": [
+            "Sekte: nefes almadan bekle",
+            "Uzun dur",
+            "Hızlan"
+          ],
+          "answer": "Sekte: nefes almadan bekle"
         }
       ],
       "rich_content": {
@@ -7590,14 +9166,61 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "comparison_pairs": [
+        {
+          "pair": "م",
+          "question": "Bu işareti görünce ne yaparsın?",
+          "answers": [
+            "Dururum",
+            "Geçerim"
+          ],
+          "answer": "Dururum"
+        },
+        {
+          "pair": "ج",
+          "question": "Bu işaret ne der?",
+          "answers": [
+            "İstersen dur, istersen geç",
+            "Kesinlikle dur"
+          ],
+          "answer": "İstersen dur, istersen geç"
+        },
+        {
+          "pair": "صلى",
+          "question": "Hangisi daha uygundur?",
+          "answers": [
+            "Geçmek",
+            "Durmak"
+          ],
+          "answer": "Geçmek"
+        },
+        {
+          "pair": "ۛ ۛ",
+          "question": "İki noktalı işarette ne yapılır?",
+          "answers": [
+            "Sadece birinde durulur",
+            "İkisinde de durulur"
+          ],
+          "answer": "Sadece birinde durulur"
+        },
+        {
+          "pair": "لا",
+          "question": "لا işaretini görünce ne yaparsın?",
+          "answers": [
+            "Durmam, devam ederim",
+            "Dururum"
+          ],
+          "answer": "Durmam, devam ederim"
+        }
+      ]
     },
     {
       "id": 28,
       "title": "Mahreçlere Giriş",
       "level": "İleri",
       "goal": "Harflerin çıktığı temel bölgeleri tanımaya başlamak.",
-      "explanation": "Mahreç, harfin sesinin çıktığı yerdir. Harfi doğru telaffuz etmek için sesin ağız, boğaz veya dilin doğru bölgesinden çıkarılması önemlidir.",
+      "explanation": "Mahreç, harfin sesinin çıktığı yerdir. Ağzımız bir müzik aleti gibidir: boğaz, dil, dudak ve geniz farklı sesler üretir. Harfi doğru yerden çıkarınca okuyuş netleşir.",
       "groups": [
         {
           "name": "Boğaz harfleri",
@@ -7624,6 +9247,57 @@
             "ق",
             "ك"
           ]
+        },
+        {
+          "name": "Dil ortası ve damak",
+          "letters": [
+            "ج",
+            "ش",
+            "ي"
+          ],
+          "note": "Dilin ortası üst damağa yaklaşır."
+        },
+        {
+          "name": "Dil kenarı",
+          "letters": [
+            "ض"
+          ],
+          "note": "Dilin yan kenarı azı dişlere değer; en zor mahreç budur."
+        },
+        {
+          "name": "Dil ucu ve diş eti",
+          "letters": [
+            "ل",
+            "ن",
+            "ر"
+          ],
+          "note": "Dil ucu üst diş etine dokunur."
+        },
+        {
+          "name": "Diş ucu (peltek)",
+          "letters": [
+            "ث",
+            "ذ",
+            "ظ"
+          ],
+          "note": "Dil ucu üst dişlerin arasından hafifçe görünür."
+        },
+        {
+          "name": "Islıklı harfler",
+          "letters": [
+            "س",
+            "ص",
+            "ز"
+          ],
+          "note": "Dil ucu alt dişlere yaklaşır, ıslık sesi çıkar."
+        },
+        {
+          "name": "Geniz (hayşûm)",
+          "letters": [
+            "نّ",
+            "مّ"
+          ],
+          "note": "Gunne sesi burundan gelir."
         }
       ],
       "activities": [
@@ -7658,6 +9332,42 @@
             "Aynıdır"
           ],
           "answer": "ث peltek"
+        },
+        {
+          "question": "ض harfi hangi bölgeden çıkar?",
+          "options": [
+            "Dilin yan kenarı",
+            "Dudak",
+            "Geniz"
+          ],
+          "answer": "Dilin yan kenarı"
+        },
+        {
+          "question": "Gunne hangi bölgeyle ilişkilidir?",
+          "options": [
+            "Hayşûm (geniz)",
+            "Cevf",
+            "Şefeteyn"
+          ],
+          "answer": "Hayşûm (geniz)"
+        },
+        {
+          "question": "س ve ص hangi grubun harfleridir?",
+          "options": [
+            "Islıklı harfler",
+            "Peltek harfler",
+            "Boğaz harfleri"
+          ],
+          "answer": "Islıklı harfler"
+        },
+        {
+          "question": "م harfi hangi bölgeden çıkar?",
+          "options": [
+            "Dudak",
+            "Dil kökü",
+            "Boğaz"
+          ],
+          "answer": "Dudak"
         }
       ],
       "rich_content": {
@@ -7733,14 +9443,128 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "comparison_pairs": [
+        {
+          "pair": "ب",
+          "question": "Hangi bölgeden çıkar?",
+          "answers": [
+            "Dudak",
+            "Boğaz",
+            "Geniz"
+          ],
+          "answer": "Dudak"
+        },
+        {
+          "pair": "نّ",
+          "question": "Gunne sesi nereden gelir?",
+          "answers": [
+            "Geniz",
+            "Dudak",
+            "Boğaz"
+          ],
+          "answer": "Geniz"
+        },
+        {
+          "pair": "ح",
+          "question": "ح harfi hangi bölgeden çıkar?",
+          "answers": [
+            "Boğaz",
+            "Dudak",
+            "Diş"
+          ],
+          "answer": "Boğaz"
+        },
+        {
+          "pair": "ث",
+          "question": "ث harfi hangi bölgeden çıkar?",
+          "answers": [
+            "Diş ucu",
+            "Dil kökü",
+            "Geniz"
+          ],
+          "answer": "Diş ucu"
+        },
+        {
+          "pair": "ق",
+          "question": "ق harfi hangi bölgeden çıkar?",
+          "answers": [
+            "Dil kökü",
+            "Dudak",
+            "Diş"
+          ],
+          "answer": "Dil kökü"
+        },
+        {
+          "pair": "ض",
+          "question": "ض harfi hangi bölgeden çıkar?",
+          "answers": [
+            "Dilin yan kenarı",
+            "Boğaz",
+            "Dudak"
+          ],
+          "answer": "Dilin yan kenarı"
+        }
+      ],
+      "examples": [
+        {
+          "text": "بَ - مَ - وَ",
+          "reading": "be - me - ve",
+          "focus": "Dudak",
+          "note": "Üçünde de dudaklar çalışır; aynaya bakarak dene."
+        },
+        {
+          "text": "حَ - هَ",
+          "reading": "ha - he",
+          "focus": "Boğaz",
+          "note": "ح boğazın ortası, ه boğazın dibi."
+        },
+        {
+          "text": "ثَ - ذَ - ظَ",
+          "reading": "se - ze - za (kalın)",
+          "focus": "Diş ucu",
+          "note": "Dilin ucu üst dişlerin arasından hafifçe görünür."
+        },
+        {
+          "text": "قَ - كَ",
+          "reading": "ka - ke",
+          "focus": "Dil kökü",
+          "note": "ق daha geriden ve kalın çıkar."
+        }
+      ],
+      "practice": [
+        {
+          "text": "سَ - صَ",
+          "reading": "se - sa (kalın)",
+          "focus": "Islıklı",
+          "note": "İkisi de ıslık; ص kalındır."
+        },
+        {
+          "text": "لَ - نَ - رَ",
+          "reading": "le - ne - ra",
+          "focus": "Dil ucu",
+          "note": "Dil ucu üst diş etine dokunur."
+        },
+        {
+          "text": "جَ - شَ - يَ",
+          "reading": "ce - şe - ye",
+          "focus": "Dil ortası",
+          "note": "Dilin ortası damağa yaklaşır."
+        },
+        {
+          "text": "ضَ",
+          "reading": "da (kalın)",
+          "focus": "Dil kenarı",
+          "note": "Dilin yan kenarı azı dişlere değer."
+        }
+      ]
     },
     {
       "id": 29,
       "title": "Benzer Harfleri Ayırt Ediyorum",
       "level": "İleri",
       "goal": "Nokta ve şekil farklarından hareketle benzer harfleri ayırmak.",
-      "explanation": "Bazı harfler şekil olarak birbirine çok benzer. Nokta sayısı ve yeri dikkatle incelenerek ayrım yapılır.",
+      "explanation": "Bazı harfler ya yazılışıyla ya da sesiyle birbirine benzer. Noktaya ve sesin çıktığı yere dikkat edersen ikisini kolayca ayırırsın.",
       "pairs": [
         {
           "group": "ب ت ث",
@@ -7757,6 +9581,38 @@
         {
           "group": "ص ض",
           "details": "ص: noktasız; ض: 1 nokta üstte."
+        },
+        {
+          "group": "س / ص",
+          "details": "İkisi de ıslıklı; س ince, ص kalın okunur: سَلَام - صَلَاة"
+        },
+        {
+          "group": "ت / ط",
+          "details": "ت ince, ط kalın: تَابَ - طَابَ"
+        },
+        {
+          "group": "ذ / ز",
+          "details": "ذ peltek (dil dişler arasında), ز ıslıklı: ذَهَبَ - زَادَ"
+        },
+        {
+          "group": "ح / ه",
+          "details": "ح boğazın ortası, ه boğazın en dibi: حَمْد - هُدَى"
+        },
+        {
+          "group": "ق / ك",
+          "details": "ق dil kökünden kalın, ك biraz önden ince: قَلْب - كَلْب"
+        },
+        {
+          "group": "ع / ء",
+          "details": "ع boğazın ortasından yumuşak, ء boğazın dibinden keskin: عَلِمَ - أَلِمَ"
+        },
+        {
+          "group": "د / ض",
+          "details": "د ince, ض kalın ve dilin kenarından: دَرْس - ضَرْب"
+        },
+        {
+          "group": "ث / س",
+          "details": "ث peltek, س ıslıklı: ثَوَاب - سَوَاء"
         }
       ],
       "quiz": [
@@ -7788,13 +9644,39 @@
           "answer": "Şın üç noktalıdır"
         },
         {
-          "question": "Kelime okurken önce ne yapılır?",
+          "question": "ص harfi س harfinden nasıl ayrılır?",
           "options": [
-            "İşaretleri incelemek",
-            "Hızlı okumak",
-            "Atlamak"
+            "Kalın okunur",
+            "İnce okunur",
+            "Peltektir"
           ],
-          "answer": "İşaretleri incelemek"
+          "answer": "Kalın okunur"
+        },
+        {
+          "question": "قَلْب ile كَلْب arasındaki fark nedir?",
+          "options": [
+            "İlk harfin mahreci",
+            "Hareke",
+            "Nokta sayısı"
+          ],
+          "answer": "İlk harfin mahreci"
+        },
+        {
+          "question": "Hangisi peltek harftir?",
+          "options": [
+            "ذ",
+            "ز",
+            "س"
+          ],
+          "answer": "ذ"
+        },
+        {
+          "question": "ط harfi nasıl okunur?",
+          "options": [
+            "Kalın",
+            "İnce"
+          ],
+          "answer": "Kalın"
         }
       ],
       "rich_content": {
@@ -7874,7 +9756,71 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "examples": [
+        {
+          "text": "سَلَام / صَلَاة",
+          "reading": "selâm / salât",
+          "focus": "س ince · ص kalın",
+          "note": "İki kelimeyi peş peşe oku, farkı duy."
+        },
+        {
+          "text": "تَابَ / طَابَ",
+          "reading": "tâbe / tâbe (kalın)",
+          "focus": "ت ince · ط kalın",
+          "note": "Ağzın dolduğu yer değişiyor."
+        },
+        {
+          "text": "قَلْب / كَلْب",
+          "reading": "kalb / kelb",
+          "focus": "ق kalın · ك ince",
+          "note": "Anlam da değişir: kalp - köpek."
+        },
+        {
+          "text": "حَمْد / هُدَى",
+          "reading": "hamd / hüdâ",
+          "focus": "ح boğaz ortası · ه boğaz dibi",
+          "note": "Sesi nereden çıkardığına dikkat et."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "سَلَام / صَلَاة",
+          "question": "Hangisinde kalın ıslık var?",
+          "answers": [
+            "صَلَاة",
+            "سَلَام"
+          ],
+          "answer": "صَلَاة"
+        },
+        {
+          "pair": "قَلْب / كَلْب",
+          "question": "Hangisi dil kökünden çıkar?",
+          "answers": [
+            "قَلْب",
+            "كَلْب"
+          ],
+          "answer": "قَلْب"
+        },
+        {
+          "pair": "ذ / ز",
+          "question": "Hangisi peltek okunur?",
+          "answers": [
+            "ذ",
+            "ز"
+          ],
+          "answer": "ذ"
+        },
+        {
+          "pair": "ت / ط",
+          "question": "Hangisi kalın okunur?",
+          "answers": [
+            "ط",
+            "ت"
+          ],
+          "answer": "ط"
+        }
+      ]
     },
     {
       "id": 30,
@@ -7907,6 +9853,34 @@
           "text": "نُور",
           "reading": "Nûr",
           "focus": "Med"
+        },
+        {
+          "text": "قُلْ",
+          "reading": "kul",
+          "focus": "Cezm",
+          "note": "Sonundaki lâm sâkin; ses kesilerek biter.",
+          "audio": "assets/audio/quran_learn/words/word_18.mp3"
+        },
+        {
+          "text": "أَحَدٌ",
+          "reading": "ehadün",
+          "focus": "Tenvin",
+          "note": "Sonda ötre tenvini var: \"ün\" diye biter.",
+          "audio": "assets/audio/quran_learn/words/word_20.mp3"
+        },
+        {
+          "text": "الصَّمَدُ",
+          "reading": "es-samed",
+          "focus": "Şedde + lâm-ı tarif",
+          "note": "Lâm okunmaz, ص şeddeli okunur.",
+          "audio": "assets/audio/quran_learn/words/word_21.mp3"
+        },
+        {
+          "text": "يَلِدْ",
+          "reading": "yelid",
+          "focus": "Cezm + kalkale",
+          "note": "Sondaki د sâkin: hafif yankı yapar.",
+          "audio": "assets/audio/quran_learn/words/word_23.mp3"
         }
       ],
       "activities": [
@@ -7941,6 +9915,42 @@
             "ا"
           ],
           "answer": "ن"
+        },
+        {
+          "question": "Kelime okurken ilk adım nedir?",
+          "options": [
+            "İşaretleri incelemek",
+            "Hızlı okumak",
+            "Atlamak"
+          ],
+          "answer": "İşaretleri incelemek"
+        },
+        {
+          "question": "يَلِدْ kelimesinin sonunda hangi kural çalışır?",
+          "options": [
+            "Kalkale",
+            "Med",
+            "Gunne"
+          ],
+          "answer": "Kalkale"
+        },
+        {
+          "question": "نُور kelimesindeki uzatma harfi hangisidir?",
+          "options": [
+            "و",
+            "ن",
+            "ر"
+          ],
+          "answer": "و"
+        },
+        {
+          "question": "أَحَدٌ nasıl biter?",
+          "options": [
+            "ün sesiyle",
+            "an sesiyle",
+            "in sesiyle"
+          ],
+          "answer": "ün sesiyle"
         }
       ],
       "rich_content": {
@@ -8016,7 +10026,72 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "practice": [
+        {
+          "text": "بِسْمِ",
+          "reading": "bismi",
+          "focus": "Cezm",
+          "note": "Sin sâkin, dil dişe yaklaşır.",
+          "audio": "assets/audio/quran_learn/words/word_02.mp3"
+        },
+        {
+          "text": "نُور",
+          "reading": "nûr",
+          "focus": "Med",
+          "note": "Vav uzatma harfi: \"nûr\"."
+        },
+        {
+          "text": "مُسْلِم",
+          "reading": "müslim",
+          "focus": "Cezm",
+          "note": "Sin sâkin okunur."
+        },
+        {
+          "text": "كِتَاب",
+          "reading": "kitâb",
+          "focus": "Med",
+          "note": "Elif uzatma harfi: \"kitâb\"."
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "كِتَاب / كَتَبَ",
+          "question": "Hangisinde uzatma var?",
+          "answers": [
+            "كِتَاب",
+            "كَتَبَ"
+          ],
+          "answer": "كِتَاب"
+        },
+        {
+          "pair": "قُلْ",
+          "question": "Sondaki lâm nasıl okunur?",
+          "answers": [
+            "Sâkin, kesik",
+            "Uzatılarak"
+          ],
+          "answer": "Sâkin, kesik"
+        },
+        {
+          "pair": "الصَّمَدُ",
+          "question": "Lâm-ı tarif okunur mu?",
+          "answers": [
+            "Okunmaz, ص şeddelenir",
+            "Okunur"
+          ],
+          "answer": "Okunmaz, ص şeddelenir"
+        },
+        {
+          "pair": "أَحَدٌ",
+          "question": "Sondaki işaret nedir?",
+          "answers": [
+            "Ötre tenvini",
+            "Şedde"
+          ],
+          "answer": "Ötre tenvini"
+        }
+      ]
     },
     {
       "id": 31,
@@ -8033,7 +10108,8 @@
         {
           "text": "رَبِّ",
           "reading": "Rabbî",
-          "focus": "Şedde/med"
+          "focus": "Şedde/med",
+          "audio": "assets/audio/quran_learn/words/word_04.mp3"
         },
         {
           "text": "النَّاس",
@@ -8043,7 +10119,8 @@
         {
           "text": "الْحَمْدُ",
           "reading": "el-hamdü",
-          "focus": "Cezm"
+          "focus": "Cezm",
+          "audio": "assets/audio/quran_learn/words/word_03.mp3"
         },
         {
           "text": "الصِّرَاط",
@@ -8086,6 +10163,40 @@
             "ب"
           ],
           "answer": "ب"
+        },
+        {
+          "question": "الرَّحْمَٰنِ kelimesinde şeddeli harf hangisidir?",
+          "options": [
+            "ر",
+            "م",
+            "ن"
+          ],
+          "answer": "ر"
+        },
+        {
+          "question": "Şemsî lâmda lâm ne olur?",
+          "options": [
+            "Okunmaz, sonraki harf şeddelenir",
+            "Uzatılır"
+          ],
+          "answer": "Okunmaz, sonraki harf şeddelenir"
+        },
+        {
+          "question": "مَالِكِ kelimesindeki uzatma harfi hangisidir?",
+          "options": [
+            "ا",
+            "ك",
+            "م"
+          ],
+          "answer": "ا"
+        },
+        {
+          "question": "Kelime pratiğinde en son adım nedir?",
+          "options": [
+            "Normal tempoda okumak",
+            "Hızlı başlamak"
+          ],
+          "answer": "Normal tempoda okumak"
         }
       ],
       "rich_content": {
@@ -8161,7 +10272,77 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "practice": [
+        {
+          "text": "الرَّحْمَٰنِ",
+          "reading": "er-rahmâni",
+          "focus": "Şedde + med",
+          "note": "Lâm okunmaz, ra şeddelidir; med işareti uzatılır.",
+          "audio": "assets/audio/quran_learn/words/word_06.mp3"
+        },
+        {
+          "text": "الْعَالَمِينَ",
+          "reading": "el-âlemîn",
+          "focus": "Med",
+          "note": "İki uzatma birden var.",
+          "audio": "assets/audio/quran_learn/words/word_05.mp3"
+        },
+        {
+          "text": "مَالِكِ",
+          "reading": "mâliki",
+          "focus": "Med",
+          "note": "Elif uzatması ile \"mâ\".",
+          "audio": "assets/audio/quran_learn/words/word_08.mp3"
+        },
+        {
+          "text": "الدِّينِ",
+          "reading": "ed-dîni",
+          "focus": "Şedde",
+          "note": "Lâm okunmaz, dal şeddelenir.",
+          "audio": "assets/audio/quran_learn/words/word_10.mp3"
+        }
+      ],
+      "comparison_pairs": [
+        {
+          "pair": "الرَّحْمَٰنِ",
+          "question": "Lâm okunuyor mu?",
+          "answers": [
+            "Hayır, ra şeddeli",
+            "Evet"
+          ],
+          "answer": "Hayır, ra şeddeli"
+        },
+        {
+          "pair": "الْحَمْدُ",
+          "question": "Buradaki lâm okunur mu?",
+          "answers": [
+            "Evet, \"el-\" diye okunur",
+            "Hayır"
+          ],
+          "answer": "Evet, \"el-\" diye okunur"
+        },
+        {
+          "pair": "الْعَالَمِينَ",
+          "question": "Kaç uzatma var?",
+          "answers": [
+            "İki",
+            "Bir",
+            "Hiç"
+          ],
+          "answer": "İki"
+        },
+        {
+          "pair": "الدِّينِ",
+          "question": "Şeddeli harf hangisi?",
+          "answers": [
+            "د",
+            "ن",
+            "ل"
+          ],
+          "answer": "د"
+        }
+      ]
     },
     {
       "id": 32,
@@ -8241,6 +10422,42 @@
             "Sadece ezber"
           ],
           "answer": "Dinlemek"
+        },
+        {
+          "question": "إِيَّاكَ نَعْبُدُ ifadesinde şedde hangi harftedir?",
+          "options": [
+            "ي",
+            "ن",
+            "ب"
+          ],
+          "answer": "ي"
+        },
+        {
+          "question": "أَنْعَمْتَ عَلَيْهِمْ ifadesinde nun sâkinin hükmü nedir?",
+          "options": [
+            "İzhâr",
+            "İklâb",
+            "İdğam"
+          ],
+          "answer": "İzhâr"
+        },
+        {
+          "question": "Fâtiha kaç ayettir?",
+          "options": [
+            "7",
+            "5",
+            "10"
+          ],
+          "answer": "7"
+        },
+        {
+          "question": "الْحَمْدُ kelimesinde hangi işaret var?",
+          "options": [
+            "Cezm",
+            "Şedde",
+            "Tenvin"
+          ],
+          "answer": "Cezm"
         }
       ],
       "note_for_app": "Ayet metinleri uygulamadaki güvenilir Kur'an veri kaynağından çekilmeli; burada eğitim yapısı için örneklenmiştir.",
@@ -8312,7 +10529,48 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "comparison_pairs": [
+        {
+          "pair": "إِيَّاكَ",
+          "question": "Şedde hangi harfte?",
+          "answers": [
+            "ي",
+            "ك",
+            "ا"
+          ],
+          "answer": "ي"
+        },
+        {
+          "pair": "أَنْعَمْتَ",
+          "question": "Nun sâkinin hükmü nedir?",
+          "answers": [
+            "İzhâr",
+            "İhfâ",
+            "İklâb"
+          ],
+          "answer": "İzhâr"
+        },
+        {
+          "pair": "الضَّالِّينَ",
+          "question": "Sondaki uzatma nasıldır?",
+          "answers": [
+            "Uzun med",
+            "Kısa"
+          ],
+          "answer": "Uzun med"
+        },
+        {
+          "pair": "الصِّرَاطَ",
+          "question": "Şeddeli harf hangisi?",
+          "answers": [
+            "ص",
+            "ر",
+            "ط"
+          ],
+          "answer": "ص"
+        }
+      ]
     },
     {
       "id": 33,
@@ -8355,6 +10613,30 @@
             "Cezm",
             "Med"
           ]
+        },
+        {
+          "name": "Fîl",
+          "focus": [
+            "Med",
+            "İhfâ",
+            "Cezm"
+          ]
+        },
+        {
+          "name": "Kâfirûn",
+          "focus": [
+            "Şedde",
+            "Med",
+            "Mim sâkin"
+          ]
+        },
+        {
+          "name": "Nasr",
+          "focus": [
+            "Med",
+            "Tenvin",
+            "Gunne"
+          ]
         }
       ],
       "practice_flow": [
@@ -8382,6 +10664,41 @@
             "خص ضغط قظ"
           ],
           "answer": "قطب جد"
+        },
+        {
+          "question": "İhlâs sûresinde en çok hangi kuralı çalışırsın?",
+          "options": [
+            "Şedde",
+            "İklâb",
+            "Kalkale"
+          ],
+          "answer": "Şedde"
+        },
+        {
+          "question": "مِنْ شَرِّ ifadesinde hangi hüküm vardır?",
+          "options": [
+            "İhfâ",
+            "İzhâr",
+            "İdğam"
+          ],
+          "answer": "İhfâ"
+        },
+        {
+          "question": "Sûre çalışmasında ilk adım nedir?",
+          "options": [
+            "Dinlemek",
+            "Hızlı okumak"
+          ],
+          "answer": "Dinlemek"
+        },
+        {
+          "question": "النَّاسِ kelimesinde gunne hangi harftedir?",
+          "options": [
+            "نّ",
+            "س",
+            "ا"
+          ],
+          "answer": "نّ"
         }
       ],
       "rich_content": {
@@ -8460,7 +10777,45 @@
         "show_audio_button": true,
         "show_repeat_button": true,
         "allow_favorite_example": true
-      }
+      },
+      "comparison_pairs": [
+        {
+          "pair": "İhlâs",
+          "question": "Bu sûrede en çok hangi kural çalışılır?",
+          "answers": [
+            "Şedde ve cezm",
+            "İklâb"
+          ],
+          "answer": "Şedde ve cezm"
+        },
+        {
+          "pair": "Felak",
+          "question": "مِنْ شَرِّ ifadesinde hangi hüküm var?",
+          "answers": [
+            "İhfâ",
+            "İzhâr"
+          ],
+          "answer": "İhfâ"
+        },
+        {
+          "pair": "Nâs",
+          "question": "النَّاسِ kelimesinde hangi kural var?",
+          "answers": [
+            "Şedde ve gunne",
+            "Kalkale"
+          ],
+          "answer": "Şedde ve gunne"
+        },
+        {
+          "pair": "Asr",
+          "question": "Sûrede en çok hangi işaret göze çarpar?",
+          "answers": [
+            "Cezm",
+            "Tenvin"
+          ],
+          "answer": "Cezm"
+        }
+      ]
     },
     {
       "id": 34,

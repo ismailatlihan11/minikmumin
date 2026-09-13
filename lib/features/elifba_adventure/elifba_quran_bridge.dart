@@ -1,6 +1,7 @@
 import '../../data/models/quran_learning.dart';
 import 'elifba_models.dart';
 import 'elifba_practice_bridge.dart';
+import 'elifba_tajweed_bridge.dart';
 
 /// Macera derslerini Kur'an Öğrenme Serisi'ndeki çalışmalarla besler.
 /// Kaynak JSON'daki dersler zayıf kaldığında (cezm, şedde) aynı harf, hece
@@ -19,6 +20,7 @@ abstract final class ElifbaQuranBridge {
               content: content,
             ),
       ...ElifbaPracticeBridge.patches(pack),
+      ...ElifbaTajweedBridge.patches(pack),
     ];
   }
 

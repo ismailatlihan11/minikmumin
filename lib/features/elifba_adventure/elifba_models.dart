@@ -1,4 +1,5 @@
 import '../../core/utils/json_map.dart';
+import 'elifba_phrase_readings.dart';
 import 'elifba_reading.dart';
 
 /// Hareke, şedde, cezm ve uzatma işaretlerini ayıklar.
@@ -690,9 +691,13 @@ class ElifbaExample {
 
   factory ElifbaExample.fromJson(Map<String, dynamic> json) {
     final text = JsonMap.str(json['text']);
+    final written = JsonMap.str(json['reading']);
     return ElifbaExample(
       text: text,
-      reading: ElifbaReading.forMarked(text, JsonMap.str(json['reading'])),
+      reading: ElifbaReading.forMarked(
+        text,
+        written.isEmpty ? elifbaPhraseReading(text) : written,
+      ),
       note: JsonMap.str(json['note']),
       focus: JsonMap.str(json['focus']),
       rule: JsonMap.str(json['rule']),

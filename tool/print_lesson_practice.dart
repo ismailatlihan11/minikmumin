@@ -37,8 +37,15 @@ void main(List<String> args) {
       'tenvin kartı': lesson.types.length,
       'med kartı': lesson.medLetters.length,
       'med tablosu': pack.medTableFor(lesson).length,
-      'harf grubu': lesson.categories.length,
-      'kural kartı': lesson.rulesSummary.length + lesson.rules.length,
+      'harf grubu': lesson.categories.length + lesson.groups.length,
+      'kural kartı': lesson.rulesSummary.length +
+          lesson.rules.length +
+          lesson.basicRules.length +
+          lesson.concepts.length +
+          lesson.signs.length,
+      'benzer harf': lesson.pairs.length,
+      'ayet': lesson.verses.length,
+      'sûre': lesson.surahs.length,
       'kural ağacı': pack.decisionTreeFor(lesson).length,
       'kural bulmaca': lesson.examples.where((e) => e.rule.isNotEmpty).length,
       'quiz': lesson.quiz.length,

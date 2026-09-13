@@ -291,6 +291,49 @@ void main(List<String> args) {
     );
   }
 
+  // 18. dersten sonrası: her tecvid dersi kuralı, pratik ve doyurucu bir test
+  // taşımalı. Harf şekilleri / kelime / sûre dersleri kural kartı yerine
+  // kendi yapısını (şekil, kelime, ayet) kullanır.
+  for (final lesson in pack.lessons.where((item) => item.id >= 18 && item.id < 100)) {
+    if (lesson.isFinal) continue;
+    final ruleCards = lesson.rules.length +
+        lesson.rulesSummary.length +
+        lesson.basicRules.length +
+        lesson.concepts.length +
+        lesson.signs.length +
+        lesson.categories.length +
+        lesson.groups.length +
+        lesson.pairs.length +
+        (lesson.rule != null ? 1 : 0);
+    final drills = lesson.examples.length +
+        lesson.practice.length +
+        lesson.wordExamples.length +
+        lesson.verses.length +
+        lesson.surahs.length;
+    final isPracticeTrack = lesson.wordExamples.isNotEmpty ||
+        lesson.verses.isNotEmpty ||
+        lesson.surahs.isNotEmpty ||
+        lesson.pairs.isNotEmpty ||
+        lesson.signs.isNotEmpty;
+    final minRules = isPracticeTrack ? 0 : (lesson.rule != null ? 1 : 2);
+    final minDrills = isPracticeTrack ? 3 : 8;
+    check(
+      'Ders ${lesson.id} ${lesson.title}: kural + pratik dengeli',
+      ruleCards >= minRules &&
+          drills >= minDrills &&
+          lesson.askPairs.length >= 3 &&
+          lesson.quiz.length >= 6,
+      'kural $ruleCards · pratik $drills · oyun ${lesson.askPairs.length} · '
+          'quiz ${lesson.quiz.length}',
+    );
+    final unreadable = [
+      for (final item in [...lesson.examples, ...lesson.practice])
+        if (item.reading.isEmpty && item.text.isNotEmpty) item.text,
+    ];
+    check('Ders ${lesson.id}: örneklerin okunuşu yazılı', unreadable.isEmpty,
+        unreadable.take(3).join(' | '));
+  }
+
   final mahrec = byTitle(pack, 'Mahreç');
   check('Mahreç bölgeleri', mahrec.groups.length >= 3);
 
