@@ -5,6 +5,7 @@ import '../../app/constants/app_constants.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
+import '../../features/elifba_adventure/elifba_progress.dart';
 import '../../features/quran_learn/quran_learn_progress.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
@@ -19,7 +20,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   final _controller = TextEditingController();
   bool _loaded = false;
-  bool _unlockQuranLearn = false;
+  bool _unlockLessons = false;
 
   @override
   void dispose() {
@@ -27,15 +28,29 @@ class _SettingsPageState extends State<SettingsPage> {
     super.dispose();
   }
 
+  Future<void> _setUnlockLessons(
+    LocalProgressStore store,
+    bool value,
+  ) async {
+    await store.setFlag(quranLearnUnlockFlag, value);
+    await ElifbaProgress(store).setUnlockAll(value);
+  }
+
   Future<void> _load() async {
     if (_loaded) return;
     final store = context.read<LocalProgressStore>();
     final name = await store.getNickname();
-    final unlock = await store.getFlag(quranLearnUnlockFlag);
+    final unlockQl = await store.getFlag(quranLearnUnlockFlag);
+    final elifba = await ElifbaProgress(store).load();
+    // Eski ayar yalnız Kur'an Öğren'i açıyordu; açıkken Elifbâ'yı da eşitle.
+    var unlock = unlockQl || elifba.unlockAll;
+    if (unlock && (!unlockQl || !elifba.unlockAll)) {
+      await _setUnlockLessons(store, true);
+    }
     if (!mounted) return;
     _controller.text = name ?? '';
     setState(() {
-      _unlockQuranLearn = unlock;
+      _unlockLessons = unlock;
       _loaded = true;
     });
   }
@@ -86,18 +101,18 @@ class _SettingsPageState extends State<SettingsPage> {
           MinikCard(
             child: SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Kur\'an Öğren kilitlerini aç'),
+              title: const Text('Öğrenme kilitlerini aç'),
               subtitle: const Text(
-                'Ebeveyn ayarı: sonraki seviyeler kilitsiz açılsın.',
+                'Ebeveyn ayarı: Kur’an Öğren ve Elifbâ + Tecvid dersleri kilitsiz açılsın.',
               ),
-              value: _unlockQuranLearn,
+              value: _unlockLessons,
               activeThumbColor: MinikColors.green,
               onChanged: (value) async {
-                await context.read<LocalProgressStore>().setFlag(
-                      quranLearnUnlockFlag,
-                      value,
-                    );
-                setState(() => _unlockQuranLearn = value);
+                await _setUnlockLessons(
+                  context.read<LocalProgressStore>(),
+                  value,
+                );
+                setState(() => _unlockLessons = value);
               },
             ),
           ),
