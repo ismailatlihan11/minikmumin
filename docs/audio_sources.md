@@ -7,20 +7,23 @@ The Flutter app is **offline**. It never calls Google Cloud, TTS APIs, or recita
 Quran recitation files are downloaded from official APIs at build/prep time.
 Prayer / non-Quran phrases are **not** fetched from the internet.
 
-## Educational Arabic TTS (namaz, dualar, esma)
+## Educational Arabic audio (namaz, dualar, esma, Kur'an Öğren)
 
-Prayer phrases, Quranic dua *invocations*, and Esmaül Hüsna names were generated with the same Kur'an Öğren cartoon-boy voice. Runtime stays offline.
+Runtime stays offline. Provenance details for free replacements live in
+`docs/quran_learn_audio_sources.md` and
+`assets/audio/quran_learn/free_audio_manifest.json`.
 
-- Voice: `ar-XA-Chirp3-HD-Fenrir` + 5 semitone cartoon shift
-- Input: Arabic only from JSON (no Turkish meaning, no latin)
-- Quranic duas: spoken text is the dua already inside the ayah JSON, not the narrative frame
-- Short surahs in namaz duaları / Kur'an Öğren use Fenrir cartoon TTS (`quran_learn/surahs/`)
-- Kur'an-ı Kerim tilavet stays Husary (`assets/audio/quran/`)
-- Generated: 2026-08-23
+- **Alphabet letter names:** MIT recordings from [Alfathon](https://github.com/kholmatov/alfathon) (`quran_learn/alphabet/`, see `ATTRIBUTION.md`)
+- **Short educational surahs** (`quran_learn/surahs/`): Husary Muallim copies of `assets/audio/quran/`
+- **Kur'an-ı Kerim tilavet:** Husary (`assets/audio/quran/`)
+- **Still Fenrir cartoon TTS:** hareke drills (`exercises/`, syllables, sukun, shadda, …), prayer / dua / asma packs
+- Still missing (Dinle hidden until files exist): dhikr, kıssa, prophets narration, morality
 
-Still missing (Dinle hidden until files exist): dhikr, kıssa, prophets narration, morality.
+Re-import free packs:
 
-Kur'an Öğren educational clips (`assets/audio/quran_learn/`) were **not generated** in this build: Google Application Default Credentials are missing (`gcloud auth application-default login` has not been run). JSON audio paths are already bound; Dinle stays hidden until MP3s are generated and bundled.
+```bash
+python3 scripts/fetch_free_educational_audio.py --force
+```
 
 ## Selected reciter
 
