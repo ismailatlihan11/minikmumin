@@ -208,6 +208,7 @@ class DuaEntry {
     this.image = '',
     this.order = 0,
     this.verses = const [],
+    this.surahNumber,
   });
 
   final String id;
@@ -221,6 +222,9 @@ class DuaEntry {
   final String image;
   final int order;
   final List<PrayerVerse> verses;
+  final int? surahNumber;
+
+  bool get isSurah => surahNumber != null || verses.isNotEmpty;
 
   String get displayImage =>
       image.isNotEmpty ? image : ContentAssets.duaImage(id);
@@ -288,6 +292,7 @@ class DuaEntry {
       audio: ContentAssets.audioFor(dua.id),
       order: dua.order,
       verses: dua.verses,
+      surahNumber: dua.surahNumber,
     );
   }
 }

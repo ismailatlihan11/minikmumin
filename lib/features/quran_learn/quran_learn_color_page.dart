@@ -18,20 +18,6 @@ import 'quran_learn_widgets.dart';
 
 const _paper = Color(0xFFFFFDF8);
 
-const _palette = <Color>[
-  Color(0xFFE85D75),
-  Color(0xFFF08A4B),
-  Color(0xFFF2C14E),
-  Color(0xFF7BC67E),
-  Color(0xFF4DB6AC),
-  Color(0xFF5BA3D9),
-  Color(0xFF7E6BBE),
-  Color(0xFF21684E),
-  Color(0xFF5D4037),
-  Color(0xFF1E392F),
-  _paper,
-];
-
 void openQlColoring(
   BuildContext context, {
   required String arabic,
@@ -295,7 +281,7 @@ class QlColoringPage extends StatefulWidget {
 class _QlColoringPageState extends State<QlColoringPage> {
   final _audio = AudioPlayerService();
   final _strokes = <_PaintStroke>[];
-  Color _color = _palette[3];
+  Color _color = const Color(0xFF43A047);
   double _width = 22;
   bool _customBrush = false;
   bool _saved = false;
@@ -376,129 +362,123 @@ class _QlColoringPageState extends State<QlColoringPage> {
             ),
         ],
       ),
-      body: Padding(
-        padding: AppSpacing.page,
+      body: SafeArea(
+        top: false,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(widget.prompt, style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: AppSpacing.md),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+              child: Text(
+                widget.prompt,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
+            ),
+            const SizedBox(height: 8),
             Expanded(
-              child: Stack(
-                fit: StackFit.expand,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: _paper,
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: MinikColors.green.withValues(alpha: 0.18),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(24),
+                        child: MinikZoomablePaintArea(
+                          onPaint: _addPoint,
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return CustomPaint(
+                                painter: _LetterPaintPainter(strokes: _strokes),
+                                foregroundPainter: _GlyphOutlinePainter(
+                                  text: widget.arabic,
+                                  canvasSize: constraints.biggest,
+                                ),
+                                child: const SizedBox.expand(),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (_customBrush)
+                      Positioned(
+                        right: 8,
+                        top: 16,
+                        bottom: 16,
+                        child: MinikCustomBrushRail(
+                          width: _width,
+                          onChanged: (width) => setState(() {
+                            _customBrush = true;
+                            _width = width;
+                          }),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: _paper,
-                      borderRadius: BorderRadius.circular(28),
-                      border: Border.all(
-                        color: MinikColors.green.withValues(alpha: 0.18),
-                      ),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(28),
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          return GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onPanStart: (d) =>
-                                _addPoint(d.localPosition, start: true),
-                            onPanUpdate: (d) =>
-                                _addPoint(d.localPosition, start: false),
-                            child: CustomPaint(
-                              painter: _LetterPaintPainter(strokes: _strokes),
-                              foregroundPainter: _GlyphOutlinePainter(
-                                text: widget.arabic,
-                                canvasSize: constraints.biggest,
-                              ),
-                              child: const SizedBox.expand(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                  MinikPaintPalette(
+                    selected: _color,
+                    onSelected: (color) => setState(() => _color = color),
                   ),
-                  if (_customBrush)
-                    Positioned(
-                      right: 8,
-                      top: 16,
-                      bottom: 16,
-                      child: MinikCustomBrushRail(
-                        width: _width,
-                        onChanged: (width) => setState(() {
-                          _customBrush = true;
-                          _width = width;
-                        }),
+                  const SizedBox(height: 6),
+                  MinikBrushSizePicker(
+                    width: _width,
+                    custom: _customBrush,
+                    onPreset: (width) => setState(() {
+                      _customBrush = false;
+                      _width = width;
+                    }),
+                    onCustom: (width) => setState(() {
+                      _customBrush = true;
+                      _width = width;
+                    }),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SecondaryButton(
+                          label: 'Geri Al',
+                          onPressed: _strokes.isEmpty
+                              ? null
+                              : () => setState(() => _strokes.removeLast()),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: SecondaryButton(
+                          label: 'Sil',
+                          onPressed: _strokes.isEmpty
+                              ? null
+                              : () => setState(_strokes.clear),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        flex: 2,
+                        child: PrimaryButton(label: 'Bitti', onPressed: _finish),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: AppSpacing.md),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final color in _palette)
-                  GestureDetector(
-                    onTap: () => setState(() => _color = color),
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: color,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: _color == color
-                              ? MinikColors.darkGreen
-                              : const Color(0x33000000),
-                          width: _color == color ? 3 : 1,
-                        ),
-                      ),
-                      child: color == _paper
-                          ? const MinikEraserIcon(size: 22)
-                          : null,
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            MinikBrushSizePicker(
-              width: _width,
-              custom: _customBrush,
-              onPreset: (width) => setState(() {
-                _customBrush = false;
-                _width = width;
-              }),
-              onCustom: (width) => setState(() {
-                _customBrush = true;
-                _width = width;
-              }),
-            ),
-            const SizedBox(height: AppSpacing.md),
-            Row(
-              children: [
-                Expanded(
-                  child: SecondaryButton(
-                    label: 'Geri Al',
-                    onPressed: _strokes.isEmpty
-                        ? null
-                        : () => setState(() => _strokes.removeLast()),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: SecondaryButton(
-                    label: 'Sil',
-                    onPressed: _strokes.isEmpty
-                        ? null
-                        : () => setState(_strokes.clear),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            PrimaryButton(label: 'Bitti', onPressed: _finish),
           ],
         ),
       ),

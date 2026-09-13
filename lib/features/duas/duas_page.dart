@@ -16,6 +16,7 @@ import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import 'dua_memorize_page.dart';
 
 export '../../shared/widgets/listen_button.dart';
 
@@ -323,6 +324,22 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
                   children: [
                     _DuaDetailHeader(dua: dua),
                     const SizedBox(height: 14),
+                    if (widget.kind == 'prayer_dua') ...[
+                      OutlinedButton.icon(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => DuaMemorizePage(
+                              dua: dua,
+                              kind: widget.kind,
+                            ),
+                          ),
+                        ),
+                        icon: const Icon(Icons.psychology_alt_rounded),
+                        label: const Text('Ezberle'),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
                     DuaContentBlocks(dua: dua),
                   ],
                 ),
@@ -668,6 +685,20 @@ class _DuaQuickActionsState extends State<_DuaQuickActions> {
           icon: Icons.menu_book_rounded,
           label: 'Oku',
           onTap: widget.onRead,
+        ),
+        const SizedBox(width: 6),
+        _TinyAction(
+          icon: Icons.psychology_alt_rounded,
+          label: 'Ezberle',
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => DuaMemorizePage(
+                dua: widget.dua,
+                kind: widget.kind,
+              ),
+            ),
+          ),
         ),
         if (hasAudio) ...[
           const SizedBox(width: 6),

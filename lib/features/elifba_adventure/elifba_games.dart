@@ -6,6 +6,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../shared/widgets/favorite_button.dart';
+import '../quran_learn/quran_learn_color_page.dart';
 import 'elifba_audio.dart';
 import 'elifba_letter_truck_drop.dart';
 import 'elifba_models.dart';
@@ -13,6 +14,23 @@ import 'elifba_widgets.dart';
 import 'elifba_worlds.dart';
 
 typedef ElifbaAnswer = void Function({required bool correct});
+
+void _openElifbaColoring(
+  BuildContext context, {
+  required String arabic,
+  required String title,
+  String prompt = 'Parmağınla boya. Renkleri karıştırıp yeni renk bul!',
+  String? audio,
+}) {
+  openQlColoring(
+    context,
+    arabic: arabic,
+    title: title,
+    prompt: prompt,
+    audio: audio,
+    celebrationSubtitle: '$title boyadın.',
+  );
+}
 
 class ElifbaLetterGrid extends StatefulWidget {
   const ElifbaLetterGrid({
@@ -115,7 +133,18 @@ class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
             ),
           ],
         ),
-        const SizedBox(height: 4),
+        const Padding(
+          padding: EdgeInsets.only(bottom: 4),
+          child: Text(
+            'Harfe uzun bas → boya',
+            style: TextStyle(
+              fontFamily: 'NotoSans',
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: MinikColors.textMuted,
+            ),
+          ),
+        ),
         // Diyanet Elifbâ gibi: ا sağ üstten başlar, satırda 5 harf.
         Directionality(
           textDirection: TextDirection.rtl,
@@ -142,6 +171,14 @@ class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
                         ElifbaAudio.letterGlyph(letter.letter),
                   );
                 },
+                onColor: () => _openElifbaColoring(
+                  context,
+                  arabic: letter.letter,
+                  title: '${letter.name} boya',
+                  prompt: 'Parmağınla ${letter.name} harfini boya. Renkleri karıştır!',
+                  audio: ElifbaAudio.letterName(letter.name) ??
+                      ElifbaAudio.letterGlyph(letter.letter),
+                ),
               );
             },
           ),
@@ -155,12 +192,14 @@ class _LetterChip extends StatefulWidget {
   const _LetterChip({
     required this.letter,
     required this.onTap,
+    this.onColor,
     this.showName = true,
     this.fillWidth = false,
   });
 
   final ElifbaLetter letter;
   final VoidCallback onTap;
+  final VoidCallback? onColor;
   final bool showName;
   final bool fillWidth;
 
@@ -181,6 +220,12 @@ class _LetterChipState extends State<_LetterChip> {
         await Future<void>.delayed(const Duration(milliseconds: 160));
         if (mounted) setState(() => _scale = 1);
       },
+      onLongPress: widget.onColor == null
+          ? null
+          : () {
+              HapticFeedback.mediumImpact();
+              widget.onColor!();
+            },
       child: AnimatedScale(
         scale: _scale,
         duration: const Duration(milliseconds: 160),
@@ -214,6 +259,12 @@ class _LetterChipState extends State<_LetterChip> {
                     fontWeight: FontWeight.w700,
                     color: MinikColors.green,
                   ),
+                ),
+              if (widget.onColor != null)
+                const Icon(
+                  Icons.palette_rounded,
+                  size: 14,
+                  color: MinikColors.greenSoft,
                 ),
             ],
           ),
@@ -261,6 +312,20 @@ class ElifbaNameSoundCard extends StatelessWidget {
             path: ElifbaAudio.letterName(letter.name) ??
                 ElifbaAudio.letterGlyph(letter.letter),
             label: 'Adını dinle',
+          ),
+          const SizedBox(height: 8),
+          FilledButton.tonalIcon(
+            onPressed: () => _openElifbaColoring(
+              context,
+              arabic: letter.letter,
+              title: '${letter.name} boya',
+              prompt:
+                  'Parmağınla ${letter.name} harfini boya. Renkleri karıştırıp yeni renk bul!',
+              audio: ElifbaAudio.letterName(letter.name) ??
+                  ElifbaAudio.letterGlyph(letter.letter),
+            ),
+            icon: const Icon(Icons.palette_rounded),
+            label: const Text('Boya'),
           ),
         ],
       ),
@@ -468,32 +533,49 @@ class ElifbaFormsCard extends StatelessWidget {
       children: [
         for (final item in _formOrder)
           if ((focus.forms[item.$1] ?? '').isNotEmpty)
-            Container(
-              width: 88,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: MinikColors.sky,
+            Material(
+              color: MinikColors.sky,
+              borderRadius: BorderRadius.circular(16),
+              child: InkWell(
                 borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    focus.forms[item.$1]!,
-                    textDirection: TextDirection.rtl,
-                    style: const TextStyle(
-                      fontFamily: AssetPaths.arabicFontFamily,
-                      fontSize: 28,
-                    ),
+                onTap: () => _openElifbaColoring(
+                  context,
+                  arabic: focus.forms[item.$1]!,
+                  title: '${focus.letter} · ${item.$2}',
+                  prompt:
+                      '${focus.letter} harfinin ${item.$2.toLowerCase()} biçimini boya. Renkleri karıştır!',
+                  audio: ElifbaAudio.letterGlyph(focus.letter),
+                ),
+                child: Container(
+                  width: 88,
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Text(
+                        focus.forms[item.$1]!,
+                        textDirection: TextDirection.rtl,
+                        style: const TextStyle(
+                          fontFamily: AssetPaths.arabicFontFamily,
+                          fontSize: 28,
+                        ),
+                      ),
+                      Text(
+                        item.$2,
+                        style: const TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      const Icon(
+                        Icons.palette_rounded,
+                        size: 16,
+                        color: MinikColors.green,
+                      ),
+                    ],
                   ),
-                  Text(
-                    item.$2,
-                    style: const TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontWeight: FontWeight.w700,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
       ],
@@ -890,6 +972,20 @@ class ElifbaExampleList extends StatelessWidget {
                         title: example.reading.isEmpty
                             ? example.text
                             : '${example.text} · ${example.reading}',
+                      ),
+                      QlColorIconButton(
+                        arabic: example.text,
+                        title: example.reading.isEmpty
+                            ? example.text
+                            : example.reading,
+                        prompt:
+                            'Bu örneği boya. Renkleri karıştırıp yeni renk bul!',
+                        audio: ElifbaAudio.forExample(
+                          example.text,
+                          audio: example.audio,
+                          reading: example.reading,
+                        ),
+                        celebrationSubtitle: 'Örneği boyadın.',
                       ),
                     ],
                   ),

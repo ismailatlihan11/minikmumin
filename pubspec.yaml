@@ -43,6 +43,7 @@ flutter:
     - assets/audio/wudu/
     - assets/audio/dhikr/
     - assets/audio/quran/
+    - assets/audio/quran/ayahs/
     - assets/audio/quran_learn/
     - assets/audio/quran_learn/alphabet/
     - assets/audio/quran_learn/exercises/

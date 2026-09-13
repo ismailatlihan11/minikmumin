@@ -42,6 +42,12 @@ abstract final class ContentAssets {
   static String quranRecitation(int surahId) =>
       'assets/audio/quran/surah_${surahId.toString().padLeft(3, '0')}.mp3';
 
+  /// Per-ayah Husary Muallim clip for ezber (Everyayah SSS_AAA naming).
+  static String ayahAudio(int surahNumber, int ayahNo) =>
+      'assets/audio/quran/ayahs/'
+      '${surahNumber.toString().padLeft(3, '0')}_'
+      '${ayahNo.toString().padLeft(3, '0')}.mp3';
+
   static const Map<String, String> prayerImages = {
     'intention': 'assets/images/prayer/step01_niyet.png',
     'takbir': 'assets/images/prayer/step02_tekbir.png',
