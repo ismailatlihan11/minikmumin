@@ -113,7 +113,7 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
       SnackBar(
         backgroundColor: kMushafGreen,
         content: Text(
-          '${TurkishNumber.pageLabel(page.jsonPage)} kaydedildi. Sonra buradan devam ederiz.',
+          '${TurkishNumber.pageLabel(page.jsonPage)} kaydedildi. “Mushaf · kaldığın yer”den devam edebilirsin.',
         ),
       ),
     );
@@ -384,51 +384,80 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
                 top: false,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-                  child: Row(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButton(
-                        tooltip: 'Önceki sayfa',
-                        onPressed: _index == 0 ? null : () => _go(-1),
-                        icon: const Icon(Icons.chevron_right_rounded, color: kMushafGold),
-                      ),
-                      Expanded(
-                        child: SliderTheme(
-                          data: SliderTheme.of(context).copyWith(
-                            trackHeight: 2,
-                            thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 6,
-                            ),
-                            overlayShape: const RoundSliderOverlayShape(
-                              overlayRadius: 14,
-                            ),
-                            activeTrackColor: kMushafGold,
-                            inactiveTrackColor: kMushafGold.withValues(alpha: 0.25),
-                            thumbColor: kMushafGold,
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          trackHeight: 2,
+                          thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 6,
                           ),
-                          child: Slider(
-                            value: current,
-                            min: 0,
-                            max: last <= 0 ? 1.0 : last,
-                            onChanged: (value) {
-                              var next = pages.indexWhere(
-                                (page) => page.jsonPage == value.round(),
+                          overlayShape: const RoundSliderOverlayShape(
+                            overlayRadius: 14,
+                          ),
+                          activeTrackColor: kMushafGold,
+                          inactiveTrackColor:
+                              kMushafGold.withValues(alpha: 0.25),
+                          thumbColor: kMushafGold,
+                        ),
+                        child: Slider(
+                          value: current,
+                          min: 0,
+                          max: last <= 0 ? 1.0 : last,
+                          onChanged: (value) {
+                            var next = pages.indexWhere(
+                              (page) => page.jsonPage == value.round(),
+                            );
+                            if (next < 0) {
+                              next = pages.indexWhere(
+                                (page) => page.jsonPage >= value.round(),
                               );
-                              if (next < 0) {
-                                next = pages.indexWhere(
-                                  (page) => page.jsonPage >= value.round(),
-                                );
-                                if (next < 0) next = pages.length - 1;
-                              }
-                              _controller?.jumpToPage(next);
-                            },
-                          ),
+                              if (next < 0) next = pages.length - 1;
+                            }
+                            _controller?.jumpToPage(next);
+                          },
                         ),
                       ),
-                      IconButton(
-                        tooltip: 'Sonraki sayfa',
-                        onPressed:
-                            _index >= pages.length - 1 ? null : () => _go(1),
-                        icon: const Icon(Icons.chevron_left_rounded, color: kMushafGold),
+                      Row(
+                        children: [
+                          IconButton(
+                            tooltip: 'Önceki sayfa',
+                            onPressed: _index == 0 ? null : () => _go(-1),
+                            icon: const Icon(
+                              Icons.chevron_right_rounded,
+                              color: kMushafGold,
+                            ),
+                          ),
+                          Expanded(
+                            child: FilledButton.icon(
+                              onPressed: _saveHere,
+                              style: FilledButton.styleFrom(
+                                backgroundColor: kMushafGreen,
+                                foregroundColor: Colors.white,
+                                minimumSize: const Size(0, 44),
+                              ),
+                              icon: Icon(
+                                _savedHere
+                                    ? Icons.bookmark_rounded
+                                    : Icons.bookmark_border_rounded,
+                              ),
+                              label: Text(
+                                _savedHere ? 'Kaydedildi' : 'Burada kaldım',
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            tooltip: 'Sonraki sayfa',
+                            onPressed: _index >= pages.length - 1
+                                ? null
+                                : () => _go(1),
+                            icon: const Icon(
+                              Icons.chevron_left_rounded,
+                              color: kMushafGold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

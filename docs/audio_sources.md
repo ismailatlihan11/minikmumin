@@ -500,16 +500,16 @@ License: public recitation API. A separate commercial license document was not i
 
 ### `assets/audio/prayer/kelime_i_sehadet.mp3`
 
-- Content: Kelime-i Şehadet
+- Content: Kelime-i Şehadet — `أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ`
 - Surah / ayah: —
-- Reader: unknown (pre-existing file)
-- Source: local asset (license not verified)
-- Source URL: —
-- License: UNVERIFIED
-- Download date: 2026-08-18
-- Size: 120.6 KB
-- Status: MANUAL_REVIEW_REQUIRED
-- Note: Pre-existing local file. License was not verified; file was not replaced.
+- Reader: Google Cloud Text-to-Speech `ar-XA-Chirp3-HD-Fenrir` (educational TTS)
+- Source: synthesized to match `namaz_dualari.json` arabic text
+- Source URL: https://cloud.google.com/text-to-speech
+- License: Google Cloud TTS terms (app asset)
+- Download date: 2026-09-14
+- Size: ~24 KB
+- Status: DOWNLOADED
+- Note: Replaced mismatched pre-existing clip so spoken Arabic matches the on-screen shahada.
 
 ### `assets/audio/prayer/subhaneke.mp3`
 

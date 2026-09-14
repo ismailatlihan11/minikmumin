@@ -8095,8 +8095,10 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "bb89fb487d6ff743960e508c146cdba9ff5745b003775ad00b9d3fca2b6e7b48",
-      "generated_at": "2026-08-25T10:45:43.804532+00:00"
+      "sha256": "14d41a44f2d0f8e64dacf01515591469a8c8c0616750fe245fd1b55b1f3b94be",
+      "generated_at": "2026-08-25T10:45:43.804532+00:00",
+      "kind": "educational_tts",
+      "note": "Matches namaz_dualari kelime_i_sehadet arabic"
     },
     {
       "id": "prayer_subhaneke",

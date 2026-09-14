@@ -93,19 +93,47 @@ class HomeHeroHeader extends StatelessWidget {
                   children: [
                     HomeRoundButton(icon: Icons.menu_rounded, onTap: onMenu),
                     const Expanded(
-                      child: Text(
-                        'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                        textAlign: TextAlign.center,
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                          fontFamily: AssetPaths.arabicFontFamily,
-                          fontSize: 15,
-                          color: Colors.white,
-                          height: 1.2,
-                          shadows: [
-                            Shadow(color: Color(0x66000000), blurRadius: 8),
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                            textAlign: TextAlign.center,
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontFamily: AssetPaths.arabicFontFamily,
+                              fontSize: 15,
+                              color: Colors.white,
+                              height: 1.15,
+                              shadows: [
+                                Shadow(
+                                  color: Color(0x66000000),
+                                  blurRadius: 8,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          Text(
+                            'الْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ',
+                            textAlign: TextAlign.center,
+                            textDirection: TextDirection.rtl,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontFamily: AssetPaths.arabicFontFamily,
+                              fontSize: 12,
+                              color: Colors.white,
+                              height: 1.2,
+                              shadows: [
+                                Shadow(
+                                  color: Color(0x66000000),
+                                  blurRadius: 8,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     HomeRoundButton(

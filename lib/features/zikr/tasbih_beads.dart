@@ -138,6 +138,16 @@ const _ambers = <Color>[
   Color(0xFFA05822),
 ];
 
+/// Çekilen taneler: tatlı yeşil.
+const _pulledGreens = <Color>[
+  Color(0xFF7DCEA0),
+  Color(0xFF6BCB8F),
+  Color(0xFF8FD4A8),
+  Color(0xFF5FBF86),
+  Color(0xFF9AD9B0),
+  Color(0xFF74C99A),
+];
+
 class _TesbihPainter extends CustomPainter {
   const _TesbihPainter({
     required this.beadCount,
@@ -190,12 +200,15 @@ class _TesbihPainter extends CustomPainter {
         center,
         r,
         angle,
-        _ambers[i % _ambers.length],
-        dimmed: counted,
+        counted
+            ? _pulledGreens[i % _pulledGreens.length]
+            : _ambers[i % _ambers.length],
+        dimmed: false,
+        pulled: counted,
       );
       final label = firstNumber + i;
       if (label >= 1 && label <= maxNumber) {
-        _drawNumber(canvas, center, r, label, dimmed: counted);
+        _drawNumber(canvas, center, r, label, pulled: counted);
       }
       if ((isNext || i == highlight) && !counted) {
         _drawSpark(canvas, center + Offset(r * 0.55, -r * 0.7), r * 0.22);
@@ -331,9 +344,19 @@ void _paintTesbihBead(
   double angle,
   Color color, {
   required bool dimmed,
+  bool pulled = false,
   bool smile = false,
 }) {
   final body = dimmed ? Color.lerp(color, const Color(0xFF7A5A38), 0.35)! : color;
+  final highlight = pulled
+      ? const Color(0xFFE8FFF0)
+      : const Color(0xFFFFE3B0);
+  final shade = pulled
+      ? const Color(0xFF1F5A38)
+      : const Color(0xFF3A1C08);
+  final rim = pulled
+      ? const Color(0xFF2E6B4A)
+      : const Color(0xFF2A1608);
   canvas.save();
   canvas.translate(c.dx, c.dy);
   canvas.rotate(angle + math.pi / 2);
@@ -353,9 +376,9 @@ void _paintTesbihBead(
         center: const Alignment(-0.35, -0.42),
         radius: 1.05,
         colors: [
-          Color.lerp(body, const Color(0xFFFFE3B0), dimmed ? 0.12 : 0.45)!,
+          Color.lerp(body, highlight, dimmed ? 0.12 : 0.45)!,
           body,
-          Color.lerp(body, const Color(0xFF3A1C08), 0.42)!,
+          Color.lerp(body, shade, 0.42)!,
         ],
         stops: const [0.0, 0.46, 1.0],
       ).createShader(oval),
@@ -365,21 +388,21 @@ void _paintTesbihBead(
     Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.7
-      ..color = Color.lerp(body, const Color(0xFF3A1C08), 0.35)!.withValues(alpha: 0.35),
+      ..color = Color.lerp(body, shade, 0.35)!.withValues(alpha: 0.35),
   );
   canvas.drawOval(
     Rect.fromCenter(center: const Offset(0, -0.2), width: r * 0.55, height: r * 1.1),
     Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.55
-      ..color = Color.lerp(body, const Color(0xFF5A3010), 0.2)!.withValues(alpha: 0.28),
+      ..color = Color.lerp(body, shade, 0.2)!.withValues(alpha: 0.28),
   );
   canvas.drawOval(
     oval,
     Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = math.max(1.4, r * 0.1)
-      ..color = const Color(0xFF2A1608),
+      ..color = rim,
   );
   if (!smile) {
     canvas.drawOval(
@@ -388,7 +411,7 @@ void _paintTesbihBead(
     );
     canvas.drawOval(
       Rect.fromCenter(center: Offset.zero, width: r * 0.12, height: r * 0.08),
-      Paint()..color = const Color(0xFFC4A36A),
+      Paint()..color = pulled ? const Color(0xFFC8F0D8) : const Color(0xFFC4A36A),
     );
   }
   if (!dimmed) {
@@ -450,7 +473,7 @@ void _drawNumber(
   Offset c,
   double r,
   int number, {
-  required bool dimmed,
+  required bool pulled,
 }) {
   final digits = number.toString().length;
   final fontSize = (r * (digits == 1 ? 0.92 : digits == 2 ? 0.72 : 0.52))
@@ -463,12 +486,24 @@ void _drawNumber(
         fontSize: fontSize,
         fontWeight: FontWeight.w900,
         height: 1,
-        color: dimmed ? const Color(0xFF4A3018) : const Color(0xFF1A0C04),
-        shadows: const [
-          Shadow(color: Color(0xF2FFE8C0), offset: Offset(-1, 0)),
-          Shadow(color: Color(0xF2FFE8C0), offset: Offset(1, 0)),
-          Shadow(color: Color(0xF2FFE8C0), offset: Offset(0, -1)),
-          Shadow(color: Color(0xF2FFE8C0), offset: Offset(0, 1)),
+        color: pulled ? const Color(0xFF1B4332) : const Color(0xFF1A0C04),
+        shadows: [
+          Shadow(
+            color: pulled ? const Color(0xF2E8FFF0) : const Color(0xF2FFE8C0),
+            offset: const Offset(-1, 0),
+          ),
+          Shadow(
+            color: pulled ? const Color(0xF2E8FFF0) : const Color(0xF2FFE8C0),
+            offset: const Offset(1, 0),
+          ),
+          Shadow(
+            color: pulled ? const Color(0xF2E8FFF0) : const Color(0xF2FFE8C0),
+            offset: const Offset(0, -1),
+          ),
+          Shadow(
+            color: pulled ? const Color(0xF2E8FFF0) : const Color(0xF2FFE8C0),
+            offset: const Offset(0, 1),
+          ),
         ],
       ),
     ),

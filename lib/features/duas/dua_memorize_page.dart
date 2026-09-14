@@ -182,14 +182,16 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
                       ? '${units.length} ayet · her ayetin kendi sesi'
                       : (units.length > 1
                           ? '${units.length} parça · ezber için dinle'
-                          : 'Ezber için dinle; karta dokununca ses çıkar.'),
+                          : 'Ezber için Dinle butonuna dokun.'),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   _usesAyahClips
                       ? '“Bu ayeti dinle”ye dokun: yalnızca o ayet okunur. Üstteki Dinle: ayetleri sırayla dinlersin.'
-                      : '“Bu ayeti dinle”ye dokununca dua sesi çalar.',
+                      : (units.length > 1
+                          ? 'Her karttaki “Dinle” ile o parçayı dinlersin. Üstteki Dinle: hepsini sırayla çalar.'
+                          : '“Dinle”ye dokununca dua sesi çalar.'),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontFamily: 'NotoSans',

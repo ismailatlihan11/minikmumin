@@ -3260,7 +3260,7 @@
       "options": [
         {
           "id": "a",
-          "text": "Birdir",
+          "text": "Tektir",
           "correct": true
         },
         {
@@ -3275,7 +3275,7 @@
         }
       ],
       "correctOption": "a",
-      "explanation": "İhlâs 112:1 'De ki: O Allah birdir.' anlamındadır.",
+      "explanation": "İhlâs 112:1 'De ki: O Allah tektir.' anlamındadır.",
       "source": "İhlâs 112:1",
       "xp": 5
     },

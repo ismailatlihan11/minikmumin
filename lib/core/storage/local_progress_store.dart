@@ -304,7 +304,7 @@ class LocalProgressStore extends ChangeNotifier {
       surahLabel: surahLabel,
     );
     await setContinue(
-      title: 'Kaldığın yerden devam et',
+      title: 'Mushaf · kaldığın yer',
       subtitle: '$displayNumber. sayfa · $surahLabel',
       route: '/minik/quran/reader',
       progress: (displayNumber / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
@@ -325,6 +325,36 @@ class LocalProgressStore extends ChangeNotifier {
       jsonPage: prefs.getInt(_key('mushaf_page')) ?? 0,
       displayNumber: prefs.getInt(_key('mushaf_display')) ?? 1,
       surahLabel: prefs.getString(_key('mushaf_surah')) ?? '',
+    );
+  }
+
+  /// Ayet + meal listesi için ayrı yer imi (mushaftan bağımsız).
+  Future<void> setQuranMealBookmark({
+    required int surahId,
+    required int ayahNo,
+    required String label,
+  }) async {
+    final prefs = await _ensure();
+    await prefs.setInt(_key('quran_meal_surah'), surahId);
+    await prefs.setInt(_key('quran_meal_ayah'), ayahNo);
+    await prefs.setString(_key('quran_meal_label'), label);
+    await setContinue(
+      title: 'Ayet ve meal · kaldığın yer',
+      subtitle: label,
+      route: '/minik/quran/surah',
+      progress: (ayahNo / 286).clamp(0.05, 1),
+    );
+    notifyListeners();
+  }
+
+  Future<({int surahId, int ayahNo, String label})?>
+      getQuranMealBookmarkInfo() async {
+    final prefs = await _ensure();
+    if (!prefs.containsKey(_key('quran_meal_surah'))) return null;
+    return (
+      surahId: prefs.getInt(_key('quran_meal_surah')) ?? 1,
+      ayahNo: prefs.getInt(_key('quran_meal_ayah')) ?? 1,
+      label: prefs.getString(_key('quran_meal_label')) ?? '',
     );
   }
 

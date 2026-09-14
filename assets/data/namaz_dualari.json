@@ -59,8 +59,8 @@
       "type": "creed_expression",
       "title": "Kelime-i Şehadet",
       "arabic": "أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
-      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
-      "meaning": "Şahitlik ederim ki Allah'tan başka ilâh yoktur. Yine şahitlik ederim ki Hz. Muhammed ﷺ O'nun kulu ve resûlüdür.",
+      "transliteration": "Eşhedü en lâ ilâhe illallah ve eşhedü enne Muhammeden abdühû ve resûlüh.",
+      "meaning": "Şahitlik ederim ki Allah'tan başka ilâh yoktur. Yine şahitlik ederim ki Muhammed O'nun kulu ve resûlüdür.",
       "usage": "İman ve şehadet ifadesidir."
     },
     {
@@ -138,19 +138,19 @@
           "ayahNo": 1,
           "arabic": "اِنَّٓا اَعْطَیْنَاكَ الْكَوْثَرَؕ",
           "transliteration": "İnnâ a'taynâkel kevser.",
-          "meal": "(Resûlüm!) Kuskusuz biz sana Kevser'i verdik. Simdi sen Rabbine kulluk et ve kurban kes. Asil soyu kesik olan, süphesiz sana hinç besleyendir."
+          "meal": "Şüphesiz biz sana Kevser'i verdik."
         },
         {
           "ayahNo": 2,
           "arabic": "فَصَلِّ لِرَبِّكَ وَانْحَرْؕ",
           "transliteration": "Fe salli li rabbike venhar.",
-          "meal": "Sen de Rabbin için namaz kıl ve kurban kesiver."
+          "meal": "Öyleyse Rabbin için namaz kıl ve kurban kes."
         },
         {
           "ayahNo": 3,
           "arabic": "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ",
           "transliteration": "İnne şânieke hüvel ebter.",
-          "meal": "Doğrusu sana bugz edendir ebter."
+          "meal": "Asıl soyu kesik olan, sana buğz edendir."
         }
       ],
       "source": "Kur'an-ı Kerim",

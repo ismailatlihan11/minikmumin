@@ -26,7 +26,7 @@
       "name": "Âdem",
       "arabicName": "آدَم",
       "shortTitle": "İlk insan ve peygamber",
-      "summary": "Kur’an’da Allah’ın Âdem’i yaratması, ona isimleri öğretmesi ve Âdem’in eşiyle birlikte yaşadığı imtihan anlatılır. Meleklere Âdem’e secde etmeleri emredildi; bu secde ibadet değil, Allah’ın emriyle saygı içindir.",
+      "summary": "Kur’an’da Allah’ın Hz. Âdem’i yaratması, ona isimleri öğretmesi ve Hz. Âdem’in eşiyle birlikte yaşadığı imtihan anlatılır. Meleklere Hz. Âdem’e secde etmeleri emredildi; bu secde ibadet değil, Allah’ın emriyle saygı içindir.",
       "lessons": [
         "Sorumluluk",
         "Tevbe",
@@ -47,7 +47,7 @@
       "name": "İdrîs",
       "arabicName": "إِدْرِيس",
       "shortTitle": "Doğruluğu övülen peygamber",
-      "summary": "Kur’an, İdrîs'i doğruluğu ve yüksek makamı ile anar.",
+      "summary": "Kur’an, Hz. İdrîs'i doğruluğu ve yüksek makamı ile anar.",
       "lessons": [
         "Doğruluk",
         "Sabır",
@@ -67,7 +67,7 @@
       "name": "Nûh",
       "arabicName": "نُوح",
       "shortTitle": "Sabır ve kararlılık",
-      "summary": "Nûh'un kavmini Allah'a çağırması, uzun süre tebliğ etmesi ve gemi kıssası Kur’an’da anlatılır.",
+      "summary": "Hz. Nûh'un kavmini Allah'a çağırması, uzun süre tebliğ etmesi ve gemi kıssası Kur’an’da anlatılır.",
       "lessons": [
         "Sabır",
         "Kararlılık",
@@ -88,7 +88,7 @@
       "name": "Hûd",
       "arabicName": "هُود",
       "shortTitle": "Tevhide çağrı",
-      "summary": "Hûd, Âd kavmine Allah'a kulluk etmeyi ve taşkınlıktan uzak durmayı öğütleyen peygamber olarak anlatılır.",
+      "summary": "Hz. Hûd, Âd kavmine Allah'a kulluk etmeyi ve taşkınlıktan uzak durmayı öğütleyen peygamber olarak anlatılır.",
       "lessons": [
         "Tevhid",
         "Cesaret",
@@ -108,7 +108,7 @@
       "name": "Sâlih",
       "arabicName": "صَالِح",
       "shortTitle": "Emanet ve uyarı",
-      "summary": "Sâlih'in Semûd kavmine yaptığı çağrı ve dişi deve mucizesi Kur’an’da yer alır.",
+      "summary": "Hz. Sâlih'in Semûd kavmine yaptığı çağrı ve dişi deve mucizesi Kur’an’da yer alır.",
       "lessons": [
         "Allah'ın ayetlerine saygı",
         "Emanet",
@@ -129,7 +129,7 @@
       "name": "İbrâhim",
       "arabicName": "إِبْرَاهِيم",
       "shortTitle": "Tevhid ve teslimiyet",
-      "summary": "İbrâhim'in Allah'ın birliğini savunması, putlara karşı mücadelesi ve Allah'a teslimiyeti birçok sûrede anlatılır.",
+      "summary": "Hz. İbrâhim'in Allah'ın birliğini savunması, putlara karşı mücadelesi ve Allah'a teslimiyeti birçok sûrede anlatılır.",
       "lessons": [
         "Tevhid",
         "Teslimiyet",
@@ -150,7 +150,7 @@
       "name": "Lût",
       "arabicName": "لُوط",
       "shortTitle": "Ahlak ve doğruluk",
-      "summary": "Lût'un kavmini yanlış davranışlardan vazgeçirmeye çağırması ve yaşanan olaylar Kur’an’da anlatılır.",
+      "summary": "Hz. Lût'un kavmini yanlış davranışlardan vazgeçirmeye çağırması ve yaşanan olaylar Kur’an’da anlatılır.",
       "lessons": [
         "Ahlak",
         "Temiz davranış",
@@ -171,7 +171,7 @@
       "name": "İsmâil",
       "arabicName": "إِسْمَاعِيل",
       "shortTitle": "Sabır ve teslimiyet",
-      "summary": "İsmâil, sabrı, sözünde durması ve ailesine namaz ile zekâtı emretmesiyle Kur’an’da anılır.",
+      "summary": "Hz. İsmâil, sabrı, sözünde durması ve ailesine namaz ile zekâtı emretmesiyle Kur’an’da anılır.",
       "lessons": [
         "Sabır",
         "Sözünde durmak",
@@ -192,7 +192,7 @@
       "name": "İshak",
       "arabicName": "إِسْحَاق",
       "shortTitle": "Müjde ve bereket",
-      "summary": "İshak, İbrâhim'e verilen müjde ile birlikte Kur’an’da salihlerden biri olarak anılır.",
+      "summary": "Hz. İshak, Hz. İbrâhim'e verilen müjde ile birlikte Kur’an’da salihlerden biri olarak anılır.",
       "lessons": [
         "Şükür",
         "Aile",
@@ -213,7 +213,7 @@
       "name": "Ya'kûb",
       "arabicName": "يَعْقُوب",
       "shortTitle": "Sabır ve umut",
-      "summary": "Ya'kûb'un çocuklarına öğütleri, Yusuf ile ilgili sabrı ve Allah'a güveni Kur’an’da yer alır.",
+      "summary": "Hz. Ya'kûb'un çocuklarına öğütleri, Hz. Yûsuf ile ilgili sabrı ve Allah'a güveni Kur’an’da yer alır.",
       "lessons": [
         "Sabır",
         "Ümit",
@@ -234,7 +234,7 @@
       "name": "Yûsuf",
       "arabicName": "يُوسُف",
       "shortTitle": "İffet, sabır ve bağışlama",
-      "summary": "Yûsuf sûresi, Yûsuf'un çocukluğundan Mısır'daki hayatına kadar uzanan kıssasını ayrıntılı biçimde anlatır.",
+      "summary": "Yûsuf sûresi, Hz. Yûsuf'un çocukluğundan Mısır'daki hayatına kadar uzanan kıssasını ayrıntılı biçimde anlatır.",
       "lessons": [
         "Sabır",
         "İffet",
@@ -254,7 +254,7 @@
       "name": "Eyyûb",
       "arabicName": "أَيُّوب",
       "shortTitle": "Sabır örneği",
-      "summary": "Eyyûb'un sıkıntılar karşısında Rabbine yönelmesi ve sabrı Kur’an’da övülür.",
+      "summary": "Hz. Eyyûb'un sıkıntılar karşısında Rabbine yönelmesi ve sabrı Kur’an’da övülür.",
       "lessons": [
         "Sabır",
         "Dua",
@@ -274,7 +274,7 @@
       "name": "Şuayb",
       "arabicName": "شُعَيْب",
       "shortTitle": "Adalet ve dürüstlük",
-      "summary": "Şuayb, kavmini ölçü ve tartıda adalete, dürüstlüğe ve Allah'a kulluğa çağırmıştır.",
+      "summary": "Hz. Şuayb, kavmini ölçü ve tartıda adalete, dürüstlüğe ve Allah'a kulluğa çağırmıştır.",
       "lessons": [
         "Dürüstlük",
         "Adalet",
@@ -294,7 +294,7 @@
       "name": "Mûsâ",
       "arabicName": "مُوسَى",
       "shortTitle": "Hak ve özgürlük",
-      "summary": "Mûsâ'nın Firavun'a karşı tebliği, İsrailoğulları'nın kurtuluşu ve vahiy ile ilgili kıssası Kur’an’da geniş yer tutar.",
+      "summary": "Hz. Mûsâ'nın Firavun'a karşı tebliği, İsrailoğulları'nın kurtuluşu ve vahiy ile ilgili kıssası Kur’an’da geniş yer tutar.",
       "lessons": [
         "Cesaret",
         "Allah'a güven",
@@ -315,7 +315,7 @@
       "name": "Hârûn",
       "arabicName": "هَارُون",
       "shortTitle": "Yardımlaşma ve destek",
-      "summary": "Hârûn, Mûsâ'ya tebliğ görevinde yardımcı olan ve Allah tarafından görevlendirilen peygamber olarak anılır.",
+      "summary": "Hz. Hârûn, Hz. Mûsâ'ya tebliğ görevinde yardımcı olan ve Allah tarafından görevlendirilen peygamber olarak anılır.",
       "lessons": [
         "Kardeşlik",
         "Yardımlaşma",
@@ -336,7 +336,7 @@
       "name": "Dâvûd",
       "arabicName": "دَاوُود",
       "shortTitle": "Adalet ve şükür",
-      "summary": "Dâvûd'a hükümranlık ve hikmet verildiği, Allah'ı çokça tesbih ettiği ve adaletle hükmetmesi istendiği Kur’an’da anlatılır.",
+      "summary": "Hz. Dâvûd'a hükümranlık ve hikmet verildiği, Allah'ı çokça tesbih ettiği ve adaletle hükmetmesi istendiği Kur’an’da anlatılır.",
       "lessons": [
         "Adalet",
         "Şükür",
@@ -357,7 +357,7 @@
       "name": "Süleyman",
       "arabicName": "سُلَيْمَان",
       "shortTitle": "Şükür ve hikmet",
-      "summary": "Süleyman'a verilen nimetler, hikmet ve hükümranlık ile Sebe melikesiyle ilgili kıssa Kur’an’da anlatılır.",
+      "summary": "Hz. Süleyman'a verilen nimetler, hikmet ve hükümranlık ile Sebe melikesiyle ilgili kıssa Kur’an’da anlatılır.",
       "lessons": [
         "Şükür",
         "Hikmet",
@@ -378,7 +378,7 @@
       "name": "İlyâs",
       "arabicName": "إِلْيَاس",
       "shortTitle": "Tevhid mücadelesi",
-      "summary": "İlyâs, kavmini Allah'a kulluğa çağıran peygamber olarak Kur’an’da anlatılır.",
+      "summary": "Hz. İlyâs, kavmini Allah'a kulluğa çağıran peygamber olarak Kur’an’da anlatılır.",
       "lessons": [
         "Tevhid",
         "Kararlılık",
@@ -397,7 +397,7 @@
       "name": "Elyesa'",
       "arabicName": "الْيَسَع",
       "shortTitle": "Salihlerden biri",
-      "summary": "Elyesa', Kur’an’da seçkin ve hayırlı kimseler arasında anılan peygamberlerdendir.",
+      "summary": "Hz. Elyesa', Kur’an’da seçkin ve hayırlı kimseler arasında anılan peygamberlerdendir.",
       "lessons": [
         "Salihlik",
         "İbadet",
@@ -417,7 +417,7 @@
       "name": "Yûnus",
       "arabicName": "يُونُس",
       "shortTitle": "Dua ve ümit",
-      "summary": "Yûnus'un kavminden ayrılması, balık tarafından yutulması ve Allah'a yaptığı dua Kur’an’da anlatılır.",
+      "summary": "Hz. Yûnus'un kavminden ayrılması, balık tarafından yutulması ve Allah'a yaptığı dua Kur’an’da anlatılır.",
       "lessons": [
         "Tevbe",
         "Dua",
@@ -437,7 +437,7 @@
       "name": "Zekeriyyâ",
       "arabicName": "زَكَرِيَّا",
       "shortTitle": "Dua ve umut",
-      "summary": "Zekeriyyâ'nın Allah'a gizlice dua etmesi ve Yahyâ ile müjdelenmesi Kur’an’da anlatılır.",
+      "summary": "Hz. Zekeriyyâ'nın Allah'a gizlice dua etmesi ve Hz. Yahyâ ile müjdelenmesi Kur’an’da anlatılır.",
       "lessons": [
         "Dua",
         "Ümit",
@@ -458,7 +458,7 @@
       "name": "Yahyâ",
       "arabicName": "يَحْيَى",
       "shortTitle": "Temizlik ve takva",
-      "summary": "Yahyâ, küçük yaşta hikmet verilen, temiz kalpli ve Allah'a karşı duyarlı bir peygamber olarak anlatılır.",
+      "summary": "Hz. Yahyâ, küçük yaşta hikmet verilen, temiz kalpli ve Allah'a karşı duyarlı bir peygamber olarak anlatılır.",
       "lessons": [
         "Takva",
         "Temizlik",
@@ -478,7 +478,7 @@
       "name": "Îsâ",
       "arabicName": "عِيسَى",
       "shortTitle": "Mucizeler ve tebliğ",
-      "summary": "Îsâ'nın doğumu, tebliği ve Allah'ın izniyle gösterdiği mucizeler Kur’an’da anlatılır.",
+      "summary": "Hz. Îsâ'nın doğumu, tebliği ve Allah'ın izniyle gösterdiği mucizeler Kur’an’da anlatılır.",
       "lessons": [
         "Allah'a kulluk",
         "Merhamet",
@@ -499,7 +499,7 @@
       "name": "Zülkifl",
       "arabicName": "ذُو الْكِفْل",
       "shortTitle": "Sabır ve salihlik",
-      "summary": "Zülkifl, Kur’an’da sabredenlerden ve salihlerden biri olarak anılır.",
+      "summary": "Hz. Zülkifl, Kur’an’da sabredenlerden ve salihlerden biri olarak anılır.",
       "lessons": [
         "Sabır",
         "Salihlik",

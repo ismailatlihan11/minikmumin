@@ -291,7 +291,7 @@ def main() -> None:
     make(prophets / "davud.png", "Hz. Davud", lambda d: icon_mountain(d, BLUE), BLUE)
     make(prophets / "suleyman.png", "Hz. Süleyman", icon_crown, GOLD)
     make(prophets / "ilyas.png", "Hz. İlyas", icon_flame, GOLD)
-    make(prophets / "elyesa.png", "Hz. Elyesa", icon_well, BLUE)
+    make(prophets / "elyesa.png", "Hz. Elyesa", icon_waves, BLUE)
     make(prophets / "zulkifl.png", "Hz. Zülkifl", icon_tree, TEAL)
     make(prophets / "yunus.png", "Hz. Yunus", icon_whale, BLUE)
     make(prophets / "zekeriya.png", "Hz. Zekeriya", icon_lamp, GOLD)

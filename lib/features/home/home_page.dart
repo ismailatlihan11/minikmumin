@@ -14,6 +14,7 @@ import '../../core/widgets/loading_view.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../zikr/dhikr_store.dart';
 import '../zikr/zikr_counter_page.dart';
+import '../quran/quran_page.dart';
 import 'home_widgets.dart';
 
 class MinikHomePage extends StatefulWidget {
@@ -50,6 +51,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
       wuduStepCount: lesson.steps.length,
       continuePoint: await store.getContinue(),
       mushafBookmark: await store.getMushafBookmarkInfo(),
+      mealBookmark: await store.getQuranMealBookmarkInfo(),
       prayerCompleted: prayerDone,
       prayerTotal: prayerLesson.visualSteps.length,
       basicsCompleted: basicsDone,
@@ -189,13 +191,32 @@ class _MinikHomePageState extends State<MinikHomePage> {
               if (!mounted) return;
               setState(() => _future = _load(repos, store));
             };
+          } else if (point?.route == AppRoutes.quranSurah &&
+              data.mealBookmark != null) {
+            final meal = data.mealBookmark!;
+            continueSubtitle = "Ayet ve meal – ${meal.label}";
+            continueRoute = AppRoutes.quranSurah;
+            progress = (meal.ayahNo / 50).clamp(0.05, 1);
+            onContinue = () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => QuranSurahPage(
+                    surahId: meal.surahId,
+                    initialAyahNo: meal.ayahNo,
+                  ),
+                ),
+              );
+              if (!mounted) return;
+              setState(() => _future = _load(repos, store));
+            };
           } else if (data.mushafBookmark != null &&
               (point == null ||
                   point.route == AppRoutes.quranReader ||
                   point.route == AppRoutes.quran)) {
             final mark = data.mushafBookmark!;
             continueSubtitle =
-                "Kur'an – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
+                "Mushaf – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
             continueRoute = AppRoutes.quranReader;
             progress = (mark.displayNumber / 604).clamp(0.05, 1);
             onContinue = () async {
@@ -313,10 +334,14 @@ class _MinikHomePageState extends State<MinikHomePage> {
     if (point.route == AppRoutes.learnWudu) {
       return 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}';
     }
+    if (point.route == AppRoutes.quranSurah) {
+      final meal = data.mealBookmark;
+      if (meal != null) return "Ayet ve meal – ${meal.label}";
+    }
     if (point.route == AppRoutes.quranReader || point.route == AppRoutes.quran) {
       final mark = data.mushafBookmark;
       if (mark != null) {
-        return "Kur'an – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
+        return "Mushaf – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
       }
     }
     if (point.route == AppRoutes.learnQuran) {
@@ -383,6 +408,7 @@ class _HomeSnapshot {
     required this.wuduStepCount,
     this.continuePoint,
     this.mushafBookmark,
+    this.mealBookmark,
     this.prayerCompleted = 0,
     this.prayerTotal = 25,
     this.basicsCompleted = 0,
@@ -393,6 +419,7 @@ class _HomeSnapshot {
   final int wuduStepCount;
   final ContinuePoint? continuePoint;
   final ({int jsonPage, int displayNumber, String surahLabel})? mushafBookmark;
+  final ({int surahId, int ayahNo, String label})? mealBookmark;
   final int prayerCompleted;
   final int prayerTotal;
   final int basicsCompleted;

@@ -211,13 +211,14 @@ abstract final class PrayerVisualCatalog {
       id: 'sure',
       number: 6,
       title: 'Bir Sure',
-      prompt: 'Fâtiha’dan sonra bir sure okuruz.',
+      prompt: 'Fâtiha’dan sonra Kevser suresini okuruz.',
       image: 'assets/images/prayer/step05_sure.png',
       imageGirl: 'assets/images/prayer/step03_qiyam_girl.png',
       girlNote: 'Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.',
       kind: PrayerKind.sunnah,
       jsonStepId: 'qiyam',
-      duaId: 'surah_112',
+      duaId: 'surah_108',
+      rakat: 1,
     ),
     PrayerVisualStep(
       id: 'ruku',
@@ -606,6 +607,7 @@ abstract final class PrayerVisualCatalog {
 
   static const duaList = [
     (id: 'surah_1', title: 'Fâtiha'),
+    (id: 'surah_108', title: 'Kevser'),
     (id: 'surah_112', title: 'İhlâs'),
     (id: 'subhaneke', title: 'Sübhaneke'),
     (id: 'tahiyyat', title: 'Tahiyyat'),

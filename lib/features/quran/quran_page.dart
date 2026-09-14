@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/constants/content_assets.dart';
-import '../../app/constants/daily_ayah_pool.dart';
 import '../../app/constants/surah_names.dart';
-import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../core/audio/asset_catalog.dart';
-import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/turkish_number.dart';
 import '../../data/models/quran_verse.dart';
@@ -31,8 +26,9 @@ class MinikQuranPage extends StatefulWidget {
 class _MinikQuranPageState extends State<MinikQuranPage> {
   Future<_QuranHome>? _future;
   LocalProgressStore? _store;
-  ({int jsonPage, int displayNumber, String surahLabel})? _bookmark;
-  bool _bookmarkReady = false;
+  ({int jsonPage, int displayNumber, String surahLabel})? _mushafMark;
+  ({int surahId, int ayahNo, String label})? _mealMark;
+  bool _marksReady = false;
 
   Future<_QuranHome> _load() async {
     final quran = context.read<ContentRepositories>().quran;
@@ -40,22 +36,25 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
     return _QuranHome(
       daily: await quran.getDailyAyah(),
       surahs: await quran.getSurahIndex(),
-      bookmark: await store.getMushafBookmarkInfo(),
+      mushafMark: await store.getMushafBookmarkInfo(),
+      mealMark: await store.getQuranMealBookmarkInfo(),
     );
   }
 
-  Future<void> _refreshBookmark() async {
-    final info = await (_store ?? context.read<LocalProgressStore>())
-        .getMushafBookmarkInfo();
+  Future<void> _refreshMarks() async {
+    final store = _store ?? context.read<LocalProgressStore>();
+    final mushaf = await store.getMushafBookmarkInfo();
+    final meal = await store.getQuranMealBookmarkInfo();
     if (!mounted) return;
     setState(() {
-      _bookmark = info;
-      _bookmarkReady = true;
+      _mushafMark = mushaf;
+      _mealMark = meal;
+      _marksReady = true;
     });
   }
 
   void _onProgress() {
-    _refreshBookmark();
+    _refreshMarks();
   }
 
   @override
@@ -66,7 +65,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
       _store?.removeListener(_onProgress);
       _store = store;
       _store!.addListener(_onProgress);
-      _refreshBookmark();
+      _refreshMarks();
     }
   }
 
@@ -82,7 +81,24 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
       MaterialPageRoute(builder: (_) => MushafReaderPage(resume: resume)),
     );
     if (!mounted) return;
-    await _refreshBookmark();
+    await _refreshMarks();
+  }
+
+  Future<void> _openMeal({
+    required int surahId,
+    int? ayahNo,
+  }) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => QuranSurahPage(
+          surahId: surahId,
+          initialAyahNo: ayahNo,
+        ),
+      ),
+    );
+    if (!mounted) return;
+    await _refreshMarks();
   }
 
   @override
@@ -94,7 +110,9 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
           future: _future!,
           onRetry: () => setState(() => _future = _load()),
           builder: (home) {
-            final bookmark = _bookmarkReady ? _bookmark : home.bookmark;
+            final mushaf =
+                _marksReady ? _mushafMark : home.mushafMark;
+            final meal = _marksReady ? _mealMark : home.mealMark;
             return ListView(
             padding: AppSpacing.page,
             children: [
@@ -104,8 +122,37 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                 image: 'assets/images/quran/quran.png',
               ),
               _QuranResumeCard(
-                bookmark: bookmark,
-                onOpen: () => _openMushaf(resume: bookmark != null),
+                title: 'Mushaf · kaldığın yer',
+                emptyHint: 'Mushafta “Burada kaldım” dersen burada durur.',
+                detail: mushaf == null
+                    ? null
+                    : '${TurkishNumber.pageLabel(mushaf.displayNumber)} · ${mushaf.surahLabel}',
+                icon: Icons.menu_book_rounded,
+                color: MinikColors.mint,
+                onOpen: () => _openMushaf(resume: mushaf != null),
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              _QuranResumeCard(
+                title: 'Ayet ve meal · kaldığın yer',
+                emptyHint:
+                    'Sure listesinde “Burada kaldım” dersen burada durur.',
+                detail: meal?.label,
+                icon: Icons.view_agenda_rounded,
+                color: const Color(0xFFE8F0FA),
+                onOpen: meal == null
+                    ? () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Önce bir surede “Burada kaldım”a bas.',
+                            ),
+                          ),
+                        );
+                      }
+                    : () => _openMeal(
+                          surahId: meal.surahId,
+                          ayahNo: meal.ayahNo,
+                        ),
               ),
               const SizedBox(height: AppSpacing.sm),
               MinikCard(
@@ -141,12 +188,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                   title: surah.name,
                   subtitle: '${surah.ayahCount} ayet',
                   leading: NumberBadge('${surah.id}'),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => QuranSurahPage(surahId: surah.id),
-                    ),
-                  ),
+                  onTap: () => _openMeal(surahId: surah.id),
                 ),
             ],
           );
@@ -157,30 +199,13 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
   }
 }
 
-class _DailyAyahCard extends StatefulWidget {
+class _DailyAyahCard extends StatelessWidget {
   const _DailyAyahCard({required this.verse});
 
   final QuranVerse verse;
 
   @override
-  State<_DailyAyahCard> createState() => _DailyAyahCardState();
-}
-
-class _DailyAyahCardState extends State<_DailyAyahCard> {
-  final _audio = AudioPlayerService();
-
-  @override
-  void dispose() {
-    _audio.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final verse = widget.verse;
-    final note = DailyAyahPool.childNoteFor(verse.surahId, verse.ayahNo);
-    final audioPath = ContentAssets.quranRecitation(verse.surahId);
-    final hasAudio = AssetCatalog.contains(audioPath);
     final copy = joinCopyParts([
       '${surahName(verse.surahId)} ${verse.ayahNo}',
       verse.arabic,
@@ -210,62 +235,12 @@ class _DailyAyahCardState extends State<_DailyAyahCard> {
                   : null,
             ),
           ],
-          if (note != null) ...[
-            const SizedBox(height: 12),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xFFE7F4EC),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Bu ayet bize ne öğretiyor?',
-                    style: TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w800,
-                      color: MinikColors.darkGreen,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    note,
-                    style: const TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF4A6B5C),
-                      height: 1.3,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
           const SizedBox(height: 8),
           Wrap(
             spacing: 4,
             runSpacing: 0,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              if (hasAudio)
-                StreamBuilder<bool>(
-                  stream: _audio.playingStream,
-                  initialData: _audio.isPlaying,
-                  builder: (context, snapshot) {
-                    final playing = snapshot.data ?? false;
-                    return TextButton.icon(
-                      onPressed: () => _audio.toggleAsset(audioPath),
-                      icon: Icon(
-                        playing ? Icons.stop_rounded : Icons.volume_up_rounded,
-                      ),
-                      label: Text(playing ? 'Durdur' : 'Dinle'),
-                    );
-                  },
-                ),
               FavoriteButton(
                 kind: 'quran',
                 id: '${verse.surahId}:${verse.ayahNo}',
@@ -284,36 +259,44 @@ class _QuranHome {
   const _QuranHome({
     required this.daily,
     required this.surahs,
-    this.bookmark,
+    this.mushafMark,
+    this.mealMark,
   });
 
   final QuranVerse? daily;
   final List<SurahIndexItem> surahs;
-  final ({int jsonPage, int displayNumber, String surahLabel})? bookmark;
+  final ({int jsonPage, int displayNumber, String surahLabel})? mushafMark;
+  final ({int surahId, int ayahNo, String label})? mealMark;
 }
 
 class _QuranResumeCard extends StatelessWidget {
   const _QuranResumeCard({
-    required this.bookmark,
+    required this.title,
+    required this.emptyHint,
+    required this.detail,
+    required this.icon,
+    required this.color,
     required this.onOpen,
   });
 
-  final ({int jsonPage, int displayNumber, String surahLabel})? bookmark;
+  final String title;
+  final String emptyHint;
+  final String? detail;
+  final IconData icon;
+  final Color color;
   final VoidCallback onOpen;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    final subtitle = bookmark == null
-        ? 'Mushafı aç. Okuduğun sayfa burada durur.'
-        : '${TurkishNumber.pageLabel(bookmark!.displayNumber)} · ${TurkishNumber.words(bookmark!.displayNumber)} · ${bookmark!.surahLabel}';
+    final hasMark = detail != null && detail!.trim().isNotEmpty;
     return MinikCard(
-      color: MinikColors.mint,
+      color: color,
       onTap: onOpen,
       child: Row(
         children: [
           Icon(
-            bookmark == null ? Icons.menu_book_rounded : Icons.bookmark_rounded,
+            hasMark ? Icons.bookmark_rounded : icon,
             color: MinikColors.green,
             size: 28,
           ),
@@ -322,13 +305,10 @@ class _QuranResumeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Kaldığın yerden devam et',
-                  style: theme.titleMedium,
-                ),
+                Text(title, style: theme.titleMedium),
                 const SizedBox(height: 2),
                 Text(
-                  subtitle,
+                  hasMark ? detail! : emptyHint,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: theme.bodySmall,
@@ -336,7 +316,10 @@ class _QuranResumeCard extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.play_arrow_rounded, color: MinikColors.green),
+          Icon(
+            hasMark ? Icons.play_arrow_rounded : Icons.chevron_right_rounded,
+            color: MinikColors.green,
+          ),
         ],
       ),
     );
@@ -344,9 +327,14 @@ class _QuranResumeCard extends StatelessWidget {
 }
 
 class QuranSurahPage extends StatefulWidget {
-  const QuranSurahPage({super.key, required this.surahId});
+  const QuranSurahPage({
+    super.key,
+    required this.surahId,
+    this.initialAyahNo,
+  });
 
   final int surahId;
+  final int? initialAyahNo;
 
   @override
   State<QuranSurahPage> createState() => _QuranSurahPageState();
@@ -354,20 +342,50 @@ class QuranSurahPage extends StatefulWidget {
 
 class _QuranSurahPageState extends State<QuranSurahPage> {
   Future<List<QuranVerse>>? _future;
+  int? _savedAyahNo;
+  final _ayahKeys = <int, GlobalKey>{};
+  bool _didScrollToInitial = false;
 
   @override
   void initState() {
     super.initState();
+    _savedAyahNo = widget.initialAyahNo;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final store = context.read<LocalProgressStore>();
       store.markCompleted('quran', '${widget.surahId}', xp: 2);
-      store.setContinue(
-        title: surahName(widget.surahId),
-        subtitle: "Kur'an",
-        route: AppRoutes.quran,
-        progress: 0.5,
+    });
+  }
+
+  void _scrollToAyah(int ayahNo) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final ctx = _ayahKeys[ayahNo]?.currentContext;
+      if (ctx == null || !mounted) return;
+      Scrollable.ensureVisible(
+        ctx,
+        alignment: 0.08,
+        duration: const Duration(milliseconds: 420),
+        curve: Curves.easeOutCubic,
       );
     });
+  }
+
+  Future<void> _saveHere(QuranVerse verse) async {
+    final store = context.read<LocalProgressStore>();
+    final label = '${surahName(widget.surahId)} ${verse.ayahNo}';
+    await store.setQuranMealBookmark(
+      surahId: widget.surahId,
+      ayahNo: verse.ayahNo,
+      label: label,
+    );
+    if (!mounted) return;
+    setState(() => _savedAyahNo = verse.ayahNo);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          '$label kaydedildi. “Ayet ve meal · kaldığın yer”den devam edebilirsin.',
+        ),
+      ),
+    );
   }
 
   @override
@@ -378,66 +396,95 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
       appBar: AppBar(title: Text(surahName(widget.surahId))),
       body: AsyncBody<List<QuranVerse>>(
         future: _future!,
-        onRetry: () => setState(() => _future = repos.quran.getSurah(widget.surahId)),
-        builder: (verses) => ListView.separated(
-          padding: AppSpacing.page,
-          itemCount: verses.length,
-          separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
-          itemBuilder: (context, index) {
-            final verse = verses[index];
-            return MinikCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Row(
-                    children: [
-                      SoftBadge(label: '${verse.ayahNo}'),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => MushafReaderPage(
-                              initialJsonPage: verse.page,
+        onRetry: () =>
+            setState(() => _future = repos.quran.getSurah(widget.surahId)),
+        builder: (verses) {
+          if (!_didScrollToInitial && widget.initialAyahNo != null) {
+            _didScrollToInitial = true;
+            _scrollToAyah(widget.initialAyahNo!);
+          }
+          return ListView.separated(
+            padding: AppSpacing.page,
+            itemCount: verses.length,
+            separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
+            itemBuilder: (context, index) {
+              final verse = verses[index];
+              final savedHere = _savedAyahNo == verse.ayahNo;
+              final key = _ayahKeys.putIfAbsent(
+                verse.ayahNo,
+                GlobalKey.new,
+              );
+              return MinikCard(
+                key: key,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        SoftBadge(label: '${verse.ayahNo}'),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => MushafReaderPage(
+                                initialJsonPage: verse.page,
+                              ),
                             ),
                           ),
+                          child:
+                              Text(TurkishNumber.pageLabel(verse.displayPage)),
                         ),
-                        child: Text(TurkishNumber.pageLabel(verse.displayPage)),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    ArabicText(
+                      verse.arabic,
+                      color: verse.isSajdahAyah ? kMushafSajdahRed : null,
+                    ),
+                    if (verse.hasMeal) ...[
+                      const SizedBox(height: 10),
+                      SelectableText(
+                        verse.meal,
+                        style: verse.isSajdahAyah
+                            ? const TextStyle(
+                                color: kMushafSajdahRed,
+                                height: 1.45,
+                              )
+                            : null,
                       ),
                     ],
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-                  ArabicText(
-                    verse.arabic,
-                    color: verse.isSajdahAyah ? kMushafSajdahRed : null,
-                  ),
-                  if (verse.hasMeal) ...[
-                    const SizedBox(height: 10),
-                    SelectableText(
-                      verse.meal,
-                      style: verse.isSajdahAyah
-                          ? const TextStyle(
-                              color: kMushafSajdahRed,
-                              height: 1.45,
-                            )
-                          : null,
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        TextButton.icon(
+                          onPressed: () => _saveHere(verse),
+                          icon: Icon(
+                            savedHere
+                                ? Icons.bookmark_rounded
+                                : Icons.bookmark_border_rounded,
+                            size: 20,
+                          ),
+                          label: Text(
+                            savedHere ? 'Kaydedildi' : 'Burada kaldım',
+                          ),
+                        ),
+                        const Spacer(),
+                        CopyIconButton(
+                          text: joinCopyParts([
+                            '${surahName(widget.surahId)} ${verse.ayahNo}',
+                            verse.arabic,
+                            verse.meal,
+                          ]),
+                        ),
+                      ],
                     ),
                   ],
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: CopyIconButton(
-                      text: joinCopyParts([
-                        '${surahName(widget.surahId)} ${verse.ayahNo}',
-                        verse.arabic,
-                        verse.meal,
-                      ]),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
