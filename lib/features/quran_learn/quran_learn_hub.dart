@@ -30,7 +30,8 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
   Widget build(BuildContext context) {
     _future ??= _load();
     final store = context.watch<LocalProgressStore>();
-    return Scaffold(
+    return quranLearnThemed(
+      Scaffold(
       backgroundColor: const Color(0xFFF4F7F2),
       appBar: AppBar(title: const Text("Kur'an Öğren")),
       body: AsyncBody<QuranLearningPack>(
@@ -79,8 +80,9 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
                                 style: Theme.of(context).textTheme.displayMedium,
                               ),
                               const SizedBox(height: 4),
-                              const Text(
+                              Text(
                                 'Harf, şekil, hareke. Sonra kısa sure.',
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                               const SizedBox(height: 10),
                               QlSoftProgress(
@@ -172,6 +174,7 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
           );
         },
       ),
+    ),
     );
   }
 }

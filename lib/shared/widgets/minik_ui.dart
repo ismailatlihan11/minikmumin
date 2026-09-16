@@ -4,6 +4,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_shadows.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../app/theme/app_theme.dart';
 import 'arabic_text.dart';
 
 class PageHeader extends StatelessWidget {
@@ -65,7 +66,12 @@ class SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.sm, top: AppSpacing.xs),
-      child: Text(text, style: Theme.of(context).textTheme.headlineMedium),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+              color: MinikColors.darkGreen,
+            ),
+      ),
     );
   }
 }
@@ -87,6 +93,17 @@ class MinikCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = BorderRadius.circular(AppRadius.lg);
+    // Cards stay light pastel/cream even in dark mode — force light theme
+    // ink/buttons/list tiles so cream text does not wash out on those surfaces.
+    final inked = MinikTheme.lightSurfaces(
+      DefaultTextStyle.merge(
+        style: const TextStyle(color: MinikColors.text),
+        child: IconTheme.merge(
+          data: const IconThemeData(color: MinikColors.green),
+          child: child,
+        ),
+      ),
+    );
     final body = Container(
       width: double.infinity,
       padding: padding,
@@ -95,7 +112,7 @@ class MinikCard extends StatelessWidget {
         borderRadius: radius,
         boxShadow: AppShadows.soft,
       ),
-      child: child,
+      child: inked,
     );
     if (onTap == null) return body;
     return Material(
@@ -177,14 +194,21 @@ class ContentTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: Theme.of(context).textTheme.titleMedium),
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: MinikColors.darkGreen,
+                        ),
+                  ),
                   if (subtitle != null && subtitle!.trim().isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(
                       subtitle!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: MinikColors.textMuted,
+                          ),
                     ),
                   ],
                 ],

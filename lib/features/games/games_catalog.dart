@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../app/theme/app_theme.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../prayer/prayer_visual_catalog.dart';
@@ -540,7 +541,7 @@ List<KidGame> kidGames() {
 }
 
 void _push(BuildContext context, Widget page) {
-  Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+  Navigator.push(context, MinikTheme.lightRoute(page));
 }
 
 String _clip(String text, [int max = 90]) {

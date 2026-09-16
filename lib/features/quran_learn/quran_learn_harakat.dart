@@ -10,6 +10,7 @@ import 'quran_learn_audio.dart';
 import 'quran_learn_harakat_review.dart';
 import 'quran_learn_practice.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 const _cream = Color(0xFFF5EEDC);
@@ -93,13 +94,11 @@ class QuranLearnHarakatPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => QuranLearnHarakaDetailPage(
+                        quranLearnRoute(QuranLearnHarakaDetailPage(
                             pack: pack,
                             haraka: item,
                             levelId: levelId,
-                          ),
-                        ),
+                          )),
                       ),
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
@@ -224,13 +223,11 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
         if (index >= 0 && index + 1 < items.length) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (_) => QuranLearnHarakaDetailPage(
+            quranLearnRoute(QuranLearnHarakaDetailPage(
                 pack: widget.pack,
                 haraka: items[index + 1],
                 levelId: widget.levelId,
-              ),
-            ),
+              )),
           );
         } else {
           Navigator.pop(context);

@@ -14,7 +14,7 @@ import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 /// Namaz dua/sûre ezberi: ayet ayet kartlar, tıklayınca ilgili ses.
-/// Sûrelerde her ayet için ayrı Husary Muallim kaydı kullanılır (tahmini seek yok).
+/// Sûrelerde her ayet için ayrı Yasir ed-Devseri kaydı kullanılır (tahmini seek yok).
 class DuaMemorizePage extends StatefulWidget {
   const DuaMemorizePage({
     super.key,

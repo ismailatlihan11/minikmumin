@@ -13,7 +13,10 @@ import 'quran_learn_review.dart';
 import 'quran_learn_surahs.dart';
 import 'quran_learn_syllables.dart';
 import 'quran_learn_tajweed.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_words.dart';
+
+export 'quran_learn_theme.dart';
 
 const elifbaPathIds = <int>[1, 9, 2, 5];
 const elifbaDrillIds = <int>[3, 4, 11, 12, 13];
@@ -154,9 +157,7 @@ Future<void> openQuranLearnLevel(
 }) {
   return Navigator.push(
     context,
-    MaterialPageRoute(
-      builder: (_) => quranLearnPageFor(pack: pack, levelId: levelId),
-    ),
+    quranLearnRoute(quranLearnPageFor(pack: pack, levelId: levelId)),
   );
 }
 
@@ -180,8 +181,8 @@ Future<void> openQuranLearnDaily(
       if (letter == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => QuranLearnLetterDetailPage(
+        quranLearnRoute(
+          QuranLearnLetterDetailPage(
             pack: pack,
             letter: letter,
             levelId: lesson.level?.id,
@@ -194,8 +195,8 @@ Future<void> openQuranLearnDaily(
       if (haraka == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => QuranLearnHarakaDetailPage(
+        quranLearnRoute(
+          QuranLearnHarakaDetailPage(
             pack: pack,
             haraka: haraka,
             levelId: lesson.level?.id,
@@ -207,8 +208,8 @@ Future<void> openQuranLearnDaily(
       if (combination == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => QuranLearnCombineDetailPage(
+        quranLearnRoute(
+          QuranLearnCombineDetailPage(
             pack: pack,
             lesson: combination,
           ),
@@ -220,8 +221,8 @@ Future<void> openQuranLearnDaily(
       if (word == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => QuranLearnWordDetailPage(pack: pack, word: word),
+        quranLearnRoute(
+          QuranLearnWordDetailPage(pack: pack, word: word),
         ),
       );
     case 'ql_tajweed':
@@ -229,9 +230,8 @@ Future<void> openQuranLearnDaily(
       if (tajweed == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) =>
-              QuranLearnTajweedDetailPage(pack: pack, lesson: tajweed),
+        quranLearnRoute(
+          QuranLearnTajweedDetailPage(pack: pack, lesson: tajweed),
         ),
       );
     case 'ql_mahraj':
@@ -239,9 +239,8 @@ Future<void> openQuranLearnDaily(
       if (group == null) break;
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) =>
-              QuranLearnMahrajDetailPage(pack: pack, group: group),
+        quranLearnRoute(
+          QuranLearnMahrajDetailPage(pack: pack, group: group),
         ),
       );
     case 'ql_heavy':
@@ -273,8 +272,8 @@ Future<void> openQuranLearnDaily(
       };
       return Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => QuranLearnSurahReaderPage(
+        quranLearnRoute(
+          QuranLearnSurahReaderPage(
             pack: pack,
             surah: surah,
             mode: mode,

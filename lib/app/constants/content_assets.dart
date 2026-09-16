@@ -23,9 +23,9 @@ abstract final class ContentAssets {
     'tahiyyat': 'assets/audio/prayer/tahiyyat.mp3',
     'allahumme_salli': 'assets/audio/prayer/allahumme_salli.mp3',
     'allahumme_barik': 'assets/audio/prayer/allahumme_barik.mp3',
-    'rabbena_atina': 'assets/audio/duas/rabbena_atina.mp3',
-    'rabbena_gfirli': 'assets/audio/prayer/rabbena_gfirli.mp3',
-    'dua_rabbena_atina': 'assets/audio/duas/rabbena_atina.mp3',
+    'rabbena_atina': 'assets/audio/duas/quran_002_201.mp3',
+    'rabbena_gfirli': 'assets/audio/duas/quran_014_041.mp3',
+    'dua_rabbena_atina': 'assets/audio/duas/quran_002_201.mp3',
     'ruku': 'assets/audio/prayer/ruku_tesbihi.mp3',
     'qiyam_after_ruku': 'assets/audio/prayer/rukudan_dogrulurken.mp3',
     'sujud': 'assets/audio/prayer/sujud_tesbihi.mp3',
@@ -42,7 +42,7 @@ abstract final class ContentAssets {
   static String quranRecitation(int surahId) =>
       'assets/audio/quran/surah_${surahId.toString().padLeft(3, '0')}.mp3';
 
-  /// Per-ayah Husary Muallim clip for ezber (Everyayah SSS_AAA naming).
+  /// Per-ayah Dosari clip for ezber (Everyayah SSS_AAA naming).
   static String ayahAudio(int surahNumber, int ayahNo) =>
       'assets/audio/quran/ayahs/'
       '${surahNumber.toString().padLeft(3, '0')}_'

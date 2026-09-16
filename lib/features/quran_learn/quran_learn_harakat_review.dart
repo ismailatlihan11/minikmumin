@@ -10,6 +10,7 @@ import 'quran_learn_audio.dart';
 import 'quran_learn_practice.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_tajweed_marks.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 import 'quran_learn_words.dart';
 
@@ -79,9 +80,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
   void _openDetail(QuranWord word) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => QuranLearnWordDetailPage(pack: widget.pack, word: word),
-      ),
+      quranLearnRoute(QuranLearnWordDetailPage(pack: widget.pack, word: word)),
     );
   }
 

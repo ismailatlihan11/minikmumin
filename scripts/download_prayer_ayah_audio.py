@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Download per-ayah Husary Muallim clips for namaz sureleri (ezber sync).
+"""Download per-ayah Yasir ed-Devseri clips for namaz sureleri (ezber sync).
 
 Source (same as existing dua ayah clips in docs/audio_sources.md):
-  https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps/{SSS}{AAA}.mp3
+  https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps/{SSS}{AAA}.mp3
 
 Writes: assets/audio/quran/ayahs/{SSS}_{AAA}.mp3
 """
@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "assets" / "audio" / "quran" / "ayahs"
 JSON = ROOT / "assets" / "data" / "namaz_dualari.json"
-BASE = "https://mirrors.quranicaudio.com/everyayah/Husary_Muallim_128kbps"
+BASE = "https://mirrors.quranicaudio.com/everyayah/Yasser_Ad-Dussary_128kbps"
 
 
 def surahs_from_json() -> list[tuple[int, list[int]]]:

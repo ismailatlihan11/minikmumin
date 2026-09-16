@@ -13,6 +13,7 @@ import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_review.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnLettersPage extends StatefulWidget {
@@ -84,8 +85,8 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
   void _openDetail(QuranArabicLetter letter) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => QuranLearnLetterDetailPage(
+      quranLearnRoute(
+        QuranLearnLetterDetailPage(
           pack: widget.pack,
           letter: letter,
           levelId: widget.levelId,
@@ -304,8 +305,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
         if (index >= 0 && index + 1 < widget.pack.letters.length) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(
-              builder: (_) => QuranLearnLetterDetailPage(
+            quranLearnRoute(
+              QuranLearnLetterDetailPage(
                 pack: widget.pack,
                 letter: widget.pack.letters[index + 1],
                 levelId: widget.levelId,

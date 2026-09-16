@@ -121,7 +121,9 @@ class _SettingsPageState extends State<SettingsPage> {
             color: MinikColors.mint,
             child: Text(
               '${AppConstants.defaultAppName} tamamen bu cihazda çalışır. Kur’an ve hadis metinleri değiştirilmez.',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: MinikColors.darkGreen,
+                  ),
             ),
           ),
         ],

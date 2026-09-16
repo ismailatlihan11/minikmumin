@@ -20,6 +20,12 @@ class PrimaryButton extends StatelessWidget {
       height: 54,
       child: ElevatedButton(
         onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: MinikColors.green,
+          foregroundColor: Colors.white,
+          disabledForegroundColor: Colors.white70,
+          elevation: 0,
+        ),
         child: Text(label),
       ),
     );
@@ -43,6 +49,10 @@ class SecondaryButton extends StatelessWidget {
       height: 54,
       child: OutlinedButton(
         onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          foregroundColor: MinikColors.green,
+          side: const BorderSide(color: MinikColors.green, width: 1.6),
+        ),
         child: Text(label),
       ),
     );

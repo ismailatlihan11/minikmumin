@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../app/constants/asset_paths.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
+import '../../app/theme/app_theme.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../shared/widgets/buttons.dart';
 import 'elifba_audio.dart';
@@ -206,7 +207,12 @@ class ElifbaSoftCard extends StatelessWidget {
           ),
         ],
       ),
-      child: child,
+      child: MinikTheme.lightSurfaces(
+        DefaultTextStyle.merge(
+          style: const TextStyle(color: MinikColors.text),
+          child: child,
+        ),
+      ),
     );
     if (onTap == null) return body;
     return Material(

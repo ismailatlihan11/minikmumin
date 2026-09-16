@@ -15,6 +15,7 @@ import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_memory_page.dart';
 import 'quran_learn_progress.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 /// Invisible bidi/format marks must not make a correct tap fail.
@@ -95,7 +96,7 @@ Future<void> openQuranLearnGame(
 ) {
   return Navigator.push(
     context,
-    MaterialPageRoute(builder: (_) => QuranLearnGamePage(game: game)),
+    quranLearnRoute(QuranLearnGamePage(game: game)),
   );
 }
 
@@ -135,9 +136,7 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
               leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const QuranLearnColorHubPage(),
-                ),
+                quranLearnRoute(const QuranLearnColorHubPage()),
               ),
             ),
             ContentTile(
@@ -146,9 +145,7 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
               leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const QuranLearnMemoryPage(),
-                ),
+                quranLearnRoute(const QuranLearnMemoryPage()),
               ),
             ),
             QlGamesStrip(games: pack.games, title: 'Tüm oyunlar'),
@@ -214,9 +211,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
                 ),
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (_) => const QuranLearnColorHubPage(),
-                  ),
+                  quranLearnRoute(const QuranLearnColorHubPage()),
                 ),
               ),
               ContentTile(
@@ -228,9 +223,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
                 ),
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (_) => const QuranLearnMemoryPage(),
-                  ),
+                  quranLearnRoute(const QuranLearnMemoryPage()),
                 ),
               ),
               if (games.isNotEmpty)

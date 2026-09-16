@@ -157,7 +157,66 @@ abstract final class MinikTheme {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: MinikColors.greenSoft,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          minimumSize: const Size(44, 52),
+          textStyle: TextStyle(
+            fontFamily: _font,
+            fontSize: 16 * textScale,
+            fontWeight: FontWeight.w700,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: MinikColors.cream,
+          minimumSize: const Size(44, 52),
+          side: const BorderSide(color: MinikColors.greenSoft, width: 1.6),
+          textStyle: TextStyle(
+            fontFamily: _font,
+            fontSize: 16 * textScale,
+            fontWeight: FontWeight.w700,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+          ),
+        ),
+      ),
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: TextStyle(
+          fontFamily: _font,
+          color: MinikColors.cream,
+          fontSize: 16 * textScale,
+          fontWeight: FontWeight.w700,
+        ),
+        subtitleTextStyle: TextStyle(
+          fontFamily: _font,
+          color: const Color(0xFFB7CDBE),
+          fontSize: 13 * textScale,
+          height: 1.35,
+        ),
+      ),
       textTheme: _textTheme(textScale, Brightness.dark),
+    );
+  }
+
+  /// Wrap screens/cards that always paint cream/pastel surfaces.
+  static Widget lightSurfaces(Widget child) {
+    return Theme(
+      data: light(),
+      child: child,
+    );
+  }
+
+  static MaterialPageRoute<T> lightRoute<T extends Object?>(Widget page) {
+    return MaterialPageRoute<T>(
+      builder: (_) => lightSurfaces(page),
     );
   }
 

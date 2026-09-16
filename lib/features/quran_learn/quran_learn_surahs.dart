@@ -20,6 +20,7 @@ import 'quran_learn_color_page.dart';
 import 'quran_learn_follow.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_tajweed_marks.dart';
+import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 enum QuranLearnReadMode { surah, practice, tajweedRead }
@@ -100,13 +101,11 @@ class QuranLearnSurahsPage extends StatelessWidget {
                   leading: NumberBadge('${surah.priority}'),
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => QuranLearnSurahReaderPage(
+                    quranLearnRoute(QuranLearnSurahReaderPage(
                         pack: pack,
                         surah: surah,
                         mode: mode,
-                      ),
-                    ),
+                      )),
                   ),
                 ),
             ],

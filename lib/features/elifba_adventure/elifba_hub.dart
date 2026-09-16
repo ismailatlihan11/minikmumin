@@ -9,6 +9,7 @@ import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../features/quran_learn/quran_learn_hub.dart';
+import '../../features/quran_learn/quran_learn_theme.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import 'elifba_flag.dart';
@@ -51,7 +52,8 @@ class ElifbaChooserPage extends StatelessWidget {
           );
         }
         if (!enabled) return const QuranLearnHubPage();
-        return Scaffold(
+        return quranLearnThemed(
+          Scaffold(
           appBar: AppBar(title: const Text("Kur'an Öğren")),
           body: ListView(
             padding: AppSpacing.page,
@@ -60,16 +62,23 @@ class ElifbaChooserPage extends StatelessWidget {
                 color: MinikColors.sky,
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (_) => const QuranLearnHubPage(),
-                  ),
+                  quranLearnRoute(const QuranLearnHubPage()),
                 ),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('📖 Kur’an Öğrenme Serisi'),
+                    Text(
+                      '📖 Kur’an Öğrenme Serisi',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: MinikColors.darkGreen,
+                      ),
+                    ),
                     SizedBox(height: 4),
-                    Text('Mevcut Elifba yolu. Harf, hareke, kısa sure.'),
+                    Text(
+                      'Mevcut Elifba yolu. Harf, hareke, kısa sure.',
+                      style: TextStyle(color: MinikColors.textMuted),
+                    ),
                   ],
                 ),
               ),
@@ -83,14 +92,24 @@ class ElifbaChooserPage extends StatelessWidget {
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('🌟 Elifbâ + Tecvid Macerası'),
+                    Text(
+                      '🌟 Elifbâ + Tecvid Macerası',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: MinikColors.darkGreen,
+                      ),
+                    ),
                     SizedBox(height: 4),
-                    Text('YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.'),
+                    Text(
+                      'YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.',
+                      style: TextStyle(color: MinikColors.textMuted),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
+        ),
         );
       },
     );

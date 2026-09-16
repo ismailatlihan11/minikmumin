@@ -166,11 +166,20 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Mushaf', style: Theme.of(context).textTheme.titleMedium),
+                          Text(
+                            'Mushaf',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(color: MinikColors.darkGreen),
+                          ),
                           const SizedBox(height: 2),
                           Text(
                             'Parşömen sayfa, yazı boyutu ve elle ayet takibi.',
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(color: MinikColors.textMuted),
                           ),
                         ],
                       ),
@@ -219,7 +228,9 @@ class _DailyAyahCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           Text(
             '${surahName(verse.surahId)} ${verse.ayahNo}',
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  color: MinikColors.darkGreen,
+                ),
           ),
           const SizedBox(height: AppSpacing.sm),
           ArabicText(
@@ -230,9 +241,12 @@ class _DailyAyahCard extends StatelessWidget {
             const SizedBox(height: 10),
             SelectableText(
               verse.meal,
-              style: verse.isSajdahAyah
-                  ? const TextStyle(color: kMushafSajdahRed, height: 1.45)
-                  : null,
+              style: TextStyle(
+                color: verse.isSajdahAyah
+                    ? kMushafSajdahRed
+                    : MinikColors.text,
+                height: 1.45,
+              ),
             ),
           ],
           const SizedBox(height: 8),
@@ -305,13 +319,20 @@ class _QuranResumeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: theme.titleMedium),
+                Text(
+                  title,
+                  style: theme.titleMedium?.copyWith(
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
                 const SizedBox(height: 2),
                 Text(
                   hasMark ? detail! : emptyHint,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: theme.bodySmall,
+                  style: theme.bodySmall?.copyWith(
+                    color: MinikColors.textMuted,
+                  ),
                 ),
               ],
             ),
@@ -446,12 +467,12 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
                       const SizedBox(height: 10),
                       SelectableText(
                         verse.meal,
-                        style: verse.isSajdahAyah
-                            ? const TextStyle(
-                                color: kMushafSajdahRed,
-                                height: 1.45,
-                              )
-                            : null,
+                        style: TextStyle(
+                          color: verse.isSajdahAyah
+                              ? kMushafSajdahRed
+                              : MinikColors.text,
+                          height: 1.45,
+                        ),
                       ),
                     ],
                     const SizedBox(height: 8),
