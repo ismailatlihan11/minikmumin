@@ -223,7 +223,7 @@ class DhikrStore extends ChangeNotifier {
     String meaning = '',
     int targetCount = 33,
     int incrementStep = 1,
-    int vibrationEvery = 33,
+    int vibrationEvery = 1,
     int soundEvery = 33,
     bool vibrationEnabled = true,
     bool soundEnabled = true,
@@ -309,8 +309,10 @@ class DhikrStore extends ChangeNotifier {
         completed: completed ? 1 : 0,
       );
     }
-    final vibrate = _settings.vibrationEnabled &&
-        next.vibrationEnabled &&
+    final canVibrate = added > 0 &&
+        _settings.vibrationEnabled &&
+        next.vibrationEnabled;
+    final milestone = canVibrate &&
         DhikrCounterService.shouldPulse(current, next.vibrationEvery);
     final click = added > 0 && _settings.soundEnabled && next.soundEnabled;
     if (click) {
@@ -319,8 +321,11 @@ class DhikrStore extends ChangeNotifier {
     if (completed) {
       unawaited(_feedback.playClick(_manifest.complete));
     }
-    if (vibrate || completed) {
-      unawaited(_feedback.vibrate(_settings));
+    if (canVibrate || completed) {
+      unawaited(_feedback.vibrate(
+        _settings,
+        accent: milestone || completed,
+      ));
     }
 
     _items = [
@@ -332,7 +337,7 @@ class DhikrStore extends ChangeNotifier {
     unawaited(_enqueuePersist());
     return DhikrTapResult(
       dhikr: next,
-      vibrated: vibrate || completed,
+      vibrated: canVibrate || completed,
       sounded: click || completed,
       completed: completed,
       session: session,

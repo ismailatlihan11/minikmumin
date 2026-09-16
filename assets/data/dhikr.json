@@ -9,7 +9,7 @@
       "description": "Allah'ı eksikliklerden uzak tutmayı ifade eder.",
       "category": "tesbih",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "green"
@@ -23,7 +23,7 @@
       "description": "Nimetler için Allah'a şükretmeyi ifade eder.",
       "category": "tesbih",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "gold"
@@ -37,7 +37,7 @@
       "description": "Allah'ın her şeyden yüce olduğunu ifade eder.",
       "category": "tesbih",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "teal"
@@ -51,7 +51,7 @@
       "description": "Tevhid kelimesidir.",
       "category": "tevhid",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "green"
@@ -65,7 +65,7 @@
       "description": "Tövbe ve istiğfar ifadesidir.",
       "category": "istigfar",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "sky"
@@ -79,7 +79,7 @@
       "description": "İşlerimize Allah'ın adıyla başlarız.",
       "category": "tesbih",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "mint"
@@ -93,7 +93,7 @@
       "description": "Gücün Allah'tan olduğunu hatırlatır.",
       "category": "tesbih",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "lavender"
@@ -107,7 +107,7 @@
       "description": "Peygamberimiz Hz. Muhammed ﷺ için salavat getiririz.",
       "category": "salawat",
       "targetCount": 33,
-      "vibrationEvery": 33,
+      "vibrationEvery": 1,
       "soundEvery": 33,
       "incrementStep": 1,
       "colorTheme": "gold",

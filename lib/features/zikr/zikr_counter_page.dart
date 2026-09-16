@@ -335,10 +335,14 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: const Text('Titreşim'),
+              subtitle: const Text('Her çekişte titreşim verir'),
               value: store.settings.vibrationEnabled && dhikr.vibrationEnabled,
-              onChanged: (value) => store.updateDhikr(
-                dhikr.copyWith(vibrationEnabled: value),
-              ),
+              onChanged: (value) {
+                store.updateSettings(
+                  store.settings.copyWith(vibrationEnabled: value),
+                );
+                store.updateDhikr(dhikr.copyWith(vibrationEnabled: value));
+              },
               secondary: const Icon(Icons.vibration_rounded),
             ),
             const SizedBox(height: AppSpacing.sm),

@@ -13,6 +13,7 @@ class DhikrFeedbackService {
   final bool silent;
   static const _poolSize = 6;
   static const _clickAsset = 'audio/effects/tesbih_click.wav';
+  static const _haptics = MethodChannel('minik_kalpler/haptics');
 
   final List<AudioPlayer> _clicks = [];
   final List<bool> _busy = [];
@@ -73,10 +74,25 @@ class DhikrFeedbackService {
     if (!_ready) _loading = null;
   }
 
-  Future<void> vibrate(DhikrSettings settings) async {
+  Future<void> vibrate(
+    DhikrSettings settings, {
+    bool accent = false,
+  }) async {
     if (silent || !settings.vibrationEnabled) return;
+    final intensity = accent
+        ? DhikrVibrationIntensity.strong
+        : settings.vibrationIntensity;
+    final ms = switch (intensity) {
+      DhikrVibrationIntensity.light => 22,
+      DhikrVibrationIntensity.normal => 36,
+      DhikrVibrationIntensity.strong => accent ? 55 : 45,
+    };
     try {
-      switch (settings.vibrationIntensity) {
+      await _haptics.invokeMethod<void>('vibrate', {'ms': ms});
+      return;
+    } catch (_) {}
+    try {
+      switch (intensity) {
         case DhikrVibrationIntensity.light:
           await HapticFeedback.lightImpact();
         case DhikrVibrationIntensity.normal:

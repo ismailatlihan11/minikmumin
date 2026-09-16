@@ -23,7 +23,7 @@ class _ZikrFormPageState extends State<ZikrFormPage> {
   final _meaning = TextEditingController();
   int _target = 33;
   int _step = 1;
-  int _vibrationEvery = 33;
+  int _vibrationEvery = 1;
   int _soundEvery = 33;
   bool _customTarget = false;
 
@@ -170,7 +170,11 @@ class _ZikrFormPageState extends State<ZikrFormPage> {
             ],
           ),
           const SizedBox(height: AppSpacing.lg),
-          const SectionLabel('Titreşim aralığı'),
+          const SectionLabel('Ek titreşim aralığı'),
+          const Text(
+            'Her çekişte zaten titreşim olur. Buradaki sayı dolunca ekstra güçlü titreşim verir (1 = her çekiş güçlü).',
+          ),
+          const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             children: [
