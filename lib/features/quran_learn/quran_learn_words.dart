@@ -11,7 +11,6 @@ import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_color_page.dart';
 import 'quran_learn_progress.dart';
-import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnWordsPage extends StatefulWidget {
@@ -41,7 +40,9 @@ class _QuranLearnWordsPageState extends State<QuranLearnWordsPage> {
   void _openDetail(QuranWord word) {
     Navigator.push(
       context,
-      quranLearnRoute(QuranLearnWordDetailPage(pack: widget.pack, word: word)),
+      MaterialPageRoute(
+        builder: (_) => QuranLearnWordDetailPage(pack: widget.pack, word: word),
+      ),
     );
   }
 

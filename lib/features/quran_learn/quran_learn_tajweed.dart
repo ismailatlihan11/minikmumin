@@ -15,7 +15,6 @@ import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_tajweed_marks.dart';
-import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnTajweedPage extends StatelessWidget {
@@ -74,10 +73,12 @@ class QuranLearnTajweedPage extends StatelessWidget {
                   leading: NumberBadge('${lesson.order}'),
                   onTap: () => Navigator.push(
                     context,
-                    quranLearnRoute(QuranLearnTajweedDetailPage(
+                    MaterialPageRoute(
+                      builder: (_) => QuranLearnTajweedDetailPage(
                         pack: pack,
                         lesson: lesson,
-                      )),
+                      ),
+                    ),
                   ),
                 ),
               if (games.isNotEmpty) ...[

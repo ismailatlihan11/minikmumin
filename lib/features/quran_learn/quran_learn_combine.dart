@@ -13,7 +13,6 @@ import 'quran_learn_color_page.dart';
 import 'quran_learn_games.dart';
 import 'quran_learn_practice.dart';
 import 'quran_learn_progress.dart';
-import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnCombinePage extends StatefulWidget {
@@ -87,10 +86,12 @@ class _QuranLearnCombinePageState extends State<QuranLearnCombinePage> {
                   leading: NumberBadge('${lesson.order}'),
                   onTap: () => Navigator.push(
                     context,
-                    quranLearnRoute(QuranLearnCombineDetailPage(
+                    MaterialPageRoute(
+                      builder: (_) => QuranLearnCombineDetailPage(
                         pack: pack,
                         lesson: lesson,
-                      )),
+                      ),
+                    ),
                   ),
                 ),
             ],

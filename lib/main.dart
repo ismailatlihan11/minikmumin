@@ -21,6 +21,7 @@ void main() async {
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
       systemNavigationBarColor: MinikColors.cream,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
@@ -44,8 +45,12 @@ class MinikKalplerApp extends StatelessWidget {
         title: AppConstants.defaultAppName,
         debugShowCheckedModeBanner: false,
         theme: MinikTheme.light(),
-        darkTheme: MinikTheme.dark(),
-        themeMode: ThemeMode.system,
+        // Kids UI is cream/pastel surfaces throughout. System dark mode was
+        // painting cream text onto those light pages after Navigator.push.
+        themeMode: ThemeMode.light,
+        builder: (context, child) => MinikTheme.lightSurfaces(
+          child ?? const SizedBox.shrink(),
+        ),
         home: const MinikShell(),
         routes: minikRoutes(),
       ),

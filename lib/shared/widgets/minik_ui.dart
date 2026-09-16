@@ -30,10 +30,20 @@ class PageHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: Theme.of(context).textTheme.displayMedium),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: MinikColors.darkGreen,
+                      ),
+                ),
                 if (subtitle != null) ...[
                   const SizedBox(height: 6),
-                  Text(subtitle!, style: Theme.of(context).textTheme.bodyLarge),
+                  Text(
+                    subtitle!,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: MinikColors.text,
+                        ),
+                  ),
                 ],
               ],
             ),

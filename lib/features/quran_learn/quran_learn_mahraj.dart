@@ -9,7 +9,6 @@ import '../../data/models/quran_learning.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_progress.dart';
-import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 class QuranLearnMahrajPage extends StatelessWidget {
@@ -70,10 +69,12 @@ class QuranLearnMahrajPage extends StatelessWidget {
                   ),
                   onTap: () => Navigator.push(
                     context,
-                    quranLearnRoute(QuranLearnMahrajDetailPage(
+                    MaterialPageRoute(
+                      builder: (_) => QuranLearnMahrajDetailPage(
                         pack: pack,
                         group: group,
-                      )),
+                      ),
+                    ),
                   ),
                 ),
             ],

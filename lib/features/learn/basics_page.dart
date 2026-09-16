@@ -6,6 +6,7 @@ import '../../app/constants/content_assets.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../app/theme/app_theme.dart';
 import '../../core/audio/asset_catalog.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
@@ -70,8 +71,8 @@ class _BasicsPageState extends State<BasicsPage> {
                       doneIds: done,
                       onOpen: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (_) => BasicsSectionPage(
+                        MinikTheme.lightRoute(
+                          BasicsSectionPage(
                             section: section,
                             catalog: catalog,
                           ),
@@ -183,8 +184,8 @@ class BasicsSectionPage extends StatelessWidget {
                       : null,
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => BasicsItemPage(
+                    MinikTheme.lightRoute(
+                      BasicsItemPage(
                         item: item,
                         sectionTitle: section.title,
                       ),
@@ -261,7 +262,8 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
       future: store.isCompleted(_kind, '${item.id}'),
       builder: (context, snapshot) {
         final learned = snapshot.data ?? false;
-        return Scaffold(
+        return MinikTheme.lightSurfaces(
+          Scaffold(
           backgroundColor: const Color(0xFFF4F7F2),
           appBar: AppBar(
             title: Text(item.title),
@@ -270,13 +272,17 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
             ],
           ),
           body: SelectionArea(
+            child: DefaultTextStyle.merge(
+            style: const TextStyle(color: MinikColors.text),
             child: ListView(
             padding: AppSpacing.page,
             children: [
               if (item.shortDescription.trim().isNotEmpty)
                 Text(
                   item.shortDescription,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: MinikColors.text,
+                      ),
                 ),
               if (item.hasArabic) ...[
                 const SizedBox(height: AppSpacing.lg),
@@ -315,7 +321,9 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
               ],
               if (item.content.trim().isNotEmpty) ...[
                 const SizedBox(height: AppSpacing.lg),
-                Text(item.content, style: Theme.of(context).textTheme.bodyLarge),
+                Text(item.content, style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: MinikColors.text,
+                    )),
               ],
               if (item.example != null && item.example!.hasContent) ...[
                 const SizedBox(height: AppSpacing.lg),
@@ -345,7 +353,9 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                         const SizedBox(height: 8),
                         Text(
                           item.example!.meaning,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                color: MinikColors.text,
+                              ),
                         ),
                       ],
                       if (item.example!.reference.trim().isNotEmpty) ...[
@@ -434,7 +444,9 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                         Expanded(
                           child: Text(
                             point,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: MinikColors.text,
+                                ),
                           ),
                         ),
                       ],
@@ -474,7 +486,9 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                 ),
             ],
           ),
+            ),
           ),
+        ),
         );
       },
     );

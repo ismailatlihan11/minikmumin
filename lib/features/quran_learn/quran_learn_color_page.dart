@@ -14,7 +14,6 @@ import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_audio.dart';
 import 'quran_learn_progress.dart';
-import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
 const _paper = Color(0xFFFFFDF8);
@@ -34,7 +33,8 @@ void openQlColoring(
   if (glyph.isEmpty) return;
   Navigator.push(
     context,
-    quranLearnRoute(QlColoringPage(
+    MaterialPageRoute(
+      builder: (_) => QlColoringPage(
         arabic: glyph,
         title: title,
         prompt: prompt,
@@ -43,7 +43,8 @@ void openQlColoring(
         progressKind: progressKind,
         progressId: progressId,
         celebrationSubtitle: celebrationSubtitle,
-      )),
+      ),
+    ),
   );
 }
 
@@ -190,10 +191,12 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
                       padding: const EdgeInsets.all(6),
                       onTap: () => Navigator.push(
                         context,
-                        quranLearnRoute(QuranLearnColorPage(
+                        MaterialPageRoute(
+                          builder: (_) => QuranLearnColorPage(
                             pack: pack,
                             letter: letter,
-                          )),
+                          ),
+                        ),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -144,38 +144,44 @@ class _NavItem extends StatelessWidget {
 }
 
 Map<String, WidgetBuilder> minikRoutes() {
+  WidgetBuilder light(WidgetBuilder builder) {
+    return (context) => MinikTheme.lightSurfaces(builder(context));
+  }
+
   return {
     AppRoutes.minik: (_) => const MinikShell(),
-    AppRoutes.home: (_) => const MinikHomePage(),
-    AppRoutes.learn: (_) => const LearnPage(),
-    AppRoutes.learnWudu: (_) => const WuduFlowPage(),
-    AppRoutes.learnPrayer: (_) => const PrayerPage(),
-    AppRoutes.learnPrayerDuas: (_) => const MinikDuasPage(prayerOnly: true),
-    AppRoutes.learnDuas: (_) => const MinikDuasPage(),
-    AppRoutes.learnAsma: (_) => const AsmaPage(),
-    AppRoutes.learnProphets: (_) => const ProphetsPage(),
-    AppRoutes.learnProphetsBook: (_) =>
-        const PeygamberlerKitabiReaderPage(resume: true),
-    AppRoutes.learnProphetsBookRead: (_) =>
-        const PeygamberlerKitabiReaderPage(resume: true),
-    AppRoutes.learnStories: (_) => const StoriesPage(),
-    AppRoutes.learnMorality: (_) => const MoralityPage(),
-    AppRoutes.learnIlmihal: (_) => const IlmihalPage(),
-    AppRoutes.learnBasics: (_) => const BasicsPage(),
-    AppRoutes.learnQuran: (_) => const ElifbaChooserPage(),
-    AppRoutes.learnElifbaAdventure: (_) => const ElifbaHubPage(),
-    AppRoutes.learnProphetsStories: (_) => const ProphetsStoriesHubPage(),
-    AppRoutes.quiz: (_) => const QuizPage(),
-    AppRoutes.quran: (_) => const MinikQuranPage(),
-    AppRoutes.quranReader: (_) => const MushafReaderPage(resume: true),
-    AppRoutes.duas: (_) => const MinikDuasPage(),
-    AppRoutes.hadith: (_) => const HadithPage(),
-    AppRoutes.games: (_) => const GamesPage(),
-    AppRoutes.zikrCollect: (_) => const ZikrCollectPage(),
-    AppRoutes.zikr: (_) => const ZikrPage(),
-    AppRoutes.dailyTask: (_) => const DailyTaskPage(),
-    AppRoutes.favorites: (_) => const FavoritesPage(),
-    AppRoutes.profile: (_) => const MinikProfilePage(),
-    AppRoutes.settings: (_) => const SettingsPage(),
+    AppRoutes.home: light((_) => const MinikHomePage()),
+    AppRoutes.learn: light((_) => const LearnPage()),
+    AppRoutes.learnWudu: light((_) => const WuduFlowPage()),
+    AppRoutes.learnPrayer: light((_) => const PrayerPage()),
+    AppRoutes.learnPrayerDuas: light((_) => const MinikDuasPage(prayerOnly: true)),
+    AppRoutes.learnDuas: light((_) => const MinikDuasPage()),
+    AppRoutes.learnAsma: light((_) => const AsmaPage()),
+    AppRoutes.learnProphets: light((_) => const ProphetsPage()),
+    AppRoutes.learnProphetsBook: light(
+      (_) => const PeygamberlerKitabiReaderPage(resume: true),
+    ),
+    AppRoutes.learnProphetsBookRead: light(
+      (_) => const PeygamberlerKitabiReaderPage(resume: true),
+    ),
+    AppRoutes.learnStories: light((_) => const StoriesPage()),
+    AppRoutes.learnMorality: light((_) => const MoralityPage()),
+    AppRoutes.learnIlmihal: light((_) => const IlmihalPage()),
+    AppRoutes.learnBasics: light((_) => const BasicsPage()),
+    AppRoutes.learnQuran: light((_) => const ElifbaChooserPage()),
+    AppRoutes.learnElifbaAdventure: light((_) => const ElifbaHubPage()),
+    AppRoutes.learnProphetsStories: light((_) => const ProphetsStoriesHubPage()),
+    AppRoutes.quiz: light((_) => const QuizPage()),
+    AppRoutes.quran: light((_) => const MinikQuranPage()),
+    AppRoutes.quranReader: light((_) => const MushafReaderPage(resume: true)),
+    AppRoutes.duas: light((_) => const MinikDuasPage()),
+    AppRoutes.hadith: light((_) => const HadithPage()),
+    AppRoutes.games: light((_) => const GamesPage()),
+    AppRoutes.zikrCollect: light((_) => const ZikrCollectPage()),
+    AppRoutes.zikr: light((_) => const ZikrPage()),
+    AppRoutes.dailyTask: light((_) => const DailyTaskPage()),
+    AppRoutes.favorites: light((_) => const FavoritesPage()),
+    AppRoutes.profile: light((_) => const MinikProfilePage()),
+    AppRoutes.settings: light((_) => const SettingsPage()),
   };
 }

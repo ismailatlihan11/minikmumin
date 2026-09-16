@@ -8,9 +8,8 @@
     "license": "MIT"
   },
   "surah_source": {
-    "name": "Yasser Al-Dosari (Yasir ed-Devseri)",
-    "id": "yasser_ad_dussary",
-    "note": "Full short-surah tilavet from Quranicaudio yasser_ad-dussary; per-ayah from EveryAyah Yasser_Ad-Dussary_128kbps"
+    "name": "Husary Muallim via bundled assets/audio/quran",
+    "license": "UNVERIFIED (public recitation API)"
   },
   "items": [
     {
@@ -336,122 +335,122 @@
       "id": "surah_103",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_103.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/103.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "8a4ded2e9f6aed2b678a0fc21255d152286d621967fffae83c54509759abc4a6",
-      "bytes": 282219
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "e0ccdb99cefff201157d08d6f704bc0771125a80f03e45ff75e59971c188f207",
+      "bytes": 1027714
     },
     {
       "id": "surah_105",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_105.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/105.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "2d7c4fc199e774d9ee8689ebd0ff47119ac580c316645d04cfede9564be4a082",
-      "bytes": 398830
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "9da7ef8932d83ac11c5cfe5e1059ec4e01dd0f42903ca9ca817e6e1828eeee86",
+      "bytes": 1368691
     },
     {
       "id": "surah_106",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_106.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/106.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "94e6446fed18c0ebad05f40801243245a7675f56f5dbd7100b0676ea410d5687",
-      "bytes": 331538
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "a596bf39865014e4c7aca4910df03d9f50f854657d7d52a83753a1f961143e7e",
+      "bytes": 1269957
     },
     {
       "id": "surah_107",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_107.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/107.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "2cffa55204e69e129e04f3d7a8d9763345ffbfa7933a9f35ee70b4afcc668026",
-      "bytes": 434774
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "03044667de6325a27ffddbb7d0b080b1d233e28d93a50dc7af79aaeb792534e1",
+      "bytes": 1510522
     },
     {
       "id": "surah_108",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_108.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/108.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "5b5bcbb5f88a1f2a185e57060bbd3f78ee479f28560feb93a40f06efaaef465c",
-      "bytes": 210330
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "2166773dd780542e296537c367cfcb4772d8b3e03916e49fb403028edb5a9c94",
+      "bytes": 981282
     },
     {
       "id": "surah_109",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_109.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/109.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "8bdae07af1cce9cc481c01da2ded071fab570cc695b67fed4b6ed1a238f815ce",
-      "bytes": 578552
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "80c4ed4ab86736d49ed40934eb2cd72604fad39344b5637843b9c66e33cfd5ac",
+      "bytes": 1457816
     },
     {
       "id": "surah_110",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_110.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/110.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "5e596ad8d9815481fe8a2c9977ffb93b6d7790ec69728fc8b9360f6b627e138b",
-      "bytes": 331956
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "5737695302bbff6a9fc5aa7341eac70b51f5bd0c51b5123d25dec2e5441735e8",
+      "bytes": 1148209
     },
     {
       "id": "surah_111",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_111.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/111.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "501e2a6079e1764a4e55872ded48745a82f7a79cc1f5c9a55d90d1b1cf89a496",
-      "bytes": 397576
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "5dea579527cabfca314c1d5092483e1c475d32df5ea5d78cf71f47f819657c6e",
+      "bytes": 1254479
     },
     {
       "id": "surah_112",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_112.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/112.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "f3f7dd39ce01407711be853186798811ace680cf40a27aa94cf4a911cc2fceac",
-      "bytes": 191104
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "e1c026ac5aa8dd08160c9511a2873e70c03b39f4b84755a79168677203b3e9b2",
+      "bytes": 936095
     },
     {
       "id": "surah_113",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_113.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/113.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "c94830b183c783bc9d63662e08ecf877d0d6035eaf00c306c656b09b250b3247",
-      "bytes": 340734
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "14b4f09f18e3b65d2c9ddbefc19b73957e4beb6748b8d9e16f474ed0c39944cc",
+      "bytes": 1118087
     },
     {
       "id": "surah_114",
       "category": "surah",
       "path": "assets/audio/quran_learn/surahs/surah_114.mp3",
-      "source": "yasser_ad_dussary",
-      "license": "UNVERIFIED (public recitation CDN; no separate license file found)",
-      "source_url": "https://download.quranicaudio.com/quran/yasser_ad-dussary/114.mp3",
-      "reader": "Yasser Al-Dosari (Yasir ed-Devseri)",
-      "sha256": "4f726822ffcfe20434a456a18d2beba52ccdc9a7b5dd570d5bcfbe3129f6d664",
-      "bytes": 580224
+      "source": "husary_muallim",
+      "license": "UNVERIFIED (public recitation API / Quran.com)",
+      "source_url": "https://quran.com",
+      "reader": "Mahmoud Khalil Al-Husary (Muallim)",
+      "sha256": "e154f910b8a468e81322527d69a4e3bfe4905f2a6c206b5cbc6094b0f1870763",
+      "bytes": 1390030
     }
   ],
   "still_tts": [

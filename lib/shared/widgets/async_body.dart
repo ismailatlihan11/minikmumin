@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../app/theme/app_theme.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
@@ -60,19 +62,25 @@ class DetailScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title), actions: actions),
-      body: SelectionArea(
-        child: ListView(
-          padding: AppSpacing.page,
-          children: [
-            MinikCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: children,
-              ),
+    return MinikTheme.lightSurfaces(
+      Scaffold(
+        backgroundColor: const Color(0xFFF4F7F2),
+        appBar: AppBar(title: Text(title), actions: actions),
+        body: SelectionArea(
+          child: DefaultTextStyle.merge(
+            style: const TextStyle(color: MinikColors.text),
+            child: ListView(
+              padding: AppSpacing.page,
+              children: [
+                MinikCard(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: children,
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

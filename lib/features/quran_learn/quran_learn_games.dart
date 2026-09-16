@@ -136,7 +136,9 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
               leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
-                quranLearnRoute(const QuranLearnColorHubPage()),
+                MaterialPageRoute(
+                  builder: (_) => const QuranLearnColorHubPage(),
+                ),
               ),
             ),
             ContentTile(
@@ -145,7 +147,9 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
               leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
-                quranLearnRoute(const QuranLearnMemoryPage()),
+                MaterialPageRoute(
+                  builder: (_) => const QuranLearnMemoryPage(),
+                ),
               ),
             ),
             QlGamesStrip(games: pack.games, title: 'Tüm oyunlar'),
@@ -211,7 +215,9 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
                 ),
                 onTap: () => Navigator.push(
                   context,
-                  quranLearnRoute(const QuranLearnColorHubPage()),
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnColorHubPage(),
+                  ),
                 ),
               ),
               ContentTile(
@@ -223,7 +229,9 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
                 ),
                 onTap: () => Navigator.push(
                   context,
-                  quranLearnRoute(const QuranLearnMemoryPage()),
+                  MaterialPageRoute(
+                    builder: (_) => const QuranLearnMemoryPage(),
+                  ),
                 ),
               ),
               if (games.isNotEmpty)

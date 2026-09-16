@@ -51,102 +51,99 @@ class HomeHeroHeader extends StatelessWidget {
     final top = MediaQuery.paddingOf(context).top;
     return Stack(
       fit: StackFit.expand,
+      clipBehavior: Clip.hardEdge,
       children: [
-        Image.asset(
-          'assets/images/home/home_hero.png',
-          fit: BoxFit.cover,
-          alignment: const Alignment(0.35, 0.15),
+        // Mirror art so kids sit on the left, clear sky on the right.
+        Transform.flip(
+          flipX: true,
+          child: Image.asset(
+            'assets/images/home/home_hero.png',
+            fit: BoxFit.cover,
+            alignment: const Alignment(0.2, 0.15),
+          ),
         ),
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0x66000000),
-                  Color(0x00000000),
-                  Color(0x00000000),
-                ],
-                stops: [0, 0.28, 1],
-              ),
-            ),
-          ),
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-                  Color(0xCCEAF6FF),
-                  Color(0x66EAF6FF),
-                  Color(0x00EAF6FF),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(12, top + 4, 12, 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    HomeRoundButton(icon: Icons.menu_rounded, onTap: onMenu),
-                    const Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                              fontFamily: AssetPaths.arabicFontFamily,
-                              fontSize: 15,
-                              color: Colors.white,
-                              height: 1.15,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0x66000000),
-                                  blurRadius: 8,
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2),
-                          Text(
-                            'الْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ',
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontFamily: AssetPaths.arabicFontFamily,
-                              fontSize: 12,
-                              color: Colors.white,
-                              height: 1.2,
-                              shadows: [
-                                Shadow(
-                                  color: Color(0x66000000),
-                                  blurRadius: 8,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    HomeRoundButton(
-                      icon: Icons.settings_rounded,
-                      onTap: onSettings,
-                    ),
-                  ],
-                ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0x33000000),
+                Color(0x00000000),
+                Color(0x00000000),
               ],
+              stops: [0, 0.22, 1],
             ),
           ),
-        ],
-      );
+        ),
+        // Soft wash over the sky (now on the right) for Arabic contrast.
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+              colors: [
+                Color(0xCCEAF6FF),
+                Color(0x66EAF6FF),
+                Color(0x00EAF6FF),
+              ],
+              stops: [0, 0.45, 1],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.fromLTRB(12, top + 4, 12, 8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HomeRoundButton(icon: Icons.menu_rounded, onTap: onMenu),
+              const Spacer(),
+              // Arabic sits in the right sky, left of settings — clear of kids.
+              const Padding(
+                padding: EdgeInsets.only(top: 2, right: 8),
+                child: SizedBox(
+                  width: 196,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                        textAlign: TextAlign.center,
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                          fontFamily: AssetPaths.arabicFontFamily,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFF0B0B0B),
+                          height: 1.2,
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      Text(
+                        'الْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ',
+                        textAlign: TextAlign.center,
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                          fontFamily: AssetPaths.arabicFontFamily,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF0B0B0B),
+                          height: 1.25,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              HomeRoundButton(
+                icon: Icons.settings_rounded,
+                onTap: onSettings,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -181,23 +178,24 @@ class HomeWelcomeBanner extends StatelessWidget {
           child: Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, top + 52, 20, 0),
+              // Sit in the mid band under the top chrome, clear of Arabic on the right.
+              padding: EdgeInsets.fromLTRB(72, top + 78, 72, 0),
               child: Material(
                 color: const Color(0xF2FFFFFF),
                 elevation: 6,
                 shadowColor: const Color(0x33000000),
                 borderRadius: BorderRadius.circular(AppRadius.pill),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
                         Icons.favorite_rounded,
-                        size: 18,
+                        size: 16,
                         color: Colors.pink.shade400,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: 6),
                       Flexible(
                         child: Text(
                           _text,
@@ -205,7 +203,7 @@ class HomeWelcomeBanner extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontFamily: 'NotoSans',
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.w800,
                             color: Color(0xFF1E392F),
                             height: 1.1,

@@ -5,6 +5,7 @@ import '../../app/constants/content_assets.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../app/theme/app_theme.dart';
 import '../../data/models/lessons.dart';
 import '../../data/models/quiz.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -61,8 +62,8 @@ class _IlmihalPageState extends State<IlmihalPage> {
                   ),
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => IlmihalCategoryPage(
+                    MinikTheme.lightRoute(
+                      IlmihalCategoryPage(
                         category: category,
                         lessons: catalog.lessonsFor(category.id),
                       ),
@@ -76,8 +77,8 @@ class _IlmihalPageState extends State<IlmihalPage> {
                   leading: const Icon(Icons.quiz_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => _IlmihalQuizPage(questions: catalog.quiz),
+                    MinikTheme.lightRoute(
+                      _IlmihalQuizPage(questions: catalog.quiz),
                     ),
                   ),
                 ),
@@ -112,8 +113,8 @@ class IlmihalCategoryPage extends StatelessWidget {
               subtitle: lesson.summary,
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => IlmihalLessonPage(lesson: lesson),
+                MinikTheme.lightRoute(
+                  IlmihalLessonPage(lesson: lesson),
                 ),
               ),
             ),

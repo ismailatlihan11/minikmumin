@@ -231,7 +231,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
           return Column(
             children: [
               SizedBox(
-                height: topInset + 132,
+                height: topInset + 148,
                 child: HomeHeroHeader(
                   onMenu: () => _scaffoldKey.currentState?.openDrawer(),
                   onSettings: () async {
