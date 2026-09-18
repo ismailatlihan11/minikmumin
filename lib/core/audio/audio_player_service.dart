@@ -3,16 +3,37 @@ import 'dart:async';
 import 'package:just_audio/just_audio.dart';
 
 class AudioPlayerService {
-  AudioPlayerService({AudioPlayer? player}) : _player = player ?? AudioPlayer();
+  AudioPlayerService({AudioPlayer? player}) : _player = player ?? AudioPlayer() {
+    _live.add(this);
+    _completionSub = _player.processingStateStream.listen((state) {
+      if (state == ProcessingState.completed) {
+        unawaited(_resetAfterComplete());
+      }
+    });
+  }
+
+  static final Set<AudioPlayerService> _live = <AudioPlayerService>{};
+  static AudioPlayerService? _active;
 
   final AudioPlayer _player;
+  StreamSubscription<ProcessingState>? _completionSub;
   String? _currentAsset;
 
   String? get currentAsset => _currentAsset;
 
+  /// Stops every other live player so only [this] can make sound.
+  Future<void> _claimExclusive() async {
+    _active = this;
+    final others = _live.where((other) => !identical(other, this)).toList();
+    for (final other in others) {
+      await other._stopLocal();
+    }
+  }
+
   Future<bool> playAsset(String path, {bool waitUntilDone = true}) async {
     if (path.trim().isEmpty) return false;
     try {
+      await _claimExclusive();
       await _player.stop();
       _currentAsset = path;
       await _player.setAsset(path);
@@ -33,6 +54,7 @@ class AudioPlayerService {
   Future<Duration?> prepareAsset(String path) async {
     if (path.trim().isEmpty) return null;
     try {
+      await _claimExclusive();
       await _player.stop();
       final duration = await _player.setAsset(path);
       return duration ?? _player.duration;
@@ -43,6 +65,7 @@ class AudioPlayerService {
 
   Future<void> resume() async {
     try {
+      await _claimExclusive();
       unawaited(_player.play().then((_) {}, onError: (_, __) {}));
     } catch (_) {}
   }
@@ -59,7 +82,8 @@ class AudioPlayerService {
     } catch (_) {}
   }
 
-  Stream<bool> get playingStream => _player.playingStream;
+  /// True only while audio is actively playing — not after natural completion.
+  Stream<bool> get playingStream => _player.playerStateStream.map(_isActivelyPlaying);
 
   Stream<Duration> get positionStream => _player.positionStream;
 
@@ -69,25 +93,39 @@ class AudioPlayerService {
 
   Duration? get duration => _player.duration;
 
-  bool get isPlaying => _player.playing;
+  bool get isPlaying => _isActivelyPlaying(_player.playerState);
+
+  bool _isActivelyPlaying(PlayerState state) =>
+      state.playing && state.processingState != ProcessingState.completed;
 
   Future<bool> toggleAsset(String path) async {
     if (path.trim().isEmpty) return false;
-    if (_player.playing) {
+    if (isPlaying && _currentAsset == path) {
       await stop();
       return true;
     }
     return playAsset(path);
   }
 
-  Future<void> stop() async {
+  Future<void> _resetAfterComplete() async {
+    await _stopLocal();
+  }
+
+  Future<void> _stopLocal() async {
     _currentAsset = null;
+    if (identical(_active, this)) _active = null;
     try {
       await _player.stop();
     } catch (_) {}
   }
 
+  Future<void> stop() => _stopLocal();
+
   Future<void> dispose() async {
+    _live.remove(this);
+    if (identical(_active, this)) _active = null;
+    await _completionSub?.cancel();
+    _completionSub = null;
     try {
       await _player.dispose();
     } catch (_) {}

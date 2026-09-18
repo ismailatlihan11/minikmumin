@@ -23,7 +23,8 @@ class ListenButton extends StatelessWidget {
       stream: audio.playingStream,
       initialData: audio.isPlaying,
       builder: (context, snapshot) {
-        final playing = snapshot.data ?? false;
+        final playing =
+            (snapshot.data ?? false) && audio.currentAsset == path;
         final icon = playing ? Icons.stop_rounded : Icons.volume_up_rounded;
         final label = playing ? 'Durdur' : 'Dinle';
         if (iconStyle) {

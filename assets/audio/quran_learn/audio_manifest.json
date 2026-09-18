@@ -8095,10 +8095,10 @@
       "language": "ar-XA",
       "rate": 0.85,
       "format": "mp3",
-      "sha256": "14d41a44f2d0f8e64dacf01515591469a8c8c0616750fe245fd1b55b1f3b94be",
-      "generated_at": "2026-08-25T10:45:43.804532+00:00",
-      "kind": "educational_tts",
-      "note": "Matches namaz_dualari kelime_i_sehadet arabic"
+      "sha256": "2b780db07ead8affd50d7b8cdc67b430e56a4af643fcd475851237cc448905c0",
+      "generated_at": "2026-09-18T19:28:00+00:00",
+      "kind": "human_recitation_crop",
+      "note": "Cropped from tahiyyat Hisn Muslim 52; matches abdühû ve resûlüh wording"
     },
     {
       "id": "prayer_subhaneke",

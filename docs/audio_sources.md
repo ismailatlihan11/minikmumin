@@ -529,14 +529,15 @@ License: public recitation CDN. A separate commercial license document was not i
 
 - Content: Kelime-i Şehadet (Islamic declaration of faith / Shahada)
 - Surah / ayah: —
-- Reader: Wikimedia Commons recording (`iSurrender`)
-- Source: [File:Shahadah.ogg](https://commons.wikimedia.org/wiki/File:Shahadah.ogg) MP3 transcode
-- Source URL: https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Shahadah.ogg/Shahadah.ogg.mp3
-- License: Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0)
-- Download date: 2026-09-16
-- Size: ~181 KB (~7 s)
+- Reader: Hisn al-Muslim recitation (same clip family as tahiyyat)
+- Source: Cropped from `assets/audio/prayer/tahiyyat.mp3` (Hisnul Muslim 52 / `52hm.mp3`) — final tashahhud phrase only
+- Source URL: https://github.com/sheikhhanif/Hisnul_Muslim_Database
+- License: UNVERIFIED (same Hisn al-Muslim dawah collection as tahiyyat)
+- Download date: 2026-09-18
+- Size: ~124 KB (~7.9 s)
 - Status: DOWNLOADED
-- Note: Real human recitation, not TTS. Spoken form is the common shahada (`…محمدًا رسول الله`). On-screen Diyanet wording uses `عبدُه ورسوله`; both are standard.
+- Note: Matches on-screen Diyanet wording: أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ (“…Muhammeden abdühû ve resûlüh”). Replaces Wikimedia short form that omitted عبدُه.
+
 
 ### `assets/audio/prayer/subhaneke.mp3`
 
