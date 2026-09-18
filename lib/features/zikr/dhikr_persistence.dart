@@ -16,6 +16,8 @@ class DhikrPersistenceService {
   static const lastUsedKey = 'dhkr_last_used';
   static const settingsKey = 'dhkr_settings';
   static const inProgressKey = 'dhkr_in_progress';
+  static const orderKey = 'dhkr_order';
+  static const hiddenKey = 'dhkr_hidden';
 
   Future<SharedPreferences> _ensure() async {
     return _prefs ??= await SharedPreferences.getInstance();
@@ -72,6 +74,11 @@ class DhikrPersistenceService {
     await prefs.setString(lastUsedKey, id);
   }
 
+  Future<void> clearLastUsedId() async {
+    final prefs = await _ensure();
+    await prefs.remove(lastUsedKey);
+  }
+
   Future<DhikrSettings> loadSettings() async {
     final prefs = await _ensure();
     final raw = prefs.getString(settingsKey);
@@ -102,6 +109,28 @@ class DhikrPersistenceService {
       return;
     }
     await prefs.setString(inProgressKey, jsonEncode(progress.toJson()));
+  }
+
+  Future<List<String>> loadOrderIds() async {
+    final prefs = await _ensure();
+    final raw = prefs.getStringList(orderKey);
+    return raw == null ? const [] : List<String>.from(raw);
+  }
+
+  Future<void> saveOrderIds(List<String> ids) async {
+    final prefs = await _ensure();
+    await prefs.setStringList(orderKey, ids);
+  }
+
+  Future<List<String>> loadHiddenIds() async {
+    final prefs = await _ensure();
+    final raw = prefs.getStringList(hiddenKey);
+    return raw == null ? const [] : List<String>.from(raw);
+  }
+
+  Future<void> saveHiddenIds(List<String> ids) async {
+    final prefs = await _ensure();
+    await prefs.setStringList(hiddenKey, ids);
   }
 
   Future<List<T>> _decodeList<T>(

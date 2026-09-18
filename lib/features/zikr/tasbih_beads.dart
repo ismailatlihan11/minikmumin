@@ -29,12 +29,17 @@ class TasbihBeadsView extends StatefulWidget {
 
 class _TasbihBeadsViewState extends State<TasbihBeadsView> {
   var _animate = false;
+  var _open = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) setState(() => _animate = true);
+      if (!mounted) return;
+      setState(() {
+        _animate = true;
+        _open = true;
+      });
     });
   }
 
@@ -77,21 +82,31 @@ class _TasbihBeadsViewState extends State<TasbihBeadsView> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 18),
                 child: TweenAnimationBuilder<double>(
-                  tween: Tween<double>(begin: 0, end: drawn.toDouble()),
-                  duration: _animate && widget.burst <= 0.05
-                      ? const Duration(milliseconds: 280)
-                      : Duration.zero,
+                  tween: Tween<double>(begin: 0, end: _open ? 1 : 0),
+                  duration: const Duration(seconds: 2),
                   curve: Curves.easeOutCubic,
-                  builder: (context, pulledAnim, _) {
-                    return CustomPaint(
-                      painter: _TesbihPainter(
-                        beadCount: count,
-                        pulled: pulledAnim,
-                        firstNumber: widget.firstNumber,
-                        maxNumber: widget.maxNumber ??
-                            (widget.firstNumber + count - 1),
-                        slide: TasbihBeadsView.beadSlide,
-                      ),
+                  builder: (context, open, _) {
+                    return TweenAnimationBuilder<double>(
+                      tween: Tween<double>(begin: 0, end: drawn.toDouble()),
+                      duration: _animate &&
+                              open >= 0.98 &&
+                              widget.burst <= 0.05
+                          ? const Duration(milliseconds: 280)
+                          : Duration.zero,
+                      curve: Curves.easeOutCubic,
+                      builder: (context, pulledAnim, _) {
+                        return CustomPaint(
+                          painter: _TesbihPainter(
+                            beadCount: count,
+                            pulled: pulledAnim,
+                            firstNumber: widget.firstNumber,
+                            maxNumber: widget.maxNumber ??
+                                (widget.firstNumber + count - 1),
+                            slide: TasbihBeadsView.beadSlide,
+                            open: open,
+                          ),
+                        );
+                      },
                     );
                   },
                 ),
@@ -138,16 +153,6 @@ const _ambers = <Color>[
   Color(0xFFA05822),
 ];
 
-/// Çekilen taneler: tatlı yeşil.
-const _pulledGreens = <Color>[
-  Color(0xFF7DCEA0),
-  Color(0xFF6BCB8F),
-  Color(0xFF8FD4A8),
-  Color(0xFF5FBF86),
-  Color(0xFF9AD9B0),
-  Color(0xFF74C99A),
-];
-
 class _TesbihPainter extends CustomPainter {
   const _TesbihPainter({
     required this.beadCount,
@@ -155,6 +160,7 @@ class _TesbihPainter extends CustomPainter {
     required this.firstNumber,
     required this.maxNumber,
     required this.slide,
+    required this.open,
   });
 
   final int beadCount;
@@ -162,16 +168,23 @@ class _TesbihPainter extends CustomPainter {
   final int firstNumber;
   final int maxNumber;
   final double slide;
+  /// 0 = kapalı (taneler imameye yığılmış), 1 = açık halka.
+  final double open;
 
   @override
   void paint(Canvas canvas, Size size) {
+    final openT = open.clamp(0.0, 1.0);
     final cx = size.width / 2;
     final cy = size.height / 2 - 6;
-    final rx = size.width / 2 - 24;
-    final ry = size.height / 2 - 28;
-    final radius = _beadRadius(rx, ry, beadCount);
+    final fullRx = size.width / 2 - 24;
+    final fullRy = size.height / 2 - 28;
+    // Kapalıyken küçük halka, açılırken tam boyuta büyür.
+    final scale = 0.22 + 0.78 * openT;
+    final rx = fullRx * scale;
+    final ry = fullRy * scale;
+    final radius = _beadRadius(fullRx, fullRy, beadCount);
     final imameR = radius * 1.55;
-    final gap = ((imameR * 0.72 + radius * 0.95) / rx * 2).clamp(0.28, 0.58);
+    final gap = ((imameR * 0.72 + radius * 0.95) / fullRx * 2).clamp(0.28, 0.58);
     final start = math.pi / 2 + gap / 2;
     final sweep = 2 * math.pi - gap;
     final pulledN = pulled.clamp(0.0, beadCount.toDouble());
@@ -185,10 +198,11 @@ class _TesbihPainter extends CustomPainter {
         start: start,
         sweep: sweep,
         pulled: pulledN,
+        open: openT,
       );
       final counted = i < pulledN;
       final isNext = i == pulledN.floor() && pulledN < beadCount;
-      var r = radius;
+      var r = radius * (0.85 + 0.15 * openT);
       if (counted && i == highlight) r *= 1.04;
       if (isNext) r *= 1.05;
       final center = Offset(
@@ -200,22 +214,20 @@ class _TesbihPainter extends CustomPainter {
         center,
         r,
         angle,
-        counted
-            ? _pulledGreens[i % _pulledGreens.length]
-            : _ambers[i % _ambers.length],
+        _ambers[i % _ambers.length],
         dimmed: false,
-        pulled: counted,
+        fingerprint: counted,
       );
       final label = firstNumber + i;
-      if (label >= 1 && label <= maxNumber) {
+      if (openT > 0.55 && label >= 1 && label <= maxNumber) {
         _drawNumber(canvas, center, r, label, pulled: counted);
       }
-      if ((isNext || i == highlight) && !counted) {
+      if (openT > 0.85 && (isNext || i == highlight) && !counted) {
         _drawSpark(canvas, center + Offset(r * 0.55, -r * 0.7), r * 0.22);
       }
     }
 
-    _drawImame(canvas, Offset(cx, cy + ry), imameR);
+    _drawImame(canvas, Offset(cx, cy + ry), imameR * (0.9 + 0.1 * openT));
   }
 
   double _beadAngle({
@@ -223,27 +235,33 @@ class _TesbihPainter extends CustomPainter {
     required double start,
     required double sweep,
     required double pulled,
+    required double open,
   }) {
     final restT = beadCount == 1 ? 0.5 : i / (beadCount - 1);
     final rest = start + sweep * restT;
     final amount = slide.clamp(0.0, 1.0);
-    if (amount <= 0 || beadCount <= 1) return rest;
-    final spacing = sweep / (beadCount - 1);
-    final packSpacing = spacing * (1 - amount * 0.7);
-    final packedEnd = pulled * packSpacing;
-    final double packed;
-    if (i < pulled) {
-      packed = start + i * packSpacing;
-    } else {
-      final remainCount = beadCount - pulled;
-      final remainSweep = sweep - packedEnd;
-      if (remainCount <= 1) {
-        packed = start + packedEnd + remainSweep * 0.5;
+    double packed = rest;
+    if (amount > 0 && beadCount > 1) {
+      final spacing = sweep / (beadCount - 1);
+      final packSpacing = spacing * (1 - amount * 0.7);
+      final packedEnd = pulled * packSpacing;
+      if (i < pulled) {
+        packed = start + i * packSpacing;
       } else {
-        packed = start + packedEnd + (i - pulled) / (remainCount - 1) * remainSweep;
+        final remainCount = beadCount - pulled;
+        final remainSweep = sweep - packedEnd;
+        if (remainCount <= 1) {
+          packed = start + packedEnd + remainSweep * 0.5;
+        } else {
+          packed =
+              start + packedEnd + (i - pulled) / (remainCount - 1) * remainSweep;
+        }
       }
     }
-    return rest + (packed - rest) * amount;
+    final openAngle = rest + (packed - rest) * amount;
+    // Kapalı: tüm taneler imamenin yanına yığılır.
+    final closed = math.pi / 2 + (i - (beadCount - 1) / 2) * 0.028;
+    return closed + (openAngle - closed) * open;
   }
 
   @override
@@ -252,7 +270,8 @@ class _TesbihPainter extends CustomPainter {
         oldDelegate.pulled != pulled ||
         oldDelegate.firstNumber != firstNumber ||
         oldDelegate.maxNumber != maxNumber ||
-        oldDelegate.slide != slide;
+        oldDelegate.slide != slide ||
+        oldDelegate.open != open;
   }
 }
 
@@ -344,19 +363,13 @@ void _paintTesbihBead(
   double angle,
   Color color, {
   required bool dimmed,
-  bool pulled = false,
+  bool fingerprint = false,
   bool smile = false,
 }) {
   final body = dimmed ? Color.lerp(color, const Color(0xFF7A5A38), 0.35)! : color;
-  final highlight = pulled
-      ? const Color(0xFFE8FFF0)
-      : const Color(0xFFFFE3B0);
-  final shade = pulled
-      ? const Color(0xFF1F5A38)
-      : const Color(0xFF3A1C08);
-  final rim = pulled
-      ? const Color(0xFF2E6B4A)
-      : const Color(0xFF2A1608);
+  const highlight = Color(0xFFFFE3B0);
+  const shade = Color(0xFF3A1C08);
+  const rim = Color(0xFF2A1608);
   canvas.save();
   canvas.translate(c.dx, c.dy);
   canvas.rotate(angle + math.pi / 2);
@@ -411,7 +424,7 @@ void _paintTesbihBead(
     );
     canvas.drawOval(
       Rect.fromCenter(center: Offset.zero, width: r * 0.12, height: r * 0.08),
-      Paint()..color = pulled ? const Color(0xFFC8F0D8) : const Color(0xFFC4A36A),
+      Paint()..color = const Color(0xFFC4A36A),
     );
   }
   if (!dimmed) {
@@ -424,9 +437,44 @@ void _paintTesbihBead(
       Paint()..color = const Color(0x66FFFFFF),
     );
   }
+  if (fingerprint) {
+    _drawFingerprintMark(canvas, r);
+  }
   canvas.restore();
   if (smile) {
     _drawBeadSmile(canvas, c, r);
+  }
+}
+
+/// Very small fingerprint smudge on a pulled bead (local bead space).
+void _drawFingerprintMark(Canvas canvas, double r) {
+  final center = Offset(r * 0.12, -r * 0.08);
+  final pad = Paint()
+    ..color = const Color(0x552A1608)
+    ..style = PaintingStyle.fill;
+  canvas.drawOval(
+    Rect.fromCenter(
+      center: center,
+      width: r * 0.28,
+      height: r * 0.36,
+    ),
+    pad,
+  );
+  final ridge = Paint()
+    ..color = const Color(0x663A1C08)
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = math.max(0.45, r * 0.035)
+    ..strokeCap = StrokeCap.round;
+  for (var i = 0; i < 3; i++) {
+    final w = r * (0.1 + i * 0.045);
+    final h = r * (0.14 + i * 0.055);
+    canvas.drawArc(
+      Rect.fromCenter(center: center, width: w * 2, height: h * 2),
+      -math.pi * 0.75,
+      math.pi * 0.95,
+      false,
+      ridge,
+    );
   }
 }
 

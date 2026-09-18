@@ -33,6 +33,7 @@ class Dhikr {
     this.dailySessionTarget = 0,
     this.sessionStartedAt,
     this.isCustom = false,
+    this.contentEdited = false,
   });
 
   final String id;
@@ -64,6 +65,8 @@ class Dhikr {
   final int dailySessionTarget;
   final DateTime? sessionStartedAt;
   final bool isCustom;
+  /// User edited title/text/target; catalog merge must not overwrite.
+  final bool contentEdited;
 
   double get uiProgress {
     if (targetCount <= 0) return 0;
@@ -100,6 +103,7 @@ class Dhikr {
     DateTime? sessionStartedAt,
     bool clearSessionStartedAt = false,
     bool? isCustom,
+    bool? contentEdited,
   }) {
     return Dhikr(
       id: id,
@@ -133,6 +137,7 @@ class Dhikr {
           ? null
           : (sessionStartedAt ?? this.sessionStartedAt),
       isCustom: isCustom ?? this.isCustom,
+      contentEdited: contentEdited ?? this.contentEdited,
     );
   }
 
@@ -167,6 +172,7 @@ class Dhikr {
       dailySessionTarget: JsonMap.integer(json['dailySessionTarget']).clamp(0, 1000),
       sessionStartedAt: _date(json['sessionStartedAt']),
       isCustom: JsonMap.flag(json['isCustom']),
+      contentEdited: JsonMap.flag(json['contentEdited']),
     );
   }
 
@@ -200,6 +206,7 @@ class Dhikr {
         'dailySessionTarget': dailySessionTarget,
         'sessionStartedAt': sessionStartedAt?.toIso8601String(),
         'isCustom': isCustom,
+        'contentEdited': contentEdited,
       };
 
   static DateTime? _date(dynamic value) {

@@ -85,6 +85,7 @@ class _ZikrFormPageState extends State<ZikrFormPage> {
           incrementStep: _step,
           vibrationEvery: _vibrationEvery,
           soundEvery: _soundEvery,
+          contentEdited: true,
         ),
       );
     }

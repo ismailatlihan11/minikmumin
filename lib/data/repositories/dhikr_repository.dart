@@ -46,6 +46,14 @@ class DhikrRepository {
   Dhikr _withSavedProgress(Dhikr catalog, Dhikr? saved) {
     if (saved == null) return catalog;
     if (saved.isCustom) return saved;
+    if (saved.contentEdited) {
+      return saved.copyWith(
+        audioAsset:
+            catalog.audioAsset.isEmpty ? saved.audioAsset : catalog.audioAsset,
+        imageAsset:
+            catalog.imageAsset.isEmpty ? saved.imageAsset : catalog.imageAsset,
+      );
+    }
     return saved.copyWith(
       title: catalog.title,
       arabic: catalog.arabic,
@@ -53,7 +61,12 @@ class DhikrRepository {
       meaning: catalog.meaning,
       description: catalog.description,
       category: catalog.category,
+      targetCount: catalog.targetCount,
       colorTheme: catalog.colorTheme,
+      vibrationEvery: catalog.vibrationEvery,
+      soundEvery: catalog.soundEvery,
+      incrementStep: catalog.incrementStep,
+      dailySessionTarget: catalog.dailySessionTarget,
       audioAsset: catalog.audioAsset.isEmpty ? saved.audioAsset : catalog.audioAsset,
       imageAsset: catalog.imageAsset.isEmpty ? saved.imageAsset : catalog.imageAsset,
     );

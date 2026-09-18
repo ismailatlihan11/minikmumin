@@ -29,6 +29,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
     with SingleTickerProviderStateMixin {
   final _phraseAudio = AudioPlayerService();
   var _locked = false;
+  var _showDetails = false;
   late final AnimationController _burst;
 
   @override
@@ -218,21 +219,53 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
                 ListView(
           padding: AppSpacing.page,
           children: [
-            if (dhikr.arabic.isNotEmpty) ArabicText(dhikr.arabic, fontSize: 32),
-            if (dhikr.transliteration.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.sm),
+            if (dhikr.transliteration.isNotEmpty)
               Text(
                 dhikr.transliteration,
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      color: MinikColors.darkGreen,
+                      height: 1.35,
+                    ),
+              )
+            else if (dhikr.arabic.isNotEmpty)
+              ArabicText(dhikr.arabic, fontSize: 32),
+            if (_hasDetails(dhikr)) ...[
+              const SizedBox(height: AppSpacing.sm),
+              Center(
+                child: TextButton.icon(
+                  onPressed: () => setState(() => _showDetails = !_showDetails),
+                  icon: Icon(
+                    _showDetails
+                        ? Icons.expand_less_rounded
+                        : Icons.expand_more_rounded,
+                  ),
+                  label: Text(_showDetails ? 'Detayları gizle' : 'Detay göster'),
+                ),
               ),
-            ],
-            if (dhikr.meaning.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.xs),
-              SelectableText(
-                dhikr.meaning,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyLarge,
+              AnimatedSize(
+                duration: const Duration(milliseconds: 240),
+                curve: Curves.easeOutCubic,
+                alignment: Alignment.topCenter,
+                child: _showDetails
+                    ? Column(
+                        children: [
+                          if (dhikr.arabic.isNotEmpty) ...[
+                            const SizedBox(height: AppSpacing.xs),
+                            ArabicText(dhikr.arabic, fontSize: 28),
+                          ],
+                          if (dhikr.meaning.isNotEmpty) ...[
+                            const SizedBox(height: AppSpacing.xs),
+                            SelectableText(
+                              dhikr.meaning,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ],
+                      )
+                    : const SizedBox.shrink(),
               ),
             ],
             ListenButton(audio: _phraseAudio, path: store.audioFor(dhikr)),
@@ -393,6 +426,10 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
       context,
       MaterialPageRoute(builder: (_) => ZikrFormPage(existing: dhikr)),
     );
+  }
+
+  bool _hasDetails(Dhikr dhikr) {
+    return dhikr.arabic.isNotEmpty || dhikr.meaning.isNotEmpty;
   }
 }
 

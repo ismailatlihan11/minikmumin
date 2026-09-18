@@ -27,6 +27,8 @@ class DhikrStore extends ChangeNotifier {
   DhikrSettings _settings = const DhikrSettings();
   DhikrAssetManifest _manifest = DhikrAssetManifest.empty;
   String? _lastUsedId;
+  List<String> _orderIds = const [];
+  Set<String> _hiddenIds = {};
   bool _ready = false;
   Future<void> _persistWork = Future.value();
 
@@ -110,7 +112,11 @@ class DhikrStore extends ChangeNotifier {
       final catalog = await _repository.loadCatalog();
       _manifest = await _repository.loadManifest();
       final saved = await _persistence.loadItems();
-      _items = _repository.merge(catalog: catalog, saved: saved);
+      _hiddenIds = (await _persistence.loadHiddenIds()).toSet();
+      _orderIds = await _persistence.loadOrderIds();
+      var merged = _repository.merge(catalog: catalog, saved: saved);
+      merged = merged.where((item) => !_hiddenIds.contains(item.id)).toList();
+      _items = _applyOrder(merged);
       _sessions = await _persistence.loadSessions();
       _stats = await _persistence.loadDailyStats();
       _settings = await _persistence.loadSettings();
@@ -124,12 +130,30 @@ class DhikrStore extends ChangeNotifier {
             item.copyWith(isFavorite: item.isFavorite || favoriteIds.contains(item.id)),
         ];
       }
+      await _persistOrder();
     } catch (_) {
       _items = const [];
     }
     _ready = true;
     notifyListeners();
     unawaited(_feedback.preload(_manifest.click));
+  }
+
+  List<Dhikr> _applyOrder(List<Dhikr> items) {
+    if (_orderIds.isEmpty) return items;
+    final byId = {for (final item in items) item.id: item};
+    final ordered = <Dhikr>[];
+    for (final id in _orderIds) {
+      final item = byId.remove(id);
+      if (item != null) ordered.add(item);
+    }
+    ordered.addAll(byId.values);
+    return ordered;
+  }
+
+  Future<void> _persistOrder() async {
+    _orderIds = [for (final item in _items) item.id];
+    await _persistence.saveOrderIds(_orderIds);
   }
 
   Future<void> warmupClick() => _feedback.preload(_manifest.click);
@@ -216,6 +240,43 @@ class DhikrStore extends ChangeNotifier {
     await _replace(dhikr.copyWith(updatedAt: DateTime.now()));
   }
 
+  Future<void> deleteDhikr(String id) async {
+    final item = byId(id);
+    if (item == null) return;
+    _items = [for (final dhikr in _items) if (dhikr.id != id) dhikr];
+    if (!item.isCustom) {
+      _hiddenIds = {..._hiddenIds, id};
+      await _persistence.saveHiddenIds(_hiddenIds.toList(growable: false));
+    }
+    if (_lastUsedId == id) {
+      _lastUsedId = null;
+      await _persistence.clearLastUsedId();
+    }
+    await _persistOrder();
+    await _persistence.saveItems(_items);
+    notifyListeners();
+    await _enqueuePersist();
+  }
+
+  /// Expects indices from [ReorderableListView.onReorderItem]
+  /// (newIndex already adjusted after removal).
+  Future<void> reorderDhikr(int oldIndex, int newIndex) async {
+    if (oldIndex < 0 ||
+        oldIndex >= _items.length ||
+        newIndex < 0 ||
+        newIndex >= _items.length ||
+        oldIndex == newIndex) {
+      return;
+    }
+    final list = List<Dhikr>.from(_items);
+    final item = list.removeAt(oldIndex);
+    list.insert(newIndex, item);
+    _items = list;
+    await _persistOrder();
+    await _persistence.saveItems(_items);
+    notifyListeners();
+  }
+
   Future<Dhikr> createCustom({
     required String title,
     String arabic = '',
@@ -245,8 +306,10 @@ class DhikrStore extends ChangeNotifier {
       createdAt: now,
       updatedAt: now,
       isCustom: true,
+      contentEdited: true,
     );
     _items = [..._items, dhikr];
+    await _persistOrder();
     await _persistence.saveItems(_items);
     notifyListeners();
     return dhikr;
