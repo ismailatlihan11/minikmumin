@@ -209,28 +209,30 @@ License: public recitation CDN. A separate commercial license document was not i
 
 ### `assets/audio/duas/rabbena_atina.mp3`
 
-- Content: Rabbenâ Âtinâ (Bakara 2:201 — full ayah tilavet)
+- Content: Rabbenâ Âtinâ (dua clause only — matches namaz/dualar okunuş)
 - Surah / ayah: 2:201
 - Reader: Yasser Al-Dosari (Yasir ed-Devseri)
-- Source: EveryAyah `Yasser_Ad-Dussary_128kbps` (same bytes as `quran_002_201.mp3`)
+- Source: Cropped from EveryAyah `Yasser_Ad-Dussary_128kbps` `002201.mp3` (full backup: `quran_002_201_full.mp3`)
 - Source URL: https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/002201.mp3
 - License: UNVERIFIED (public recitation CDN; no separate license file found)
 - Download date: 2026-09-16
-- Size: 392 KB
+- Updated: 2026-09-18 — removed ayah opening «وَمِنْهُمْ مَنْ يَقُولُ» so clip starts at «رَبَّنَا آتِنَا…»
+- Size: ~356 KB
 - Status: DOWNLOADED
-- Note: Replaced Hisn crop with Dosari full-ayah clip for voice consistency. UI Arabic may show only the dua clause; audio includes the ayah opening.
+- Note: Same bytes as `quran_002_201.mp3` after crop. Duration ~17.9s.
 
 ### `assets/audio/duas/quran_002_201.mp3`
 
-- Content: Rabbenâ Âtinâ
+- Content: Rabbenâ Âtinâ (same crop as `rabbena_atina.mp3`)
 - Surah / ayah: 2:201
 - Reader: Yasser Al-Dosari (Yasir ed-Devseri)
-- Source: EveryAyah `Yasser_Ad-Dussary_128kbps`
+- Source: Cropped from Dosari full ayah; full file kept as `quran_002_201_full.mp3`
 - Source URL: https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/002201.mp3
 - License: UNVERIFIED (public recitation API; no separate license file found)
 - Download date: 2026-09-16
-- Size: 602.0 KB
+- Updated: 2026-09-18
 - Status: DOWNLOADED
+- Note: Other duas with narrative preambles (`002_286`, `003_016`, `007_023`, `018_010`, `025_074`, `059_010`, `066_008`) were likewise cropped so Dinle matches the on-screen okunuş; full ayah backups end with `_full.mp3`.
 
 ### `assets/audio/duas/quran_002_286.mp3`
 
