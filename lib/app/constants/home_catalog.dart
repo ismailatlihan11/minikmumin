@@ -122,9 +122,19 @@ abstract final class HomeCatalog {
       route: AppRoutes.learnAsma,
     ),
     HomeQuickItem(
+      title: 'Devam Et',
+      image: 'assets/images/home/continue_book.png',
+      route: AppRoutes.learnBasics,
+    ),
+    HomeQuickItem(
       title: 'Zikirmatik',
       image: 'assets/images/home/circle_zikr.png',
       route: AppRoutes.zikr,
+    ),
+    HomeQuickItem(
+      title: 'Macera',
+      image: 'assets/images/home/mini_trophy.png',
+      route: AppRoutes.dailyTask,
     ),
     HomeQuickItem(
       title: 'Favoriler',

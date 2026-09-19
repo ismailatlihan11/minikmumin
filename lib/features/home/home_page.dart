@@ -8,7 +8,6 @@ import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../core/storage/local_progress_store.dart';
-import '../../core/utils/turkish_number.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
 import '../../data/repositories/content_repositories.dart';
@@ -149,38 +148,19 @@ class _MinikHomePageState extends State<MinikHomePage> {
             );
           }
           final data = snapshot.data!;
-          final fallbackProgress = data.wuduStepCount == 0
-              ? 0.0
-              : data.wudu.inProgress
-                  ? (data.wudu.stepIndex + 1) / data.wuduStepCount
-                  : data.wudu.completed
-                      ? 1.0
-                      : 0.0;
           final point = data.continuePoint;
           final dhikrStore = context.watch<DhikrStore>();
           final pausedDhikr = dhikrStore.paused;
-          const continueTitle = 'Öğrenmeye Devam Et';
-          var continueSubtitle = point == null
-              ? (data.wudu.inProgress
-                  ? 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}'
-                  : data.wudu.completed
-                      ? 'Namaz Öğren – ${data.prayerCompleted}/${data.prayerTotal}'
-                      : 'Abdest Öğren')
-              : _continueSubtitle(point, data);
           var continueRoute = point?.route ??
               (data.wudu.completed && !data.wudu.inProgress
                   ? AppRoutes.learnPrayer
                   : AppRoutes.learnWudu);
-          var progress = point?.progress ?? fallbackProgress;
           VoidCallback onContinue = () async {
             await Navigator.pushNamed(context, continueRoute);
             if (!mounted) return;
             setState(() => _future = _load(repos, store));
           };
           if (pausedDhikr != null) {
-            continueSubtitle =
-                '${pausedDhikr.title} ${pausedDhikr.currentCount}/${pausedDhikr.targetCount}';
-            progress = pausedDhikr.uiProgress;
             onContinue = () async {
               await Navigator.push(
                 context,
@@ -194,9 +174,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
           } else if (point?.route == AppRoutes.quranSurah &&
               data.mealBookmark != null) {
             final meal = data.mealBookmark!;
-            continueSubtitle = "Ayet ve meal – ${meal.label}";
             continueRoute = AppRoutes.quranSurah;
-            progress = (meal.ayahNo / 50).clamp(0.05, 1);
             onContinue = () async {
               await Navigator.push(
                 context,
@@ -214,11 +192,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
               (point == null ||
                   point.route == AppRoutes.quranReader ||
                   point.route == AppRoutes.quran)) {
-            final mark = data.mushafBookmark!;
-            continueSubtitle =
-                "Mushaf – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
             continueRoute = AppRoutes.quranReader;
-            progress = (mark.displayNumber / 604).clamp(0.05, 1);
             onContinue = () async {
               await Navigator.pushNamed(context, AppRoutes.quranReader);
               if (!mounted) return;
@@ -278,20 +252,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
                           );
                         },
                       ),
-                      const SizedBox(height: 12),
-                      HomeContinueCard(
-                        title: continueTitle,
-                        subtitle: continueSubtitle,
-                        progress: progress,
-                        onContinue: onContinue,
-                      ),
-                      const SizedBox(height: 10),
-                      HomeAdventureCard(
-                        onContinue: () => Navigator.pushNamed(
-                          context,
-                          AppRoutes.dailyTask,
-                        ),
-                      ),
                       const SizedBox(height: 14),
                       SizedBox(
                         height: 108,
@@ -301,10 +261,13 @@ class _MinikHomePageState extends State<MinikHomePage> {
                               Expanded(
                                 child: HomeQuickCircle(
                                   item: item,
-                                  onTap: () => Navigator.pushNamed(
-                                    context,
-                                    item.route,
-                                  ),
+                                  onTap: () {
+                                    if (item.title == 'Devam Et') {
+                                      onContinue();
+                                      return;
+                                    }
+                                    Navigator.pushNamed(context, item.route);
+                                  },
                                 ),
                               ),
                           ],
@@ -325,37 +288,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
         ],
       ),
     );
-  }
-
-  String _continueSubtitle(ContinuePoint point, _HomeSnapshot data) {
-    if (point.route == AppRoutes.learnPrayer) {
-      return 'Namaz Öğren – ${data.prayerCompleted}/${data.prayerTotal}';
-    }
-    if (point.route == AppRoutes.learnWudu) {
-      return 'Abdest Öğren – ${data.wudu.stepIndex + 1}/${data.wuduStepCount}';
-    }
-    if (point.route == AppRoutes.quranSurah) {
-      final meal = data.mealBookmark;
-      if (meal != null) return "Ayet ve meal – ${meal.label}";
-    }
-    if (point.route == AppRoutes.quranReader || point.route == AppRoutes.quran) {
-      final mark = data.mushafBookmark;
-      if (mark != null) {
-        return "Mushaf – ${mark.surahLabel} / ${TurkishNumber.pageLabel(mark.displayNumber)}";
-      }
-    }
-    if (point.route == AppRoutes.learnQuran) {
-      return point.subtitle.isEmpty
-          ? "Kur'an Öğreniyorum"
-          : "Kur'an Öğren – ${point.subtitle}";
-    }
-    if (point.route == AppRoutes.learnElifbaAdventure) {
-      return point.subtitle.isEmpty
-          ? 'Elifbâ + Tecvid Macerası'
-          : 'Elifbâ – ${point.subtitle}';
-    }
-    if (point.subtitle.isEmpty) return point.title;
-    return '${point.title} – ${point.subtitle}';
   }
 }
 
