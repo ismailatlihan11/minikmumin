@@ -207,9 +207,9 @@ class ElifbaSoftCard extends StatelessWidget {
           ),
         ],
       ),
-      child: MinikTheme.lightSurfaces(
+      child: MinikTheme.themed(
         DefaultTextStyle.merge(
-          style: const TextStyle(color: MinikColors.text),
+          style: TextStyle(color: MinikColors.text),
           child: child,
         ),
       ),

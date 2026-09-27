@@ -287,7 +287,7 @@ class _ZikrBubble extends StatelessWidget {
                   textDirection: TextDirection.rtl,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: AssetPaths.arabicFontFamily,
                     fontSize: 18,
                     height: 1.4,
@@ -300,7 +300,7 @@ class _ZikrBubble extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 13,
                   fontWeight: FontWeight.w800,

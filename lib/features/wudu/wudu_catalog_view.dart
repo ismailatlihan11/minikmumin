@@ -87,7 +87,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
               const SizedBox(width: 48),
             ],
           ),
-          const Text(
+          Text(
             'Adım adım abdest almayı öğrenelim',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -121,7 +121,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             ],
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Abdestin 4 Farzı',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -153,7 +153,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             ],
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Adım Adım Abdest Alalım',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -181,7 +181,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
           const SizedBox(height: 14),
           _WuduDuaCard(dua: _dua),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Abdestin Adabı',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -212,7 +212,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Tebrikler!',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -222,7 +222,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
+                Text(
                   'Harikasın! Abdesti çok güzel öğrendin.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -240,7 +240,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                     color: const Color(0xFFFFF1C2),
                     borderRadius: BorderRadius.circular(14),
                   ),
-                  child: const Column(
+                  child: Column(
                     children: [
                       Text(
                         '🏆 Abdest Ustası',
@@ -323,7 +323,7 @@ class _LegendChip extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 11,
               fontWeight: FontWeight.w700,
@@ -360,7 +360,7 @@ class _WuduStepCard extends StatelessWidget {
                     width: 28,
                     height: 28,
                     alignment: Alignment.center,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: MinikColors.green,
                       shape: BoxShape.circle,
                     ),
@@ -379,7 +379,7 @@ class _WuduStepCard extends StatelessWidget {
                       step.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'NotoSans',
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
@@ -398,7 +398,7 @@ class _WuduStepCard extends StatelessWidget {
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
@@ -478,7 +478,7 @@ class _TipTile extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 9,
               fontWeight: FontWeight.w700,
@@ -522,7 +522,7 @@ class _WuduDuaCard extends StatelessWidget {
               children: [
                 Text(
                   dua?.title ?? 'Abdest Tamamlandı Duası',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 14,
                     fontWeight: FontWeight.w800,
@@ -534,7 +534,7 @@ class _WuduDuaCard extends StatelessWidget {
                   ready
                       ? 'Abdest bitince bu duayı okuruz. Dinlemek için dokun.'
                       : 'Dua metni ve ses dosyası sonra eklenecek.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 12,
                     color: MinikColors.textMuted,
@@ -544,7 +544,7 @@ class _WuduDuaCard extends StatelessWidget {
             ),
           ),
           if (ready)
-            const Icon(Icons.chevron_right_rounded, color: MinikColors.green),
+            Icon(Icons.chevron_right_rounded, color: MinikColors.green),
         ],
       ),
     );
@@ -588,7 +588,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
+          Text(
             'Abdestimizi bitirdikten sonra bu duayı okuruz.',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -603,7 +603,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
+                Text(
                   'Arapça',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -624,7 +624,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Okunuşu',
                     style: TextStyle(
                       fontFamily: 'NotoSans',
@@ -646,7 +646,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Anlamı',
                     style: TextStyle(
                       fontFamily: 'NotoSans',
@@ -666,7 +666,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
             Text(
               dua.source,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 12,
                 color: MinikColors.textMuted,
@@ -708,7 +708,7 @@ class _FarzTile extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 9,
                   fontWeight: FontWeight.w700,
@@ -799,7 +799,7 @@ class _ColorHint extends StatelessWidget {
         color: MinikColors.peach,
         borderRadius: BorderRadius.circular(99),
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.palette_rounded, size: 16, color: MinikColors.darkGreen),

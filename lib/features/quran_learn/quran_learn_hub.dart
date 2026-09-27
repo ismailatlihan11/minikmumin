@@ -201,7 +201,7 @@ class _HubFold extends StatelessWidget {
           childrenPadding: EdgeInsets.zero,
           title: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontWeight: FontWeight.w800,
               color: MinikColors.textMuted,
@@ -249,7 +249,7 @@ class _PathCard extends StatelessWidget {
               backgroundColor: MinikColors.pastelAt(step),
               child: Text(
                 '$step',
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontWeight: FontWeight.w800,
                   color: MinikColors.darkGreen,
@@ -267,7 +267,7 @@ class _PathCard extends StatelessWidget {
                   ),
                   Text(
                     elifbaStepCue(level),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 13,
                       color: MinikColors.textMuted,
@@ -285,7 +285,7 @@ class _PathCard extends StatelessWidget {
             ),
             Text(
               complete ? '✓' : first ? 'Başla' : 'Aç',
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontWeight: FontWeight.w800,
                 color: MinikColors.green,
@@ -330,7 +330,7 @@ class _LaterCard extends StatelessWidget {
                   ),
                   Text(
                     elifbaStepCue(level),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 13,
                       color: MinikColors.textMuted,
@@ -341,7 +341,7 @@ class _LaterCard extends StatelessWidget {
             ),
             Text(
               snap.isLevelComplete(level.id) ? '✓' : 'Aç',
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontWeight: FontWeight.w800,
                 color: MinikColors.green,

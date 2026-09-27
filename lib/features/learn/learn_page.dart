@@ -90,7 +90,7 @@ class _LearnTopicTile extends StatelessWidget {
                           child: Text(
                             category.title,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 12,
                               fontWeight: FontWeight.w700,
@@ -108,7 +108,7 @@ class _LearnTopicTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
@@ -138,7 +138,7 @@ class ModulePreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: MinikTheme.light(),
+      data: MinikTheme.current(),
       child: Scaffold(
         appBar: AppBar(title: Text(title)),
         body: Padding(

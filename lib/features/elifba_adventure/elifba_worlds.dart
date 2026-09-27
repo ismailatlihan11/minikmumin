@@ -34,7 +34,7 @@ class ElifbaWorld {
 /// Harita bölgeleri ders numarasına göre değil, JSON içeriğine göre kurulur:
 /// hareke işareti taşıyan ilk ders, seviye alanları ve final dersi belirleyici.
 abstract final class ElifbaWorlds {
-  static const _blueprint = <_WorldSpec>[
+  static List<_WorldSpec> get _blueprint => [
     _WorldSpec('letters', 'Harfler Köyü', '🌱', MinikColors.mint, 'Harf Kaşifi'),
     _WorldSpec(
       'harakat',
@@ -66,10 +66,10 @@ abstract final class ElifbaWorlds {
     ),
   ];
 
-  static final _cache = <int, List<ElifbaWorld>>{};
+  static final _cache = <(int, bool), List<ElifbaWorld>>{};
 
   static List<ElifbaWorld> of(ElifbaPack pack) {
-    final key = pack.lessons.length;
+    final key = (pack.lessons.length, MinikColors.isDark);
     final cached = _cache[key];
     if (cached != null) return cached;
     final buckets = <String, List<ElifbaLesson>>{

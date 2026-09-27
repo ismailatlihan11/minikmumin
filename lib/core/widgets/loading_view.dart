@@ -22,7 +22,7 @@ class LoadingView extends StatelessWidget {
               errorBuilder: (_, __, ___) => const CircularProgressIndicator(),
             ),
             const SizedBox(height: 16),
-            const CircularProgressIndicator(color: MinikColors.green),
+            CircularProgressIndicator(color: MinikColors.green),
             const SizedBox(height: 16),
             Text(message, style: Theme.of(context).textTheme.titleMedium),
           ],

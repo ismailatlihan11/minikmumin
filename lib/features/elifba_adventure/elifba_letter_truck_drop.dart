@@ -300,7 +300,7 @@ class _FlyingLetter extends StatelessWidget {
           Text(
             glyph,
             textDirection: TextDirection.rtl,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: AssetPaths.arabicFontFamily,
               fontSize: 26,
               color: MinikColors.darkGreen,
@@ -312,7 +312,7 @@ class _FlyingLetter extends StatelessWidget {
               name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 10,
                 fontWeight: FontWeight.w700,
@@ -349,7 +349,7 @@ class _CartoonTruck extends StatelessWidget {
                 border: Border.all(color: const Color(0xFFC9A227), width: 2),
               ),
               alignment: Alignment.topCenter,
-              child: const Padding(
+              child: Padding(
                 padding: EdgeInsets.only(top: 4),
                 child: Text(
                   'ٱ ب ت',

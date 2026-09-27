@@ -131,7 +131,7 @@ class QlColorIconButton extends StatelessWidget {
         progressId: progressId,
         celebrationSubtitle: celebrationSubtitle,
       ),
-      icon: const Icon(Icons.palette_rounded, color: MinikColors.green),
+      icon: Icon(Icons.palette_rounded, color: MinikColors.green),
     );
   }
 }
@@ -206,7 +206,7 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
                             letter.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 11,
                               fontWeight: FontWeight.w700,

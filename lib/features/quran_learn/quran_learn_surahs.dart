@@ -438,7 +438,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                     Text(
                       _hint,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'NotoSans',
                         color: MinikColors.textMuted,
                       ),
@@ -579,7 +579,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                           const SizedBox(height: 8),
                           Text(
                             verses[i].meal,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               color: MinikColors.textMuted,
                               height: 1.35,

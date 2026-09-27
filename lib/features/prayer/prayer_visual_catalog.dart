@@ -578,6 +578,7 @@ abstract final class PrayerVisualCatalog {
   static const orderGameIds = [
     'niyet',
     'tekbir',
+    'subhaneke',
     'fatiha',
     'ruku',
     'secde1',

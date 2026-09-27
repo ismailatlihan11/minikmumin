@@ -155,7 +155,7 @@ class _DuaListTile extends StatelessWidget {
                                 dua.title,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'NotoSans',
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800,
@@ -167,7 +167,7 @@ class _DuaListTile extends StatelessWidget {
                                   dua.section,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'NotoSans',
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600,
@@ -384,7 +384,7 @@ class _DuaDetailHeader extends StatelessWidget {
               width: 56,
               height: 56,
               fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => const SizedBox(
+              errorBuilder: (_, __, ___) => SizedBox(
                 width: 56,
                 height: 56,
                 child: Icon(Icons.menu_book_rounded, color: MinikColors.green),
@@ -400,7 +400,7 @@ class _DuaDetailHeader extends StatelessWidget {
                   dua.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
@@ -414,7 +414,7 @@ class _DuaDetailHeader extends StatelessWidget {
                     dua.section,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
@@ -428,7 +428,7 @@ class _DuaDetailHeader extends StatelessWidget {
                     dua.reference,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
@@ -519,7 +519,7 @@ class DuaPartCard extends StatelessWidget {
         ? ArabicText(arabic, fontSize: arabicFontSize)
         : SelectableText(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
               height: 1.55,
@@ -597,7 +597,7 @@ class _DuaStickyBar extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         minimumSize: const Size.fromHeight(44),
                         foregroundColor: MinikColors.green,
-                        side: const BorderSide(
+                        side: BorderSide(
                           color: MinikColors.green,
                           width: 1.4,
                         ),
@@ -756,7 +756,7 @@ class _TinyAction extends StatelessWidget {
               const SizedBox(width: 4),
               Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 12,
                   fontWeight: FontWeight.w800,

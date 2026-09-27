@@ -103,13 +103,11 @@ class MinikCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final radius = BorderRadius.circular(AppRadius.lg);
-    // Cards stay light pastel/cream even in dark mode — force light theme
-    // ink/buttons/list tiles so cream text does not wash out on those surfaces.
-    final inked = MinikTheme.lightSurfaces(
+    final inked = MinikTheme.themed(
       DefaultTextStyle.merge(
-        style: const TextStyle(color: MinikColors.text),
+        style: TextStyle(color: MinikColors.text),
         child: IconTheme.merge(
-          data: const IconThemeData(color: MinikColors.green),
+          data: IconThemeData(color: MinikColors.green),
           child: child,
         ),
       ),
@@ -140,18 +138,18 @@ class SoftBadge extends StatelessWidget {
   const SoftBadge({
     super.key,
     required this.label,
-    this.color = MinikColors.mint,
+    this.color,
   });
 
   final String label;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
       decoration: BoxDecoration(
-        color: color,
+        color: color ?? MinikColors.mint,
         borderRadius: BorderRadius.circular(AppRadius.pill),
       ),
       child: Text(
@@ -228,7 +226,7 @@ class ContentTile extends StatelessWidget {
               const SizedBox(width: 8),
               trailing!,
             ] else if (onTap != null)
-              const Icon(
+              Icon(
                 Icons.chevron_right_rounded,
                 color: MinikColors.greenSoft,
               ),
@@ -290,7 +288,7 @@ class RoundedAsset extends StatelessWidget {
               height: height,
               color: MinikColors.pastelBlue,
               alignment: Alignment.center,
-              child: const Icon(Icons.menu_book_rounded, color: MinikColors.green),
+              child: Icon(Icons.menu_book_rounded, color: MinikColors.green),
             ),
       ),
     );
@@ -397,10 +395,10 @@ class CompactCatalogRow extends StatelessWidget {
 }
 
 class NumberBadge extends StatelessWidget {
-  const NumberBadge(this.value, {super.key, this.color = MinikColors.mint});
+  const NumberBadge(this.value, {super.key, this.color});
 
   final String value;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -409,12 +407,12 @@ class NumberBadge extends StatelessWidget {
       height: 40,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: color,
+        color: color ?? MinikColors.mint,
         borderRadius: BorderRadius.circular(14),
       ),
       child: Text(
         value,
-        style: const TextStyle(
+        style: TextStyle(
           color: MinikColors.darkGreen,
           fontWeight: FontWeight.w800,
           fontSize: 13,

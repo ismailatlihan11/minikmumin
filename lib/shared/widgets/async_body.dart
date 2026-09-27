@@ -62,13 +62,13 @@ class DetailScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MinikTheme.lightSurfaces(
+    return MinikTheme.themed(
       Scaffold(
         backgroundColor: const Color(0xFFF4F7F2),
         appBar: AppBar(title: Text(title), actions: actions),
         body: SelectionArea(
           child: DefaultTextStyle.merge(
-            style: const TextStyle(color: MinikColors.text),
+            style: TextStyle(color: MinikColors.text),
             child: ListView(
               padding: AppSpacing.page,
               children: [

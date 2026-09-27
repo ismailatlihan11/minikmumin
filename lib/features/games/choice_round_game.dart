@@ -33,12 +33,12 @@ class ChoiceRoundPage extends StatefulWidget {
     super.key,
     required this.title,
     required this.load,
-    this.accent = MinikColors.mint,
+    this.accent,
   });
 
   final String title;
   final Future<List<ChoiceQuestion>> Function(BuildContext context) load;
-  final Color accent;
+  final Color? accent;
 
   @override
   State<ChoiceRoundPage> createState() => _ChoiceRoundPageState();
@@ -64,7 +64,7 @@ class _ChoiceRoundPageState extends State<ChoiceRoundPage> {
           return _ChoicePlay(
             title: widget.title,
             questions: questions,
-            accent: widget.accent,
+            accent: widget.accent ?? MinikColors.mint,
           );
         },
       ),

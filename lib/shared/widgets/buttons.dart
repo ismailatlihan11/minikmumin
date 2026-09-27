@@ -51,7 +51,7 @@ class SecondaryButton extends StatelessWidget {
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
           foregroundColor: MinikColors.green,
-          side: const BorderSide(color: MinikColors.green, width: 1.6),
+          side: BorderSide(color: MinikColors.green, width: 1.6),
         ),
         child: Text(label),
       ),

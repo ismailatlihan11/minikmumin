@@ -133,7 +133,7 @@ class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
             ),
           ],
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(bottom: 4),
           child: Text(
             'Harfe uzun bas → boya',
@@ -244,7 +244,7 @@ class _LetterChipState extends State<_LetterChip> {
               Text(
                 widget.letter.letter,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: AssetPaths.arabicFontFamily,
                   fontSize: 28,
                   color: MinikColors.darkGreen,
@@ -253,7 +253,7 @@ class _LetterChipState extends State<_LetterChip> {
               if (widget.showName && widget.letter.name.isNotEmpty)
                 Text(
                   widget.letter.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
@@ -261,7 +261,7 @@ class _LetterChipState extends State<_LetterChip> {
                   ),
                 ),
               if (widget.onColor != null)
-                const Icon(
+                Icon(
                   Icons.palette_rounded,
                   size: 14,
                   color: MinikColors.greenSoft,
@@ -568,7 +568,7 @@ class ElifbaFormsCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Icon(
+                      Icon(
                         Icons.palette_rounded,
                         size: 16,
                         color: MinikColors.green,
@@ -768,7 +768,7 @@ class ElifbaBlendGame extends StatelessWidget {
               ),
           ],
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
           child: Icon(Icons.arrow_downward_rounded, color: MinikColors.gold),
         ),
@@ -914,7 +914,7 @@ class ElifbaMedCard extends StatelessWidget {
           const SizedBox(height: 8),
           ClipRRect(
             borderRadius: BorderRadius.circular(99),
-            child: const LinearProgressIndicator(
+            child: LinearProgressIndicator(
               minHeight: 8,
               value: 1,
               color: MinikColors.gold,
@@ -1118,7 +1118,7 @@ class ElifbaKalkalaRow extends StatelessWidget {
       width: 56,
       height: 56,
       alignment: Alignment.center,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: MinikColors.goldSoft,
         shape: BoxShape.circle,
       ),
@@ -1159,7 +1159,7 @@ class ElifbaTajweedGuess extends StatelessWidget {
             child: Text(
               example.focus,
               textDirection: TextDirection.rtl,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: AssetPaths.arabicFontFamily,
                 fontSize: 20,
                 color: MinikColors.gold,

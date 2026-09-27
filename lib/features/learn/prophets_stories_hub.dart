@@ -47,7 +47,7 @@ class ProphetsStoriesHubPage extends StatelessWidget {
             ContentTile(
               title: 'Peygamberler Kitabı',
               subtitle: 'Sayfa sayfa okumaya devam et',
-              leading: const Icon(
+              leading: Icon(
                 Icons.auto_stories_rounded,
                 color: MinikColors.green,
               ),

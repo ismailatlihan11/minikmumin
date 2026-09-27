@@ -48,7 +48,7 @@ class QuranLearnMahrajPage extends StatelessWidget {
                 child: Text(
                   pack.levelById(levelId)?.description ??
                       'Harflerin çıkış yerlerini gruplayarak tanıyalım.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w700,
                     color: MinikColors.darkGreen,
@@ -63,7 +63,7 @@ class QuranLearnMahrajPage extends StatelessWidget {
                   color: snap?.isDone('ql_mahraj', group.id) == true
                       ? MinikColors.mint
                       : null,
-                  leading: const Icon(
+                  leading: Icon(
                     Icons.record_voice_over_rounded,
                     color: MinikColors.green,
                   ),
@@ -169,7 +169,7 @@ class _QuranLearnMahrajDetailPageState extends State<QuranLearnMahrajDetailPage>
                           letter.name,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 11,
                             fontWeight: FontWeight.w700,

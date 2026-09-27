@@ -64,7 +64,7 @@ class ElifbaChooserPage extends StatelessWidget {
                   context,
                   quranLearnRoute(const QuranLearnHubPage()),
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -89,7 +89,7 @@ class ElifbaChooserPage extends StatelessWidget {
                   context,
                   AppRoutes.learnElifbaAdventure,
                 ),
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -380,7 +380,7 @@ class _WorldBlock extends StatelessWidget {
                 progress: progress,
               ),
               if (i < lessons.length - 1)
-                const Icon(Icons.arrow_downward_rounded, color: MinikColors.gold),
+                Icon(Icons.arrow_downward_rounded, color: MinikColors.gold),
             ],
           ],
         ),

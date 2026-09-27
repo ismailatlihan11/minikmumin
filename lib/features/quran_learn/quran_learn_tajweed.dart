@@ -55,7 +55,7 @@ class QuranLearnTajweedPage extends StatelessWidget {
                 child: Text(
                   pack.levelById(levelId)?.description ??
                       'Tecvid kurallarını gerçek ayetlerde uygulayalım.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w700,
                     color: MinikColors.darkGreen,
@@ -403,7 +403,7 @@ class QlTajweedAyahPractice extends StatelessWidget {
                       const SizedBox(height: 8),
                       Text(
                         verse.meal,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           color: MinikColors.textMuted,
                           height: 1.35,

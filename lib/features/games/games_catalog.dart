@@ -541,7 +541,7 @@ List<KidGame> kidGames() {
 }
 
 void _push(BuildContext context, Widget page) {
-  Navigator.push(context, MinikTheme.lightRoute(page));
+  Navigator.push(context, MinikTheme.route(page));
 }
 
 String _clip(String text, [int max = 90]) {

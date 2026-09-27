@@ -112,7 +112,7 @@ class QuranLearnHarakatPage extends StatelessWidget {
                               backgroundColor: MinikColors.pastelAt(item.order),
                               child: Text(
                                 '${item.order}',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'NotoSans',
                                   fontWeight: FontWeight.w800,
                                   color: MinikColors.darkGreen,
@@ -136,7 +136,7 @@ class QuranLearnHarakatPage extends StatelessWidget {
                                   const SizedBox(height: 2),
                                   Text(
                                     quranLearnHarakatTeachLine(item),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontFamily: 'NotoSans',
                                       fontSize: 13,
                                       height: 1.3,
@@ -369,7 +369,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                     ? 'Üstün şedde. Kırmızı olanlar kalın harflerdir. Dokun, dinle.'
                     : 'Kırmızı olanlar kalın harflerdir. Dokun, dinle.',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 12,
               fontWeight: FontWeight.w700,
@@ -438,7 +438,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                             const SizedBox(height: 4),
                             Text(
                               example.reading,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontFamily: 'NotoSans',
                                 fontSize: 13,
                                 fontWeight: FontWeight.w700,

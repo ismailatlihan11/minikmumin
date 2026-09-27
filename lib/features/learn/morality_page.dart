@@ -49,7 +49,7 @@ class _MoralityPageState extends State<MoralityPage> {
                 ContentTile(
                   title: category.title,
                   subtitle: '${catalog.lessonsFor(category.id).length} konu',
-                  leading: const Icon(Icons.favorite_rounded, color: MinikColors.green),
+                  leading: Icon(Icons.favorite_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -64,7 +64,7 @@ class _MoralityPageState extends State<MoralityPage> {
                 ContentTile(
                   title: 'Mini sorular',
                   subtitle: '${catalog.quiz.length} soru',
-                  leading: const Icon(Icons.quiz_rounded, color: MinikColors.green),
+                  leading: Icon(Icons.quiz_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -106,7 +106,7 @@ class MoralityCategoryPage extends StatelessWidget {
                 width: 44,
                 height: 44,
                 fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => const Icon(
+                errorBuilder: (_, __, ___) => Icon(
                   Icons.favorite_rounded,
                   color: MinikColors.green,
                 ),
@@ -148,7 +148,6 @@ class MoralityLessonPage extends StatelessWidget {
                 lesson.childExplanation.isNotEmpty
                     ? lesson.childExplanation
                     : lesson.lesson,
-                lesson.dailyChallenge,
                 ...lesson.quranReferences,
                 lesson.hadithReference,
               ]),
@@ -174,13 +173,6 @@ class MoralityLessonPage extends StatelessWidget {
               lesson.childExplanation.isNotEmpty ? lesson.childExplanation : lesson.lesson,
               style: theme.bodyLarge,
             ),
-            if (lesson.dailyChallenge.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.md),
-              MinikCard(
-                color: MinikColors.butter,
-                child: Text(lesson.dailyChallenge, style: theme.bodyLarge),
-              ),
-            ],
             if (lesson.quranReferences.isNotEmpty) ...[
               const SizedBox(height: AppSpacing.md),
               const SectionLabel('Kur\'an'),

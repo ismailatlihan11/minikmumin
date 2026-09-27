@@ -129,7 +129,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
         if (block.$2.isNotEmpty) ...[
           Text(
             block.$1,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
               fontWeight: FontWeight.w800,
@@ -209,7 +209,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
               const SizedBox(width: 48),
             ],
           ),
-          const Text(
+          Text(
             'Adım adım namaz kılmayı öğrenelim',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -227,7 +227,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 12),
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
               'Namaz Öğreniyorum',
@@ -242,7 +242,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           const SizedBox(height: 6),
           Text(
             _teachingNote,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 13,
               fontWeight: FontWeight.w600,
@@ -291,7 +291,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 8),
-                const Align(
+                Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Namazın Temel Bölümleri',
@@ -306,7 +306,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                 const SizedBox(height: 6),
                 Text(
                   _teachingNote,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
@@ -320,7 +320,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     padding: const EdgeInsets.only(bottom: 4),
                     child: Row(
                       children: [
-                        const Icon(Icons.check_circle_rounded,
+                        Icon(Icons.check_circle_rounded,
                             size: 16, color: MinikColors.green),
                         const SizedBox(width: 6),
                         Text(
@@ -354,7 +354,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           const SizedBox(height: 16),
           ..._stepSections(),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Namazda okunan Ayetler ve Dualar',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -375,7 +375,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     padding: const EdgeInsets.symmetric(vertical: 6),
                     child: Row(
                       children: [
-                        const Icon(Icons.menu_book_rounded,
+                        Icon(Icons.menu_book_rounded,
                             color: MinikColors.green, size: 20),
                         const SizedBox(width: 8),
                         Text(
@@ -393,7 +393,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Namaza Hazırlanalım',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -417,7 +417,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Öğrendiklerini Dene!',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -427,7 +427,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   ),
                 ),
                 const SizedBox(height: 6),
-                const Text(
+                Text(
                   'Bakalım kaç soruyu doğru yapabileceksin?',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -448,7 +448,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Beş Vakit Namaz',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -458,7 +458,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
             ),
           ),
           const SizedBox(height: 4),
-          const Text(
+          Text(
             'Sabah, öğle, ikindi, akşam ve yatsı',
             style: TextStyle(
               fontFamily: 'NotoSans',
@@ -491,7 +491,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Tebrikler!',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -501,7 +501,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
+                Text(
                   'Harikasın! Namazı çok güzel öğrendin.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -558,7 +558,7 @@ class _PrayerProgressBar extends StatelessWidget {
       children: [
         Text(
           '$done / $total  ·  %${(value * 100).round()} tamamlandı',
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -621,7 +621,7 @@ class _RakatRow extends StatelessWidget {
               children: [
                 Text(
                   item.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 14,
                     fontWeight: FontWeight.w800,
@@ -642,7 +642,7 @@ class _RakatRow extends StatelessWidget {
                   item.detail,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
@@ -757,7 +757,7 @@ class _LegendChip extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 11,
               fontWeight: FontWeight.w700,
@@ -805,7 +805,7 @@ class _PrayerStepCard extends StatelessWidget {
                     width: 28,
                     height: 28,
                     alignment: Alignment.center,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: MinikColors.green,
                       shape: BoxShape.circle,
                     ),
@@ -824,7 +824,7 @@ class _PrayerStepCard extends StatelessWidget {
                       step.title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'NotoSans',
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
@@ -844,7 +844,7 @@ class _PrayerStepCard extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
@@ -857,7 +857,7 @@ class _PrayerStepCard extends StatelessWidget {
                   step.caption,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
@@ -881,7 +881,7 @@ class _PrayerStepCard extends StatelessWidget {
                     ),
                   if (step.duaIds.isNotEmpty) ...[
                     const SizedBox(width: 4),
-                    const Icon(
+                    Icon(
                       Icons.volume_up_rounded,
                       size: 16,
                       color: MinikColors.green,
@@ -936,7 +936,7 @@ class _TipTile extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 9,
               fontWeight: FontWeight.w700,
@@ -1092,7 +1092,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                             color: MinikColors.peach,
                             borderRadius: BorderRadius.circular(99),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(
@@ -1140,7 +1140,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                         Expanded(
                           child: Text(
                             step.girlNote,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
@@ -1199,7 +1199,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 audioItems[i].title,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'NotoSans',
                                   fontSize: 12,
                                   fontWeight: FontWeight.w800,

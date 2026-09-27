@@ -71,7 +71,7 @@ class _BasicsPageState extends State<BasicsPage> {
                       doneIds: done,
                       onOpen: () => Navigator.push(
                         context,
-                        MinikTheme.lightRoute(
+                        MinikTheme.route(
                           BasicsSectionPage(
                             section: section,
                             catalog: catalog,
@@ -84,7 +84,7 @@ class _BasicsPageState extends State<BasicsPage> {
                   ContentTile(
                     title: 'Tüm ilmihal konuları',
                     subtitle: 'İman, temizlik, namaz, oruç ve daha fazlası',
-                    leading: const Icon(
+                    leading: Icon(
                       Icons.library_books_rounded,
                       color: MinikColors.green,
                     ),
@@ -139,7 +139,7 @@ class BasicsSectionPage extends StatelessWidget {
                         children: [
                           Text(
                             section.title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
@@ -149,7 +149,7 @@ class BasicsSectionPage extends StatelessWidget {
                           const SizedBox(height: 4),
                           Text(
                             section.subtitle,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
@@ -168,7 +168,7 @@ class BasicsSectionPage extends StatelessWidget {
                 value: items.isEmpty ? 0 : completedHere / items.length,
               ),
               const SizedBox(height: 12),
-              for (final item in items)
+              for (final (index, item) in items.indexed)
                 ContentTile(
                   title: item.title,
                   subtitle: item.shortDescription,
@@ -177,17 +177,18 @@ class BasicsSectionPage extends StatelessWidget {
                     color: section.accent,
                   ),
                   trailing: done.contains(item.id)
-                      ? const Icon(
+                      ? Icon(
                           Icons.check_circle_rounded,
                           color: MinikColors.green,
                         )
                       : null,
                   onTap: () => Navigator.push(
                     context,
-                    MinikTheme.lightRoute(
+                    MinikTheme.route(
                       BasicsItemPage(
                         item: item,
                         sectionTitle: section.title,
+                        upcoming: _upcomingAfter(index),
                       ),
                     ),
                   ),
@@ -198,17 +199,37 @@ class BasicsSectionPage extends StatelessWidget {
       ),
     );
   }
+
+  /// Bu bölümde [index]'ten sonraki konular, ardından sonraki bölümlerin
+  /// konuları; "Sonraki konuya geç" bu sırayı izler.
+  List<BasicsUpcoming> _upcomingAfter(int index) {
+    final items = catalog.itemsForIds(section.itemIds);
+    const sections = BasicsSections.all;
+    final sectionIndex = sections.indexOf(section);
+    return [
+      for (final item in items.skip(index + 1))
+        (item: item, sectionTitle: section.title),
+      if (sectionIndex >= 0)
+        for (final next in sections.skip(sectionIndex + 1))
+          for (final item in catalog.itemsForIds(next.itemIds))
+            (item: item, sectionTitle: next.title),
+    ];
+  }
 }
+
+typedef BasicsUpcoming = ({BasicsItem item, String sectionTitle});
 
 class BasicsItemPage extends StatefulWidget {
   const BasicsItemPage({
     super.key,
     required this.item,
     required this.sectionTitle,
+    this.upcoming = const [],
   });
 
   final BasicsItem item;
   final String sectionTitle;
+  final List<BasicsUpcoming> upcoming;
 
   @override
   State<BasicsItemPage> createState() => _BasicsItemPageState();
@@ -237,6 +258,20 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
     super.dispose();
   }
 
+  void _openNext() {
+    final next = widget.upcoming.first;
+    Navigator.pushReplacement(
+      context,
+      MinikTheme.route(
+        BasicsItemPage(
+          item: next.item,
+          sectionTitle: next.sectionTitle,
+          upcoming: widget.upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
   String? get _audioPath {
     final fromJson = widget.item.audio.trim();
     if (fromJson.isNotEmpty) return fromJson;
@@ -262,7 +297,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
       future: store.isCompleted(_kind, '${item.id}'),
       builder: (context, snapshot) {
         final learned = snapshot.data ?? false;
-        return MinikTheme.lightSurfaces(
+        return MinikTheme.themed(
           Scaffold(
           backgroundColor: const Color(0xFFF4F7F2),
           appBar: AppBar(
@@ -273,7 +308,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
           ),
           body: SelectionArea(
             child: DefaultTextStyle.merge(
-            style: const TextStyle(color: MinikColors.text),
+            style: TextStyle(color: MinikColors.text),
             child: ListView(
             padding: AppSpacing.page,
             children: [
@@ -304,7 +339,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                   color: const Color(0xFFFFF6DC),
                   child: Text(
                     item.transliteration,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -340,7 +375,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                           const SizedBox(height: 10),
                         Text(
                           item.example!.text,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
@@ -362,7 +397,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                         const SizedBox(height: 8),
                         Text(
                           item.example!.reference,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
@@ -403,7 +438,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                               children: [
                                 Text(
                                   sub.title,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'NotoSans',
                                     fontWeight: FontWeight.w800,
                                     color: MinikColors.darkGreen,
@@ -412,7 +447,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                                 const SizedBox(height: 2),
                                 Text(
                                   sub.description,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'NotoSans',
                                     fontSize: 13,
                                     color: MinikColors.textMuted,
@@ -435,7 +470,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.check_circle_rounded,
                           size: 18,
                           color: MinikColors.green,
@@ -455,7 +490,7 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
               ],
               const SizedBox(height: AppSpacing.lg),
               if (learned)
-                const MinikCard(
+                MinikCard(
                   color: Color(0xFFE7F4EC),
                   child: Row(
                     children: [
@@ -472,8 +507,56 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                       ),
                     ],
                   ),
-                )
-              else
+                ),
+              if (learned) ...[
+                const SizedBox(height: AppSpacing.md),
+                if (widget.upcoming.isNotEmpty &&
+                    widget.upcoming.first.sectionTitle !=
+                        widget.sectionTitle) ...[
+                  MinikCard(
+                    color: const Color(0xFFFFF6DC),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.emoji_events_rounded,
+                          color: MinikColors.gold,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '“${widget.sectionTitle}” bölümündeki tüm '
+                            'konuları tamamladın! Şimdi '
+                            '“${widget.upcoming.first.sectionTitle}” ana '
+                            'başlığına geçiyoruz.',
+                            style: TextStyle(
+                              fontFamily: 'NotoSans',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              color: MinikColors.darkGreen,
+                              height: 1.35,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  PrimaryButton(
+                    label:
+                        '${widget.upcoming.first.sectionTitle} bölümüne geç',
+                    onPressed: _openNext,
+                  ),
+                ] else if (widget.upcoming.isNotEmpty)
+                  PrimaryButton(
+                    label: 'Sonraki konuya geç',
+                    onPressed: _openNext,
+                  )
+                else
+                  SecondaryButton(
+                    label: 'Konulara dön',
+                    onPressed: () => Navigator.pop(context),
+                  ),
+              ] else
                 PrimaryButton(
                   label: 'Öğrenildi olarak işaretle',
                   onPressed: () async {
@@ -575,7 +658,7 @@ class _SectionCard extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 section.title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
@@ -585,7 +668,7 @@ class _SectionCard extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 section.subtitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
@@ -647,7 +730,7 @@ class _ProgressLine extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 13,
             fontWeight: FontWeight.w800,

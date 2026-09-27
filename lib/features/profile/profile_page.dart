@@ -141,7 +141,7 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
                         width: 44,
                         height: 44,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const Icon(
+                        errorBuilder: (_, __, ___) => Icon(
                           Icons.menu_book_rounded,
                           color: MinikColors.green,
                         ),
@@ -219,7 +219,7 @@ class _ProfileHero extends StatelessWidget {
               color: Color(0xFFE8F4EC),
               shape: BoxShape.circle,
             ),
-            child: const Icon(
+            child: Icon(
               Icons.favorite_rounded,
               color: MinikColors.green,
               size: 22,
@@ -234,7 +234,7 @@ class _ProfileHero extends StatelessWidget {
                   greeting,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
@@ -243,7 +243,7 @@ class _ProfileHero extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 2),
-                const Text(
+                Text(
                   'İlerlemen bu cihazda saklanır',
                   style: TextStyle(
                     fontFamily: 'NotoSans',
@@ -269,7 +269,7 @@ class _ProfileHero extends StatelessWidget {
                   width: 22,
                   height: 22,
                   fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const Icon(
+                  errorBuilder: (_, __, ___) => Icon(
                     Icons.emoji_events_rounded,
                     size: 18,
                     color: MinikColors.gold,
@@ -278,7 +278,7 @@ class _ProfileHero extends StatelessWidget {
                 const SizedBox(width: 4),
                 Text(
                   '$xp',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 14,
                     fontWeight: FontWeight.w800,
@@ -303,7 +303,7 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'NotoSans',
         fontSize: 14,
         fontWeight: FontWeight.w800,
@@ -354,7 +354,7 @@ class _BadgeTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 10,
                     fontWeight: FontWeight.w800,

@@ -48,7 +48,7 @@ class _StoriesPageState extends State<StoriesPage> {
               ContentTile(
                 title: 'Tüm kıssalar',
                 subtitle: '${catalog.items.length} kıssa',
-                leading: const Icon(Icons.auto_stories_rounded, color: MinikColors.green),
+                leading: Icon(Icons.auto_stories_rounded, color: MinikColors.green),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -63,7 +63,7 @@ class _StoriesPageState extends State<StoriesPage> {
                 ContentTile(
                   title: category.title,
                   subtitle: '${catalog.forCategory(category.id).length} kıssa',
-                  leading: const Icon(Icons.menu_book_rounded, color: MinikColors.green),
+                  leading: Icon(Icons.menu_book_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -110,7 +110,7 @@ class StoriesListPage extends StatelessWidget {
                 width: 44,
                 height: 44,
                 fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => const Icon(
+                errorBuilder: (_, __, ___) => Icon(
                   Icons.auto_stories_rounded,
                   color: MinikColors.green,
                 ),
@@ -298,19 +298,12 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(lesson, style: theme.bodyLarge)),
                 ],
               ),
             ),
-        ],
-        if (story.reflection.isNotEmpty) ...[
-          const SizedBox(height: AppSpacing.md),
-          MinikCard(
-            color: MinikColors.butter,
-            child: Text(story.reflection, style: theme.bodyLarge),
-          ),
         ],
         if (story.quranReferences.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.md),

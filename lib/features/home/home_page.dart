@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/constants/app_constants.dart';
 import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
-import '../../app/theme/app_colors.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
@@ -26,7 +24,6 @@ class MinikHomePage extends StatefulWidget {
 }
 
 class _MinikHomePageState extends State<MinikHomePage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   Future<_HomeSnapshot>? _future;
   LocalProgressStore? _store;
   Timer? _welcomeTimer;
@@ -128,12 +125,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
     final store = context.read<LocalProgressStore>();
     _future ??= _load(repos, store);
     return Scaffold(
-      key: _scaffoldKey,
       backgroundColor: const Color(0xFFF4F7F2),
-      drawer: _HomeDrawer(onSelect: (route) {
-        Navigator.pop(context);
-        Navigator.pushNamed(context, route);
-      }),
       body: Stack(
         children: [
           FutureBuilder<_HomeSnapshot>(
@@ -207,7 +199,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
               SizedBox(
                 height: topInset + 148,
                 child: HomeHeroHeader(
-                  onMenu: () => _scaffoldKey.currentState?.openDrawer(),
                   onSettings: () async {
                     await Navigator.pushNamed(context, AppRoutes.settings);
                     if (!mounted) return;
@@ -286,49 +277,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
             nickname: _welcomeNickname,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _HomeDrawer extends StatelessWidget {
-  const _HomeDrawer({required this.onSelect});
-
-  final ValueChanged<String> onSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: MinikColors.surface,
-      child: SafeArea(
-        child: ListView(
-          children: [
-            const ListTile(
-              title: Text(
-                AppConstants.defaultAppName,
-                style: TextStyle(fontWeight: FontWeight.w800),
-              ),
-              subtitle: Text('İslami Eğitim Uygulaması'),
-            ),
-            for (final module in HomeCatalog.modules)
-              ListTile(
-                title: Text(module.title),
-                onTap: () => onSelect(module.route),
-              ),
-            ListTile(
-              title: const Text('Favoriler'),
-              onTap: () => onSelect(AppRoutes.favorites),
-            ),
-            ListTile(
-              title: const Text('Peygamberler Kitabı'),
-              onTap: () => onSelect(AppRoutes.learnProphetsBook),
-            ),
-            ListTile(
-              title: const Text('Ayarlar'),
-              onTap: () => onSelect(AppRoutes.settings),
-            ),
-          ],
-        ),
       ),
     );
   }

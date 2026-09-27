@@ -275,7 +275,7 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
                 ),
               ),
             if (_sayNow)
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 8),
                 child: Text(
                   'Şimdi sen söyle!',
@@ -625,7 +625,7 @@ class ElifbaComparisonCard extends StatelessWidget {
     return Row(
       children: [
         Expanded(child: _cell(context, left, leftCaption)),
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 8),
           child: Icon(Icons.compare_arrows_rounded, color: MinikColors.gold),
         ),

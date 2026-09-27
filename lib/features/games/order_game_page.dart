@@ -45,6 +45,7 @@ class OrderGamePage extends StatefulWidget {
 
 class _OrderGamePageState extends State<OrderGamePage> {
   late List<OrderGameItem> _shuffled;
+  final List<String> _placedIds = [];
   int _next = 0;
   String? _wrongId;
   bool _awarded = false;
@@ -57,15 +58,24 @@ class _OrderGamePageState extends State<OrderGamePage> {
 
   void _reset() {
     _shuffled = List<OrderGameItem>.from(widget.items)..shuffle(Random());
+    _placedIds.clear();
     _next = 0;
     _wrongId = null;
     _awarded = false;
   }
 
+  int? _stepOf(OrderGameItem item) {
+    final index = _placedIds.indexOf(item.id);
+    return index < 0 ? null : index + 1;
+  }
+
   Future<void> _tap(OrderGameItem item) async {
     if (_next >= widget.items.length) return;
+    if (_stepOf(item) != null) return;
     final expected = widget.items[_next];
-    if (item.id != expected.id) {
+    // Cards with the same title (e.g. Rükû in both rekâts) look identical,
+    // so either one counts as the expected step.
+    if (item.id != expected.id && item.title != expected.title) {
       setState(() => _wrongId = item.id);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Sıra böyle değil, tekrar dene.')),
@@ -74,6 +84,7 @@ class _OrderGamePageState extends State<OrderGamePage> {
     }
     setState(() {
       _wrongId = null;
+      _placedIds.add(item.id);
       _next += 1;
     });
     if (_next >= widget.items.length && !_awarded) {
@@ -119,24 +130,30 @@ class _OrderGamePageState extends State<OrderGamePage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: MinikCard(
-                  color: item.id == _wrongId
-                      ? MinikColors.blush
-                      : MinikColors.surface,
+                  color: _stepOf(item) != null
+                      ? MinikColors.mint
+                      : item.id == _wrongId
+                          ? MinikColors.blush
+                          : MinikColors.surface,
                   onTap: () => _tap(item),
                   child: Row(
                     children: [
+                      if (_stepOf(item) case final step?) ...[
+                        _StepBadge(step: step),
+                        const SizedBox(width: 10),
+                      ],
                       if (item.image.isNotEmpty)
                         Image.asset(
                           item.image,
                           width: 44,
                           height: 44,
-                          errorBuilder: (_, __, ___) => const Icon(
+                          errorBuilder: (_, __, ___) => Icon(
                             Icons.touch_app_rounded,
                             color: MinikColors.green,
                           ),
                         )
                       else
-                        const Icon(Icons.touch_app_rounded, color: MinikColors.green),
+                        Icon(Icons.touch_app_rounded, color: MinikColors.green),
                       const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: Text(
@@ -149,6 +166,35 @@ class _OrderGamePageState extends State<OrderGamePage> {
                 ),
               ),
         ],
+      ),
+    );
+  }
+}
+
+class _StepBadge extends StatelessWidget {
+  const _StepBadge({required this.step});
+
+  final int step;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 26,
+      height: 26,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: MinikColors.green,
+        shape: BoxShape.circle,
+      ),
+      child: Text(
+        '$step',
+        style: const TextStyle(
+          fontFamily: 'NotoSans',
+          fontSize: 13,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+          height: 1,
+        ),
       ),
     );
   }

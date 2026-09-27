@@ -276,7 +276,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
                     ? 'Turlar tamam'
                     : 'Kalan tur: ${DhikrTasbih.remainingRounds(dhikr.currentCount, dhikr.targetCount)}',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
@@ -337,7 +337,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Tesbihe dokun, bir tane çek',
               textAlign: TextAlign.center,
               style: TextStyle(

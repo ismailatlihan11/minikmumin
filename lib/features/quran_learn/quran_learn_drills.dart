@@ -104,11 +104,11 @@ class QlTeachCard extends StatelessWidget {
   const QlTeachCard({
     super.key,
     required this.lines,
-    this.color = MinikColors.sky,
+    this.color,
   });
 
   final List<String> lines;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +118,7 @@ class QlTeachCard extends StatelessWidget {
     ];
     if (clean.isEmpty) return const SizedBox.shrink();
     return MinikCard(
-      color: color,
+      color: color ?? MinikColors.sky,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -126,7 +126,7 @@ class QlTeachCard extends StatelessWidget {
             if (i > 0) const SizedBox(height: 6),
             Text(
               clean[i],
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontWeight: FontWeight.w600,
                 height: 1.35,
@@ -186,7 +186,7 @@ class _QlPickDrillState extends State<QlPickDrill> {
           const SizedBox(height: 8),
           Text(
             widget.question,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontWeight: FontWeight.w800,
               color: MinikColors.darkGreen,
@@ -263,7 +263,7 @@ class _DrillChip extends StatelessWidget {
               ? Text(
                   label,
                   textDirection: TextDirection.rtl,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: AssetPaths.arabicFontFamily,
                     fontSize: 28,
                     height: 1.1,
@@ -272,7 +272,7 @@ class _DrillChip extends StatelessWidget {
                 )
               : Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w800,
                     color: MinikColors.darkGreen,

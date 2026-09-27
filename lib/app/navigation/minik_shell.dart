@@ -57,7 +57,7 @@ class _MinikShellState extends State<MinikShell> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: MinikTheme.light(),
+      data: MinikTheme.current(),
       child: Scaffold(
         body: IndexedStack(
           index: _index,
@@ -145,7 +145,7 @@ class _NavItem extends StatelessWidget {
 
 Map<String, WidgetBuilder> minikRoutes() {
   WidgetBuilder light(WidgetBuilder builder) {
-    return (context) => MinikTheme.lightSurfaces(builder(context));
+    return (context) => MinikTheme.themed(builder(context));
   }
 
   return {

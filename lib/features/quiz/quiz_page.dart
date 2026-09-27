@@ -44,14 +44,14 @@ class _QuizPageState extends State<QuizPage> {
               ContentTile(
                 title: 'Karışık sorular',
                 subtitle: '${bank.questionsPerSession} soruluk oturum',
-                leading: const Icon(Icons.shuffle_rounded, color: MinikColors.green),
+                leading: Icon(Icons.shuffle_rounded, color: MinikColors.green),
                 onTap: () => _openSession(context, bank, bank.questions, 'Karışık sorular'),
               ),
               for (final category in bank.categories)
                 ContentTile(
                   title: category,
                   subtitle: '${bank.forCategory(category).length} soru',
-                  leading: const Icon(Icons.quiz_rounded, color: MinikColors.green),
+                  leading: Icon(Icons.quiz_rounded, color: MinikColors.green),
                   onTap: () => _openSession(
                     context,
                     bank,
@@ -169,7 +169,7 @@ class _QuizPlayViewState extends State<QuizPlayView> {
               children: [
                 Text(
                   '$_score / $total',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontSize: 28,
                     fontWeight: FontWeight.w800,

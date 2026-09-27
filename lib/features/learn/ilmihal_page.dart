@@ -55,14 +55,14 @@ class _IlmihalPageState extends State<IlmihalPage> {
                     width: 44,
                     height: 44,
                     fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => const Icon(
+                    errorBuilder: (_, __, ___) => Icon(
                       Icons.menu_book_rounded,
                       color: MinikColors.green,
                     ),
                   ),
                   onTap: () => Navigator.push(
                     context,
-                    MinikTheme.lightRoute(
+                    MinikTheme.route(
                       IlmihalCategoryPage(
                         category: category,
                         lessons: catalog.lessonsFor(category.id),
@@ -74,10 +74,10 @@ class _IlmihalPageState extends State<IlmihalPage> {
                 ContentTile(
                   title: 'Mini sorular',
                   subtitle: '${catalog.quiz.length} soru',
-                  leading: const Icon(Icons.quiz_rounded, color: MinikColors.green),
+                  leading: Icon(Icons.quiz_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
-                    MinikTheme.lightRoute(
+                    MinikTheme.route(
                       _IlmihalQuizPage(questions: catalog.quiz),
                     ),
                   ),
@@ -113,7 +113,7 @@ class IlmihalCategoryPage extends StatelessWidget {
               subtitle: lesson.summary,
               onTap: () => Navigator.push(
                 context,
-                MinikTheme.lightRoute(
+                MinikTheme.route(
                   IlmihalLessonPage(lesson: lesson),
                 ),
               ),
@@ -170,7 +170,7 @@ class IlmihalLessonPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(point, style: theme.bodyLarge)),
                 ],

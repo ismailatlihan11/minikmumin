@@ -50,7 +50,7 @@ class QuranLearnHeavyPage extends StatelessWidget {
                 child: Text(
                   pack.levelById(levelId)?.description ??
                       'Kalın ve ince harfleri ayırt edelim.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w700,
                     color: MinikColors.darkGreen,
@@ -152,7 +152,7 @@ class _HeavyGroupCardState extends State<_HeavyGroupCard> {
                       QlBigArabic(letter.letter, fontSize: 28),
                       Text(
                         letter.name,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontSize: 11,
                           fontWeight: FontWeight.w700,

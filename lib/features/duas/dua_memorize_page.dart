@@ -193,7 +193,7 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
                           ? 'Her karttaki “Dinle” ile o parçayı dinlersin. Üstteki Dinle: hepsini sırayla çalar.'
                           : '“Dinle”ye dokununca dua sesi çalar.'),
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     color: MinikColors.textMuted,
                   ),
@@ -252,7 +252,7 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
                       const SizedBox(height: 8),
                       Text(
                         units[i].reading,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           color: MinikColors.textMuted,
                           height: 1.35,
@@ -263,7 +263,7 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
                       const SizedBox(height: 6),
                       Text(
                         units[i].meal,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           color: MinikColors.textMuted,
                           height: 1.35,

@@ -39,11 +39,9 @@ class HomeRoundButton extends StatelessWidget {
 class HomeHeroHeader extends StatelessWidget {
   const HomeHeroHeader({
     super.key,
-    required this.onMenu,
     required this.onSettings,
   });
 
-  final VoidCallback onMenu;
   final VoidCallback onSettings;
 
   @override
@@ -96,7 +94,6 @@ class HomeHeroHeader extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              HomeRoundButton(icon: Icons.menu_rounded, onTap: onMenu),
               const Spacer(),
               // Arabic sits in the right sky, left of settings — clear of kids.
               const Padding(
@@ -258,7 +255,7 @@ class HomeModuleCard extends StatelessWidget {
                         module.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontSize: 16,
                           fontWeight: FontWeight.w800,
@@ -271,7 +268,7 @@ class HomeModuleCard extends StatelessWidget {
                         module.subtitle,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -318,7 +315,7 @@ class HomeModuleCard extends StatelessWidget {
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontSize: 10,
                   fontWeight: FontWeight.w800,
@@ -374,7 +371,7 @@ class HomeBasicsFeaturedCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Temel Dini Bilgiler',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -387,7 +384,7 @@ class HomeBasicsFeaturedCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 3),
-                      const Text(
+                      Text(
                         'İslam\'ın temel bilgilerini birlikte öğrenelim.',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -402,7 +399,7 @@ class HomeBasicsFeaturedCard extends StatelessWidget {
                       const Spacer(),
                       Text(
                         '$completed / $total konu tamamlandı',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontSize: 11,
                           fontWeight: FontWeight.w800,
@@ -425,7 +422,7 @@ class HomeBasicsFeaturedCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          const Text(
+                          Text(
                             'Başla →',
                             style: TextStyle(
                               fontFamily: 'NotoSans',
@@ -538,7 +535,7 @@ class HomeAdventureCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -698,14 +695,14 @@ class HomeQuranResumeBar extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(12, 8, 10, 8),
           child: Row(
             children: [
-              const Icon(Icons.bookmark_rounded, color: MinikColors.green, size: 22),
+              Icon(Icons.bookmark_rounded, color: MinikColors.green, size: 22),
               const SizedBox(width: 8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
+                    Text(
                       'Kaldığın yerden oku',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -732,7 +729,7 @@ class HomeQuranResumeBar extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.play_arrow_rounded, color: MinikColors.green),
+              Icon(Icons.play_arrow_rounded, color: MinikColors.green),
             ],
           ),
         ),
@@ -762,7 +759,7 @@ class HomeQuickCircle extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 10,
               fontWeight: FontWeight.w700,

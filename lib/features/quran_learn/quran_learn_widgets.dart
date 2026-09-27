@@ -112,7 +112,7 @@ class QlListenIcon extends StatelessWidget {
           playable,
         );
       },
-      icon: const Icon(Icons.volume_up_rounded, color: MinikColors.green),
+      icon: Icon(Icons.volume_up_rounded, color: MinikColors.green),
     );
   }
 }
@@ -134,7 +134,7 @@ class QlSoftProgress extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 13,
             fontWeight: FontWeight.w800,
@@ -180,7 +180,7 @@ class QlFormChip extends StatelessWidget {
         children: [
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 11,
               fontWeight: FontWeight.w700,
@@ -191,7 +191,7 @@ class QlFormChip extends StatelessWidget {
           QlBigArabic(arabic, fontSize: 28),
           if (onTap != null) ...[
             const SizedBox(height: 4),
-            const Icon(
+            Icon(
               Icons.palette_outlined,
               size: 14,
               color: MinikColors.green,
@@ -396,7 +396,7 @@ class QlDashTile extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 11,
                             fontWeight: FontWeight.w800,
@@ -486,7 +486,7 @@ class QlLessonIntro extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
               fontWeight: FontWeight.w800,
@@ -498,7 +498,7 @@ class QlLessonIntro extends StatelessWidget {
             const SizedBox(height: 6),
             Text(
               rule!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 13,
                 height: 1.35,
@@ -510,7 +510,7 @@ class QlLessonIntro extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             cue,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 13,
               fontWeight: FontWeight.w800,
@@ -522,7 +522,7 @@ class QlLessonIntro extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               note!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
@@ -534,7 +534,7 @@ class QlLessonIntro extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               hint!,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 11,
                 color: MinikColors.textMuted,

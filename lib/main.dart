@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'app/constants/app_constants.dart';
 import 'app/navigation/minik_shell.dart';
-import 'app/theme/app_colors.dart';
 import 'app/theme/app_theme.dart';
+import 'app/theme/theme_controller.dart';
 import 'core/audio/asset_catalog.dart';
 import 'core/storage/local_progress_store.dart';
 import 'data/repositories/content_repositories.dart';
@@ -17,21 +17,15 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Brightness.light,
-      systemNavigationBarColor: MinikColors.cream,
-      systemNavigationBarIconBrightness: Brightness.dark,
-    ),
-  );
+  final themeController = await ThemeController.load();
   await AssetCatalog.load();
-  runApp(const MinikKalplerApp());
+  runApp(MinikKalplerApp(themeController: themeController));
 }
 
 class MinikKalplerApp extends StatelessWidget {
-  const MinikKalplerApp({super.key});
+  const MinikKalplerApp({super.key, required this.themeController});
+
+  final ThemeController themeController;
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +34,25 @@ class MinikKalplerApp extends StatelessWidget {
         Provider(create: (_) => ContentRepositories()),
         ChangeNotifierProvider(create: (_) => LocalProgressStore()),
         ChangeNotifierProvider(create: (_) => DhikrStore()..restore()),
+        ChangeNotifierProvider.value(value: themeController),
       ],
-      child: MaterialApp(
-        title: AppConstants.defaultAppName,
-        debugShowCheckedModeBanner: false,
-        theme: MinikTheme.light(),
-        // Kids UI is cream/pastel surfaces throughout. System dark mode was
-        // painting cream text onto those light pages after Navigator.push.
-        themeMode: ThemeMode.light,
-        builder: (context, child) => MinikTheme.lightSurfaces(
-          child ?? const SizedBox.shrink(),
+      child: ThemeRefreshScope(
+        controller: themeController,
+        child: Consumer<ThemeController>(
+          builder: (context, controller, _) => MaterialApp(
+            title: AppConstants.defaultAppName,
+            debugShowCheckedModeBanner: false,
+            theme: MinikTheme.current(),
+            darkTheme: MinikTheme.current(),
+            // The palette, not the system setting, decides light or dark.
+            themeMode: controller.isDark ? ThemeMode.dark : ThemeMode.light,
+            builder: (context, child) => MinikTheme.themed(
+              child ?? const SizedBox.shrink(),
+            ),
+            home: const MinikShell(),
+            routes: minikRoutes(),
+          ),
         ),
-        home: const MinikShell(),
-        routes: minikRoutes(),
       ),
     );
   }

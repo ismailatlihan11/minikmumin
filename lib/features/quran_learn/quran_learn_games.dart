@@ -79,7 +79,7 @@ class QlGamesStrip extends StatelessWidget {
           ContentTile(
             title: game.question,
             subtitle: quranLearnGameTypeLabel(game.type),
-            leading: const Icon(
+            leading: Icon(
               Icons.sports_esports_rounded,
               color: MinikColors.green,
             ),
@@ -133,7 +133,7 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
             ContentTile(
               title: 'Harfleri boya',
               subtitle: 'Bir harf seç, parmağınla boya.',
-              leading: const Icon(Icons.palette_rounded, color: MinikColors.green),
+              leading: Icon(Icons.palette_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -144,7 +144,7 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
             ContentTile(
               title: 'Harf eşleştir',
               subtitle: 'Kolay, orta ve zor. Aynı iki harfi bul.',
-              leading: const Icon(Icons.grid_view_rounded, color: MinikColors.green),
+              leading: Icon(Icons.grid_view_rounded, color: MinikColors.green),
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -198,7 +198,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
                 child: Text(
                   pack.levelById(levelId)?.description ??
                       'Harf, hareke ve kelime oyunlarıyla pekiştirelim.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'NotoSans',
                     fontWeight: FontWeight.w700,
                     color: MinikColors.darkGreen,
@@ -209,7 +209,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
               ContentTile(
                 title: 'Harfleri boya',
                 subtitle: 'Bir harf seç, parmağınla boya.',
-                leading: const Icon(
+                leading: Icon(
                   Icons.palette_rounded,
                   color: MinikColors.green,
                 ),
@@ -223,7 +223,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
               ContentTile(
                 title: 'Harf eşleştir',
                 subtitle: 'Aynı iki harfi bul.',
-                leading: const Icon(
+                leading: Icon(
                   Icons.grid_view_rounded,
                   color: MinikColors.green,
                 ),
@@ -383,7 +383,7 @@ class _ChoicePlay extends StatelessWidget {
                       ? Text(
                           option,
                           textDirection: TextDirection.rtl,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: AssetPaths.arabicFontFamily,
                             fontSize: 32,
                             color: MinikColors.darkGreen,
@@ -564,7 +564,7 @@ class _ArabicChip extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           textDirection: TextDirection.rtl,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: AssetPaths.arabicFontFamily,
             fontSize: 28,
             color: MinikColors.darkGreen,

@@ -422,7 +422,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                         color: MinikColors.peach,
                         borderRadius: BorderRadius.circular(99),
                       ),
-                      child: const Text(
+                      child: Text(
                         'Kalın harf',
                         style: TextStyle(
                           fontFamily: 'NotoSans',

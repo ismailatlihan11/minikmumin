@@ -310,7 +310,7 @@ class QlPracticeTable extends StatelessWidget {
                           caption: item.letter.name,
                         ),
                       ),
-                      const Icon(Icons.arrow_forward_rounded, color: MinikColors.gold),
+                      Icon(Icons.arrow_forward_rounded, color: MinikColors.gold),
                       Expanded(
                         child: _PracticeCell(
                           audio: audio,
@@ -380,7 +380,7 @@ class _PracticeCell extends StatelessWidget {
         if (caption != null)
           Text(
             caption!,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 11,
               fontWeight: FontWeight.w700,
@@ -782,7 +782,7 @@ class QlWordListenList extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           words[i].reading,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
@@ -819,7 +819,7 @@ class QlCezmKavrama extends StatelessWidget {
     final joinFatha = QuranLearnAudio.sukunJoinPath(ba.audio, 'fatha');
     return Column(
       children: [
-        const Text(
+        Text(
           'Harekeli harf ile sakin harf birleşir.',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -893,7 +893,7 @@ class QlShaddaKavrama extends StatelessWidget {
     if (ba == null) return const SizedBox.shrink();
     return Column(
       children: [
-        const Text(
+        Text(
           'İlk bölüm sakin, ikinci bölüm harekelidir.',
           textAlign: TextAlign.center,
           style: TextStyle(

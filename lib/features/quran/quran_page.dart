@@ -160,7 +160,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                 onTap: () => _openMushaf(resume: false),
                 child: Row(
                   children: [
-                    const Icon(Icons.menu_book_rounded, color: MinikColors.green, size: 32),
+                    Icon(Icons.menu_book_rounded, color: MinikColors.green, size: 32),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -184,7 +184,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                         ],
                       ),
                     ),
-                    const Icon(Icons.chevron_right_rounded, color: MinikColors.greenSoft),
+                    Icon(Icons.chevron_right_rounded, color: MinikColors.greenSoft),
                   ],
                 ),
               ),

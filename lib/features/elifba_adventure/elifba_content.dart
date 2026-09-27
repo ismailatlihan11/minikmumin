@@ -569,7 +569,7 @@ class ElifbaCategoryTablesView extends StatelessWidget {
     'ince_harfler': '🟢 İnce Harfler',
   };
 
-  static const _colors = {
+  static Map<String, Color> get _colors => {
     'kalin_harfler': MinikColors.peach,
     'peltek_harfler': MinikColors.sky,
     'ince_harfler': MinikColors.mint,
@@ -1007,7 +1007,7 @@ class _ShapeCell extends StatelessWidget {
               Text(
                 form,
                 textDirection: TextDirection.rtl,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: AssetPaths.arabicFontFamily,
                   fontSize: 30,
                   color: MinikColors.darkGreen,

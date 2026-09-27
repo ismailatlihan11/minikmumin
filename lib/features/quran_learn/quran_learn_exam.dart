@@ -284,7 +284,7 @@ class _ExamQuestion extends StatelessWidget {
               child: Text(
                 option,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontWeight: FontWeight.w700,
                   color: MinikColors.darkGreen,

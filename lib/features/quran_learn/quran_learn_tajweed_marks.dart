@@ -293,7 +293,7 @@ class QlTajweedFocusArabic extends StatelessWidget {
           TextSpan(text: arabic.substring(0, index)),
           TextSpan(
             text: arabic.substring(index, index + length),
-            style: const TextStyle(
+            style: TextStyle(
               backgroundColor: MinikColors.butter,
               fontWeight: FontWeight.w700,
             ),
@@ -328,7 +328,7 @@ class QlTajweedHitChips extends StatelessWidget {
             ),
             child: Text(
               hit.title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 11,
                 fontWeight: FontWeight.w800,

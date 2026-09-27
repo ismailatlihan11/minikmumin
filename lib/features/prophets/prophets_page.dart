@@ -73,7 +73,7 @@ class _ProphetsPageState extends State<ProphetsPage> {
                         ],
                       ),
                     ),
-                    const Icon(Icons.menu_book_rounded, color: MinikColors.green),
+                    Icon(Icons.menu_book_rounded, color: MinikColors.green),
                   ],
                 ),
               ),
@@ -91,7 +91,7 @@ class _ProphetsPageState extends State<ProphetsPage> {
                     width: 44,
                     height: 44,
                     fit: BoxFit.contain,
-                    errorBuilder: (_, __, ___) => const Icon(
+                    errorBuilder: (_, __, ___) => Icon(
                       Icons.auto_awesome_rounded,
                       color: MinikColors.green,
                     ),
@@ -176,7 +176,7 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(lesson, style: theme.bodyLarge)),
                 ],

@@ -248,7 +248,7 @@ class _MinikPaintPaletteState extends State<MinikPaintPalette> {
                       selected: false,
                       size: 34,
                       child: _slotA == null
-                          ? const Icon(
+                          ? Icon(
                               Icons.add,
                               size: 16,
                               color: MinikColors.textMuted,
@@ -272,7 +272,7 @@ class _MinikPaintPaletteState extends State<MinikPaintPalette> {
                       selected: false,
                       size: 34,
                       child: _slotB == null
-                          ? const Icon(
+                          ? Icon(
                               Icons.add,
                               size: 16,
                               color: MinikColors.textMuted,
@@ -297,7 +297,7 @@ class _MinikPaintPaletteState extends State<MinikPaintPalette> {
                           result != null && _nearColor(widget.selected, result),
                       size: 34,
                       child: result == null
-                          ? const Icon(
+                          ? Icon(
                               Icons.auto_awesome,
                               size: 16,
                               color: MinikColors.textMuted,
@@ -339,7 +339,7 @@ class _MinikPaintPaletteState extends State<MinikPaintPalette> {
                       label: const Text('Karıştır'),
                     ),
                     const Spacer(),
-                    const Text(
+                    Text(
                       'Uzun bas → karıştır',
                       style: TextStyle(
                         fontFamily: 'NotoSans',
@@ -491,7 +491,7 @@ class _MinikZoomablePaintAreaState extends State<MinikZoomablePaintArea> {
                     ),
                     Text(
                       '${_scale.toStringAsFixed(1)}×',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'NotoSans',
                         fontSize: 11,
                         fontWeight: FontWeight.w800,
@@ -739,7 +739,7 @@ class _MinikColoringPageState extends State<MinikColoringPage> {
                                   child: Image.asset(
                                     widget.image,
                                     fit: BoxFit.contain,
-                                    errorBuilder: (_, __, ___) => const Center(
+                                    errorBuilder: (_, __, ___) => Center(
                                       child: Icon(
                                         Icons.image_outlined,
                                         size: 72,
@@ -947,14 +947,14 @@ class MinikCustomBrushRail extends StatelessWidget {
               child: Container(
                 width: width.clamp(4, 32),
                 height: width.clamp(4, 32),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: MinikColors.darkGreen,
                   shape: BoxShape.circle,
                 ),
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Kalın',
               style: TextStyle(
                 fontFamily: 'NotoSans',
@@ -986,7 +986,7 @@ class MinikCustomBrushRail extends StatelessWidget {
                 ),
               ),
             ),
-            const Text(
+            Text(
               'İnce',
               style: TextStyle(
                 fontFamily: 'NotoSans',

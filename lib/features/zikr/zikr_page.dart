@@ -241,7 +241,7 @@ class _ReorderBody extends StatelessWidget {
       onReorderStart: (_) => HapticFeedback.mediumImpact(),
       onReorderEnd: (_) => HapticFeedback.selectionClick(),
       onReorderItem: store.reorderDhikr,
-      header: const Column(
+      header: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           PageHeader(
@@ -457,7 +457,7 @@ class _DhikrTile extends StatelessWidget {
                     children: [
                       Text(
                         dhikr.title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontWeight: FontWeight.w800,
                           color: MinikColors.darkGreen,
@@ -471,7 +471,7 @@ class _DhikrTile extends StatelessWidget {
                               : 'Bugün $todayDone kez  ·  Toplam ${dhikr.totalCount}',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
@@ -538,7 +538,7 @@ class _EditTile extends StatelessWidget {
                         dhikr.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontWeight: FontWeight.w800,
                           color: MinikColors.darkGreen,
@@ -553,7 +553,7 @@ class _EditTile extends StatelessWidget {
               tooltip: 'Düzenle',
               onPressed: onEdit,
               visualDensity: VisualDensity.compact,
-              icon: const Icon(Icons.edit_rounded, color: MinikColors.green),
+              icon: Icon(Icons.edit_rounded, color: MinikColors.green),
             ),
             IconButton(
               tooltip: 'Sil',
@@ -575,7 +575,7 @@ class _EditTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: MinikColors.goldSoft),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.drag_indicator_rounded,
                   color: MinikColors.gold,
                   size: 28,

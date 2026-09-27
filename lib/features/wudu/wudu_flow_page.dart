@@ -223,7 +223,7 @@ class _ResultView extends StatelessWidget {
         Image.asset(
           'assets/images/home/success.png',
           height: 140,
-          errorBuilder: (_, __, ___) => const Icon(
+          errorBuilder: (_, __, ___) => Icon(
             Icons.check_circle_rounded,
             size: 72,
             color: MinikColors.success,
@@ -248,7 +248,7 @@ class _ResultView extends StatelessWidget {
         ],
         if (controller.awardedNewBadge) ...[
           const SizedBox(height: AppSpacing.sm),
-          const MinikCard(
+          MinikCard(
             color: MinikColors.mint,
             child: Text('Rozet: İlk Ders'),
           ),

@@ -856,7 +856,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       steps.add(
         _FlowStep(
           cue: 'Ra bazen kalın, bazen ince okunur.',
-          builder: (state) => const ElifbaSoftCard(
+          builder: (state) => ElifbaSoftCard(
             color: MinikColors.butter,
             child: Text(
               "Ra'nın bütün durumları bu üç örnekten ibaret değildir.",
@@ -872,7 +872,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       steps.add(
         _FlowStep(
           cue: 'Allah lafzını büyük görelim.',
-          builder: (state) => const ElifbaSoftCard(
+          builder: (state) => ElifbaSoftCard(
             color: MinikColors.mint,
             child: Column(
               children: [
