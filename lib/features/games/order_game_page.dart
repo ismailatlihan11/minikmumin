@@ -9,6 +9,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/story.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class OrderGameItem {
@@ -110,7 +111,7 @@ class _OrderGamePageState extends State<OrderGamePage> {
           ),
           const SizedBox(height: AppSpacing.md),
           if (done) ...[
-            Image.asset(
+            MinikImage.asset(
               'assets/images/home/success.png',
               height: 120,
               errorBuilder: (_, __, ___) => const SizedBox.shrink(),
@@ -120,11 +121,13 @@ class _OrderGamePageState extends State<OrderGamePage> {
             const SizedBox(height: AppSpacing.md),
             const MinikCard(child: Text('Sırayı doğru tamamladın.')),
             const SizedBox(height: AppSpacing.lg),
-            if (widget.onNext != null && (widget.nextLabel ?? '').isNotEmpty) ...[
+            if (widget.onNext != null &&
+                (widget.nextLabel ?? '').isNotEmpty) ...[
               PrimaryButton(label: widget.nextLabel!, onPressed: widget.onNext),
               const SizedBox(height: AppSpacing.sm),
             ],
-            PrimaryButton(label: 'Tekrar Dene', onPressed: () => setState(_reset)),
+            PrimaryButton(
+                label: 'Tekrar dene', onPressed: () => setState(_reset)),
           ] else
             for (final item in _shuffled)
               Padding(
@@ -143,7 +146,7 @@ class _OrderGamePageState extends State<OrderGamePage> {
                         const SizedBox(width: 10),
                       ],
                       if (item.image.isNotEmpty)
-                        Image.asset(
+                        MinikImage.asset(
                           item.image,
                           width: 44,
                           height: 44,

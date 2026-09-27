@@ -7,6 +7,7 @@ import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/turkish_number.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class PeygamberlerKitabiPage extends StatefulWidget {
@@ -56,7 +57,7 @@ class _PeygamberlerKitabiPageState extends State<PeygamberlerKitabiPage> {
             child: SizedBox(
               height: 120,
               width: double.infinity,
-              child: Image.asset(
+              child: MinikImage.asset(
                 PeygamberlerKitabi.cover,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
@@ -231,7 +232,8 @@ class _PeygamberlerKitabiReaderPageState
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      backgroundColor: const Color(0xFFF4EEDC),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF4EEDC), const Color(0xFF373222)),
       appBar: AppBar(
         title: Text(TurkishNumber.pageLabel(_page)),
         actions: [
@@ -257,7 +259,7 @@ class _PeygamberlerKitabiReaderPageState
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: MinikColors.card,
                       borderRadius: BorderRadius.circular(AppRadius.md),
                       boxShadow: const [
                         BoxShadow(
@@ -269,7 +271,7 @@ class _PeygamberlerKitabiReaderPageState
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(AppRadius.md),
-                      child: Image.asset(
+                      child: MinikImage.asset(
                         PeygamberlerKitabi.pageImage(_toPage(index)),
                         fit: BoxFit.contain,
                         alignment: Alignment.topCenter,
@@ -304,7 +306,8 @@ class _PeygamberlerKitabiReaderPageState
                               ? Icons.bookmark_rounded
                               : Icons.bookmark_border_rounded,
                         ),
-                        label: Text(_savedHere ? 'Kaydedildi' : 'Burada kaldım'),
+                        label:
+                            Text(_savedHere ? 'Kaydedildi' : 'Burada kaldım'),
                       ),
                     ),
                     IconButton(

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/constants/app_constants.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../app/theme/theme_controller.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../features/elifba_adventure/elifba_progress.dart';
 import '../../features/quran_learn/quran_learn_progress.dart';
@@ -58,6 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     _load();
+    final isDark = context.watch<ThemeController>().isDark;
     return Scaffold(
       appBar: AppBar(title: const Text('Ayarlar')),
       body: ListView(
@@ -66,7 +68,6 @@ class _SettingsPageState extends State<SettingsPage> {
           const PageHeader(
             title: 'Ayarlar',
             subtitle: 'Adın uygulama açılınca “Hoş geldin” yazısında görünür.',
-            image: 'assets/images/home/settings.png',
           ),
           MinikCard(
             child: Column(
@@ -101,12 +102,28 @@ class _SettingsPageState extends State<SettingsPage> {
           MinikCard(
             child: SwitchListTile(
               contentPadding: EdgeInsets.zero,
+              secondary: Icon(
+                isDark ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                color: isDark ? MinikColors.goldSoft : MinikColors.gold,
+              ),
+              title: const Text('Koyu mod'),
+              subtitle: const Text(
+                'Gece kullanımında gözü yormayan koyu renkler.',
+              ),
+              value: isDark,
+              onChanged: (value) =>
+                  context.read<ThemeController>().setDark(value),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          MinikCard(
+            child: SwitchListTile(
+              contentPadding: EdgeInsets.zero,
               title: const Text('Öğrenme kilitlerini aç'),
               subtitle: const Text(
                 'Ebeveyn ayarı: Kur’an Öğren ve Elifbâ + Tecvid dersleri kilitsiz açılsın.',
               ),
               value: _unlockLessons,
-              activeThumbColor: MinikColors.green,
               onChanged: (value) async {
                 await _setUnlockLessons(
                   context.read<LocalProgressStore>(),

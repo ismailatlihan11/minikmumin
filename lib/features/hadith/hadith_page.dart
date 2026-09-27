@@ -10,6 +10,7 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 
 class HadithPage extends StatefulWidget {
   const HadithPage({super.key});
@@ -43,17 +44,23 @@ class _HadithPageState extends State<HadithPage> {
       appBar: AppBar(title: const Text('Hadisler')),
       body: AsyncBody<List<Hadith>>(
         future: _future!,
-        onRetry: () => setState(() => _future = repos.hadith.getAll()),
+        onRetry: () => setState(() {
+          _future = repos.hadith.getAll();
+        }),
         builder: (items) {
           final pool = _shortOnly
-              ? items.where((item) => item.plainTurkish.length <= _shortLimit).toList()
+              ? items
+                  .where((item) => item.plainTurkish.length <= _shortLimit)
+                  .toList()
               : items;
           final source = pool.isEmpty ? items : pool;
           final filtered = _query.trim().isEmpty
               ? source
               : source
                   .where((item) =>
-                      item.plainTurkish.toLowerCase().contains(_query.toLowerCase()) ||
+                      item.plainTurkish
+                          .toLowerCase()
+                          .contains(_query.toLowerCase()) ||
                       item.id.contains(_query))
                   .toList();
           return Column(
@@ -79,7 +86,8 @@ class _HadithPageState extends State<HadithPage> {
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
                       title: const Text('Arapça metni göster'),
-                      subtitle: const Text('Hadislerin Arapçasını gizleyebilirsin'),
+                      subtitle:
+                          const Text('Hadislerin Arapçasını gizleyebilirsin'),
                       value: store.hadithShowArabic,
                       onChanged: store.setHadithShowArabic,
                     ),
@@ -100,7 +108,10 @@ class _HadithPageState extends State<HadithPage> {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => HadithDetailPage(hadith: item),
+                          builder: (_) => HadithDetailPage(
+                            hadith: item,
+                            upcoming: filtered.sublist(index + 1),
+                          ),
                         ),
                       ),
                     );
@@ -116,15 +127,32 @@ class _HadithPageState extends State<HadithPage> {
 }
 
 class HadithDetailPage extends StatefulWidget {
-  const HadithDetailPage({super.key, required this.hadith});
+  const HadithDetailPage({
+    super.key,
+    required this.hadith,
+    this.upcoming = const [],
+  });
 
   final Hadith hadith;
+  final List<Hadith> upcoming;
 
   @override
   State<HadithDetailPage> createState() => _HadithDetailPageState();
 }
 
 class _HadithDetailPageState extends State<HadithDetailPage> {
+  void _openNext() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => HadithDetailPage(
+          hadith: widget.upcoming.first,
+          upcoming: widget.upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
   String _copyText({required bool showArabic}) {
     return joinCopyParts([
       'Hadis ${widget.hadith.id}',
@@ -160,16 +188,25 @@ class _HadithDetailPageState extends State<HadithDetailPage> {
           ),
         ),
         CopyIconButton(text: _copyText(showArabic: showArabic)),
-        FavoriteButton(kind: 'hadith', id: hadith.id, title: 'Hadis ${hadith.id}'),
+        FavoriteButton(
+            kind: 'hadith', id: hadith.id, title: 'Hadis ${hadith.id}'),
       ],
       children: [
         if (showArabic && hadith.arabic.trim().isNotEmpty) ...[
           ArabicPanel(hadith.arabic),
           const SizedBox(height: AppSpacing.md),
         ],
-        SelectableText(hadith.plainTurkish, style: Theme.of(context).textTheme.bodyLarge),
+        SelectableText(hadith.plainTurkish,
+            style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: AppSpacing.md),
         CopyTextButton(text: _copyText(showArabic: showArabic)),
+        const SizedBox(height: AppSpacing.lg),
+        TopicFooter(
+          hasNext: widget.upcoming.isNotEmpty,
+          onNext: _openNext,
+          nextLabel: 'Sonraki hadise geç',
+          backLabel: 'Hadislere dön',
+        ),
       ],
     );
   }

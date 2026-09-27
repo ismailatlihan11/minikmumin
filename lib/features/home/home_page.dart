@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../app/constants/home_catalog.dart';
 import '../../app/routes.dart';
+import '../../app/theme/app_colors.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
@@ -39,8 +40,10 @@ class _MinikHomePageState extends State<MinikHomePage> {
     final lesson = await repos.wudu.getLesson();
     final prayerLesson = await repos.prayer.getLesson();
     final completed = await store.getCompletedItems();
-    final prayerDone = completed.where((item) => item.startsWith('prayer|')).length;
-    final basicsDone = completed.where((item) => item.startsWith('basics|')).length;
+    final prayerDone =
+        completed.where((item) => item.startsWith('prayer|')).length;
+    final basicsDone =
+        completed.where((item) => item.startsWith('basics|')).length;
     final basics = await repos.basics.load();
     return _HomeSnapshot(
       wudu: wudu,
@@ -60,7 +63,9 @@ class _MinikHomePageState extends State<MinikHomePage> {
     final repos = context.read<ContentRepositories>();
     final store = _store;
     if (store == null) return;
-    setState(() => _future = _load(repos, store));
+    setState(() {
+      _future = _load(repos, store);
+    });
   }
 
   void _hideWelcome() {
@@ -107,8 +112,7 @@ class _MinikHomePageState extends State<MinikHomePage> {
     final rawName = (await store.getNickname())?.trim();
     if (!mounted) return;
     setState(() {
-      _welcomeNickname =
-          (rawName == null || rawName.isEmpty) ? null : rawName;
+      _welcomeNickname = (rawName == null || rawName.isEmpty) ? null : rawName;
     });
   }
 
@@ -125,152 +129,166 @@ class _MinikHomePageState extends State<MinikHomePage> {
     final store = context.read<LocalProgressStore>();
     _future ??= _load(repos, store);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       body: Stack(
         children: [
           FutureBuilder<_HomeSnapshot>(
-        future: _future,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const LoadingView();
-          }
-          if (snapshot.hasError || !snapshot.hasData) {
-            return ErrorView(
-              onRetry: () => setState(() => _future = _load(repos, store)),
-            );
-          }
-          final data = snapshot.data!;
-          final point = data.continuePoint;
-          final dhikrStore = context.watch<DhikrStore>();
-          final pausedDhikr = dhikrStore.paused;
-          var continueRoute = point?.route ??
-              (data.wudu.completed && !data.wudu.inProgress
-                  ? AppRoutes.learnPrayer
-                  : AppRoutes.learnWudu);
-          VoidCallback onContinue = () async {
-            await Navigator.pushNamed(context, continueRoute);
-            if (!mounted) return;
-            setState(() => _future = _load(repos, store));
-          };
-          if (pausedDhikr != null) {
-            onContinue = () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => ZikrCounterPage(dhikrId: pausedDhikr.id),
-                ),
-              );
-              if (!mounted) return;
-              setState(() => _future = _load(repos, store));
-            };
-          } else if (point?.route == AppRoutes.quranSurah &&
-              data.mealBookmark != null) {
-            final meal = data.mealBookmark!;
-            continueRoute = AppRoutes.quranSurah;
-            onContinue = () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => QuranSurahPage(
-                    surahId: meal.surahId,
-                    initialAyahNo: meal.ayahNo,
+            future: _future,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState != ConnectionState.done) {
+                return const LoadingView();
+              }
+              if (snapshot.hasError || !snapshot.hasData) {
+                return ErrorView(
+                  onRetry: () => setState(() {
+                    _future = _load(repos, store);
+                  }),
+                );
+              }
+              final data = snapshot.data!;
+              final point = data.continuePoint;
+              final dhikrStore = context.watch<DhikrStore>();
+              final pausedDhikr = dhikrStore.paused;
+              var continueRoute = point?.route ??
+                  (data.wudu.completed && !data.wudu.inProgress
+                      ? AppRoutes.learnPrayer
+                      : AppRoutes.learnWudu);
+              VoidCallback onContinue = () async {
+                await Navigator.pushNamed(context, continueRoute);
+                if (!mounted) return;
+                setState(() {
+                  _future = _load(repos, store);
+                });
+              };
+              if (pausedDhikr != null) {
+                onContinue = () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ZikrCounterPage(dhikrId: pausedDhikr.id),
+                    ),
+                  );
+                  if (!mounted) return;
+                  setState(() {
+                    _future = _load(repos, store);
+                  });
+                };
+              } else if (point?.route == AppRoutes.quranSurah &&
+                  data.mealBookmark != null) {
+                final meal = data.mealBookmark!;
+                continueRoute = AppRoutes.quranSurah;
+                onContinue = () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => QuranSurahPage(
+                        surahId: meal.surahId,
+                        initialAyahNo: meal.ayahNo,
+                      ),
+                    ),
+                  );
+                  if (!mounted) return;
+                  setState(() {
+                    _future = _load(repos, store);
+                  });
+                };
+              } else if (data.mushafBookmark != null &&
+                  (point == null ||
+                      point.route == AppRoutes.quranReader ||
+                      point.route == AppRoutes.quran)) {
+                continueRoute = AppRoutes.quranReader;
+                onContinue = () async {
+                  await Navigator.pushNamed(context, AppRoutes.quranReader);
+                  if (!mounted) return;
+                  setState(() {
+                    _future = _load(repos, store);
+                  });
+                };
+              }
+              final gridModules = HomeCatalog.modules
+                  .where((module) => !module.featured)
+                  .toList();
+              final topInset = MediaQuery.paddingOf(context).top;
+              return Column(
+                children: [
+                  SizedBox(
+                    height: topInset + 148,
+                    child: HomeHeroHeader(
+                      onSettings: () async {
+                        await Navigator.pushNamed(context, AppRoutes.settings);
+                        if (!mounted) return;
+                        setState(() {
+                          _future = _load(repos, store);
+                        });
+                      },
+                    ),
                   ),
-                ),
-              );
-              if (!mounted) return;
-              setState(() => _future = _load(repos, store));
-            };
-          } else if (data.mushafBookmark != null &&
-              (point == null ||
-                  point.route == AppRoutes.quranReader ||
-                  point.route == AppRoutes.quran)) {
-            continueRoute = AppRoutes.quranReader;
-            onContinue = () async {
-              await Navigator.pushNamed(context, AppRoutes.quranReader);
-              if (!mounted) return;
-              setState(() => _future = _load(repos, store));
-            };
-          }
-          final gridModules =
-              HomeCatalog.modules.where((module) => !module.featured).toList();
-          final topInset = MediaQuery.paddingOf(context).top;
-          return Column(
-            children: [
-              SizedBox(
-                height: topInset + 148,
-                child: HomeHeroHeader(
-                  onSettings: () async {
-                    await Navigator.pushNamed(context, AppRoutes.settings);
-                    if (!mounted) return;
-                    setState(() => _future = _load(repos, store));
-                  },
-                ),
-              ),
-              Expanded(
-                child: ColoredBox(
-                  color: const Color(0xFFF4F7F2),
-                  child: ListView(
-                    padding: const EdgeInsets.fromLTRB(14, 8, 14, 16),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: HomeBasicsFeaturedCard(
-                          completed: data.basicsCompleted,
-                          total: data.basicsTotal,
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            AppRoutes.learnBasics,
-                          ),
-                        ),
-                      ),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: gridModules.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          mainAxisSpacing: 8,
-                          crossAxisSpacing: 8,
-                          childAspectRatio: 0.78,
-                        ),
-                        itemBuilder: (context, index) {
-                          final module = gridModules[index];
-                          return HomeModuleCard(
-                            module: module,
-                            onTap: () =>
-                                Navigator.pushNamed(context, module.route),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 14),
-                      SizedBox(
-                        height: 108,
-                        child: Row(
-                          children: [
-                            for (final item in HomeCatalog.quickItems)
-                              Expanded(
-                                child: HomeQuickCircle(
-                                  item: item,
-                                  onTap: () {
-                                    if (item.title == 'Devam Et') {
-                                      onContinue();
-                                      return;
-                                    }
-                                    Navigator.pushNamed(context, item.route);
-                                  },
-                                ),
+                  Expanded(
+                    child: ColoredBox(
+                      color: MinikColors.background,
+                      child: ListView(
+                        padding: const EdgeInsets.fromLTRB(14, 8, 14, 16),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: HomeBasicsFeaturedCard(
+                              completed: data.basicsCompleted,
+                              total: data.basicsTotal,
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                AppRoutes.learnBasics,
                               ),
-                          ],
-                        ),
+                            ),
+                          ),
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: gridModules.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 4,
+                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 8,
+                              childAspectRatio: 0.78,
+                            ),
+                            itemBuilder: (context, index) {
+                              final module = gridModules[index];
+                              return HomeModuleCard(
+                                module: module,
+                                onTap: () =>
+                                    Navigator.pushNamed(context, module.route),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 14),
+                          SizedBox(
+                            height: 108,
+                            child: Row(
+                              children: [
+                                for (final item in HomeCatalog.quickItems)
+                                  Expanded(
+                                    child: HomeQuickCircle(
+                                      item: item,
+                                      onTap: () {
+                                        if (item.title == 'Devam Et') {
+                                          onContinue();
+                                          return;
+                                        }
+                                        Navigator.pushNamed(
+                                            context, item.route);
+                                      },
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ],
-          );
-        },
+                ],
+              );
+            },
           ),
           HomeWelcomeBanner(
             visible: _welcomeVisible,

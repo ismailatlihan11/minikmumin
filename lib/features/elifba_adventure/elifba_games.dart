@@ -175,7 +175,8 @@ class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
                   context,
                   arabic: letter.letter,
                   title: '${letter.name} boya',
-                  prompt: 'Parmağınla ${letter.name} harfini boya. Renkleri karıştır!',
+                  prompt:
+                      'Parmağınla ${letter.name} harfini boya. Renkleri karıştır!',
                   audio: ElifbaAudio.letterName(letter.name) ??
                       ElifbaAudio.letterGlyph(letter.letter),
                 ),
@@ -234,7 +235,7 @@ class _LetterChipState extends State<_LetterChip> {
           constraints: const BoxConstraints(minHeight: 64),
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: MinikColors.card,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: MinikColors.mint),
           ),
@@ -376,7 +377,7 @@ class ElifbaLetterHunt extends StatelessWidget {
                     height: 64,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: MinikColors.card,
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(color: MinikColors.goldSoft),
                     ),
@@ -460,7 +461,7 @@ class ElifbaSortDrop extends StatelessWidget {
                     height: 88,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: candidate.isEmpty ? color : Colors.white,
+                      color: candidate.isEmpty ? color : MinikColors.card,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: MinikColors.greenSoft),
                     ),
@@ -494,7 +495,7 @@ class ElifbaSortDrop extends StatelessWidget {
         height: 72,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: dragging ? MinikColors.butter : Colors.white,
+          color: dragging ? MinikColors.butter : MinikColors.card,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Text(
@@ -671,7 +672,7 @@ class ElifbaHarakaDrag extends StatelessWidget {
               height: 120,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: candidate.isEmpty ? Colors.white : MinikColors.mint,
+                color: candidate.isEmpty ? MinikColors.card : MinikColors.mint,
                 borderRadius: BorderRadius.circular(24),
                 border: Border.all(color: MinikColors.goldSoft, width: 2),
               ),
@@ -752,7 +753,8 @@ class ElifbaBlendGame extends StatelessWidget {
           children: [
             for (final part in parts)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   color: MinikColors.sky,
                   borderRadius: BorderRadius.circular(14),
@@ -1074,7 +1076,9 @@ class ElifbaMahrajBoard extends StatelessWidget {
     final lower = name.toLowerCase();
     if (lower.contains('dudak') || lower.contains('şefe')) return '👄';
     if (lower.contains('dil') || lower.contains('lisan')) return '👅';
-    if (lower.contains('burun') || lower.contains('gunne') || lower.contains('hayş')) {
+    if (lower.contains('burun') ||
+        lower.contains('gunne') ||
+        lower.contains('hayş')) {
       return '👃';
     }
     if (lower.contains('cevf')) return '🌬️';

@@ -6,6 +6,7 @@ import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../data/repositories/content_repositories.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../duas/duas_page.dart';
 import '../hadith/hadith_page.dart';
@@ -35,11 +36,10 @@ class FavoritesPage extends StatelessWidget {
                 const PageHeader(
                   title: 'Favoriler',
                   subtitle: 'Kalp koyduğun dualar ve kıssalar burada.',
-                  image: 'assets/images/home/favorites.png',
                 ),
                 if (items.isEmpty) ...[
                   const SizedBox(height: 24),
-                  Image.asset(
+                  MinikImage.asset(
                     'assets/images/home/empty_favorites.png',
                     height: 96,
                     errorBuilder: (_, __, ___) =>
@@ -62,7 +62,8 @@ class FavoritesPage extends StatelessWidget {
                     ContentTile(
                       title: item.title,
                       subtitle: _kindLabel(item.kind),
-                      trailing: const Icon(Icons.favorite_rounded, color: Color(0xFFC45B7A)),
+                      trailing: const Icon(Icons.favorite_rounded,
+                          color: Color(0xFFC45B7A)),
                       onTap: () => _open(context, item),
                     ),
               ],

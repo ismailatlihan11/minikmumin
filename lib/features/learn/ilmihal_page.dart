@@ -13,6 +13,7 @@ import '../../data/repositories/learn_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../quiz/quiz_page.dart';
 
@@ -37,20 +38,22 @@ class _IlmihalPageState extends State<IlmihalPage> {
       body: SafeArea(
         child: AsyncBody<IlmihalCatalog>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (catalog) => ListView(
             padding: AppSpacing.page,
             children: [
               const PageHeader(
                 title: 'Temel Dini Bilgiler',
-                subtitle: 'İman, temizlik, namaz ve günlük hayattaki konuları öğrenelim.',
-                image: 'assets/images/home/ilmihal.png',
+                subtitle:
+                    'İman, temizlik, namaz ve günlük hayattaki konuları öğrenelim.',
               ),
               for (final category in catalog.categories)
                 ContentTile(
                   title: category.title,
                   subtitle: '${catalog.lessonsFor(category.id).length} konu',
-                  leading: Image.asset(
+                  leading: MinikImage.asset(
                     ContentAssets.ilmihalImage(category.id, category.icon),
                     width: 44,
                     height: 44,
@@ -170,7 +173,8 @@ class IlmihalLessonPage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded,
+                      size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(point, style: theme.bodyLarge)),
                 ],

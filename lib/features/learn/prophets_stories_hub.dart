@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class ProphetsStoriesHubPage extends StatelessWidget {
@@ -19,13 +20,12 @@ class ProphetsStoriesHubPage extends StatelessWidget {
               title: 'Peygamberler ve Kıssalar',
               subtitle:
                   'Peygamberlerin hayatlarını ve çocuklara uygun kıssaları oku.',
-              image: 'assets/images/home/circle_prophets.png',
             ),
             ContentTile(
               title: 'Peygamberler',
               subtitle: 'Peygamberlerimizi tanıyalım',
-              leading: Image.asset(
-                'assets/images/home/circle_prophets.png',
+              leading: MinikImage.asset(
+                'assets/images/home/circle_prophets.jpg',
                 width: 44,
                 height: 44,
                 fit: BoxFit.contain,
@@ -36,8 +36,8 @@ class ProphetsStoriesHubPage extends StatelessWidget {
             ContentTile(
               title: 'Kıssalar',
               subtitle: 'Kıssalardan güzel dersler çıkaralım',
-              leading: Image.asset(
-                'assets/images/home/circle_stories.png',
+              leading: MinikImage.asset(
+                'assets/images/home/circle_stories.jpg',
                 width: 44,
                 height: 44,
                 fit: BoxFit.contain,

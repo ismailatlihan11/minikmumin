@@ -9,6 +9,7 @@ import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_visual_catalog.dart';
 
@@ -61,7 +62,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color(0xFFF3F6F8),
+      color: MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       child: ListView(
         controller: _scroll,
         padding: const EdgeInsets.fromLTRB(14, 8, 14, 24),
@@ -69,10 +70,11 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
           Row(
             children: [
               IconButton(
+                tooltip: 'Geri',
                 onPressed: widget.onBack,
                 icon: const Icon(Icons.arrow_back_rounded),
               ),
-              const Expanded(
+              Expanded(
                 child: Text(
                   'ABDESTİ ÖĞREN',
                   textAlign: TextAlign.center,
@@ -80,7 +82,8 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                     fontFamily: 'NotoSans',
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF163A4A),
+                    color: MinikColors.of(
+                        const Color(0xFF163A4A), const Color(0xFFBFD6E0)),
                   ),
                 ),
               ),
@@ -98,14 +101,14 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             ),
           ),
           const SizedBox(height: 10),
-          const Wrap(
+          Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
             runSpacing: 6,
             children: [
               _LegendChip(
                 icon: Icons.check_rounded,
-                color: Color(0xFF3D8B6E),
+                color: MinikColors.greenSoft,
                 label: 'Farz',
               ),
               _LegendChip(
@@ -171,7 +174,8 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             crossAxisSpacing: 10,
             childAspectRatio: 0.78,
             children: [
-              for (final step in _steps.where((item) => item.kind != WuduKind.done))
+              for (final step
+                  in _steps.where((item) => item.kind != WuduKind.done))
                 _WuduStepCard(
                   step: step,
                   onTap: () => widget.onOpenStep(step),
@@ -203,11 +207,12 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
           ),
           const SizedBox(height: 18),
           MinikCard(
-            color: const Color(0xFFFFF6DC),
+            color: MinikColors.of(
+                const Color(0xFFFFF6DC), const Color(0xFF3D3317)),
             child: Column(
               children: [
-                Image.asset(
-                  'assets/images/wudu/wudu_trophy.png',
+                MinikImage.asset(
+                  'assets/images/wudu/wudu_trophy.jpg',
                   height: 88,
                   fit: BoxFit.contain,
                 ),
@@ -235,9 +240,11 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                 const SizedBox(height: 12),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFFFF1C2),
+                    color: MinikColors.of(
+                        const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Column(
@@ -313,7 +320,7 @@ class _LegendChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(99),
       ),
       child: Row(
@@ -345,7 +352,7 @@ class _WuduStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: MinikColors.card,
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         onTap: onTap,
@@ -391,7 +398,7 @@ class _WuduStepCard extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: Image.asset(step.image, fit: BoxFit.contain),
+                child: MinikImage.asset(step.image, fit: BoxFit.contain),
               ),
               Text(
                 step.prompt,
@@ -428,13 +435,17 @@ class _KindMark extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (kind) {
       case WuduKind.farz:
-        return const _RoundIcon(icon: Icons.check_rounded, color: Color(0xFF3D8B6E));
+        return _RoundIcon(
+            icon: Icons.check_rounded, color: MinikColors.greenSoft);
       case WuduKind.sunnah:
-        return const _RoundIcon(icon: Icons.star_rounded, color: Color(0xFFE0A21A));
+        return const _RoundIcon(
+            icon: Icons.star_rounded, color: Color(0xFFE0A21A));
       case WuduKind.adab:
-        return const _RoundIcon(icon: Icons.info_rounded, color: Color(0xFF4C8ED9));
+        return const _RoundIcon(
+            icon: Icons.info_rounded, color: Color(0xFF4C8ED9));
       case WuduKind.done:
-        return const _RoundIcon(icon: Icons.celebration_rounded, color: Color(0xFFE0A21A));
+        return const _RoundIcon(
+            icon: Icons.celebration_rounded, color: Color(0xFFE0A21A));
     }
   }
 }
@@ -466,12 +477,12 @@ class _TipTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(6, 8, 6, 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
         children: [
-          Image.asset(tip.image, height: 36, fit: BoxFit.contain),
+          MinikImage.asset(tip.image, height: 36, fit: BoxFit.contain),
           const SizedBox(height: 4),
           Text(
             tip.title,
@@ -500,7 +511,7 @@ class _WuduDuaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final ready = dua != null && dua!.arabic.trim().isNotEmpty;
     return MinikCard(
-      color: Colors.white,
+      color: MinikColors.card,
       onTap: ready
           ? () => Navigator.push(
                 context,
@@ -510,7 +521,7 @@ class _WuduDuaCard extends StatelessWidget {
       child: Row(
         children: [
           const LessonMotionImage(
-            image: 'assets/images/wudu/wudu_dua_boy.png',
+            image: 'assets/images/wudu/wudu_dua_boy.jpg',
             width: 86,
             height: 86,
             fit: BoxFit.contain,
@@ -574,14 +585,15 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
     final dua = widget.dua;
     final audioPath = dua.audio.trim();
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F6F8),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       appBar: AppBar(title: Text(dua.title)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           const Center(
             child: LessonMotionImage(
-              image: 'assets/images/wudu/wudu_dua_boy.png',
+              image: 'assets/images/wudu/wudu_dua_boy.jpg',
               width: 120,
               height: 120,
               fit: BoxFit.contain,
@@ -599,7 +611,7 @@ class _WuduDuaPageState extends State<WuduDuaPage> {
           ),
           const SizedBox(height: 16),
           MinikCard(
-            color: Colors.white,
+            color: MinikColors.card,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -692,7 +704,7 @@ class _FarzTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: MinikColors.card,
       borderRadius: BorderRadius.circular(14),
       child: InkWell(
         onTap: onTap,
@@ -701,7 +713,7 @@ class _FarzTile extends StatelessWidget {
           padding: const EdgeInsets.all(6),
           child: Column(
             children: [
-              Image.asset(step.image, height: 40, fit: BoxFit.contain),
+              MinikImage.asset(step.image, height: 40, fit: BoxFit.contain),
               const SizedBox(height: 4),
               Text(
                 step.displayFarzTitle,
@@ -743,13 +755,14 @@ class WuduStepDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F6F8),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       appBar: AppBar(title: Text(step.title)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           MinikCard(
-            color: Colors.white,
+            color: MinikColors.card,
             padding: const EdgeInsets.all(12),
             onTap: () => _openColoring(context),
             child: Stack(

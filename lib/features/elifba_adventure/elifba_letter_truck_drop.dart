@@ -177,8 +177,7 @@ class _LetterTruckDropIntroState extends State<LetterTruckDropIntro>
     required double tipAngle,
   }) {
     final glyph = widget.glyphs[index];
-    final name =
-        index < widget.names.length ? widget.names[index] : '';
+    final name = index < widget.names.length ? widget.names[index] : '';
     final n = widget.glyphs.length;
     final scatter = _scatter[index];
 
@@ -187,8 +186,8 @@ class _LetterTruckDropIntroState extends State<LetterTruckDropIntro>
       28 + (index % 5) * 14.0,
       10 + (index ~/ 5) * 8.0,
     );
-    final bed = Offset(truckX, 8) +
-        _rotate(bedLocal, tipAngle, const Offset(70, 70));
+    final bed =
+        Offset(truckX, 8) + _rotate(bedLocal, tipAngle, const Offset(70, 70));
 
     // Ortaya dökülmüş yığın
     final pile = Offset(

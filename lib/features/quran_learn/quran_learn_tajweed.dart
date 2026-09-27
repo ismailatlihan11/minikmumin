@@ -33,9 +33,10 @@ class QuranLearnTajweedPage extends StatelessWidget {
     final lessons = pack.tajweedForLevel(levelId);
     final games = pack.gamesForLevel(levelId);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
-        title: Text(pack.titleForLevel(levelId, fallback: 'Tecvid Uygulamaları')),
+        title:
+            Text(pack.titleForLevel(levelId, fallback: 'Tecvid Uygulamaları')),
       ),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
@@ -140,7 +141,7 @@ class _QuranLearnTajweedDetailPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(lesson.title),
         actions: [
@@ -210,7 +211,8 @@ class _QuranLearnTajweedDetailPageState
                   ),
                   const SizedBox(height: 6),
                   Text('Odak: ${lesson.examples[i].focus}'),
-                  Text(quranLearnTajweedReference(lesson.examples[i].reference)),
+                  Text(
+                      quranLearnTajweedReference(lesson.examples[i].reference)),
                   const SizedBox(height: 8),
                   QlPlayListen(
                     audio: _audio,

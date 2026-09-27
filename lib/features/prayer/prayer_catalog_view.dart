@@ -13,6 +13,7 @@ import '../../features/duas/duas_page.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'prayer_visual_catalog.dart';
 
@@ -26,8 +27,8 @@ class PrayerCatalogView extends StatefulWidget {
 
   final VoidCallback onBack;
   final VoidCallback onHome;
-  final void Function(PrayerVisualStep step, {required bool girl, required int totalSteps})
-      onOpenStep;
+  final void Function(PrayerVisualStep step,
+      {required bool girl, required int totalSteps}) onOpenStep;
 
   @override
   State<PrayerCatalogView> createState() => _PrayerCatalogViewState();
@@ -110,11 +111,17 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     final blocks = <(String, List<PrayerVisualStep>)>[
       (
         '1. Rekat',
-        [for (final step in _visibleSteps) if (step.rakat == 1) step],
+        [
+          for (final step in _visibleSteps)
+            if (step.rakat == 1) step
+        ],
       ),
       (
         '2. Rekat',
-        [for (final step in _visibleSteps) if (step.rakat == 2) step],
+        [
+          for (final step in _visibleSteps)
+            if (step.rakat == 2) step
+        ],
       ),
     ];
     final rest = [
@@ -183,7 +190,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: const Color(0xFFF3F6F8),
+      color: MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       child: ListView(
         controller: _scroll,
         padding: const EdgeInsets.fromLTRB(14, 8, 14, 24),
@@ -191,10 +198,11 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           Row(
             children: [
               IconButton(
+                tooltip: 'Geri',
                 onPressed: widget.onBack,
                 icon: const Icon(Icons.arrow_back_rounded),
               ),
-              const Expanded(
+              Expanded(
                 child: Text(
                   'NAMAZI ÖĞREN',
                   textAlign: TextAlign.center,
@@ -202,7 +210,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     fontFamily: 'NotoSans',
                     fontSize: 20,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF163A4A),
+                    color: MinikColors.of(
+                        const Color(0xFF163A4A), const Color(0xFFBFD6E0)),
                   ),
                 ),
               ),
@@ -252,18 +261,20 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 8),
           _PrayerProgressBar(
-            done: _doneIds.where((id) => _visibleSteps.any((step) => step.id == id)).length,
+            done: _doneIds
+                .where((id) => _visibleSteps.any((step) => step.id == id))
+                .length,
             total: _visibleSteps.length,
           ),
           const SizedBox(height: 10),
-          const Wrap(
+          Wrap(
             alignment: WrapAlignment.center,
             spacing: 8,
             runSpacing: 6,
             children: [
               _LegendChip(
                 icon: Icons.check_rounded,
-                color: Color(0xFF3D8B6E),
+                color: MinikColors.greenSoft,
                 label: 'Farz',
               ),
               _LegendChip(
@@ -280,13 +291,13 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 12),
           MinikCard(
-            color: Colors.white,
+            color: MinikColors.card,
             child: Column(
               children: [
                 LessonMotionImage(
                   image: _girlLearner
-                      ? 'assets/images/prayer/prayer_intro_girl.png'
-                      : 'assets/images/prayer/prayer_intro_boy.png',
+                      ? 'assets/images/prayer/prayer_intro_girl.jpg'
+                      : 'assets/images/prayer/prayer_intro_boy.jpg',
                   height: 140,
                   fit: BoxFit.contain,
                 ),
@@ -365,7 +376,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 8),
           MinikCard(
-            color: Colors.white,
+            color: MinikColors.card,
             onTap: () =>
                 Navigator.pushNamed(context, AppRoutes.learnPrayerDuas),
             child: Column(
@@ -413,7 +424,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 16),
           MinikCard(
-            color: const Color(0xFFEDE4F8),
+            color: MinikColors.of(
+                const Color(0xFFEDE4F8), const Color(0xFF291F35)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -469,12 +481,16 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 8),
           MinikCard(
-            color: Colors.white,
+            color: MinikColors.card,
             padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
             child: Column(
               children: [
                 for (var i = 0; i < _rakats.length; i++) ...[
-                  if (i > 0) const Divider(height: 1, color: Color(0xFFE8EEEA)),
+                  if (i > 0)
+                    Divider(
+                        height: 1,
+                        color: MinikColors.of(
+                            const Color(0xFFE8EEEA), const Color(0xFF282E2A))),
                   _RakatRow(item: _rakats[i]),
                 ],
               ],
@@ -482,11 +498,12 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ),
           const SizedBox(height: 18),
           MinikCard(
-            color: const Color(0xFFFFF6DC),
+            color: MinikColors.of(
+                const Color(0xFFFFF6DC), const Color(0xFF3D3317)),
             child: Column(
               children: [
-                Image.asset(
-                  'assets/images/prayer/prayer_trophy.png',
+                MinikImage.asset(
+                  'assets/images/prayer/prayer_trophy.jpg',
                   height: 88,
                   fit: BoxFit.contain,
                 ),
@@ -571,7 +588,7 @@ class _PrayerProgressBar extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10,
             value: value.clamp(0, 1),
-            backgroundColor: const Color(0xFFE0EAE4),
+            backgroundColor: MinikColors.border,
             color: MinikColors.green,
           ),
         ),
@@ -585,13 +602,13 @@ class _RakatRow extends StatelessWidget {
 
   final PrayerRakat item;
 
-  static const _colors = {
-    'fajr': Color(0xFFE0A21A),
-    'dhuhr': Color(0xFF4C8ED9),
-    'asr': Color(0xFFE07A3D),
-    'maghrib': Color(0xFF7B5EA7),
-    'isha': Color(0xFF3D8B6E),
-  };
+  static Map<String, Color> get _colors => {
+        'fajr': Color(0xFFE0A21A),
+        'dhuhr': Color(0xFF4C8ED9),
+        'asr': Color(0xFFE07A3D),
+        'maghrib': Color(0xFF7B5EA7),
+        'isha': MinikColors.greenSoft,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -673,7 +690,7 @@ class _LearnerToggle extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(99),
       ),
       child: Row(
@@ -747,7 +764,7 @@ class _LegendChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(99),
       ),
       child: Row(
@@ -790,7 +807,7 @@ class _PrayerStepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: MinikColors.card,
       borderRadius: BorderRadius.circular(18),
       child: InkWell(
         onTap: onTap,
@@ -836,8 +853,8 @@ class _PrayerStepCard extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child:
-                    Image.asset(step.imageFor(girl: girl), fit: BoxFit.contain),
+                child: MinikImage.asset(step.imageFor(girl: girl),
+                    fit: BoxFit.contain),
               ),
               Text(
                 step.prompt,
@@ -868,16 +885,17 @@ class _PrayerStepCard extends StatelessWidget {
               Row(
                 children: [
                   if (learned)
-                    const Icon(
+                    Icon(
                       Icons.check_circle_rounded,
                       size: 18,
-                      color: Color(0xFF3D8B6E),
+                      color: MinikColors.greenSoft,
                     )
                   else
-                    const Icon(
+                    Icon(
                       Icons.check_circle_outline_rounded,
                       size: 18,
-                      color: Color(0xFFC5D4CC),
+                      color: MinikColors.of(
+                          const Color(0xFFC5D4CC), const Color(0xFF363E3A)),
                     ),
                   if (step.duaIds.isNotEmpty) ...[
                     const SizedBox(width: 4),
@@ -924,12 +942,12 @@ class _TipTile extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(6, 8, 6, 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(14),
       ),
       child: Column(
         children: [
-          Image.asset(tip.image, height: 36, fit: BoxFit.contain),
+          MinikImage.asset(tip.image, height: 36, fit: BoxFit.contain),
           const SizedBox(height: 4),
           Text(
             tip.title,
@@ -1012,9 +1030,8 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
   void _openColoring() {
     final step = widget.step;
     final image = step.imageFor(girl: widget.girl);
-    final audioPath = step.duaIds.isEmpty
-        ? null
-        : ContentAssets.audioFor(step.duaIds.first);
+    final audioPath =
+        step.duaIds.isEmpty ? null : ContentAssets.audioFor(step.duaIds.first);
     openImageColoring(
       context,
       image: image,
@@ -1039,7 +1056,8 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
         ),
     ].where((item) => AssetCatalog.contains(item.path)).toList();
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F6F8),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       appBar: AppBar(
         title: Text(step.title),
         actions: [
@@ -1064,118 +1082,119 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
           Expanded(
             child: SelectionArea(
               child: ListView(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-              children: [
-                MinikCard(
-                  color: Colors.white,
-                  padding: const EdgeInsets.all(12),
-                  onTap: _openColoring,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      LessonMotionImage(
-                        image: step.imageFor(girl: widget.girl),
-                        frames: step.motionFramesFor(girl: widget.girl),
-                        height: 168,
-                        width: double.infinity,
-                        fit: BoxFit.contain,
-                      ),
-                      Positioned(
-                        right: 4,
-                        bottom: 4,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: MinikColors.peach,
-                            borderRadius: BorderRadius.circular(99),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.palette_rounded,
-                                size: 16,
-                                color: MinikColors.darkGreen,
-                              ),
-                              SizedBox(width: 4),
-                              Text(
-                                'Boya',
-                                style: TextStyle(
-                                  fontFamily: 'NotoSans',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800,
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+                children: [
+                  MinikCard(
+                    color: MinikColors.card,
+                    padding: const EdgeInsets.all(12),
+                    onTap: _openColoring,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        LessonMotionImage(
+                          image: step.imageFor(girl: widget.girl),
+                          frames: step.motionFramesFor(girl: widget.girl),
+                          height: 168,
+                          width: double.infinity,
+                          fit: BoxFit.contain,
+                        ),
+                        Positioned(
+                          right: 4,
+                          bottom: 4,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 6,
+                            ),
+                            decoration: BoxDecoration(
+                              color: MinikColors.peach,
+                              borderRadius: BorderRadius.circular(99),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.palette_rounded,
+                                  size: 16,
                                   color: MinikColors.darkGreen,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                Text(step.prompt, style: Theme.of(context).textTheme.bodyLarge),
-                if (widget.girl && step.girlNote.isNotEmpty) ...[
-                  const SizedBox(height: 12),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
-                    decoration: BoxDecoration(
-                      color: MinikColors.blush,
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Icon(
-                          Icons.favorite_rounded,
-                          size: 18,
-                          color: Color(0xFFC45B7A),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            step.girlNote,
-                            style: TextStyle(
-                              fontFamily: 'NotoSans',
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: MinikColors.darkGreen,
-                              height: 1.35,
+                                SizedBox(width: 4),
+                                Text(
+                                  'Boya',
+                                  style: TextStyle(
+                                    fontFamily: 'NotoSans',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w800,
+                                    color: MinikColors.darkGreen,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-                const SizedBox(height: 12),
-                FilledButton.tonalIcon(
-                  onPressed: _openColoring,
-                  icon: const Icon(Icons.palette_rounded),
-                  label: const Text('Boya'),
-                ),
-                if (_duas.isNotEmpty) ...[
-                  for (final dua in _duas) ...[
-                    const SizedBox(height: 14),
-                    DuaContentBlocks(
-                      dua: DuaEntry.fromPrayerDua(dua),
-                      arabicFontSize: 22,
+                  const SizedBox(height: 12),
+                  Text(step.prompt,
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  if (widget.girl && step.girlNote.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+                      decoration: BoxDecoration(
+                        color: MinikColors.blush,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(
+                            Icons.favorite_rounded,
+                            size: 18,
+                            color: Color(0xFFC45B7A),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              step.girlNote,
+                              style: TextStyle(
+                                fontFamily: 'NotoSans',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: MinikColors.darkGreen,
+                                height: 1.35,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ] else if (step.caption.isNotEmpty) ...[
                   const SizedBox(height: 12),
-                  Text(
-                    step.caption,
-                    style: Theme.of(context).textTheme.titleMedium,
+                  FilledButton.tonalIcon(
+                    onPressed: _openColoring,
+                    icon: const Icon(Icons.palette_rounded),
+                    label: const Text('Boya'),
                   ),
+                  if (_duas.isNotEmpty) ...[
+                    for (final dua in _duas) ...[
+                      const SizedBox(height: 14),
+                      DuaContentBlocks(
+                        dua: DuaEntry.fromPrayerDua(dua),
+                        arabicFontSize: 22,
+                      ),
+                    ],
+                  ] else if (step.caption.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      step.caption,
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
                 ],
-              ],
-            ),
+              ),
             ),
           ),
           if (audioItems.isNotEmpty)

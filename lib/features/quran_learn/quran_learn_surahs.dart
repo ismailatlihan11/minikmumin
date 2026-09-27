@@ -49,7 +49,8 @@ class QuranLearnSurahsPage extends StatelessWidget {
       case QuranLearnReadMode.surah:
         return pack.titleForLevel(_levelId, fallback: 'Uygulama');
       case QuranLearnReadMode.practice:
-        return pack.titleForLevel(_levelId, fallback: 'Uygulama — Okuma Pratiği');
+        return pack.titleForLevel(_levelId,
+            fallback: 'Uygulama — Okuma Pratiği');
       case QuranLearnReadMode.tajweedRead:
         return pack.titleForLevel(
           _levelId,
@@ -74,7 +75,7 @@ class QuranLearnSurahsPage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     final items = pack.surahsForLevel(_levelId, kind: _kind);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(_title)),
       body: FutureBuilder<QuranLearnSnapshot>(
         future: QuranLearnProgress.load(store, pack),
@@ -394,7 +395,7 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
   Widget build(BuildContext context) {
     _future ??= _load();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(widget.surah.nameTr),
         actions: [
@@ -408,7 +409,9 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
       body: AsyncBody<List<QuranVerse>>(
         future: _future!,
         errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
-        onRetry: () => setState(() => _future = _load()),
+        onRetry: () => setState(() {
+          _future = _load();
+        }),
         builder: (verses) {
           for (var i = 0; i < verses.length; i++) {
             _ayahKeys.putIfAbsent(i, GlobalKey.new);
@@ -500,7 +503,8 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                     OutlinedButton.icon(
                       onPressed: _mode == _AlongMode.echoPlay
                           ? null
-                          : () => _playEchoAyah(_highlight < 0 ? 0 : _highlight),
+                          : () =>
+                              _playEchoAyah(_highlight < 0 ? 0 : _highlight),
                       icon: const Icon(Icons.replay_rounded),
                       label: const Text('Tekrar dinle'),
                     ),
@@ -508,7 +512,8 @@ class _QuranLearnSurahReaderPageState extends State<QuranLearnSurahReaderPage> {
                       onPressed: _mode == _AlongMode.echoPlay
                           ? null
                           : () {
-                              final next = (_highlight < 0 ? 0 : _highlight) + 1;
+                              final next =
+                                  (_highlight < 0 ? 0 : _highlight) + 1;
                               if (next >= verses.length) {
                                 _stopAlong();
                                 return;

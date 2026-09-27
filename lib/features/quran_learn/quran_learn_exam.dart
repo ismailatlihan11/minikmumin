@@ -127,7 +127,7 @@ class _QuranLearnExamPageState extends State<QuranLearnExamPage> {
   Widget build(BuildContext context) {
     final current = exam;
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(
           widget.pack.titleForLevel(widget.levelId, fallback: 'Bitirme sınavı'),

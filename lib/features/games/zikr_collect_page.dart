@@ -13,6 +13,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'zikr_collect_logic.dart';
 
@@ -41,7 +42,9 @@ class _ZikrCollectPageState extends State<ZikrCollectPage> {
       appBar: AppBar(title: const Text('Zikirleri topla')),
       body: AsyncBody<List<Dhikr>>(
         future: _future!,
-        onRetry: () => setState(() => _future = repos.dhikr.loadCatalog()),
+        onRetry: () => setState(() {
+          _future = repos.dhikr.loadCatalog();
+        }),
         builder: (catalog) => _ZikrCollectPlay(
           catalog: catalog,
           audio: _audio,
@@ -110,7 +113,9 @@ class _ZikrCollectPlayState extends State<_ZikrCollectPlay> {
       _awarded = true;
       await widget.audio.playAsset(EffectAudio.complete);
       await context.read<LocalProgressStore>().addXp(8);
-      await context.read<LocalProgressStore>().markCompleted('game', 'zikr_collect');
+      await context
+          .read<LocalProgressStore>()
+          .markCompleted('game', 'zikr_collect');
     }
     if (!mounted) return;
     setState(() {
@@ -157,7 +162,7 @@ class _ZikrCollectPlayState extends State<_ZikrCollectPlay> {
             Expanded(
               child: SingleChildScrollView(
                 child: MinikCard(
-                  color: const Color(0xFFF7EBC4),
+                  color: MinikColors.butter,
                   child: Column(
                     children: [
                       ArabicText(round.target.arabic, fontSize: 28),
@@ -202,7 +207,7 @@ class _ZikrCollectPlayState extends State<_ZikrCollectPlay> {
     return ListView(
       padding: AppSpacing.page,
       children: [
-        Image.asset(
+        MinikImage.asset(
           'assets/images/home/success.png',
           height: 120,
           errorBuilder: (_, __, ___) => const SizedBox.shrink(),
@@ -214,7 +219,7 @@ class _ZikrCollectPlayState extends State<_ZikrCollectPlay> {
           child: Text('Zikirleri doğru topladın. Tesbih tanelerin tamam.'),
         ),
         const SizedBox(height: AppSpacing.lg),
-        PrimaryButton(label: 'Tekrar Dene', onPressed: () => setState(_reset)),
+        PrimaryButton(label: 'Tekrar dene', onPressed: () => setState(_reset)),
         const SizedBox(height: AppSpacing.sm),
         SecondaryButton(
           label: 'Zikirmatikte çek',
@@ -244,7 +249,10 @@ class _BeadRow extends StatelessWidget {
             height: 16,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: i < filled ? MinikColors.green : const Color(0xFFE8D9B0),
+              color: i < filled
+                  ? MinikColors.green
+                  : MinikColors.of(
+                      const Color(0xFFE8D9B0), const Color(0xFF49412C)),
               border: Border.all(color: const Color(0xFFC9B48A)),
             ),
           ),

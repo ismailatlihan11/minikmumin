@@ -34,8 +34,10 @@ class MushafPageChrome extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           const ColoredBox(color: kMushafParchment),
-          const CustomPaint(painter: _PaperTexturePainter(), size: Size.infinite),
-          const CustomPaint(painter: _SpineShadowPainter(), size: Size.infinite),
+          const CustomPaint(
+              painter: _PaperTexturePainter(), size: Size.infinite),
+          const CustomPaint(
+              painter: _SpineShadowPainter(), size: Size.infinite),
           Padding(padding: contentPadding, child: child),
           const IgnorePointer(
             child: CustomPaint(
@@ -242,7 +244,8 @@ class _MushafFramePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     const inset = 6.0;
     final r = RRect.fromRectAndRadius(
-      Rect.fromLTWH(inset, inset, size.width - inset * 2, size.height - inset * 2),
+      Rect.fromLTWH(
+          inset, inset, size.width - inset * 2, size.height - inset * 2),
       const Radius.circular(8),
     );
 
@@ -266,14 +269,16 @@ class _MushafFramePainter extends CustomPainter {
 
     const corner = 22.0;
     _drawCorner(canvas, const Offset(inset + 2, inset + 2), 0, corner);
-    _drawCorner(canvas, Offset(size.width - inset - 2, inset + 2), math.pi / 2, corner);
+    _drawCorner(
+        canvas, Offset(size.width - inset - 2, inset + 2), math.pi / 2, corner);
     _drawCorner(
       canvas,
       Offset(size.width - inset - 2, size.height - inset - 2),
       math.pi,
       corner,
     );
-    _drawCorner(canvas, Offset(inset + 2, size.height - inset - 2), -math.pi / 2, corner);
+    _drawCorner(canvas, Offset(inset + 2, size.height - inset - 2),
+        -math.pi / 2, corner);
   }
 
   void _drawCorner(Canvas canvas, Offset origin, double rot, double arm) {
@@ -296,7 +301,8 @@ class _MushafFramePainter extends CustomPainter {
       ..quadraticBezierTo(14, 3, 18, 10)
       ..quadraticBezierTo(10, 14, 5, 5)
       ..close();
-    canvas.drawPath(petal, Paint()..color = kMushafGold.withValues(alpha: 0.85));
+    canvas.drawPath(
+        petal, Paint()..color = kMushafGold.withValues(alpha: 0.85));
 
     canvas.drawCircle(const Offset(8, 8), 2.2, fill);
     canvas.drawCircle(const Offset(8, 8), 3.4, gold);

@@ -79,9 +79,8 @@ class DhikrFeedbackService {
     bool accent = false,
   }) async {
     if (silent || !settings.vibrationEnabled) return;
-    final intensity = accent
-        ? DhikrVibrationIntensity.strong
-        : settings.vibrationIntensity;
+    final intensity =
+        accent ? DhikrVibrationIntensity.strong : settings.vibrationIntensity;
     final ms = switch (intensity) {
       DhikrVibrationIntensity.light => 22,
       DhikrVibrationIntensity.normal => 36,

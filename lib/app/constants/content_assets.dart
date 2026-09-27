@@ -49,14 +49,14 @@ abstract final class ContentAssets {
       '${ayahNo.toString().padLeft(3, '0')}.mp3';
 
   static const Map<String, String> prayerImages = {
-    'intention': 'assets/images/prayer/step01_niyet.png',
-    'takbir': 'assets/images/prayer/step02_tekbir.png',
-    'qiyam': 'assets/images/prayer/step08_kiyam.png',
-    'ruku': 'assets/images/prayer/step06_ruku.png',
-    'ruku_rise': 'assets/images/prayer/step07_ruku_rise.png',
-    'sujud': 'assets/images/prayer/step09_secde1.png',
-    'sitting': 'assets/images/prayer/step11_oturus.png',
-    'salam': 'assets/images/prayer/step14_selam_sag.png',
+    'intention': 'assets/images/prayer/step01_niyet.jpg',
+    'takbir': 'assets/images/prayer/step02_tekbir.jpg',
+    'qiyam': 'assets/images/prayer/step08_kiyam.jpg',
+    'ruku': 'assets/images/prayer/step06_ruku.jpg',
+    'ruku_rise': 'assets/images/prayer/step07_ruku_rise.jpg',
+    'sujud': 'assets/images/prayer/step09_secde1.jpg',
+    'sitting': 'assets/images/prayer/step11_oturus.jpg',
+    'salam': 'assets/images/prayer/step14_selam_sag.jpg',
   };
 
   static const Map<String, String> prophetImages = {
@@ -175,11 +175,6 @@ abstract final class ContentAssets {
     'oruc': 'assets/images/ilmihal/oruc.png',
     'cami_adabi': 'assets/images/ilmihal/cami_adabi.png',
     'camii': 'assets/images/ilmihal/cami_adabi.png',
-    'iman': 'assets/images/ilmihal/iman.png',
-    'zekat_sadaka': 'assets/images/ilmihal/zekat.png',
-    'hac_kurban': 'assets/images/ilmihal/hac.png',
-    'dua_tövbe': 'assets/images/ilmihal/dua.png',
-    'gunluk_hayat': 'assets/images/ilmihal/gunluk.png',
   };
 
   static String duaImage(String id) =>

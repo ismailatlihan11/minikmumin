@@ -59,7 +59,8 @@ abstract final class ElifbaAudio {
   /// Kelime ve ifadeler için ses: kayıt yoksa harf adı sesi çalınmaz,
   /// çünkü harfin adı ile kelimenin okunuşu aynı şey değildir.
   /// Okunuşu bilinen kelimelerin Elifbâ'ya özel kaydı kullanılır.
-  static String? forExample(String text, {String audio = '', String reading = ''}) {
+  static String? forExample(String text,
+      {String audio = '', String reading = ''}) {
     final recorded = resolve(audio);
     if (recorded != null) return recorded;
     if (isSingleCluster(text)) return forMarked(text);

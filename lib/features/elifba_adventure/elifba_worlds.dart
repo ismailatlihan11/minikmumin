@@ -22,8 +22,7 @@ class ElifbaWorld {
 
   List<int> get lessonIds => [for (final lesson in lessons) lesson.id];
 
-  bool contains(int lessonId) =>
-      lessons.any((lesson) => lesson.id == lessonId);
+  bool contains(int lessonId) => lessons.any((lesson) => lesson.id == lessonId);
 
   bool isComplete(Set<int> done) =>
       lessons.isNotEmpty && lessonIds.every(done.contains);
@@ -35,36 +34,37 @@ class ElifbaWorld {
 /// hareke işareti taşıyan ilk ders, seviye alanları ve final dersi belirleyici.
 abstract final class ElifbaWorlds {
   static List<_WorldSpec> get _blueprint => [
-    _WorldSpec('letters', 'Harfler Köyü', '🌱', MinikColors.mint, 'Harf Kaşifi'),
-    _WorldSpec(
-      'harakat',
-      'Harekeler Ormanı',
-      '🌳',
-      MinikColors.peach,
-      'Hareke Ustası',
-    ),
-    _WorldSpec(
-      'tajweed',
-      'Tecvid Dağları',
-      '🏔',
-      MinikColors.lavender,
-      'Tecvid Kaşifi',
-    ),
-    _WorldSpec(
-      'reading',
-      'Okuma Vadisi',
-      '📖',
-      MinikColors.sky,
-      'Kelime Okuyucu',
-    ),
-    _WorldSpec(
-      'final',
-      'Final Kalesi',
-      '🏰',
-      MinikColors.goldSoft,
-      'Elifbâ Kahramanı',
-    ),
-  ];
+        _WorldSpec(
+            'letters', 'Harfler Köyü', '🌱', MinikColors.mint, 'Harf Kaşifi'),
+        _WorldSpec(
+          'harakat',
+          'Harekeler Ormanı',
+          '🌳',
+          MinikColors.peach,
+          'Hareke Ustası',
+        ),
+        _WorldSpec(
+          'tajweed',
+          'Tecvid Dağları',
+          '🏔',
+          MinikColors.lavender,
+          'Tecvid Kaşifi',
+        ),
+        _WorldSpec(
+          'reading',
+          'Okuma Vadisi',
+          '📖',
+          MinikColors.sky,
+          'Kelime Okuyucu',
+        ),
+        _WorldSpec(
+          'final',
+          'Final Kalesi',
+          '🏰',
+          MinikColors.goldSoft,
+          'Elifbâ Kahramanı',
+        ),
+      ];
 
   static final _cache = <(int, bool), List<ElifbaWorld>>{};
 
@@ -142,7 +142,8 @@ abstract final class ElifbaWorlds {
       return 'İlk Harfim';
     }
     final lesson = pack.byId(id);
-    if (lesson != null && lesson.blending.isNotEmpty) return 'Harf Birleştirici';
+    if (lesson != null && lesson.blending.isNotEmpty)
+      return 'Harf Birleştirici';
     for (final world in of(pack)) {
       if (world.lastId == id) return world.badge;
     }

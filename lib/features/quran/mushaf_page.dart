@@ -45,7 +45,8 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     final follow = await store.getMushafFingerFollow();
     var start = 0;
     if (widget.initialJsonPage != null) {
-      start = pages.indexWhere((page) => page.jsonPage == widget.initialJsonPage);
+      start =
+          pages.indexWhere((page) => page.jsonPage == widget.initialJsonPage);
     } else if (widget.resume) {
       final mark = await store.getMushafBookmark();
       if (mark != null) {
@@ -69,10 +70,10 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     final page = _pages[_index];
     final store = context.read<LocalProgressStore>();
     await store.rememberMushafPage(
-          jsonPage: page.jsonPage,
-          displayNumber: page.jsonPage,
-          surahLabel: _surahLabel(page),
-        );
+      jsonPage: page.jsonPage,
+      displayNumber: page.jsonPage,
+      surahLabel: _surahLabel(page),
+    );
   }
 
   @override
@@ -102,11 +103,11 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     final page = _pages[_index];
     final store = context.read<LocalProgressStore>();
     await store.setMushafBookmark(
-          jsonPage: page.jsonPage,
-          displayNumber: page.jsonPage,
-          surahLabel: _surahLabel(page),
-          totalPages: _pages.last.jsonPage <= 0 ? 1 : _pages.last.jsonPage,
-        );
+      jsonPage: page.jsonPage,
+      displayNumber: page.jsonPage,
+      surahLabel: _surahLabel(page),
+      totalPages: _pages.last.jsonPage <= 0 ? 1 : _pages.last.jsonPage,
+    );
     if (!mounted) return;
     setState(() => _savedHere = true);
     ScaffoldMessenger.of(context).showSnackBar(
@@ -139,7 +140,8 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
     if (_pages.isEmpty) return;
     final first = _pages.first.jsonPage;
     final last = _pages.last.jsonPage;
-    final controller = TextEditingController(text: '${_pages[_index].jsonPage}');
+    final controller =
+        TextEditingController(text: '${_pages[_index].jsonPage}');
     final selected = await showDialog<int>(
       context: context,
       builder: (context) => AlertDialog(
@@ -315,7 +317,8 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
           _pages.isEmpty
               ? 'Mushaf'
               : 'Sayfa ${_pages[_index].jsonPage} / ${_pages.last.jsonPage}',
-          style: const TextStyle(color: kMushafGold, fontWeight: FontWeight.w700),
+          style:
+              const TextStyle(color: kMushafGold, fontWeight: FontWeight.w700),
         ),
         actions: [
           IconButton(
@@ -352,7 +355,9 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
       ),
       body: AsyncBody<List<MushafPageData>>(
         future: _future!,
-        onRetry: () => setState(() => _future = _load()),
+        onRetry: () => setState(() {
+          _future = _load();
+        }),
         builder: (pages) {
           final last = pages.last.jsonPage.toDouble().clamp(1.0, 9999.0);
           final current = pages[_index].jsonPage.toDouble().clamp(0.0, last);
@@ -575,7 +580,8 @@ class _PageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final juz = page.juzNumber;
-    final surah = page.verses.isEmpty ? '' : surahName(page.verses.first.surahId);
+    final surah =
+        page.verses.isEmpty ? '' : surahName(page.verses.first.surahId);
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 2, 8, 6),
       child: Row(

@@ -153,16 +153,17 @@ abstract final class DhikrStatsService {
   }) {
     final date = now ?? DateTime.now();
     final today = dateKey(date);
-    final weekStart = startOfDay(date).subtract(Duration(days: date.weekday - 1));
-    final monthPrefix =
-        '${date.year}-${date.month.toString().padLeft(2, '0')}';
+    final weekStart =
+        startOfDay(date).subtract(Duration(days: date.weekday - 1));
+    final monthPrefix = '${date.year}-${date.month.toString().padLeft(2, '0')}';
     return DhikrOverview(
       todayCount: sumCounts(stats, where: (stat) => stat.date == today),
       weekCount: sumCounts(stats, where: (stat) {
         final parsed = DateTime.tryParse(stat.date);
         return parsed != null && !parsed.isBefore(weekStart);
       }),
-      monthCount: sumCounts(stats, where: (stat) => stat.date.startsWith(monthPrefix)),
+      monthCount:
+          sumCounts(stats, where: (stat) => stat.date.startsWith(monthPrefix)),
       totalCount: items.fold(0, (sum, item) => sum + item.totalCount),
       todayCompleted: sumSessions(stats, where: (stat) => stat.date == today),
       activeCount: items.where((item) => item.currentCount > 0).length,

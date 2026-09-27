@@ -29,7 +29,8 @@ abstract final class QuranLearnAudio {
   static String? exercisePath(String? alphabetPath, String harakaId) {
     final letterId = letterStem(alphabetPath);
     if (letterId == null) return null;
-    return resolve('assets/audio/quran_learn/exercises/${letterId}_$harakaId.mp3');
+    return resolve(
+        'assets/audio/quran_learn/exercises/${letterId}_$harakaId.mp3');
   }
 
   static String? practicePath(String? alphabetPath, String harakaId) {

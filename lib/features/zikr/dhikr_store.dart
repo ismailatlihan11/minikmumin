@@ -52,7 +52,9 @@ class DhikrStore extends ChangeNotifier {
 
   Dhikr? get paused {
     for (final item in _items) {
-      if (item.isPaused && item.currentCount > 0 && item.currentCount < item.targetCount) {
+      if (item.isPaused &&
+          item.currentCount > 0 &&
+          item.currentCount < item.targetCount) {
         return item;
       }
     }
@@ -67,7 +69,10 @@ class DhikrStore extends ChangeNotifier {
       _items.where((item) => item.isFavorite).toList(growable: false);
 
   List<Dhikr> get pausedItems => _items
-      .where((item) => item.isPaused && item.currentCount > 0 && item.currentCount < item.targetCount)
+      .where((item) =>
+          item.isPaused &&
+          item.currentCount > 0 &&
+          item.currentCount < item.targetCount)
       .toList(growable: false);
 
   List<Dhikr> get completedItems =>
@@ -127,7 +132,8 @@ class DhikrStore extends ChangeNotifier {
       if (favoriteIds.isNotEmpty) {
         _items = [
           for (final item in _items)
-            item.copyWith(isFavorite: item.isFavorite || favoriteIds.contains(item.id)),
+            item.copyWith(
+                isFavorite: item.isFavorite || favoriteIds.contains(item.id)),
         ];
       }
       await _persistOrder();
@@ -159,7 +165,8 @@ class DhikrStore extends ChangeNotifier {
   Future<void> warmupClick() => _feedback.preload(_manifest.click);
 
   Future<DhikrTapResult> addCount(String id, {int? step, DateTime? now}) {
-    return _changeCount(id, delta: step ?? byId(id)?.incrementStep ?? 1, now: now);
+    return _changeCount(id,
+        delta: step ?? byId(id)?.incrementStep ?? 1, now: now);
   }
 
   Future<DhikrTapResult> subtractCount(String id, {int? step, DateTime? now}) {
@@ -222,7 +229,8 @@ class DhikrStore extends ChangeNotifier {
   Future<void> toggleFavorite(String id) async {
     final item = byId(id);
     if (item == null) return;
-    final next = item.copyWith(isFavorite: !item.isFavorite, updatedAt: DateTime.now());
+    final next =
+        item.copyWith(isFavorite: !item.isFavorite, updatedAt: DateTime.now());
     await _replace(next);
     await _persistence.saveFavorites([
       for (final dhikr in _items)
@@ -243,7 +251,10 @@ class DhikrStore extends ChangeNotifier {
   Future<void> deleteDhikr(String id) async {
     final item = byId(id);
     if (item == null) return;
-    _items = [for (final dhikr in _items) if (dhikr.id != id) dhikr];
+    _items = [
+      for (final dhikr in _items)
+        if (dhikr.id != id) dhikr
+    ];
     if (!item.isCustom) {
       _hiddenIds = {..._hiddenIds, id};
       await _persistence.saveHiddenIds(_hiddenIds.toList(growable: false));
@@ -372,9 +383,8 @@ class DhikrStore extends ChangeNotifier {
         completed: completed ? 1 : 0,
       );
     }
-    final canVibrate = added > 0 &&
-        _settings.vibrationEnabled &&
-        next.vibrationEnabled;
+    final canVibrate =
+        added > 0 && _settings.vibrationEnabled && next.vibrationEnabled;
     final milestone = canVibrate &&
         DhikrCounterService.shouldPulse(current, next.vibrationEvery);
     final click = added > 0 && _settings.soundEnabled && next.soundEnabled;

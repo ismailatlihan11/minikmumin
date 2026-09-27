@@ -247,7 +247,7 @@ void main() {
           'number': 6,
           'title': 'Rükû',
           'prompt': "Rükûya vardıktan sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.",
-          'image': 'assets/images/prayer/step06_ruku.png',
+          'image': 'assets/images/prayer/step06_ruku.jpg',
           'kind': 'farz',
           'duaId': 'ruku',
         },

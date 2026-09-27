@@ -35,7 +35,13 @@ abstract final class ElifbaTajweedBridge {
     ),
     _Topic(
       lessonTitle: 'İdğam',
-      sources: ['tajweed_07', 'tajweed_15', 'tajweed_16', 'tajweed_18', 'tajweed_19'],
+      sources: [
+        'tajweed_07',
+        'tajweed_15',
+        'tajweed_16',
+        'tajweed_18',
+        'tajweed_19'
+      ],
       rule: 'İdğam',
       gameWords: ['idğâm', 'idgam'],
     ),

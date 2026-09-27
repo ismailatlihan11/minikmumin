@@ -12,6 +12,7 @@ import '../../features/quran_learn/quran_learn_hub.dart';
 import '../../features/quran_learn/quran_learn_theme.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_image.dart';
 import 'elifba_flag.dart';
 import 'elifba_lesson.dart';
 import 'elifba_models.dart';
@@ -54,62 +55,62 @@ class ElifbaChooserPage extends StatelessWidget {
         if (!enabled) return const QuranLearnHubPage();
         return quranLearnThemed(
           Scaffold(
-          appBar: AppBar(title: const Text("Kur'an Öğren")),
-          body: ListView(
-            padding: AppSpacing.page,
-            children: [
-              ElifbaSoftCard(
-                color: MinikColors.sky,
-                onTap: () => Navigator.push(
-                  context,
-                  quranLearnRoute(const QuranLearnHubPage()),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '📖 Kur’an Öğrenme Serisi',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        color: MinikColors.darkGreen,
+            appBar: AppBar(title: const Text("Kur'an Öğren")),
+            body: ListView(
+              padding: AppSpacing.page,
+              children: [
+                ElifbaSoftCard(
+                  color: MinikColors.sky,
+                  onTap: () => Navigator.push(
+                    context,
+                    quranLearnRoute(const QuranLearnHubPage()),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '📖 Kur’an Öğrenme Serisi',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Mevcut Elifba yolu. Harf, hareke, kısa sure.',
-                      style: TextStyle(color: MinikColors.textMuted),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 12),
-              ElifbaSoftCard(
-                color: MinikColors.mint,
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  AppRoutes.learnElifbaAdventure,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '🌟 Elifbâ + Tecvid Macerası',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        color: MinikColors.darkGreen,
+                      SizedBox(height: 4),
+                      Text(
+                        'Mevcut Elifba yolu. Harf, hareke, kısa sure.',
+                        style: TextStyle(color: MinikColors.textMuted),
                       ),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.',
-                      style: TextStyle(color: MinikColors.textMuted),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 12),
+                ElifbaSoftCard(
+                  color: MinikColors.mint,
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.learnElifbaAdventure,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '🌟 Elifbâ + Tecvid Macerası',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        'YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.',
+                        style: TextStyle(color: MinikColors.textMuted),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
         );
       },
     );
@@ -142,7 +143,7 @@ class _ElifbaHubPageState extends State<ElifbaHubPage> {
           return const QuranLearnHubPage();
         }
         return Scaffold(
-          backgroundColor: const Color(0xFFF4F7F2),
+          backgroundColor: MinikColors.background,
           appBar: AppBar(
             title: const Text('Elifbâ + Tecvid Macerası'),
             actions: [
@@ -162,7 +163,9 @@ class _ElifbaHubPageState extends State<ElifbaHubPage> {
           body: AsyncBody<ElifbaPack>(
             future: _future!,
             errorMessage: 'Elifbâ macerası yüklenemedi.',
-            onRetry: () => setState(() => _future = _load()),
+            onRetry: () => setState(() {
+              _future = _load();
+            }),
             builder: (pack) {
               return FutureBuilder<ElifbaSnapshot>(
                 future: ElifbaProgress(store).load(),
@@ -191,8 +194,8 @@ class _HubBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resume = pack.resumeFrom(progress.currentLesson);
-    final unlocked =
-        progress.isUnlockedIn(pack, resume.id) || progress.isCompleted(resume.id);
+    final unlocked = progress.isUnlockedIn(pack, resume.id) ||
+        progress.isCompleted(resume.id);
     return ListView(
       padding: AppSpacing.page,
       children: [
@@ -200,7 +203,7 @@ class _HubBody extends StatelessWidget {
           color: MinikColors.sky,
           child: Column(
             children: [
-              Image.asset(
+              MinikImage.asset(
                 elifbaMascotAsset,
                 height: 96,
                 errorBuilder: (_, __, ___) =>
@@ -271,10 +274,11 @@ class _HubBody extends StatelessWidget {
             children: [
               const Text('👣 Kaldığın Yer'),
               Text('Ders ${pack.orderOf(resume.id)} – ${resume.title}'),
-              Text('${resume.level} · ${ElifbaWorlds.forLesson(pack, resume.id).title}'),
+              Text(
+                  '${resume.level} · ${ElifbaWorlds.forLesson(pack, resume.id).title}'),
               const SizedBox(height: 8),
               PrimaryButton(
-                label: 'Kaldığın Yerden Devam Et',
+                label: 'Kaldığın yerden devam et',
                 onPressed: unlocked
                     ? () => openElifbaLesson(
                           context,

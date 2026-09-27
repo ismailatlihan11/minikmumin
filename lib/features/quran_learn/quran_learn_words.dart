@@ -59,7 +59,7 @@ class _QuranLearnWordsPageState extends State<QuranLearnWordsPage> {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(
           widget.pack.titleForLevel(widget.levelId, fallback: 'Pekiştirme'),
@@ -104,16 +104,16 @@ class _QuranLearnWordsPageState extends State<QuranLearnWordsPage> {
                   ),
                   itemBuilder: (context, index) {
                     final word = widget.pack.words[index];
-                    final learned =
-                        snap?.isDone('ql_word', word.id) ?? false;
+                    final learned = snap?.isDone('ql_word', word.id) ?? false;
                     return QlDashTile(
                       arabic: word.arabic,
                       learned: learned,
                       selected: _selectedId == word.id,
                       fontSize: 22,
                       fillColor: index.isOdd
-                          ? const Color(0xFFEAF4F8)
-                          : Colors.white,
+                          ? MinikColors.of(
+                              const Color(0xFFEAF4F8), const Color(0xFF1F2C31))
+                          : MinikColors.card,
                       onTap: QuranLearnAudio.resolve(word.audio) == null
                           ? () => _openDetail(word)
                           : () => _listen(word),
@@ -175,7 +175,7 @@ class _QuranLearnWordDetailPageState extends State<QuranLearnWordDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(word.reading),
         actions: [
@@ -194,7 +194,8 @@ class _QuranLearnWordDetailPageState extends State<QuranLearnWordDetailPage> {
             child: Column(
               children: [
                 QlBigArabic(word.arabic, fontSize: 56),
-                Text(word.reading, style: Theme.of(context).textTheme.headlineMedium),
+                Text(word.reading,
+                    style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: 6),
                 Text('“${word.meaningTr}”'),
                 const SizedBox(height: 6),

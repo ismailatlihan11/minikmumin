@@ -68,9 +68,7 @@ String? quranLearnLessonFocusInAyah({
 }) {
   for (final example in lesson.examples) {
     final focus = example.focus.split('(').first.trim();
-    if (focus.isNotEmpty &&
-        focus != 'son' &&
-        arabic.contains(focus)) {
+    if (focus.isNotEmpty && focus != 'son' && arabic.contains(focus)) {
       return focus;
     }
     if (example.arabic.isNotEmpty && arabic.contains(example.arabic)) {

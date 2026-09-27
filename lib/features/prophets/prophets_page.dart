@@ -10,7 +10,9 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 import '../duas/duas_page.dart';
 
 class ProphetsPage extends StatefulWidget {
@@ -31,23 +33,25 @@ class _ProphetsPageState extends State<ProphetsPage> {
       body: SafeArea(
         child: AsyncBody<List<Prophet>>(
           future: _future!,
-          onRetry: () => setState(() => _future = repos.prophets.getAll()),
+          onRetry: () => setState(() {
+            _future = repos.prophets.getAll();
+          }),
           builder: (items) => ListView(
             padding: AppSpacing.page,
             children: [
               const PageHeader(
                 title: 'Peygamberler',
                 subtitle: 'Kur\'an\'da adı geçen peygamberleri tanıyalım.',
-                image: 'assets/images/prophets/prophets.png',
               ),
               MinikCard(
-                color: const Color(0xFFF7EBC4),
-                onTap: () => Navigator.pushNamed(context, '/minik/learn/prophets-book'),
+                color: MinikColors.butter,
+                onTap: () =>
+                    Navigator.pushNamed(context, '/minik/learn/prophets-book'),
                 child: Row(
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
+                      child: MinikImage.asset(
                         'assets/images/books/peygamberler/page_05.jpg',
                         width: 56,
                         height: 72,
@@ -78,11 +82,11 @@ class _ProphetsPageState extends State<ProphetsPage> {
                 ),
               ),
               const SizedBox(height: AppSpacing.md),
-              for (final item in items)
+              for (final (index, item) in items.indexed)
                 ContentTile(
                   title: item.listTitle,
                   subtitle: item.roleTitle,
-                  leading: Image.asset(
+                  leading: MinikImage.asset(
                     ContentAssets.prophetImage(
                       item.name,
                       id: item.id,
@@ -98,7 +102,12 @@ class _ProphetsPageState extends State<ProphetsPage> {
                   ),
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => ProphetDetailPage(item: item)),
+                    MaterialPageRoute(
+                      builder: (_) => ProphetDetailPage(
+                        item: item,
+                        upcoming: items.sublist(index + 1),
+                      ),
+                    ),
                   ),
                 ),
             ],
@@ -110,15 +119,32 @@ class _ProphetsPageState extends State<ProphetsPage> {
 }
 
 class ProphetDetailPage extends StatefulWidget {
-  const ProphetDetailPage({super.key, required this.item});
+  const ProphetDetailPage({
+    super.key,
+    required this.item,
+    this.upcoming = const [],
+  });
 
   final Prophet item;
+  final List<Prophet> upcoming;
 
   @override
   State<ProphetDetailPage> createState() => _ProphetDetailPageState();
 }
 
 class _ProphetDetailPageState extends State<ProphetDetailPage> {
+  void _openNext() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ProphetDetailPage(
+          item: widget.upcoming.first,
+          upcoming: widget.upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
@@ -141,11 +167,11 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
         ),
       ],
       children: [
-        Image.asset(
+        MinikImage.asset(
           imagePath,
           height: 180,
           fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => Image.asset(
+          errorBuilder: (_, __, ___) => MinikImage.asset(
             'assets/images/prophets/prophets.png',
             height: 180,
             fit: BoxFit.contain,
@@ -176,7 +202,8 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded,
+                      size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(lesson, style: theme.bodyLarge)),
                 ],
@@ -192,6 +219,13 @@ class _ProphetDetailPageState extends State<ProphetDetailPage> {
           const SizedBox(height: AppSpacing.sm),
           Text('Kaynak: ${item.sourceName}', style: theme.bodySmall),
         ],
+        const SizedBox(height: AppSpacing.lg),
+        TopicFooter(
+          hasNext: widget.upcoming.isNotEmpty,
+          onNext: _openNext,
+          nextLabel: 'Sonraki peygambere geç',
+          backLabel: 'Peygamberlere dön',
+        ),
       ],
     );
   }

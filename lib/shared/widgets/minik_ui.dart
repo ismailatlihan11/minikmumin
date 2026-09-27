@@ -12,12 +12,10 @@ class PageHeader extends StatelessWidget {
     super.key,
     required this.title,
     this.subtitle,
-    this.image,
   });
 
   final String title;
   final String? subtitle;
-  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +46,6 @@ class PageHeader extends StatelessWidget {
               ],
             ),
           ),
-          if (image != null) ...[
-            const SizedBox(width: AppSpacing.sm),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(AppRadius.md),
-              child: Image.asset(
-                image!,
-                width: 48,
-                height: 48,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-              ),
-            ),
-          ],
         ],
       ),
     );
@@ -112,25 +97,22 @@ class MinikCard extends StatelessWidget {
         ),
       ),
     );
-    final body = Container(
+    final padded = Padding(padding: padding, child: inked);
+    final card = Container(
       width: double.infinity,
-      padding: padding,
       decoration: BoxDecoration(
-        color: color ?? MinikColors.surface,
         borderRadius: radius,
         boxShadow: AppShadows.soft,
       ),
-      child: inked,
-    );
-    if (onTap == null) return body;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
+      child: Material(
+        color: color ?? MinikColors.surface,
         borderRadius: radius,
-        child: body,
+        clipBehavior: Clip.antiAlias,
+        child: onTap == null ? padded : InkWell(onTap: onTap, child: padded),
       ),
     );
+    if (onTap == null) return card;
+    return MergeSemantics(child: Semantics(button: true, child: card));
   }
 }
 
@@ -254,142 +236,6 @@ class ArabicPanel extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: ArabicText(text, fontSize: fontSize),
-    );
-  }
-}
-
-class RoundedAsset extends StatelessWidget {
-  const RoundedAsset({
-    super.key,
-    required this.path,
-    this.width,
-    this.height,
-    this.fallback,
-  });
-
-  final String path;
-  final double? width;
-  final double? height;
-  final Widget? fallback;
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(AppRadius.md),
-      child: Image.asset(
-        path,
-        width: width ?? double.infinity,
-        height: height,
-        fit: BoxFit.cover,
-        errorBuilder: (_, __, ___) =>
-            fallback ??
-            Container(
-              width: width,
-              height: height,
-              color: MinikColors.pastelBlue,
-              alignment: Alignment.center,
-              child: Icon(Icons.menu_book_rounded, color: MinikColors.green),
-            ),
-      ),
-    );
-  }
-}
-
-class CatalogTile extends StatelessWidget {
-  const CatalogTile({
-    super.key,
-    required this.image,
-    required this.onTap,
-    this.semanticLabel,
-  });
-
-  final String image;
-  final VoidCallback onTap;
-  final String? semanticLabel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: semanticLabel,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          child: Image.asset(
-            image,
-            fit: BoxFit.contain,
-            errorBuilder: (_, __, ___) => Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: MinikColors.surface,
-                borderRadius: BorderRadius.circular(AppRadius.lg),
-                border: Border.all(color: MinikColors.green, width: 2),
-              ),
-              child: Text(
-                semanticLabel ?? '',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CatalogGrid extends StatelessWidget {
-  const CatalogGrid({
-    super.key,
-    required this.children,
-    this.crossAxisCount = 3,
-    this.childAspectRatio = 1,
-    this.spacing = 8,
-  });
-
-  final List<Widget> children;
-  final int crossAxisCount;
-  final double childAspectRatio;
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: crossAxisCount,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: spacing,
-      crossAxisSpacing: spacing,
-      childAspectRatio: childAspectRatio,
-      children: children,
-    );
-  }
-}
-
-class CompactCatalogRow extends StatelessWidget {
-  const CompactCatalogRow({
-    super.key,
-    required this.children,
-    this.tileSize = 72,
-    this.spacing = 8,
-  });
-
-  final List<Widget> children;
-  final double tileSize;
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: spacing,
-      runSpacing: spacing,
-      children: [
-        for (final child in children)
-          SizedBox(width: tileSize, height: tileSize, child: child),
-      ],
     );
   }
 }

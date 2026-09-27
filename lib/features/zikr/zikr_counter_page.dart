@@ -52,7 +52,8 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
     super.dispose();
   }
 
-  Future<void> _tap(Future<dynamic> Function() action, {bool completeCheck = false}) async {
+  Future<void> _tap(Future<dynamic> Function() action,
+      {bool completeCheck = false}) async {
     if (_locked) return;
     _locked = true;
     try {
@@ -159,12 +160,12 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
             ),
             const SizedBox(height: AppSpacing.md),
             PrimaryButton(
-              label: 'Devam Et',
+              label: 'Devam et',
               onPressed: () => Navigator.pop(context, 'stay'),
             ),
             const SizedBox(height: AppSpacing.sm),
             SecondaryButton(
-              label: 'Sonra Devam Et',
+              label: 'Sonra devam et',
               onPressed: () => Navigator.pop(context, 'pause'),
             ),
           ],
@@ -194,10 +195,13 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
           title: Text(dhikr.title),
           actions: [
             IconButton(
-              tooltip: dhikr.isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle',
+              tooltip:
+                  dhikr.isFavorite ? 'Favorilerden çıkar' : 'Favorilere ekle',
               onPressed: () => store.toggleFavorite(dhikr.id),
               icon: Icon(
-                dhikr.isFavorite ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                dhikr.isFavorite
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
                 color: dhikr.isFavorite ? const Color(0xFFC45B7A) : null,
               ),
             ),
@@ -217,194 +221,204 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
             return Stack(
               children: [
                 ListView(
-          padding: AppSpacing.page,
-          children: [
-            if (dhikr.transliteration.isNotEmpty)
-              Text(
-                dhikr.transliteration,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      color: MinikColors.darkGreen,
-                      height: 1.35,
-                    ),
-              )
-            else if (dhikr.arabic.isNotEmpty)
-              ArabicText(dhikr.arabic, fontSize: 32),
-            if (_hasDetails(dhikr)) ...[
-              const SizedBox(height: AppSpacing.sm),
-              Center(
-                child: TextButton.icon(
-                  onPressed: () => setState(() => _showDetails = !_showDetails),
-                  icon: Icon(
-                    _showDetails
-                        ? Icons.expand_less_rounded
-                        : Icons.expand_more_rounded,
-                  ),
-                  label: Text(_showDetails ? 'Detayları gizle' : 'Detay göster'),
-                ),
-              ),
-              AnimatedSize(
-                duration: const Duration(milliseconds: 240),
-                curve: Curves.easeOutCubic,
-                alignment: Alignment.topCenter,
-                child: _showDetails
-                    ? Column(
-                        children: [
-                          if (dhikr.arabic.isNotEmpty) ...[
-                            const SizedBox(height: AppSpacing.xs),
-                            ArabicText(dhikr.arabic, fontSize: 28),
-                          ],
-                          if (dhikr.meaning.isNotEmpty) ...[
-                            const SizedBox(height: AppSpacing.xs),
-                            SelectableText(
-                              dhikr.meaning,
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                  padding: AppSpacing.page,
+                  children: [
+                    if (dhikr.transliteration.isNotEmpty)
+                      Text(
+                        dhikr.transliteration,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: MinikColors.darkGreen,
+                              height: 1.35,
                             ),
-                          ],
-                        ],
                       )
-                    : const SizedBox.shrink(),
-              ),
-            ],
-            ListenButton(audio: _phraseAudio, path: store.audioFor(dhikr)),
-            const SizedBox(height: AppSpacing.md),
-            if (DhikrTasbih.showsRounds(dhikr.targetCount))
-              Text(
-                dhikr.currentCount >= dhikr.targetCount
-                    ? 'Turlar tamam'
-                    : 'Kalan tur: ${DhikrTasbih.remainingRounds(dhikr.currentCount, dhikr.targetCount)}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
-                  color: MinikColors.darkGreen,
-                ),
-              ),
-            Text(
-              '${dhikr.currentCount}',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: 56,
-                    fontWeight: FontWeight.w800,
-                    height: 1,
-                    color: MinikColors.darkGreen,
-                  ),
-            ),
-            Text(
-              '/ ${dhikr.targetCount}',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(99),
-              child: LinearProgressIndicator(
-                minHeight: 10,
-                value: dhikr.uiProgress,
-                backgroundColor: MinikColors.creamDark,
-                color: MinikColors.green,
-              ),
-            ),
-            if (dhikr.dailySessionTarget > 0) ...[
-              const SizedBox(height: AppSpacing.sm),
-              Text(
-                'Günlük oturum: ${store.todayCompletedCount(dhikr.id)} / ${dhikr.dailySessionTarget}',
-                textAlign: TextAlign.center,
-              ),
-            ],
-            const SizedBox(height: AppSpacing.md),
-            TasbihBeadsView(
-              beadCount: DhikrTasbih.visibleBeadCount(
-                dhikr.currentCount,
-                dhikr.targetCount,
-              ),
-              pulled: DhikrTasbih.pulledThisRound(
-                dhikr.currentCount,
-                dhikr.targetCount,
-              ),
-              firstNumber: DhikrTasbih.roundStartNumber(
-                dhikr.currentCount,
-                dhikr.targetCount,
-              ),
-              maxNumber: dhikr.targetCount,
-              burst: _burst.value,
-              onTap: () => _tap(
-                () => store.addCount(dhikr.id),
-                completeCheck: true,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Tesbihe dokun, bir tane çek',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'NotoSans',
-                fontWeight: FontWeight.w700,
-                color: MinikColors.textMuted,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.md),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('Tesbih sesi'),
-              subtitle: const Text('Her çekişte tıklar'),
-              value: store.settings.soundEnabled && dhikr.soundEnabled,
-              onChanged: (value) {
-                store.updateSettings(
-                  store.settings.copyWith(soundEnabled: value),
-                );
-                store.updateDhikr(dhikr.copyWith(soundEnabled: value));
-              },
-              secondary: Icon(
-                store.settings.soundEnabled && dhikr.soundEnabled
-                    ? Icons.volume_up_rounded
-                    : Icons.volume_off_rounded,
-                color: MinikColors.green,
-              ),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('Titreşim'),
-              subtitle: const Text('Her çekişte titreşim verir'),
-              value: store.settings.vibrationEnabled && dhikr.vibrationEnabled,
-              onChanged: (value) {
-                store.updateSettings(
-                  store.settings.copyWith(vibrationEnabled: value),
-                );
-                store.updateDhikr(dhikr.copyWith(vibrationEnabled: value));
-              },
-              secondary: const Icon(Icons.vibration_rounded),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Row(
-              children: [
-                _RoundControl(
-                  icon: Icons.remove_rounded,
-                  onTap: () => _tap(() => store.subtractCount(dhikr.id)),
-                ),
-                const SizedBox(width: AppSpacing.sm),
-                Expanded(
-                  child: SecondaryButton(
-                    label: 'Sıfırla',
-                    onPressed: _confirmReset,
-                  ),
-                ),
-                const SizedBox(width: AppSpacing.sm),
-                _RoundControl(
-                  icon: Icons.add_rounded,
-                  onTap: () => _tap(() => store.addCount(dhikr.id), completeCheck: true),
-                ),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            TextButton(
-              onPressed: () => _editSettings(dhikr),
-              child: const Text('Zikir ayarları'),
-            ),
-          ],
+                    else if (dhikr.arabic.isNotEmpty)
+                      ArabicText(dhikr.arabic, fontSize: 32),
+                    if (_hasDetails(dhikr)) ...[
+                      const SizedBox(height: AppSpacing.sm),
+                      Center(
+                        child: TextButton.icon(
+                          onPressed: () =>
+                              setState(() => _showDetails = !_showDetails),
+                          icon: Icon(
+                            _showDetails
+                                ? Icons.expand_less_rounded
+                                : Icons.expand_more_rounded,
+                          ),
+                          label: Text(_showDetails
+                              ? 'Detayları gizle'
+                              : 'Detay göster'),
+                        ),
+                      ),
+                      AnimatedSize(
+                        duration: const Duration(milliseconds: 240),
+                        curve: Curves.easeOutCubic,
+                        alignment: Alignment.topCenter,
+                        child: _showDetails
+                            ? Column(
+                                children: [
+                                  if (dhikr.arabic.isNotEmpty) ...[
+                                    const SizedBox(height: AppSpacing.xs),
+                                    ArabicText(dhikr.arabic, fontSize: 28),
+                                  ],
+                                  if (dhikr.meaning.isNotEmpty) ...[
+                                    const SizedBox(height: AppSpacing.xs),
+                                    SelectableText(
+                                      dhikr.meaning,
+                                      textAlign: TextAlign.center,
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                    ),
+                                  ],
+                                ],
+                              )
+                            : const SizedBox.shrink(),
+                      ),
+                    ],
+                    ListenButton(
+                        audio: _phraseAudio, path: store.audioFor(dhikr)),
+                    const SizedBox(height: AppSpacing.md),
+                    if (DhikrTasbih.showsRounds(dhikr.targetCount))
+                      Text(
+                        dhikr.currentCount >= dhikr.targetCount
+                            ? 'Turlar tamam'
+                            : 'Kalan tur: ${DhikrTasbih.remainingRounds(dhikr.currentCount, dhikr.targetCount)}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
+                      ),
+                    Text(
+                      '${dhikr.currentCount}',
+                      textAlign: TextAlign.center,
+                      style:
+                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                                fontSize: 56,
+                                fontWeight: FontWeight.w800,
+                                height: 1,
+                                color: MinikColors.darkGreen,
+                              ),
+                    ),
+                    Text(
+                      '/ ${dhikr.targetCount}',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(99),
+                      child: LinearProgressIndicator(
+                        minHeight: 10,
+                        value: dhikr.uiProgress,
+                        backgroundColor: MinikColors.creamDark,
+                        color: MinikColors.green,
+                      ),
+                    ),
+                    if (dhikr.dailySessionTarget > 0) ...[
+                      const SizedBox(height: AppSpacing.sm),
+                      Text(
+                        'Günlük oturum: ${store.todayCompletedCount(dhikr.id)} / ${dhikr.dailySessionTarget}',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                    const SizedBox(height: AppSpacing.md),
+                    TasbihBeadsView(
+                      beadCount: DhikrTasbih.visibleBeadCount(
+                        dhikr.currentCount,
+                        dhikr.targetCount,
+                      ),
+                      pulled: DhikrTasbih.pulledThisRound(
+                        dhikr.currentCount,
+                        dhikr.targetCount,
+                      ),
+                      firstNumber: DhikrTasbih.roundStartNumber(
+                        dhikr.currentCount,
+                        dhikr.targetCount,
+                      ),
+                      maxNumber: dhikr.targetCount,
+                      burst: _burst.value,
+                      onTap: () => _tap(
+                        () => store.addCount(dhikr.id),
+                        completeCheck: true,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Tesbihe dokun, bir tane çek',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'NotoSans',
+                        fontWeight: FontWeight.w700,
+                        color: MinikColors.textMuted,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Tesbih sesi'),
+                      subtitle: const Text('Her çekişte tıklar'),
+                      value: store.settings.soundEnabled && dhikr.soundEnabled,
+                      onChanged: (value) {
+                        store.updateSettings(
+                          store.settings.copyWith(soundEnabled: value),
+                        );
+                        store.updateDhikr(dhikr.copyWith(soundEnabled: value));
+                      },
+                      secondary: Icon(
+                        store.settings.soundEnabled && dhikr.soundEnabled
+                            ? Icons.volume_up_rounded
+                            : Icons.volume_off_rounded,
+                        color: MinikColors.green,
+                      ),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: const Text('Titreşim'),
+                      subtitle: const Text('Her çekişte titreşim verir'),
+                      value: store.settings.vibrationEnabled &&
+                          dhikr.vibrationEnabled,
+                      onChanged: (value) {
+                        store.updateSettings(
+                          store.settings.copyWith(vibrationEnabled: value),
+                        );
+                        store.updateDhikr(
+                            dhikr.copyWith(vibrationEnabled: value));
+                      },
+                      secondary: const Icon(Icons.vibration_rounded),
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Row(
+                      children: [
+                        _RoundControl(
+                          icon: Icons.remove_rounded,
+                          onTap: () =>
+                              _tap(() => store.subtractCount(dhikr.id)),
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: SecondaryButton(
+                            label: 'Sıfırla',
+                            onPressed: _confirmReset,
+                          ),
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        _RoundControl(
+                          icon: Icons.add_rounded,
+                          onTap: () => _tap(() => store.addCount(dhikr.id),
+                              completeCheck: true),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    TextButton(
+                      onPressed: () => _editSettings(dhikr),
+                      child: const Text('Zikir ayarları'),
+                    ),
+                  ],
                 ),
                 ZikrCelebrateBackdrop(
                   progress: _burst.value,

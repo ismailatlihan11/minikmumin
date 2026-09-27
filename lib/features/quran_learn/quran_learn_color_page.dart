@@ -16,7 +16,8 @@ import 'quran_learn_audio.dart';
 import 'quran_learn_progress.dart';
 import 'quran_learn_widgets.dart';
 
-const _paper = Color(0xFFFFFDF8);
+Color get _paper =>
+    MinikColors.of(const Color(0xFFFFFDF8), const Color(0xFF332A13));
 
 void openQlColoring(
   BuildContext context, {
@@ -151,7 +152,7 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
     _future ??= context.read<ContentRepositories>().quranLearning.load();
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: const Text('Harfleri Boya')),
       body: AsyncBody<QuranLearningPack>(
         future: _future!,
@@ -170,7 +171,6 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
                 const PageHeader(
                   title: 'Harfleri Boya',
                   subtitle: 'Bir harf seç, parmağınla boya.',
-                  image: 'assets/images/home/card_quran_learn.png',
                 ),
                 GridView.builder(
                   shrinkWrap: true,
@@ -187,7 +187,7 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
                     final colored =
                         snap?.isDone('ql_color', letter.id) ?? false;
                     return MinikCard(
-                      color: colored ? MinikColors.mint : Colors.white,
+                      color: colored ? MinikColors.mint : MinikColors.card,
                       padding: const EdgeInsets.all(6),
                       onTap: () => Navigator.push(
                         context,
@@ -350,7 +350,7 @@ class _QlColoringPageState extends State<QlColoringPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(widget.title),
         actions: [
@@ -472,7 +472,8 @@ class _QlColoringPageState extends State<QlColoringPage> {
                       const SizedBox(width: 8),
                       Expanded(
                         flex: 2,
-                        child: PrimaryButton(label: 'Bitti', onPressed: _finish),
+                        child:
+                            PrimaryButton(label: 'Bitti', onPressed: _finish),
                       ),
                     ],
                   ),

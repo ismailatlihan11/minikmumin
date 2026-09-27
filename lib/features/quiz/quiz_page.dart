@@ -9,6 +9,7 @@ import '../../data/models/quiz.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class QuizPage extends StatefulWidget {
@@ -32,20 +33,22 @@ class _QuizPageState extends State<QuizPage> {
       body: SafeArea(
         child: AsyncBody<QuizBank>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (bank) => ListView(
             padding: AppSpacing.page,
             children: [
               PageHeader(
                 title: 'Öğrendiklerini Dene!',
                 subtitle: 'Bakalım kaç soruyu doğru yapabileceksin?',
-                image: 'assets/images/home/mini_quiz.png',
               ),
               ContentTile(
                 title: 'Karışık sorular',
                 subtitle: '${bank.questionsPerSession} soruluk oturum',
                 leading: Icon(Icons.shuffle_rounded, color: MinikColors.green),
-                onTap: () => _openSession(context, bank, bank.questions, 'Karışık sorular'),
+                onTap: () => _openSession(
+                    context, bank, bank.questions, 'Karışık sorular'),
               ),
               for (final category in bank.categories)
                 ContentTile(
@@ -128,7 +131,9 @@ class _QuizPlayViewState extends State<QuizPlayView> {
     final pool = List<QuizQuestion>.from(widget.questions);
     if (widget.shuffle) pool.shuffle();
     final limit = widget.limit;
-    final sliced = limit == null || pool.length <= limit ? pool : pool.take(limit).toList();
+    final sliced = limit == null || pool.length <= limit
+        ? pool
+        : pool.take(limit).toList();
     if (!widget.shuffle) return sliced;
     return sliced.map((question) => question.shuffledOptions()).toList();
   }
@@ -151,7 +156,7 @@ class _QuizPlayViewState extends State<QuizPlayView> {
       return ListView(
         padding: AppSpacing.page,
         children: [
-          Image.asset(
+          MinikImage.asset(
             'assets/images/home/success.png',
             height: 120,
             errorBuilder: (_, __, ___) => const SizedBox.shrink(),
@@ -193,7 +198,7 @@ class _QuizPlayViewState extends State<QuizPlayView> {
           ),
           const SizedBox(height: AppSpacing.lg),
           PrimaryButton(
-            label: 'Tekrar Dene',
+            label: 'Tekrar dene',
             onPressed: () => setState(() {
               _session = _buildSession();
               _index = 0;
@@ -206,7 +211,8 @@ class _QuizPlayViewState extends State<QuizPlayView> {
     }
 
     final question = _session[_index];
-    final selected = question.options.where((option) => option.id == _selectedId);
+    final selected =
+        question.options.where((option) => option.id == _selectedId);
     final answeredCorrect = selected.isNotEmpty && selected.first.correct;
     return ListView(
       padding: AppSpacing.page,
@@ -215,7 +221,8 @@ class _QuizPlayViewState extends State<QuizPlayView> {
         const SizedBox(height: AppSpacing.md),
         MinikCard(
           color: MinikColors.butter,
-          child: Text(question.question, style: Theme.of(context).textTheme.headlineMedium),
+          child: Text(question.question,
+              style: Theme.of(context).textTheme.headlineMedium),
         ),
         const SizedBox(height: AppSpacing.md),
         ...question.options.map((option) {
@@ -228,24 +235,31 @@ class _QuizPlayViewState extends State<QuizPlayView> {
             child: MinikCard(
               color: color,
               onTap: _selectedId == null ? () => _answer(option) : null,
-              child: Text(option.text, style: Theme.of(context).textTheme.titleMedium),
+              child: Text(option.text,
+                  style: Theme.of(context).textTheme.titleMedium),
             ),
           );
         }),
         if (_selectedId != null) ...[
           const SizedBox(height: AppSpacing.sm),
-          if (_feedback(answeredCorrect ? widget.correctFeedback : widget.wrongFeedback).isNotEmpty)
+          if (_feedback(answeredCorrect
+                  ? widget.correctFeedback
+                  : widget.wrongFeedback)
+              .isNotEmpty)
             Text(
-              _feedback(answeredCorrect ? widget.correctFeedback : widget.wrongFeedback),
+              _feedback(answeredCorrect
+                  ? widget.correctFeedback
+                  : widget.wrongFeedback),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           if (question.explanation.isNotEmpty) ...[
             const SizedBox(height: AppSpacing.sm),
-            Text(question.explanation, style: Theme.of(context).textTheme.bodyLarge),
+            Text(question.explanation,
+                style: Theme.of(context).textTheme.bodyLarge),
           ],
           const SizedBox(height: AppSpacing.md),
           PrimaryButton(
-            label: _index == _session.length - 1 ? 'Bitir' : 'Devam Et',
+            label: _index == _session.length - 1 ? 'Bitir' : 'Devam et',
             onPressed: () async {
               if (_index == _session.length - 1) {
                 final store = context.read<LocalProgressStore>();

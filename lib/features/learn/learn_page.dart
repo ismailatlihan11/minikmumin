@@ -4,8 +4,8 @@ import '../../app/constants/learn_categories.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
-import '../../app/theme/app_theme.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class LearnPage extends StatelessWidget {
@@ -21,7 +21,6 @@ class LearnPage extends StatelessWidget {
             const PageHeader(
               title: 'Haydi Öğrenelim',
               subtitle: 'Bir konu seç, adım adım ilerleyelim.',
-              image: 'assets/images/home/learn.png',
             ),
             LayoutBuilder(
               builder: (context, constraints) {
@@ -60,7 +59,7 @@ class _LearnTopicTile extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 0.88,
       child: Material(
-        color: Colors.white,
+        color: MinikColors.card,
         elevation: 1.5,
         shadowColor: const Color(0x22000000),
         borderRadius: BorderRadius.circular(AppRadius.md),
@@ -80,26 +79,26 @@ class _LearnTopicTile extends StatelessWidget {
                             fit: BoxFit.cover,
                             semanticLabel: category.title,
                           )
-                        : Image.asset(
-                      category.image,
-                      fit: BoxFit.cover,
-                      semanticLabel: category.title,
-                      errorBuilder: (_, __, ___) => ColoredBox(
-                        color: MinikColors.mint,
-                        child: Center(
-                          child: Text(
-                            category.title,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontFamily: 'NotoSans',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: MinikColors.darkGreen,
+                        : MinikImage.asset(
+                            category.image,
+                            fit: BoxFit.cover,
+                            semanticLabel: category.title,
+                            errorBuilder: (_, __, ___) => ColoredBox(
+                              color: MinikColors.mint,
+                              child: Center(
+                                child: Text(
+                                  category.title,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'NotoSans',
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: MinikColors.darkGreen,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 6),
@@ -119,31 +118,6 @@ class _LearnTopicTile extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class ModulePreviewPage extends StatelessWidget {
-  const ModulePreviewPage({
-    super.key,
-    required this.title,
-    required this.message,
-  });
-
-  final String title;
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: MinikTheme.current(),
-      child: Scaffold(
-        appBar: AppBar(title: Text(title)),
-        body: Padding(
-          padding: AppSpacing.page,
-          child: Text(message, style: Theme.of(context).textTheme.bodyLarge),
         ),
       ),
     );

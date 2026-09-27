@@ -13,7 +13,9 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/listen_button.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 
 class StoriesPage extends StatefulWidget {
   const StoriesPage({super.key});
@@ -36,19 +38,21 @@ class _StoriesPageState extends State<StoriesPage> {
       body: SafeArea(
         child: AsyncBody<StoryCatalog>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (catalog) => ListView(
             padding: AppSpacing.page,
             children: [
               const PageHeader(
                 title: 'Kıssalar',
                 subtitle: 'Kur\'an\'daki kıssaları sahne sahne okuyalım.',
-                image: 'assets/images/home/circle_stories.png',
               ),
               ContentTile(
                 title: 'Tüm kıssalar',
                 subtitle: '${catalog.items.length} kıssa',
-                leading: Icon(Icons.auto_stories_rounded, color: MinikColors.green),
+                leading:
+                    Icon(Icons.auto_stories_rounded, color: MinikColors.green),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -63,7 +67,8 @@ class _StoriesPageState extends State<StoriesPage> {
                 ContentTile(
                   title: category.title,
                   subtitle: '${catalog.forCategory(category.id).length} kıssa',
-                  leading: Icon(Icons.menu_book_rounded, color: MinikColors.green),
+                  leading:
+                      Icon(Icons.menu_book_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -99,14 +104,16 @@ class StoriesListPage extends StatelessWidget {
       body: ListView(
         padding: AppSpacing.page,
         children: [
-          for (final story in stories)
+          for (final (index, story) in stories.indexed)
             ContentTile(
-              title: story.order > 0 ? '${story.order}. ${story.title}' : story.title,
+              title: story.order > 0
+                  ? '${story.order}. ${story.title}'
+                  : story.title,
               subtitle: story.summary,
-              leading: Image.asset(
+              leading: MinikImage.asset(
                 story.image.isNotEmpty
                     ? story.image
-                    : 'assets/images/home/circle_stories.png',
+                    : 'assets/images/home/circle_stories.jpg',
                 width: 44,
                 height: 44,
                 fit: BoxFit.contain,
@@ -117,7 +124,12 @@ class StoriesListPage extends StatelessWidget {
               ),
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (_) => StoryReaderPage(story: story)),
+                MaterialPageRoute(
+                  builder: (_) => StoryReaderPage(
+                    story: story,
+                    upcoming: stories.sublist(index + 1),
+                  ),
+                ),
               ),
             ),
         ],
@@ -127,9 +139,14 @@ class StoriesListPage extends StatelessWidget {
 }
 
 class StoryReaderPage extends StatefulWidget {
-  const StoryReaderPage({super.key, required this.story});
+  const StoryReaderPage({
+    super.key,
+    required this.story,
+    this.upcoming = const [],
+  });
 
   final StoryItem story;
+  final List<StoryItem> upcoming;
 
   @override
   State<StoryReaderPage> createState() => _StoryReaderPageState();
@@ -181,6 +198,18 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
     }
   }
 
+  void _openNext() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => StoryReaderPage(
+          story: widget.upcoming.first,
+          upcoming: widget.upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
   Future<void> _syncProgress() async {
     final store = context.read<LocalProgressStore>();
     await store.setStoryPage(widget.story.id, _page);
@@ -219,14 +248,24 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
                     label: 'Başla',
                     onPressed: () => _goTo(_sceneCount == 0 ? _lastPage : 1),
                   )
-                else ...[
+                else if (_page >= _lastPage) ...[
+                  const LearnedBanner(text: 'Aferin, kıssayı bitirdin!'),
+                  const SizedBox(height: AppSpacing.md),
+                  TopicFooter(
+                    hasNext: widget.upcoming.isNotEmpty,
+                    onNext: _openNext,
+                    nextLabel: 'Sonraki kıssaya geç',
+                    backLabel: 'Kıssalara dön',
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+                  SecondaryButton(
+                    label: 'Geri',
+                    onPressed: () => _goTo(_page - 1),
+                  ),
+                ] else ...[
                   PrimaryButton(
-                    label: _page >= _lastPage
-                        ? 'Bitti'
-                        : (_page == _sceneCount ? 'Dersi gör' : 'Devam Et'),
-                    onPressed: _page >= _lastPage
-                        ? null
-                        : () => _goTo(_page + 1),
+                    label: _page == _sceneCount ? 'Dersi gör' : 'Devam et',
+                    onPressed: () => _goTo(_page + 1),
                   ),
                   if (_page > 0) ...[
                     const SizedBox(height: AppSpacing.sm),
@@ -245,12 +284,14 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(
-          story.image.isNotEmpty ? story.image : 'assets/images/home/circle_stories.png',
+        MinikImage.asset(
+          story.image.isNotEmpty
+              ? story.image
+              : 'assets/images/home/circle_stories.jpg',
           height: 180,
           fit: BoxFit.contain,
-          errorBuilder: (_, __, ___) => Image.asset(
-            'assets/images/home/circle_stories.png',
+          errorBuilder: (_, __, ___) => MinikImage.asset(
+            'assets/images/home/circle_stories.jpg',
             height: 180,
             fit: BoxFit.contain,
           ),
@@ -298,7 +339,8 @@ class _StoryReaderPageState extends State<StoryReaderPage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.check_circle_rounded, size: 18, color: MinikColors.green),
+                  Icon(Icons.check_circle_rounded,
+                      size: 18, color: MinikColors.green),
                   const SizedBox(width: 8),
                   Expanded(child: Text(lesson, style: theme.bodyLarge)),
                 ],

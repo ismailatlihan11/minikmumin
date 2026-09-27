@@ -131,7 +131,9 @@ abstract final class ElifbaReading {
     if (mark == sukun) {
       if (base.isEmpty) return '';
       final lead = heavy ? 'a' : 'e';
-      return withTag ? _tagged('$lead$base', letter, heavy: heavy) : '$lead$base';
+      return withTag
+          ? _tagged('$lead$base', letter, heavy: heavy)
+          : '$lead$base';
     }
     final root = doubled ? '$base$base' : base;
     final syllable = '$root${vowelFor(mark, heavy: heavy)}';
@@ -156,7 +158,8 @@ abstract final class ElifbaReading {
   }
 
   /// Harekeli parçanın okunuşu; üretilemezse JSON'daki metin korunur.
-  static String forMarked(String marked, String fallback, {bool withTag = true}) {
+  static String forMarked(String marked, String fallback,
+      {bool withTag = true}) {
     if (!isShortSyllable(marked)) return fallback;
     final reading = of(
       letterOf(marked),
@@ -169,7 +172,8 @@ abstract final class ElifbaReading {
 
   /// Şıklardaki okunuşu, o şıkkın ünlüsünün işaret ettiği harekeye göre
   /// yeniden üretir; böylece çeldiriciler de doğru sesi öğretir.
-  static String forOption(String letter, String option, {bool doubled = false}) {
+  static String forOption(String letter, String option,
+      {bool doubled = false}) {
     final trimmed = option.trim();
     if (trimmed.isEmpty || trimmed.contains(' ')) return option;
     final mark = _markOfVowel(trimmed[trimmed.length - 1]);

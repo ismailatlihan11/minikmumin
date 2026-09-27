@@ -7,6 +7,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'quran_learn_nav.dart';
 import 'quran_learn_progress.dart';
@@ -32,149 +33,155 @@ class _QuranLearnHubPageState extends State<QuranLearnHubPage> {
     final store = context.watch<LocalProgressStore>();
     return quranLearnThemed(
       Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
-      appBar: AppBar(title: const Text("Kur'an Öğren")),
-      body: AsyncBody<QuranLearningPack>(
-        future: _future!,
-        errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
-        onRetry: () => setState(() => _future = _load()),
-        builder: (pack) {
-          return FutureBuilder<QuranLearnSnapshot>(
-            future: QuranLearnProgress.load(store, pack),
-            builder: (context, snapshot) {
-              final snap = snapshot.data;
-              if (snap == null) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              final path = [
-                for (final id in elifbaPathIds)
-                  if (pack.levelById(id) != null) pack.levelById(id)!,
-              ];
-              final drills = [
-                for (final id in elifbaDrillIds)
-                  if (pack.levelById(id) != null) pack.levelById(id)!,
-              ];
-              final tajweed = [
-                for (final id in elifbaTajweedIds)
-                  if (pack.levelById(id) != null) pack.levelById(id)!,
-              ];
-              final reading = [
-                for (final id in elifbaReadIds)
-                  if (pack.levelById(id) != null) pack.levelById(id)!,
-              ];
-              final pathDone =
-                  path.where((level) => snap.isLevelComplete(level.id)).length;
-              return ListView(
-                padding: AppSpacing.page,
-                children: [
-                  MinikCard(
-                    color: const Color(0xFFEAF6FF),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Kur'an Öğreniyorum",
-                                style: Theme.of(context).textTheme.displayMedium,
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Harf, şekil, hareke. Sonra kısa sure.',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              const SizedBox(height: 10),
-                              QlSoftProgress(
-                                value: path.isEmpty ? 0 : pathDone / path.length,
-                                label: '$pathDone / ${path.length} adım',
-                              ),
-                            ],
+        backgroundColor: MinikColors.background,
+        appBar: AppBar(title: const Text("Kur'an Öğren")),
+        body: AsyncBody<QuranLearningPack>(
+          future: _future!,
+          errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
+          builder: (pack) {
+            return FutureBuilder<QuranLearnSnapshot>(
+              future: QuranLearnProgress.load(store, pack),
+              builder: (context, snapshot) {
+                final snap = snapshot.data;
+                if (snap == null) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                final path = [
+                  for (final id in elifbaPathIds)
+                    if (pack.levelById(id) != null) pack.levelById(id)!,
+                ];
+                final drills = [
+                  for (final id in elifbaDrillIds)
+                    if (pack.levelById(id) != null) pack.levelById(id)!,
+                ];
+                final tajweed = [
+                  for (final id in elifbaTajweedIds)
+                    if (pack.levelById(id) != null) pack.levelById(id)!,
+                ];
+                final reading = [
+                  for (final id in elifbaReadIds)
+                    if (pack.levelById(id) != null) pack.levelById(id)!,
+                ];
+                final pathDone = path
+                    .where((level) => snap.isLevelComplete(level.id))
+                    .length;
+                return ListView(
+                  padding: AppSpacing.page,
+                  children: [
+                    MinikCard(
+                      color: MinikColors.of(
+                          const Color(0xFFEAF6FF), const Color(0xFF152938)),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Kur'an Öğreniyorum",
+                                  style:
+                                      Theme.of(context).textTheme.displayMedium,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  'Harf, şekil, hareke. Sonra kısa sure.',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                const SizedBox(height: 10),
+                                QlSoftProgress(
+                                  value:
+                                      path.isEmpty ? 0 : pathDone / path.length,
+                                  label: '$pathDone / ${path.length} adım',
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.asset(
-                            'assets/images/home/card_quran_learn.png',
-                            width: 72,
-                            height: 72,
-                            fit: BoxFit.cover,
+                          const SizedBox(width: 8),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: MinikImage.asset(
+                              'assets/images/home/card_quran_learn.jpg',
+                              width: 72,
+                              height: 72,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  for (var i = 0; i < path.length; i++)
-                    _PathCard(
-                      step: i + 1,
-                      level: path[i],
-                      snap: snap,
-                      onOpen: () => openQuranLearnLevel(
-                        context,
-                        pack: pack,
-                        levelId: path[i].id,
+                        ],
                       ),
                     ),
-                  if (drills.isNotEmpty)
-                    _HubFold(
-                      title: 'Alıştırma',
-                      subtitle: 'Birleştir, oku, ayırt, oyna',
-                      children: [
-                        for (final level in drills)
-                          _LaterCard(
-                            level: level,
-                            snap: snap,
-                            onOpen: () => openQuranLearnLevel(
-                              context,
-                              pack: pack,
-                              levelId: level.id,
+                    const SizedBox(height: AppSpacing.md),
+                    for (var i = 0; i < path.length; i++)
+                      _PathCard(
+                        step: i + 1,
+                        level: path[i],
+                        snap: snap,
+                        onOpen: () => openQuranLearnLevel(
+                          context,
+                          pack: pack,
+                          levelId: path[i].id,
+                        ),
+                      ),
+                    if (drills.isNotEmpty)
+                      _HubFold(
+                        title: 'Alıştırma',
+                        subtitle: 'Birleştir, oku, ayırt, oyna',
+                        children: [
+                          for (final level in drills)
+                            _LaterCard(
+                              level: level,
+                              snap: snap,
+                              onOpen: () => openQuranLearnLevel(
+                                context,
+                                pack: pack,
+                                levelId: level.id,
+                              ),
                             ),
-                          ),
-                      ],
-                    ),
-                  if (tajweed.isNotEmpty)
-                    _HubFold(
-                      title: 'Tecvid',
-                      subtitle: 'Kuralları ayette gör',
-                      children: [
-                        for (final level in tajweed)
-                          _LaterCard(
-                            level: level,
-                            snap: snap,
-                            onOpen: () => openQuranLearnLevel(
-                              context,
-                              pack: pack,
-                              levelId: level.id,
+                        ],
+                      ),
+                    if (tajweed.isNotEmpty)
+                      _HubFold(
+                        title: 'Tecvid',
+                        subtitle: 'Kuralları ayette gör',
+                        children: [
+                          for (final level in tajweed)
+                            _LaterCard(
+                              level: level,
+                              snap: snap,
+                              onOpen: () => openQuranLearnLevel(
+                                context,
+                                pack: pack,
+                                levelId: level.id,
+                              ),
                             ),
-                          ),
-                      ],
-                    ),
-                  if (reading.isNotEmpty)
-                    _HubFold(
-                      title: 'Okuma pratiği',
-                      subtitle: 'Ayet ve sure oku',
-                      children: [
-                        for (final level in reading)
-                          _LaterCard(
-                            level: level,
-                            snap: snap,
-                            onOpen: () => openQuranLearnLevel(
-                              context,
-                              pack: pack,
-                              levelId: level.id,
+                        ],
+                      ),
+                    if (reading.isNotEmpty)
+                      _HubFold(
+                        title: 'Okuma pratiği',
+                        subtitle: 'Ayet ve sure oku',
+                        children: [
+                          for (final level in reading)
+                            _LaterCard(
+                              level: level,
+                              snap: snap,
+                              onOpen: () => openQuranLearnLevel(
+                                context,
+                                pack: pack,
+                                levelId: level.id,
+                              ),
                             ),
-                          ),
-                      ],
-                    ),
-                ],
-              );
-            },
-          );
-        },
+                        ],
+                      ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
       ),
-    ),
     );
   }
 }
@@ -241,7 +248,8 @@ class _PathCard extends StatelessWidget {
             ? MinikColors.mint
             : first
                 ? MinikColors.surface
-                : const Color(0xFFF7F4EE),
+                : MinikColors.of(
+                    const Color(0xFFF7F4EE), const Color(0xFF2E2A21)),
         onTap: onOpen,
         child: Row(
           children: [
@@ -284,7 +292,11 @@ class _PathCard extends StatelessWidget {
               ),
             ),
             Text(
-              complete ? '✓' : first ? 'Başla' : 'Aç',
+              complete
+                  ? '✓'
+                  : first
+                      ? 'Başla'
+                      : 'Aç',
               style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontWeight: FontWeight.w800,
@@ -314,11 +326,12 @@ class _LaterCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: MinikCard(
-        color: const Color(0xFFE8EDE8),
+        color: MinikColors.of(const Color(0xFFE8EDE8), const Color(0xFF292E29)),
         onTap: onOpen,
         child: Row(
           children: [
-            Icon(qlLevelIcon(level.id, level.screen), color: MinikColors.textMuted),
+            Icon(qlLevelIcon(level.id, level.screen),
+                color: MinikColors.textMuted),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

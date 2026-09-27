@@ -147,7 +147,7 @@ class QlSoftProgress extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10,
             value: value.clamp(0, 1),
-            backgroundColor: Colors.white.withValues(alpha: 0.75),
+            backgroundColor: MinikColors.card.withValues(alpha: 0.75),
             color: MinikColors.green,
           ),
         ),
@@ -220,7 +220,7 @@ Future<void> showQlCelebration(
   String subtitle = 'Bu dersi tamamladın.',
   VoidCallback? onContinue,
   VoidCallback? onRetry,
-  String continueLabel = 'Devam Et',
+  String continueLabel = 'Devam et',
 }) {
   return showDialog<void>(
     context: context,
@@ -348,7 +348,7 @@ class QlDashTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final fill = learned
         ? MinikColors.mint.withValues(alpha: 0.7)
-        : (fillColor ?? Colors.white);
+        : (fillColor ?? MinikColors.card);
     return Material(
       color: fill,
       borderRadius: BorderRadius.circular(10),
@@ -383,7 +383,8 @@ class QlDashTile extends StatelessWidget {
                             child: QlBigArabic(
                               arabic,
                               fontSize: fontSize,
-                              color: heavy ? heavyLetter : MinikColors.darkGreen,
+                              color:
+                                  heavy ? heavyLetter : MinikColors.darkGreen,
                             ),
                           ),
                         ),
@@ -477,9 +478,11 @@ class QlLessonIntro extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFFE2E8E4)),
+        border: Border.all(
+            color: MinikColors.of(
+                const Color(0xFFE2E8E4), const Color(0xFF2C312D))),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

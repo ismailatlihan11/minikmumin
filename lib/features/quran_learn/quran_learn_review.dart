@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/theme/app_colors.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
@@ -24,7 +25,8 @@ class QuranLearnReviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5EEDC),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF5EEDC), const Color(0xFF373121)),
       appBar: AppBar(
         title: Text(
           pack.titleForLevel(levelId, fallback: 'Pekiştirme'),
@@ -112,7 +114,8 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
               fontFamily: 'NotoSans',
               fontSize: widget.embedded ? 16 : 22,
               fontWeight: widget.embedded ? FontWeight.w800 : FontWeight.w500,
-              color: const Color(0xFF3A332C),
+              color: MinikColors.of(
+                  const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
             ),
           ),
           const SizedBox(height: 10),
@@ -120,11 +123,12 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
             decoration: BoxDecoration(
-              color: const Color(0xFFE6DBC5),
+              color: MinikColors.of(
+                  const Color(0xFFE6DBC5), const Color(0xFF40392C)),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: const Color(0xFFC4B79A)),
             ),
-            child: const Text(
+            child: Text(
               'Öğrendiğin harfleri kelimede bul. Dokun, dinle.',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -132,7 +136,8 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
                 fontSize: 13,
                 height: 1.4,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF3A332C),
+                color: MinikColors.of(
+                    const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
               ),
             ),
           ),
@@ -141,11 +146,12 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
             Text(
               '$done / $total kelime',
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF5C5346),
+                color: MinikColors.of(
+                    const Color(0xFF5C5346), const Color(0xFFCFC8BF)),
               ),
             ),
           ],
@@ -159,10 +165,12 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
                           word.id,
                         ) ==
                         true
-                    ? const Color(0xFFE8F3E4)
+                    ? MinikColors.of(
+                        const Color(0xFFE8F3E4), const Color(0xFF273223))
                     : _selectedId == word.id
                         ? const Color(0xFFD9CDB3)
-                        : const Color(0xFFE6DBC5),
+                        : MinikColors.of(
+                            const Color(0xFFE6DBC5), const Color(0xFF40392C)),
                 borderRadius: BorderRadius.circular(10),
                 child: InkWell(
                   onTap: () => _listen(word),
@@ -174,14 +182,16 @@ class _QlLetterReviewSectionState extends State<QlLetterReviewSection> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: const Color(0xFF5C5346),
+                        color: MinikColors.of(
+                            const Color(0xFF5C5346), const Color(0xFFCFC8BF)),
                         width: 0.9,
                       ),
                     ),
                     child: QlBigArabic(
                       word.arabic,
                       fontSize: 36,
-                      color: const Color(0xFF1A1A1A),
+                      color: MinikColors.of(
+                          const Color(0xFF1A1A1A), const Color(0xFFD5D5D5)),
                     ),
                   ),
                 ),
@@ -268,10 +278,11 @@ class _ReviewSliderState extends State<_ReviewSlider> {
               child: Text(
                 '${_index + 1} / ${widget.words.length}',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF3A332C),
+                  color: MinikColors.of(
+                      const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
                 ),
               ),
             ),
@@ -283,7 +294,8 @@ class _ReviewSliderState extends State<_ReviewSlider> {
           ],
         ),
         Material(
-          color: const Color(0xFFE6DBC5),
+          color:
+              MinikColors.of(const Color(0xFFE6DBC5), const Color(0xFF40392C)),
           borderRadius: BorderRadius.circular(10),
           child: InkWell(
             onTap: () => widget.onListen(_word),
@@ -294,12 +306,16 @@ class _ReviewSliderState extends State<_ReviewSlider> {
               padding: const EdgeInsets.symmetric(vertical: 22),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFF5C5346), width: 0.9),
+                border: Border.all(
+                    color: MinikColors.of(
+                        const Color(0xFF5C5346), const Color(0xFFCFC8BF)),
+                    width: 0.9),
               ),
               child: QlBigArabic(
                 _word.arabic,
                 fontSize: 48,
-                color: const Color(0xFF1A1A1A),
+                color: MinikColors.of(
+                    const Color(0xFF1A1A1A), const Color(0xFFD5D5D5)),
               ),
             ),
           ),

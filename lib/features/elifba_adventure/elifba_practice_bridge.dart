@@ -382,7 +382,8 @@ abstract final class ElifbaPracticeBridge {
   }
 
   static Map<String, dynamic> _sakin(String letter, {required bool yankili}) {
-    final reading = ElifbaReading.of(letter, ElifbaReading.sukun, withTag: false);
+    final reading =
+        ElifbaReading.of(letter, ElifbaReading.sukun, withTag: false);
     return {
       'text': '$letter${ElifbaReading.sukun}',
       'reading': reading,

@@ -44,10 +44,11 @@ class _QuranLearnCombinePageState extends State<QuranLearnCombinePage> {
     final pack = widget.pack;
     final levelId = widget.levelId;
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(
-          pack.titleForLevel(levelId, fallback: 'Cezm (Harflerin Birleştirilmesi)'),
+          pack.titleForLevel(levelId,
+              fallback: 'Cezm (Harflerin Birleştirilmesi)'),
         ),
       ),
       body: FutureBuilder<QuranLearnSnapshot>(
@@ -69,8 +70,8 @@ class _QuranLearnCombinePageState extends State<QuranLearnCombinePage> {
               QlLessonIntro(
                 title: 'Ders: Cezm (${sukun?.symbol ?? 'ْ'})',
                 cue: 'Kareye dokun, dinleyerek öğren',
-                rule: sukun?.readingRule ??
-                    pack.levelById(levelId)?.description,
+                rule:
+                    sukun?.readingRule ?? pack.levelById(levelId)?.description,
               ),
               const SizedBox(height: 10),
               QlSukunTripletGrid(audio: _audio, letters: pack.letters),
@@ -117,7 +118,8 @@ class QuranLearnCombineDetailPage extends StatefulWidget {
       _QuranLearnCombineDetailPageState();
 }
 
-class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPage> {
+class _QuranLearnCombineDetailPageState
+    extends State<QuranLearnCombineDetailPage> {
   final _audio = AudioPlayerService();
   int _index = 0;
   bool _won = false;
@@ -172,7 +174,7 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(widget.lesson.title)),
       body: ListView(
         padding: AppSpacing.page,
@@ -207,9 +209,8 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
                   caption: item.reading,
                   selected: index == _index,
                   fontSize: 20,
-                  fillColor: index.isOdd
-                      ? const Color(0xFFF7EBC4)
-                      : Colors.white,
+                  fillColor:
+                      index.isOdd ? MinikColors.butter : MinikColors.card,
                   onTap: () {
                     setState(() {
                       _index = index;
@@ -235,7 +236,8 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
                   example.reading,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                if (example.note != null && example.note!.trim().isNotEmpty) ...[
+                if (example.note != null &&
+                    example.note!.trim().isNotEmpty) ...[
                   const SizedBox(height: 6),
                   Text(example.note!, textAlign: TextAlign.center),
                 ],
@@ -268,7 +270,7 @@ class _QuranLearnCombineDetailPageState extends State<QuranLearnCombineDetailPag
             QlPrimaryBar(
               label: _index + 1 >= widget.lesson.examples.length
                   ? 'Tamam'
-                  : 'Devam Et',
+                  : 'Devam et',
               onPressed: _next,
             ),
           ],

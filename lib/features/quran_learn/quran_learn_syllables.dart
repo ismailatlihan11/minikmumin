@@ -25,7 +25,8 @@ class QuranLearnSyllablesPage extends StatefulWidget {
   final int levelId;
 
   @override
-  State<QuranLearnSyllablesPage> createState() => _QuranLearnSyllablesPageState();
+  State<QuranLearnSyllablesPage> createState() =>
+      _QuranLearnSyllablesPageState();
 }
 
 class _QuranLearnSyllablesPageState extends State<QuranLearnSyllablesPage> {
@@ -45,7 +46,7 @@ class _QuranLearnSyllablesPageState extends State<QuranLearnSyllablesPage> {
     final levelId = widget.levelId;
     final games = pack.gamesForLevel(levelId);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(
           pack.titleForLevel(levelId, fallback: 'Heceleme ve kelime okuma'),
@@ -113,8 +114,9 @@ class _QuranLearnSyllablesPageState extends State<QuranLearnSyllablesPage> {
                       selected: _selectedWordId == word.id,
                       fontSize: 22,
                       fillColor: index.isOdd
-                          ? const Color(0xFFEAF4F8)
-                          : Colors.white,
+                          ? MinikColors.of(
+                              const Color(0xFFEAF4F8), const Color(0xFF1F2C31))
+                          : MinikColors.card,
                       onTap: () {
                         setState(() => _selectedWordId = word.id);
                         QuranLearnAudio.play(_audio, store, word.audio);

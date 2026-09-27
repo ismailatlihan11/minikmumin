@@ -6,6 +6,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../data/models/dhikr.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'dhikr_store.dart';
 import 'zikr_counter_page.dart';
@@ -81,7 +82,6 @@ class _ZikrPageState extends State<ZikrPage> {
                 const PageHeader(
                   title: 'Zikrim',
                   subtitle: 'Haydi zikrimize başlayalım.',
-                  image: 'assets/images/home/circle_zikr.png',
                 ),
                 if (last != null && last.currentCount > 0)
                   _LastCard(
@@ -247,10 +247,10 @@ class _ReorderBody extends StatelessWidget {
           PageHeader(
             title: 'Zikrim',
             subtitle: 'Satırı tutup sürükleyerek sırayı değiştir.',
-            image: 'assets/images/home/circle_zikr.png',
           ),
           MinikCard(
-            color: Color(0xFFFFF6DC),
+            color: MinikColors.of(
+                const Color(0xFFFFF6DC), const Color(0xFF3D3317)),
             child: Row(
               children: [
                 Icon(Icons.swap_vert_rounded, color: MinikColors.gold),
@@ -407,7 +407,7 @@ class _LastCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.sm),
             FilledButton(
               onPressed: onContinue,
-              child: const Text('Devam Et'),
+              child: const Text('Devam et'),
             ),
           ],
         ),
@@ -483,6 +483,9 @@ class _DhikrTile extends StatelessWidget {
                   ),
                 ),
                 IconButton(
+                  tooltip: dhikr.isFavorite
+                      ? 'Favorilerden çıkar'
+                      : 'Favorilere ekle',
                   onPressed: onFavorite,
                   icon: Icon(
                     dhikr.isFavorite
@@ -518,7 +521,7 @@ class _EditTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: MinikColors.card,
       elevation: 1.5,
       shadowColor: const Color(0x22000000),
       borderRadius: BorderRadius.circular(18),
@@ -559,9 +562,9 @@ class _EditTile extends StatelessWidget {
               tooltip: 'Sil',
               onPressed: onDelete,
               visualDensity: VisualDensity.compact,
-              icon: const Icon(
+              icon: Icon(
                 Icons.delete_outline_rounded,
-                color: Color(0xFFB85C5C),
+                color: MinikColors.error,
               ),
             ),
             ReorderableDragStartListener(
@@ -571,7 +574,8 @@ class _EditTile extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFFF1CC),
+                  color: MinikColors.of(
+                      const Color(0xFFFFF1CC), const Color(0xFF433719)),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: MinikColors.goldSoft),
                 ),
@@ -616,7 +620,7 @@ class _TargetCounterBadge extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(size * 0.2),
-            child: Image.asset(
+            child: MinikImage.asset(
               _asset,
               width: size,
               height: size,
@@ -631,7 +635,8 @@ class _TargetCounterBadge extends StatelessWidget {
             height: size * 0.145,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: const Color(0xFFE8E0CF),
+                color: MinikColors.of(
+                    const Color(0xFFE8E0CF), const Color(0xFF3B362B)),
                 borderRadius: BorderRadius.circular(size * 0.035),
               ),
               child: Center(

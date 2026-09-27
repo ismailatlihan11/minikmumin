@@ -47,8 +47,16 @@ abstract final class ElifbaLetterFormsLesson {
           'Harfler kelimeye girince şekil değiştiriyor. Hadi birlikte bakalım!',
       'letter_forms': rows,
       'interactive_activities': [
-        {'type': 'listen_repeat', 'title': 'Harfe dokun, adını dinle', 'count': 5},
-        {'type': 'find_rule', 'title': 'Şekli hangi harfe ait, bul', 'count': 4},
+        {
+          'type': 'listen_repeat',
+          'title': 'Harfe dokun, adını dinle',
+          'count': 5
+        },
+        {
+          'type': 'find_rule',
+          'title': 'Şekli hangi harfe ait, bul',
+          'count': 4
+        },
       ],
       'summary_points': const [
         'Her harfin tek başına, başta, ortada ve sonda yazılışı vardır.',

@@ -15,9 +15,10 @@ import '../../data/repositories/content_repositories.dart';
 import '../../features/duas/duas_page.dart';
 import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
-import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 
 const _kind = 'basics';
 
@@ -40,11 +41,13 @@ class _BasicsPageState extends State<BasicsPage> {
     _future ??= _load();
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       body: SafeArea(
         child: AsyncBody<BasicsCatalog>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (catalog) => FutureBuilder<List<String>>(
             future: store.getCompletedItems(),
             builder: (context, snapshot) {
@@ -54,11 +57,12 @@ class _BasicsPageState extends State<BasicsPage> {
                 children: [
                   const PageHeader(
                     title: 'Temel Dini Bilgiler',
-                    subtitle: 'İslam\'ın temel bilgilerini adım adım öğrenelim.',
-                    image: 'assets/images/home/card_ilmihal.png',
+                    subtitle:
+                        'İslam\'ın temel bilgilerini adım adım öğrenelim.',
                   ),
                   _ProgressLine(
-                    label: '${done.length} / ${catalog.items.length} konu tamamlandı',
+                    label:
+                        '${done.length} / ${catalog.items.length} konu tamamlandı',
                     value: catalog.items.isEmpty
                         ? 0
                         : done.length / catalog.items.length,
@@ -116,7 +120,7 @@ class BasicsSectionPage extends StatelessWidget {
     final items = catalog.itemsForIds(section.itemIds);
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(section.title)),
       body: FutureBuilder<List<String>>(
         future: store.getCompletedItems(),
@@ -131,7 +135,8 @@ class BasicsSectionPage extends StatelessWidget {
                 color: section.color,
                 child: Row(
                   children: [
-                    Image.asset(section.image, width: 72, height: 72, fit: BoxFit.contain),
+                    MinikImage.asset(section.image,
+                        width: 72, height: 72, fit: BoxFit.contain),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -204,8 +209,8 @@ class BasicsSectionPage extends StatelessWidget {
   /// konuları; "Sonraki konuya geç" bu sırayı izler.
   List<BasicsUpcoming> _upcomingAfter(int index) {
     final items = catalog.itemsForIds(section.itemIds);
-    const sections = BasicsSections.all;
-    final sectionIndex = sections.indexOf(section);
+    final sections = BasicsSections.all;
+    final sectionIndex = sections.indexWhere((s) => s.id == section.id);
     return [
       for (final item in items.skip(index + 1))
         (item: item, sectionTitle: section.title),
@@ -299,279 +304,225 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
         final learned = snapshot.data ?? false;
         return MinikTheme.themed(
           Scaffold(
-          backgroundColor: const Color(0xFFF4F7F2),
-          appBar: AppBar(
-            title: Text(item.title),
-            actions: [
-              CopyIconButton(text: _basicsCopyText(item)),
-            ],
-          ),
-          body: SelectionArea(
-            child: DefaultTextStyle.merge(
-            style: TextStyle(color: MinikColors.text),
-            child: ListView(
-            padding: AppSpacing.page,
-            children: [
-              if (item.shortDescription.trim().isNotEmpty)
-                Text(
-                  item.shortDescription,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: MinikColors.text,
+            backgroundColor: MinikColors.background,
+            appBar: AppBar(
+              title: Text(item.title),
+              actions: [
+                CopyIconButton(text: _basicsCopyText(item)),
+              ],
+            ),
+            body: SelectionArea(
+              child: DefaultTextStyle.merge(
+                style: TextStyle(color: MinikColors.text),
+                child: ListView(
+                  padding: AppSpacing.page,
+                  children: [
+                    if (item.shortDescription.trim().isNotEmpty)
+                      Text(
+                        item.shortDescription,
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: MinikColors.text,
+                            ),
                       ),
-                ),
-              if (item.hasArabic) ...[
-                const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('📖 Arapça'),
-                MinikCard(
-                  color: MinikColors.mint,
-                  child: ArabicText(item.arabic, fontSize: 24),
-                ),
-              ],
-              if (hasAudio && path != null) ...[
-                const SizedBox(height: AppSpacing.md),
-                const SectionLabel('🔊 Dinle'),
-                ListenButton(audio: _audio, path: path),
-              ],
-              if (item.transliteration.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.md),
-                const SectionLabel('📝 Okunuş'),
-                MinikCard(
-                  color: const Color(0xFFFFF6DC),
-                  child: Text(
-                    item.transliteration,
-                    style: TextStyle(
-                      fontFamily: 'NotoSans',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: MinikColors.darkGreen,
-                      height: 1.4,
-                    ),
-                  ),
-                ),
-              ],
-              if (item.meaning.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.md),
-                const SectionLabel('💬 Anlamı'),
-                MinikCard(child: Text(item.meaning)),
-              ],
-              if (item.content.trim().isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.lg),
-                Text(item.content, style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: MinikColors.text,
-                    )),
-              ],
-              if (item.example != null && item.example!.hasContent) ...[
-                const SizedBox(height: AppSpacing.lg),
-                const SectionLabel('Örnek'),
-                MinikCard(
-                  color: MinikColors.mint,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      if (item.example!.arabic.trim().isNotEmpty)
-                        ArabicText(item.example!.arabic, fontSize: 24),
-                      if (item.example!.text.trim().isNotEmpty) ...[
-                        if (item.example!.arabic.trim().isNotEmpty)
-                          const SizedBox(height: 10),
-                        Text(
-                          item.example!.text,
+                    if (item.hasArabic) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      const SectionLabel('📖 Arapça'),
+                      MinikCard(
+                        color: MinikColors.mint,
+                        child: ArabicText(item.arabic, fontSize: 24),
+                      ),
+                    ],
+                    if (hasAudio) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      const SectionLabel('🔊 Dinle'),
+                      ListenButton(audio: _audio, path: path),
+                    ],
+                    if (item.transliteration.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      const SectionLabel('📝 Okunuş'),
+                      MinikCard(
+                        color: MinikColors.of(
+                            const Color(0xFFFFF6DC), const Color(0xFF3D3317)),
+                        child: Text(
+                          item.transliteration,
                           style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: MinikColors.darkGreen,
-                            height: 1.35,
+                            height: 1.4,
                           ),
                         ),
-                      ],
-                      if (item.example!.meaning.trim().isNotEmpty) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          item.example!.meaning,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                color: MinikColors.text,
-                              ),
-                        ),
-                      ],
-                      if (item.example!.reference.trim().isNotEmpty) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          item.example!.reference,
-                          style: TextStyle(
-                            fontFamily: 'NotoSans',
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: MinikColors.textMuted,
-                          ),
-                        ),
-                      ],
+                      ),
                     ],
-                  ),
-                ),
-              ],
-              if (item.items.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.lg),
-                for (final sub in item.items)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: MinikCard(
-                      color: MinikColors.surface,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CircleAvatar(
-                            radius: 14,
-                            backgroundColor: MinikColors.green,
-                            child: Text(
-                              '${sub.order}',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w800,
+                    if (item.meaning.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      const SectionLabel('💬 Anlamı'),
+                      MinikCard(child: Text(item.meaning)),
+                    ],
+                    if (item.content.trim().isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      Text(item.content,
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    color: MinikColors.text,
+                                  )),
+                    ],
+                    if (item.example != null && item.example!.hasContent) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      const SectionLabel('Örnek'),
+                      MinikCard(
+                        color: MinikColors.mint,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (item.example!.arabic.trim().isNotEmpty)
+                              ArabicText(item.example!.arabic, fontSize: 24),
+                            if (item.example!.text.trim().isNotEmpty) ...[
+                              if (item.example!.arabic.trim().isNotEmpty)
+                                const SizedBox(height: 10),
+                              Text(
+                                item.example!.text,
+                                style: TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: MinikColors.darkGreen,
+                                  height: 1.35,
+                                ),
                               ),
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
+                            ],
+                            if (item.example!.meaning.trim().isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              Text(
+                                item.example!.meaning,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.copyWith(
+                                      color: MinikColors.text,
+                                    ),
+                              ),
+                            ],
+                            if (item.example!.reference.trim().isNotEmpty) ...[
+                              const SizedBox(height: 8),
+                              Text(
+                                item.example!.reference,
+                                style: TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  color: MinikColors.textMuted,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                    ],
+                    if (item.items.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      for (final sub in item.items)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: MinikCard(
+                            color: MinikColors.surface,
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  sub.title,
-                                  style: TextStyle(
-                                    fontFamily: 'NotoSans',
-                                    fontWeight: FontWeight.w800,
-                                    color: MinikColors.darkGreen,
+                                CircleAvatar(
+                                  radius: 14,
+                                  backgroundColor: MinikColors.green,
+                                  child: Text(
+                                    '${sub.order}',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w800,
+                                    ),
                                   ),
                                 ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  sub.description,
-                                  style: TextStyle(
-                                    fontFamily: 'NotoSans',
-                                    fontSize: 13,
-                                    color: MinikColors.textMuted,
-                                    height: 1.3,
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        sub.title,
+                                        style: TextStyle(
+                                          fontFamily: 'NotoSans',
+                                          fontWeight: FontWeight.w800,
+                                          color: MinikColors.darkGreen,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        sub.description,
+                                        style: TextStyle(
+                                          fontFamily: 'NotoSans',
+                                          fontSize: 13,
+                                          color: MinikColors.textMuted,
+                                          height: 1.3,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-              ],
-              if (item.keyPoints.isNotEmpty) ...[
-                const SizedBox(height: AppSpacing.lg),
-                for (final point in item.keyPoints)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.check_circle_rounded,
-                          size: 18,
-                          color: MinikColors.green,
                         ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            point,
-                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                  color: MinikColors.text,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-              const SizedBox(height: AppSpacing.lg),
-              if (learned)
-                MinikCard(
-                  color: Color(0xFFE7F4EC),
-                  child: Row(
-                    children: [
-                      Icon(Icons.check_circle_rounded, color: MinikColors.green),
-                      SizedBox(width: 8),
-                      Text(
-                        '✓ Öğrenildi',
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
-                        ),
-                      ),
                     ],
-                  ),
-                ),
-              if (learned) ...[
-                const SizedBox(height: AppSpacing.md),
-                if (widget.upcoming.isNotEmpty &&
-                    widget.upcoming.first.sectionTitle !=
-                        widget.sectionTitle) ...[
-                  MinikCard(
-                    color: const Color(0xFFFFF6DC),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.emoji_events_rounded,
-                          color: MinikColors.gold,
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            '“${widget.sectionTitle}” bölümündeki tüm '
-                            'konuları tamamladın! Şimdi '
-                            '“${widget.upcoming.first.sectionTitle}” ana '
-                            'başlığına geçiyoruz.',
-                            style: TextStyle(
-                              fontFamily: 'NotoSans',
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
-                              color: MinikColors.darkGreen,
-                              height: 1.35,
-                            ),
+                    if (item.keyPoints.isNotEmpty) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      for (final point in item.keyPoints)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.check_circle_rounded,
+                                size: 18,
+                                color: MinikColors.green,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  point,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                        color: MinikColors.text,
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                    ],
+                    const SizedBox(height: AppSpacing.lg),
+                    TopicFooter(
+                      learned: learned,
+                      onLearn: () => store.markCompleted(
+                        _kind,
+                        '${item.id}',
+                        xp: 3,
+                      ),
+                      hasNext: widget.upcoming.isNotEmpty,
+                      onNext: _openNext,
+                      currentGroup: widget.sectionTitle,
+                      nextGroup: widget.upcoming.isEmpty
+                          ? null
+                          : widget.upcoming.first.sectionTitle,
                     ),
-                  ),
-                  const SizedBox(height: AppSpacing.md),
-                  PrimaryButton(
-                    label:
-                        '${widget.upcoming.first.sectionTitle} bölümüne geç',
-                    onPressed: _openNext,
-                  ),
-                ] else if (widget.upcoming.isNotEmpty)
-                  PrimaryButton(
-                    label: 'Sonraki konuya geç',
-                    onPressed: _openNext,
-                  )
-                else
-                  SecondaryButton(
-                    label: 'Konulara dön',
-                    onPressed: () => Navigator.pop(context),
-                  ),
-              ] else
-                PrimaryButton(
-                  label: 'Öğrenildi olarak işaretle',
-                  onPressed: () async {
-                    await store.markCompleted(
-                      _kind,
-                      '${item.id}',
-                      xp: 3,
-                    );
-                  },
+                  ],
                 ),
-            ],
-          ),
+              ),
             ),
           ),
-        ),
         );
       },
     );
@@ -629,7 +580,7 @@ class _SectionCard extends StatelessWidget {
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
-                      child: Image.asset(
+                      child: MinikImage.asset(
                         section.image,
                         height: 88,
                         fit: BoxFit.contain,
@@ -692,7 +643,7 @@ class _SectionCard extends StatelessWidget {
                 child: LinearProgressIndicator(
                   minHeight: 8,
                   value: items.isEmpty ? 0 : done / items.length,
-                  backgroundColor: Colors.white.withValues(alpha: 0.7),
+                  backgroundColor: MinikColors.card.withValues(alpha: 0.7),
                   color: section.accent,
                 ),
               ),
@@ -743,7 +694,7 @@ class _ProgressLine extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10,
             value: value.clamp(0, 1),
-            backgroundColor: const Color(0xFFE0EAE4),
+            backgroundColor: MinikColors.border,
             color: MinikColors.green,
           ),
         ),
@@ -756,8 +707,7 @@ Set<int> _doneIds(List<String>? items) {
   if (items == null) return {};
   return {
     for (final item in items)
-      if (item.startsWith('basics|'))
-        int.tryParse(item.substring(7)) ?? -1,
+      if (item.startsWith('basics|')) int.tryParse(item.substring(7)) ?? -1,
   }..remove(-1);
 }
 

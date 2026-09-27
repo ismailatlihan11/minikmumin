@@ -10,9 +10,10 @@ import '../../data/models/quiz.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../data/repositories/learn_repositories.dart';
 import '../../shared/widgets/async_body.dart';
-import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/copy_text.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 import '../quiz/quiz_page.dart';
 
 class MoralityPage extends StatefulWidget {
@@ -36,26 +37,33 @@ class _MoralityPageState extends State<MoralityPage> {
       body: SafeArea(
         child: AsyncBody<MoralityCatalog>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (catalog) => ListView(
             padding: AppSpacing.page,
             children: [
               const PageHeader(
                 title: 'Güzel Ahlak',
                 subtitle: 'Güzel davranışları günlük hayatta uygulayalım.',
-                image: 'assets/images/morality/morality.png',
               ),
-              for (final category in catalog.categories)
+              for (final (index, category) in catalog.categories.indexed)
                 ContentTile(
                   title: category.title,
                   subtitle: '${catalog.lessonsFor(category.id).length} konu',
-                  leading: Icon(Icons.favorite_rounded, color: MinikColors.green),
+                  leading:
+                      Icon(Icons.favorite_rounded, color: MinikColors.green),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (_) => MoralityCategoryPage(
                         category: category,
                         lessons: catalog.lessonsFor(category.id),
+                        later: [
+                          for (final next in catalog.categories.skip(index + 1))
+                            for (final lesson in catalog.lessonsFor(next.id))
+                              (item: lesson, group: next.title),
+                        ],
                       ),
                     ),
                   ),
@@ -68,7 +76,8 @@ class _MoralityPageState extends State<MoralityPage> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => _MoralityQuizPage(questions: catalog.quiz),
+                      builder: (_) =>
+                          _MoralityQuizPage(questions: catalog.quiz),
                     ),
                   ),
                 ),
@@ -85,10 +94,14 @@ class MoralityCategoryPage extends StatelessWidget {
     super.key,
     required this.category,
     required this.lessons,
+    this.later = const [],
   });
 
   final MoralityCategory category;
   final List<MoralityLesson> lessons;
+
+  /// Sonraki kategorilerin konuları; son konudan sonra bunlara geçilir.
+  final List<UpcomingTopic<MoralityLesson>> later;
 
   @override
   Widget build(BuildContext context) {
@@ -97,11 +110,13 @@ class MoralityCategoryPage extends StatelessWidget {
       body: ListView(
         padding: AppSpacing.page,
         children: [
-          for (final lesson in lessons)
+          for (final (index, lesson) in lessons.indexed)
             ContentTile(
               title: '${lesson.order}. ${lesson.title}',
-              subtitle: lesson.shortMessage.isNotEmpty ? lesson.shortMessage : lesson.lesson,
-              leading: Image.asset(
+              subtitle: lesson.shortMessage.isNotEmpty
+                  ? lesson.shortMessage
+                  : lesson.lesson,
+              leading: MinikImage.asset(
                 ContentAssets.moralityImage(lesson.id, lesson.image),
                 width: 44,
                 height: 44,
@@ -114,7 +129,15 @@ class MoralityCategoryPage extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => MoralityLessonPage(lesson: lesson),
+                  builder: (_) => MoralityLessonPage(
+                    lesson: lesson,
+                    categoryTitle: category.title,
+                    upcoming: [
+                      for (final next in lessons.skip(index + 1))
+                        (item: next, group: category.title),
+                      ...later,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -125,9 +148,30 @@ class MoralityCategoryPage extends StatelessWidget {
 }
 
 class MoralityLessonPage extends StatelessWidget {
-  const MoralityLessonPage({super.key, required this.lesson});
+  const MoralityLessonPage({
+    super.key,
+    required this.lesson,
+    this.categoryTitle,
+    this.upcoming = const [],
+  });
 
   final MoralityLesson lesson;
+  final String? categoryTitle;
+  final List<UpcomingTopic<MoralityLesson>> upcoming;
+
+  void _openNext(BuildContext context) {
+    final next = upcoming.first;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MoralityLessonPage(
+          lesson: next.item,
+          categoryTitle: next.group,
+          upcoming: upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,11 +198,11 @@ class MoralityLessonPage extends StatelessWidget {
             ),
           ],
           children: [
-            Image.asset(
+            MinikImage.asset(
               imagePath,
               height: 160,
               fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => Image.asset(
+              errorBuilder: (_, __, ___) => MinikImage.asset(
                 'assets/images/morality/morality.png',
                 height: 160,
                 fit: BoxFit.contain,
@@ -170,7 +214,9 @@ class MoralityLessonPage extends StatelessWidget {
             ],
             const SizedBox(height: AppSpacing.md),
             Text(
-              lesson.childExplanation.isNotEmpty ? lesson.childExplanation : lesson.lesson,
+              lesson.childExplanation.isNotEmpty
+                  ? lesson.childExplanation
+                  : lesson.lesson,
               style: theme.bodyLarge,
             ),
             if (lesson.quranReferences.isNotEmpty) ...[
@@ -186,11 +232,13 @@ class MoralityLessonPage extends StatelessWidget {
               Text('Kaynak: ${lesson.source}', style: theme.bodySmall),
             ],
             const SizedBox(height: AppSpacing.lg),
-            PrimaryButton(
-              label: done ? 'Öğrendin' : 'Öğrendim',
-              onPressed: done
-                  ? null
-                  : () => store.markCompleted('morality', lesson.id, xp: 5),
+            TopicFooter(
+              learned: done,
+              onLearn: () => store.markCompleted('morality', lesson.id, xp: 5),
+              hasNext: upcoming.isNotEmpty,
+              onNext: () => _openNext(context),
+              currentGroup: categoryTitle,
+              nextGroup: upcoming.isEmpty ? null : upcoming.first.group,
             ),
           ],
         );

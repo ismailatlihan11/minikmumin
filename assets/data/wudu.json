@@ -74,7 +74,7 @@
       "number": 1,
       "title": "Niyet Edelim",
       "prompt": "Allah rızası için abdest almaya niyet ederiz. “Niyet ettim Allah rızası için abdest almaya.”",
-      "image": "assets/images/wudu/wudu_01_niyet.png",
+      "image": "assets/images/wudu/wudu_01_niyet.jpg",
       "kind": "adab"
     },
     {
@@ -82,7 +82,7 @@
       "number": 2,
       "title": "Besmele ile Başlayalım",
       "prompt": "Besmele ile başlarız. Eûzü billâhi mine'ş-şeytânirracîm. Bismillâhirrahmânirrahîm.",
-      "image": "assets/images/wudu/wudu_02_besmele.png",
+      "image": "assets/images/wudu/wudu_02_besmele.jpg",
       "kind": "sunnah"
     },
     {
@@ -90,7 +90,7 @@
       "number": 3,
       "title": "Ellerimizi Yıkayalım",
       "prompt": "Ellerimizi bileklere kadar yıkarız. Parmak aralarını unutmayız.",
-      "image": "assets/images/wudu/wudu_03_eller.png",
+      "image": "assets/images/wudu/wudu_03_eller.jpg",
       "kind": "sunnah",
       "jsonStepId": "hands"
     },
@@ -99,7 +99,7 @@
       "number": 4,
       "title": "Ağzımızı Temizleyelim",
       "prompt": "Sağ elimizle ağzımıza suyu üç kere verir ve çalkalarız.",
-      "image": "assets/images/wudu/wudu_04_agiz.png",
+      "image": "assets/images/wudu/wudu_04_agiz.jpg",
       "kind": "sunnah",
       "jsonStepId": "mouth"
     },
@@ -108,7 +108,7 @@
       "number": 5,
       "title": "Burnumuzu Temizleyelim",
       "prompt": "Burnumuza suyu üç kere verir ve temizleriz.",
-      "image": "assets/images/wudu/wudu_05_burun.png",
+      "image": "assets/images/wudu/wudu_05_burun.jpg",
       "kind": "sunnah",
       "jsonStepId": "nose"
     },
@@ -117,7 +117,7 @@
       "number": 6,
       "title": "Yüzümüzü Yıkayalım",
       "prompt": "Yüzümüzü üç kere yıkarız. Alından çeneye, bir kulaktan diğerine.",
-      "image": "assets/images/wudu/wudu_06_yuz.png",
+      "image": "assets/images/wudu/wudu_06_yuz.jpg",
       "kind": "farz",
       "jsonStepId": "face",
       "farzTitle": "Yüzümüzü"
@@ -127,7 +127,7 @@
       "number": 7,
       "title": "Sağ Kolumuzu Yıkayalım",
       "prompt": "Sağ kolumuzu dirsekle birlikte üç kere yıkarız.",
-      "image": "assets/images/wudu/wudu_07_sag_kol.png",
+      "image": "assets/images/wudu/wudu_07_sag_kol.jpg",
       "kind": "farz",
       "jsonStepId": "arms",
       "farzTitle": "Kolumuzu"
@@ -137,7 +137,7 @@
       "number": 8,
       "title": "Sol Kolumuzu Yıkayalım",
       "prompt": "Sol kolumuzu dirsekle birlikte üç kere yıkarız.",
-      "image": "assets/images/wudu/wudu_08_sol_kol.png",
+      "image": "assets/images/wudu/wudu_08_sol_kol.jpg",
       "kind": "farz",
       "jsonStepId": "arms"
     },
@@ -146,7 +146,7 @@
       "number": 9,
       "title": "Başımızı Mesh Edelim",
       "prompt": "Islak elimizle başımızı mesh ederiz.",
-      "image": "assets/images/wudu/wudu_09_bas.png",
+      "image": "assets/images/wudu/wudu_09_bas.jpg",
       "kind": "farz",
       "jsonStepId": "head",
       "farzTitle": "Başımızı"
@@ -156,7 +156,7 @@
       "number": 10,
       "title": "Kulaklarımızı Mesh Edelim",
       "prompt": "Islak elimizle kulaklarımızın içini ve dışını mesh ederiz.",
-      "image": "assets/images/wudu/wudu_10_kulaklar.png",
+      "image": "assets/images/wudu/wudu_10_kulaklar.jpg",
       "kind": "sunnah",
       "jsonStepId": "ears"
     },
@@ -165,7 +165,7 @@
       "number": 11,
       "title": "Boynumuzu Mesh Edelim",
       "prompt": "Islak elimizin tersiyle boynumuzu mesh ederiz.",
-      "image": "assets/images/wudu/wudu_boyun.png",
+      "image": "assets/images/wudu/wudu_boyun.jpg",
       "kind": "sunnah",
       "jsonStepId": "neck"
     },
@@ -174,7 +174,7 @@
       "number": 12,
       "title": "Sağ Ayağımızı Yıkayalım",
       "prompt": "Sağ ayağımızı topuk ve parmak araları dahil yıkarız.",
-      "image": "assets/images/wudu/wudu_11_sag_ayak.png",
+      "image": "assets/images/wudu/wudu_11_sag_ayak.jpg",
       "kind": "farz",
       "jsonStepId": "feet",
       "farzTitle": "Ayağımızı"
@@ -184,7 +184,7 @@
       "number": 13,
       "title": "Sol Ayağımızı Yıkayalım",
       "prompt": "Sol ayağımızı topuk ve parmak araları dahil yıkarız.",
-      "image": "assets/images/wudu/wudu_12_sol_ayak.png",
+      "image": "assets/images/wudu/wudu_12_sol_ayak.jpg",
       "kind": "farz",
       "jsonStepId": "feet"
     },
@@ -193,26 +193,26 @@
       "number": 14,
       "title": "Abdestimiz Tamamlandı!",
       "prompt": "Maşallah! Abdestimizi öğrendik.",
-      "image": "assets/images/wudu/wudu_13_tamam.png",
+      "image": "assets/images/wudu/wudu_13_tamam.jpg",
       "kind": "done"
     }
   ],
   "tips": [
     {
       "title": "Suyu israf etmemek",
-      "image": "assets/images/wudu/wudu_tip_water.png"
+      "image": "assets/images/wudu/wudu_tip_water.jpg"
     },
     {
       "title": "Parmak aralarını yıkamak",
-      "image": "assets/images/wudu/wudu_tip_fingers.png"
+      "image": "assets/images/wudu/wudu_tip_fingers.jpg"
     },
     {
       "title": "Yüzüklerin altına su ulaştırmak",
-      "image": "assets/images/wudu/wudu_tip_ring.png"
+      "image": "assets/images/wudu/wudu_tip_ring.jpg"
     },
     {
       "title": "Acele etmemek",
-      "image": "assets/images/wudu/wudu_tip_time.png"
+      "image": "assets/images/wudu/wudu_tip_time.jpg"
     }
   ],
   "farzIds": ["yuz", "sag_kol", "bas", "sag_ayak"],

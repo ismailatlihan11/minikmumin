@@ -108,99 +108,101 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
       body: SafeArea(
         child: AsyncBody<_QuranHome>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load()),
+          onRetry: () => setState(() {
+            _future = _load();
+          }),
           builder: (home) {
-            final mushaf =
-                _marksReady ? _mushafMark : home.mushafMark;
+            final mushaf = _marksReady ? _mushafMark : home.mushafMark;
             final meal = _marksReady ? _mealMark : home.mealMark;
             return ListView(
-            padding: AppSpacing.page,
-            children: [
-              const PageHeader(
-                title: "Kur'an-ı Kerim",
-                subtitle: 'Sure sure ayet ve meal, sayfa sayfa mushaf.',
-                image: 'assets/images/quran/quran.png',
-              ),
-              _QuranResumeCard(
-                title: 'Mushaf · kaldığın yer',
-                emptyHint: 'Mushafta “Burada kaldım” dersen burada durur.',
-                detail: mushaf == null
-                    ? null
-                    : '${TurkishNumber.pageLabel(mushaf.displayNumber)} · ${mushaf.surahLabel}',
-                icon: Icons.menu_book_rounded,
-                color: MinikColors.mint,
-                onOpen: () => _openMushaf(resume: mushaf != null),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              _QuranResumeCard(
-                title: 'Ayet ve meal · kaldığın yer',
-                emptyHint:
-                    'Sure listesinde “Burada kaldım” dersen burada durur.',
-                detail: meal?.label,
-                icon: Icons.view_agenda_rounded,
-                color: const Color(0xFFE8F0FA),
-                onOpen: meal == null
-                    ? () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Önce bir surede “Burada kaldım”a bas.',
+              padding: AppSpacing.page,
+              children: [
+                const PageHeader(
+                  title: "Kur'an-ı Kerim",
+                  subtitle: 'Sure sure ayet ve meal, sayfa sayfa mushaf.',
+                ),
+                _QuranResumeCard(
+                  title: 'Mushaf · kaldığın yer',
+                  emptyHint: 'Mushafta “Burada kaldım” dersen burada durur.',
+                  detail: mushaf == null
+                      ? null
+                      : '${TurkishNumber.pageLabel(mushaf.displayNumber)} · ${mushaf.surahLabel}',
+                  icon: Icons.menu_book_rounded,
+                  color: MinikColors.mint,
+                  onOpen: () => _openMushaf(resume: mushaf != null),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                _QuranResumeCard(
+                  title: 'Ayet ve meal · kaldığın yer',
+                  emptyHint:
+                      'Sure listesinde “Burada kaldım” dersen burada durur.',
+                  detail: meal?.label,
+                  icon: Icons.view_agenda_rounded,
+                  color: MinikColors.of(
+                      const Color(0xFFE8F0FA), const Color(0xFF1D2734)),
+                  onOpen: meal == null
+                      ? () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Önce bir surede “Burada kaldım”a bas.',
+                              ),
                             ),
+                          );
+                        }
+                      : () => _openMeal(
+                            surahId: meal.surahId,
+                            ayahNo: meal.ayahNo,
                           ),
-                        );
-                      }
-                    : () => _openMeal(
-                          surahId: meal.surahId,
-                          ayahNo: meal.ayahNo,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                MinikCard(
+                  color: MinikColors.butter,
+                  onTap: () => _openMushaf(resume: false),
+                  child: Row(
+                    children: [
+                      Icon(Icons.menu_book_rounded,
+                          color: MinikColors.green, size: 32),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Mushaf',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium
+                                  ?.copyWith(color: MinikColors.darkGreen),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              'Parşömen sayfa, yazı boyutu ve elle ayet takibi.',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: MinikColors.textMuted),
+                            ),
+                          ],
                         ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-              MinikCard(
-                color: const Color(0xFFF7EBC4),
-                onTap: () => _openMushaf(resume: false),
-                child: Row(
-                  children: [
-                    Icon(Icons.menu_book_rounded, color: MinikColors.green, size: 32),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Mushaf',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(color: MinikColors.darkGreen),
-                          ),
-                          const SizedBox(height: 2),
-                          Text(
-                            'Parşömen sayfa, yazı boyutu ve elle ayet takibi.',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: MinikColors.textMuted),
-                          ),
-                        ],
                       ),
-                    ),
-                    Icon(Icons.chevron_right_rounded, color: MinikColors.greenSoft),
-                  ],
+                      Icon(Icons.chevron_right_rounded,
+                          color: MinikColors.greenSoft),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              if (home.daily != null)
-                _DailyAyahCard(verse: home.daily!),
-              const SizedBox(height: AppSpacing.md),
-              for (final surah in home.surahs)
-                ContentTile(
-                  title: surah.name,
-                  subtitle: '${surah.ayahCount} ayet',
-                  leading: NumberBadge('${surah.id}'),
-                  onTap: () => _openMeal(surahId: surah.id),
-                ),
-            ],
-          );
+                const SizedBox(height: AppSpacing.md),
+                if (home.daily != null) _DailyAyahCard(verse: home.daily!),
+                const SizedBox(height: AppSpacing.md),
+                for (final surah in home.surahs)
+                  ContentTile(
+                    title: surah.name,
+                    subtitle: '${surah.ayahCount} ayet',
+                    leading: NumberBadge('${surah.id}'),
+                    onTap: () => _openMeal(surahId: surah.id),
+                  ),
+              ],
+            );
           },
         ),
       ),
@@ -242,9 +244,7 @@ class _DailyAyahCard extends StatelessWidget {
             SelectableText(
               verse.meal,
               style: TextStyle(
-                color: verse.isSajdahAyah
-                    ? kMushafSajdahRed
-                    : MinikColors.text,
+                color: verse.isSajdahAyah ? kMushafSajdahRed : MinikColors.text,
                 height: 1.45,
               ),
             ),
@@ -417,8 +417,9 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
       appBar: AppBar(title: Text(surahName(widget.surahId))),
       body: AsyncBody<List<QuranVerse>>(
         future: _future!,
-        onRetry: () =>
-            setState(() => _future = repos.quran.getSurah(widget.surahId)),
+        onRetry: () => setState(() {
+          _future = repos.quran.getSurah(widget.surahId);
+        }),
         builder: (verses) {
           if (!_didScrollToInitial && widget.initialAyahNo != null) {
             _didScrollToInitial = true;

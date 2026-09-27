@@ -6,9 +6,8 @@ import 'elifba_reading.dart';
 String elifbaStripMarks(String value) {
   final buffer = StringBuffer();
   for (final rune in value.runes) {
-    final isMark = (rune >= 0x064B && rune <= 0x0652) ||
-        rune == 0x0670 ||
-        rune == 0x0640;
+    final isMark =
+        (rune >= 0x064B && rune <= 0x0652) || rune == 0x0670 || rune == 0x0640;
     if (!isMark) buffer.writeCharCode(rune);
   }
   return buffer.toString().trim();
@@ -317,8 +316,9 @@ class ElifbaLessonPatch {
   /// tamamının eşleşmesi istenebilir.
   final bool exactTitle;
 
-  bool matches(String foldedTitle, String foldedNeedle) =>
-      exactTitle ? foldedTitle == foldedNeedle : foldedTitle.contains(foldedNeedle);
+  bool matches(String foldedTitle, String foldedNeedle) => exactTitle
+      ? foldedTitle == foldedNeedle
+      : foldedTitle.contains(foldedNeedle);
 
   Map<String, dynamic> applyTo(Map<String, dynamic> raw) {
     final merged = Map<String, dynamic>.from(raw);
@@ -424,23 +424,25 @@ class ElifbaLesson {
   List<ElifbaExample> get practice =>
       _maps('practice').map(ElifbaExample.fromJson).toList(growable: false);
 
-  List<ElifbaExample> get comparison =>
-      _maps('comparison')
-          .where((item) => JsonMap.str(item['text']).isNotEmpty)
-          .map(ElifbaExample.fromJson)
-          .toList(growable: false);
+  List<ElifbaExample> get comparison => _maps('comparison')
+      .where((item) => JsonMap.str(item['text']).isNotEmpty)
+      .map(ElifbaExample.fromJson)
+      .toList(growable: false);
 
   List<ElifbaComparePair> get comparePairs => _maps('comparison')
       .where((item) => JsonMap.str(item['group']).isNotEmpty)
       .map(ElifbaComparePair.fromJson)
       .toList(growable: false);
 
-  List<ElifbaLetterRow> get letterTable =>
-      _maps('letter_table').map(ElifbaLetterRow.fromJson).toList(growable: false);
+  List<ElifbaLetterRow> get letterTable => _maps('letter_table')
+      .map(ElifbaLetterRow.fromJson)
+      .toList(growable: false);
 
   /// Rows that carry fetha/esre/ötre columns at once (kalın, ince, peltek dersleri).
-  List<ElifbaLetterRow> get tripleFormTable =>
-      [for (final row in letterTable) if (row.hasTriple) row];
+  List<ElifbaLetterRow> get tripleFormTable => [
+        for (final row in letterTable)
+          if (row.hasTriple) row
+      ];
 
   /// Şedde dersi: hareke ile birlikte üç ayrı tablo.
   Map<String, List<ElifbaLetterRow>> get harakeTables {
@@ -460,8 +462,9 @@ class ElifbaLesson {
       .where((item) => item.text.isNotEmpty)
       .toList(growable: false);
 
-  List<ElifbaExample> get coreExamples =>
-      _maps('core_examples').map(ElifbaExample.fromJson).toList(growable: false);
+  List<ElifbaExample> get coreExamples => _maps('core_examples')
+      .map(ElifbaExample.fromJson)
+      .toList(growable: false);
 
   /// comparison_pairs ve comparison_game aynı soru-cevap kalıbını paylaşır.
   List<ElifbaAskPair> get askPairs => [
@@ -488,10 +491,11 @@ class ElifbaLesson {
   List<ElifbaFormRow> get letterForms =>
       _maps('letter_forms').map(ElifbaFormRow.fromJson).toList(growable: false);
 
-  List<ElifbaActivity> get interactiveActivities => _maps('interactive_activities')
-      .map(ElifbaActivity.fromJson)
-      .where((item) => item.title.isNotEmpty)
-      .toList(growable: false);
+  List<ElifbaActivity> get interactiveActivities =>
+      _maps('interactive_activities')
+          .map(ElifbaActivity.fromJson)
+          .where((item) => item.title.isNotEmpty)
+          .toList(growable: false);
 
   int get passPercent {
     final mastery = JsonMap.object(raw['mastery']);
@@ -573,8 +577,9 @@ class ElifbaLesson {
   List<ElifbaType> get types =>
       _maps('types').map(ElifbaType.fromJson).toList(growable: false);
 
-  List<ElifbaMedLetter> get medLetters =>
-      _maps('med_letters').map(ElifbaMedLetter.fromJson).toList(growable: false);
+  List<ElifbaMedLetter> get medLetters => _maps('med_letters')
+      .map(ElifbaMedLetter.fromJson)
+      .toList(growable: false);
 
   List<ElifbaCategory> get categories =>
       _maps('categories').map(ElifbaCategory.fromJson).toList(growable: false);
@@ -639,8 +644,7 @@ class ElifbaLesson {
       title: JsonMap.str(json['title']),
       level: JsonMap.str(json['level']),
       goal: ElifbaReading.fixSoundText(JsonMap.str(json['goal'])),
-      explanation:
-          ElifbaReading.fixSoundText(JsonMap.str(json['explanation'])),
+      explanation: ElifbaReading.fixSoundText(JsonMap.str(json['explanation'])),
       raw: json,
       quiz: JsonMap.extractList(json, itemsKey: 'quiz')
           .map(ElifbaQuizItem.fromJson)
@@ -650,7 +654,8 @@ class ElifbaLesson {
 }
 
 class ElifbaLetter {
-  const ElifbaLetter({required this.letter, required this.name, this.note = ''});
+  const ElifbaLetter(
+      {required this.letter, required this.name, this.note = ''});
 
   final String letter;
   final String name;

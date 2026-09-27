@@ -64,7 +64,9 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
       appBar: AppBar(title: const Text('Günün Görevi')),
       body: AsyncBody<_DailyLoop>(
         future: _future!,
-        onRetry: () => setState(() => _future = _load(repos, store)),
+        onRetry: () => setState(() {
+          _future = _load(repos, store);
+        }),
         emptyTitle: 'Bugün için görev bulunamadı.',
         builder: (loop) {
           if (loop.isEmpty) {
@@ -76,7 +78,6 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
               const PageHeader(
                 title: 'Günün Döngüsü',
                 subtitle: 'Bugünün duası, kıssası ve sorusu.',
-                image: 'assets/images/home/mini_gift.png',
               ),
               if (loop.quranLesson != null && loop.quranPack != null)
                 _DailyCard(
@@ -97,7 +98,8 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => DuaDetailPage(dua: loop.dua!, kind: 'dua'),
+                      builder: (_) =>
+                          DuaDetailPage(dua: loop.dua!, kind: 'dua'),
                     ),
                   ),
                 ),
@@ -176,8 +178,5 @@ class _DailyLoop {
   final QuranLearnDailyLesson? quranLesson;
 
   bool get isEmpty =>
-      dua == null &&
-      story == null &&
-      question == null &&
-      quranLesson == null;
+      dua == null && story == null && question == null && quranLesson == null;
 }

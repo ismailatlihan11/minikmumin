@@ -241,7 +241,7 @@ class LocalProgressStore extends ChangeNotifier {
     final route = prefs.getString(_key('continue_route'));
     if (route == null || route.isEmpty) return null;
     return ContinuePoint(
-      title: prefs.getString(_key('continue_title')) ?? 'Öğrenmeye Devam Et',
+      title: prefs.getString(_key('continue_title')) ?? 'Öğrenmeye devam et',
       subtitle: prefs.getString(_key('continue_subtitle')) ?? '',
       route: route,
       progress: prefs.getDouble(_key('continue_progress')) ?? 0,

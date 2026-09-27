@@ -7,6 +7,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class MinikProfilePage extends StatefulWidget {
@@ -35,7 +36,9 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
   void _refresh() {
     final store = _store;
     if (!mounted || store == null) return;
-    setState(() => _future = _load(store));
+    setState(() {
+      _future = _load(store);
+    });
   }
 
   @override
@@ -113,7 +116,7 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       body: SafeArea(
         child: FutureBuilder<_ProfileSnapshot>(
           future: _future,
@@ -133,10 +136,12 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
                   ContentTile(
                     title: lesson.category.title,
                     subtitle: lesson.subtitle,
-                    color: lesson.done > 0 ? MinikColors.mint : MinikColors.surface,
+                    color: lesson.done > 0
+                        ? MinikColors.mint
+                        : MinikColors.surface,
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
+                      child: MinikImage.asset(
                         lesson.category.image,
                         width: 44,
                         height: 44,
@@ -187,7 +192,6 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
   }
 }
 
-
 class _ProfileHero extends StatelessWidget {
   const _ProfileHero({required this.name, required this.xp});
 
@@ -200,7 +204,7 @@ class _ProfileHero extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(18),
         boxShadow: const [
           BoxShadow(
@@ -215,8 +219,9 @@ class _ProfileHero extends StatelessWidget {
           Container(
             width: 44,
             height: 44,
-            decoration: const BoxDecoration(
-              color: Color(0xFFE8F4EC),
+            decoration: BoxDecoration(
+              color: MinikColors.of(
+                  const Color(0xFFE8F4EC), const Color(0xFF233027)),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -258,14 +263,15 @@ class _ProfileHero extends StatelessWidget {
           Container(
             padding: const EdgeInsets.fromLTRB(8, 6, 10, 6),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF3D1),
+              color: MinikColors.of(
+                  const Color(0xFFFFF3D1), const Color(0xFF413619)),
               borderRadius: BorderRadius.circular(14),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(
-                  'assets/images/home/mini_trophy.png',
+                MinikImage.asset(
+                  'assets/images/home/mini_trophy.jpg',
                   width: 22,
                   height: 22,
                   fit: BoxFit.contain,
@@ -338,7 +344,7 @@ class _BadgeTile extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.72),
+                      color: MinikColors.card.withValues(alpha: 0.72),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -387,120 +393,120 @@ class _BadgeInfo {
   final Color accent;
 }
 
-const _allBadges = [
-  _BadgeInfo(
-    id: 'first_lesson',
-    title: 'İlk Ders',
-    icon: Icons.menu_book_rounded,
-    color: Color(0xFFD8EEF8),
-    accent: Color(0xFF3AA0C8),
-  ),
-  _BadgeInfo(
-    id: 'first_dua',
-    title: 'İlk Dua',
-    icon: Icons.favorite_rounded,
-    color: Color(0xFFFADDE3),
-    accent: Color(0xFFD36B84),
-  ),
-  _BadgeInfo(
-    id: 'prayer_duas',
-    title: 'Namaz Duaları',
-    icon: Icons.mosque_rounded,
-    color: Color(0xFFE8DFF8),
-    accent: Color(0xFF8B6CC9),
-  ),
-  _BadgeInfo(
-    id: 'quran_reader',
-    title: "Kur'an Okuyorum",
-    icon: Icons.auto_stories_rounded,
-    color: Color(0xFFD4F0E2),
-    accent: Color(0xFF3D8B6E),
-  ),
-  _BadgeInfo(
-    id: 'asma_10',
-    title: '10 Esma',
-    icon: Icons.auto_awesome_rounded,
-    color: Color(0xFFFFF1C2),
-    accent: Color(0xFFE0A21A),
-  ),
-  _BadgeInfo(
-    id: 'good_manners',
-    title: 'Güzel Ahlak',
-    icon: Icons.volunteer_activism_rounded,
-    color: Color(0xFFE6D9F5),
-    accent: Color(0xFF9B6BC9),
-  ),
-  _BadgeInfo(
-    id: 'badge_letters',
-    title: 'Harf Kaşifi',
-    icon: Icons.abc_rounded,
-    color: Color(0xFFEAF6FF),
-    accent: Color(0xFF3D8B6E),
-  ),
-  _BadgeInfo(
-    id: 'badge_listener',
-    title: 'Dinleme Ustası',
-    icon: Icons.volume_up_rounded,
-    color: Color(0xFFD8EEF8),
-    accent: Color(0xFF3AA0C8),
-  ),
-  _BadgeInfo(
-    id: 'badge_harakat',
-    title: 'Hareke Ustası',
-    icon: Icons.edit_rounded,
-    color: Color(0xFFFFF1C2),
-    accent: Color(0xFFE0A21A),
-  ),
-  _BadgeInfo(
-    id: 'badge_builder',
-    title: 'Birleştirme Ustası',
-    icon: Icons.extension_rounded,
-    color: Color(0xFFE6D9F5),
-    accent: Color(0xFF9B6BC9),
-  ),
-  _BadgeInfo(
-    id: 'badge_reader',
-    title: 'İlk Kelimem',
-    icon: Icons.menu_book_rounded,
-    color: Color(0xFFD4F0E2),
-    accent: Color(0xFF3D8B6E),
-  ),
-  _BadgeInfo(
-    id: 'badge_surah',
-    title: 'İlk Surem',
-    icon: Icons.nights_stay_rounded,
-    color: Color(0xFFE8DFF8),
-    accent: Color(0xFF8B6CC9),
-  ),
-  _BadgeInfo(
-    id: 'badge_tajweed',
-    title: 'Tecvid Öğrencisi',
-    icon: Icons.music_note_rounded,
-    color: Color(0xFFFADDE3),
-    accent: Color(0xFFD36B84),
-  ),
-  _BadgeInfo(
-    id: 'badge_practice',
-    title: 'Okuma Pratiği',
-    icon: Icons.auto_stories_rounded,
-    color: Color(0xFFC8EBE8),
-    accent: Color(0xFF2A9A94),
-  ),
-  _BadgeInfo(
-    id: 'badge_streak',
-    title: 'Düzenli Öğrenci',
-    icon: Icons.local_fire_department_rounded,
-    color: Color(0xFFFFE8D2),
-    accent: Color(0xFFD08A3A),
-  ),
-  _BadgeInfo(
-    id: 'badge_journey',
-    title: "Kur'an Yolcusu",
-    icon: Icons.emoji_events_rounded,
-    color: Color(0xFFFFF1C2),
-    accent: Color(0xFFC29739),
-  ),
-];
+List<_BadgeInfo> get _allBadges => [
+      _BadgeInfo(
+        id: 'first_lesson',
+        title: 'İlk Ders',
+        icon: Icons.menu_book_rounded,
+        color: MinikColors.of(const Color(0xFFD8EEF8), const Color(0xFF1F323B)),
+        accent: Color(0xFF3AA0C8),
+      ),
+      _BadgeInfo(
+        id: 'first_dua',
+        title: 'İlk Dua',
+        icon: Icons.favorite_rounded,
+        color: MinikColors.of(const Color(0xFFFADDE3), const Color(0xFF391D22)),
+        accent: Color(0xFFD36B84),
+      ),
+      _BadgeInfo(
+        id: 'prayer_duas',
+        title: 'Namaz Duaları',
+        icon: Icons.mosque_rounded,
+        color: MinikColors.of(const Color(0xFFE8DFF8), const Color(0xFF271F37)),
+        accent: Color(0xFF8B6CC9),
+      ),
+      _BadgeInfo(
+        id: 'quran_reader',
+        title: "Kur'an Okuyorum",
+        icon: Icons.auto_stories_rounded,
+        color: MinikColors.of(const Color(0xFFD4F0E2), const Color(0xFF253A30)),
+        accent: MinikColors.greenSoft,
+      ),
+      _BadgeInfo(
+        id: 'asma_10',
+        title: '10 Esma',
+        icon: Icons.auto_awesome_rounded,
+        color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
+        accent: Color(0xFFE0A21A),
+      ),
+      _BadgeInfo(
+        id: 'good_manners',
+        title: 'Güzel Ahlak',
+        icon: Icons.volunteer_activism_rounded,
+        color: MinikColors.of(const Color(0xFFE6D9F5), const Color(0xFF2C2139)),
+        accent: Color(0xFF9B6BC9),
+      ),
+      _BadgeInfo(
+        id: 'badge_letters',
+        title: 'Harf Kaşifi',
+        icon: Icons.abc_rounded,
+        color: MinikColors.of(const Color(0xFFEAF6FF), const Color(0xFF152938)),
+        accent: MinikColors.greenSoft,
+      ),
+      _BadgeInfo(
+        id: 'badge_listener',
+        title: 'Dinleme Ustası',
+        icon: Icons.volume_up_rounded,
+        color: MinikColors.of(const Color(0xFFD8EEF8), const Color(0xFF1F323B)),
+        accent: Color(0xFF3AA0C8),
+      ),
+      _BadgeInfo(
+        id: 'badge_harakat',
+        title: 'Hareke Ustası',
+        icon: Icons.edit_rounded,
+        color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
+        accent: Color(0xFFE0A21A),
+      ),
+      _BadgeInfo(
+        id: 'badge_builder',
+        title: 'Birleştirme Ustası',
+        icon: Icons.extension_rounded,
+        color: MinikColors.of(const Color(0xFFE6D9F5), const Color(0xFF2C2139)),
+        accent: Color(0xFF9B6BC9),
+      ),
+      _BadgeInfo(
+        id: 'badge_reader',
+        title: 'İlk Kelimem',
+        icon: Icons.menu_book_rounded,
+        color: MinikColors.of(const Color(0xFFD4F0E2), const Color(0xFF253A30)),
+        accent: MinikColors.greenSoft,
+      ),
+      _BadgeInfo(
+        id: 'badge_surah',
+        title: 'İlk Surem',
+        icon: Icons.nights_stay_rounded,
+        color: MinikColors.of(const Color(0xFFE8DFF8), const Color(0xFF271F37)),
+        accent: Color(0xFF8B6CC9),
+      ),
+      _BadgeInfo(
+        id: 'badge_tajweed',
+        title: 'Tecvid Öğrencisi',
+        icon: Icons.music_note_rounded,
+        color: MinikColors.of(const Color(0xFFFADDE3), const Color(0xFF391D22)),
+        accent: Color(0xFFD36B84),
+      ),
+      _BadgeInfo(
+        id: 'badge_practice',
+        title: 'Okuma Pratiği',
+        icon: Icons.auto_stories_rounded,
+        color: MinikColors.of(const Color(0xFFC8EBE8), const Color(0xFF293F3D)),
+        accent: Color(0xFF2A9A94),
+      ),
+      _BadgeInfo(
+        id: 'badge_streak',
+        title: 'Düzenli Öğrenci',
+        icon: Icons.local_fire_department_rounded,
+        color: MinikColors.of(const Color(0xFFFFE8D2), const Color(0xFF402C18)),
+        accent: Color(0xFFD08A3A),
+      ),
+      _BadgeInfo(
+        id: 'badge_journey',
+        title: "Kur'an Yolcusu",
+        icon: Icons.emoji_events_rounded,
+        color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
+        accent: MinikColors.gold,
+      ),
+    ];
 
 class _ProfileSnapshot {
   const _ProfileSnapshot({

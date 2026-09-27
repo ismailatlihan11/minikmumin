@@ -107,7 +107,8 @@ class QuranLearnSnapshot {
         title: _dailyTitle(level, pick, pack),
       );
     }
-    return QuranLearnDailyLesson.review(pack.levels.isEmpty ? null : pack.levels.first);
+    return QuranLearnDailyLesson.review(
+        pack.levels.isEmpty ? null : pack.levels.first);
   }
 }
 
@@ -239,10 +240,10 @@ abstract final class QuranLearnProgress {
     final words = _count(snap, 'ql_word');
     final surahs = _count(snap, 'ql_surah');
     final tajweed = _count(snap, 'ql_tajweed');
-    final practice = _count(snap, 'ql_practice') + _count(snap, 'ql_tajweed_read');
-    final activities = snap.completedKeys
-        .where((key) => key.startsWith('ql_'))
-        .length;
+    final practice =
+        _count(snap, 'ql_practice') + _count(snap, 'ql_tajweed_read');
+    final activities =
+        snap.completedKeys.where((key) => key.startsWith('ql_')).length;
     for (final badge in pack.badges) {
       final value = switch (badge.ruleType) {
         'letters_completed' => letters,

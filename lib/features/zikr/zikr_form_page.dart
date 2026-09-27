@@ -104,7 +104,6 @@ class _ZikrFormPageState extends State<ZikrFormPage> {
           const PageHeader(
             title: 'Zikir kaydı',
             subtitle: 'Bu cihazda saklanır, internet gerekmez.',
-            image: 'assets/images/home/circle_zikr.png',
           ),
           TextField(
             controller: _title,

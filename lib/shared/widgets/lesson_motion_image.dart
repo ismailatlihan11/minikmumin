@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/audio/asset_catalog.dart';
+import '../../shared/widgets/minik_image.dart';
 
 /// Plays existing lesson stills as a slow crossfade, or a light idle float.
 /// Missing files fall back to the static [image]; the app never crashes.
@@ -52,7 +53,7 @@ class _LessonMotionImageState extends State<LessonMotionImage>
   }
 
   bool get _catalogReady =>
-      AssetCatalog.contains('assets/images/home/card_wudu.png') ||
+      AssetCatalog.contains('assets/images/home/card_wudu.jpg') ||
       AssetCatalog.contains(widget.image);
 
   @override
@@ -213,7 +214,7 @@ class _Still extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
+    return MinikImage.asset(
       path,
       height: height,
       width: width,

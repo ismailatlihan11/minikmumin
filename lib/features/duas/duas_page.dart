@@ -15,6 +15,7 @@ import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/favorite_button.dart';
 import '../../shared/widgets/listen_button.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'dua_memorize_page.dart';
 
@@ -49,7 +50,9 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
       body: SafeArea(
         child: AsyncBody<List<DuaEntry>>(
           future: _future!,
-          onRetry: () => setState(() => _future = _load(repos)),
+          onRetry: () => setState(() {
+            _future = _load(repos);
+          }),
           emptyTitle: 'Dua bulunamadı.',
           builder: (duas) => ListView(
             padding: AppSpacing.page,
@@ -61,7 +64,6 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
                 subtitle: widget.prayerOnly
                     ? 'Namazda öğrenilecek ifadeler, sûreler ve dualar.'
                     : 'Kur\'an\'dan seçilmiş dualar.',
-                image: 'assets/images/duas/duas.png',
               ),
               for (final dua in duas)
                 _DuaListTile(
@@ -130,8 +132,10 @@ class _DuaListTile extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: done
-                                ? const Color(0xFFE7F4EC)
-                                : const Color(0xFFF3F6F8),
+                                ? MinikColors.of(const Color(0xFFE7F4EC),
+                                    const Color(0xFF233128))
+                                : MinikColors.of(const Color(0xFFF3F6F8),
+                                    const Color(0xFF21272A)),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
@@ -181,7 +185,8 @@ class _DuaListTile extends StatelessWidget {
                           done
                               ? Icons.check_circle_rounded
                               : Icons.chevron_right_rounded,
-                          color: done ? MinikColors.green : MinikColors.greenSoft,
+                          color:
+                              done ? MinikColors.green : MinikColors.greenSoft,
                           size: 22,
                         ),
                       ],
@@ -300,7 +305,7 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
       builder: (context, snapshot) {
         final done = snapshot.data ?? false;
         return Scaffold(
-          backgroundColor: const Color(0xFFF4F7F2),
+          backgroundColor: MinikColors.background,
           appBar: AppBar(
             title: Text(
               dua.title,
@@ -379,7 +384,7 @@ class _DuaDetailHeader extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
+            child: MinikImage.asset(
               dua.displayImage,
               width: 56,
               height: 56,
@@ -606,7 +611,7 @@ class _DuaStickyBar extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      child: Text(learned ? 'Öğrendin' : 'Öğrendim'),
+                      child: Text(learned ? '✓ Öğrendin' : 'Öğrendim'),
                     ),
                   ),
                   if (onNext != null) ...[
@@ -625,7 +630,7 @@ class _DuaStickyBar extends StatelessWidget {
                           ),
                         ),
                         icon: const Icon(Icons.arrow_forward_rounded, size: 18),
-                        label: const Text('Sonraki'),
+                        label: const Text('Sonraki dua'),
                       ),
                     ),
                   ],
@@ -743,7 +748,9 @@ class _TinyAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: emphasized ? MinikColors.mint : const Color(0xFFF3F6F8),
+      color: emphasized
+          ? MinikColors.mint
+          : MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       borderRadius: BorderRadius.circular(99),
       child: InkWell(
         onTap: onTap,

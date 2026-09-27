@@ -114,13 +114,14 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
   Widget build(BuildContext context) {
     _future ??= context.read<ContentRepositories>().quranLearning.load();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: const Text("Kur'an Öğrenme Oyunları")),
       body: AsyncBody<QuranLearningPack>(
         future: _future!,
         errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
         onRetry: () => setState(
-          () => _future = context.read<ContentRepositories>().quranLearning.load(),
+          () => _future =
+              context.read<ContentRepositories>().quranLearning.load(),
         ),
         builder: (pack) => ListView(
           padding: AppSpacing.page,
@@ -128,7 +129,6 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
             const PageHeader(
               title: "Kur'an Öğrenme Oyunları",
               subtitle: 'Harfleri boya, eşleştir, bul ve birleştir.',
-              image: 'assets/images/home/card_quran_learn.png',
             ),
             ContentTile(
               title: 'Harfleri boya',
@@ -175,7 +175,7 @@ class QuranLearnDrillGamesPage extends StatelessWidget {
     final store = context.watch<LocalProgressStore>();
     final games = pack.gamesForLevel(levelId);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(pack.titleForLevel(levelId, fallback: 'Mini oyunlar')),
       ),
@@ -293,7 +293,7 @@ class _QuranLearnGamePageState extends State<QuranLearnGamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(quranLearnGameTypeLabel(game.type))),
       body: ListView(
         padding: AppSpacing.page,
@@ -309,7 +309,8 @@ class _QuranLearnGamePageState extends State<QuranLearnGamePage> {
           if (game.isBuildWord)
             QlCombineBoard(
               parts: game.parts.isNotEmpty ? game.parts : game.correctOrder,
-              target: game.correctOrder.isNotEmpty ? game.correctOrder : game.parts,
+              target:
+                  game.correctOrder.isNotEmpty ? game.correctOrder : game.parts,
               result: game.result,
               won: _won,
               onCorrect: _onCorrect,
@@ -372,7 +373,8 @@ class _ChoicePlay extends StatelessWidget {
             child: MinikCard(
               color: won && qlSameAnswer(option, game.correctAnswer)
                   ? MinikColors.mint
-                  : picked == option && !qlSameAnswer(option, game.correctAnswer)
+                  : picked == option &&
+                          !qlSameAnswer(option, game.correctAnswer)
                       ? MinikColors.blush
                       : MinikColors.surface,
               onTap: won ? null : () => onPick(option),
@@ -519,7 +521,8 @@ class _QlCombineBoardState extends State<QlCombineBoard> {
                   onTap: widget.won
                       ? null
                       : () {
-                          final empty = _slots.indexWhere((slot) => slot == null);
+                          final empty =
+                              _slots.indexWhere((slot) => slot == null);
                           if (empty < 0) return;
                           setState(() {
                             _slots[empty] = part;
@@ -554,7 +557,7 @@ class _ArabicChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         decoration: BoxDecoration(
-          color: highlighted ? MinikColors.mint : Colors.white,
+          color: highlighted ? MinikColors.mint : MinikColors.card,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: MinikColors.green.withValues(alpha: 0.35),

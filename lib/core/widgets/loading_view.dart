@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
+import '../../shared/widgets/minik_image.dart';
 
 class LoadingView extends StatelessWidget {
   const LoadingView({super.key, this.message = 'Yükleniyor...'});
@@ -16,7 +17,7 @@ class LoadingView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
+            MinikImage.asset(
               'assets/images/home/loading.png',
               height: 96,
               errorBuilder: (_, __, ___) => const CircularProgressIndicator(),

@@ -29,22 +29,6 @@ class ElifbaAudioButton extends StatelessWidget {
   }
 }
 
-class ElifbaProgressBar extends StatelessWidget {
-  const ElifbaProgressBar({super.key, required this.value});
-
-  final double value;
-
-  @override
-  Widget build(BuildContext context) {
-    return LinearProgressIndicator(
-      value: value.clamp(0, 1),
-      minHeight: 8,
-      color: MinikColors.green,
-      backgroundColor: MinikColors.creamDark,
-    );
-  }
-}
-
 class ElifbaLessonHeader extends StatelessWidget {
   const ElifbaLessonHeader({
     super.key,
@@ -91,7 +75,8 @@ class ElifbaLessonSummary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Bugünü hatırla', style: Theme.of(context).textTheme.headlineMedium),
+          Text('Bugünü hatırla',
+              style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: 8),
           for (final point in points)
             Padding(
@@ -169,7 +154,8 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
     if (row.marked.isNotEmpty) {
       return ElifbaAudio.forMarked(row.marked, name: row.name);
     }
-    return ElifbaAudio.letterName(row.name) ?? ElifbaAudio.letterGlyph(row.letter);
+    return ElifbaAudio.letterName(row.name) ??
+        ElifbaAudio.letterGlyph(row.letter);
   }
 
   Future<void> _tapMarked() async {
@@ -206,7 +192,7 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
         width: double.infinity,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: _highlight ? MinikColors.goldSoft : Colors.white,
+          color: _highlight ? MinikColors.goldSoft : MinikColors.card,
           borderRadius: BorderRadius.circular(AppRadius.lg),
           border: Border.all(
             color: _highlight ? MinikColors.gold : MinikColors.mint,
@@ -510,9 +496,10 @@ class ElifbaRuleCard extends StatelessWidget {
             Text(
               extra,
               textAlign: TextAlign.center,
-              textDirection: extra.runes.any((code) => code >= 0x0600 && code <= 0x06FF)
-                  ? TextDirection.rtl
-                  : TextDirection.ltr,
+              textDirection:
+                  extra.runes.any((code) => code >= 0x0600 && code <= 0x06FF)
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
               style: extra.runes.any((code) => code >= 0x0600 && code <= 0x06FF)
                   ? const TextStyle(
                       fontFamily: AssetPaths.arabicFontFamily,
@@ -667,8 +654,10 @@ class ElifbaCompareGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final glyphs = pair.glyphs;
-    final lisp = glyphs.where((g) => ElifbaLetterKind.lisp.contains(g)).toList();
-    final heavy = glyphs.where((g) => ElifbaLetterKind.heavy.contains(g)).toList();
+    final lisp =
+        glyphs.where((g) => ElifbaLetterKind.lisp.contains(g)).toList();
+    final heavy =
+        glyphs.where((g) => ElifbaLetterKind.heavy.contains(g)).toList();
     final lower = pair.difference.toLowerCase();
     final askLisp = lower.contains('peltek');
     final prompt = askLisp
@@ -737,22 +726,6 @@ class ElifbaPracticeCard extends StatelessWidget {
   }
 }
 
-class ElifbaQuizCard extends StatelessWidget {
-  const ElifbaQuizCard({
-    super.key,
-    required this.items,
-    required this.onFinished,
-  });
-
-  final List<ElifbaQuizItem> items;
-  final void Function(int correct) onFinished;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElifbaQuizPage(items: items, onFinished: onFinished);
-  }
-}
-
 class ElifbaCategoryBoard extends StatelessWidget {
   const ElifbaCategoryBoard({
     super.key,
@@ -771,9 +744,8 @@ class ElifbaCategoryBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rows = selected == null
-        ? const <ElifbaLetterRow>[]
-        : _rowsFor(selected!);
+    final rows =
+        selected == null ? const <ElifbaLetterRow>[] : _rowsFor(selected!);
     return Column(
       children: [
         Wrap(
@@ -804,7 +776,8 @@ class ElifbaCategoryBoard extends StatelessWidget {
                       fontSize: 28,
                     ),
                   ),
-                Text(selected!.name, style: Theme.of(context).textTheme.headlineMedium),
+                Text(selected!.name,
+                    style: Theme.of(context).textTheme.headlineMedium),
                 if (selected!.meaning.isNotEmpty) Text(selected!.meaning),
                 if (selected!.memoryPhrase.isNotEmpty)
                   Padding(
@@ -930,7 +903,10 @@ class ElifbaMedCompare extends StatelessWidget {
   }
 
   String _shortReading(String reading) {
-    return reading.replaceAll('â', 'a').replaceAll('î', 'i').replaceAll('û', 'u');
+    return reading
+        .replaceAll('â', 'a')
+        .replaceAll('î', 'i')
+        .replaceAll('û', 'u');
   }
 }
 
@@ -954,7 +930,8 @@ class ElifbaMedTableView extends StatelessWidget {
             child: ElifbaSoftCard(
               child: Column(
                 children: [
-                  Text(row.name, style: Theme.of(context).textTheme.headlineMedium),
+                  Text(row.name,
+                      style: Theme.of(context).textTheme.headlineMedium),
                   Text(row.formula),
                   const SizedBox(height: 6),
                   Text(
@@ -1023,7 +1000,8 @@ class _ElifbaVerseStudyState extends State<ElifbaVerseStudy> {
                     runSpacing: 8,
                     alignment: WrapAlignment.center,
                     children: [
-                      for (final word in verse.text.split(' ').where((w) => w.isNotEmpty))
+                      for (final word
+                          in verse.text.split(' ').where((w) => w.isNotEmpty))
                         ActionChip(
                           label: Text(
                             word,
@@ -1063,11 +1041,14 @@ class _ElifbaVerseStudyState extends State<ElifbaVerseStudy> {
     final marks = <String>[];
     if (word.contains('ْ')) marks.add('Cezm');
     if (word.contains('ّ')) marks.add('Şedde');
-    if (word.contains('ا') || word.contains('ٰ') || word.contains('و') && word.contains('ُ')) {
+    if (word.contains('ا') ||
+        word.contains('ٰ') ||
+        word.contains('و') && word.contains('ُ')) {
       marks.add('Med');
     }
     if (word.contains('لل') || word.contains('الل')) marks.add('Lafzatullah');
-    if (marks.isEmpty) return 'Bu kelimeye dokundun. İşaretleri birlikte arayalım.';
+    if (marks.isEmpty)
+      return 'Bu kelimeye dokundun. İşaretleri birlikte arayalım.';
     return marks.join(' · ');
   }
 }
@@ -1105,10 +1086,12 @@ class ElifbaSurahPractice extends StatelessWidget {
               color: MinikColors.sky,
               child: Column(
                 children: [
-                  Text(surah.name, style: Theme.of(context).textTheme.headlineMedium),
+                  Text(surah.name,
+                      style: Theme.of(context).textTheme.headlineMedium),
                   Text(surah.focus.join(' · ')),
                   const SizedBox(height: 8),
-                  const Text('Dinle  →  Tecvid işaretlerini bul  →  Kelime kelime çalış  →  Oku  →  Tekrar et'),
+                  const Text(
+                      'Dinle  →  Tecvid işaretlerini bul  →  Kelime kelime çalış  →  Oku  →  Tekrar et'),
                 ],
               ),
             ),

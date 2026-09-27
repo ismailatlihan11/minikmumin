@@ -51,12 +51,14 @@ class _ChoiceRoundPageState extends State<ChoiceRoundPage> {
   Widget build(BuildContext context) {
     _future ??= widget.load(context);
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(widget.title)),
       body: AsyncBody<List<ChoiceQuestion>>(
         future: _future!,
         errorMessage: 'Oyun yüklenemedi.',
-        onRetry: () => setState(() => _future = widget.load(context)),
+        onRetry: () => setState(() {
+          _future = widget.load(context);
+        }),
         builder: (questions) {
           if (questions.isEmpty) {
             return const Center(child: Text('Bu oyun için henüz içerik yok.'));
@@ -164,7 +166,7 @@ class _ChoicePlayState extends State<_ChoicePlay> {
                           qlSameAnswer(option, _picked!) &&
                           !qlSameAnswer(option, _q.correct)
                       ? MinikColors.blush
-                      : Colors.white,
+                      : MinikColors.card,
               onTap: _done ? null : () => _pick(option),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),

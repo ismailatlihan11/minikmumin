@@ -212,7 +212,7 @@ License: public recitation CDN. A separate commercial license document was not i
 - Content: Rabbenâ Âtinâ (dua clause only — matches namaz/dualar okunuş)
 - Surah / ayah: 2:201
 - Reader: Yasser Al-Dosari (Yasir ed-Devseri)
-- Source: Cropped from EveryAyah `Yasser_Ad-Dussary_128kbps` `002201.mp3` (full backup: `quran_002_201_full.mp3`)
+- Source: Cropped from EveryAyah `Yasser_Ad-Dussary_128kbps` `002201.mp3` (full backup: `audio_backups/duas/quran_002_201_full.mp3`)
 - Source URL: https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/002201.mp3
 - License: UNVERIFIED (public recitation CDN; no separate license file found)
 - Download date: 2026-09-16
@@ -226,13 +226,13 @@ License: public recitation CDN. A separate commercial license document was not i
 - Content: Rabbenâ Âtinâ (same crop as `rabbena_atina.mp3`)
 - Surah / ayah: 2:201
 - Reader: Yasser Al-Dosari (Yasir ed-Devseri)
-- Source: Cropped from Dosari full ayah; full file kept as `quran_002_201_full.mp3`
+- Source: Cropped from Dosari full ayah; full file kept as `audio_backups/duas/quran_002_201_full.mp3`
 - Source URL: https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/002201.mp3
 - License: UNVERIFIED (public recitation API; no separate license file found)
 - Download date: 2026-09-16
 - Updated: 2026-09-18
 - Status: DOWNLOADED
-- Note: Other duas with narrative preambles (`002_286`, `003_016`, `007_023`, `018_010`, `025_074`, `059_010`, `066_008`) were likewise cropped so Dinle matches the on-screen okunuş; full ayah backups end with `_full.mp3`.
+- Note: Other duas with narrative preambles (`002_286`, `003_016`, `007_023`, `018_010`, `025_074`, `059_010`, `066_008`) were likewise cropped so Dinle matches the on-screen okunuş; full ayah backups live in `audio_backups/duas/` (outside `assets/`, so they are not bundled).
 
 ### `assets/audio/duas/quran_002_286.mp3`
 

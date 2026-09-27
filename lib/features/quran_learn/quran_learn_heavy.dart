@@ -25,7 +25,7 @@ class QuranLearnHeavyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(
           pack.titleForLevel(levelId, fallback: 'Kalın / ince harfler'),
@@ -128,7 +128,7 @@ class _HeavyGroupCardState extends State<_HeavyGroupCard> {
   @override
   Widget build(BuildContext context) {
     return MinikCard(
-      color: widget.learned ? MinikColors.mint : Colors.white,
+      color: widget.learned ? MinikColors.mint : MinikColors.card,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -166,7 +166,7 @@ class _HeavyGroupCardState extends State<_HeavyGroupCard> {
           ),
           const SizedBox(height: AppSpacing.md),
           QlPrimaryBar(
-            label: widget.learned ? 'Tekrar işaretle' : 'Öğrendim',
+            label: widget.learned ? '✓ Öğrendin' : 'Öğrendim',
             onPressed: _mark,
           ),
         ],

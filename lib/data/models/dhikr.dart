@@ -416,7 +416,7 @@ class DhikrAssetManifest {
   static const empty = DhikrAssetManifest(
     click: 'assets/audio/effects/tesbih_click.wav',
     complete: 'assets/audio/effects/ders_tamamlandi.mp3',
-    fallbackImage: 'assets/images/home/circle_zikr.png',
+    fallbackImage: 'assets/images/home/circle_zikr.jpg',
     items: {},
   );
 

@@ -13,10 +13,14 @@ import 'quran_learn_progress.dart';
 import 'quran_learn_theme.dart';
 import 'quran_learn_widgets.dart';
 
-const _cream = Color(0xFFF5EEDC);
-const _tan = Color(0xFFE6DBC5);
-const _ink = Color(0xFF3A332C);
-const _line = Color(0xFF5C5346);
+Color get _cream =>
+    MinikColors.of(const Color(0xFFF5EEDC), const Color(0xFF373121));
+Color get _tan =>
+    MinikColors.of(const Color(0xFFE6DBC5), const Color(0xFF40392C));
+Color get _ink =>
+    MinikColors.of(const Color(0xFF3A332C), const Color(0xFFD5CFC8));
+Color get _line =>
+    MinikColors.of(const Color(0xFF5C5346), const Color(0xFFCFC8BF));
 
 class QuranLearnHarakatPage extends StatelessWidget {
   const QuranLearnHarakatPage({
@@ -50,7 +54,7 @@ class QuranLearnHarakatPage extends StatelessWidget {
                 label: '$done / ${items.length} hareke',
               ),
               const SizedBox(height: 14),
-              const Text(
+              Text(
                 'Harekeler',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -69,7 +73,7 @@ class QuranLearnHarakatPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: const Color(0xFFC4B79A)),
                 ),
-                child: const Text(
+                child: Text(
                   'Her hareke ayrı bir ders. Harfe dokun, dinle, bütün harflerle tekrarla.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -87,18 +91,19 @@ class QuranLearnHarakatPage extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Material(
                     color: snap?.isDone('ql_haraka', item.id) == true
-                        ? const Color(0xFFE8F3E4)
-                        : Colors.white,
+                        ? MinikColors.of(
+                            const Color(0xFFE8F3E4), const Color(0xFF273223))
+                        : MinikColors.card,
                     borderRadius: BorderRadius.circular(12),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(12),
                       onTap: () => Navigator.push(
                         context,
                         quranLearnRoute(QuranLearnHarakaDetailPage(
-                            pack: pack,
-                            haraka: item,
-                            levelId: levelId,
-                          )),
+                          pack: pack,
+                          haraka: item,
+                          levelId: levelId,
+                        )),
                       ),
                       child: Container(
                         padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
@@ -126,7 +131,7 @@ class QuranLearnHarakatPage extends StatelessWidget {
                                 children: [
                                   Text(
                                     item.name,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontFamily: 'NotoSans',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
@@ -184,7 +189,8 @@ class QuranLearnHarakaDetailPage extends StatefulWidget {
       _QuranLearnHarakaDetailPageState();
 }
 
-class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage> {
+class _QuranLearnHarakaDetailPageState
+    extends State<QuranLearnHarakaDetailPage> {
   final _audio = AudioPlayerService();
 
   QuranHaraka get haraka => widget.haraka;
@@ -224,10 +230,10 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
           Navigator.pushReplacement(
             context,
             quranLearnRoute(QuranLearnHarakaDetailPage(
-                pack: widget.pack,
-                haraka: items[index + 1],
-                levelId: widget.levelId,
-              )),
+              pack: widget.pack,
+              haraka: items[index + 1],
+              levelId: widget.levelId,
+            )),
           );
         } else {
           Navigator.pop(context);
@@ -269,7 +275,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
           Text(
             'Ders ${haraka.order}: ${haraka.name}',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -288,7 +294,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
             child: Text(
               teachLine,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 13,
                 height: 1.4,
@@ -323,7 +329,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                     const SizedBox(height: 6),
                     Text(
                       haraka.name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: 'NotoSans',
                         fontSize: 16,
                         fontWeight: FontWeight.w800,
@@ -334,7 +340,7 @@ class _QuranLearnHarakaDetailPageState extends State<QuranLearnHarakaDetailPage>
                       const SizedBox(height: 6),
                       Text(
                         quranLearnShaddaEquation('ب'),
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: 'NotoSans',
                           fontWeight: FontWeight.w800,
                           color: _ink,
@@ -471,7 +477,7 @@ class _SectionTitle extends StatelessWidget {
     return Text(
       label,
       textAlign: TextAlign.center,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'NotoSans',
         fontSize: 16,
         fontWeight: FontWeight.w800,

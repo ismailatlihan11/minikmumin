@@ -7,9 +7,10 @@ import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_theme.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../shared/widgets/buttons.dart';
+import '../../shared/widgets/minik_image.dart';
 import 'elifba_audio.dart';
 
-const elifbaMascotAsset = 'assets/images/elifba/characters/elif.png';
+const elifbaMascotAsset = 'assets/images/elifba/characters/elif.jpg';
 
 class ElifbaMascot extends StatelessWidget {
   const ElifbaMascot({
@@ -30,7 +31,7 @@ class ElifbaMascot extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
+            child: MinikImage.asset(
               elifbaMascotAsset,
               width: size,
               height: size,
@@ -53,7 +54,7 @@ class ElifbaMascot extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: MinikColors.card,
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(color: MinikColors.mint),
               ),
@@ -87,9 +88,8 @@ class ElifbaListenButton extends StatelessWidget {
     return SizedBox(
       height: 48,
       child: FilledButton.icon(
-        onPressed: playable == null
-            ? null
-            : () => ElifbaAudio.play(audio, playable),
+        onPressed:
+            playable == null ? null : () => ElifbaAudio.play(audio, playable),
         style: FilledButton.styleFrom(
           backgroundColor: MinikColors.greenSoft,
           disabledBackgroundColor: MinikColors.creamDark,
@@ -183,12 +183,12 @@ class ElifbaSoftCard extends StatelessWidget {
   const ElifbaSoftCard({
     super.key,
     required this.child,
-    this.color = Colors.white,
+    this.color,
     this.onTap,
   });
 
   final Widget child;
-  final Color color;
+  final Color? color;
   final VoidCallback? onTap;
 
   @override
@@ -197,7 +197,7 @@ class ElifbaSoftCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: color,
+        color: color ?? MinikColors.card,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: const [
           BoxShadow(
@@ -227,7 +227,8 @@ class ElifbaSoftCard extends StatelessWidget {
 }
 
 class ElifbaPrimary extends StatelessWidget {
-  const ElifbaPrimary({super.key, required this.label, required this.onPressed});
+  const ElifbaPrimary(
+      {super.key, required this.label, required this.onPressed});
 
   final String label;
   final VoidCallback? onPressed;

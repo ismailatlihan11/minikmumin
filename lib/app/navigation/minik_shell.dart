@@ -67,7 +67,7 @@ class _MinikShellState extends State<MinikShell> {
           ],
         ),
         bottomNavigationBar: Material(
-          color: Colors.white,
+          color: MinikColors.card,
           elevation: 8,
           shadowColor: const Color(0x22000000),
           child: SafeArea(

@@ -62,10 +62,10 @@
       "number": 1,
       "title": "Niyet",
       "prompt": "Niyet ederek namaza başlarız.",
-      "image": "assets/images/prayer/step01_niyet.png",
+      "image": "assets/images/prayer/step01_niyet.jpg",
       "kind": "adab",
       "jsonStepId": "intention",
-      "imageGirl": "assets/images/prayer/step01_niyet_girl.png",
+      "imageGirl": "assets/images/prayer/step01_niyet_girl.jpg",
       "girlNote": "Kızlar namazda başlarını da örter.",
       "rakat": 1
     },
@@ -74,16 +74,16 @@
       "number": 2,
       "title": "Tekbir",
       "prompt": "Tekbir ile namaza başlarız. Allahu ekber deriz.",
-      "image": "assets/images/prayer/step02_tekbir.png",
+      "image": "assets/images/prayer/step02_tekbir.jpg",
       "kind": "farz",
       "jsonStepId": "takbir",
       "duaId": "iftitah_tekbir",
       "caption": "Allahu ekber",
-      "imageGirl": "assets/images/prayer/step02_tekbir_girl.png",
+      "imageGirl": "assets/images/prayer/step02_tekbir_girl.jpg",
       "girlNote": "Kızlar ellerini omuz hizasına kadar kaldırır.",
       "motion_frames_girl": [
-        "assets/images/prayer/step01_niyet_girl.png",
-        "assets/images/prayer/step02_tekbir_girl.png"
+        "assets/images/prayer/step01_niyet_girl.jpg",
+        "assets/images/prayer/step02_tekbir_girl.jpg"
       ],
       "rakat": 1
     },
@@ -92,11 +92,11 @@
       "number": 3,
       "title": "Sübhâneke",
       "prompt": "Sübhâneke duasını okuruz.",
-      "image": "assets/images/prayer/step03_subhaneke.png",
+      "image": "assets/images/prayer/step03_subhaneke.jpg",
       "kind": "sunnah",
       "jsonStepId": "qiyam",
       "duaId": "subhaneke",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
@@ -105,11 +105,11 @@
       "number": 4,
       "title": "Eûzü - Besmele",
       "prompt": "Eûzü besmele çekeriz.",
-      "image": "assets/images/prayer/step04_euzu.png",
+      "image": "assets/images/prayer/step04_euzu.jpg",
       "kind": "sunnah",
       "jsonStepId": "qiyam",
       "duaId": "euzu_besmele",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
@@ -118,11 +118,11 @@
       "number": 5,
       "title": "Fâtiha",
       "prompt": "Birinci rekatta Fâtiha’yı okuruz.",
-      "image": "assets/images/prayer/step04_euzu.png",
+      "image": "assets/images/prayer/step04_euzu.jpg",
       "kind": "farz",
       "jsonStepId": "qiyam",
       "duaId": "surah_1",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
@@ -131,11 +131,11 @@
       "number": 6,
       "title": "Bir Sure",
       "prompt": "Fâtiha’dan sonra Kevser suresini okuruz.",
-      "image": "assets/images/prayer/step05_sure.png",
+      "image": "assets/images/prayer/step05_sure.jpg",
       "kind": "sunnah",
       "jsonStepId": "qiyam",
       "duaId": "surah_108",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1
     },
@@ -144,16 +144,16 @@
       "number": 7,
       "title": "Rükû",
       "prompt": "Rükûya Allahu ekber diyerek varırız. Sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.",
-      "image": "assets/images/prayer/step06_ruku.png",
+      "image": "assets/images/prayer/step06_ruku.jpg",
       "kind": "farz",
       "jsonStepId": "ruku",
       "duaId": "ruku",
       "caption": "Sübhâne Rabbiye’l-Azîm",
-      "imageGirl": "assets/images/prayer/step06_ruku_girl.png",
+      "imageGirl": "assets/images/prayer/step06_ruku_girl.jpg",
       "girlNote": "Kızlar rükûda biraz daha az eğilir; parmaklar bitişik dizlerin üzerindedir.",
       "motion_frames_girl": [
-        "assets/images/prayer/step08_kiyam_girl.png",
-        "assets/images/prayer/step06_ruku_girl.png"
+        "assets/images/prayer/step08_kiyam_girl.jpg",
+        "assets/images/prayer/step06_ruku_girl.jpg"
       ],
       "rakat": 1
     },
@@ -162,15 +162,15 @@
       "number": 8,
       "title": "Rükûdan Kalkış",
       "prompt": "Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.",
-      "image": "assets/images/prayer/step08_kiyam.png",
+      "image": "assets/images/prayer/step08_kiyam.jpg",
       "kind": "farz",
       "jsonStepId": "ruku_rise",
       "duaId": "qiyam_after_ruku",
       "caption": "Semi‘allâhü limen hamideh",
-      "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step08_kiyam_girl.jpg",
       "motion_frames_girl": [
-        "assets/images/prayer/step06_ruku_girl.png",
-        "assets/images/prayer/step08_kiyam_girl.png"
+        "assets/images/prayer/step06_ruku_girl.jpg",
+        "assets/images/prayer/step08_kiyam_girl.jpg"
       ],
       "rakat": 1
     },
@@ -179,12 +179,12 @@
       "number": 9,
       "title": "Kıyam",
       "prompt": "Kıyamda dururuz ve Rabbenâ lekel-hamd deriz.",
-      "image": "assets/images/prayer/step08_kiyam.png",
+      "image": "assets/images/prayer/step08_kiyam.jpg",
       "kind": "farz",
       "jsonStepId": "qiyam",
       "caption": "Rabbenâ lekel-hamd",
       "duaId": "rabbena_lekel_hamd",
-      "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step08_kiyam_girl.jpg",
       "rakat": 1
     },
     {
@@ -192,16 +192,16 @@
       "number": 10,
       "title": "Secde (1)",
       "prompt": "Secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden kalkarken Allahu ekber deriz.",
-      "image": "assets/images/prayer/step09_secde1.png",
+      "image": "assets/images/prayer/step09_secde1.jpg",
       "kind": "farz",
       "jsonStepId": "sujud",
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
-      "imageGirl": "assets/images/prayer/step09_secde_girl.png",
+      "imageGirl": "assets/images/prayer/step09_secde_girl.jpg",
       "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
-        "assets/images/prayer/step08_kiyam_girl.png",
-        "assets/images/prayer/step09_secde_girl.png"
+        "assets/images/prayer/step08_kiyam_girl.jpg",
+        "assets/images/prayer/step09_secde_girl.jpg"
       ],
       "rakat": 1
     },
@@ -210,16 +210,16 @@
       "number": 11,
       "title": "Secde (2)",
       "prompt": "İkinci secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz.",
-      "image": "assets/images/prayer/step10_secde2.png",
+      "image": "assets/images/prayer/step10_secde2.jpg",
       "kind": "farz",
       "jsonStepId": "sujud",
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
-      "imageGirl": "assets/images/prayer/step09_secde_girl.png",
+      "imageGirl": "assets/images/prayer/step09_secde_girl.jpg",
       "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
-        "assets/images/prayer/step11_oturus_girl.png",
-        "assets/images/prayer/step09_secde_girl.png"
+        "assets/images/prayer/step11_oturus_girl.jpg",
+        "assets/images/prayer/step09_secde_girl.jpg"
       ],
       "rakat": 1
     },
@@ -228,21 +228,21 @@
       "number": 12,
       "title": "İkinci Rekata Kalkış",
       "prompt": "Birinci rekat bitti. Secdeden Allahu ekber diyerek ayağa kalkarız ve ikinci rekata başlarız.",
-      "image": "assets/images/prayer/step08_kiyam.png",
+      "image": "assets/images/prayer/step08_kiyam.jpg",
       "kind": "farz",
       "jsonStepId": "qiyam",
       "duaId": "iftitah_tekbir",
       "caption": "Allahu ekber",
-      "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step08_kiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 1,
       "motion_frames": [
-        "assets/images/prayer/step10_secde2.png",
-        "assets/images/prayer/step08_kiyam.png"
+        "assets/images/prayer/step10_secde2.jpg",
+        "assets/images/prayer/step08_kiyam.jpg"
       ],
       "motion_frames_girl": [
-        "assets/images/prayer/step09_secde_girl.png",
-        "assets/images/prayer/step08_kiyam_girl.png"
+        "assets/images/prayer/step09_secde_girl.jpg",
+        "assets/images/prayer/step08_kiyam_girl.jpg"
       ]
     },
     {
@@ -250,11 +250,11 @@
       "number": 13,
       "title": "Fâtiha",
       "prompt": "İkinci rekatta Fâtiha’yı okuruz.",
-      "image": "assets/images/prayer/step04_euzu.png",
+      "image": "assets/images/prayer/step04_euzu.jpg",
       "kind": "farz",
       "jsonStepId": "qiyam",
       "duaId": "surah_1",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 2
     },
@@ -263,11 +263,11 @@
       "number": 14,
       "title": "Bir Sure",
       "prompt": "İkinci rekatta Fâtiha’dan sonra bir sure okuruz.",
-      "image": "assets/images/prayer/step05_sure.png",
+      "image": "assets/images/prayer/step05_sure.jpg",
       "kind": "sunnah",
       "jsonStepId": "qiyam",
       "duaId": "surah_112",
-      "imageGirl": "assets/images/prayer/step03_qiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step03_qiyam_girl.jpg",
       "girlNote": "Kızlar ellerini göğüs hizasında bağlar; sağ el sol elin üstündedir.",
       "rakat": 2
     },
@@ -276,16 +276,16 @@
       "number": 15,
       "title": "Rükû",
       "prompt": "Rükûya Allahu ekber diyerek varırız. Sonra 3 kere Sübhâne Rabbiye’l-Azîm deriz.",
-      "image": "assets/images/prayer/step06_ruku.png",
+      "image": "assets/images/prayer/step06_ruku.jpg",
       "kind": "farz",
       "jsonStepId": "ruku",
       "duaId": "ruku",
       "caption": "Sübhâne Rabbiye’l-Azîm",
-      "imageGirl": "assets/images/prayer/step06_ruku_girl.png",
+      "imageGirl": "assets/images/prayer/step06_ruku_girl.jpg",
       "girlNote": "Kızlar rükûda biraz daha az eğilir; parmaklar bitişik dizlerin üzerindedir.",
       "motion_frames_girl": [
-        "assets/images/prayer/step08_kiyam_girl.png",
-        "assets/images/prayer/step06_ruku_girl.png"
+        "assets/images/prayer/step08_kiyam_girl.jpg",
+        "assets/images/prayer/step06_ruku_girl.jpg"
       ],
       "rakat": 2
     },
@@ -294,15 +294,15 @@
       "number": 16,
       "title": "Rükûdan Kalkış",
       "prompt": "Rükûdan doğruluruz ve Semi‘allâhü limen hamideh deriz.",
-      "image": "assets/images/prayer/step08_kiyam.png",
+      "image": "assets/images/prayer/step08_kiyam.jpg",
       "kind": "farz",
       "jsonStepId": "ruku_rise",
       "duaId": "qiyam_after_ruku",
       "caption": "Semi‘allâhü limen hamideh",
-      "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step08_kiyam_girl.jpg",
       "motion_frames_girl": [
-        "assets/images/prayer/step06_ruku_girl.png",
-        "assets/images/prayer/step08_kiyam_girl.png"
+        "assets/images/prayer/step06_ruku_girl.jpg",
+        "assets/images/prayer/step08_kiyam_girl.jpg"
       ],
       "rakat": 2
     },
@@ -311,12 +311,12 @@
       "number": 17,
       "title": "Kıyam",
       "prompt": "Kıyamda dururuz ve Rabbenâ lekel-hamd deriz.",
-      "image": "assets/images/prayer/step08_kiyam.png",
+      "image": "assets/images/prayer/step08_kiyam.jpg",
       "kind": "farz",
       "jsonStepId": "qiyam",
       "caption": "Rabbenâ lekel-hamd",
       "duaId": "rabbena_lekel_hamd",
-      "imageGirl": "assets/images/prayer/step08_kiyam_girl.png",
+      "imageGirl": "assets/images/prayer/step08_kiyam_girl.jpg",
       "rakat": 2
     },
     {
@@ -324,16 +324,16 @@
       "number": 18,
       "title": "Secde (1)",
       "prompt": "Secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden kalkarken Allahu ekber deriz.",
-      "image": "assets/images/prayer/step09_secde1.png",
+      "image": "assets/images/prayer/step09_secde1.jpg",
       "kind": "farz",
       "jsonStepId": "sujud",
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
-      "imageGirl": "assets/images/prayer/step09_secde_girl.png",
+      "imageGirl": "assets/images/prayer/step09_secde_girl.jpg",
       "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
-        "assets/images/prayer/step08_kiyam_girl.png",
-        "assets/images/prayer/step09_secde_girl.png"
+        "assets/images/prayer/step08_kiyam_girl.jpg",
+        "assets/images/prayer/step09_secde_girl.jpg"
       ],
       "rakat": 2
     },
@@ -342,16 +342,16 @@
       "number": 19,
       "title": "Secde (2)",
       "prompt": "İkinci secdeye Allahu ekber diyerek gideriz. 3 kere Sübhâne Rabbiye’l-A‘lâ deriz. Secdeden Allahu ekber diyerek kalkar ve otururuz.",
-      "image": "assets/images/prayer/step10_secde2.png",
+      "image": "assets/images/prayer/step10_secde2.jpg",
       "kind": "farz",
       "jsonStepId": "sujud",
       "duaId": "sujud",
       "caption": "Sübhâne Rabbiye’l-A‘lâ",
-      "imageGirl": "assets/images/prayer/step09_secde_girl.png",
+      "imageGirl": "assets/images/prayer/step09_secde_girl.jpg",
       "girlNote": "Kızlar secdede ellerini yüze yakın koyar, kollarını vücuda yapıştırır; ayaklarının üstünü yere koyar, topuklar bitişik parmaklar dışa açık.",
       "motion_frames_girl": [
-        "assets/images/prayer/step11_oturus_girl.png",
-        "assets/images/prayer/step09_secde_girl.png"
+        "assets/images/prayer/step11_oturus_girl.jpg",
+        "assets/images/prayer/step09_secde_girl.jpg"
       ],
       "rakat": 2
     },
@@ -360,11 +360,11 @@
       "number": 20,
       "title": "Son Oturuş",
       "prompt": "İkinci rekatın sonunda otururuz. Oturuşta Tahiyyat duası okuruz.",
-      "image": "assets/images/prayer/step11_oturus.png",
+      "image": "assets/images/prayer/step11_oturus.jpg",
       "kind": "farz",
       "jsonStepId": "sitting",
       "duaId": "tahiyyat",
-      "imageGirl": "assets/images/prayer/step11_oturus_girl.png",
+      "imageGirl": "assets/images/prayer/step11_oturus_girl.jpg",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "rakat": 2
     },
@@ -373,12 +373,12 @@
       "number": 21,
       "title": "Salli - Barik",
       "prompt": "Salli ve Barik dualarını okuruz.",
-      "image": "assets/images/prayer/step12_salli.png",
+      "image": "assets/images/prayer/step12_salli.jpg",
       "kind": "sunnah",
       "jsonStepId": "sitting",
       "duaId": "allahumme_salli",
       "extraDuaIds": ["allahumme_barik"],
-      "imageGirl": "assets/images/prayer/step11_oturus_girl.png",
+      "imageGirl": "assets/images/prayer/step11_oturus_girl.jpg",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "rakat": 2
     },
@@ -387,12 +387,12 @@
       "number": 22,
       "title": "Rabbenâ Duaları",
       "prompt": "Rabbenâ dualarını okuruz.",
-      "image": "assets/images/prayer/step13_rabbena.png",
+      "image": "assets/images/prayer/step13_rabbena.jpg",
       "kind": "sunnah",
       "jsonStepId": "sitting",
       "duaId": "rabbena_atina",
       "extraDuaIds": ["rabbena_gfirli"],
-      "imageGirl": "assets/images/prayer/step11_oturus_girl.png",
+      "imageGirl": "assets/images/prayer/step11_oturus_girl.jpg",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "rakat": 2
     },
@@ -401,14 +401,14 @@
       "number": 23,
       "title": "Selam (Sağa)",
       "prompt": "Sağa selam veririz.",
-      "image": "assets/images/prayer/step14_selam_sag.png",
+      "image": "assets/images/prayer/step14_selam_sag.jpg",
       "kind": "farz",
       "jsonStepId": "salam",
-      "imageGirl": "assets/images/prayer/step15_selam_sol_girl.png",
+      "imageGirl": "assets/images/prayer/step15_selam_sol_girl.jpg",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "motion_frames_girl": [
-        "assets/images/prayer/step11_oturus_girl.png",
-        "assets/images/prayer/step15_selam_sol_girl.png"
+        "assets/images/prayer/step11_oturus_girl.jpg",
+        "assets/images/prayer/step15_selam_sol_girl.jpg"
       ],
       "rakat": 2
     },
@@ -417,14 +417,14 @@
       "number": 24,
       "title": "Selam (Sola)",
       "prompt": "Sola selam veririz.",
-      "image": "assets/images/prayer/step15_selam_sol.png",
+      "image": "assets/images/prayer/step15_selam_sol.jpg",
       "kind": "sunnah",
       "jsonStepId": "salam",
-      "imageGirl": "assets/images/prayer/step14_selam_sag_girl.png",
+      "imageGirl": "assets/images/prayer/step14_selam_sag_girl.jpg",
       "girlNote": "Kızlar oturuşta ayaklarını sağ tarafa yatırır.",
       "motion_frames_girl": [
-        "assets/images/prayer/step15_selam_sol_girl.png",
-        "assets/images/prayer/step14_selam_sag_girl.png"
+        "assets/images/prayer/step15_selam_sol_girl.jpg",
+        "assets/images/prayer/step14_selam_sag_girl.jpg"
       ],
       "rakat": 2
     },
@@ -433,9 +433,9 @@
       "number": 25,
       "title": "Namaz Tamamlandı",
       "prompt": "Maşallah! İki rekatlık namazı tamamladık.",
-      "image": "assets/images/prayer/step16_tamam.png",
+      "image": "assets/images/prayer/step16_tamam.jpg",
       "kind": "done",
-      "imageGirl": "assets/images/prayer/step16_tamam_girl.png",
+      "imageGirl": "assets/images/prayer/step16_tamam_girl.jpg",
       "hideForGirl": true,
       "rakat": 0
     }
@@ -536,19 +536,19 @@
   "tips": [
     {
       "title": "Temizlen",
-      "image": "assets/images/prayer/prayer_icon_clock.png"
+      "image": "assets/images/prayer/prayer_icon_clock.jpg"
     },
     {
       "title": "Temiz giyin",
-      "image": "assets/images/prayer/prayer_icon_clean.png"
+      "image": "assets/images/prayer/prayer_icon_clean.jpg"
     },
     {
       "title": "Kıbleye dön",
-      "image": "assets/images/prayer/prayer_icon_qibla.png"
+      "image": "assets/images/prayer/prayer_icon_qibla.jpg"
     },
     {
       "title": "Niyet et",
-      "image": "assets/images/prayer/prayer_icon_heart.png"
+      "image": "assets/images/prayer/prayer_icon_heart.jpg"
     }
   ],
   "teachingNote": "Bu bölümde iki rekatlık bir namaz öğreniyoruz. Birinci rekatın sonunda ayağa kalkarız; ikinci rekatın sonunda otururuz."

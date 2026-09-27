@@ -14,7 +14,8 @@ class ZikrStatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = context.watch<DhikrStore>();
     final overview = store.overview();
-    final maxBar = overview.weekBars.fold<int>(1, (max, value) => value > max ? value : max);
+    final maxBar = overview.weekBars
+        .fold<int>(1, (max, value) => value > max ? value : max);
     const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
     return Scaffold(
       appBar: AppBar(title: const Text('Zikir istatistikleri')),
@@ -24,7 +25,6 @@ class ZikrStatsPage extends StatelessWidget {
           const PageHeader(
             title: 'Bugün',
             subtitle: 'Hepsi bu cihazda saklanır.',
-            image: 'assets/images/home/circle_zikr.png',
           ),
           _StatCard('Toplam tekrar', '${overview.todayCount}'),
           _StatCard('Tamamlanan hedef', '${overview.todayCompleted}'),
@@ -36,7 +36,8 @@ class ZikrStatsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Bu hafta', style: Theme.of(context).textTheme.titleMedium),
+                Text('Bu hafta',
+                    style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: AppSpacing.md),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -48,14 +49,16 @@ class ZikrStatsPage extends StatelessWidget {
                           child: Column(
                             children: [
                               Container(
-                                height: 8 + (72 * (overview.weekBars[i] / maxBar)),
+                                height:
+                                    8 + (72 * (overview.weekBars[i] / maxBar)),
                                 decoration: BoxDecoration(
                                   color: MinikColors.greenSoft,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                               const SizedBox(height: 6),
-                              Text(days[i], style: Theme.of(context).textTheme.bodySmall),
+                              Text(days[i],
+                                  style: Theme.of(context).textTheme.bodySmall),
                             ],
                           ),
                         ),
@@ -84,7 +87,8 @@ class ZikrStatsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Hatırlatma', style: Theme.of(context).textTheme.titleMedium),
+                Text('Hatırlatma',
+                    style: Theme.of(context).textTheme.titleMedium),
                 SwitchListTile(
                   contentPadding: EdgeInsets.zero,
                   title: const Text('Zikir hatırlatması'),
@@ -123,9 +127,11 @@ class ZikrStatsPage extends StatelessWidget {
                           DhikrVibrationIntensity.normal => 'Normal',
                           DhikrVibrationIntensity.strong => 'Güçlü',
                         }),
-                        selected: store.settings.vibrationIntensity == intensity,
+                        selected:
+                            store.settings.vibrationIntensity == intensity,
                         onSelected: (_) => store.updateSettings(
-                          store.settings.copyWith(vibrationIntensity: intensity),
+                          store.settings
+                              .copyWith(vibrationIntensity: intensity),
                         ),
                       ),
                   ],

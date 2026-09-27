@@ -30,12 +30,12 @@ class ElifbaWordCard extends StatefulWidget {
     super.key,
     required this.word,
     required this.audio,
-    this.color = Colors.white,
+    this.color,
   });
 
   final ElifbaWordExample word;
   final AudioPlayerService audio;
-  final Color color;
+  final Color? color;
 
   @override
   State<ElifbaWordCard> createState() => _ElifbaWordCardState();
@@ -59,7 +59,7 @@ class _ElifbaWordCardState extends State<ElifbaWordCard> {
   Widget build(BuildContext context) {
     final word = widget.word;
     return ElifbaSoftCard(
-      color: widget.color,
+      color: widget.color ?? MinikColors.card,
       child: Column(
         children: [
           ElifbaArabicTap(
@@ -332,9 +332,8 @@ class _FormTile extends StatelessWidget {
           const SizedBox(height: 4),
           IconButton(
             tooltip: 'Dinle',
-            onPressed: path == null
-                ? null
-                : () => ElifbaAudio.play(audio, path),
+            onPressed:
+                path == null ? null : () => ElifbaAudio.play(audio, path),
             icon: const Icon(Icons.volume_up_rounded),
           ),
         ],
@@ -570,10 +569,10 @@ class ElifbaCategoryTablesView extends StatelessWidget {
   };
 
   static Map<String, Color> get _colors => {
-    'kalin_harfler': MinikColors.peach,
-    'peltek_harfler': MinikColors.sky,
-    'ince_harfler': MinikColors.mint,
-  };
+        'kalin_harfler': MinikColors.peach,
+        'peltek_harfler': MinikColors.sky,
+        'ince_harfler': MinikColors.mint,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -792,7 +791,7 @@ class _ElifbaShaddaHuntState extends State<ElifbaShaddaHunt> {
                     height: 72,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: MinikColors.card,
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: MinikColors.mint),
                     ),
@@ -953,10 +952,8 @@ class ElifbaFormCard extends StatelessWidget {
                       row.name,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
-                    if (row.sound.isNotEmpty)
-                      Text('Sesi: ${row.sound}'),
-                    if (!row.connects)
-                      const Text('Sonraki harfe bağlanmaz'),
+                    if (row.sound.isNotEmpty) Text('Sesi: ${row.sound}'),
+                    if (!row.connects) const Text('Sonraki harfe bağlanmaz'),
                   ],
                 ),
               ),

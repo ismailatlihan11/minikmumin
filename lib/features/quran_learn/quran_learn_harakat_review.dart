@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/theme/app_colors.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/models/quran_learning.dart';
@@ -14,9 +15,12 @@ import 'quran_learn_widgets.dart';
 import 'quran_learn_words.dart';
 
 const _qlHarakaReviewKind = 'ql_haraka_review';
-const _tan = Color(0xFFE6DBC5);
-const _ink = Color(0xFF3A332C);
-const _line = Color(0xFF5C5346);
+Color get _tan =>
+    MinikColors.of(const Color(0xFFE6DBC5), const Color(0xFF40392C));
+Color get _ink =>
+    MinikColors.of(const Color(0xFF3A332C), const Color(0xFFD5CFC8));
+Color get _line =>
+    MinikColors.of(const Color(0xFF5C5346), const Color(0xFFCFC8BF));
 const _markRed = Color(0xFFC62828);
 
 class QlHarakatReviewSection extends StatefulWidget {
@@ -33,8 +37,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
   int _index = 0;
   Future<({List<QuranVerse> fatiha, List<QuranVerse> ihlas})>? _future;
 
-  List<QuranWord> get _words =>
-      quranLearnHarakatReviewWords(widget.pack.words);
+  List<QuranWord> get _words => quranLearnHarakatReviewWords(widget.pack.words);
 
   QuranWord? get _word =>
       _words.isEmpty ? null : _words[_index.clamp(0, _words.length - 1)];
@@ -107,7 +110,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
+            Text(
               'Pekiştirme',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -144,7 +147,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: const Color(0xFFC4B79A)),
               ),
-              child: const Text(
+              child: Text(
                 'Öğrendiğin harekeleri ayette dinle.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -160,7 +163,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
             Text(
               '$done / ${_words.length} kelime',
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
@@ -205,7 +208,8 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
                   child: QlBigArabic(
                     word.arabic,
                     fontSize: 42,
-                    color: const Color(0xFF1A1A1A),
+                    color: MinikColors.of(
+                        const Color(0xFF1A1A1A), const Color(0xFFD5D5D5)),
                   ),
                 ),
               ),
@@ -214,7 +218,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
             Text(
               quranLearnTajweedReference(word.quranReference),
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'NotoSans',
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
@@ -232,7 +236,7 @@ class _QlHarakatReviewSectionState extends State<QlHarakatReviewSection> {
                   child: Text(
                     '${_index + 1} / ${_words.length}',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontWeight: FontWeight.w700,
                       color: _ink,
@@ -269,7 +273,7 @@ class _PassageCard extends StatelessWidget {
   Widget build(BuildContext context) {
     if (verses.isEmpty) return const SizedBox.shrink();
     return Material(
-      color: Colors.white,
+      color: MinikColors.card,
       borderRadius: BorderRadius.circular(10),
       child: InkWell(
         onTap: onTap,
@@ -303,7 +307,8 @@ class _PassageCard extends StatelessWidget {
                     child: QlBigArabic(
                       verse.arabic,
                       fontSize: verse.ayahNo == focusAyah ? 26 : 22,
-                      color: const Color(0xFF1A1A1A),
+                      color: MinikColors.of(
+                          const Color(0xFF1A1A1A), const Color(0xFFD5D5D5)),
                     ),
                   ),
                 ),

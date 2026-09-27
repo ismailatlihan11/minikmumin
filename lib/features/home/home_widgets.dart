@@ -5,31 +5,37 @@ import '../../app/constants/home_catalog.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/minik_image.dart';
 
 class HomeRoundButton extends StatelessWidget {
   const HomeRoundButton({
     super.key,
     required this.icon,
+    required this.tooltip,
     required this.onTap,
   });
 
   final IconData icon;
+  final String tooltip;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 2,
-      shadowColor: const Color(0x22000000),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: onTap,
-        child: SizedBox(
-          width: 44,
-          height: 44,
-          child: Icon(icon, size: 22, color: MinikColors.darkGreen),
+    return Tooltip(
+      message: tooltip,
+      child: Material(
+        color: MinikColors.card,
+        shape: const CircleBorder(),
+        elevation: 2,
+        shadowColor: const Color(0x22000000),
+        child: InkWell(
+          customBorder: const CircleBorder(),
+          onTap: onTap,
+          child: SizedBox(
+            width: 48,
+            height: 48,
+            child: Icon(icon, size: 22, color: MinikColors.darkGreen),
+          ),
         ),
       ),
     );
@@ -54,8 +60,8 @@ class HomeHeroHeader extends StatelessWidget {
         // Mirror art so kids sit on the left, clear sky on the right.
         Transform.flip(
           flipX: true,
-          child: Image.asset(
-            'assets/images/home/home_hero.png',
+          child: MinikImage.asset(
+            'assets/images/home/home_hero.jpg',
             fit: BoxFit.cover,
             alignment: const Alignment(0.2, 0.15),
           ),
@@ -75,15 +81,18 @@ class HomeHeroHeader extends StatelessWidget {
           ),
         ),
         // Soft wash over the sky (now on the right) for Arabic contrast.
-        const DecoratedBox(
+        DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.centerRight,
               end: Alignment.centerLeft,
               colors: [
-                Color(0xCCEAF6FF),
-                Color(0x66EAF6FF),
-                Color(0x00EAF6FF),
+                MinikColors.of(
+                    const Color(0xCCEAF6FF), const Color(0xCC152938)),
+                MinikColors.of(
+                    const Color(0x66EAF6FF), const Color(0x66152938)),
+                MinikColors.of(
+                    const Color(0x00EAF6FF), const Color(0x00152938)),
               ],
               stops: [0, 0.45, 1],
             ),
@@ -134,6 +143,7 @@ class HomeHeroHeader extends StatelessWidget {
               ),
               HomeRoundButton(
                 icon: Icons.settings_rounded,
+                tooltip: 'Ayarlar',
                 onTap: onSettings,
               ),
             ],
@@ -178,12 +188,14 @@ class HomeWelcomeBanner extends StatelessWidget {
               // Sit in the mid band under the top chrome, clear of Arabic on the right.
               padding: EdgeInsets.fromLTRB(72, top + 78, 72, 0),
               child: Material(
-                color: const Color(0xF2FFFFFF),
+                color: MinikColors.of(
+                    const Color(0xF2FFFFFF), const Color(0xF2212121)),
                 elevation: 6,
                 shadowColor: const Color(0x33000000),
                 borderRadius: BorderRadius.circular(AppRadius.pill),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -198,11 +210,11 @@ class HomeWelcomeBanner extends StatelessWidget {
                           _text,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: 'NotoSans',
                             fontSize: 14,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF1E392F),
+                            color: MinikColors.darkGreen,
                             height: 1.1,
                           ),
                         ),
@@ -227,6 +239,15 @@ class HomeModuleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: '${module.title}. ${module.subtitle}',
+      excludeSemantics: true,
+      child: _card(),
+    );
+  }
+
+  Widget _card() {
     if (module.featured) {
       return Material(
         color: module.color,
@@ -240,11 +261,13 @@ class HomeModuleCard extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: module.accent.withValues(alpha: 0.35), width: 1.5),
+              border: Border.all(
+                  color: module.accent.withValues(alpha: 0.35), width: 1.5),
             ),
             child: Row(
               children: [
-                Image.asset(module.image, width: 64, height: 64, fit: BoxFit.contain),
+                MinikImage.asset(module.image,
+                    width: 64, height: 64, fit: BoxFit.contain),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -301,9 +324,8 @@ class HomeModuleCard extends StatelessWidget {
                     ? LessonMotionImage(
                         image: module.image,
                         fit: BoxFit.contain,
-                        semanticLabel: module.title,
                       )
-                    : Image.asset(
+                    : MinikImage.asset(
                         module.image,
                         fit: BoxFit.contain,
                         alignment: Alignment.center,
@@ -346,98 +368,110 @@ class HomeBasicsFeaturedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final value = total == 0 ? 0.0 : completed / total;
+    return Semantics(
+      button: true,
+      label: 'Temel Dini Bilgiler. $completed / $total konu tamamlandı',
+      excludeSemantics: true,
+      child: _card(value),
+    );
+  }
+
+  Widget _card(double value) {
     return Material(
-      color: const Color(0xFFE7F4EC),
+      color: MinikColors.of(const Color(0xFFE7F4EC), const Color(0xFF233128)),
       borderRadius: BorderRadius.circular(18),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(18),
         child: Container(
-          height: 108,
+          constraints: const BoxConstraints(minHeight: 108),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: const Color(0xFF21684E).withValues(alpha: 0.28),
+              color: MinikColors.green.withValues(alpha: 0.28),
               width: 1.4,
             ),
           ),
-          child: Row(
-            children: [
-              const SizedBox(width: 96, child: _BasicsFeaturedArt()),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 8, 12, 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Temel Dini Bilgiler',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
-                          height: 1.1,
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(width: 96, child: _BasicsFeaturedArt()),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 8, 12, 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Temel Dini Bilgiler',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'NotoSans',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800,
+                            color: MinikColors.darkGreen,
+                            height: 1.1,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        'İslam\'ın temel bilgilerini birlikte öğrenelim.',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: MinikColors.textMuted,
-                          height: 1.2,
+                        const SizedBox(height: 3),
+                        Text(
+                          'İslam\'ın temel bilgilerini birlikte öğrenelim.',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'NotoSans',
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: MinikColors.textMuted,
+                            height: 1.2,
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Text(
-                        '$completed / $total konu tamamlandı',
-                        style: TextStyle(
-                          fontFamily: 'NotoSans',
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
+                        const Spacer(),
+                        Text(
+                          '$completed / $total konu tamamlandı',
+                          style: TextStyle(
+                            fontFamily: 'NotoSans',
+                            fontSize: 11,
+                            fontWeight: FontWeight.w800,
+                            color: MinikColors.darkGreen,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(99),
-                              child: LinearProgressIndicator(
-                                minHeight: 7,
-                                value: value.clamp(0, 1),
-                                backgroundColor:
-                                    Colors.white.withValues(alpha: 0.8),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(99),
+                                child: LinearProgressIndicator(
+                                  minHeight: 7,
+                                  value: value.clamp(0, 1),
+                                  backgroundColor:
+                                      MinikColors.card.withValues(alpha: 0.8),
+                                  color: MinikColors.green,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'Başla →',
+                              style: TextStyle(
+                                fontFamily: 'NotoSans',
+                                fontSize: 13,
+                                fontWeight: FontWeight.w800,
                                 color: MinikColors.green,
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Başla →',
-                            style: TextStyle(
-                              fontFamily: 'NotoSans',
-                              fontSize: 13,
-                              fontWeight: FontWeight.w800,
-                              color: MinikColors.green,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -453,12 +487,17 @@ class _BasicsFeaturedArt extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        const DecoratedBox(
+        DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFFD8EFE4), Color(0xFFEAF6FF), Color(0xFFE7F4EC)],
+              colors: [
+                MinikColors.mint,
+                MinikColors.of(
+                    const Color(0xFFEAF6FF), const Color(0xFF152938)),
+                MinikColors.of(const Color(0xFFE7F4EC), const Color(0xFF233128))
+              ],
             ),
           ),
         ),
@@ -468,272 +507,55 @@ class _BasicsFeaturedArt extends StatelessWidget {
           child: Icon(
             Icons.mosque_rounded,
             size: 56,
-            color: const Color(0xFF21684E).withValues(alpha: 0.10),
+            color: MinikColors.green.withValues(alpha: 0.10),
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 16,
           top: 12,
-          child: Icon(Icons.nightlight_round, size: 18, color: Color(0xFFC29739)),
+          child:
+              Icon(Icons.nightlight_round, size: 18, color: MinikColors.gold),
         ),
         Positioned(
           left: 40,
           top: 10,
-          child: Icon(Icons.star_rounded, size: 11, color: const Color(0xFFE0A21A).withValues(alpha: 0.85)),
+          child: Icon(Icons.star_rounded,
+              size: 11, color: const Color(0xFFE0A21A).withValues(alpha: 0.85)),
         ),
         Positioned(
           left: 28,
           top: 28,
-          child: Icon(Icons.star_rounded, size: 8, color: const Color(0xFFE0A21A).withValues(alpha: 0.7)),
+          child: Icon(Icons.star_rounded,
+              size: 8, color: const Color(0xFFE0A21A).withValues(alpha: 0.7)),
         ),
         Positioned(
           right: 88,
           top: 16,
-          child: Icon(Icons.star_rounded, size: 10, color: const Color(0xFFE0A21A).withValues(alpha: 0.75)),
+          child: Icon(Icons.star_rounded,
+              size: 10, color: const Color(0xFFE0A21A).withValues(alpha: 0.75)),
         ),
         Align(
           alignment: const Alignment(-0.55, 0.4),
-          child: Image.asset(
-            'assets/images/home/card_quran.png',
+          child: MinikImage.asset(
+            'assets/images/home/card_quran.jpg',
             height: 62,
             fit: BoxFit.contain,
           ),
         ),
         Align(
           alignment: const Alignment(0.85, 0.5),
-          child: Image.asset(
-            'assets/images/prayer/prayer_intro_boy.png',
+          child: MinikImage.asset(
+            'assets/images/prayer/prayer_intro_boy.jpg',
             height: 72,
             fit: BoxFit.contain,
-            errorBuilder: (_, __, ___) => Image.asset(
-              'assets/images/home/card_ilmihal.png',
+            errorBuilder: (_, __, ___) => MinikImage.asset(
+              'assets/images/home/card_ilmihal.jpg',
               height: 58,
               fit: BoxFit.contain,
             ),
           ),
         ),
       ],
-    );
-  }
-}
-
-class HomeAdventureCard extends StatelessWidget {
-  const HomeAdventureCard({
-    super.key,
-    required this.onContinue,
-  });
-
-  final VoidCallback onContinue;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF6DC),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Bugünkü Maceram',
-                  style: TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                    color: MinikColors.darkGreen,
-                  ),
-                ),
-                SizedBox(height: 6),
-                Text(
-                  '🎯 1 görev tamamla\n📖 1 yeni şey öğren\n🎮 1 mini test çöz',
-                  style: TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF4A6B5C),
-                    height: 1.35,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          FilledButton(
-            onPressed: onContinue,
-            style: FilledButton.styleFrom(
-              backgroundColor: MinikColors.green,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              minimumSize: const Size(0, 40),
-              textStyle: const TextStyle(
-                fontFamily: 'NotoSans',
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            child: const Text('Devam Et'),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeContinueCard extends StatelessWidget {
-  const HomeContinueCard({
-    super.key,
-    required this.subtitle,
-    required this.progress,
-    required this.onContinue,
-    this.title = 'Öğrenmeye Devam Et',
-  });
-
-  final String title;
-  final String subtitle;
-  final double progress;
-  final VoidCallback onContinue;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1F4E40),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Image.asset('assets/images/home/continue_book.png', width: 42, height: 42),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontFamily: 'NotoSans',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFFD5E8DC),
-                  ),
-                ),
-                const SizedBox(height: 6),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(99),
-                  child: LinearProgressIndicator(
-                    minHeight: 6,
-                    value: progress.clamp(0, 1),
-                    backgroundColor: const Color(0xFF326857),
-                    color: const Color(0xFF7DDB6A),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          FittedBox(
-            child: FilledButton.icon(
-              onPressed: onContinue,
-              style: FilledButton.styleFrom(
-                backgroundColor: const Color(0xFF3D8B6E),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                minimumSize: const Size(0, 44),
-                tapTargetSize: MaterialTapTargetSize.padded,
-                visualDensity: VisualDensity.compact,
-                textStyle: const TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              icon: const Icon(Icons.play_arrow_rounded, size: 18),
-              label: const Text('Devam Et'),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class HomeQuranResumeBar extends StatelessWidget {
-  const HomeQuranResumeBar({
-    super.key,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  final String subtitle;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: const Color(0xFFD8F0E4),
-      borderRadius: BorderRadius.circular(14),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 10, 8),
-          child: Row(
-            children: [
-              Icon(Icons.bookmark_rounded, color: MinikColors.green, size: 22),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      'Kaldığın yerden oku',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontFamily: 'NotoSans',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w800,
-                        color: MinikColors.darkGreen,
-                        height: 1.1,
-                      ),
-                    ),
-                    Text(
-                      subtitle,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontFamily: 'NotoSans',
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: Color(0xFF4A6B5C),
-                        height: 1.2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Icon(Icons.play_arrow_rounded, color: MinikColors.green),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
@@ -746,13 +568,23 @@ class HomeQuickCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: item.title,
+      excludeSemantics: true,
+      child: _circle(),
+    );
+  }
+
+  Widget _circle() {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(item.image, width: 48, height: 48, fit: BoxFit.contain),
+          MinikImage.asset(item.image,
+              width: 48, height: 48, fit: BoxFit.contain),
           const SizedBox(height: 5),
           Text(
             item.title,

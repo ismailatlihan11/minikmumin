@@ -100,8 +100,9 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor:
-          widget.formsFocus ? const Color(0xFFF5EEDC) : const Color(0xFFF4F7F2),
+      backgroundColor: widget.formsFocus
+          ? MinikColors.of(const Color(0xFFF5EEDC), const Color(0xFF373121))
+          : MinikColors.background,
       appBar: AppBar(
         title: Text(
           widget.pack.titleForLevel(
@@ -162,9 +163,7 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
                     TextButton.icon(
                       onPressed: _toggleOrder,
                       icon: Icon(
-                        _shuffled
-                            ? Icons.sort_rounded
-                            : Icons.shuffle_rounded,
+                        _shuffled ? Icons.sort_rounded : Icons.shuffle_rounded,
                         size: 20,
                       ),
                       label: Text(_shuffled ? 'Sıraya diz' : 'Karıştır'),
@@ -174,8 +173,7 @@ class _QuranLearnLettersPageState extends State<QuranLearnLettersPage> {
                       ),
                     ),
                     TextButton.icon(
-                      onPressed: () =>
-                          setState(() => _showNames = !_showNames),
+                      onPressed: () => setState(() => _showNames = !_showNames),
                       icon: Icon(
                         _showNames
                             ? Icons.visibility_off_rounded
@@ -266,7 +264,8 @@ class QuranLearnLetterDetailPage extends StatefulWidget {
       _QuranLearnLetterDetailPageState();
 }
 
-class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage> {
+class _QuranLearnLetterDetailPageState
+    extends State<QuranLearnLetterDetailPage> {
   final _audio = AudioPlayerService();
 
   QuranArabicLetter get letter => widget.letter;
@@ -301,7 +300,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
           ? '${letter.name} harfinin şekillerini öğrendin.'
           : '${letter.name} harfini öğrendin.',
       onContinue: () {
-        final index = widget.pack.letters.indexWhere((item) => item.id == letter.id);
+        final index =
+            widget.pack.letters.indexWhere((item) => item.id == letter.id);
         if (index >= 0 && index + 1 < widget.pack.letters.length) {
           Navigator.pushReplacement(
             context,
@@ -343,7 +343,7 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
             ],
           ];
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(letter.name),
         actions: [
@@ -417,7 +417,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                   if (letter.isHeavySound) ...[
                     const SizedBox(height: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
                         color: MinikColors.peach,
                         borderRadius: BorderRadius.circular(99),
@@ -455,7 +456,8 @@ class _QuranLearnLetterDetailPageState extends State<QuranLearnLetterDetailPage>
                     context,
                     arabic: forms[i].$2,
                     title: '${letter.name} · ${forms[i].$1}',
-                    prompt: '${letter.name} harfinin ${forms[i].$1.toLowerCase()} biçimini boya.',
+                    prompt:
+                        '${letter.name} harfinin ${forms[i].$1.toLowerCase()} biçimini boya.',
                     audio: letter.audio,
                   ),
                 ),
@@ -507,14 +509,20 @@ class _ElifbaFormsLesson extends StatelessWidget {
   final ValueChanged<QuranArabicLetter> onListen;
   final ValueChanged<QuranArabicLetter> onLongPress;
 
-  List<QuranArabicLetter> get _thin =>
-      [for (final letter in letters) if (!letter.isHeavySound) letter];
+  List<QuranArabicLetter> get _thin => [
+        for (final letter in letters)
+          if (!letter.isHeavySound) letter
+      ];
 
-  List<QuranArabicLetter> get _heavy =>
-      [for (final letter in letters) if (letter.isHeavySound) letter];
+  List<QuranArabicLetter> get _heavy => [
+        for (final letter in letters)
+          if (letter.isHeavySound) letter
+      ];
 
-  List<QuranArabicLetter> get _lisp =>
-      [for (final letter in letters) if (letter.isLispSound) letter];
+  List<QuranArabicLetter> get _lisp => [
+        for (final letter in letters)
+          if (letter.isLispSound) letter
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -523,14 +531,15 @@ class _ElifbaFormsLesson extends StatelessWidget {
       children: [
         QlSoftProgress(value: progressValue, label: progressLabel),
         const SizedBox(height: 14),
-        const Text(
+        Text(
           'Harfler ve Şekilleri',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 22,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF3A332C),
+            color: MinikColors.of(
+                const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
           ),
         ),
         const SizedBox(height: 10),
@@ -538,11 +547,12 @@ class _ElifbaFormsLesson extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
           decoration: BoxDecoration(
-            color: const Color(0xFFE6DBC5),
+            color: MinikColors.of(
+                const Color(0xFFE6DBC5), const Color(0xFF40392C)),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: const Color(0xFFC4B79A)),
           ),
-          child: const Text(
+          child: Text(
             'Harf kelimenin başına, ortasına ve sonuna göre değişir. Önce tabloya bak, sonra slaytta büyüt.',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -550,7 +560,8 @@ class _ElifbaFormsLesson extends StatelessWidget {
               fontSize: 13,
               height: 1.4,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF3A332C),
+              color: MinikColors.of(
+                  const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
             ),
           ),
         ),
@@ -619,11 +630,12 @@ class _FormsGroup extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 16,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF3A332C),
+            color: MinikColors.of(
+                const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
           ),
         ),
         const SizedBox(height: 10),
@@ -664,7 +676,8 @@ class _FormsTable extends StatelessWidget {
   final ValueChanged<QuranArabicLetter> onListen;
   final ValueChanged<QuranArabicLetter> onLongPress;
 
-  static const _border = Color(0xFF5C5346);
+  static Color get _border =>
+      MinikColors.of(const Color(0xFF5C5346), const Color(0xFFCFC8BF));
   static const _header = Color(0xFFD9CDB3);
 
   @override
@@ -692,15 +705,18 @@ class _FormsTable extends StatelessWidget {
           for (final letter in letters)
             Material(
               color: snap?.isDone(progressKind, letter.id) == true
-                  ? const Color(0xFFE8F3E4)
+                  ? MinikColors.of(
+                      const Color(0xFFE8F3E4), const Color(0xFF273223))
                   : selectedId == letter.id
-                      ? const Color(0xFFE6DBC5)
-                      : const Color(0xFFF8F3E6),
+                      ? MinikColors.of(
+                          const Color(0xFFE6DBC5), const Color(0xFF40392C))
+                      : MinikColors.of(
+                          const Color(0xFFF8F3E6), const Color(0xFF342E1F)),
               child: InkWell(
                 onTap: () => onListen(letter),
                 onLongPress: () => onLongPress(letter),
                 child: Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     border: Border(
                       top: BorderSide(color: _border, width: 0.6),
                     ),
@@ -738,11 +754,11 @@ class _FormsHead extends StatelessWidget {
     return Text(
       label,
       textAlign: TextAlign.center,
-      style: const TextStyle(
+      style: TextStyle(
         fontFamily: 'NotoSans',
         fontSize: 11,
         fontWeight: FontWeight.w800,
-        color: Color(0xFF3A332C),
+        color: MinikColors.of(const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
       ),
     );
   }
@@ -763,7 +779,10 @@ class _FormsGlyph extends StatelessWidget {
         child: QlBigArabic(
           arabic,
           fontSize: 26,
-          color: heavy ? QlDashTile.heavyLetter : const Color(0xFF1A1A1A),
+          color: heavy
+              ? QlDashTile.heavyLetter
+              : MinikColors.of(
+                  const Color(0xFF1A1A1A), const Color(0xFFD5D5D5)),
         ),
       ),
     );
@@ -828,8 +847,9 @@ class _FormsSliderState extends State<_FormsSlider> {
   @override
   Widget build(BuildContext context) {
     final letter = _letter;
-    final arabicColor =
-        letter.isHeavySound ? QlDashTile.heavyLetter : const Color(0xFF1A1A1A);
+    final arabicColor = letter.isHeavySound
+        ? QlDashTile.heavyLetter
+        : MinikColors.of(const Color(0xFF1A1A1A), const Color(0xFFD5D5D5));
     return Column(
       children: [
         Row(
@@ -843,10 +863,11 @@ class _FormsSliderState extends State<_FormsSlider> {
               child: Text(
                 '${_index + 1} / ${widget.letters.length}',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'NotoSans',
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF3A332C),
+                  color: MinikColors.of(
+                      const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
                 ),
               ),
             ),
@@ -866,7 +887,8 @@ class _FormsSliderState extends State<_FormsSlider> {
                   child: Material(
                     color: _slot == i
                         ? const Color(0xFFD9CDB3)
-                        : const Color(0xFFF8F3E6),
+                        : MinikColors.of(
+                            const Color(0xFFF8F3E6), const Color(0xFF342E1F)),
                     borderRadius: BorderRadius.circular(8),
                     child: InkWell(
                       onTap: () {
@@ -884,7 +906,8 @@ class _FormsSliderState extends State<_FormsSlider> {
                             fontSize: 12,
                             fontWeight: FontWeight.w800,
                             color: _slot == i
-                                ? const Color(0xFF3A332C)
+                                ? MinikColors.of(const Color(0xFF3A332C),
+                                    const Color(0xFFD5CFC8))
                                 : MinikColors.textMuted,
                           ),
                         ),
@@ -897,7 +920,8 @@ class _FormsSliderState extends State<_FormsSlider> {
         ),
         const SizedBox(height: 8),
         Material(
-          color: const Color(0xFFE6DBC5),
+          color:
+              MinikColors.of(const Color(0xFFE6DBC5), const Color(0xFF40392C)),
           borderRadius: BorderRadius.circular(10),
           child: InkWell(
             onTap: () => widget.onListen(letter),
@@ -908,7 +932,10 @@ class _FormsSliderState extends State<_FormsSlider> {
               padding: const EdgeInsets.symmetric(vertical: 18),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xFF5C5346), width: 0.9),
+                border: Border.all(
+                    color: MinikColors.of(
+                        const Color(0xFF5C5346), const Color(0xFFCFC8BF)),
+                    width: 0.9),
               ),
               child: Column(
                 children: [
@@ -916,11 +943,12 @@ class _FormsSliderState extends State<_FormsSlider> {
                   const SizedBox(height: 6),
                   Text(
                     letter.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'NotoSans',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF3A332C),
+                      color: MinikColors.of(
+                          const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
                     ),
                   ),
                 ],

@@ -17,7 +17,6 @@ class GamesPage extends StatelessWidget {
             const PageHeader(
               title: 'Oyunlar',
               subtitle: 'Öğrendiklerini eğlenerek pekiştir.',
-              image: 'assets/images/home/mini_quiz.png',
             ),
             KidGamesList(games: kidGames()),
           ],

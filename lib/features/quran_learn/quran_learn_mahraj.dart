@@ -25,7 +25,7 @@ class QuranLearnMahrajPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final store = context.watch<LocalProgressStore>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(pack.titleForLevel(levelId, fallback: 'Mahreçler')),
       ),
@@ -100,7 +100,8 @@ class QuranLearnMahrajDetailPage extends StatefulWidget {
       _QuranLearnMahrajDetailPageState();
 }
 
-class _QuranLearnMahrajDetailPageState extends State<QuranLearnMahrajDetailPage> {
+class _QuranLearnMahrajDetailPageState
+    extends State<QuranLearnMahrajDetailPage> {
   final _audio = AudioPlayerService();
 
   @override
@@ -140,7 +141,7 @@ class _QuranLearnMahrajDetailPageState extends State<QuranLearnMahrajDetailPage>
         if (widget.pack.letterById(id) != null) widget.pack.letterById(id)!,
     ];
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: Text(widget.group.title)),
       body: ListView(
         padding: AppSpacing.page,

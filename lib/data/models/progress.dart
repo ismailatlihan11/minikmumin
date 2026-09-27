@@ -33,51 +33,6 @@ class Achievement {
       };
 }
 
-class UserProgress {
-  const UserProgress({
-    this.nickname = '',
-    this.ageGroup = '',
-    this.xp = 0,
-    this.onboardingDone = false,
-    this.completedLessons = const [],
-    this.learnedDuas = const [],
-    this.badges = const [],
-  });
-
-  final String nickname;
-  final String ageGroup;
-  final int xp;
-  final bool onboardingDone;
-  final List<String> completedLessons;
-  final List<String> learnedDuas;
-  final List<String> badges;
-
-  Map<String, dynamic> toJson() => {
-        'nickname': nickname,
-        'ageGroup': ageGroup,
-        'xp': xp,
-        'onboardingDone': onboardingDone,
-        'completedLessons': completedLessons,
-        'learnedDuas': learnedDuas,
-        'badges': badges,
-      };
-
-  factory UserProgress.fromJson(Map<String, dynamic> json) {
-    List<String> strings(dynamic value) => value is List
-        ? value.map((e) => e.toString()).toList(growable: false)
-        : const [];
-    return UserProgress(
-      nickname: JsonMap.str(json['nickname']),
-      ageGroup: JsonMap.str(json['ageGroup']),
-      xp: JsonMap.integer(json['xp']),
-      onboardingDone: JsonMap.flag(json['onboardingDone']),
-      completedLessons: strings(json['completedLessons']),
-      learnedDuas: strings(json['learnedDuas']),
-      badges: strings(json['badges']),
-    );
-  }
-}
-
 class AyetulKursi {
   const AyetulKursi({
     required this.id,

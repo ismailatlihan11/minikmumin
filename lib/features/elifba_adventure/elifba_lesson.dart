@@ -128,7 +128,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     final steps = _steps;
     final current = steps[_step.clamp(0, steps.length - 1)];
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F3EA),
+      backgroundColor: MinikColors.cream,
       appBar: AppBar(
         title: Text('Ders ${widget.pack.orderOf(lesson.id)}'),
         actions: [
@@ -287,7 +287,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ElifbaSoftCard(
                     color: MinikColors.butter,
-                    child: Text(lesson.importantNote, textAlign: TextAlign.center),
+                    child:
+                        Text(lesson.importantNote, textAlign: TextAlign.center),
                   ),
                 ),
               for (final item in lesson.specialLetters)
@@ -468,7 +469,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
         // Oyun tek harf üzerinden gider; hedef okunuş o harfin ince/kalın
         // durumuna göre üretilir (بَ → be).
         const dragLetter = 'ب';
-        final target = ElifbaReading.of(dragLetter, rule.symbol, withTag: false);
+        final target =
+            ElifbaReading.of(dragLetter, rule.symbol, withTag: false);
         steps.add(
           _FlowStep(
             cue: '$target sesi için harekeyi sürükle.',
@@ -693,10 +695,12 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           ),
         ),
       );
-      final wordLike = lesson.examples.where((e) => e.focus.isNotEmpty).toList();
+      final wordLike =
+          lesson.examples.where((e) => e.focus.isNotEmpty).toList();
       if (wordLike.isNotEmpty &&
           (lesson.title.toLowerCase().contains('kelime') ||
-              lesson.examples.any((e) => e.reading.isNotEmpty && e.focus.isNotEmpty))) {
+              lesson.examples
+                  .any((e) => e.reading.isNotEmpty && e.focus.isNotEmpty))) {
         steps.add(
           _FlowStep(
             cue: 'Kelimenin içinde hangi kural var?',
@@ -1274,7 +1278,12 @@ class ElifbaFinalRooms extends StatefulWidget {
 }
 
 class _ElifbaFinalRoomsState extends State<ElifbaFinalRooms> {
-  static const _rooms = ['Harf Odası', 'Hareke Odası', 'Okuma Odası', 'Tecvid Odası'];
+  static const _rooms = [
+    'Harf Odası',
+    'Hareke Odası',
+    'Okuma Odası',
+    'Tecvid Odası'
+  ];
   var _room = 0;
   var _correct = 0;
 

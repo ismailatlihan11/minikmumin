@@ -36,21 +36,21 @@ List<KidGame> kidGames() {
       title: 'Harfleri Boya',
       blurb: 'Parmağınla boya',
       icon: Icons.palette_rounded,
-      color: const Color(0xFFF8E4D0),
+      color: MinikColors.peach,
       open: (context) => _push(context, const QuranLearnColorHubPage()),
     ),
     KidGame(
       title: 'Harf Eşleştir',
       blurb: 'Kolay, orta, zor',
       icon: Icons.grid_view_rounded,
-      color: const Color(0xFFD5E8F6),
+      color: MinikColors.sky,
       open: (context) => _push(context, const QuranLearnMemoryPage()),
     ),
     KidGame(
       title: 'Harfi Bul',
       blurb: 'Söylenen harfi seç',
       icon: Icons.search_rounded,
-      color: const Color(0xFFD8EFE4),
+      color: MinikColors.mint,
       open: (context) => _push(
         context,
         ChoiceRoundPage(
@@ -80,7 +80,7 @@ List<KidGame> kidGames() {
       title: 'Sesini Bul',
       blurb: 'Harekeyi tanı',
       icon: Icons.hearing_rounded,
-      color: const Color(0xFFF7EBC4),
+      color: MinikColors.butter,
       open: (context) => _push(
         context,
         ChoiceRoundPage(
@@ -114,14 +114,14 @@ List<KidGame> kidGames() {
       title: 'Kelimeyi Kur',
       blurb: 'Harfleri birleştir',
       icon: Icons.extension_rounded,
-      color: const Color(0xFFE6E0F4),
+      color: MinikColors.lavender,
       open: (context) => _push(context, const CombineWordGamePage()),
     ),
     KidGame(
       title: 'Abdest Sırası',
       blurb: 'Adımları sıraya koy',
       icon: Icons.water_drop_rounded,
-      color: const Color(0xFFD7E7E6),
+      color: MinikColors.pastelBlue,
       open: (context) => _push(
         context,
         OrderGamePage(
@@ -138,7 +138,7 @@ List<KidGame> kidGames() {
       title: 'Namaz Sırası',
       blurb: 'Namazı adım adım diz',
       icon: Icons.mosque_rounded,
-      color: const Color(0xFFFFF1C2),
+      color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
       open: (context) => _push(
         context,
         OrderGamePage(
@@ -155,14 +155,14 @@ List<KidGame> kidGames() {
       title: 'Zikirleri Topla',
       blurb: 'Meali oku, zikri seç',
       icon: Icons.favorite_rounded,
-      color: const Color(0xFFF6DDE3),
+      color: MinikColors.blush,
       open: (context) => _push(context, const ZikrCollectPage()),
     ),
     KidGame(
       title: 'Esma Eşleştir',
       blurb: 'Güzel isimleri tanı',
       icon: Icons.auto_awesome_rounded,
-      color: const Color(0xFFD8EFE4),
+      color: MinikColors.mint,
       open: (context) => _push(
         context,
         ChoiceRoundPage(
@@ -194,7 +194,7 @@ List<KidGame> kidGames() {
       title: 'Dua Kartı',
       blurb: 'Duanın adını seç',
       icon: Icons.menu_book_rounded,
-      color: const Color(0xFFF8E4D0),
+      color: MinikColors.peach,
       open: (context) => _push(
         context,
         ChoiceRoundPage(
@@ -439,7 +439,7 @@ List<KidGame> kidGames() {
       title: 'Sureyi Tanı',
       blurb: 'Sure ismini seç',
       icon: Icons.menu_book_outlined,
-      color: const Color(0xFFFFF1C2),
+      color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
       open: (context) => _push(
         context,
         ChoiceRoundPage(

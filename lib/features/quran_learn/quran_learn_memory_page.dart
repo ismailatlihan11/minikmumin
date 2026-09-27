@@ -82,13 +82,14 @@ class _QuranLearnMemoryPageState extends State<QuranLearnMemoryPage> {
   Widget build(BuildContext context) {
     _future ??= context.read<ContentRepositories>().quranLearning.load();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: const Text('Harf Eşleştir')),
       body: AsyncBody<QuranLearningPack>(
         future: _future!,
         errorMessage: "Kur'an Öğren içeriği yüklenemedi.",
         onRetry: () => setState(
-          () => _future = context.read<ContentRepositories>().quranLearning.load(),
+          () => _future =
+              context.read<ContentRepositories>().quranLearning.load(),
         ),
         builder: (pack) => _MemoryBoard(pack: pack),
       ),
@@ -219,7 +220,7 @@ class _MemoryBoardState extends State<_MemoryBoard> {
         color: card.matched
             ? MinikColors.mint
             : open
-                ? Colors.white
+                ? MinikColors.card
                 : MinikColors.sky,
         padding: const EdgeInsets.all(4),
         onTap: () => _tap(index),

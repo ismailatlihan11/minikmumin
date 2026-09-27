@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/theme/app_colors.dart';
 import 'prayer_catalog_view.dart';
 
 class PrayerPage extends StatelessWidget {
@@ -8,7 +9,8 @@ class PrayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F6F8),
+      backgroundColor:
+          MinikColors.of(const Color(0xFFF3F6F8), const Color(0xFF21272A)),
       body: SafeArea(
         child: PrayerCatalogView(
           onBack: () => Navigator.pop(context),

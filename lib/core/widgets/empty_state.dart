@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_spacing.dart';
+import '../../shared/widgets/minik_image.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({
@@ -20,7 +21,7 @@ class EmptyState extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(
+            MinikImage.asset(
               'assets/images/home/empty_favorites.png',
               height: 96,
               errorBuilder: (_, __, ___) => const Icon(Icons.inbox_rounded, size: 56),

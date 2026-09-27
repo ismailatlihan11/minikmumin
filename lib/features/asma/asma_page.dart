@@ -10,6 +10,7 @@ import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/listen_button.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 
 class AsmaPage extends StatefulWidget {
@@ -30,16 +31,18 @@ class _AsmaPageState extends State<AsmaPage> {
       appBar: AppBar(title: const Text('Esmaül Hüsna')),
       body: AsyncBody<List<AsmaulHusna>>(
         future: _future!,
-        onRetry: () => setState(() => _future = repos.asma.getAll()),
+        onRetry: () => setState(() {
+          _future = repos.asma.getAll();
+        }),
         builder: (items) => ListView.builder(
           padding: AppSpacing.page,
           itemCount: items.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return const Padding(
-                padding: EdgeInsets.only(bottom: 16),
-                child: Image(
-                  image: AssetImage('assets/images/duas/asma.png'),
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: MinikImage.asset(
+                  'assets/images/duas/asma.png',
                   height: 140,
                   fit: BoxFit.contain,
                 ),
@@ -107,9 +110,11 @@ class _AsmaDetailPageState extends State<AsmaDetailPage> {
           ListenButton(audio: _audio, path: item.audio),
         ],
         const SizedBox(height: AppSpacing.md),
-        SelectableText(item.meaning, style: Theme.of(context).textTheme.headlineMedium),
+        SelectableText(item.meaning,
+            style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: AppSpacing.sm),
-        SelectableText(item.childExplanation, style: Theme.of(context).textTheme.bodyLarge),
+        SelectableText(item.childExplanation,
+            style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: AppSpacing.md),
         CopyTextButton(
           text: joinCopyParts([

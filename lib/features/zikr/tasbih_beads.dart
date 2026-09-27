@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../app/theme/app_colors.dart';
+
 class TasbihBeadsView extends StatefulWidget {
   const TasbihBeadsView({
     super.key,
@@ -61,15 +63,27 @@ class _TasbihBeadsViewState extends State<TasbihBeadsView> {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
-                border: Border.all(color: const Color(0xFFC4A36A), width: 2),
-                gradient: const LinearGradient(
+                border: Border.all(
+                  color: MinikColors.of(
+                    const Color(0xFFC4A36A),
+                    const Color(0xFF8A7148),
+                  ),
+                  width: 2,
+                ),
+                gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFF6E7C8),
-                    Color(0xFFE8D0A0),
-                    Color(0xFFD9C08A),
-                  ],
+                  colors: MinikColors.isDark
+                      ? const [
+                          Color(0xFF3E3324),
+                          Color(0xFF35291B),
+                          Color(0xFF2C2216),
+                        ]
+                      : const [
+                          Color(0xFFF6E7C8),
+                          Color(0xFFE8D0A0),
+                          Color(0xFFD9C08A),
+                        ],
                 ),
                 boxShadow: const [
                   BoxShadow(
@@ -88,9 +102,7 @@ class _TasbihBeadsViewState extends State<TasbihBeadsView> {
                   builder: (context, open, _) {
                     return TweenAnimationBuilder<double>(
                       tween: Tween<double>(begin: 0, end: drawn.toDouble()),
-                      duration: _animate &&
-                              open >= 0.98 &&
-                              widget.burst <= 0.05
+                      duration: _animate && open >= 0.98 && widget.burst <= 0.05
                           ? const Duration(milliseconds: 280)
                           : Duration.zero,
                       curve: Curves.easeOutCubic,
@@ -168,6 +180,7 @@ class _TesbihPainter extends CustomPainter {
   final int firstNumber;
   final int maxNumber;
   final double slide;
+
   /// 0 = kapalı (taneler imameye yığılmış), 1 = açık halka.
   final double open;
 
@@ -184,7 +197,8 @@ class _TesbihPainter extends CustomPainter {
     final ry = fullRy * scale;
     final radius = _beadRadius(fullRx, fullRy, beadCount);
     final imameR = radius * 1.55;
-    final gap = ((imameR * 0.72 + radius * 0.95) / fullRx * 2).clamp(0.28, 0.58);
+    final gap =
+        ((imameR * 0.72 + radius * 0.95) / fullRx * 2).clamp(0.28, 0.58);
     final start = math.pi / 2 + gap / 2;
     final sweep = 2 * math.pi - gap;
     final pulledN = pulled.clamp(0.0, beadCount.toDouble());
@@ -253,8 +267,9 @@ class _TesbihPainter extends CustomPainter {
         if (remainCount <= 1) {
           packed = start + packedEnd + remainSweep * 0.5;
         } else {
-          packed =
-              start + packedEnd + (i - pulled) / (remainCount - 1) * remainSweep;
+          packed = start +
+              packedEnd +
+              (i - pulled) / (remainCount - 1) * remainSweep;
         }
       }
     }
@@ -314,7 +329,10 @@ void _drawRope(
   canvas.drawPath(
     base,
     Paint()
-      ..color = const Color(0xFF4A2E14)
+      ..color = MinikColors.of(
+        const Color(0xFF4A2E14),
+        const Color(0xFF9A7A50),
+      )
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.4
       ..strokeCap = StrokeCap.round,
@@ -366,7 +384,8 @@ void _paintTesbihBead(
   bool fingerprint = false,
   bool smile = false,
 }) {
-  final body = dimmed ? Color.lerp(color, const Color(0xFF7A5A38), 0.35)! : color;
+  final body =
+      dimmed ? Color.lerp(color, const Color(0xFF7A5A38), 0.35)! : color;
   const highlight = Color(0xFFFFE3B0);
   const shade = Color(0xFF3A1C08);
   const rim = Color(0xFF2A1608);
@@ -374,7 +393,8 @@ void _paintTesbihBead(
   canvas.translate(c.dx, c.dy);
   canvas.rotate(angle + math.pi / 2);
   canvas.drawOval(
-    Rect.fromCenter(center: const Offset(1.4, 2.4), width: r * 1.35, height: r * 1.9),
+    Rect.fromCenter(
+        center: const Offset(1.4, 2.4), width: r * 1.35, height: r * 1.9),
     Paint()..color = const Color(0x33000000),
   );
   final oval = Rect.fromCenter(
@@ -397,14 +417,16 @@ void _paintTesbihBead(
       ).createShader(oval),
   );
   canvas.drawOval(
-    Rect.fromCenter(center: const Offset(0, 0.4), width: r * 0.95, height: r * 1.45),
+    Rect.fromCenter(
+        center: const Offset(0, 0.4), width: r * 0.95, height: r * 1.45),
     Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.7
       ..color = Color.lerp(body, shade, 0.35)!.withValues(alpha: 0.35),
   );
   canvas.drawOval(
-    Rect.fromCenter(center: const Offset(0, -0.2), width: r * 0.55, height: r * 1.1),
+    Rect.fromCenter(
+        center: const Offset(0, -0.2), width: r * 0.55, height: r * 1.1),
     Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.55
@@ -524,7 +546,12 @@ void _drawNumber(
   required bool pulled,
 }) {
   final digits = number.toString().length;
-  final fontSize = (r * (digits == 1 ? 0.92 : digits == 2 ? 0.72 : 0.52))
+  final fontSize = (r *
+          (digits == 1
+              ? 0.92
+              : digits == 2
+                  ? 0.72
+                  : 0.52))
       .clamp(6.0, 14.0);
   final painter = TextPainter(
     text: TextSpan(
@@ -579,7 +606,8 @@ void _drawSpark(Canvas canvas, Offset c, double s) {
 void _drawImame(Canvas canvas, Offset c, double r) {
   canvas.save();
   canvas.translate(c.dx, c.dy);
-  final oval = Rect.fromCenter(center: Offset.zero, width: r * 1.15, height: r * 2.05);
+  final oval =
+      Rect.fromCenter(center: Offset.zero, width: r * 1.15, height: r * 2.05);
   canvas.drawOval(
     oval.shift(const Offset(1.5, 3)),
     Paint()..color = const Color(0x33000000),
@@ -636,7 +664,8 @@ void _drawImame(Canvas canvas, Offset c, double r) {
         ..strokeCap = StrokeCap.round,
     );
   }
-  canvas.drawCircle(tasselTop, r * 0.22, Paint()..color = const Color(0xFFD4B36A));
+  canvas.drawCircle(
+      tasselTop, r * 0.22, Paint()..color = const Color(0xFFD4B36A));
   canvas.drawCircle(
     tasselTop,
     r * 0.22,
@@ -683,8 +712,11 @@ class _CelebratePainter extends CustomPainter {
       final rest = Offset(cx + rx * math.cos(angle), cy + ry * math.sin(angle));
       final rng = math.Random(i * 97 + 13);
       final fly = Offset(
-        math.cos(angle + rng.nextDouble() * 0.9) * (80 + rng.nextDouble() * 260),
-        math.sin(angle + rng.nextDouble() * 1.3) * (70 + rng.nextDouble() * 240) - t * 90,
+        math.cos(angle + rng.nextDouble() * 0.9) *
+            (80 + rng.nextDouble() * 260),
+        math.sin(angle + rng.nextDouble() * 1.3) *
+                (70 + rng.nextDouble() * 240) -
+            t * 90,
       );
       final center = rest + fly * t;
       final spin = (rng.nextDouble() * 5 - 2.5) * t * math.pi;
@@ -709,14 +741,16 @@ class _CelebratePainter extends CustomPainter {
     for (var i = 0; i < 28; i++) {
       final a = rng.nextDouble() * math.pi * 2;
       final dist = (50 + rng.nextDouble() * 240) * t;
-      final p = Offset(cx + math.cos(a) * dist, cy + math.sin(a) * dist - t * 40);
+      final p =
+          Offset(cx + math.cos(a) * dist, cy + math.sin(a) * dist - t * 40);
       final s = 3.0 + rng.nextDouble() * 5;
       canvas.drawCircle(
         p,
         s * (1 - t * 0.25),
         Paint()
-          ..color = (i.isEven ? const Color(0xFFFFE08A) : const Color(0xFF7DCEA0))
-              .withValues(alpha: (1 - t * 0.5).clamp(0.0, 1.0)),
+          ..color =
+              (i.isEven ? const Color(0xFFFFE08A) : const Color(0xFF7DCEA0))
+                  .withValues(alpha: (1 - t * 0.5).clamp(0.0, 1.0)),
       );
     }
   }

@@ -27,7 +27,7 @@ class _CombineWordGamePageState extends State<CombineWordGamePage> {
   Widget build(BuildContext context) {
     _future ??= context.read<ContentRepositories>().quranLearning.load();
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(title: const Text('Kelimeyi Kur')),
       body: AsyncBody<QuranLearningPack>(
         future: _future!,
@@ -138,7 +138,7 @@ class _CombinePlayState extends State<_CombinePlay> {
         if (_won) ...[
           const SizedBox(height: AppSpacing.lg),
           PrimaryButton(
-            label: _index + 1 >= widget.examples.length ? 'Tamam' : 'Devam Et',
+            label: _index + 1 >= widget.examples.length ? 'Tamam' : 'Devam et',
             onPressed: _next,
           ),
         ],

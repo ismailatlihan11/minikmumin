@@ -140,7 +140,8 @@ String quranLearnHarakatTeachLine(QuranHaraka haraka) {
   final rule = haraka.readingRule.trim();
   if (haraka.id != 'fatha') return rule;
   final hasEa = haraka.examples.any((item) => item.reading.contains('e / a'));
-  final hasHeavy = haraka.examples.any((item) => item.reading.contains('kalın'));
+  final hasHeavy =
+      haraka.examples.any((item) => item.reading.contains('kalın'));
   if (hasEa && hasHeavy) {
     return "$rule İnce harfleri 'e' sesine yakın, kalın harfleri 'a' sesine yakın okutur.";
   }
@@ -230,7 +231,8 @@ String quranLearnShaddaReading(String hareke) {
   }
 }
 
-List<QuranArabicLetter> quranLearnSukunLetters(List<QuranArabicLetter> letters) {
+List<QuranArabicLetter> quranLearnSukunLetters(
+    List<QuranArabicLetter> letters) {
   return [
     for (final letter in letters)
       if (quranLearnIsSukunLetter(letter)) letter,
@@ -310,7 +312,8 @@ class QlPracticeTable extends StatelessWidget {
                           caption: item.letter.name,
                         ),
                       ),
-                      Icon(Icons.arrow_forward_rounded, color: MinikColors.gold),
+                      Icon(Icons.arrow_forward_rounded,
+                          color: MinikColors.gold),
                       Expanded(
                         child: _PracticeCell(
                           audio: audio,
@@ -437,8 +440,9 @@ class QlPracticeGrid extends StatelessWidget {
             heavy: item.letter.isHeavySound,
             fontSize: fontSize,
             fillColor: checkerboard && index.isOdd
-                ? const Color(0xFFEAF4F8)
-                : Colors.white,
+                ? MinikColors.of(
+                    const Color(0xFFEAF4F8), const Color(0xFF1F2C31))
+                : MinikColors.card,
             onTap: QuranLearnAudio.resolve(item.audio) == null
                 ? null
                 : () => QuranLearnAudio.play(audio, store, item.audio),
@@ -483,7 +487,7 @@ class QlSukunTripletGrid extends StatelessWidget {
             arabic: quranLearnSukunTriplet(letter),
             heavy: letter.isHeavySound,
             fontSize: 15,
-            fillColor: index.isOdd ? const Color(0xFFF7EBC4) : Colors.white,
+            fillColor: index.isOdd ? MinikColors.butter : MinikColors.card,
             onTap: QuranLearnAudio.resolve(audioPath) == null
                 ? null
                 : () => QuranLearnAudio.play(audio, store, audioPath),
@@ -530,52 +534,16 @@ class QlExampleListenGrid extends StatelessWidget {
             arabic: example.arabic,
             caption: example.reading,
             fontSize: 22,
-            fillColor: index.isOdd ? const Color(0xFFEAF4F8) : Colors.white,
+            fillColor: index.isOdd
+                ? MinikColors.of(
+                    const Color(0xFFEAF4F8), const Color(0xFF1F2C31))
+                : MinikColors.card,
             onTap: QuranLearnAudio.resolve(example.audio) == null
                 ? null
                 : () => QuranLearnAudio.play(audio, store, example.audio),
           );
         },
       ),
-    );
-  }
-}
-
-class QlPracticeSection extends StatelessWidget {
-  const QlPracticeSection({
-    super.key,
-    required this.audio,
-    required this.letters,
-    required this.harakaId,
-    this.examples = const [],
-  });
-
-  final AudioPlayerService audio;
-  final List<QuranArabicLetter> letters;
-  final String harakaId;
-  final List<QuranHarakaExample> examples;
-
-  @override
-  Widget build(BuildContext context) {
-    if (harakaId == 'sukun') {
-      return QlSukunTripletGrid(audio: audio, letters: letters);
-    }
-    final items = quranLearnPracticeItems(letters: letters, harakaId: harakaId);
-    if (items.isEmpty && examples.isEmpty) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        if (examples.isNotEmpty) ...[
-          QlExampleListenGrid(audio: audio, examples: examples),
-          const SizedBox(height: 10),
-        ],
-        QlPracticeGrid(
-          audio: audio,
-          items: items,
-          columns: harakaId == 'shadda' ? 4 : 5,
-          fontSize: harakaId == 'shadda' ? 24 : 22,
-        ),
-      ],
     );
   }
 }
@@ -627,11 +595,11 @@ class QlJoinEquation extends StatelessWidget {
       );
     }
 
-    const opStyle = TextStyle(
+    final opStyle = TextStyle(
       fontFamily: 'NotoSans',
       fontSize: 22,
       fontWeight: FontWeight.w800,
-      color: Color(0xFF3A332C),
+      color: MinikColors.of(const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
     );
     return Column(
       children: [
@@ -640,12 +608,12 @@ class QlJoinEquation extends StatelessWidget {
           child: Row(
             children: [
               tile(left),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6),
                 child: Text('+', style: opStyle),
               ),
               tile(right),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6),
                 child: Text('=', style: opStyle),
               ),
@@ -707,9 +675,7 @@ class QlThreeHarekeRow extends StatelessWidget {
                   arabic: glyphs[i],
                   caption: i < captions.length ? captions[i] : null,
                   fontSize: 26,
-                  fillColor: i.isOdd
-                      ? const Color(0xFFF7EBC4)
-                      : Colors.white,
+                  fillColor: i.isOdd ? MinikColors.butter : MinikColors.card,
                   onTap: QuranLearnAudio.resolve(
                             i < audios.length ? audios[i] : null,
                           ) ==
@@ -750,7 +716,8 @@ class QlWordListenList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Material(
-              color: const Color(0xFFE6DBC5),
+              color: MinikColors.of(
+                  const Color(0xFFE6DBC5), const Color(0xFF40392C)),
               borderRadius: BorderRadius.circular(10),
               child: InkWell(
                 onTap: QuranLearnAudio.resolve(words[i].audio) == null
@@ -767,7 +734,8 @@ class QlWordListenList extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
-                      color: const Color(0xFF5C5346),
+                      color: MinikColors.of(
+                          const Color(0xFF5C5346), const Color(0xFFCFC8BF)),
                       width: 0.9,
                     ),
                   ),
@@ -776,7 +744,8 @@ class QlWordListenList extends StatelessWidget {
                       QlBigArabic(
                         words[i].arabic,
                         fontSize: 36,
-                        color: const Color(0xFF3A332C),
+                        color: MinikColors.of(
+                            const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
                       ),
                       if (words[i].reading.trim().isNotEmpty) ...[
                         const SizedBox(height: 4),
@@ -846,14 +815,15 @@ class QlCezmKavrama extends StatelessWidget {
           result: QlJoinPart(arabic: 'أَبْ', audio: joinFatha),
         ),
         const SizedBox(height: 12),
-        const Text(
+        Text(
           'Üç hareke',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 15,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF3A332C),
+            color: MinikColors.of(
+                const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
           ),
         ),
         const SizedBox(height: 8),
@@ -921,14 +891,15 @@ class QlShaddaKavrama extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const Text(
+        Text(
           'Üç hareke',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'NotoSans',
             fontSize: 15,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF3A332C),
+            color: MinikColors.of(
+                const Color(0xFF3A332C), const Color(0xFFD5CFC8)),
           ),
         ),
         const SizedBox(height: 8),

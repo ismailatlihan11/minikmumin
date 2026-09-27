@@ -13,6 +13,7 @@ import '../../data/models/interactive_lesson.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/lesson_motion_image.dart';
+import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import 'wudu_catalog_view.dart';
 import 'wudu_controller.dart';
@@ -43,9 +44,11 @@ class _WuduFlowView extends StatelessWidget {
         controller.error == null &&
         controller.phase == WuduPhase.intro;
     return Scaffold(
-      appBar: hideAppBar ? null : AppBar(
-        title: Text(controller.lesson?.title ?? 'Abdest'),
-      ),
+      appBar: hideAppBar
+          ? null
+          : AppBar(
+              title: Text(controller.lesson?.title ?? 'Abdest'),
+            ),
       body: hideAppBar
           ? _buildBody(context, controller)
           : SafeArea(child: _buildBody(context, controller)),
@@ -114,7 +117,8 @@ class _LearnView extends StatelessWidget {
               children: [
                 _StepImage(path: WuduPresentation.imageFor(step)),
                 const SizedBox(height: AppSpacing.md),
-                Text(step.title, style: Theme.of(context).textTheme.headlineMedium),
+                Text(step.title,
+                    style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   WuduPresentation.promptFor(step),
@@ -181,7 +185,8 @@ class _PracticeView extends StatelessWidget {
               Expanded(
                 child: ListView.separated(
                   itemCount: controller.choices.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
+                  separatorBuilder: (_, __) =>
+                      const SizedBox(height: AppSpacing.sm),
                   itemBuilder: (context, index) {
                     final choice = controller.choices[index];
                     return _ChoiceCard(
@@ -203,7 +208,7 @@ class _PracticeView extends StatelessWidget {
                 ? controller.advance
                 : controller.retryPractice,
             continueLabel:
-                controller.lastCorrect == true ? 'Devam Et' : 'Tekrar Dene',
+                controller.lastCorrect == true ? 'Devam et' : 'Tekrar dene',
           ),
       ],
     );
@@ -220,7 +225,7 @@ class _ResultView extends StatelessWidget {
     return ListView(
       padding: AppSpacing.page,
       children: [
-        Image.asset(
+        MinikImage.asset(
           'assets/images/home/success.png',
           height: 140,
           errorBuilder: (_, __, ___) => Icon(
@@ -243,7 +248,8 @@ class _ResultView extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           MinikCard(
             color: MinikColors.butter,
-            child: Text('+${controller.earnedXp} XP', style: Theme.of(context).textTheme.headlineMedium),
+            child: Text('+${controller.earnedXp} XP',
+                style: Theme.of(context).textTheme.headlineMedium),
           ),
         ],
         if (controller.awardedNewBadge) ...[
@@ -274,7 +280,7 @@ class _ResultView extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.sm),
         SecondaryButton(
-          label: 'Öğrenmeye Dön',
+          label: 'Öğrenmeye dön',
           onPressed: () => Navigator.pop(context),
         ),
       ],
@@ -335,7 +341,7 @@ class _ChoiceCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(AppRadius.sm),
-                  child: Image.asset(
+                  child: MinikImage.asset(
                     WuduPresentation.imageFor(step),
                     width: 88,
                     height: 64,

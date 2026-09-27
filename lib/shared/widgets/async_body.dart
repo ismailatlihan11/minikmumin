@@ -64,7 +64,7 @@ class DetailScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return MinikTheme.themed(
       Scaffold(
-        backgroundColor: const Color(0xFFF4F7F2),
+        backgroundColor: MinikColors.background,
         appBar: AppBar(title: Text(title), actions: actions),
         body: SelectionArea(
           child: DefaultTextStyle.merge(

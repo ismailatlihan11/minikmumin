@@ -149,7 +149,7 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
   Widget build(BuildContext context) {
     final units = _units;
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7F2),
+      backgroundColor: MinikColors.background,
       appBar: AppBar(
         title: Text(_dua.title),
         actions: [
@@ -226,9 +226,8 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: MinikCard(
-                color: _highlight == i
-                    ? MinikColors.butter
-                    : MinikColors.surface,
+                color:
+                    _highlight == i ? MinikColors.butter : MinikColors.surface,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -293,7 +292,8 @@ class _DuaMemorizePageState extends State<DuaMemorizePage> {
                               style: FilledButton.styleFrom(
                                 backgroundColor: playing
                                     ? MinikColors.green
-                                    : const Color(0xFFE7F4EC),
+                                    : MinikColors.of(const Color(0xFFE7F4EC),
+                                        const Color(0xFF233128)),
                                 foregroundColor: playing
                                     ? Colors.white
                                     : MinikColors.darkGreen,

@@ -842,7 +842,7 @@ class MinikEraserIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/ui/eraser.png',
+      'assets/images/ui/eraser.jpg',
       width: size,
       height: size,
       fit: BoxFit.contain,

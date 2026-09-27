@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:minik_kalpler/data/models/quran_learning.dart';
 import 'package:minik_kalpler/features/quran_learn/quran_learn_practice.dart';

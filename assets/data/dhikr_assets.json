@@ -1,7 +1,7 @@
 {
   "click": "assets/audio/effects/tesbih_click.wav",
   "complete": "assets/audio/effects/ders_tamamlandi.mp3",
-  "fallbackImage": "assets/images/home/circle_zikr.png",
+  "fallbackImage": "assets/images/home/circle_zikr.jpg",
   "items": [
     {"id": "subhanallah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/subhanallah.png", "audio": "assets/audio/dhikr/subhanallah.mp3"},
     {"id": "alhamdulillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/alhamdulillah.png", "audio": "assets/audio/dhikr/alhamdulillah.mp3"},
