@@ -169,7 +169,6 @@ class _QuranLearnColorHubPageState extends State<QuranLearnColorHubPage> {
               padding: AppSpacing.page,
               children: [
                 const PageHeader(
-                  title: 'Harfleri Boya',
                   subtitle: 'Bir harf seç, parmağınla boya.',
                 ),
                 GridView.builder(

@@ -10,42 +10,36 @@ import 'arabic_text.dart';
 class PageHeader extends StatelessWidget {
   const PageHeader({
     super.key,
-    required this.title,
+    this.title,
     this.subtitle,
   });
 
-  final String title;
+  /// Leave null when the AppBar already shows the page title.
+  final String? title;
   final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.md),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        color: MinikColors.darkGreen,
-                      ),
-                ),
-                if (subtitle != null) ...[
-                  const SizedBox(height: 6),
-                  Text(
-                    subtitle!,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: MinikColors.text,
-                        ),
+          if (title != null)
+            Text(
+              title!,
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    color: MinikColors.darkGreen,
                   ),
-                ],
-              ],
             ),
-          ),
+          if (title != null && subtitle != null) const SizedBox(height: 6),
+          if (subtitle != null)
+            Text(
+              subtitle!,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: MinikColors.text,
+                  ),
+            ),
         ],
       ),
     );

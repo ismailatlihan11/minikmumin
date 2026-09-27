@@ -66,7 +66,6 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: AppSpacing.page,
         children: [
           const PageHeader(
-            title: 'Ayarlar',
             subtitle: 'Adın uygulama açılınca “Hoş geldin” yazısında görünür.',
           ),
           MinikCard(

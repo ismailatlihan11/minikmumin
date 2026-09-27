@@ -127,7 +127,6 @@ class _QuranLearnGamesHubPageState extends State<QuranLearnGamesHubPage> {
           padding: AppSpacing.page,
           children: [
             const PageHeader(
-              title: "Kur'an Öğrenme Oyunları",
               subtitle: 'Harfleri boya, eşleştir, bul ve birleştir.',
             ),
             ContentTile(
