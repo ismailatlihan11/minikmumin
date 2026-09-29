@@ -29,7 +29,6 @@ import '../../features/search/search_page.dart';
 import '../../features/settings/settings_page.dart';
 import '../../features/wudu/wudu_flow_page.dart';
 import '../../features/zikr/zikr_page.dart';
-import '../../shared/widgets/dua_hands_icon.dart';
 
 class MinikShell extends StatefulWidget {
   const MinikShell({super.key});
@@ -42,17 +41,17 @@ class _MinikShellState extends State<MinikShell> {
   int _index = 0;
 
   static const _pages = [
-    MinikDuasPage(),
+    FavoritesPage(),
     LearnPage(),
-    GamesPage(),
+    DailyTaskPage(),
     MinikProfilePage(),
   ];
 
   static const _items = [
     (icon: Icons.home_rounded, label: 'Ana Sayfa'),
-    (icon: null, label: 'Dualar'),
+    (icon: Icons.favorite_rounded, label: 'Favoriler'),
     (icon: Icons.school_rounded, label: 'Öğren'),
-    (icon: Icons.sports_esports_rounded, label: 'Oyunlar'),
+    (icon: Icons.emoji_events_rounded, label: 'Macera'),
     (icon: Icons.person_rounded, label: 'Profil'),
   ];
 
@@ -105,8 +104,7 @@ class _NavItem extends StatelessWidget {
     required this.onTap,
   });
 
-  /// Null draws the custom dua hands.
-  final IconData? icon;
+  final IconData icon;
   final String label;
   final bool selected;
   final VoidCallback onTap;
@@ -126,9 +124,7 @@ class _NavItem extends StatelessWidget {
               color: selected ? MinikColors.mint : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: icon == null
-                ? DuaHandsIcon(size: 22, color: color)
-                : Icon(icon, size: 22, color: color),
+            child: Icon(icon, size: 22, color: color),
           ),
           const SizedBox(height: 1),
           Text(

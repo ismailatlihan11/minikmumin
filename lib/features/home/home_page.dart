@@ -10,9 +10,6 @@ import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
 import '../../data/repositories/content_repositories.dart';
-import '../zikr/dhikr_store.dart';
-import '../zikr/zikr_counter_page.dart';
-import '../quran/quran_page.dart';
 import 'home_widgets.dart';
 
 class MinikHomePage extends StatefulWidget {
@@ -36,23 +33,11 @@ class _MinikHomePageState extends State<MinikHomePage> {
     ContentRepositories repos,
     LocalProgressStore store,
   ) async {
-    final wudu = await store.getWuduProgress();
-    final lesson = await repos.wudu.getLesson();
-    final prayerLesson = await repos.prayer.getLesson();
     final completed = await store.getCompletedItems();
-    final prayerDone =
-        completed.where((item) => item.startsWith('prayer|')).length;
     final basicsDone =
         completed.where((item) => item.startsWith('basics|')).length;
     final basics = await repos.basics.load();
     return _HomeSnapshot(
-      wudu: wudu,
-      wuduStepCount: lesson.steps.length,
-      continuePoint: await store.getContinue(),
-      mushafBookmark: await store.getMushafBookmarkInfo(),
-      mealBookmark: await store.getQuranMealBookmarkInfo(),
-      prayerCompleted: prayerDone,
-      prayerTotal: prayerLesson.visualSteps.length,
       basicsCompleted: basicsDone,
       basicsTotal: basics.items.length,
     );
@@ -146,65 +131,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
                 );
               }
               final data = snapshot.data!;
-              final point = data.continuePoint;
-              final dhikrStore = context.watch<DhikrStore>();
-              final pausedDhikr = dhikrStore.paused;
-              var continueRoute = point?.route ??
-                  (data.wudu.completed && !data.wudu.inProgress
-                      ? AppRoutes.learnPrayer
-                      : AppRoutes.learnWudu);
-              VoidCallback onContinue = () async {
-                await Navigator.pushNamed(context, continueRoute);
-                if (!mounted) return;
-                setState(() {
-                  _future = _load(repos, store);
-                });
-              };
-              if (pausedDhikr != null) {
-                onContinue = () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ZikrCounterPage(dhikrId: pausedDhikr.id),
-                    ),
-                  );
-                  if (!mounted) return;
-                  setState(() {
-                    _future = _load(repos, store);
-                  });
-                };
-              } else if (point?.route == AppRoutes.quranSurah &&
-                  data.mealBookmark != null) {
-                final meal = data.mealBookmark!;
-                continueRoute = AppRoutes.quranSurah;
-                onContinue = () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => QuranSurahPage(
-                        surahId: meal.surahId,
-                        initialAyahNo: meal.ayahNo,
-                      ),
-                    ),
-                  );
-                  if (!mounted) return;
-                  setState(() {
-                    _future = _load(repos, store);
-                  });
-                };
-              } else if (data.mushafBookmark != null &&
-                  (point == null ||
-                      point.route == AppRoutes.quranReader ||
-                      point.route == AppRoutes.quran)) {
-                continueRoute = AppRoutes.quranReader;
-                onContinue = () async {
-                  await Navigator.pushNamed(context, AppRoutes.quranReader);
-                  if (!mounted) return;
-                  setState(() {
-                    _future = _load(repos, store);
-                  });
-                };
-              }
               final gridModules = HomeCatalog.modules
                   .where((module) => !module.featured)
                   .toList();
@@ -262,28 +188,6 @@ class _MinikHomePageState extends State<MinikHomePage> {
                               );
                             },
                           ),
-                          const SizedBox(height: 14),
-                          SizedBox(
-                            height: 108,
-                            child: Row(
-                              children: [
-                                for (final item in HomeCatalog.quickItems)
-                                  Expanded(
-                                    child: HomeQuickCircle(
-                                      item: item,
-                                      onTap: () {
-                                        if (item.title == 'Devam Et') {
-                                          onContinue();
-                                          return;
-                                        }
-                                        Navigator.pushNamed(
-                                            context, item.route);
-                                      },
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ),
                         ],
                       ),
                     ),
@@ -304,24 +208,10 @@ class _MinikHomePageState extends State<MinikHomePage> {
 
 class _HomeSnapshot {
   const _HomeSnapshot({
-    required this.wudu,
-    required this.wuduStepCount,
-    this.continuePoint,
-    this.mushafBookmark,
-    this.mealBookmark,
-    this.prayerCompleted = 0,
-    this.prayerTotal = 25,
     this.basicsCompleted = 0,
     this.basicsTotal = 22,
   });
 
-  final WuduProgress wudu;
-  final int wuduStepCount;
-  final ContinuePoint? continuePoint;
-  final ({int jsonPage, int displayNumber, String surahLabel})? mushafBookmark;
-  final ({int surahId, int ayahNo, String label})? mealBookmark;
-  final int prayerCompleted;
-  final int prayerTotal;
   final int basicsCompleted;
   final int basicsTotal;
 }

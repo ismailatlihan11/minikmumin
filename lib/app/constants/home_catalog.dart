@@ -25,18 +25,6 @@ class HomeModule {
   final bool idleMotion;
 }
 
-class HomeQuickItem {
-  const HomeQuickItem({
-    required this.title,
-    required this.image,
-    required this.route,
-  });
-
-  final String title;
-  final String image;
-  final String route;
-}
-
 abstract final class HomeCatalog {
   static List<HomeModule> get modules => [
     HomeModule(
@@ -114,33 +102,37 @@ abstract final class HomeCatalog {
       accent: Color(0xFF9B6BC9),
       route: AppRoutes.learnMorality,
     ),
-  ];
-
-  static const quickItems = [
-    HomeQuickItem(
+    HomeModule(
       title: 'Esmaül Hüsna',
+      subtitle: 'Allah\'ın güzel isimleri',
       image: 'assets/images/home/circle_asma.jpg',
+      color: MinikColors.of(const Color(0xFFE3F3E8), const Color(0xFF1F3327)),
+      accent: MinikColors.green,
       route: AppRoutes.learnAsma,
     ),
-    HomeQuickItem(
-      title: 'Devam Et',
-      image: 'assets/images/home/continue_book.jpg',
-      route: AppRoutes.learnBasics,
+    HomeModule(
+      title: 'Dualar',
+      subtitle: 'Günlük hayatta okunan dualar',
+      image: 'assets/images/home/card_duas.jpg',
+      color: MinikColors.of(const Color(0xFFDDEBFA), const Color(0xFF1C2A3A)),
+      accent: Color(0xFF4F86C6),
+      route: AppRoutes.learnDuas,
     ),
-    HomeQuickItem(
+    HomeModule(
       title: 'Zikirmatik',
-      image: 'assets/images/home/circle_zikr.jpg',
+      subtitle: 'Zikirlerini say',
+      image: 'assets/images/home/zikr_counter_badge.jpg',
+      color: MinikColors.of(const Color(0xFFD8F1EC), const Color(0xFF1B332F)),
+      accent: Color(0xFF2E9C8A),
       route: AppRoutes.zikr,
     ),
-    HomeQuickItem(
-      title: 'Macera',
-      image: 'assets/images/home/mini_trophy.jpg',
-      route: AppRoutes.dailyTask,
-    ),
-    HomeQuickItem(
-      title: 'Favoriler',
-      image: 'assets/images/home/circle_favorites.jpg',
-      route: AppRoutes.favorites,
+    HomeModule(
+      title: 'Oyunlar',
+      subtitle: 'Öğrenirken eğlen',
+      image: 'assets/images/home/card_games.jpg',
+      color: MinikColors.of(const Color(0xFFDDEFFB), const Color(0xFF17293A)),
+      accent: Color(0xFF3AA0C8),
+      route: AppRoutes.games,
     ),
   ];
 }
