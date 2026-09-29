@@ -25,9 +25,11 @@ import '../../features/quiz/quiz_page.dart';
 import '../../features/quran/mushaf_page.dart';
 import '../../features/quran/quran_page.dart';
 import '../../features/elifba_adventure/elifba_hub.dart';
+import '../../features/search/search_page.dart';
 import '../../features/settings/settings_page.dart';
 import '../../features/wudu/wudu_flow_page.dart';
 import '../../features/zikr/zikr_page.dart';
+import '../../shared/widgets/dua_hands_icon.dart';
 
 class MinikShell extends StatefulWidget {
   const MinikShell({super.key});
@@ -40,7 +42,7 @@ class _MinikShellState extends State<MinikShell> {
   int _index = 0;
 
   static const _pages = [
-    MinikQuranPage(),
+    MinikDuasPage(),
     LearnPage(),
     GamesPage(),
     MinikProfilePage(),
@@ -48,7 +50,7 @@ class _MinikShellState extends State<MinikShell> {
 
   static const _items = [
     (icon: Icons.home_rounded, label: 'Ana Sayfa'),
-    (icon: Icons.menu_book_rounded, label: "Kur'an"),
+    (icon: null, label: 'Dualar'),
     (icon: Icons.school_rounded, label: 'Öğren'),
     (icon: Icons.sports_esports_rounded, label: 'Oyunlar'),
     (icon: Icons.person_rounded, label: 'Profil'),
@@ -103,7 +105,8 @@ class _NavItem extends StatelessWidget {
     required this.onTap,
   });
 
-  final IconData icon;
+  /// Null draws the custom dua hands.
+  final IconData? icon;
   final String label;
   final bool selected;
   final VoidCallback onTap;
@@ -123,7 +126,9 @@ class _NavItem extends StatelessWidget {
               color: selected ? MinikColors.mint : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, size: 22, color: color),
+            child: icon == null
+                ? DuaHandsIcon(size: 22, color: color)
+                : Icon(icon, size: 22, color: color),
           ),
           const SizedBox(height: 1),
           Text(
@@ -183,5 +188,6 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.favorites: light((_) => const FavoritesPage()),
     AppRoutes.profile: light((_) => const MinikProfilePage()),
     AppRoutes.settings: light((_) => const SettingsPage()),
+    AppRoutes.search: light((_) => const SearchPage()),
   };
 }

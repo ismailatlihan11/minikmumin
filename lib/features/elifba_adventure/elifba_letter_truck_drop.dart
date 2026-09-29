@@ -132,7 +132,8 @@ class _LetterTruckDropIntroState extends State<LetterTruckDropIntro>
                         height: 10,
                         margin: const EdgeInsets.symmetric(horizontal: 24),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFE8E0D0),
+                          color: MinikColors.of(
+                              const Color(0xFFE8E0D0), const Color(0xFF3A342A)),
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -282,7 +283,7 @@ class _FlyingLetter extends StatelessWidget {
       height: height,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: MinikColors.card,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(color: MinikColors.mint),
         boxShadow: const [
@@ -348,7 +349,7 @@ class _CartoonTruck extends StatelessWidget {
                 border: Border.all(color: const Color(0xFFC9A227), width: 2),
               ),
               alignment: Alignment.topCenter,
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.only(top: 4),
                 child: Text(
                   'ٱ ب ت',
@@ -356,7 +357,7 @@ class _CartoonTruck extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: AssetPaths.arabicFontFamily,
                     fontSize: 12,
-                    color: MinikColors.darkGreen,
+                    color: Color(0xFF1E392F),
                   ),
                 ),
               ),

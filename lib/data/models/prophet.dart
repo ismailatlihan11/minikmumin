@@ -63,7 +63,11 @@ class Prophet {
   }
 
   /// Short quiz label; keeps `name` as the lookup key.
-  String get choiceName => isMuhammad ? 'Hz. $name ﷺ' : name;
+  String get choiceName {
+    final trimmed = name.trim();
+    final base = trimmed.startsWith('Hz.') ? trimmed : 'Hz. $trimmed';
+    return isMuhammad ? '$base ﷺ' : base;
+  }
 
   factory Prophet.fromJson(Map<String, dynamic> json) {
     return Prophet(

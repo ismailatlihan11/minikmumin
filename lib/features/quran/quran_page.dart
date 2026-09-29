@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -365,7 +367,14 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
   Future<List<QuranVerse>>? _future;
   int? _savedAyahNo;
   final _ayahKeys = <int, GlobalKey>{};
+  final _scroll = ScrollController();
   bool _didScrollToInitial = false;
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -377,17 +386,40 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
     });
   }
 
-  void _scrollToAyah(int ayahNo) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+  /// The list is lazy, so a far ayah has no context until the viewport
+  /// reaches it: jump a screen at a time towards it, then align precisely.
+  Future<void> _scrollToAyah(int ayahNo) async {
+    await WidgetsBinding.instance.endOfFrame;
+    for (var i = 0; i < 400 && mounted && _scroll.hasClients; i++) {
       final ctx = _ayahKeys[ayahNo]?.currentContext;
-      if (ctx == null || !mounted) return;
-      Scrollable.ensureVisible(
-        ctx,
-        alignment: 0.08,
-        duration: const Duration(milliseconds: 420),
-        curve: Curves.easeOutCubic,
-      );
-    });
+      if (ctx != null) {
+        await Scrollable.ensureVisible(ctx, alignment: 0.08);
+        return;
+      }
+      final built = <int, double>{
+        for (final e in _ayahKeys.entries)
+          if (e.value.currentContext?.findRenderObject()
+              case final RenderBox box when box.hasSize)
+            e.key: box.size.height,
+      };
+      final position = _scroll.position;
+      final double target;
+      if (built.isEmpty) {
+        target = position.pixels + position.viewportDimension;
+      } else {
+        final average =
+            built.values.reduce((a, b) => a + b) / built.length + AppSpacing.sm;
+        final first = built.keys.reduce(min);
+        final last = built.keys.reduce(max);
+        final gap = ayahNo > last ? ayahNo - last : ayahNo - first;
+        target = position.pixels + gap * average;
+      }
+      final clamped =
+          target.clamp(position.minScrollExtent, position.maxScrollExtent);
+      if (clamped == position.pixels) return;
+      _scroll.jumpTo(clamped);
+      await WidgetsBinding.instance.endOfFrame;
+    }
   }
 
   Future<void> _saveHere(QuranVerse verse) async {
@@ -426,6 +458,7 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
             _scrollToAyah(widget.initialAyahNo!);
           }
           return ListView.separated(
+            controller: _scroll,
             padding: AppSpacing.page,
             itemCount: verses.length,
             separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),

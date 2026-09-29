@@ -54,6 +54,7 @@ const _screens = <String, String>{
   'profile': AppRoutes.profile,
   'settings': AppRoutes.settings,
   'quiz': AppRoutes.quiz,
+  'search': AppRoutes.search,
 };
 
 /// Inner pages: start route, then texts to tap in order.
@@ -66,7 +67,7 @@ const _flows = <String, (String, List<String>)>{
     ['Temel Değerler', '#3', 'Öğrendim'],
   ),
   'story_detail': (AppRoutes.learnStories, ['Tüm kıssalar', '#0']),
-  'dua_detail': (AppRoutes.learnDuas, ['Rabbenâ Âtinâ']),
+  'dua_detail': (AppRoutes.learnDuas, ['Aksırınca']),
   'zikr_counter': (AppRoutes.zikr, ['Allahümme Ente']),
   'order_game': (AppRoutes.games, ['Abdest Sırası']),
   'prayer_order_game': (AppRoutes.games, ['Namaz Sırası']),
@@ -81,17 +82,26 @@ const _flows = <String, (String, List<String>)>{
   'ilmihal_topic': (AppRoutes.learnIlmihal, ['Temizlik']),
   'prophets_book': (AppRoutes.learnProphetsStories, ['Peygamberler Kitabı']),
   'prayer_start': (AppRoutes.learnPrayer, ['Başlayalım']),
+  'search_results': (AppRoutes.search, ['=yemek']),
+  'search_open': (AppRoutes.search, ['=aksirinca', 'Aksırınca']),
 };
 
 Future<void> _tapText(WidgetTester tester, String text) async {
+  if (text.startsWith('=')) {
+    await tester.enterText(find.byType(TextField).first, text.substring(1));
+    await tester.pump(const Duration(milliseconds: 400));
+    await _settle(tester);
+    return;
+  }
   final Finder finder;
   if (text.startsWith('#')) {
     finder = find.byType(ContentTile).at(int.parse(text.substring(1)));
   } else {
-    finder = find.textContaining(text).first;
-    if (finder.evaluate().isEmpty) {
+    final matches = find.textContaining(text);
+    finder = matches.first;
+    if (matches.evaluate().isEmpty) {
       await tester.scrollUntilVisible(
-        finder,
+        matches,
         300,
         scrollable: find.byType(Scrollable).first,
       );

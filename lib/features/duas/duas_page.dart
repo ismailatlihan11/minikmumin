@@ -33,13 +33,21 @@ class MinikDuasPage extends StatefulWidget {
 class _MinikDuasPageState extends State<MinikDuasPage> {
   Future<List<DuaEntry>>? _future;
 
-  Future<List<DuaEntry>> _load(ContentRepositories repos) {
+  Future<List<DuaEntry>> _load(ContentRepositories repos) async {
     if (widget.prayerOnly) {
-      return repos.duas
-          .getPrayerDuas()
-          .then((list) => list.map(DuaEntry.fromPrayerDua).toList());
+      final list = await repos.duas.getPrayerDuas();
+      return list.map(DuaEntry.fromPrayerDua).toList();
     }
-    return repos.duas.getCatalog();
+    final catalog = await repos.duas.getCatalog();
+    final categories = await repos.duas.getCategories();
+    final rank = {
+      for (final (index, category) in categories.indexed) category.title: index,
+    };
+    return [...catalog]..sort((a, b) {
+        final byCategory = (rank[a.section] ?? categories.length)
+            .compareTo(rank[b.section] ?? categories.length);
+        return byCategory != 0 ? byCategory : a.order.compareTo(b.order);
+      });
   }
 
   @override
@@ -63,14 +71,22 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
                     : 'Dualar',
                 subtitle: widget.prayerOnly
                     ? 'Namazda öğrenilecek ifadeler, sûreler ve dualar.'
-                    : 'Kur\'an\'dan seçilmiş dualar.',
+                    : 'Günlük hayatta okuyabileceğin dualar.',
               ),
-              for (final dua in duas)
+              for (final (index, dua) in duas.indexed) ...[
+                if (!widget.prayerOnly &&
+                    (index == 0 || duas[index - 1].section != dua.section))
+                  Padding(
+                    padding: EdgeInsets.only(top: index == 0 ? 0 : 8),
+                    child: SectionLabel(dua.section),
+                  ),
                 _DuaListTile(
                   dua: dua,
+                  number: widget.prayerOnly ? dua.order : index + 1,
                   prayerOnly: widget.prayerOnly,
                   catalog: duas,
                 ),
+              ],
             ],
           ),
         ),
@@ -82,11 +98,13 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
 class _DuaListTile extends StatelessWidget {
   const _DuaListTile({
     required this.dua,
+    required this.number,
     required this.prayerOnly,
     required this.catalog,
   });
 
   final DuaEntry dua;
+  final int number;
   final bool prayerOnly;
   final List<DuaEntry> catalog;
 
@@ -139,7 +157,7 @@ class _DuaListTile extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
-                            dua.order > 0 ? '${dua.order}' : '•',
+                            number > 0 ? '$number' : '•',
                             style: TextStyle(
                               fontFamily: 'NotoSans',
                               fontSize: 13,
@@ -166,9 +184,10 @@ class _DuaListTile extends StatelessWidget {
                                   color: MinikColors.darkGreen,
                                 ),
                               ),
-                              if (dua.section.isNotEmpty)
+                              if ((prayerOnly ? dua.section : dua.when)
+                                  .isNotEmpty)
                                 Text(
-                                  dua.section,
+                                  prayerOnly ? dua.section : dua.when,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -297,8 +316,7 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
   @override
   Widget build(BuildContext context) {
     final dua = widget.dua;
-    final audioPath =
-        dua.audio.isNotEmpty ? dua.audio : ContentAssets.audioFor(dua.id);
+    final audioPath = _duaAudioPath(dua, widget.kind);
     final store = context.watch<LocalProgressStore>();
     return FutureBuilder<bool>(
       future: store.isCompleted(widget.kind, dua.id),
@@ -462,7 +480,18 @@ class DuaContentBlocks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final timing = [
+      if (dua.when.isNotEmpty) dua.when,
+      if (dua.repeat > 1) '${dua.repeat} kez okunur.',
+    ].join('\n');
     final parts = <Widget>[
+      if (timing.isNotEmpty)
+        DuaPartCard(
+          label: 'Ne zaman okunur?',
+          color: MinikColors.lavender,
+          accent: MinikColors.darkGreen,
+          text: timing,
+        ),
       if (dua.fullArabic.isNotEmpty)
         DuaPartCard(
           label: 'Arapça',
@@ -484,6 +513,25 @@ class DuaContentBlocks extends StatelessWidget {
           color: MinikColors.sky,
           accent: MinikColors.teal,
           text: dua.fullMeaning,
+        ),
+      for (final response in dua.responses)
+        DuaPartCard(
+          label: response.label,
+          color: MinikColors.peach,
+          accent: MinikColors.gold,
+          arabic: response.arabic,
+          arabicFontSize: arabicFontSize - 4,
+          text: [
+            response.transliteration,
+            response.meaning,
+          ].where((line) => line.trim().isNotEmpty).join('\n'),
+        ),
+      if (dua.note.isNotEmpty)
+        DuaPartCard(
+          label: 'Not',
+          color: MinikColors.creamDark,
+          accent: MinikColors.textMuted,
+          text: dua.note,
         ),
     ];
     return Column(
@@ -520,18 +568,29 @@ class DuaPartCard extends StatelessWidget {
     final hasArabic = arabic.trim().isNotEmpty;
     final hasText = text.trim().isNotEmpty;
     if (!hasArabic && !hasText) return const SizedBox.shrink();
-    final body = hasArabic
-        ? ArabicText(arabic, fontSize: arabicFontSize)
-        : SelectableText(
-            text,
-            style: TextStyle(
-              fontFamily: 'NotoSans',
-              fontSize: 16,
-              height: 1.55,
-              fontWeight: FontWeight.w600,
-              color: MinikColors.darkGreen,
-            ),
-          );
+    final textBody = SelectableText(
+      text,
+      style: TextStyle(
+        fontFamily: 'NotoSans',
+        fontSize: 16,
+        height: 1.55,
+        fontWeight: FontWeight.w600,
+        color: MinikColors.darkGreen,
+      ),
+    );
+    final Widget body;
+    if (hasArabic && hasText) {
+      body = Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ArabicText(arabic, fontSize: arabicFontSize),
+          const SizedBox(height: 8),
+          textBody,
+        ],
+      );
+    } else {
+      body = hasArabic ? ArabicText(arabic, fontSize: arabicFontSize) : textBody;
+    }
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
@@ -644,6 +703,13 @@ class _DuaStickyBar extends StatelessWidget {
   }
 }
 
+// Günlük dualar are text-only; only namaz duaları fall back to bundled audio.
+String _duaAudioPath(DuaEntry dua, String kind) {
+  if (dua.audio.isNotEmpty) return dua.audio;
+  if (kind != 'prayer_dua') return '';
+  return ContentAssets.audioFor(dua.id);
+}
+
 String _duaCopyText(DuaEntry dua) {
   return joinCopyParts([
     dua.title,
@@ -680,9 +746,7 @@ class _DuaQuickActionsState extends State<_DuaQuickActions> {
 
   @override
   Widget build(BuildContext context) {
-    final path = widget.dua.audio.isNotEmpty
-        ? widget.dua.audio
-        : ContentAssets.audioFor(widget.dua.id);
+    final path = _duaAudioPath(widget.dua, widget.kind);
     final hasAudio = AssetCatalog.contains(path);
     return Row(
       children: [

@@ -193,7 +193,6 @@ class MoralityLessonPage extends StatelessWidget {
                     ? lesson.childExplanation
                     : lesson.lesson,
                 ...lesson.quranReferences,
-                lesson.hadithReference,
               ]),
             ),
           ],
@@ -223,13 +222,6 @@ class MoralityLessonPage extends StatelessWidget {
               const SizedBox(height: AppSpacing.md),
               const SectionLabel('Kur\'an'),
               Text(lesson.quranReferences.join(' • '), style: theme.bodyLarge),
-            ],
-            if (lesson.hadithReference.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.sm),
-              Text(lesson.hadithReference, style: theme.bodySmall),
-            ] else if (lesson.source.isNotEmpty) ...[
-              const SizedBox(height: AppSpacing.sm),
-              Text('Kaynak: ${lesson.source}', style: theme.bodySmall),
             ],
             const SizedBox(height: AppSpacing.lg),
             TopicFooter(

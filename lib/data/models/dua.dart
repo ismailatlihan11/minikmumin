@@ -17,6 +17,11 @@ class Dua {
     this.image = '',
     this.surahNumber,
     this.ayahNumber,
+    this.category = '',
+    this.when = '',
+    this.repeat = 1,
+    this.note = '',
+    this.responses = const [],
   });
 
   final String id;
@@ -33,6 +38,13 @@ class Dua {
   final String image;
   final int? surahNumber;
   final int? ayahNumber;
+  final String category;
+
+  /// When the dua is read, e.g. "Yemeğe başlamadan önce".
+  final String when;
+  final int repeat;
+  final String note;
+  final List<DuaResponse> responses;
 
   String get displayReference {
     if (source.isEmpty) return reference;
@@ -40,22 +52,35 @@ class Dua {
     return '$source • $reference';
   }
 
-  factory Dua.fromJson(Map<String, dynamic> json) {
+  factory Dua.fromJson(Map<String, dynamic> json, {int order = 0}) {
+    final type = JsonMap.str(json['type']);
+    final repeat = JsonMap.integer(json['repeat'], 1);
+    final responses = json['response'];
     return Dua(
       id: JsonMap.str(json['id']),
       title: JsonMap.str(json['title']),
-      type: JsonMap.str(json['type']),
+      type: type.isNotEmpty ? type : JsonMap.str(json['source_type']),
       arabic: JsonMap.str(json['arabic']),
       meaning: JsonMap.str(json['meaning']),
       reference: JsonMap.str(json['reference']),
       transliteration: JsonMap.str(json['transliteration']),
       audio: JsonMap.str(json['audio']),
-      order: JsonMap.integer(json['order']),
+      order: JsonMap.integer(json['order'], order),
       description: JsonMap.str(json['description']),
       source: JsonMap.str(json['source']),
       image: JsonMap.str(json['image']),
       surahNumber: json['surahNumber'] == null ? null : JsonMap.integer(json['surahNumber']),
       ayahNumber: json['ayahNumber'] == null ? null : JsonMap.integer(json['ayahNumber']),
+      category: JsonMap.str(json['category']),
+      when: JsonMap.str(json['when']),
+      repeat: repeat < 1 ? 1 : repeat,
+      note: JsonMap.str(json['note']),
+      responses: responses is Map
+          ? [
+              for (final entry in responses.entries)
+                DuaResponse.fromJson('${entry.key}', JsonMap.object(entry.value)),
+            ]
+          : const [],
     );
   }
 
@@ -74,7 +99,40 @@ class Dua {
         'image': image,
         if (surahNumber != null) 'surahNumber': surahNumber,
         if (ayahNumber != null) 'ayahNumber': ayahNumber,
+        if (category.isNotEmpty) 'category': category,
+        if (when.isNotEmpty) 'when': when,
+        if (repeat != 1) 'repeat': repeat,
+        if (note.isNotEmpty) 'note': note,
       };
+}
+
+/// A line said back and forth, e.g. after sneezing.
+class DuaResponse {
+  const DuaResponse({
+    required this.label,
+    required this.arabic,
+    this.transliteration = '',
+    this.meaning = '',
+  });
+
+  final String label;
+  final String arabic;
+  final String transliteration;
+  final String meaning;
+
+  static const _labels = {
+    'other_person': 'Duyan kişi der ki',
+    'sneezer_reply': 'Aksıran kişi cevap verir',
+  };
+
+  factory DuaResponse.fromJson(String key, Map<String, dynamic> json) {
+    return DuaResponse(
+      label: _labels[key] ?? key,
+      arabic: JsonMap.str(json['arabic']),
+      transliteration: JsonMap.str(json['transliteration']),
+      meaning: JsonMap.str(json['meaning']),
+    );
+  }
 }
 
 class PrayerVerse {
@@ -209,6 +267,10 @@ class DuaEntry {
     this.order = 0,
     this.verses = const [],
     this.surahNumber,
+    this.when = '',
+    this.repeat = 1,
+    this.note = '',
+    this.responses = const [],
   });
 
   final String id;
@@ -223,6 +285,10 @@ class DuaEntry {
   final int order;
   final List<PrayerVerse> verses;
   final int? surahNumber;
+  final String when;
+  final int repeat;
+  final String note;
+  final List<DuaResponse> responses;
 
   bool get isSurah => surahNumber != null || verses.isNotEmpty;
 
@@ -269,14 +335,18 @@ class DuaEntry {
     return DuaEntry(
       id: dua.id,
       title: dua.title,
-      section: dua.description.isNotEmpty ? dua.description : 'Kur\'an\'dan Dualar',
+      section: dua.description.isNotEmpty ? dua.description : 'Günlük Dualar',
       arabic: dua.arabic,
       meaning: dua.meaning,
       reference: dua.displayReference,
       transliteration: dua.transliteration,
-      audio: dua.audio.isNotEmpty ? dua.audio : ContentAssets.audioFor(dua.id),
+      audio: dua.audio,
       image: dua.image,
       order: dua.order,
+      when: dua.when,
+      repeat: dua.repeat,
+      note: dua.note,
+      responses: dua.responses,
     );
   }
 

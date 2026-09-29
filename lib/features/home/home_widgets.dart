@@ -46,9 +46,11 @@ class HomeHeroHeader extends StatelessWidget {
   const HomeHeroHeader({
     super.key,
     required this.onSettings,
+    required this.onSearch,
   });
 
   final VoidCallback onSettings;
+  final VoidCallback onSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -141,10 +143,21 @@ class HomeHeroHeader extends StatelessWidget {
                   ),
                 ),
               ),
-              HomeRoundButton(
-                icon: Icons.settings_rounded,
-                tooltip: 'Ayarlar',
-                onTap: onSettings,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HomeRoundButton(
+                    icon: Icons.settings_rounded,
+                    tooltip: 'Ayarlar',
+                    onTap: onSettings,
+                  ),
+                  const SizedBox(height: 8),
+                  HomeRoundButton(
+                    icon: Icons.search_rounded,
+                    tooltip: 'Ara',
+                    onTap: onSearch,
+                  ),
+                ],
               ),
             ],
           ),

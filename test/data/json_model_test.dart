@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -113,6 +115,53 @@ void main() {
     expect(Dua.fromJson(dua.toJson()).id, 'quran_dua_2_201');
   });
 
+  test('Dua maps the günlük dualar schema without audio', () {
+    final dua = Dua.fromJson({
+      'id': 'aksirma',
+      'category': 'gunluk_hayat',
+      'title': 'Aksırınca',
+      'when': 'Aksırdıktan sonra',
+      'arabic': 'اَلْحَمْدُ لِلَّهِ',
+      'transliteration': 'Elhamdülillâh.',
+      'meaning': 'Hamd Allah içindir.',
+      'repeat': 1,
+      'source': 'Buhârî, Edeb, 126',
+      'source_type': 'hadis',
+      'response': {
+        'other_person': {
+          'arabic': 'يَرْحَمُكَ اللَّهُ',
+          'transliteration': 'Yerhamükellâh.',
+          'meaning': 'Allah sana merhamet etsin.',
+        },
+      },
+    }, order: 14);
+    final entry = DuaEntry.fromDua(dua);
+    expect(dua.type, 'hadis');
+    expect(dua.order, 14);
+    expect(entry.when, 'Aksırdıktan sonra');
+    expect(entry.reference, 'Buhârî, Edeb, 126');
+    expect(entry.audio, isEmpty);
+    expect(entry.responses.single.label, 'Duyan kişi der ki');
+    expect(entry.responses.single.transliteration, 'Yerhamükellâh.');
+  });
+
+  test('bundled duas.json loads every dua with its category title', () {
+    final raw = jsonDecode(File('assets/data/duas.json').readAsStringSync())
+        as Map<String, dynamic>;
+    final titles = {
+      for (final c in raw['categories'] as List) c['id']: c['title'],
+    };
+    final items = raw['items'] as List;
+    expect(items, hasLength(26));
+    for (final item in items) {
+      final dua = Dua.fromJson(item as Map<String, dynamic>);
+      expect(dua.arabic, isNotEmpty, reason: dua.id);
+      expect(dua.meaning, isNotEmpty, reason: dua.id);
+      expect(titles.containsKey(dua.category), isTrue, reason: dua.id);
+      expect(dua.audio, isEmpty, reason: dua.id);
+    }
+  });
+
   test('AsmaulHusna round-trip JSON', () {
     final asma = AsmaulHusna.fromJson({
       'id': 1,
@@ -213,6 +262,7 @@ void main() {
     expect(prophet.lessons.first, 'Sorumluluk');
     expect(prophet.quranReferencesText.contains('Bakara'), isTrue);
     expect(prophet.honorificName, 'Hz. Âdem');
+    expect(prophet.choiceName, 'Hz. Âdem');
   });
 
   test('Prophet displayName and roleTitle come from JSON', () {

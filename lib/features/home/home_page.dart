@@ -214,6 +214,8 @@ class _MinikHomePageState extends State<MinikHomePage> {
                   SizedBox(
                     height: topInset + 148,
                     child: HomeHeroHeader(
+                      onSearch: () =>
+                          Navigator.pushNamed(context, AppRoutes.search),
                       onSettings: () async {
                         await Navigator.pushNamed(context, AppRoutes.settings);
                         if (!mounted) return;

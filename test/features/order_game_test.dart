@@ -25,6 +25,14 @@ void main() {
     expect(steps.take(3).map((s) => s.id), ['niyet', 'tekbir', 'subhaneke']);
   });
 
+  test('namaz sırası reads Fâtiha then a sure in both rekâts', () {
+    final ids = PrayerVisualCatalog.orderGameIds;
+    for (final (fatiha, sure) in [('fatiha', 'sure'), ('fatiha_r2', 'sure_r2')]) {
+      expect(ids.indexOf(sure), ids.indexOf(fatiha) + 1);
+    }
+    expect(ids.indexOf('fatiha_r2'), ids.indexOf('ikinci_rekata_kalkis') + 1);
+  });
+
   testWidgets('wrong card warns, correct card gets a numbered badge',
       (tester) async {
     await tester.pumpWidget(_host(const [

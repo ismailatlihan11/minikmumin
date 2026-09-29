@@ -43,4 +43,5 @@ abstract final class AppRoutes {
   static const String favorites = '/minik/favorites';
   static const String profile = '/minik/profile';
   static const String settings = '/minik/settings';
+  static const String search = '/minik/search';
 }
