@@ -239,7 +239,11 @@ class LocalProgressStore extends ChangeNotifier {
   Future<ContinuePoint?> getContinue() async {
     final prefs = await _ensure();
     final route = prefs.getString(_key('continue_route'));
-    if (route == null || route.isEmpty) return null;
+    if (route == null ||
+        route.isEmpty ||
+        route.startsWith('/minik/learn/prophets-book')) {
+      return null;
+    }
     return ContinuePoint(
       title: prefs.getString(_key('continue_title')) ?? 'Öğrenmeye devam et',
       subtitle: prefs.getString(_key('continue_subtitle')) ?? '',
@@ -256,28 +260,6 @@ class LocalProgressStore extends ChangeNotifier {
   Future<int> getStoryPage(String id) async {
     final prefs = await _ensure();
     return prefs.getInt(_key('story_page_$id')) ?? 0;
-  }
-
-  Future<void> setBookBookmark({
-    required String bookId,
-    required int page,
-    required String title,
-    required int totalPages,
-  }) async {
-    final prefs = await _ensure();
-    await prefs.setInt(_key('book_page_$bookId'), page);
-    await setContinue(
-      title: 'Kaldığın yerden devam et',
-      subtitle: '$page. sayfa · $title',
-      route: '/minik/learn/prophets-book/read',
-      progress: (page / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
-    );
-  }
-
-  Future<int?> getBookBookmark(String bookId) async {
-    final prefs = await _ensure();
-    if (!prefs.containsKey(_key('book_page_$bookId'))) return null;
-    return prefs.getInt(_key('book_page_$bookId'));
   }
 
   Future<void> rememberMushafPage({

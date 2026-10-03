@@ -80,7 +80,6 @@ const _flows = <String, (String, List<String>)>{
   'elifba_map': (AppRoutes.learnElifbaAdventure, ['Ders Haritası']),
   'surah_list': (AppRoutes.quran, ['Ayet ve meal']),
   'ilmihal_topic': (AppRoutes.learnIlmihal, ['Temizlik']),
-  'prophets_book': (AppRoutes.learnProphetsStories, ['Peygamberler Kitabı']),
   'prayer_start': (AppRoutes.learnPrayer, ['Başlayalım']),
   'prayer_step': (AppRoutes.learnPrayer, ['Niyet']),
   'prayer_step_next': (
@@ -88,7 +87,7 @@ const _flows = <String, (String, List<String>)>{
     ['Niyet', 'Sonraki adıma geç'],
   ),
   'wudu_step': (AppRoutes.learnWudu, ['Besmele ile Başlayalım']),
-  'parent_gate': ('/', ['@Ayarlar']),
+  'parent_gate': (AppRoutes.settings, ['Öğrenme kilitlerini aç']),
   'search_results': (AppRoutes.search, ['=yemek']),
   'search_open': (AppRoutes.search, ['=aksirinca', 'Aksırınca']),
 };

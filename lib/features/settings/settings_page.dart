@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/constants/app_constants.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../app/theme/theme_controller.dart';
@@ -10,6 +9,7 @@ import '../../features/elifba_adventure/elifba_progress.dart';
 import '../../features/quran_learn/quran_learn_progress.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/parental_gate.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -124,36 +124,14 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               value: _unlockLessons,
               onChanged: (value) async {
+                if (value && !await confirmParent(context)) return;
+                if (!context.mounted) return;
                 await _setUnlockLessons(
                   context.read<LocalProgressStore>(),
                   value,
                 );
                 setState(() => _unlockLessons = value);
               },
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          MinikCard(
-            child: ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Icon(Icons.description_rounded, color: MinikColors.green),
-              title: const Text('Lisanslar'),
-              subtitle: const Text('Kullanılan ses, yazı tipi ve kütüphaneler.'),
-              trailing: const Icon(Icons.chevron_right_rounded),
-              onTap: () => showLicensePage(
-                context: context,
-                applicationName: AppConstants.defaultAppName,
-              ),
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          MinikCard(
-            color: MinikColors.mint,
-            child: Text(
-              '${AppConstants.defaultAppName} tamamen bu cihazda çalışır. Kur’an ve hadis metinleri değiştirilmez.',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: MinikColors.darkGreen,
-                  ),
             ),
           ),
         ],

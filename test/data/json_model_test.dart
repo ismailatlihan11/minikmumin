@@ -3,7 +3,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:minik_kalpler/app/constants/peygamberler_kitabi.dart';
 import 'package:minik_kalpler/core/utils/daily_seed.dart';
 import 'package:minik_kalpler/core/utils/turkish_number.dart';
 import 'package:minik_kalpler/core/utils/json_map.dart';
@@ -462,23 +461,6 @@ void main() {
     expect(TurkishNumber.words(604), 'altı yüz dört');
     expect(TurkishNumber.pageLabel(12), '12. sayfa');
     expect(TurkishNumber.arabicIndic(12), '١٢');
-  });
-
-  test('Peygamberler kitabı page images are numbered from one', () {
-    expect(
-      PeygamberlerKitabi.pageImage(1),
-      'assets/images/books/peygamberler/page_01.jpg',
-    );
-    expect(
-      PeygamberlerKitabi.pageImage(49),
-      'assets/images/books/peygamberler/page_49.jpg',
-    );
-    expect(PeygamberlerKitabi.chapters.first.page, 9);
-    expect(PeygamberlerKitabi.firstContentPage, 9);
-    expect(
-      PeygamberlerKitabi.pageImage(PeygamberlerKitabi.firstContentPage),
-      'assets/images/books/peygamberler/page_09.jpg',
-    );
   });
 
   test('ZikrCollectGame builds rounds from dhikr meanings', () {

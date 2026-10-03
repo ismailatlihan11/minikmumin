@@ -77,13 +77,6 @@ abstract final class LearnCategories {
       image: 'assets/images/home/circle_prophets.jpg',
     ),
     LearnCategory(
-      id: 'prophets_book',
-      title: 'Peygamber Kitabı',
-      route: '/minik/learn/prophets-book',
-      icon: 'auto_stories',
-      image: 'assets/images/home/circle_prophets.jpg',
-    ),
-    LearnCategory(
       id: 'morality',
       title: 'Güzel Ahlak',
       route: '/minik/learn/morality',

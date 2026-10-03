@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../app/routes.dart';
-import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
@@ -43,16 +42,6 @@ class ProphetsStoriesHubPage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               onTap: () => Navigator.pushNamed(context, AppRoutes.learnStories),
-            ),
-            ContentTile(
-              title: 'Peygamberler Kitabı',
-              subtitle: 'Sayfa sayfa okumaya devam et',
-              leading: Icon(
-                Icons.auto_stories_rounded,
-                color: MinikColors.green,
-              ),
-              onTap: () =>
-                  Navigator.pushNamed(context, AppRoutes.learnProphetsBook),
             ),
           ],
         ),

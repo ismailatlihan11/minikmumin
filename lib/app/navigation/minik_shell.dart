@@ -4,7 +4,6 @@ import '../routes.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../../features/asma/asma_page.dart';
-import '../../features/books/peygamberler_kitabi_page.dart';
 import '../../features/daily_task/daily_task_page.dart';
 import '../../features/duas/duas_page.dart';
 import '../../features/favorites/favorites_page.dart';
@@ -159,12 +158,6 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.learnDuas: light((_) => const MinikDuasPage()),
     AppRoutes.learnAsma: light((_) => const AsmaPage()),
     AppRoutes.learnProphets: light((_) => const ProphetsPage()),
-    AppRoutes.learnProphetsBook: light(
-      (_) => const PeygamberlerKitabiReaderPage(resume: true),
-    ),
-    AppRoutes.learnProphetsBookRead: light(
-      (_) => const PeygamberlerKitabiReaderPage(resume: true),
-    ),
     AppRoutes.learnStories: light((_) => const StoriesPage()),
     AppRoutes.learnMorality: light((_) => const MoralityPage()),
     AppRoutes.learnIlmihal: light((_) => const IlmihalPage()),

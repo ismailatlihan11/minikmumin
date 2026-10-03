@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../app/constants/learn_categories.dart';
-import '../../app/constants/peygamberler_kitabi.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_radius.dart';
 import '../../app/theme/app_spacing.dart';
@@ -51,7 +50,6 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
     final rawName = (await store.getNickname())?.trim();
     final items = await store.getCompletedItems();
     final wudu = await store.getWuduProgress();
-    final bookmarked = await store.getBookBookmark(PeygamberlerKitabi.id);
     return _ProfileSnapshot(
       xp: await store.getXp(),
       badges: await store.getBadges(),
@@ -61,7 +59,7 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
           _LessonStat(
             category: category,
             done: _doneCount(category.id, items, wudu),
-            started: _started(category.id, items, wudu, bookmarked != null),
+            started: _started(category.id, items, wudu),
           ),
       ],
     );
@@ -85,8 +83,6 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
         return _prefixCount(items, 'hadith|');
       case 'prophets_stories':
         return _prefixCount(items, 'story|') + _prefixCount(items, 'prophet|');
-      case 'prophets_book':
-        return _prefixCount(items, 'book|');
       case 'morality':
         return _prefixCount(items, 'morality|');
       case 'asma':
@@ -102,10 +98,8 @@ class _MinikProfilePageState extends State<MinikProfilePage> {
     String id,
     List<String> items,
     WuduProgress wudu,
-    bool hasBookBookmark,
   ) {
     if (id == 'wudu') return wudu.started || wudu.completed;
-    if (id == 'prophets_book') return hasBookBookmark;
     return _doneCount(id, items, wudu) > 0;
   }
 

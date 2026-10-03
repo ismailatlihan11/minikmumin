@@ -43,45 +43,6 @@ class _ProphetsPageState extends State<ProphetsPage> {
                 title: 'Peygamberler',
                 subtitle: 'Kur\'an\'da adı geçen peygamberleri tanıyalım.',
               ),
-              MinikCard(
-                color: MinikColors.butter,
-                onTap: () =>
-                    Navigator.pushNamed(context, '/minik/learn/prophets-book'),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: MinikImage.asset(
-                        'assets/images/books/peygamberler/page_05.jpg',
-                        width: 56,
-                        height: 72,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    const Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'En Güzel Örnek Peygamberler',
-                            style: TextStyle(
-                              fontFamily: 'NotoSans',
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            'Diyanet’ten resimli kitap. Sayfa sayfa oku.',
-                          ),
-                        ],
-                      ),
-                    ),
-                    Icon(Icons.menu_book_rounded, color: MinikColors.green),
-                  ],
-                ),
-              ),
-              const SizedBox(height: AppSpacing.md),
               for (final (index, item) in items.indexed)
                 ContentTile(
                   title: item.listTitle,

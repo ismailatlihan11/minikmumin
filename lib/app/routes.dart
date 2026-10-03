@@ -17,8 +17,6 @@ abstract final class AppRoutes {
   static const String learnAsmaDetail = '/minik/learn/asma/detail';
   static const String learnProphets = '/minik/learn/prophets';
   static const String learnProphetDetail = '/minik/learn/prophets/detail';
-  static const String learnProphetsBook = '/minik/learn/prophets-book';
-  static const String learnProphetsBookRead = '/minik/learn/prophets-book/read';
   static const String learnStories = '/minik/learn/stories';
   static const String learnMorality = '/minik/learn/morality';
   static const String learnMoralityDetail = '/minik/learn/morality/detail';
