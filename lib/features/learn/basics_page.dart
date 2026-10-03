@@ -317,7 +317,8 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                 child: ListView(
                   padding: AppSpacing.page,
                   children: [
-                    if (item.shortDescription.trim().isNotEmpty)
+                    if (!item.hasArabic &&
+                        item.shortDescription.trim().isNotEmpty)
                       Text(
                         item.shortDescription,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -325,7 +326,6 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                             ),
                       ),
                     if (item.hasArabic) ...[
-                      const SizedBox(height: AppSpacing.lg),
                       const SectionLabel('📖 Arapça'),
                       MinikCard(
                         color: MinikColors.mint,
@@ -370,7 +370,9 @@ class _BasicsItemPageState extends State<BasicsItemPage> {
                     ],
                     if (item.example != null && item.example!.hasContent) ...[
                       const SizedBox(height: AppSpacing.lg),
-                      const SectionLabel('Örnek'),
+                      SectionLabel(item.example!.label.trim().isEmpty
+                          ? 'Örnek'
+                          : item.example!.label),
                       MinikCard(
                         color: MinikColors.mint,
                         child: Column(

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../app/constants/app_constants.dart';
+import '../utils/turkish_number.dart';
 
 class WuduProgress {
   const WuduProgress({
@@ -201,7 +202,8 @@ class LocalProgressStore extends ChangeNotifier {
     }
     if (kind == 'prayer_dua') {
       final items = await getCompletedItems();
-      final count = items.where((item) => item.startsWith('prayer_dua|')).length;
+      final count =
+          items.where((item) => item.startsWith('prayer_dua|')).length;
       if (count >= 5) await _addUnique(_key('badges'), 'prayer_duas');
     }
     if (kind == 'story') await _addUnique(_key('badges'), 'first_lesson');
@@ -287,9 +289,10 @@ class LocalProgressStore extends ChangeNotifier {
     );
     await setContinue(
       title: 'Mushaf · kaldığın yer',
-      subtitle: '$displayNumber. sayfa · $surahLabel',
+      subtitle: '${TurkishNumber.pageLabel(displayNumber)} · $surahLabel',
       route: '/minik/quran/reader',
-      progress: (displayNumber / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
+      progress:
+          (displayNumber / (totalPages <= 0 ? 1 : totalPages)).clamp(0, 1),
     );
   }
 

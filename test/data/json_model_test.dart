@@ -191,6 +191,22 @@ void main() {
     expect(dua.reference, 'Ebû Dâvûd');
   });
 
+  test('Rükû and secde tesbihs play three times, other prayer duas once', () {
+    final json = jsonDecode(File('assets/data/namaz_dualari.json').readAsStringSync())
+        as Map<String, dynamic>;
+    final duas = [
+      for (final item in json['items'] as List)
+        PrayerDua.fromJson(item as Map<String, dynamic>),
+    ];
+    final repeats = {for (final dua in duas) dua.id: dua.repeat};
+    expect(repeats['ruku'], 3);
+    expect(repeats['sujud'], 3);
+    expect(repeats['subhaneke'], 1);
+    final entry = DuaEntry.fromPrayerDua(duas.firstWhere((d) => d.id == 'ruku'));
+    expect(entry.playRepeat, 3);
+    expect(entry.repeat, 1);
+  });
+
   test('PrayerDua maps a surah item with verses', () {
     final dua = PrayerDua.fromJson({
       'order': 6,

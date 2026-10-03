@@ -2,18 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/audio/audio_player_service.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../data/repositories/content_repositories.dart';
-import '../../features/quran_learn/quran_learn_hub.dart';
-import '../../features/quran_learn/quran_learn_theme.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/buttons.dart';
 import '../../shared/widgets/minik_image.dart';
-import 'elifba_flag.dart';
 import 'elifba_lesson.dart';
 import 'elifba_models.dart';
 import 'elifba_progress.dart';
@@ -38,85 +34,6 @@ Future<void> openElifbaLesson(
   );
 }
 
-class ElifbaChooserPage extends StatelessWidget {
-  const ElifbaChooserPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: context.read<ContentRepositories>().config.load(),
-      builder: (context, snapshot) {
-        final enabled = ElifbaFlags.isEnabled(snapshot.data);
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          );
-        }
-        if (!enabled) return const QuranLearnHubPage();
-        return quranLearnThemed(
-          Scaffold(
-            appBar: AppBar(title: const Text("Kur'an Öğren")),
-            body: ListView(
-              padding: AppSpacing.page,
-              children: [
-                ElifbaSoftCard(
-                  color: MinikColors.sky,
-                  onTap: () => Navigator.push(
-                    context,
-                    quranLearnRoute(const QuranLearnHubPage()),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '📖 Kur’an Öğrenme Serisi',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Mevcut Elifba yolu. Harf, hareke, kısa sure.',
-                        style: TextStyle(color: MinikColors.textMuted),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                ElifbaSoftCard(
-                  color: MinikColors.mint,
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    AppRoutes.learnElifbaAdventure,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '🌟 Elifbâ + Tecvid Macerası',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: MinikColors.darkGreen,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.',
-                        style: TextStyle(color: MinikColors.textMuted),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
 class ElifbaHubPage extends StatefulWidget {
   const ElifbaHubPage({super.key});
 
@@ -135,52 +52,43 @@ class _ElifbaHubPageState extends State<ElifbaHubPage> {
   Widget build(BuildContext context) {
     _future ??= _load();
     final store = context.watch<LocalProgressStore>();
-    return FutureBuilder(
-      future: context.read<ContentRepositories>().config.load(),
-      builder: (context, flagSnap) {
-        if (ElifbaFlags.isEnabled(flagSnap.data) == false &&
-            flagSnap.connectionState == ConnectionState.done) {
-          return const QuranLearnHubPage();
-        }
-        return Scaffold(
-          backgroundColor: MinikColors.background,
-          appBar: AppBar(
-            title: const Text('Elifbâ + Tecvid Macerası'),
-            actions: [
-              if (kDebugMode)
-                IconButton(
-                  tooltip: 'Debug',
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const ElifbaDebugPage(),
-                    ),
-                  ),
-                  icon: const Icon(Icons.bug_report_outlined),
+    return Scaffold(
+      backgroundColor: MinikColors.background,
+      appBar: AppBar(
+        title: const Text('Elifbâ + Tecvid Macerası'),
+        actions: [
+          if (kDebugMode)
+            IconButton(
+              tooltip: 'Debug',
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ElifbaDebugPage(),
                 ),
-            ],
-          ),
-          body: AsyncBody<ElifbaPack>(
-            future: _future!,
-            errorMessage: 'Elifbâ macerası yüklenemedi.',
-            onRetry: () => setState(() {
-              _future = _load();
-            }),
-            builder: (pack) {
-              return FutureBuilder<ElifbaSnapshot>(
-                future: ElifbaProgress(store).load(),
-                builder: (context, snap) {
-                  final progress = snap.data;
-                  if (progress == null) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return _HubBody(pack: pack, progress: progress);
-                },
-              );
+              ),
+              icon: const Icon(Icons.bug_report_outlined),
+            ),
+        ],
+      ),
+      body: AsyncBody<ElifbaPack>(
+        future: _future!,
+        errorMessage: 'Elifbâ macerası yüklenemedi.',
+        onRetry: () => setState(() {
+          _future = _load();
+        }),
+        builder: (pack) {
+          return FutureBuilder<ElifbaSnapshot>(
+            future: ElifbaProgress(store).load(),
+            builder: (context, snap) {
+              final progress = snap.data;
+              if (progress == null) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              return _HubBody(pack: pack, progress: progress);
             },
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

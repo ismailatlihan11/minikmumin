@@ -70,7 +70,7 @@
       "title": "Sübhaneke Duası",
       "arabic": "سُبْحَانَكَ اَللّٰهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَىٰ جَدُّكَ وَلَا إِلٰهَ غَيْرُكَ",
       "transliteration": "Sübhâneke allâhümme ve bihamdik, ve tebârekesmük, ve teâlâ ceddük, ve lâ ilâhe ğayrük.",
-      "meaning": "Allah'ım! Seni eksikliklerden uzak tutar ve överim. Adın bereketlidir, şanın yücedir. Senden başka ilâh yoktur.",
+      "meaning": "Allah'ım! Sen eksik sıfatlardan pak ve uzaksın. Seni daima böyle tenzih eder ve överim. Senin adın mübarektir. Varlığın her şeyden üstündür, şanın yücedir. Senden başka ilâh yoktur.",
       "usage": "Namazın başında, iftitah tekbirinden sonra okunur.",
       "source": "Diyanet namaz ilmihali / hadis kaynakları"
     },
@@ -85,43 +85,45 @@
           "ayahNo": 1,
           "arabic": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحٖیمِ",
           "transliteration": "Bismillâhirrahmânirrahîm.",
-          "meal": "Rahmân ve rahîm olan Allah'ın adıyla..._"
+          "meal": "Rahmân ve Rahîm olan Allah'ın adıyla."
         },
         {
           "ayahNo": 2,
           "arabic": "اَلْحَمْدُ لِلّٰهِ رَبِّ الْعَالَمٖینَۙ",
           "transliteration": "Elhamdü lillâhi rabbil âlemîn.",
-          "meal": "Hamd (övme ve övülme), âlemlerin Rabbi Allah'a mahsustur."
+          "meal": "Hamd, Âlemlerin Rabbi, Rahmân, Rahîm, hesap ve ceza gününün (ahiret gününün) maliki Allah'a mahsustur.",
+          "mealRange": "2-4"
         },
         {
           "ayahNo": 3,
           "arabic": "اَلرَّحْمٰنِ الرَّحٖیمِۙ",
           "transliteration": "Er-Rahmânir-Rahîm.",
-          "meal": "O, rahmândır ve rahîmdir."
+          "meal": ""
         },
         {
           "ayahNo": 4,
           "arabic": "مَالِكِ یَوْمِ الدّٖینِؕ",
           "transliteration": "Mâliki yevmiddîn.",
-          "meal": "Ceza gününün mâlikidir."
+          "meal": ""
         },
         {
           "ayahNo": 5,
           "arabic": "اِیَّاكَ نَعْبُدُ وَاِیَّاكَ نَسْتَعٖینُؕ",
           "transliteration": "İyyâke na'büdü ve iyyâke neste'în.",
-          "meal": "(Rabbimiz!) Ancak sana kulluk ederiz ve yalnız senden medet umarız."
+          "meal": "(Allahım!) Yalnız sana ibadet ederiz ve yalnız senden yardım dileriz."
         },
         {
           "ayahNo": 6,
           "arabic": "اِهْدِنَا الصِّرَاطَ الْمُسْتَقٖیمَۙ",
           "transliteration": "İhdinessırâtal müstakîm.",
-          "meal": "Bize doğru yolu göster."
+          "meal": "Bizi doğru yola, kendilerine nimet verdiklerinin yoluna ilet; gazaba uğrayanlarınkine ve sapıklarınkine değil.",
+          "mealRange": "6-7"
         },
         {
           "ayahNo": 7,
           "arabic": "صِرَاطَ الَّذٖینَ اَنْعَمْتَ عَلَیْهِمْۙ غَیْرِ الْمَغْضُوبِ عَلَیْهِمْ وَلَا الضَّٓالّٖینَ",
           "transliteration": "Sırâtallezîne en'amte aleyhim gayril mağdûbi aleyhim ve leddâllîn.",
-          "meal": "Kendilerine lütuf ve ikramda bulunduğun kimselerin yolunu; gazaba uğramışların ve sapmışların yolunu değil! Âmin."
+          "meal": ""
         }
       ],
       "source": "Kur'an-ı Kerim",
@@ -129,70 +131,6 @@
     },
     {
       "order": 7,
-      "id": "surah_108",
-      "type": "surah",
-      "title": "Kevser Suresi",
-      "surahNumber": 108,
-      "verses": [
-        {
-          "ayahNo": 1,
-          "arabic": "اِنَّٓا اَعْطَیْنَاكَ الْكَوْثَرَؕ",
-          "transliteration": "İnnâ a'taynâkel kevser.",
-          "meal": "Şüphesiz biz sana Kevser'i verdik."
-        },
-        {
-          "ayahNo": 2,
-          "arabic": "فَصَلِّ لِرَبِّكَ وَانْحَرْؕ",
-          "transliteration": "Fe salli li rabbike venhar.",
-          "meal": "Öyleyse Rabbin için namaz kıl ve kurban kes."
-        },
-        {
-          "ayahNo": 3,
-          "arabic": "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ",
-          "transliteration": "İnne şânieke hüvel ebter.",
-          "meal": "Asıl soyu kesik olan, sana buğz edendir."
-        }
-      ],
-      "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 108"
-    },
-    {
-      "order": 8,
-      "id": "surah_112",
-      "type": "surah",
-      "title": "İhlâs Suresi",
-      "surahNumber": 112,
-      "verses": [
-        {
-          "ayahNo": 1,
-          "arabic": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
-          "transliteration": "Kul hüvallâhü ehad.",
-          "meal": "De ki: O, Allah birdir. Allah sameddir. O, doğurmamış ve doğmamıştır. Onun hiçbir dengi yoktur."
-        },
-        {
-          "ayahNo": 2,
-          "arabic": "اَللّٰهُ الصَّمَدُۚ",
-          "transliteration": "Allâhüs samed.",
-          "meal": "Allah, o eksiksiz sameddir."
-        },
-        {
-          "ayahNo": 3,
-          "arabic": "لَمْ یَلِدْ وَلَمْ یُولَدْۙ",
-          "transliteration": "lem yelid ve lem yûled.",
-          "meal": "Doğurmadı ve doğurulmadı."
-        },
-        {
-          "ayahNo": 4,
-          "arabic": "وَلَمْ یَكُنْ لَهُ كُفُوًا اَحَدٌ",
-          "transliteration": "Ve lem yekün lehû küfüven ehad.",
-          "meal": "Ona bir küfüv de olmadı."
-        }
-      ],
-      "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 112"
-    },
-    {
-      "order": 9,
       "id": "surah_103",
       "type": "surah",
       "title": "Asr Suresi",
@@ -202,111 +140,185 @@
           "ayahNo": 1,
           "arabic": "وَالْعَصْرِۙ",
           "transliteration": "Vel asr.",
-          "meal": "Asra yemin ederim ki insan gerçekten ziyan içindedir. Bundan ancak iman edip iyi ameller işleyenler, birbirlerine hakkı tavsiye edenler ve sabrı tavsiye edenler müstesnadır."
+          "meal": "Andolsun zamana ki, insan gerçekten ziyan içindedir.",
+          "mealRange": "1-2"
         },
         {
           "ayahNo": 2,
           "arabic": "اِنَّ الْاِنْسَانَ لَفٖی خُسْرٍۙ",
           "transliteration": "İnnel insâne lefî husr.",
-          "meal": "İnsan mutlak bir hüsranda."
+          "meal": ""
         },
         {
           "ayahNo": 3,
           "arabic": "اِلَّا الَّذٖینَ اٰمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
           "transliteration": "İllellezîne âmenû ve amilûs sâlihâti ve tevâsav bil hakkı ve tevâsav bis sabr.",
-          "meal": "Ancak o kimseler başka ki iman edip salih ameller işlediler ve hep hakka vasiyyetleştiler ve sabra vasiyyetleştiler."
+          "meal": "Ancak, iman edip de sâlih ameller işleyenler, birbirlerine hakkı tavsiye edenler, birbirlerine sabrı tavsiye edenler başka (Onlar ziyanda değillerdir)."
         }
       ],
       "source": "Kur'an-ı Kerim",
       "sourceReference": "Sure 103"
     },
     {
-      "order": 10,
-      "id": "surah_114",
+      "order": 8,
+      "id": "surah_105",
       "type": "surah",
-      "title": "Nâs Suresi",
-      "surahNumber": 114,
+      "title": "Fîl Suresi",
+      "surahNumber": 105,
       "verses": [
         {
           "ayahNo": 1,
-          "arabic": "قُلْ اَعُوذُ بِرَبِّ النَّاسِۙ",
-          "transliteration": "Kul eûzü bi rabbin nâs.",
-          "meal": "De ki: İnsanların kalplerine vesvese sokan, (insan Allah'ı andığında) pusuya çekilen cin ve insan şeytanının şerrinden insanların Rabbine, insanların Melikine (mutlak sahip ve hakimine) insanların İlâhına sığınırım!"
+          "arabic": "اَلَمْ تَرَ كَیْفَ فَعَلَ رَبُّكَ بِاَصْحَابِ الْفٖیلِؕ",
+          "transliteration": "Elem tera keyfe feale rabbüke bi ashâbil fîl.",
+          "meal": "Rabbinin, fil sahiplerine ne yaptığını görmedin mi?"
         },
         {
           "ayahNo": 2,
-          "arabic": "مَلِكِ النَّاسِۙ",
-          "transliteration": "Melikin nâs.",
-          "meal": "Melikine nâsın,"
+          "arabic": "اَلَمْ یَجْعَلْ كَیْدَهُمْ فٖی تَضْلٖیلٍۙ",
+          "transliteration": "Elem yec'al keydehüm fî tadlîl.",
+          "meal": "Onların tuzaklarını boşa çıkarmadı mı?"
         },
         {
           "ayahNo": 3,
-          "arabic": "اِلٰهِ النَّاسِۙ",
-          "transliteration": "İlâhin nâs.",
-          "meal": "İlâhına nâsın,"
+          "arabic": "وَاَرْسَلَ عَلَیْهِمْ طَیْرًا اَبَابٖیلَۙ",
+          "transliteration": "Ve ersele aleyhim tayran ebâbîl.",
+          "meal": "Üzerlerine balçıktan pişirilmiş taşlar atan sürü sürü kuşlar gönderdi. Nihayet onları yenilmiş ekin yaprakları haline getirdi.",
+          "mealRange": "3-5"
         },
         {
           "ayahNo": 4,
-          "arabic": "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِۙ",
-          "transliteration": "Min şerril vesvâsil hannâs.",
-          "meal": "Şerrinden o sinsi vesvasın."
+          "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ مِنْ سِجّٖیلٍࣕۙ",
+          "transliteration": "Termîhim bi hıcâratim min siccîl.",
+          "meal": ""
         },
         {
           "ayahNo": 5,
-          "arabic": "اَلَّذٖی یُوَسْوِسُ فٖی صُدُورِ النَّاسِۙ",
-          "transliteration": "Ellezî yüvesvisü fî sudûrin nâs.",
-          "meal": "Ki vesvese verir sinelerinde nâsın."
+          "arabic": "فَجَعَلَهُمْ كَعَصْفٍ مَاْكُولٍ",
+          "transliteration": "Fe cealehüm ke asfin me'kûl.",
+          "meal": ""
+        }
+      ],
+      "source": "Kur'an-ı Kerim",
+      "sourceReference": "Sure 105"
+    },
+    {
+      "order": 9,
+      "id": "surah_106",
+      "type": "surah",
+      "title": "Kureyş Suresi",
+      "surahNumber": 106,
+      "verses": [
+        {
+          "ayahNo": 1,
+          "arabic": "لِاٖیلَافِ قُرَیْشٍۙ",
+          "transliteration": "Li îlâfi kureyş.",
+          "meal": "Kureyş'i ısındırıp alıştırdığı; onları kışın (Yemen'e) ve yazın (Şam'a) yaptıkları yolculuğa ısındırıp alıştırdığı için, Kureyş de, kendilerini besleyip açlıklarını gideren ve onları korkudan emin kılan bu evin (Kâbe'nin) Rabbine kulluk etsin.",
+          "mealRange": "1-4"
+        },
+        {
+          "ayahNo": 2,
+          "arabic": "اٖیلَافِهِمْ رِحْلَةَ الشِّتَٓاءِ وَالصَّیْفِۚ",
+          "transliteration": "Îlâfihim rihleteş şitâi ves sayf.",
+          "meal": ""
+        },
+        {
+          "ayahNo": 3,
+          "arabic": "فَلْیَعْبُدُوا رَبَّ هٰذَا الْبَیْتِۙ",
+          "transliteration": "Felya'büdû rabbe hâzel beyt.",
+          "meal": ""
+        },
+        {
+          "ayahNo": 4,
+          "arabic": "اَلَّذٖٓی اَطْعَمَهُمْ مِنْ جُوعٍ وَاٰمَنَهُمْ مِنْ خَوْفٍ",
+          "transliteration": "Ellezî et'amehüm min cû'in ve âmenehüm min havf.",
+          "meal": ""
+        }
+      ],
+      "source": "Kur'an-ı Kerim",
+      "sourceReference": "Sure 106"
+    },
+    {
+      "order": 10,
+      "id": "surah_107",
+      "type": "surah",
+      "title": "Mâûn Suresi",
+      "surahNumber": 107,
+      "verses": [
+        {
+          "ayahNo": 1,
+          "arabic": "اَرَاَیْتَ الَّذٖی یُكَذِّبُ بِالدّٖینِؕ",
+          "transliteration": "Eraeytellezî yükezzibü bid dîn.",
+          "meal": "Gördün mü, o hesap ve ceza gününü yalanlayanı!"
+        },
+        {
+          "ayahNo": 2,
+          "arabic": "فَذٰلِكَ الَّذٖی یَدُعُّ الْیَتٖیمَۙ",
+          "transliteration": "Fe zâlikellezî yedu'ul yetîm.",
+          "meal": "İşte o, yetimi itip kakan, yoksula yedirmeyi özendirmeyen kimsedir.",
+          "mealRange": "2-3"
+        },
+        {
+          "ayahNo": 3,
+          "arabic": "وَلَا یَحُضُّ عَلٰى طَعَامِ الْمِسْكٖینِؕ",
+          "transliteration": "Ve lâ yahuddu alâ ta'âmil miskîn.",
+          "meal": ""
+        },
+        {
+          "ayahNo": 4,
+          "arabic": "فَوَیْلٌ لِلْمُصَلّٖینَۙ",
+          "transliteration": "Fe veylün lil musallîn.",
+          "meal": "Yazıklar olsun o namaz kılanlara ki,"
+        },
+        {
+          "ayahNo": 5,
+          "arabic": "اَلَّذٖینَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَۙ",
+          "transliteration": "Ellezîne hüm an salâtihim sâhûn.",
+          "meal": "Onlar namazlarını ciddiye almazlar."
         },
         {
           "ayahNo": 6,
-          "arabic": "مِنَ الْجِنَّةِ وَالنَّاسِ",
-          "transliteration": "Minel cinneti ven nâs.",
-          "meal": "Gerek cinden gerekse insden."
+          "arabic": "اَلَّذٖینَ هُمْ یُرَٓاؤُ࣒نَۙ",
+          "transliteration": "Ellezîne hüm yürâûn.",
+          "meal": "Onlar (namazlarıyla) gösteriş yaparlar."
+        },
+        {
+          "ayahNo": 7,
+          "arabic": "وَیَمْنَعُونَ الْمَاعُونَ",
+          "transliteration": "Ve yemneûnel mâûn.",
+          "meal": "Ufacık bir yardıma bile engel olurlar."
         }
       ],
       "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 114"
+      "sourceReference": "Sure 107"
     },
     {
       "order": 11,
-      "id": "surah_113",
+      "id": "surah_108",
       "type": "surah",
-      "title": "Felak Suresi",
-      "surahNumber": 113,
+      "title": "Kevser Suresi",
+      "surahNumber": 108,
       "verses": [
         {
           "ayahNo": 1,
-          "arabic": "قُلْ اَعُوذُ بِرَبِّ الْفَلَقِۙ",
-          "transliteration": "Kul eûzü bi rabbil felak.",
-          "meal": "De ki: Yarattığı şeylerin şerrinden, karanlığı çöktüğü zaman gecenin şerrinden, düğümlere üfürüp büyü yapan üfürükçülerin şerrinden ve kıskandığı vakit kıskanç kişinin şerrinden sabahın Rabbine sığınırım!"
+          "arabic": "اِنَّٓا اَعْطَیْنَاكَ الْكَوْثَرَؕ",
+          "transliteration": "İnnâ a'taynâkel kevser.",
+          "meal": "Şüphesiz biz sana Kevseri verdik."
         },
         {
           "ayahNo": 2,
-          "arabic": "مِنْ شَرِّ مَا خَلَقَۙ",
-          "transliteration": "Min şerri mâ halak.",
-          "meal": "Şerrinden yarattıklarının."
+          "arabic": "فَصَلِّ لِرَبِّكَ وَانْحَرْؕ",
+          "transliteration": "Fe salli li rabbike venhar.",
+          "meal": "O Halde, Rabbin için namaz kıl, kurban kes."
         },
         {
           "ayahNo": 3,
-          "arabic": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
-          "transliteration": "Ve min şerri ğâsikın izâ vekab.",
-          "meal": "Ve şerrinden bir gâsıkın daldığı zaman."
-        },
-        {
-          "ayahNo": 4,
-          "arabic": "وَمِنْ شَرِّ النَّفَّاثَاتِ فِی الْعُقَدِۙ",
-          "transliteration": "Ve min şerrin neffâsâti fil ukad.",
-          "meal": "Ve o, ukdelere üfleyen neffasların şerrinden."
-        },
-        {
-          "ayahNo": 5,
-          "arabic": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
-          "transliteration": "Ve min şerri hâsidin izâ hased.",
-          "meal": "Ve şerrinden bir hâsidin hased ettiği zaman."
+          "arabic": "اِنَّ شَانِئَكَ هُوَ الْاَبْتَرُ",
+          "transliteration": "İnne şânieke hüvel ebter.",
+          "meal": "Doğrusu sana buğzeden, soyu kesik olanın ta kendisidir."
         }
       ],
       "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 113"
+      "sourceReference": "Sure 108"
     },
     {
       "order": 12,
@@ -319,37 +331,37 @@
           "ayahNo": 1,
           "arabic": "قُلْ یَٓا اَیُّهَا الْكَافِرُونَۙ",
           "transliteration": "Kul yâ eyyühel kâfirûn.",
-          "meal": "(Resûlüm!) De ki: Ey kâfirler! Ben sizin tapmakta olduklarınıza tapmam."
+          "meal": "De ki: \"Ey Kâfirler!\""
         },
         {
           "ayahNo": 2,
           "arabic": "لَٓا اَعْبُدُ مَا تَعْبُدُونَۙ",
           "transliteration": "Lâ a'büdü mâ ta'büdûn.",
-          "meal": "Tapmam o tapdıklarınıza."
+          "meal": "\"Ben sizin kulluk ettiklerinize kulluk etmem.\""
         },
         {
           "ayahNo": 3,
           "arabic": "وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُۚ",
           "transliteration": "Ve lâ entüm âbidûne mâ a'büd.",
-          "meal": "Siz de benim taptığıma tapmıyorsunuz."
+          "meal": "\"Siz de benim kulluk ettiğime kulluk edecek değilsiniz.\""
         },
         {
           "ayahNo": 4,
           "arabic": "وَلَٓا اَنَا࣑ عَابِدٌ مَا عَبَدْتُمْۙ",
           "transliteration": "Ve lâ ene âbidün mâ abedtüm.",
-          "meal": "Ben de sizin taptıklarınıza asla tapacak değilim."
+          "meal": "\"Ben sizin kulluk ettiklerinize kulluk edecek değilim.\""
         },
         {
           "ayahNo": 5,
           "arabic": "وَلَٓا اَنْتُمْ عَابِدُونَ مَٓا اَعْبُدُؕ",
           "transliteration": "Ve lâ entüm âbidûne mâ a'büd.",
-          "meal": "Evet, siz de benim taptığıma tapıyor değilsiniz."
+          "meal": "\"Siz de benim kulluk ettiğime kulluk edecek değilsiniz.\""
         },
         {
           "ayahNo": 6,
           "arabic": "لَكُمْ دٖینُكُمْ وَلِیَ دٖینِ",
           "transliteration": "Leküm dînüküm ve liye dîn.",
-          "meal": "Sizin dininiz size, benim dinim de banadır."
+          "meal": "\"Sizin dininiz size, benim dinim de banadır.\""
         }
       ],
       "source": "Kur'an-ı Kerim",
@@ -366,19 +378,20 @@
           "ayahNo": 1,
           "arabic": "اِذَا جَٓاءَ نَصْرُ اللّٰهِ وَالْفَتْحُۙ",
           "transliteration": "İzâ câe nasrullâhi vel feth.",
-          "meal": "Allah'ın yardımı ve zaferi gelip de insanların bölük bölük Allah'ın dinine girmekte olduklarını gördüğün vakit Rabbine hamdederek O'nu tesbih et ve O'ndan mağfiret dile. Çünkü O, tevbeleri çok kabul edendir."
+          "meal": "Allah'ın yardımı ve fetih (Mekke fethi) geldiğinde ve insanların bölük bölük Allah'ın dinine girdiğini gördüğünde, Rabbine hamd ederek tespihte bulun ve O'ndan bağışlama dile. Çünkü O tövbeleri çok kabul edendir.",
+          "mealRange": "1-3"
         },
         {
           "ayahNo": 2,
           "arabic": "وَرَاَیْتَ النَّاسَ یَدْخُلُونَ فٖی دٖینِ اللّٰهِ اَفْوَاجًاۙ",
           "transliteration": "Ve raeyten nâse yedhulûne fî dînillâhi efvâcâ.",
-          "meal": "Gördüğün vakit nâsı girerlerken Allah dînine fevcâ fevc."
+          "meal": ""
         },
         {
           "ayahNo": 3,
           "arabic": "فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُؕ اِنَّهُ كَانَ تَوَّابًا",
           "transliteration": "Fe sebbih bihamdi rabbike vestağfirh. İnnehû kâne tevvâbâ.",
-          "meal": "Artık tesbîh et Rabbi’ne hamdiyle ve mağfiretini dile, muhakkak ki o bir Tevvab bulunuyor."
+          "meal": ""
         }
       ],
       "source": "Kur'an-ı Kerim",
@@ -395,31 +408,32 @@
           "ayahNo": 1,
           "arabic": "تَبَّتْ یَدَٓا اَبٖی لَهَبٍ وَتَبَّؕ",
           "transliteration": "Tebbet yedâ ebî lehebin ve tebb.",
-          "meal": "Ebu Leheb'in iki eli kurusun! Kurudu da. Malı ve kazandıkları ona fayda vermedi. O, alevli bir ateşte yanacak. Odun taşıyıcı olarak ve boynunda hurma lifinden bükülmüş bir ip olduğu halde karısı da (ateşe girecek)."
+          "meal": "Ebû Leheb'in elleri kurusun. Zaten kurudu."
         },
         {
           "ayahNo": 2,
           "arabic": "مَٓا اَغْنٰى عَنْهُ مَالُهُ وَمَا كَسَبَؕ",
           "transliteration": "Mâ ağnâ anhu mâlühû ve mâ keseb.",
-          "meal": "Ne malı fâide verdi ona ne kazandığı."
+          "meal": "Ona ne malı fayda verdi, ne de kazandığı."
         },
         {
           "ayahNo": 3,
           "arabic": "سَیَصْلٰى نَارًا ذَاتَ لَهَبٍۚ",
           "transliteration": "Se yaslâ nâran zâte leheb.",
-          "meal": "O bir alevli ateşe yaslanacak."
+          "meal": "O, bir alevli ateşe girecektir,"
         },
         {
           "ayahNo": 4,
           "arabic": "وَامْرَاَتُهُؕ حَمَّالَةَ الْحَطَبِۚ",
           "transliteration": "Vemraetühû hammâletel hatab.",
-          "meal": "Karısı da, odun hammalı olarak."
+          "meal": "Boynunda bükülmüş hurma liflerinden bir ip olduğu halde sırtında odun taşıyarak karısı da (o ateşe girecektir).",
+          "mealRange": "4-5"
         },
         {
           "ayahNo": 5,
           "arabic": "فٖی جٖیدِهَا حَبْلٌ مِنْ مَسَدٍ",
           "transliteration": "Fî cîdihâ hablün min mesed.",
-          "meal": "Gerdanında bir ip ki fitillisinden."
+          "meal": ""
         }
       ],
       "source": "Kur'an-ı Kerim",
@@ -427,132 +441,128 @@
     },
     {
       "order": 15,
-      "id": "surah_107",
+      "id": "surah_112",
       "type": "surah",
-      "title": "Mâûn Suresi",
-      "surahNumber": 107,
+      "title": "İhlâs Suresi",
+      "surahNumber": 112,
       "verses": [
         {
           "ayahNo": 1,
-          "arabic": "اَرَاَیْتَ الَّذٖی یُكَذِّبُ بِالدّٖینِؕ",
-          "transliteration": "Eraeytellezî yükezzibü bid dîn.",
-          "meal": "Dini yalanlayanı gördün mü?"
+          "arabic": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
+          "transliteration": "Kul hüvallâhü ehad.",
+          "meal": "De ki: O, Allah'tır, bir tektir."
         },
         {
           "ayahNo": 2,
-          "arabic": "فَذٰلِكَ الَّذٖی یَدُعُّ الْیَتٖیمَۙ",
-          "transliteration": "Fe zâlikellezî yedu'ul yetîm.",
-          "meal": "İşte o, yetimi itip kakar;"
+          "arabic": "اَللّٰهُ الصَّمَدُۚ",
+          "transliteration": "Allâhüs samed.",
+          "meal": "Allah Samed'dir. (Her şey O'na muhtaçtır, o, hiçbir şeye muhtaç değildir.)"
         },
         {
           "ayahNo": 3,
-          "arabic": "وَلَا یَحُضُّ عَلٰى طَعَامِ الْمِسْكٖینِؕ",
-          "transliteration": "Ve lâ yahuddu alâ ta'âmil miskîn.",
-          "meal": "Yoksulu doyurmaya teşvik etmez;"
+          "arabic": "لَمْ یَلِدْ وَلَمْ یُولَدْۙ",
+          "transliteration": "lem yelid ve lem yûled.",
+          "meal": "Ondan çocuk olmamıştır (Kimsenin babası değildir). Kendisi de doğmamıştır (kimsenin çocuğu değildir)."
         },
         {
           "ayahNo": 4,
-          "arabic": "فَوَیْلٌ لِلْمُصَلّٖینَۙ",
-          "transliteration": "Fe veylün lil musallîn.",
-          "meal": "Yazıklar olsun o namaz kılanlara ki, onlar namazlarını ciddiye almazlar."
-        },
-        {
-          "ayahNo": 5,
-          "arabic": "اَلَّذٖینَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَۙ",
-          "transliteration": "Ellezîne hüm an salâtihim sâhûn.",
-          "meal": "Namazlarından yanılmaktadırlar."
-        },
-        {
-          "ayahNo": 6,
-          "arabic": "اَلَّذٖینَ هُمْ یُرَٓاؤُ࣒نَۙ",
-          "transliteration": "Ellezîne hüm yürâûn.",
-          "meal": "Onlar ki müraîlik ederler."
-        },
-        {
-          "ayahNo": 7,
-          "arabic": "وَیَمْنَعُونَ الْمَاعُونَ",
-          "transliteration": "Ve yemneûnel mâûn.",
-          "meal": "Onlar gösteriş yapanlardır; hayra da mâni olurlar."
+          "arabic": "وَلَمْ یَكُنْ لَهُ كُفُوًا اَحَدٌ",
+          "transliteration": "Ve lem yekün lehû küfüven ehad.",
+          "meal": "Hiçbir şey O'na denk ve benzer değildir."
         }
       ],
       "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 107"
+      "sourceReference": "Sure 112"
     },
     {
       "order": 16,
-      "id": "surah_105",
+      "id": "surah_113",
       "type": "surah",
-      "title": "Fîl Suresi",
-      "surahNumber": 105,
+      "title": "Felak Suresi",
+      "surahNumber": 113,
       "verses": [
         {
           "ayahNo": 1,
-          "arabic": "اَلَمْ تَرَ كَیْفَ فَعَلَ رَبُّكَ بِاَصْحَابِ الْفٖیلِؕ",
-          "transliteration": "Elem tera keyfe feale rabbüke bi ashâbil fîl.",
-          "meal": "Rabbin fil sahiplerine neler etti, görmedin mi?"
+          "arabic": "قُلْ اَعُوذُ بِرَبِّ الْفَلَقِۙ",
+          "transliteration": "Kul eûzü bi rabbil felak.",
+          "meal": "De ki: \"Yarattığı şeylerin kötülüğünden, karanlığı çöktüğü zaman gecenin kötülüğünden, düğümlere üfleyenlerin kötülüğünden, haset ettiği zaman hasetçinin kötülüğünden, sabah aydınlığının Rabbine sığınırım.\"",
+          "mealRange": "1-5"
         },
         {
           "ayahNo": 2,
-          "arabic": "اَلَمْ یَجْعَلْ كَیْدَهُمْ فٖی تَضْلٖیلٍۙ",
-          "transliteration": "Elem yec'al keydehüm fî tadlîl.",
-          "meal": "Onların kötü planlarını boşa çıkarmadı mı?"
+          "arabic": "مِنْ شَرِّ مَا خَلَقَۙ",
+          "transliteration": "Min şerri mâ halak.",
+          "meal": ""
         },
         {
           "ayahNo": 3,
-          "arabic": "وَاَرْسَلَ عَلَیْهِمْ طَیْرًا اَبَابٖیلَۙ",
-          "transliteration": "Ve ersele aleyhim tayran ebâbîl.",
-          "meal": "Onların üstüne sürü sürü kuşlar gönderdi."
+          "arabic": "وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَۙ",
+          "transliteration": "Ve min şerri ğâsikın izâ vekab.",
+          "meal": ""
         },
         {
           "ayahNo": 4,
-          "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ مِنْ سِجّٖیلٍࣕۙ",
-          "transliteration": "Termîhim bi hıcâratim min siccîl.",
-          "meal": "O kuşlar, onların üzerlerine pişkin tuğladan yapılmış taşlar atıyordu."
+          "arabic": "وَمِنْ شَرِّ النَّفَّاثَاتِ فِی الْعُقَدِۙ",
+          "transliteration": "Ve min şerrin neffâsâti fil ukad.",
+          "meal": ""
         },
         {
           "ayahNo": 5,
-          "arabic": "فَجَعَلَهُمْ كَعَصْفٍ مَاْكُولٍ",
-          "transliteration": "Fe cealehüm ke asfin me'kûl.",
-          "meal": "Böylece Allah onları yenilip çiğnenmiş ekine çevirdi."
+          "arabic": "وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ",
+          "transliteration": "Ve min şerri hâsidin izâ hased.",
+          "meal": ""
         }
       ],
       "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 105"
+      "sourceReference": "Sure 113"
     },
     {
       "order": 17,
-      "id": "surah_106",
+      "id": "surah_114",
       "type": "surah",
-      "title": "Kureyş Suresi",
-      "surahNumber": 106,
+      "title": "Nâs Suresi",
+      "surahNumber": 114,
       "verses": [
         {
           "ayahNo": 1,
-          "arabic": "لِاٖیلَافِ قُرَیْشٍۙ",
-          "transliteration": "Li îlâfi kureyş.",
-          "meal": "Kureyş'e kolaylaştırıldığı, evet, kış ve yaz seyahatleri onlara kolaylaştırıldığı için onlar, kendilerini açlıktan doyuran ve her çeşit korkudan emin kılan şu evin Rabbine kulluk etsinler."
+          "arabic": "قُلْ اَعُوذُ بِرَبِّ النَّاسِۙ",
+          "transliteration": "Kul eûzü bi rabbin nâs.",
+          "meal": "De ki: \"Cinlerden ve insanlardan; insanların kalplerine vesvese veren sinsi vesvesecinin kötülüğünden, insanların Rabbine, insanların Melik'ine, insanların İlah'ına sığınırım.\"",
+          "mealRange": "1-6"
         },
         {
           "ayahNo": 2,
-          "arabic": "اٖیلَافِهِمْ رِحْلَةَ الشِّتَٓاءِ وَالصَّیْفِۚ",
-          "transliteration": "Îlâfihim rihleteş şitâi ves sayf.",
-          "meal": "Sefere iylâfları yazın, kışın."
+          "arabic": "مَلِكِ النَّاسِۙ",
+          "transliteration": "Melikin nâs.",
+          "meal": ""
         },
         {
           "ayahNo": 3,
-          "arabic": "فَلْیَعْبُدُوا رَبَّ هٰذَا الْبَیْتِۙ",
-          "transliteration": "Felya'büdû rabbe hâzel beyt.",
-          "meal": "Hiç olmazsa onun için kulluk etsinler Rabb’ine bu Beytin."
+          "arabic": "اِلٰهِ النَّاسِۙ",
+          "transliteration": "İlâhin nâs.",
+          "meal": ""
         },
         {
           "ayahNo": 4,
-          "arabic": "اَلَّذٖٓی اَطْعَمَهُمْ مِنْ جُوعٍ وَاٰمَنَهُمْ مِنْ خَوْفٍ",
-          "transliteration": "Ellezî et'amehüm min cû'in ve âmenehüm min havf.",
-          "meal": "Ki onları açlıktan doyurdu, ve korkudan emîn buyurdu."
+          "arabic": "مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِۙ",
+          "transliteration": "Min şerril vesvâsil hannâs.",
+          "meal": ""
+        },
+        {
+          "ayahNo": 5,
+          "arabic": "اَلَّذٖی یُوَسْوِسُ فٖی صُدُورِ النَّاسِۙ",
+          "transliteration": "Ellezî yüvesvisü fî sudûrin nâs.",
+          "meal": ""
+        },
+        {
+          "ayahNo": 6,
+          "arabic": "مِنَ الْجِنَّةِ وَالنَّاسِ",
+          "transliteration": "Minel cinneti ven nâs.",
+          "meal": ""
         }
       ],
       "source": "Kur'an-ı Kerim",
-      "sourceReference": "Sure 106"
+      "sourceReference": "Sure 114"
     },
     {
       "order": 18,
@@ -561,7 +571,7 @@
       "title": "Et-Tahiyyâtü Duası",
       "arabic": "اَلتَّحِيَّاتُ لِلّٰهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ ۚ اَلسَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللّٰهِ وَبَرَكَاتُهُ ۚ اَلسَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللّٰهِ الصَّالِحِينَ ۚ أَشْهَدُ أَنْ لَا إِلٰهَ إِلَّا اللّٰهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",
       "transliteration": "Ettehiyyâtü lillâhi vessalavâtü vettayyibât. Esselâmü aleyke eyyühennebiyyü ve rahmetullâhi ve berakâtüh. Esselâmü aleynâ ve alâ ibâdillâhis-sâlihîn. Eşhedü en lâ ilâhe illallâh ve eşhedü enne Hz. Muhammeden abdühû ve resûlüh.",
-      "meaning": "Bütün hürmetler, ibadetler ve güzel sözler Allah'a aittir. Peygamber'e selâm; bize ve Allah'ın salih kullarına selâm olsun. Allah'tan başka ilâh olmadığına ve Hz. Muhammed ﷺ'in O'nun kulu ve elçisi olduğuna şahitlik ederim.",
+      "meaning": "Bütün tâzimler, övgüler, mülkler, kavlî, bedenî ve malî ibadetler Allah'a mahsustur. Ey Peygamber! Sana selâm olsun, Allah'ın rahmeti ve bereketi üzerine olsun. Selâm bize ve Allah'ın sâlih kullarına olsun. Kesin olarak bilir ve beyan ederim ki Allah'tan başka tanrı yoktur ve şehâdet ederim ki Hz. Muhammed Allah'ın kulu ve elçisidir.",
       "usage": "Namazdaki oturuşlarda okunur.",
       "source": "Hadis kaynakları / Diyanet namaz ilmihali"
     },
@@ -572,7 +582,7 @@
       "title": "Allahümme Salli Duası",
       "arabic": "اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
       "transliteration": "Allâhümme salli alâ Muhammedin ve alâ âli Muhammed, kemâ salleyte alâ İbrâhîme ve alâ âli İbrâhîm, inneke hamîdün mecîd.",
-      "meaning": "Allah'ım! Muhammed'e ve ailesine, İbrahim'e ve ailesine salât ettiğin gibi salât et. Şüphesiz Sen övülmüş ve yücesin.",
+      "meaning": "Allah'ım! Muhammed'e ve Muhammed'in ümmetine rahmet eyle; şerefini yücelt. İbrahim'e ve İbrahim'in ümmetine rahmet ettiğin gibi. Şüphesiz övülmeye lâyık yalnız sensin, şan ve şeref sahibi de sensin.",
       "usage": "Son oturuşta okunur.",
       "source": "Buhârî, Enbiyâ 10; Müslim, Salât 66"
     },
@@ -583,7 +593,7 @@
       "title": "Allahümme Bârik Duası",
       "arabic": "اَللّٰهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ",
       "transliteration": "Allâhümme bârik alâ Muhammedin ve alâ âli Muhammed, kemâ bârekte alâ İbrâhîme ve alâ âli İbrâhîm, inneke hamîdün mecîd.",
-      "meaning": "Allah'ım! Muhammed'e ve ailesine, İbrahim'e ve ailesine bereket verdiğin gibi bereket ver. Şüphesiz Sen övülmüş ve yücesin.",
+      "meaning": "Allah'ım! Muhammed'e ve Muhammed'in ümmetine hayır ve bereket ver. İbrahim'e ve İbrahim'in ümmetine verdiğin gibi. Şüphesiz övülmeye lâyık yalnız sensin, şan ve şeref sahibi de sensin.",
       "usage": "Son oturuşta, Salli duasıyla birlikte okunur.",
       "source": "Buhârî, Enbiyâ 10; Müslim, Salât 66"
     },
@@ -594,7 +604,7 @@
       "title": "Rabbenâ Âtinâ",
       "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
       "transliteration": "Rabbenâ âtinâ fi'd-dünyâ haseneten ve fi'l-âhireti haseneten ve kınâ azâben-nâr.",
-      "meaning": "Rabbimiz! Bize dünyada da iyilik ver, ahirette de iyilik ver ve bizi ateşin azabından koru.",
+      "meaning": "Rabbimiz! Bize dünyada da iyilik ver, ahirette de iyilik ver ve bizi ateş azabından koru.",
       "usage": "Namazda okunabilecek Kur'an duası.",
       "source": "Bakara 2:201"
     },
@@ -605,7 +615,7 @@
       "title": "Rabbenâğfir Lî",
       "arabic": "رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ",
       "transliteration": "Rabbenâğfir lî ve li-vâlideyye ve lil-mü'minîne yevme yekûmü'l-hisâb.",
-      "meaning": "Rabbimiz! Hesabın kurulacağı gün beni, anne babamı ve müminleri bağışla.",
+      "meaning": "Rabbimiz! Hesap görülecek günde, beni, ana-babamı ve inananları bağışla.",
       "usage": "Namazda okunabilecek Kur'an duası.",
       "source": "İbrâhîm 14:41"
     },
@@ -627,8 +637,9 @@
       "title": "Rükû Tesbihi",
       "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
       "transliteration": "Sübhâne Rabbiye'l-azîm",
-      "meaning": "Yüce Rabbimi tesbih ederim.",
+      "meaning": "Ulu Rabbim, her türlü kusurdan münezzehtir.",
       "usage": "Rükûda 3 kere okunur.",
+      "repeat": 3,
       "source": "Diyanet Namaz İlmihali"
     },
     {
@@ -649,8 +660,9 @@
       "title": "Secde Tesbihi",
       "arabic": "سُبْحَانَ رَبِّيَ الْأَعْلَى",
       "transliteration": "Sübhâne Rabbiye'l-a'lâ",
-      "meaning": "En yüce Rabbimi tesbih ederim.",
+      "meaning": "Ulu Rabbim, (her çeşit kusurdan) münezzehtir.",
       "usage": "Secdede 3 kere okunur.",
+      "repeat": 3,
       "source": "Diyanet Namaz İlmihali"
     },
     {
@@ -660,7 +672,7 @@
       "title": "Rabbenâ Lekel-Hamd",
       "arabic": "رَبَّنَا وَلَكَ الْحَمْدُ",
       "transliteration": "Rabbenâ ve lekel-hamd.",
-      "meaning": "Rabbimiz! Hamd sanadır.",
+      "meaning": "Ey Rabbimiz! Her türlü övgü sana mahsustur.",
       "usage": "Rükûdan doğrulup kıyamda durunca okunur.",
       "source": "Diyanet Namaz İlmihali"
     }

@@ -114,7 +114,7 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
       SnackBar(
         backgroundColor: kMushafGreen,
         content: Text(
-          '${TurkishNumber.pageLabel(page.jsonPage)} kaydedildi. “Mushaf · kaldığın yer”den devam edebilirsin.',
+          '${TurkishNumber.pageLabel(page.jsonPage)} kaydedildi. Kur’an sayfasındaki “Mushafta devam et”ten dönebilirsin.',
         ),
       ),
     );

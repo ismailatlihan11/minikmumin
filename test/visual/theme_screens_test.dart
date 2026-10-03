@@ -26,8 +26,7 @@ const _enabled = bool.fromEnvironment('SCREENSHOTS');
 const _textScale = String.fromEnvironment('TEXT_SCALE', defaultValue: '1');
 const _only = String.fromEnvironment('ONLY');
 const _modes = String.fromEnvironment('MODES', defaultValue: 'light,dark');
-// ql_series never settles in the fake-async zone; opt in with ONLY.
-const _skip = String.fromEnvironment('SKIP', defaultValue: 'ql_series');
+const _skip = String.fromEnvironment('SKIP');
 
 const _screens = <String, String>{
   'home': '/',
@@ -61,6 +60,8 @@ const _screens = <String, String>{
 const _flows = <String, (String, List<String>)>{
   'basics_item': (AppRoutes.learnBasics, ['İlk Adım', 'İslam Nedir?']),
   'basics_section': (AppRoutes.learnBasics, ['İnanç']),
+  'basics_sunnah': (AppRoutes.learnBasics, ['İnanç', 'Sünnet Nedir?']),
+  'basics_shahada': (AppRoutes.learnBasics, ['İlk Adım', 'Şehadet Nedir?']),
   'morality_detail': (AppRoutes.learnMorality, ['Temel Değerler', '#0']),
   'morality_learned': (
     AppRoutes.learnMorality,
@@ -76,7 +77,6 @@ const _flows = <String, (String, List<String>)>{
   'prophet_detail': (AppRoutes.learnProphets, ['Hz. Âdem']),
   'hadith_detail': (AppRoutes.hadith, ['#0']),
   'asma_detail': (AppRoutes.learnAsma, ['Er-Rahmân']),
-  'ql_series': (AppRoutes.learnQuran, ["Kur'an Öğrenme Serisi"]),
   'elifba_map': (AppRoutes.learnElifbaAdventure, ['Ders Haritası']),
   'surah_list': (AppRoutes.quran, ['Ayet ve meal']),
   'ilmihal_topic': (AppRoutes.learnIlmihal, ['Temizlik']),
@@ -86,7 +86,16 @@ const _flows = <String, (String, List<String>)>{
     AppRoutes.learnPrayer,
     ['Niyet', 'Sonraki adıma geç'],
   ),
+  'prayer_step_prev': (
+    AppRoutes.learnPrayer,
+    ['Niyet', 'Sonraki adıma geç', 'Önceki adım'],
+  ),
+  'prayer_ruku': (AppRoutes.learnPrayer, ['Rükûya Allahu ekber']),
   'wudu_step': (AppRoutes.learnWudu, ['Besmele ile Başlayalım']),
+  'wudu_step_next': (
+    AppRoutes.learnWudu,
+    ['Besmele ile Başlayalım', 'Sonraki adım'],
+  ),
   'parent_gate': (AppRoutes.settings, ['Öğrenme kilitlerini aç']),
   'search_results': (AppRoutes.search, ['=yemek']),
   'search_open': (AppRoutes.search, ['=aksirinca', 'Aksırınca']),
@@ -107,12 +116,18 @@ Future<void> _tapText(WidgetTester tester, String text) async {
   } else {
     final matches = find.textContaining(text);
     finder = matches.first;
-    if (matches.evaluate().isEmpty) {
-      await tester.scrollUntilVisible(
-        matches,
-        300,
-        scrollable: find.byType(Scrollable).first,
-      );
+    final scrollables = find.byType(Scrollable).evaluate().length;
+    for (var i = 0; i < scrollables && matches.evaluate().isEmpty; i++) {
+      try {
+        await tester.scrollUntilVisible(
+          matches,
+          300,
+          scrollable: find.byType(Scrollable).at(i),
+          maxScrolls: 20,
+        );
+      } on StateError {
+        // This scrollable never reveals the text; try the next one.
+      }
     }
   }
   await tester.ensureVisible(finder);
@@ -206,7 +221,9 @@ void main() {
         tester.view.physicalSize = const Size(390 * 2, 844 * 2);
         tester.view.devicePixelRatio = 2;
         addTearDown(tester.view.reset);
-        SharedPreferences.setMockInitialValues({'minik_dark_mode': dark});
+        SharedPreferences.setMockInitialValues({
+          'minik_dark_mode': dark,
+        });
         final controller = (await tester.runAsync(ThemeController.load))!;
         final problems = <String>[];
         final previous = FlutterError.onError;

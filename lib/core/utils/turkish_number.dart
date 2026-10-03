@@ -23,7 +23,18 @@ abstract final class TurkishNumber {
     'seksen',
     'doksan',
   ];
-  static const _arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  static const _arabicDigits = [
+    '٠',
+    '١',
+    '٢',
+    '٣',
+    '٤',
+    '٥',
+    '٦',
+    '٧',
+    '٨',
+    '٩'
+  ];
 
   static String words(int value) {
     if (value == 0) return 'sıfır';
@@ -52,5 +63,6 @@ abstract final class TurkishNumber {
     }).join();
   }
 
-  static String pageLabel(int displayNumber) => '$displayNumber. sayfa';
+  static String pageLabel(int displayNumber) =>
+      displayNumber <= 0 ? 'İlk sayfa' : '$displayNumber. sayfa';
 }

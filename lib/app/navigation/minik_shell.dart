@@ -162,7 +162,7 @@ Map<String, WidgetBuilder> minikRoutes() {
     AppRoutes.learnMorality: light((_) => const MoralityPage()),
     AppRoutes.learnIlmihal: light((_) => const IlmihalPage()),
     AppRoutes.learnBasics: light((_) => const BasicsPage()),
-    AppRoutes.learnQuran: light((_) => const ElifbaChooserPage()),
+    AppRoutes.learnQuran: light((_) => const ElifbaHubPage()),
     AppRoutes.learnElifbaAdventure: light((_) => const ElifbaHubPage()),
     AppRoutes.learnProphetsStories: light((_) => const ProphetsStoriesHubPage()),
     AppRoutes.quiz: light((_) => const QuizPage()),

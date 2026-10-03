@@ -3,7 +3,7 @@
         "title": "Kur'an Öğren - Harfler",
         "version": "1.0.0",
         "language": "tr",
-        "letter_count": 29,
+        "letter_count": 28,
         "letters": [
             {
                 "id": "letter_01",
@@ -467,7 +467,9 @@
                     "final": "ـلا"
                 },
                 "connects_to_next": false,
-                "audio": "assets/audio/quran_learn/alphabet/lam_elif.mp3"
+                "audio": "assets/audio/quran_learn/alphabet/lam_elif.mp3",
+                "ligature": true,
+                "note": "Ayrı bir harf değildir; lâm ile elifin bitişik yazılışıdır."
             }
         ]
     },
@@ -487,7 +489,7 @@
                             "ْ"
                         ],
                         "combined": "بْ",
-                        "reading": "Be",
+                        "reading": "b (sakin)",
                         "note": "Cezm, harfin sakin okunduğunu gösterir.",
                         "audio": "assets/audio/quran_learn/sukun/ba_sukun.mp3"
                     },
@@ -497,7 +499,7 @@
                             "ْ"
                         ],
                         "combined": "تْ",
-                        "reading": "Te",
+                        "reading": "t (sakin)",
                         "note": null,
                         "audio": "assets/audio/quran_learn/sukun/ta_sukun.mp3"
                     },
@@ -507,7 +509,7 @@
                             "ْ"
                         ],
                         "combined": "مْ",
-                        "reading": "Mim",
+                        "reading": "m (sakin)",
                         "note": null,
                         "audio": "assets/audio/quran_learn/sukun/mim_sukun.mp3"
                     },
@@ -517,7 +519,7 @@
                             "ْ"
                         ],
                         "combined": "نْ",
-                        "reading": "Nun",
+                        "reading": "n (sakin)",
                         "note": null,
                         "audio": "assets/audio/quran_learn/sukun/nun_sukun.mp3"
                     },
@@ -527,7 +529,7 @@
                             "ْ"
                         ],
                         "combined": "لْ",
-                        "reading": "Lam",
+                        "reading": "l (sakin)",
                         "note": null,
                         "audio": "assets/audio/quran_learn/sukun/lam_sukun.mp3"
                     },
@@ -537,7 +539,7 @@
                             "ْ"
                         ],
                         "combined": "دْ",
-                        "reading": "Dal",
+                        "reading": "d (sakin)",
                         "note": null,
                         "audio": "assets/audio/quran_learn/sukun/dal_sukun.mp3"
                     }
@@ -638,21 +640,21 @@
                 "order": 1,
                 "name": "Fetha",
                 "symbol": "َ",
-                "reading_rule": "Kısa 'a' sesi verir.",
+                "reading_rule": "İnce harfleri 'e', kalın harfleri 'a' sesiyle okutur.",
                 "examples": [
                     {
                         "arabic": "أَ",
-                        "reading": "e / a",
+                        "reading": "e",
                         "audio": "assets/audio/quran_learn/exercises/elif_fatha.mp3"
                     },
                     {
                         "arabic": "بَ",
-                        "reading": "ba",
+                        "reading": "be",
                         "audio": "assets/audio/quran_learn/exercises/ba_fatha.mp3"
                     },
                     {
                         "arabic": "تَ",
-                        "reading": "ta",
+                        "reading": "te",
                         "audio": "assets/audio/quran_learn/exercises/ta_fatha.mp3"
                     },
                     {
@@ -662,7 +664,7 @@
                     },
                     {
                         "arabic": "سَ",
-                        "reading": "sa",
+                        "reading": "se",
                         "audio": "assets/audio/quran_learn/exercises/sin_fatha.mp3"
                     },
                     {
@@ -672,7 +674,7 @@
                     },
                     {
                         "arabic": "كَ",
-                        "reading": "ka",
+                        "reading": "ke",
                         "audio": "assets/audio/quran_learn/exercises/kaf_fatha.mp3"
                     },
                     {
@@ -723,7 +725,7 @@
                 "order": 3,
                 "name": "Fetha'nın Tenvini (İki Fetha)",
                 "symbol": "ً",
-                "reading_rule": "Kelime sonunda 'an/en' benzeri tenvin sesi oluşturur.",
+                "reading_rule": "Kelime sonunda ince harfleri 'en', kalın harfleri 'an' sesiyle okutur.",
                 "examples": [
                     {
                         "arabic": "كِتَابًا",
@@ -748,7 +750,7 @@
                 "order": 4,
                 "name": "Kesra",
                 "symbol": "ِ",
-                "reading_rule": "Kısa 'i' sesi verir.",
+                "reading_rule": "İnce harfleri 'i', kalın harfleri 'i-ı' arası bir sesle okutur.",
                 "examples": [
                     {
                         "arabic": "إِ",
@@ -767,17 +769,17 @@
                     },
                     {
                         "arabic": "طِ",
-                        "reading": "ti (kalın)",
+                        "reading": "tı (kalın)",
                         "audio": "assets/audio/quran_learn/exercises/ta_heavy_kasra.mp3"
                     },
                     {
                         "arabic": "صِ",
-                        "reading": "si (kalın)",
+                        "reading": "sı (kalın)",
                         "audio": "assets/audio/quran_learn/exercises/sad_kasra.mp3"
                     },
                     {
                         "arabic": "قِ",
-                        "reading": "ki (kalın)",
+                        "reading": "kı (kalın)",
                         "audio": "assets/audio/quran_learn/exercises/qaf_kasra.mp3"
                     }
                 ],
@@ -823,7 +825,7 @@
                 "order": 6,
                 "name": "Kesra'nın Tenvini (İki Kesra)",
                 "symbol": "ٍ",
-                "reading_rule": "Kelime sonunda 'in' benzeri tenvin sesi oluşturur.",
+                "reading_rule": "Kelime sonunda ince harfleri 'in', kalın harfleri 'ın' sesiyle okutur.",
                 "examples": [
                     {
                         "arabic": "عَلِيمٍ",
@@ -848,7 +850,7 @@
                 "order": 7,
                 "name": "Damme",
                 "symbol": "ُ",
-                "reading_rule": "Kısa 'u' sesi verir.",
+                "reading_rule": "İnce harfleri 'u-ü' arası bir sesle, kalın harfleri 'u' sesiyle okutur.",
                 "examples": [
                     {
                         "arabic": "أُ",
@@ -923,7 +925,7 @@
                 "order": 9,
                 "name": "Damme'nin Tenvini (İki Damme)",
                 "symbol": "ٌ",
-                "reading_rule": "Kelime sonunda 'un' benzeri tenvin sesi oluşturur.",
+                "reading_rule": "Kelime sonunda ince harfleri 'ün', kalın harfleri 'un' sesiyle okutur.",
                 "examples": [
                     {
                         "arabic": "غَفُورٌ",
@@ -932,12 +934,12 @@
                     },
                     {
                         "arabic": "بٌ",
-                        "reading": "bun",
+                        "reading": "bün",
                         "audio": "assets/audio/quran_learn/tanwin/ba_dammatayn.mp3"
                     },
                     {
                         "arabic": "تٌ",
-                        "reading": "tun",
+                        "reading": "tün",
                         "audio": "assets/audio/quran_learn/tanwin/ta_dammatayn.mp3"
                     }
                 ],
@@ -1686,7 +1688,7 @@
                 "id": 9,
                 "title": "Harfler ve şekilleri",
                 "description": "Harfin kelimedeki dört şekli: tek başına, başta, ortada, sonda.",
-                "lesson_count": 29,
+                "lesson_count": 28,
                 "prerequisite_level": 1,
                 "unlock_rule": "level_completed",
                 "screen": "letter_forms",
@@ -1946,32 +1948,32 @@
                 "id": "tajweed_12",
                 "order": 1,
                 "title": "Zamir (Hâ)",
-                "short_description": "Zamir hâ'nın bazı yerlerde uzatılarak, bazı yerlerde uzatılmadan okunmasıdır.",
-                "explanation": "Zamir hâ, kelimenin sonundaki 'o/onu' anlamındaki hâ sesidir. Uzatılıp uzatılmayacağı ayetteki harekeye göre değişir. Burada iki gerçek örneği karşılaştırırız.",
+                "short_description": "Kelime sonundaki 'o, onu, onun' anlamındaki hâ harfine zamir denir.",
+                "explanation": "Zamirden önceki harf harekeli ise zamir bir elif miktarı uzatılarak okunur (lehû küfüven). Önceki harf sakin veya med harfi ise uzatılmaz (fîhi). Zamirden sonra sakin harf geliyorsa ya da zamirde durulursa da uzatılmaz.",
                 "audio": "assets/audio/quran_learn/tajweed/tajweed_12_1.mp3",
                 "examples": [
+                    {
+                        "arabic": "لَهُ كُفُوًا",
+                        "reference": "112:4",
+                        "focus": "هُ",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_1.mp3"
+                    },
+                    {
+                        "arabic": "رَبِّهٖ وَالْمُؤْمِنُونَ",
+                        "reference": "2:285",
+                        "focus": "هٖ",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_2.mp3"
+                    },
                     {
                         "arabic": "فٖیهِ",
                         "reference": "2:2",
                         "focus": "هِ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_1.mp3"
-                    },
-                    {
-                        "arabic": "عَلَیْهِمْ",
-                        "reference": "1:7",
-                        "focus": "هِ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_2.mp3"
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_3.mp3"
                     },
                     {
                         "arabic": "اِلَیْهِ",
                         "reference": "2:285",
                         "focus": "هِ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_12_3.mp3"
-                    },
-                    {
-                        "arabic": "هُوَ",
-                        "reference": "112:1",
-                        "focus": "هُ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_12_4.mp3"
                     }
                 ]
@@ -1999,36 +2001,8 @@
                 "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
             },
             {
-                "id": "tajweed_21",
-                "order": 3,
-                "title": "Mushaf İşaretleri",
-                "short_description": "Ayetlerde gördüğün durak işaretlerini tanıyalım.",
-                "explanation": "Mushafta bazı işaretler durulacak veya dikkat edilecek yerleri gösterir. Bu derste Fâtiha ve Bakara’dan gerçek işaretleri görürüz. Her işaretin hükmü ayrı öğretilir; burada tanıma çalışırız.",
-                "examples": [
-                    {
-                        "arabic": "الْعَالَمٖینَۙ",
-                        "reference": "1:2",
-                        "focus": "ۙ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_1.mp3"
-                    },
-                    {
-                        "arabic": "عَلَیْهِمْۙ",
-                        "reference": "1:7",
-                        "focus": "ۙ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_2.mp3"
-                    },
-                    {
-                        "arabic": "رَیْبَۚۛ فٖیهِۚۛ",
-                        "reference": "2:2",
-                        "focus": "ۚۛ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_3.mp3"
-                    }
-                ],
-                "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
-            },
-            {
                 "id": "tajweed_13",
-                "order": 4,
+                "order": 3,
                 "title": "Râ Harfi",
                 "short_description": "Râ harfinin kalın veya ince okunduğu yerleri ayırt ederiz.",
                 "explanation": "Râ, bazı harekelerde kalın, bazı harekelerde ince okunur. Burada Fâtiha’dan iki gerçek kelimeyi karşılaştırırız.",
@@ -2056,7 +2030,7 @@
             },
             {
                 "id": "tajweed_14",
-                "order": 5,
+                "order": 4,
                 "title": "Lafzatullah'ın Lâm'ı",
                 "short_description": "Allah lafzındaki lâm'ın kesradan sonra ince, fethadan sonra kalın okunmasıdır.",
                 "explanation": "Allah lafzındaki lâm, kendinden önceki harekeye göre ince veya kalın okunur. Örnekler Fâtiha ve Âyetü'l-Kürsî'dendir.",
@@ -2078,7 +2052,7 @@
             },
             {
                 "id": "tajweed_08",
-                "order": 6,
+                "order": 5,
                 "title": "İhfâ",
                 "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce gizli/genizli okunmasıdır.",
                 "explanation": "İhfâ, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde uygulanır.",
@@ -2124,7 +2098,7 @@
             },
             {
                 "id": "tajweed_11",
-                "order": 7,
+                "order": 6,
                 "title": "İzhâr",
                 "short_description": "Nûn-ı sâkin veya tenvinin belirli harflerden önce açık okunmasıdır.",
                 "explanation": "İzhâr, nûn-ı sâkin veya tenvinden sonra belirli harflerden biri geldiğinde nûn sesinin gizlenmeden, açık okunmasıdır.",
@@ -2152,7 +2126,7 @@
             },
             {
                 "id": "tajweed_07",
-                "order": 8,
+                "order": 7,
                 "title": "İdğâm-ı Bila Ğunne",
                 "short_description": "Nûn-ı sâkin veya tenvinin lâm yahut râ harfine gunnesiz katılmasıdır.",
                 "explanation": "İdğâm-ı bila ğunne, nûn-ı sâkin veya tenvinden sonra lâm veya râ geldiğinde nûn sesinin gunnesiz olarak sonraki harfe katılmasıdır.",
@@ -2186,7 +2160,7 @@
             },
             {
                 "id": "tajweed_15",
-                "order": 9,
+                "order": 8,
                 "title": "İdğâm-ı Mea'l-Ğunne",
                 "short_description": "Nûn-ı sâkin veya tenvinin yâ, nûn, mîm veya vav harfine gunneli katılmasıdır.",
                 "explanation": "İdğâm-ı mea'l-ğunne, nûn-ı sâkin veya tenvinden sonra yâ, nûn, mîm veya vav geldiğinde nûn sesinin gunneli olarak sonraki harfe katılmasıdır.",
@@ -2226,25 +2200,47 @@
             },
             {
                 "id": "tajweed_16",
-                "order": 10,
+                "order": 9,
                 "title": "İdğâm-ı Misleyn Mea'l-Ğunne",
-                "short_description": "Aynı cinsten iki harfin gunneli olarak birleşmesidir.",
-                "explanation": "İdğâm-ı misleyn mea'l-ğunne, sakin nûn veya mîmden sonra aynı harf geldiğinde gunneli birleşmedir. Örnek Bakara 2:3'teki مِمَّا'dır.",
+                "short_description": "Sakin mîmden sonra yine mîm gelince ikisinin gunneli birleşmesidir.",
+                "explanation": "İdğâm-ı misleyn mea'l-ğunne, sakin mîmden sonra harekeli bir mîm geldiğinde iki mîmin gunneli olarak tek şeddeli mîm gibi okunmasıdır. Örnekler Bakara 2:3'teki mimmâ ve Kureyş 106:4'teki et'amehum min'dir.",
                 "audio": "assets/audio/quran_learn/tajweed/tajweed_16_1.mp3",
                 "examples": [
                     {
-                        "arabic": "مِمَّا",
+                        "arabic": "مِمَّا",
                         "reference": "2:3",
-                        "focus": "مَّ",
+                        "focus": "مَّ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_16_1.mp3"
                     },
                     {
-                        "arabic": "اِنْ نَسٖینَٓا",
-                        "reference": "2:286",
-                        "focus": "نْ ن",
+                        "arabic": "اَطْعَمَهُمْ مِنْ جُوعٍ",
+                        "reference": "106:4",
+                        "focus": "مْ م",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_16_2.mp3"
                     }
                 ]
+            },
+            {
+                "id": "tajweed_09",
+                "order": 10,
+                "title": "İklâb - İhfâ-i Şefeviyye",
+                "short_description": "Nûn-ı sâkinin bâ önünde mîme dönmesi ve sakin mîmin bâ önünde gizli okunmasıdır.",
+                "explanation": "İklâbda nûn-ı sâkin veya tenvinden sonra bâ gelir ve nûn mîm sesine çevrilir. İhfâ-i şefeviyyede sakin mîmden sonra bâ gelir.",
+                "examples": [
+                    {
+                        "arabic": "اَنْبِئْهُمْ",
+                        "reference": "2:33",
+                        "focus": "نْب",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_09_1.mp3"
+                    },
+                    {
+                        "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ",
+                        "reference": "105:4",
+                        "focus": "مْ ب",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_09_2.mp3"
+                    }
+                ],
+                "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
             },
             {
                 "id": "tajweed_18",
@@ -2285,30 +2281,8 @@
                 "audio": "assets/audio/duas/quran_023_097.mp3"
             },
             {
-                "id": "tajweed_09",
-                "order": 13,
-                "title": "İklâb - İhfâ-i Şefeviyye",
-                "short_description": "Nûn-ı sâkinin bâ önünde mîme dönmesi ve sakin mîmin bâ önünde gizli okunmasıdır.",
-                "explanation": "İklâbda nûn-ı sâkin veya tenvinden sonra bâ gelir ve nûn mîm sesine çevrilir. İhfâ-i şefeviyyede sakin mîmden sonra bâ gelir.",
-                "examples": [
-                    {
-                        "arabic": "اَنْبِئْهُمْ",
-                        "reference": "2:33",
-                        "focus": "نْب",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_09_1.mp3"
-                    },
-                    {
-                        "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ",
-                        "reference": "105:4",
-                        "focus": "مْ ب",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_09_2.mp3"
-                    }
-                ],
-                "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
-            },
-            {
                 "id": "tajweed_06",
-                "order": 14,
+                "order": 13,
                 "title": "Kalkale",
                 "short_description": "ق ط ب ج د harflerinin sakin olduğunda belirgin yankılı okunmasıdır.",
                 "explanation": "Kalkale harfleri ق ط ب ج د'dir. Bu harflerden biri sakin olduğunda sese belirgin yankı/sekme özelliği gelir.",
@@ -2361,7 +2335,7 @@
             },
             {
                 "id": "tajweed_01",
-                "order": 15,
+                "order": 14,
                 "title": "Medd-i Tabîî, Muttasıl, Munfasıl",
                 "short_description": "Kurala göre sesin belirli ölçüde uzatılarak okunmasıdır.",
                 "explanation": "Medd, bazı harf ve işaretlerin bulunduğu durumlarda sesin uzatılmasıyla ilgilidir. Uzatma miktarı kurala göre değişir. Üç türü Fâtiha, Nasr ve Kevser’den gerçek örneklerle gösterilir.",
@@ -2401,7 +2375,7 @@
             },
             {
                 "id": "tajweed_22",
-                "order": 16,
+                "order": 15,
                 "title": "Medd-i Lâzım, Ârız, Lîn",
                 "short_description": "Lâzım, duruşta oluşan ârız ve lîn uzatmalarını ayırt ederiz.",
                 "explanation": "Medd-i lâzımda uzatma işareti kelimenin kendisinde vardır. Medd-i ârız duruşta ortaya çıkar. Medd-i lîn, sakin vav veya yâ’dan önceki fetha ile oluşur.",
@@ -2415,7 +2389,7 @@
                     {
                         "arabic": "الْعَالَمٖینَ",
                         "reference": "1:2",
-                        "focus": "اَ",
+                        "focus": "مٖی",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_22_2.mp3"
                     },
                     {
@@ -2429,7 +2403,7 @@
             },
             {
                 "id": "tajweed_20",
-                "order": 17,
+                "order": 16,
                 "title": "Hurûf-u Mukattaa",
                 "short_description": "Bazı surelerin başındaki kesik harflerin ayrı ayrı okunmasıdır.",
                 "explanation": "Hurûf-u mukattaa, bazı surelerin başında duran kesik harflerdir. Her harf kendi adı ile okunur. Örnekler Bakara ve Yâsîn’dendir.",
@@ -2451,31 +2425,53 @@
             },
             {
                 "id": "tajweed_04",
-                "order": 18,
+                "order": 17,
                 "title": "Tenvinli Kelimelerden Geçiş",
-                "short_description": "Kelime sonunda an, in veya un benzeri ses veren çift harekedir.",
-                "explanation": "Tenvin; iki fetha, iki kesra veya iki damme ile gösterilir. Okunuş, durma/başlama durumuna göre değişebilir.",
+                "short_description": "Tenvinden sonra cezmli veya şeddeli harfle başlayan kelimeye geçerken araya esreli nûn eklenir.",
+                "explanation": "Tenvinli kelimeden sonra gelen kelime cezmli veya şeddeli bir harfle başlıyorsa (genellikle okunmayan elifle başlayan kelimeler) iki üstün tek üstüne, iki esre tek esreye, iki ötre tek ötreye döner ve araya esreli bir nûn eklenerek geçilir. Mushafta bu nûn, tenvinin yanında küçük bir işaretle gösterilir. Örnek: nûhunibnehû.",
                 "examples": [
                     {
-                        "arabic": "اَحَدٌ",
-                        "reference": "112:1",
-                        "focus": "دٌ",
+                        "arabic": "نُوحٌࣙ ابْنَهُ",
+                        "reference": "11:42",
+                        "focus": "حٌࣙ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_04_1.mp3"
                     },
                     {
-                        "arabic": "كُفُوًا",
-                        "reference": "112:4",
-                        "focus": "وًا",
+                        "arabic": "قَوْمًاࣙ اللّٰهُ",
+                        "reference": "7:164",
+                        "focus": "مًاࣙ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_04_2.mp3"
-                    },
-                    {
-                        "arabic": "حَاسِدٍ",
-                        "reference": "113:5",
-                        "focus": "دٍ",
-                        "audio": "assets/audio/quran_learn/tajweed/tajweed_04_3.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tanwin/dammatayn.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_04_1.mp3"
+            },
+            {
+                "id": "tajweed_21",
+                "order": 18,
+                "title": "Mushaf İşaretleri",
+                "short_description": "Ayetlerde gördüğün durak işaretlerini tanıyalım.",
+                "explanation": "Mushafta bazı işaretler durulacak veya dikkat edilecek yerleri gösterir. Bu derste Fâtiha ve Bakara’dan gerçek işaretleri görürüz. Her işaretin hükmü ayrı öğretilir; burada tanıma çalışırız.",
+                "examples": [
+                    {
+                        "arabic": "الْعَالَمٖینَۙ",
+                        "reference": "1:2",
+                        "focus": "ۙ",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_1.mp3"
+                    },
+                    {
+                        "arabic": "عَلَیْهِمْۙ",
+                        "reference": "1:7",
+                        "focus": "ۙ",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_2.mp3"
+                    },
+                    {
+                        "arabic": "رَیْبَۚۛ فٖیهِۚۛ",
+                        "reference": "2:2",
+                        "focus": "ۚۛ",
+                        "audio": "assets/audio/quran_learn/tajweed/tajweed_21_3.mp3"
+                    }
+                ],
+                "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
             },
             {
                 "id": "tajweed_02",

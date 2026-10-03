@@ -141,12 +141,18 @@ class PrayerVerse {
     required this.arabic,
     required this.meal,
     this.transliteration = '',
+    this.mealRange = '',
   });
 
   final int ayahNo;
   final String arabic;
   final String meal;
   final String transliteration;
+
+  /// Meal birden fazla ayeti birlikte karşılıyorsa (ör. "2-4"); boşsa tek ayet.
+  final String mealRange;
+
+  String get mealLabel => mealRange.isNotEmpty ? mealRange : '$ayahNo';
 
   factory PrayerVerse.fromJson(Map<String, dynamic> json) {
     final meal = JsonMap.str(json['meal']);
@@ -155,6 +161,7 @@ class PrayerVerse {
       arabic: JsonMap.str(json['arabic']),
       meal: meal.isNotEmpty ? meal : JsonMap.str(json['meaning']),
       transliteration: JsonMap.str(json['transliteration']),
+      mealRange: JsonMap.str(json['mealRange']),
     );
   }
 
@@ -163,6 +170,7 @@ class PrayerVerse {
         'arabic': arabic,
         if (transliteration.isNotEmpty) 'transliteration': transliteration,
         'meal': meal,
+        if (mealRange.isNotEmpty) 'mealRange': mealRange,
       };
 }
 
@@ -180,6 +188,7 @@ class PrayerDua {
     this.usage = '',
     this.surahNumber,
     this.verses = const [],
+    this.repeat = 1,
   });
 
   final String id;
@@ -194,6 +203,7 @@ class PrayerDua {
   final String usage;
   final int? surahNumber;
   final List<PrayerVerse> verses;
+  final int repeat;
 
   bool get isSurah => type == 'surah' || verses.isNotEmpty;
 
@@ -204,13 +214,17 @@ class PrayerDua {
 
   String get displayMeaning {
     if (meaning.trim().isNotEmpty) return meaning;
-    return verses.map((verse) => verse.meal).join('\n');
+    return verses
+        .map((verse) => verse.meal)
+        .where((meal) => meal.isNotEmpty)
+        .join('\n');
   }
 
   factory PrayerDua.fromJson(Map<String, dynamic> json) {
     final verses = JsonMap.extractList(json['verses']).map(PrayerVerse.fromJson).toList();
     final usage = JsonMap.str(json['usage']);
     final position = JsonMap.str(json['position']);
+    final repeat = JsonMap.integer(json['repeat'], 1);
     return PrayerDua(
       id: JsonMap.str(json['id']),
       title: JsonMap.str(json['title']),
@@ -224,6 +238,7 @@ class PrayerDua {
       usage: usage.isNotEmpty ? usage : position,
       surahNumber: json['surahNumber'] == null ? null : JsonMap.integer(json['surahNumber']),
       verses: verses,
+      repeat: repeat < 1 ? 1 : repeat,
     );
   }
 
@@ -250,6 +265,7 @@ class PrayerDua {
         'usage': usage,
         if (surahNumber != null) 'surahNumber': surahNumber,
         if (verses.isNotEmpty) 'verses': verses.map((verse) => verse.toJson()).toList(),
+        if (repeat != 1) 'repeat': repeat,
       };
 }
 
@@ -269,6 +285,7 @@ class DuaEntry {
     this.surahNumber,
     this.when = '',
     this.repeat = 1,
+    this.audioRepeat,
     this.note = '',
     this.responses = const [],
   });
@@ -289,6 +306,12 @@ class DuaEntry {
   final int repeat;
   final String note;
   final List<DuaResponse> responses;
+
+  /// How many times "Dinle" plays the clip; prayer duas carry it apart from
+  /// [repeat] because their section title already says how often to recite.
+  final int? audioRepeat;
+
+  int get playRepeat => audioRepeat ?? repeat;
 
   bool get isSurah => surahNumber != null || verses.isNotEmpty;
 
@@ -323,7 +346,7 @@ class DuaEntry {
           .map((verse) {
             final meal = verse.meal.trim();
             if (meal.isEmpty) return '';
-            return numbered ? '${verse.ayahNo}. $meal' : meal;
+            return numbered ? '${verse.mealLabel}. $meal' : meal;
           })
           .where((line) => line.isNotEmpty)
           .join('\n\n');
@@ -363,6 +386,7 @@ class DuaEntry {
       order: dua.order,
       verses: dua.verses,
       surahNumber: dua.surahNumber,
+      audioRepeat: dua.repeat,
     );
   }
 }

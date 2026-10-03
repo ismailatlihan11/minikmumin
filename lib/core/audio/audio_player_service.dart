@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:just_audio/just_audio.dart';
 
 class AudioPlayerService {
-  AudioPlayerService({AudioPlayer? player}) : _player = player ?? AudioPlayer() {
+  AudioPlayerService({AudioPlayer? player})
+      : _player = player ?? AudioPlayer() {
     _live.add(this);
     _completionSub = _player.processingStateStream.listen((state) {
       if (state == ProcessingState.completed) {
@@ -30,13 +31,25 @@ class AudioPlayerService {
     }
   }
 
-  Future<bool> playAsset(String path, {bool waitUntilDone = true}) async {
+  /// [repeat] > 1 plays the clip back to back as one playlist, so the
+  /// button stays in its playing state until the last repetition ends.
+  Future<bool> playAsset(
+    String path, {
+    bool waitUntilDone = true,
+    int repeat = 1,
+  }) async {
     if (path.trim().isEmpty) return false;
     try {
       await _claimExclusive();
       await _player.stop();
       _currentAsset = path;
-      await _player.setAsset(path);
+      if (repeat > 1) {
+        await _player.setAudioSource(ConcatenatingAudioSource(
+          children: [for (var i = 0; i < repeat; i++) AudioSource.asset(path)],
+        ));
+      } else {
+        await _player.setAsset(path);
+      }
       if (waitUntilDone) {
         await _player.play();
       } else {
@@ -83,7 +96,8 @@ class AudioPlayerService {
   }
 
   /// True only while audio is actively playing — not after natural completion.
-  Stream<bool> get playingStream => _player.playerStateStream.map(_isActivelyPlaying);
+  Stream<bool> get playingStream =>
+      _player.playerStateStream.map(_isActivelyPlaying);
 
   Stream<Duration> get positionStream => _player.positionStream;
 
@@ -98,13 +112,13 @@ class AudioPlayerService {
   bool _isActivelyPlaying(PlayerState state) =>
       state.playing && state.processingState != ProcessingState.completed;
 
-  Future<bool> toggleAsset(String path) async {
+  Future<bool> toggleAsset(String path, {int repeat = 1}) async {
     if (path.trim().isEmpty) return false;
     if (isPlaying && _currentAsset == path) {
       await stop();
       return true;
     }
-    return playAsset(path);
+    return playAsset(path, repeat: repeat);
   }
 
   Future<void> _resetAfterComplete() async {

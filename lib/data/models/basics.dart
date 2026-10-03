@@ -26,12 +26,14 @@ class BasicsExample {
     this.text = '',
     this.meaning = '',
     this.reference = '',
+    this.label = '',
   });
 
   final String arabic;
   final String text;
   final String meaning;
   final String reference;
+  final String label;
 
   bool get hasContent =>
       arabic.trim().isNotEmpty ||
@@ -44,6 +46,7 @@ class BasicsExample {
       text: JsonMap.str(json['text']),
       meaning: JsonMap.str(json['meaning']),
       reference: JsonMap.str(json['reference']),
+      label: JsonMap.str(json['label']),
     );
   }
 }

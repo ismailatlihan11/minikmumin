@@ -66,9 +66,7 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
             padding: AppSpacing.page,
             children: [
               PageHeader(
-                title: widget.prayerOnly
-                    ? 'Namaz Sure ve Duaları'
-                    : 'Dualar',
+                title: widget.prayerOnly ? 'Namaz Sure ve Duaları' : 'Dualar',
                 subtitle: widget.prayerOnly
                     ? 'Namazda öğrenilecek ifadeler, sûreler ve dualar.'
                     : 'Günlük hayatta okuyabileceğin dualar.',
@@ -370,6 +368,7 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
               _DuaStickyBar(
                 audio: _audio,
                 path: audioPath,
+                repeat: dua.playRepeat,
                 learned: done,
                 onLearned: done
                     ? null
@@ -589,7 +588,8 @@ class DuaPartCard extends StatelessWidget {
         ],
       );
     } else {
-      body = hasArabic ? ArabicText(arabic, fontSize: arabicFontSize) : textBody;
+      body =
+          hasArabic ? ArabicText(arabic, fontSize: arabicFontSize) : textBody;
     }
     return Container(
       width: double.infinity,
@@ -622,6 +622,7 @@ class _DuaStickyBar extends StatelessWidget {
   const _DuaStickyBar({
     required this.audio,
     required this.path,
+    this.repeat = 1,
     required this.learned,
     required this.onLearned,
     this.onNext,
@@ -629,6 +630,7 @@ class _DuaStickyBar extends StatelessWidget {
 
   final AudioPlayerService audio;
   final String path;
+  final int repeat;
   final bool learned;
   final VoidCallback? onLearned;
   final VoidCallback? onNext;
@@ -649,7 +651,7 @@ class _DuaStickyBar extends StatelessWidget {
               if (AssetCatalog.contains(path)) ...[
                 SizedBox(
                   width: double.infinity,
-                  child: ListenButton(audio: audio, path: path),
+                  child: ListenButton(audio: audio, path: path, repeat: repeat),
                 ),
                 const SizedBox(height: 8),
               ],
@@ -779,7 +781,8 @@ class _DuaQuickActionsState extends State<_DuaQuickActions> {
               return _TinyAction(
                 icon: playing ? Icons.stop_rounded : Icons.volume_up_rounded,
                 label: playing ? 'Durdur' : 'Dinle',
-                onTap: () => _audio.toggleAsset(path),
+                onTap: () =>
+                    _audio.toggleAsset(path, repeat: widget.dua.playRepeat),
                 emphasized: true,
               );
             },

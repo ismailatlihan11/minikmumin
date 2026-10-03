@@ -32,6 +32,7 @@ class PrayerCatalogView extends StatefulWidget {
     PrayerVisualStep step, {
     required bool girl,
     required int totalSteps,
+    required List<PrayerVisualStep> previous,
     required List<PrayerVisualStep> upcoming,
   }) onOpenStep;
 
@@ -168,6 +169,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     step,
                     girl: _girlLearner,
                     totalSteps: _visibleSteps.length,
+                    previous: ordered.sublist(0, ordered.indexOf(step)),
                     upcoming: ordered.sublist(ordered.indexOf(step) + 1),
                   ),
                   onToggleFavorite: () {
@@ -980,12 +982,14 @@ class PrayerStepDetailPage extends StatefulWidget {
     required this.step,
     required this.girl,
     this.totalSteps = 0,
+    this.previous = const [],
     this.upcoming = const [],
   });
 
   final PrayerVisualStep step;
   final bool girl;
   final int totalSteps;
+  final List<PrayerVisualStep> previous;
   final List<PrayerVisualStep> upcoming;
 
   @override
@@ -1063,7 +1067,25 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
           step: upcoming.first,
           girl: widget.girl,
           totalSteps: widget.totalSteps,
+          previous: [...widget.previous, widget.step],
           upcoming: upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
+  void _openPrevious() {
+    final previous = widget.previous;
+    if (previous.isEmpty) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PrayerStepDetailPage(
+          step: previous.last,
+          girl: widget.girl,
+          totalSteps: widget.totalSteps,
+          previous: previous.sublist(0, previous.length - 1),
+          upcoming: [widget.step, ...widget.upcoming],
         ),
       ),
     );
@@ -1203,6 +1225,30 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                     icon: const Icon(Icons.palette_rounded),
                     label: const Text('Boya'),
                   ),
+                  for (var i = 0; i < audioItems.length; i++) ...[
+                    const SizedBox(height: 10),
+                    if (audioItems.length > 1)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 4),
+                        child: Text(
+                          audioItems[i].title,
+                          style: TextStyle(
+                            fontFamily: 'NotoSans',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: MinikColors.darkGreen,
+                          ),
+                        ),
+                      ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ListenButton(
+                        audio: _audio,
+                        path: audioItems[i].path,
+                        repeat: _repeatFor(audioItems[i].id),
+                      ),
+                    ),
+                  ],
                   if (_duas.isNotEmpty) ...[
                     for (final dua in _duas) ...[
                       const SizedBox(height: 14),
@@ -1218,63 +1264,40 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
-                  const SizedBox(height: 20),
-                  TopicFooter(
-                    hasNext: widget.upcoming.isNotEmpty,
-                    onNext: _openNext,
-                    nextLabel: 'Sonraki adıma geç',
-                    backLabel: 'Adımlara dön',
-                  ),
                 ],
               ),
             ),
           ),
-          if (audioItems.isNotEmpty)
-            Material(
-              color: MinikColors.surface,
-              elevation: 6,
-              shadowColor: const Color(0x14000000),
-              child: SafeArea(
-                top: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      for (var i = 0; i < audioItems.length; i++) ...[
-                        if (i > 0) const SizedBox(height: 8),
-                        if (audioItems.length > 1)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 4),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                audioItems[i].title,
-                                style: TextStyle(
-                                  fontFamily: 'NotoSans',
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800,
-                                  color: MinikColors.darkGreen,
-                                ),
-                              ),
-                            ),
-                          ),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ListenButton(
-                            audio: _audio,
-                            path: audioItems[i].path,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
+          Material(
+            color: MinikColors.surface,
+            elevation: 6,
+            shadowColor: const Color(0x14000000),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+                child: TopicFooter(
+                  hasNext: widget.upcoming.isNotEmpty,
+                  onNext: _openNext,
+                  onPrevious: widget.previous.isEmpty ? null : _openPrevious,
+                  nextLabel: widget.previous.isEmpty
+                      ? 'Sonraki adıma geç'
+                      : 'Sonraki adım',
+                  backLabel: 'Adımlara dön',
                 ),
               ),
             ),
+          ),
         ],
       ),
     );
+  }
+
+  int _repeatFor(String id) {
+    for (final dua in _duas) {
+      if (dua.id == id) return dua.repeat;
+    }
+    return 1;
   }
 
   String _titleFor(String id) {

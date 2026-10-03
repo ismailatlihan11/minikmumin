@@ -19,6 +19,7 @@ class PrayerPage extends StatelessWidget {
             step, {
             required girl,
             required totalSteps,
+            required previous,
             required upcoming,
           }) {
             Navigator.push(
@@ -28,6 +29,7 @@ class PrayerPage extends StatelessWidget {
                   step: step,
                   girl: girl,
                   totalSteps: totalSteps,
+                  previous: previous,
                   upcoming: upcoming,
                 ),
               ),

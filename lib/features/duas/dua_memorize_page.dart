@@ -360,7 +360,9 @@ class _MemUnit {
             ayahNo: verse.ayahNo,
             arabic: verse.arabic,
             reading: verse.transliteration,
-            meal: verse.meal,
+            meal: verse.mealRange.isEmpty || verse.meal.isEmpty
+                ? verse.meal
+                : '(${verse.mealRange}. ayetler) ${verse.meal}',
           ),
       ];
     }

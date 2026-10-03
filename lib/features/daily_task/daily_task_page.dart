@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app/routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../core/utils/daily_seed.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../data/models/dua.dart';
-import '../../data/models/quran_learning.dart';
 import '../../data/models/quiz.dart';
 import '../../data/models/story.dart';
 import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../duas/duas_page.dart';
+import '../elifba_adventure/elifba_hub.dart';
+import '../elifba_adventure/elifba_models.dart';
+import '../elifba_adventure/elifba_progress.dart';
 import '../quiz/quiz_page.dart';
-import '../quran_learn/quran_learn_nav.dart';
-import '../quran_learn/quran_learn_progress.dart';
 import '../stories/stories_page.dart';
 
 class DailyTaskPage extends StatefulWidget {
@@ -36,15 +37,18 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
     final duas = await repos.duas.getCatalog();
     final stories = await repos.stories.load();
     final questions = await repos.quiz.getAll();
-    QuranLearnDailyLesson? quranLesson;
-    QuranLearningPack? pack;
+    ElifbaPack? pack;
+    ElifbaLesson? quranLesson;
+    var quranUnlocked = false;
     try {
-      pack = await repos.quranLearning.load();
-      final snap = await QuranLearnProgress.load(store, pack);
-      quranLesson = snap.dailyLesson();
+      pack = await repos.elifba.load();
+      final snap = await ElifbaProgress(store).load();
+      quranLesson = pack.resumeFrom(snap.currentLesson);
+      quranUnlocked = snap.isUnlockedIn(pack, quranLesson.id) ||
+          snap.isCompleted(quranLesson.id);
     } catch (_) {
-      quranLesson = null;
       pack = null;
+      quranLesson = null;
     }
     return _DailyLoop(
       dua: duas.isEmpty ? null : pickDaily(duas),
@@ -52,6 +56,7 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
       question: questions.isEmpty ? null : pickDaily(questions),
       quranPack: pack,
       quranLesson: quranLesson,
+      quranUnlocked: quranUnlocked,
     );
   }
 
@@ -84,11 +89,16 @@ class _DailyTaskPageState extends State<DailyTaskPage> {
                   title: "Bugünün Kur'an dersi",
                   subtitle: loop.quranLesson!.title,
                   icon: Icons.menu_book_outlined,
-                  onTap: () => openQuranLearnDaily(
-                    context,
-                    pack: loop.quranPack!,
-                    lesson: loop.quranLesson!,
-                  ),
+                  onTap: () => loop.quranUnlocked
+                      ? openElifbaLesson(
+                          context,
+                          pack: loop.quranPack!,
+                          lesson: loop.quranLesson!,
+                        )
+                      : Navigator.pushNamed(
+                          context,
+                          AppRoutes.learnElifbaAdventure,
+                        ),
                 ),
               if (loop.dua != null)
                 _DailyCard(
@@ -169,13 +179,15 @@ class _DailyLoop {
     this.question,
     this.quranPack,
     this.quranLesson,
+    this.quranUnlocked = false,
   });
 
   final DuaEntry? dua;
   final StoryItem? story;
   final QuizQuestion? question;
-  final QuranLearningPack? quranPack;
-  final QuranLearnDailyLesson? quranLesson;
+  final ElifbaPack? quranPack;
+  final ElifbaLesson? quranLesson;
+  final bool quranUnlocked;
 
   bool get isEmpty =>
       dua == null && story == null && question == null && quranLesson == null;

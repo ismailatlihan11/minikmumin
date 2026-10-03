@@ -154,7 +154,7 @@
       "id": 8,
       "title": "Hz. Muhammed ﷺ Kimdir?",
       "short_description": "Peygamberimiz Hz. Muhammed ﷺ, Allah Teâlâ'nın insanlara gönderdiği son peygamber ve son elçidir. O, peygamberlerin sonuncusudur. Ondan sonra başka bir peygamber gelmeyecektir.",
-      "content": "Hz. Muhammed ﷺ, Allah'ın insanlara gönderdiği son peygamberdir. Kur'an-ı Kerim kendisine vahyedilmiştir. O, doğruluk, merhamet, adalet, sabır ve güzel ahlak konusunda Müslümanlara örnek olmuştur.",
+      "content": "Hz. Muhammed ﷺ, Allah'ın insanlara gönderdiği son peygamberdir. Kur'an-ı Kerim kendisine vahyedilmiştir. O, doğruluk, merhamet, adalet, sabır ve güzel ahlak konusunda Müslümanlara örnek olmuştur ve kıyamete kadar da olmaya devam edecektir.",
       "key_points": [
         "Son peygamberdir.",
         "Kur'an-ı Kerim Hz. Muhammed ﷺ'e vahyedilmiştir.",
@@ -308,11 +308,11 @@
       "key_points": [
         "Ayetler Kur'an-ı Kerîm'in bölümleridir.",
         "Kur'an-ı Kerîm Allah Teâlâ'nın kelâmıdır.",
-        "Ayetleri okuyarak ve anlamaya çalışarak Rabbimizin emirlerini ve öğütlerini öğreniriz."
+        "Ayetleri okuyarak ve anlamaya çalışarak Rabbimizin emirlerini, yasaklarını ve öğütlerini öğreniriz."
       ],
       "example": {
         "arabic": "قُلْ هُوَ اللَّهُ أَحَدٌ",
-        "meaning": "De ki: O Allah tektir.",
+        "meaning": "De ki: O, Allah'tır, bir tektir.",
         "reference": "İhlâs Suresi, 1. ayet"
       },
       "audio": null,
@@ -348,7 +348,8 @@
       "example": {
         "arabic": "لَقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ",
         "meaning": "Andolsun, Allah'ın Resûlü'nde sizin için güzel bir örnek vardır.",
-        "reference": "Ahzâb Suresi, 21. ayet"
+        "reference": "Ahzâb Suresi, 21. ayet",
+        "label": "Konuyla İlgili Ayet"
       },
       "audio": null,
       "icon": "sunnah"

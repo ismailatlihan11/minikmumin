@@ -24,6 +24,8 @@ class TopicFooter extends StatelessWidget {
     this.nextGroup,
     this.nextLabel = 'Sonraki konuya geç',
     this.backLabel = 'Konulara dön',
+    this.onPrevious,
+    this.previousLabel = 'Önceki adım',
   });
 
   final bool learned;
@@ -35,6 +37,10 @@ class TopicFooter extends StatelessWidget {
   final String? nextGroup;
   final String nextLabel;
   final String backLabel;
+
+  /// When set, a "previous" button sits to the left of the next/back button.
+  final VoidCallback? onPrevious;
+  final String previousLabel;
 
   bool get _groupChanges =>
       hasNext &&
@@ -48,6 +54,7 @@ class TopicFooter extends StatelessWidget {
       return PrimaryButton(label: 'Öğrendim', onPressed: onLearn);
     }
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         if (onLearn != null) ...[
@@ -82,13 +89,29 @@ class TopicFooter extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           PrimaryButton(label: '$nextGroup bölümüne geç', onPressed: onNext),
-        ] else if (hasNext)
-          PrimaryButton(label: nextLabel, onPressed: onNext)
-        else
-          SecondaryButton(
-            label: backLabel,
-            onPressed: () => Navigator.maybePop(context),
+        ] else
+          _withPrevious(
+            hasNext
+                ? PrimaryButton(label: nextLabel, onPressed: onNext)
+                : SecondaryButton(
+                    label: backLabel,
+                    onPressed: () => Navigator.maybePop(context),
+                  ),
           ),
+      ],
+    );
+  }
+
+  Widget _withPrevious(Widget forward) {
+    final previous = onPrevious;
+    if (previous == null) return forward;
+    return Row(
+      children: [
+        Expanded(
+          child: SecondaryButton(label: previousLabel, onPressed: previous),
+        ),
+        const SizedBox(width: 10),
+        Expanded(child: forward),
       ],
     );
   }

@@ -41,6 +41,8 @@ class QuranArabicLetter {
     required this.forms,
     required this.connectsToNext,
     this.audio,
+    this.isLigature = false,
+    this.note = '',
   });
 
   final String id;
@@ -52,6 +54,10 @@ class QuranArabicLetter {
   final QuranLetterForms forms;
   final bool connectsToNext;
   final String? audio;
+
+  /// Lâm-Elif gibi bitişik yazılışlar; 28 harfin sayımına girmez.
+  final bool isLigature;
+  final String note;
 
   bool get joinsBothSides => connectsToNext && connectionType == 'connected';
 
@@ -70,6 +76,8 @@ class QuranArabicLetter {
       forms: QuranLetterForms.fromJson(JsonMap.object(json['forms'])),
       connectsToNext: JsonMap.flag(json['connects_to_next']),
       audio: _nullableAudio(json['audio']),
+      isLigature: JsonMap.flag(json['ligature']),
+      note: JsonMap.str(json['note']),
     );
   }
 }
@@ -578,6 +586,9 @@ class QuranLearningPack {
   final List<QuranMahrajGroup> mahrajGroups;
   final QuranLearnExam? exam;
 
+  List<QuranArabicLetter> get alphabetLetters =>
+      [for (final letter in letters) if (!letter.isLigature) letter];
+
   QuranArabicLetter? letterById(String id) {
     for (final letter in letters) {
       if (letter.id == id) return letter;
@@ -720,7 +731,7 @@ class QuranLearningPack {
     switch (kind) {
       case 'ql_letter':
       case 'ql_letter_form':
-        return [for (final letter in letters) letter.id];
+        return [for (final letter in alphabetLetters) letter.id];
       case 'ql_haraka':
         return [for (final item in harakat) item.id];
       case 'ql_comb':
@@ -751,7 +762,7 @@ class QuranLearningPack {
     switch (levelId) {
       case 1:
         return [
-          for (final letter in letters)
+          for (final letter in alphabetLetters)
             QuranLearnProgressItem(kind: 'ql_letter', id: letter.id),
         ];
       case 2:

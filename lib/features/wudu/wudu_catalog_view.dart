@@ -24,8 +24,11 @@ class WuduCatalogView extends StatefulWidget {
 
   final VoidCallback onBack;
   final VoidCallback onHome;
-  final void Function(WuduVisualStep step, List<WuduVisualStep> upcoming)
-      onOpenStep;
+  final void Function(
+    WuduVisualStep step,
+    List<WuduVisualStep> previous,
+    List<WuduVisualStep> upcoming,
+  ) onOpenStep;
 
   @override
   State<WuduCatalogView> createState() => _WuduCatalogViewState();
@@ -39,7 +42,12 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
 
   void _openStep(WuduVisualStep step) {
     final steps = _playableSteps;
-    widget.onOpenStep(step, steps.sublist(steps.indexOf(step) + 1));
+    final index = steps.indexOf(step);
+    widget.onOpenStep(
+      step,
+      steps.sublist(0, index),
+      steps.sublist(index + 1),
+    );
   }
   List<WuduTip> _tips = WuduVisualCatalog.tips;
   List<String> _farzIds = WuduVisualCatalog.farzIds;
@@ -747,10 +755,12 @@ class WuduStepDetailPage extends StatelessWidget {
   const WuduStepDetailPage({
     super.key,
     required this.step,
+    this.previous = const [],
     this.upcoming = const [],
   });
 
   final WuduVisualStep step;
+  final List<WuduVisualStep> previous;
   final List<WuduVisualStep> upcoming;
 
   void _openNext(BuildContext context) {
@@ -760,7 +770,22 @@ class WuduStepDetailPage extends StatelessWidget {
       MaterialPageRoute(
         builder: (_) => WuduStepDetailPage(
           step: upcoming.first,
+          previous: [...previous, step],
           upcoming: upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
+
+  void _openPrevious(BuildContext context) {
+    if (previous.isEmpty) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => WuduStepDetailPage(
+          step: previous.last,
+          previous: previous.sublist(0, previous.length - 1),
+          upcoming: [step, ...upcoming],
         ),
       ),
     );
@@ -820,14 +845,27 @@ class WuduStepDetailPage extends StatelessWidget {
             icon: const Icon(Icons.palette_rounded),
             label: const Text('Boya'),
           ),
-          const SizedBox(height: 20),
-          TopicFooter(
-            hasNext: upcoming.isNotEmpty,
-            onNext: () => _openNext(context),
-            nextLabel: 'Sonraki adıma geç',
-            backLabel: 'Adımlara dön',
-          ),
         ],
+      ),
+      bottomNavigationBar: Material(
+        color: MinikColors.surface,
+        elevation: 6,
+        shadowColor: const Color(0x14000000),
+        child: SafeArea(
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+            child: TopicFooter(
+              hasNext: upcoming.isNotEmpty,
+              onNext: () => _openNext(context),
+              onPrevious:
+                  previous.isEmpty ? null : () => _openPrevious(context),
+              nextLabel:
+                  previous.isEmpty ? 'Sonraki adıma geç' : 'Sonraki adım',
+              backLabel: 'Adımlara dön',
+            ),
+          ),
+        ),
       ),
     );
   }
