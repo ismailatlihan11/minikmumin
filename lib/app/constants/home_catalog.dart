@@ -55,7 +55,7 @@ abstract final class HomeCatalog {
       idleMotion: true,
     ),
     HomeModule(
-      title: 'Namazda Okunan Ayetler ve Dualar',
+      title: 'Namaz Sure ve Duaları',
       subtitle: 'Namazda okunan ayet ve dualar sırasıyla',
       image: 'assets/images/home/card_prayer_duas.jpg',
       color: MinikColors.of(const Color(0xFFE8DFF8), const Color(0xFF271F37)),

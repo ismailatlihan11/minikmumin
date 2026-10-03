@@ -16,7 +16,8 @@ Runtime stays offline. Provenance details for free replacements live in
 - **Alphabet letter names:** MIT recordings from [Alfathon](https://github.com/kholmatov/alfathon) (`quran_learn/alphabet/`, see `ATTRIBUTION.md`)
 - **Short educational surahs** (`quran_learn/surahs/`): Yasir ed-Devseri copies of `assets/audio/quran/`
 - **Kur'an-ı Kerim tilavet:** Yasir ed-Devseri (`assets/audio/quran/` + `ayahs/` + Kur’an dua ayetleri)
-- **Still Fenrir / non-Dosari:** hareke drills (`exercises/`, syllables…), alphabet (Alfathon), asma, namaz duaları (Sübhaneke, Tahiyyat, tekbir, tesbihler…)
+- **Esmaül Hüsna (`asma/01–99.mp3`):** human recordings from the MIT-licensed [esmaulhusna_muslimbg](https://pub.dev/packages/esmaulhusna_muslimbg) 1.0.9 package (`lib/assets/audio/`), trimmed and loudness-normalised to −16 LUFS. Reciter/recording origin is not stated upstream; confirm with the author before release. `67.mp3` (El-Ehad) stays Fenrir because the upstream file is truncated.
+- **Still Fenrir / non-Dosari:** hareke drills (`exercises/`, syllables…), alphabet (Alfathon), asma `67.mp3`, namaz duaları (Sübhaneke, Tahiyyat, tekbir, tesbihler…)
 - **Dualar (günlük dualar, `assets/data/duas.json`):** intentionally no audio; text only
 - **Kelime-i Şehadet:** Wikimedia Commons real recitation (CC BY-SA 3.0), not TTS
 - **Eûzü + Besmele / Besmele:** Yasir ed-Devseri (EveryAyah `001000` + `001001`; same voice as yasseraldosary.com surah stream)

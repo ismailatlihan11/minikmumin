@@ -15,7 +15,12 @@ class PrayerPage extends StatelessWidget {
         child: PrayerCatalogView(
           onBack: () => Navigator.pop(context),
           onHome: () => Navigator.popUntil(context, (route) => route.isFirst),
-          onOpenStep: (step, {required girl, required totalSteps}) {
+          onOpenStep: (
+            step, {
+            required girl,
+            required totalSteps,
+            required upcoming,
+          }) {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -23,6 +28,7 @@ class PrayerPage extends StatelessWidget {
                   step: step,
                   girl: girl,
                   totalSteps: totalSteps,
+                  upcoming: upcoming,
                 ),
               ),
             );

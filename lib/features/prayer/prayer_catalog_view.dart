@@ -15,6 +15,7 @@ import '../../shared/widgets/lesson_motion_image.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 import 'prayer_visual_catalog.dart';
 
 class PrayerCatalogView extends StatefulWidget {
@@ -27,8 +28,12 @@ class PrayerCatalogView extends StatefulWidget {
 
   final VoidCallback onBack;
   final VoidCallback onHome;
-  final void Function(PrayerVisualStep step,
-      {required bool girl, required int totalSteps}) onOpenStep;
+  final void Function(
+    PrayerVisualStep step, {
+    required bool girl,
+    required int totalSteps,
+    required List<PrayerVisualStep> upcoming,
+  }) onOpenStep;
 
   @override
   State<PrayerCatalogView> createState() => _PrayerCatalogViewState();
@@ -131,6 +136,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
     if (rest.isNotEmpty) {
       blocks.add(('Namaz Bitti', rest));
     }
+    final ordered = [for (final block in blocks) ...block.$2];
     return [
       for (final block in blocks)
         if (block.$2.isNotEmpty) ...[
@@ -162,6 +168,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                     step,
                     girl: _girlLearner,
                     totalSteps: _visibleSteps.length,
+                    upcoming: ordered.sublist(ordered.indexOf(step) + 1),
                   ),
                   onToggleFavorite: () {
                     _store?.toggleFavorite(
@@ -366,7 +373,7 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           ..._stepSections(),
           const SizedBox(height: 16),
           Text(
-            'Namazda okunan Ayetler ve Dualar',
+            'Namaz Sure ve Duaları',
             style: TextStyle(
               fontFamily: 'NotoSans',
               fontSize: 16,
@@ -973,11 +980,13 @@ class PrayerStepDetailPage extends StatefulWidget {
     required this.step,
     required this.girl,
     this.totalSteps = 0,
+    this.upcoming = const [],
   });
 
   final PrayerVisualStep step;
   final bool girl;
   final int totalSteps;
+  final List<PrayerVisualStep> upcoming;
 
   @override
   State<PrayerStepDetailPage> createState() => _PrayerStepDetailPageState();
@@ -1041,6 +1050,22 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
       progressKind: 'prayer_color',
       progressId: '${step.id}${widget.girl ? '_girl' : ''}',
       celebrationSubtitle: '${step.title} resmini boyadın.',
+    );
+  }
+
+  void _openNext() {
+    final upcoming = widget.upcoming;
+    if (upcoming.isEmpty) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PrayerStepDetailPage(
+          step: upcoming.first,
+          girl: widget.girl,
+          totalSteps: widget.totalSteps,
+          upcoming: upcoming.sublist(1),
+        ),
+      ),
     );
   }
 
@@ -1193,6 +1218,13 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
+                  const SizedBox(height: 20),
+                  TopicFooter(
+                    hasNext: widget.upcoming.isNotEmpty,
+                    onNext: _openNext,
+                    nextLabel: 'Sonraki adıma geç',
+                    backLabel: 'Adımlara dön',
+                  ),
                 ],
               ),
             ),

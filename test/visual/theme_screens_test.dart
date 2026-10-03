@@ -82,6 +82,12 @@ const _flows = <String, (String, List<String>)>{
   'ilmihal_topic': (AppRoutes.learnIlmihal, ['Temizlik']),
   'prophets_book': (AppRoutes.learnProphetsStories, ['Peygamberler Kitabı']),
   'prayer_start': (AppRoutes.learnPrayer, ['Başlayalım']),
+  'prayer_step': (AppRoutes.learnPrayer, ['Niyet']),
+  'prayer_step_next': (
+    AppRoutes.learnPrayer,
+    ['Niyet', 'Sonraki adıma geç'],
+  ),
+  'wudu_step': (AppRoutes.learnWudu, ['Besmele ile Başlayalım']),
   'search_results': (AppRoutes.search, ['=yemek']),
   'search_open': (AppRoutes.search, ['=aksirinca', 'Aksırınca']),
 };

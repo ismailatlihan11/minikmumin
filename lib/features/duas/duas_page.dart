@@ -67,7 +67,7 @@ class _MinikDuasPageState extends State<MinikDuasPage> {
             children: [
               PageHeader(
                 title: widget.prayerOnly
-                    ? 'Namazda okunan Ayetler ve Dualar'
+                    ? 'Namaz Sure ve Duaları'
                     : 'Dualar',
                 subtitle: widget.prayerOnly
                     ? 'Namazda öğrenilecek ifadeler, sûreler ve dualar.'
@@ -269,7 +269,7 @@ class _DuaDetailPageState extends State<DuaDetailPage> {
       context.read<LocalProgressStore>().setContinue(
             title: dua.title,
             subtitle: widget.kind == 'prayer_dua'
-                ? 'Namazda okunan Ayetler ve Dualar'
+                ? 'Namaz Sure ve Duaları'
                 : 'Dualar',
             route: widget.kind == 'prayer_dua'
                 ? AppRoutes.learnPrayerDuas

@@ -33,6 +33,11 @@ void main() {
     expect(ids.indexOf('fatiha_r2'), ids.indexOf('ikinci_rekata_kalkis') + 1);
   });
 
+  test('namaz sırası ends with selam to the right, then to the left', () {
+    final ids = PrayerVisualCatalog.orderGameIds;
+    expect(ids.sublist(ids.length - 2), ['selam_sag', 'selam_sol']);
+  });
+
   testWidgets('wrong card warns, correct card gets a numbered badge',
       (tester) async {
     await tester.pumpWidget(_host(const [

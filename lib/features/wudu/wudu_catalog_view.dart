@@ -11,6 +11,7 @@ import '../../shared/widgets/listen_button.dart';
 import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../../shared/widgets/topic_footer.dart';
 import 'wudu_visual_catalog.dart';
 
 class WuduCatalogView extends StatefulWidget {
@@ -23,7 +24,8 @@ class WuduCatalogView extends StatefulWidget {
 
   final VoidCallback onBack;
   final VoidCallback onHome;
-  final ValueChanged<WuduVisualStep> onOpenStep;
+  final void Function(WuduVisualStep step, List<WuduVisualStep> upcoming)
+      onOpenStep;
 
   @override
   State<WuduCatalogView> createState() => _WuduCatalogViewState();
@@ -32,6 +34,13 @@ class WuduCatalogView extends StatefulWidget {
 class _WuduCatalogViewState extends State<WuduCatalogView> {
   final _scroll = ScrollController();
   List<WuduVisualStep> _steps = WuduVisualCatalog.steps;
+  List<WuduVisualStep> get _playableSteps =>
+      [for (final step in _steps) if (step.kind != WuduKind.done) step];
+
+  void _openStep(WuduVisualStep step) {
+    final steps = _playableSteps;
+    widget.onOpenStep(step, steps.sublist(steps.indexOf(step) + 1));
+  }
   List<WuduTip> _tips = WuduVisualCatalog.tips;
   List<String> _farzIds = WuduVisualCatalog.farzIds;
   WuduCompletionDua? _dua;
@@ -144,7 +153,7 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                       (item) => item.id == _farzIds[i],
                       orElse: () => _steps.first,
                     ),
-                    onTap: () => widget.onOpenStep(
+                    onTap: () => _openStep(
                       _steps.firstWhere(
                         (item) => item.id == _farzIds[i],
                         orElse: () => _steps.first,
@@ -174,11 +183,10 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
             crossAxisSpacing: 10,
             childAspectRatio: 0.78,
             children: [
-              for (final step
-                  in _steps.where((item) => item.kind != WuduKind.done))
+              for (final step in _playableSteps)
                 _WuduStepCard(
                   step: step,
-                  onTap: () => widget.onOpenStep(step),
+                  onTap: () => _openStep(step),
                 ),
             ],
           ),
@@ -736,9 +744,27 @@ class _FarzTile extends StatelessWidget {
 }
 
 class WuduStepDetailPage extends StatelessWidget {
-  const WuduStepDetailPage({super.key, required this.step});
+  const WuduStepDetailPage({
+    super.key,
+    required this.step,
+    this.upcoming = const [],
+  });
 
   final WuduVisualStep step;
+  final List<WuduVisualStep> upcoming;
+
+  void _openNext(BuildContext context) {
+    if (upcoming.isEmpty) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => WuduStepDetailPage(
+          step: upcoming.first,
+          upcoming: upcoming.sublist(1),
+        ),
+      ),
+    );
+  }
 
   void _openColoring(BuildContext context) {
     openImageColoring(
@@ -793,6 +819,13 @@ class WuduStepDetailPage extends StatelessWidget {
             onPressed: () => _openColoring(context),
             icon: const Icon(Icons.palette_rounded),
             label: const Text('Boya'),
+          ),
+          const SizedBox(height: 20),
+          TopicFooter(
+            hasNext: upcoming.isNotEmpty,
+            onNext: () => _openNext(context),
+            nextLabel: 'Sonraki adıma geç',
+            backLabel: 'Adımlara dön',
           ),
         ],
       ),

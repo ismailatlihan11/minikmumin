@@ -602,6 +602,7 @@ abstract final class PrayerVisualCatalog {
     'secde1_r2',
     'oturus',
     'selam_sag',
+    'selam_sol',
   ];
 
   static List<PrayerVisualStep> get orderGameSteps => [

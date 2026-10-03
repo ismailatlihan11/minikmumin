@@ -82,10 +82,13 @@ class _IntroView extends StatelessWidget {
       child: WuduCatalogView(
         onBack: () => Navigator.pop(context),
         onHome: () => Navigator.popUntil(context, (route) => route.isFirst),
-        onOpenStep: (step) {
+        onOpenStep: (step, upcoming) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => WuduStepDetailPage(step: step)),
+            MaterialPageRoute(
+              builder: (_) =>
+                  WuduStepDetailPage(step: step, upcoming: upcoming),
+            ),
           );
         },
       ),
