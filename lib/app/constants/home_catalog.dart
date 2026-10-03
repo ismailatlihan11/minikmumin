@@ -41,7 +41,7 @@ abstract final class HomeCatalog {
       subtitle: 'Adım adım abdest almayı öğren',
       image: 'assets/images/home/card_wudu.jpg',
       color: MinikColors.of(const Color(0xFFD8EEF8), const Color(0xFF1F323B)),
-      accent: Color(0xFF3AA0C8),
+      accent: const Color(0xFF3AA0C8),
       route: AppRoutes.learnWudu,
       idleMotion: true,
     ),
@@ -50,7 +50,7 @@ abstract final class HomeCatalog {
       subtitle: 'Namaz kılmayı adım adım öğren',
       image: 'assets/images/home/card_prayer.jpg',
       color: MinikColors.of(const Color(0xFFFFF1C2), const Color(0xFF463C1B)),
-      accent: Color(0xFFE0A21A),
+      accent: const Color(0xFFE0A21A),
       route: AppRoutes.learnPrayer,
       idleMotion: true,
     ),
@@ -59,7 +59,7 @@ abstract final class HomeCatalog {
       subtitle: 'Namazda okunan ayet ve dualar sırasıyla',
       image: 'assets/images/home/card_prayer_duas.jpg',
       color: MinikColors.of(const Color(0xFFE8DFF8), const Color(0xFF271F37)),
-      accent: Color(0xFF8B6CC9),
+      accent: const Color(0xFF8B6CC9),
       route: AppRoutes.learnPrayerDuas,
     ),
     HomeModule(
@@ -83,7 +83,7 @@ abstract final class HomeCatalog {
       subtitle: 'Peygamberimizden ﷺ öğütler',
       image: 'assets/images/home/card_hadith.jpg',
       color: MinikColors.of(const Color(0xFFFADDE3), const Color(0xFF391D22)),
-      accent: Color(0xFFD36B84),
+      accent: const Color(0xFFD36B84),
       route: AppRoutes.hadith,
     ),
     HomeModule(
@@ -91,7 +91,7 @@ abstract final class HomeCatalog {
       subtitle: 'Peygamberlerin hayatları ve kıssalar',
       image: 'assets/images/home/circle_prophets.jpg',
       color: MinikColors.of(const Color(0xFFFFE8D2), const Color(0xFF402C18)),
-      accent: Color(0xFFD08A3A),
+      accent: const Color(0xFFD08A3A),
       route: AppRoutes.learnProphetsStories,
     ),
     HomeModule(
@@ -99,7 +99,7 @@ abstract final class HomeCatalog {
       subtitle: 'Güzel davranışları öğrenelim',
       image: 'assets/images/home/card_morality.jpg',
       color: MinikColors.of(const Color(0xFFE6D9F5), const Color(0xFF2C2139)),
-      accent: Color(0xFF9B6BC9),
+      accent: const Color(0xFF9B6BC9),
       route: AppRoutes.learnMorality,
     ),
     HomeModule(
@@ -115,7 +115,7 @@ abstract final class HomeCatalog {
       subtitle: 'Günlük hayatta okunan dualar',
       image: 'assets/images/home/card_duas.jpg',
       color: MinikColors.of(const Color(0xFFDDEBFA), const Color(0xFF1C2A3A)),
-      accent: Color(0xFF4F86C6),
+      accent: const Color(0xFF4F86C6),
       route: AppRoutes.learnDuas,
     ),
     HomeModule(
@@ -123,7 +123,7 @@ abstract final class HomeCatalog {
       subtitle: 'Zikirlerini say',
       image: 'assets/images/home/zikr_counter_badge.jpg',
       color: MinikColors.of(const Color(0xFFD8F1EC), const Color(0xFF1B332F)),
-      accent: Color(0xFF2E9C8A),
+      accent: const Color(0xFF2E9C8A),
       route: AppRoutes.zikr,
     ),
     HomeModule(
@@ -131,7 +131,7 @@ abstract final class HomeCatalog {
       subtitle: 'Öğrenirken eğlen',
       image: 'assets/images/home/card_games.jpg',
       color: MinikColors.of(const Color(0xFFDDEFFB), const Color(0xFF17293A)),
-      accent: Color(0xFF3AA0C8),
+      accent: const Color(0xFF3AA0C8),
       route: AppRoutes.games,
     ),
   ];

@@ -17,55 +17,55 @@
       "id": "iman",
       "order": 1,
       "title": "İman Esasları",
-      "icon": "assets/images/ilmihal/iman.png"
+      "icon": "assets/images/ilmihal/iman.webp"
     },
     {
       "id": "temizlik",
       "order": 2,
       "title": "Temizlik",
-      "icon": "assets/images/ilmihal/temizlik.png"
+      "icon": "assets/images/ilmihal/temizlik.webp"
     },
     {
       "id": "namaz",
       "order": 3,
       "title": "Namaz",
-      "icon": "assets/images/ilmihal/namaz.png"
+      "icon": "assets/images/ilmihal/namaz.webp"
     },
     {
       "id": "oruç",
       "order": 4,
       "title": "Oruç",
-      "icon": "assets/images/ilmihal/oruc.png"
+      "icon": "assets/images/ilmihal/oruc.webp"
     },
     {
       "id": "zekat_sadaka",
       "order": 5,
       "title": "Zekât ve Sadaka",
-      "icon": "assets/images/ilmihal/zekat.png"
+      "icon": "assets/images/ilmihal/zekat.webp"
     },
     {
       "id": "hac_kurban",
       "order": 6,
       "title": "Hac ve Kurban",
-      "icon": "assets/images/ilmihal/hac.png"
+      "icon": "assets/images/ilmihal/hac.webp"
     },
     {
       "id": "dua_tövbe",
       "order": 7,
       "title": "Dua ve Tövbe",
-      "icon": "assets/images/ilmihal/dua.png"
+      "icon": "assets/images/ilmihal/dua.webp"
     },
     {
       "id": "camii",
       "order": 8,
       "title": "Cami ve İbadet Adabı",
-      "icon": "assets/images/ilmihal/cami.png"
+      "icon": "assets/images/ilmihal/cami.webp"
     },
     {
       "id": "gunluk_hayat",
       "order": 9,
       "title": "Günlük Hayatta Dini Bilgiler",
-      "icon": "assets/images/ilmihal/gunluk.png"
+      "icon": "assets/images/ilmihal/gunluk.webp"
     }
   ],
   "lessons": [

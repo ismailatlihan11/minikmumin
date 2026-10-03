@@ -510,7 +510,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'allahumme_salli',
-      extraDuaIds: const ['allahumme_barik'],
+      extraDuaIds: ['allahumme_barik'],
       rakat: 2,
     ),
     PrayerVisualStep(
@@ -524,7 +524,7 @@ abstract final class PrayerVisualCatalog {
       kind: PrayerKind.sunnah,
       jsonStepId: 'sitting',
       duaId: 'rabbena_atina',
-      extraDuaIds: const ['rabbena_gfirli'],
+      extraDuaIds: ['rabbena_gfirli'],
       rakat: 2,
     ),
     PrayerVisualStep(

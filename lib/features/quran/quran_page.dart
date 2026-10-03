@@ -392,7 +392,7 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
     await WidgetsBinding.instance.endOfFrame;
     for (var i = 0; i < 400 && mounted && _scroll.hasClients; i++) {
       final ctx = _ayahKeys[ayahNo]?.currentContext;
-      if (ctx != null) {
+      if (ctx != null && ctx.mounted) {
         await Scrollable.ensureVisible(ctx, alignment: 0.08);
         return;
       }

@@ -27,12 +27,14 @@ flutter:
     - assets/data/
     - assets/fonts/
     - assets/images/ui/
+    - assets/images/dhikr/
     - assets/images/duas/
     - assets/images/home/
     - assets/images/ilmihal/
     - assets/images/morality/
     - assets/images/prayer/
     - assets/images/prophets/
+    - assets/images/qissalar/
     - assets/images/quran/
     - assets/images/wudu/
     - assets/images/books/peygamberler/

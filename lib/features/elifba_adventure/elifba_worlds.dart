@@ -142,8 +142,9 @@ abstract final class ElifbaWorlds {
       return 'İlk Harfim';
     }
     final lesson = pack.byId(id);
-    if (lesson != null && lesson.blending.isNotEmpty)
+    if (lesson != null && lesson.blending.isNotEmpty) {
       return 'Harf Birleştirici';
+    }
     for (final world in of(pack)) {
       if (world.lastId == id) return world.badge;
     }

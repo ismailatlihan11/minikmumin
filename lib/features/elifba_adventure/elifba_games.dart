@@ -134,7 +134,7 @@ class _ElifbaLetterGridState extends State<ElifbaLetterGrid> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 4),
+          padding: const EdgeInsets.only(bottom: 4),
           child: Text(
             'Harfe uzun bas → boya',
             style: TextStyle(
@@ -771,7 +771,7 @@ class ElifbaBlendGame extends StatelessWidget {
           ],
         ),
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Icon(Icons.arrow_downward_rounded, color: MinikColors.gold),
         ),
         ElifbaArabicTap(text: result, fontSize: 48),

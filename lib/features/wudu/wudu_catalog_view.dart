@@ -120,12 +120,12 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                 color: MinikColors.greenSoft,
                 label: 'Farz',
               ),
-              _LegendChip(
+              const _LegendChip(
                 icon: Icons.star_rounded,
                 color: Color(0xFFE0A21A),
                 label: 'Sünnet',
               ),
-              _LegendChip(
+              const _LegendChip(
                 icon: Icons.info_rounded,
                 color: Color(0xFF4C8ED9),
                 label: 'Öğüt / Adab',
@@ -266,8 +266,8 @@ class _WuduCatalogViewState extends State<WuduCatalogView> {
                           color: MinikColors.darkGreen,
                         ),
                       ),
-                      SizedBox(height: 2),
-                      Text(
+                      const SizedBox(height: 2),
+                      const Text(
                         '⭐ Yeni rozet kazandın!',
                         style: TextStyle(
                           fontFamily: 'NotoSans',
@@ -849,7 +849,7 @@ class _ColorHint extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.palette_rounded, size: 16, color: MinikColors.darkGreen),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Text(
             'Boya',
             style: TextStyle(

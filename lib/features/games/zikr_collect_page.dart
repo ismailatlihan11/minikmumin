@@ -111,11 +111,10 @@ class _ZikrCollectPlayState extends State<_ZikrCollectPlay> {
     final done = next >= _rounds.length;
     if (done && !_awarded) {
       _awarded = true;
+      final store = context.read<LocalProgressStore>();
       await widget.audio.playAsset(EffectAudio.complete);
-      await context.read<LocalProgressStore>().addXp(8);
-      await context
-          .read<LocalProgressStore>()
-          .markCompleted('game', 'zikr_collect');
+      await store.addXp(8);
+      await store.markCompleted('game', 'zikr_collect');
     }
     if (!mounted) return;
     setState(() {

@@ -609,12 +609,12 @@ class QlJoinEquation extends StatelessWidget {
             children: [
               tile(left),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: Text('+', style: opStyle),
               ),
               tile(right),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: Text('=', style: opStyle),
               ),
               tile(result),

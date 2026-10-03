@@ -134,6 +134,20 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const SizedBox(height: AppSpacing.lg),
           MinikCard(
+            child: ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(Icons.description_rounded, color: MinikColors.green),
+              title: const Text('Lisanslar'),
+              subtitle: const Text('Kullanılan ses, yazı tipi ve kütüphaneler.'),
+              trailing: const Icon(Icons.chevron_right_rounded),
+              onTap: () => showLicensePage(
+                context: context,
+                applicationName: AppConstants.defaultAppName,
+              ),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          MinikCard(
             color: MinikColors.mint,
             child: Text(
               '${AppConstants.defaultAppName} tamamen bu cihazda çalışır. Kur’an ve hadis metinleri değiştirilmez.',

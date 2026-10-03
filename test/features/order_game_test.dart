@@ -26,7 +26,7 @@ void main() {
   });
 
   test('namaz sırası reads Fâtiha then a sure in both rekâts', () {
-    final ids = PrayerVisualCatalog.orderGameIds;
+    const ids = PrayerVisualCatalog.orderGameIds;
     for (final (fatiha, sure) in [('fatiha', 'sure'), ('fatiha_r2', 'sure_r2')]) {
       expect(ids.indexOf(sure), ids.indexOf(fatiha) + 1);
     }
@@ -34,7 +34,7 @@ void main() {
   });
 
   test('namaz sırası ends with selam to the right, then to the left', () {
-    final ids = PrayerVisualCatalog.orderGameIds;
+    const ids = PrayerVisualCatalog.orderGameIds;
     expect(ids.sublist(ids.length - 2), ['selam_sag', 'selam_sol']);
   });
 

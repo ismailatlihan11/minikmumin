@@ -10,6 +10,7 @@ import '../../core/storage/local_progress_store.dart';
 import '../../core/widgets/error_view.dart';
 import '../../core/widgets/loading_view.dart';
 import '../../data/repositories/content_repositories.dart';
+import '../../shared/widgets/parental_gate.dart';
 import 'home_widgets.dart';
 
 class MinikHomePage extends StatefulWidget {
@@ -143,6 +144,8 @@ class _MinikHomePageState extends State<MinikHomePage> {
                       onSearch: () =>
                           Navigator.pushNamed(context, AppRoutes.search),
                       onSettings: () async {
+                        if (!await confirmParent(context)) return;
+                        if (!context.mounted) return;
                         await Navigator.pushNamed(context, AppRoutes.settings);
                         if (!mounted) return;
                         setState(() {

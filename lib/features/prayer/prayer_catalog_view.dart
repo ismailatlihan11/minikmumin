@@ -284,12 +284,12 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
                 color: MinikColors.greenSoft,
                 label: 'Farz',
               ),
-              _LegendChip(
+              const _LegendChip(
                 icon: Icons.star_rounded,
                 color: Color(0xFFE0A21A),
                 label: 'Sünnet',
               ),
-              _LegendChip(
+              const _LegendChip(
                 icon: Icons.info_rounded,
                 color: Color(0xFF4C8ED9),
                 label: 'Öğüt / Adab',
@@ -610,10 +610,10 @@ class _RakatRow extends StatelessWidget {
   final PrayerRakat item;
 
   static Map<String, Color> get _colors => {
-        'fajr': Color(0xFFE0A21A),
-        'dhuhr': Color(0xFF4C8ED9),
-        'asr': Color(0xFFE07A3D),
-        'maghrib': Color(0xFF7B5EA7),
+        'fajr': const Color(0xFFE0A21A),
+        'dhuhr': const Color(0xFF4C8ED9),
+        'asr': const Color(0xFFE07A3D),
+        'maghrib': const Color(0xFF7B5EA7),
         'isha': MinikColors.greenSoft,
       };
 
@@ -1143,7 +1143,7 @@ class _PrayerStepDetailPageState extends State<PrayerStepDetailPage> {
                                   size: 16,
                                   color: MinikColors.darkGreen,
                                 ),
-                                SizedBox(width: 4),
+                                const SizedBox(width: 4),
                                 Text(
                                   'Boya',
                                   style: TextStyle(

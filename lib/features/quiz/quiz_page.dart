@@ -39,7 +39,7 @@ class _QuizPageState extends State<QuizPage> {
           builder: (bank) => ListView(
             padding: AppSpacing.page,
             children: [
-              PageHeader(
+              const PageHeader(
                 title: 'Öğrendiklerini Dene!',
                 subtitle: 'Bakalım kaç soruyu doğru yapabileceksin?',
               ),

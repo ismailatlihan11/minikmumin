@@ -96,7 +96,7 @@ class HomeHeroHeader extends StatelessWidget {
                 MinikColors.of(
                     const Color(0x00EAF6FF), const Color(0x00152938)),
               ],
-              stops: [0, 0.45, 1],
+              stops: const [0, 0.45, 1],
             ),
           ),
         ),

@@ -262,7 +262,7 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
               ),
             if (_sayNow)
               Padding(
-                padding: EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 8),
                 child: Text(
                   'Şimdi sen söyle!',
                   textDirection: TextDirection.ltr,
@@ -613,7 +613,7 @@ class ElifbaComparisonCard extends StatelessWidget {
       children: [
         Expanded(child: _cell(context, left, leftCaption)),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Icon(Icons.compare_arrows_rounded, color: MinikColors.gold),
         ),
         Expanded(child: _cell(context, right, rightCaption)),
@@ -1047,8 +1047,9 @@ class _ElifbaVerseStudyState extends State<ElifbaVerseStudy> {
       marks.add('Med');
     }
     if (word.contains('لل') || word.contains('الل')) marks.add('Lafzatullah');
-    if (marks.isEmpty)
+    if (marks.isEmpty) {
       return 'Bu kelimeye dokundun. İşaretleri birlikte arayalım.';
+    }
     return marks.join(' · ');
   }
 }

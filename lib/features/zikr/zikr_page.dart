@@ -244,7 +244,7 @@ class _ReorderBody extends StatelessWidget {
       header: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          PageHeader(
+          const PageHeader(
             title: 'Zikrim',
             subtitle: 'Satırı tutup sürükleyerek sırayı değiştir.',
           ),
@@ -254,7 +254,7 @@ class _ReorderBody extends StatelessWidget {
             child: Row(
               children: [
                 Icon(Icons.swap_vert_rounded, color: MinikColors.gold),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Text(
                     'Sağdaki ☰ tutamacı basılı tutup yukarı/aşağı sürükle. '
@@ -270,7 +270,7 @@ class _ReorderBody extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: AppSpacing.md),
+          const SizedBox(height: AppSpacing.md),
         ],
       ),
       itemCount: items.length,

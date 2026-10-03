@@ -259,7 +259,7 @@ class _ResultView extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           MinikCard(
             color: MinikColors.mint,
-            child: Text('Rozet: İlk Ders'),
+            child: const Text('Rozet: İlk Ders'),
           ),
         ],
         const SizedBox(height: AppSpacing.xl),

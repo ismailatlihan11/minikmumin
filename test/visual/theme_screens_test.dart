@@ -88,6 +88,7 @@ const _flows = <String, (String, List<String>)>{
     ['Niyet', 'Sonraki adıma geç'],
   ),
   'wudu_step': (AppRoutes.learnWudu, ['Besmele ile Başlayalım']),
+  'parent_gate': ('/', ['@Ayarlar']),
   'search_results': (AppRoutes.search, ['=yemek']),
   'search_open': (AppRoutes.search, ['=aksirinca', 'Aksırınca']),
 };
@@ -102,6 +103,8 @@ Future<void> _tapText(WidgetTester tester, String text) async {
   final Finder finder;
   if (text.startsWith('#')) {
     finder = find.byType(ContentTile).at(int.parse(text.substring(1)));
+  } else if (text.startsWith('@')) {
+    finder = find.byTooltip(text.substring(1)).first;
   } else {
     final matches = find.textContaining(text);
     finder = matches.first;
@@ -133,8 +136,9 @@ Future<void> _settle(WidgetTester tester) async {
     await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 100)));
     await tester.pump(const Duration(milliseconds: 100));
-    if (i >= 4 && find.byType(CircularProgressIndicator).evaluate().isEmpty)
+    if (i >= 4 && find.byType(CircularProgressIndicator).evaluate().isEmpty) {
       break;
+    }
   }
   final images = tester.widgetList<Image>(find.byType(Image)).toList();
   final context = tester.element(find.byType(Navigator).first);
@@ -253,7 +257,7 @@ void main() {
           for (final tap in taps) {
             await _tapText(tester, tap);
           }
-          final suffix = _textScale == '1' ? '' : '_x$_textScale';
+          const suffix = _textScale == '1' ? '' : '_x$_textScale';
           await _capture(
               tester, key, 'build/screens/$mode$suffix/${entry.key}.png');
         } catch (e) {

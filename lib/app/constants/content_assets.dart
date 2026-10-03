@@ -156,25 +156,29 @@ abstract final class ContentAssets {
   };
 
   static const Map<String, String> moralityImages = {
-    'truthfulness': 'assets/images/morality/truthfulness.png',
-    'dogruluk': 'assets/images/morality/truthfulness.png',
-    'mercy': 'assets/images/morality/mercy.png',
-    'merhamet': 'assets/images/morality/mercy.png',
-    'parents': 'assets/images/morality/parents.png',
-    'anne_babaya_iyilik': 'assets/images/morality/parents.png',
-    'sharing': 'assets/images/morality/sharing.png',
-    'yardimlasma': 'assets/images/morality/sharing.png',
-    'paylasma': 'assets/images/morality/sharing.png',
+    'truthfulness': 'assets/images/morality/dogruluk.webp',
+    'dogruluk': 'assets/images/morality/dogruluk.webp',
+    'mercy': 'assets/images/morality/merhamet.webp',
+    'merhamet': 'assets/images/morality/merhamet.webp',
+    'parents': 'assets/images/morality/anne_babaya_iyilik.webp',
+    'anne_babaya_iyilik': 'assets/images/morality/anne_babaya_iyilik.webp',
+    'sharing': 'assets/images/morality/paylasma.webp',
+    'yardimlasma': 'assets/images/morality/yardimlasma.webp',
+    'paylasma': 'assets/images/morality/paylasma.webp',
   };
 
   static const Map<String, String> ilmihalImages = {
-    'temizlik': 'assets/images/ilmihal/temizlik.png',
-    'abdest': 'assets/images/ilmihal/abdest.png',
-    'namaz': 'assets/images/ilmihal/namaz.png',
-    'oruç': 'assets/images/ilmihal/oruc.png',
-    'oruc': 'assets/images/ilmihal/oruc.png',
-    'cami_adabi': 'assets/images/ilmihal/cami_adabi.png',
-    'camii': 'assets/images/ilmihal/cami_adabi.png',
+    'iman': 'assets/images/ilmihal/iman.webp',
+    'temizlik': 'assets/images/ilmihal/temizlik.webp',
+    'namaz': 'assets/images/ilmihal/namaz.webp',
+    'oruç': 'assets/images/ilmihal/oruc.webp',
+    'oruc': 'assets/images/ilmihal/oruc.webp',
+    'zekat_sadaka': 'assets/images/ilmihal/zekat.webp',
+    'hac_kurban': 'assets/images/ilmihal/hac.webp',
+    'dua_tövbe': 'assets/images/ilmihal/dua.webp',
+    'cami_adabi': 'assets/images/ilmihal/cami.webp',
+    'camii': 'assets/images/ilmihal/cami.webp',
+    'gunluk_hayat': 'assets/images/ilmihal/gunluk.webp',
   };
 
   static String duaImage(String id) =>

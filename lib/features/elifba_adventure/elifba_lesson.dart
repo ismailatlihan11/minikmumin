@@ -862,7 +862,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           cue: 'Ra bazen kalın, bazen ince okunur.',
           builder: (state) => ElifbaSoftCard(
             color: MinikColors.butter,
-            child: Text(
+            child: const Text(
               "Ra'nın bütün durumları bu üç örnekten ibaret değildir.",
               textAlign: TextAlign.center,
             ),
@@ -878,7 +878,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           cue: 'Allah lafzını büyük görelim.',
           builder: (state) => ElifbaSoftCard(
             color: MinikColors.mint,
-            child: Column(
+            child: const Column(
               children: [
                 ElifbaArabicTap(text: 'اللّٰه', fontSize: 64),
                 Text('Lafzatullah'),

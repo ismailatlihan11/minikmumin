@@ -3,13 +3,13 @@
   "complete": "assets/audio/effects/ders_tamamlandi.mp3",
   "fallbackImage": "assets/images/home/circle_zikr.jpg",
   "items": [
-    {"id": "subhanallah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/subhanallah.png", "audio": "assets/audio/dhikr/subhanallah.mp3"},
-    {"id": "alhamdulillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/alhamdulillah.png", "audio": "assets/audio/dhikr/alhamdulillah.mp3"},
-    {"id": "allahu_akbar", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/allahu_akbar.png", "audio": "assets/audio/dhikr/allahu_akbar.mp3"},
-    {"id": "la_ilaha_illallah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/la_ilaha_illallah.png", "audio": "assets/audio/dhikr/la_ilaha_illallah.mp3"},
-    {"id": "astaghfirullah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/astaghfirullah.png", "audio": "assets/audio/dhikr/astaghfirullah.mp3"},
-    {"id": "bismillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/bismillah.png", "audio": "assets/audio/dhikr/bismillah.mp3"},
-    {"id": "hawqala", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/hawqala.png", "audio": "assets/audio/dhikr/hawqala.mp3"},
-    {"id": "salawat", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/salawat.png", "audio": "assets/audio/prayer/allahumme_salli.mp3"}
+    {"id": "subhanallah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/subhanallah.webp", "audio": "assets/audio/dhikr/subhanallah.mp3"},
+    {"id": "alhamdulillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/alhamdulillah.webp", "audio": "assets/audio/dhikr/alhamdulillah.mp3"},
+    {"id": "allahu_akbar", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/allahu_akbar.webp", "audio": "assets/audio/dhikr/allahu_akbar.mp3"},
+    {"id": "la_ilaha_illallah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/la_ilaha_illallah.webp", "audio": "assets/audio/dhikr/la_ilaha_illallah.mp3"},
+    {"id": "astaghfirullah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/astaghfirullah.webp", "audio": "assets/audio/dhikr/astaghfirullah.mp3"},
+    {"id": "bismillah", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/bismillah.webp", "audio": "assets/audio/dhikr/bismillah.mp3"},
+    {"id": "hawqala", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/hawqala.webp", "audio": "assets/audio/dhikr/hawqala.mp3"},
+    {"id": "salawat", "module": "dhikr", "type": "dhikr", "image": "assets/images/dhikr/salawat.webp", "audio": "assets/audio/prayer/allahumme_salli.mp3"}
   ]
 }

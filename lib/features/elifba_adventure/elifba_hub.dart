@@ -75,7 +75,7 @@ class ElifbaChooserPage extends StatelessWidget {
                           color: MinikColors.darkGreen,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'Mevcut Elifba yolu. Harf, hareke, kısa sure.',
                         style: TextStyle(color: MinikColors.textMuted),
@@ -100,7 +100,7 @@ class ElifbaChooserPage extends StatelessWidget {
                           color: MinikColors.darkGreen,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'YENİ / DENEME  ·  Eğlenerek, oynayarak öğren.',
                         style: TextStyle(color: MinikColors.textMuted),
