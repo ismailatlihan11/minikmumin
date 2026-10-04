@@ -466,6 +466,7 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
                     const SizedBox(height: AppSpacing.sm),
                     ArabicText(
                       verse.arabic,
+                      quran: true,
                       color: verse.isSajdahAyah ? kMushafSajdahRed : null,
                     ),
                     if (verse.hasMeal) ...[

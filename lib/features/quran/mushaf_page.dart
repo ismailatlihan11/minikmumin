@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
-import '../../app/constants/asset_paths.dart';
 import '../../app/constants/surah_names.dart';
 import '../../app/theme/app_colors.dart';
 import '../../core/storage/local_progress_store.dart';
@@ -12,6 +11,7 @@ import '../../data/repositories/content_repositories.dart';
 import '../../shared/widgets/async_body.dart';
 import 'mushaf_decor.dart';
 import 'mushaf_reading.dart';
+import '../../core/utils/quran_font.dart';
 
 class MushafReaderPage extends StatefulWidget {
   const MushafReaderPage({
@@ -685,7 +685,7 @@ class _AyahFlowBlock extends StatefulWidget {
 class _AyahFlowBlockState extends State<_AyahFlowBlock> {
   final GlobalKey _textKey = GlobalKey();
 
-  String _ayahMark(int n) => ' ﴿${TurkishNumber.arabicIndic(n)}﴾ ';
+  String _ayahMark(int n) => ' \u06DD${TurkishNumber.arabicIndic(n)} ';
 
   void _pickAt(Offset global) {
     if (!widget.followEnabled) return;
@@ -695,7 +695,8 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
     final pos = box.getPositionForOffset(local).offset;
     var cursor = 0;
     for (final verse in widget.verses) {
-      final len = verse.arabic.length + _ayahMark(verse.ayahNo).length;
+      final len = QuranFont.encode(verse.arabic).length +
+          _ayahMark(verse.ayahNo).length;
       if (pos >= cursor && pos < cursor + len) {
         if (verse.ayahId != widget.selectedAyahId) {
           widget.onSelectAyah(verse.ayahId);
@@ -725,11 +726,12 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
           verse.isSajdahAyah ? kMushafSajdahRed : const Color(0xFF8B4513);
       spans.add(
         TextSpan(
-          text: verse.arabic,
+          text: QuranFont.encode(verse.arabic),
           style: TextStyle(
             color: ink,
             fontSize: widget.fontSize,
-            fontFamily: AssetPaths.arabicFontFamily,
+            fontFamily: QuranFont.family,
+            fontFamilyFallback: QuranFont.fallback,
             height: 2.2,
             background: selected ? highlight : null,
           ),
@@ -741,7 +743,8 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
           style: TextStyle(
             color: markColor,
             fontSize: widget.fontSize - 4,
-            fontFamily: AssetPaths.arabicFontFamily,
+            fontFamily: QuranFont.family,
+            fontFamilyFallback: QuranFont.fallback,
             height: 2.2,
             background: selected ? highlight : null,
           ),

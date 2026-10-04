@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../app/constants/asset_paths.dart';
+import '../../core/utils/quran_font.dart';
 
 const kMushafParchment = Color(0xFFFBF3E2);
 const kMushafParchmentDeep = Color(0xFFEDD9A3);
@@ -74,13 +74,14 @@ class MushafSurahUnwan extends StatelessWidget {
             children: [
               if (arabicName.isNotEmpty)
                 Text(
-                  arabicName,
+                  QuranFont.encode(arabicName),
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.rtl,
                   style: const TextStyle(
                     color: Color(0xFFF5E6C8),
                     fontSize: 24,
-                    fontFamily: AssetPaths.arabicFontFamily,
+                    fontFamily: QuranFont.family,
+                    fontFamilyFallback: QuranFont.fallback,
                     height: 1.3,
                   ),
                 ),
@@ -118,16 +119,17 @@ class MushafBismillahBanner extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: _rule()),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              text,
+              QuranFont.encode(text),
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
-              style: TextStyle(
+              style: const TextStyle(
                 color: kMushafGreen,
                 fontSize: 22,
-                fontFamily: AssetPaths.arabicFontFamily,
+                fontFamily: QuranFont.family,
+                fontFamilyFallback: QuranFont.fallback,
                 height: 1.8,
               ),
             ),
