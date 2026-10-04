@@ -14,6 +14,7 @@ import '../../shared/widgets/arabic_text.dart';
 import '../../shared/widgets/async_body.dart';
 import '../../shared/widgets/copy_text.dart';
 import '../../shared/widgets/minik_ui.dart';
+import '../search/search_index.dart';
 import 'mushaf_decor.dart';
 import 'mushaf_page.dart';
 
@@ -31,6 +32,8 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
   ({int surahId, int ayahNo, String label})? _mealMark;
   bool _marksReady = false;
   final _surahListKey = GlobalKey();
+  final _surahSearch = TextEditingController();
+  String _surahQuery = '';
 
   Future<_QuranHome> _load() async {
     final quran = context.read<ContentRepositories>().quran;
@@ -73,6 +76,7 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
   @override
   void dispose() {
     _store?.removeListener(_onProgress);
+    _surahSearch.dispose();
     super.dispose();
   }
 
@@ -100,6 +104,51 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
     );
     if (!mounted) return;
     await _refreshMarks();
+  }
+
+  void _clearSurahSearch() {
+    _surahSearch.clear();
+    setState(() => _surahQuery = '');
+  }
+
+  List<Widget> _surahResults(List<SurahIndexItem> surahs) {
+    final query = _surahQuery.trim();
+    final ref = QuranRef.parse(query);
+    final key = QuranRef.nameKey(query);
+    final matches = ref != null
+        ? surahs.where((s) => s.id == ref.surahId)
+        : query.isEmpty
+            ? surahs
+            : surahs.where((s) =>
+                '${s.id}' == key || QuranRef.nameKey(s.name).contains(key));
+    final target = ref == null
+        ? null
+        : surahs.where((s) => s.id == ref.surahId).firstOrNull;
+    return [
+      if (target != null && ref!.ayahNo >= 1 && ref.ayahNo <= target.ayahCount)
+        ContentTile(
+          title: '${target.name} Sûresi, ${ref.ayahNo}. ayet',
+          subtitle: 'Ayete git',
+          leading: const Icon(Icons.my_location_rounded),
+          onTap: () => _openMeal(surahId: target.id, ayahNo: ref.ayahNo),
+        ),
+      for (final surah in matches)
+        ContentTile(
+          title: surah.name,
+          subtitle: '${surah.ayahCount} ayet',
+          leading: NumberBadge('${surah.id}'),
+          onTap: () => _openMeal(surahId: surah.id),
+        ),
+      if (matches.isEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+          child: Text(
+            '“$query” ile eşleşen sure yok.',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: MinikColors.textMuted),
+          ),
+        ),
+    ];
   }
 
   void _showSurahList() {
@@ -188,13 +237,24 @@ class _MinikQuranPageState extends State<MinikQuranPage> {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 SectionLabel('Sureler', key: _surahListKey),
-                for (final surah in home.surahs)
-                  ContentTile(
-                    title: surah.name,
-                    subtitle: '${surah.ayahCount} ayet',
-                    leading: NumberBadge('${surah.id}'),
-                    onTap: () => _openMeal(surahId: surah.id),
+                TextField(
+                  controller: _surahSearch,
+                  onChanged: (value) => setState(() => _surahQuery = value),
+                  textInputAction: TextInputAction.search,
+                  decoration: InputDecoration(
+                    hintText: 'Sure ara · ör. Furkan 69 ya da 25:69',
+                    prefixIcon: const Icon(Icons.search_rounded),
+                    suffixIcon: _surahQuery.isEmpty
+                        ? null
+                        : IconButton(
+                            tooltip: 'Temizle',
+                            icon: const Icon(Icons.close_rounded),
+                            onPressed: _clearSurahSearch,
+                          ),
                   ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                ..._surahResults(home.surahs),
               ],
             );
           },

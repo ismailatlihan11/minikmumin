@@ -64,9 +64,9 @@ flutter:
     - family: NotoNaskhArabic
       fonts:
         - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
-    - family: Hamdullah
+    - family: Abay
       fonts:
-        - asset: assets/fonts/KuranKerimHamdullah.ttf
+        - asset: assets/fonts/KuranKerimFontAbay.ttf
     - family: NotoSans
       fonts:
         - asset: assets/fonts/NotoSans-Regular.ttf

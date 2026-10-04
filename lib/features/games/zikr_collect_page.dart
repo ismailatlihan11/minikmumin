@@ -274,6 +274,17 @@ class _ZikrBubble extends StatelessWidget {
   final bool wrong;
   final VoidCallback onTap;
 
+  /// Some titles in dhikr.json are cut short with "..."; show the full
+  /// reading instead.
+  String get _reading {
+    final title = dhikr.title.trim();
+    final full = dhikr.transliteration.trim();
+    if (full.isNotEmpty && (title.endsWith('...') || title.endsWith('…'))) {
+      return full;
+    }
+    return title;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -284,37 +295,43 @@ class _ZikrBubble extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.lg),
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (dhikr.arabic.isNotEmpty)
-                Text(
-                  dhikr.arabic,
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontFamily: AssetPaths.arabicFontFamily,
-                    fontSize: 18,
-                    height: 1.4,
-                    color: MinikColors.darkGreen,
+          child: LayoutBuilder(
+            builder: (context, box) => Center(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: SizedBox(
+                  width: box.maxWidth,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (dhikr.arabic.isNotEmpty)
+                        Text(
+                          dhikr.arabic,
+                          textAlign: TextAlign.center,
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: AssetPaths.arabicFontFamily,
+                            fontSize: 18,
+                            height: 1.4,
+                            color: MinikColors.darkGreen,
+                          ),
+                        ),
+                      const SizedBox(height: 6),
+                      Text(
+                        _reading,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'NotoSans',
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                          color: MinikColors.darkGreen,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              const SizedBox(height: 6),
-              Text(
-                dhikr.title,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontFamily: 'NotoSans',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                  color: MinikColors.darkGreen,
-                ),
               ),
-            ],
+            ),
           ),
         ),
       ),

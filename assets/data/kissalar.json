@@ -1157,62 +1157,6 @@
       ],
       "image": "assets/images/qissalar/muhammed_ve_merhamet.webp",
       "audio": "assets/audio/qissalar/muhammed_ve_merhamet.mp3"
-    },
-    {
-      "id": "ashab_i_uhdud",
-      "order": 20,
-      "title": "Ashâb-ı Uhdûd",
-      "ageGroups": [
-        "10-12"
-      ],
-      "category": "iman_kissalari",
-      "summary": "İnançlarından vazgeçmeleri istenen insanların yaşadığı ağır imtihan, Kur'an'ın Burûc sûresindeki anlatım çerçevesinde aktarılır.",
-      "scenes": [
-        {
-          "order": 1,
-          "title": "İman",
-          "text": "İnsanların imanlarından dolayı ağır bir zulme maruz bırakıldığı anlatılır.",
-          "references": [
-            "Burûc 85:4-8"
-          ]
-        },
-        {
-          "order": 2,
-          "title": "Ateş Hendekleri",
-          "text": "İnananlara karşı ateş hendeklerinin hazırlanması anlatılır.",
-          "references": [
-            "Burûc 85:4-10"
-          ]
-        },
-        {
-          "order": 3,
-          "title": "Şahitlik",
-          "text": "Allah'ın her şeye şahit olduğu vurgulanır.",
-          "references": [
-            "Burûc 85:9"
-          ]
-        },
-        {
-          "order": 4,
-          "title": "Ders",
-          "text": "Kıssa iman, sabır ve zulüm karşısında insanın onurunu koruması konusunda düşünmeye yönlendirir.",
-          "references": [
-            "Burûc 85:8-11"
-          ]
-        }
-      ],
-      "lessons": [
-        "İman",
-        "Sabır",
-        "Adalet",
-        "Zulmün kötülüğü"
-      ],
-      "reflection": "Doğru olduğuna inandığımız bir değeri korumak neden bazen cesaret ister?",
-      "quranReferences": [
-        "Burûc 85:4-11"
-      ],
-      "image": "assets/images/qissalar/ashab_i_uhdud.webp",
-      "audio": "assets/audio/qissalar/ashab_i_uhdud.mp3"
     }
   ],
   "quizTemplates": [

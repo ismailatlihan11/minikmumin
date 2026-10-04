@@ -219,10 +219,11 @@ License: public recitation CDN. A separate commercial license document was not i
 - License: UNVERIFIED (public recitation CDN; no separate license file found)
 - Download date: 2026-09-16
 - Updated: 2026-09-18 — removed ayah opening «وَمِنْهُمْ مَنْ يَقُولُ» so clip starts at «رَبَّنَا آتِنَا…»
-- Size: ~310 KB
+- Size: ~264 KB
 - Status: DOWNLOADED
-- Updated: 2026-10-03 — trimmed a further 2.08s leftover «يَقُولُ» tail at the start (cut at the breath pause before «رَبَّنَا»)
-- Note: Duration ~15.8s.
+- Updated: 2026-10-03 — trimmed a further 2.08s at the start
+- Updated: 2026-10-04 — the clip still opened with «وَمِنْهُمْ مَنْ يَقُولُ»; cut 2.40s so it starts exactly at «رَبَّنَا» (verified word timings with Whisper)
+- Note: Duration ~13.4s.
 
 ### `assets/audio/duas/quran_014_041.mp3`
 

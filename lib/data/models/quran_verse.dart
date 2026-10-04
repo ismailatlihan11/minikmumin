@@ -1,4 +1,5 @@
 import '../../core/utils/json_map.dart';
+import '../../core/utils/quran_font.dart';
 
 class QuranVerse {
   const QuranVerse({
@@ -28,7 +29,7 @@ class QuranVerse {
       surahId: JsonMap.integer(json['sure_id']),
       ayahNo: JsonMap.integer(json['ayet_no']),
       page: JsonMap.integer(json['sayfa']),
-      arabic: JsonMap.str(text['arapca']),
+      arabic: QuranFont.format(JsonMap.str(text['arapca'])),
       meal: JsonMap.str(text['meal']),
     );
   }

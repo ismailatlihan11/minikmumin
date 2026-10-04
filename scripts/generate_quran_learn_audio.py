@@ -1531,15 +1531,17 @@ def render_educational_clip(client, voice_name: str, dest: Path, clip: Clip) -> 
             try:
                 if clip.phonetic:
                     rate = PHONETIC_RATE
+                    # Raw ٖ / ی makes Chirp spell out every haraka name.
+                    spoken = normalize_mushaf_for_tts(clip.arabic)
                     synthesize(
                         client,
                         candidate,
                         dest,
                         text=phonetic_fallback_text(
-                            clip.arabic, clip.extra, repeat=clip.repeat
+                            spoken, clip.extra, repeat=clip.repeat
                         ),
                         ssml=(
-                            phonetic_ssml(clip.arabic, clip.extra, repeat=clip.repeat)
+                            phonetic_ssml(spoken, clip.extra, repeat=clip.repeat)
                             if use_ssml
                             else None
                         ),

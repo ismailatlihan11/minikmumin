@@ -1,3 +1,4 @@
+import '../../app/constants/surah_names.dart';
 import '../../core/utils/json_map.dart';
 
 String? _nullableAudio(dynamic value) {
@@ -537,9 +538,11 @@ class QuranLearningSurah {
   factory QuranLearningSurah.fromJson(Map<String, dynamic> json) {
     final from = json['ayah_from'];
     final to = json['ayah_to'];
+    final number = JsonMap.integer(json['surah_number']);
+    final voweled = surahArabicName(number);
     return QuranLearningSurah(
-      surahNumber: JsonMap.integer(json['surah_number']),
-      nameAr: JsonMap.str(json['name_ar']),
+      surahNumber: number,
+      nameAr: voweled.isNotEmpty ? voweled : JsonMap.str(json['name_ar']),
       nameTr: JsonMap.str(json['name_tr']),
       ayahCount: JsonMap.integer(json['ayah_count']),
       priority: JsonMap.integer(json['priority']),
@@ -586,8 +589,10 @@ class QuranLearningPack {
   final List<QuranMahrajGroup> mahrajGroups;
   final QuranLearnExam? exam;
 
-  List<QuranArabicLetter> get alphabetLetters =>
-      [for (final letter in letters) if (!letter.isLigature) letter];
+  List<QuranArabicLetter> get alphabetLetters => [
+        for (final letter in letters)
+          if (!letter.isLigature) letter
+      ];
 
   QuranArabicLetter? letterById(String id) {
     for (final letter in letters) {

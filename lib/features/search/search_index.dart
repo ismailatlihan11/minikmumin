@@ -37,6 +37,8 @@ class SearchEntry {
     required this.subtitle,
     required this.body,
     required this.page,
+    this.surahId,
+    this.ayahNo,
     bool matchTitle = true,
   })  : _title = matchTitle ? SearchText.fold(title) : '',
         _body = SearchText.fold(body);
@@ -46,6 +48,8 @@ class SearchEntry {
   final String subtitle;
   final String body;
   final WidgetBuilder page;
+  final int? surahId;
+  final int? ayahNo;
   final String _title;
   final String _body;
 }
@@ -60,11 +64,28 @@ class SearchHit {
 
 abstract final class SearchText {
   static const _map = {
-    'İ': 'i', 'I': 'i', 'ı': 'i', 'î': 'i', 'Î': 'i',
-    'Ş': 's', 'ş': 's', 'Ğ': 'g', 'ğ': 'g',
-    'Ü': 'u', 'ü': 'u', 'û': 'u', 'Û': 'u',
-    'Ö': 'o', 'ö': 'o', 'Ç': 'c', 'ç': 'c',
-    'â': 'a', 'Â': 'a', '’': "'", '‘': "'", 'ʼ': "'",
+    'İ': 'i',
+    'I': 'i',
+    'ı': 'i',
+    'î': 'i',
+    'Î': 'i',
+    'Ş': 's',
+    'ş': 's',
+    'Ğ': 'g',
+    'ğ': 'g',
+    'Ü': 'u',
+    'ü': 'u',
+    'û': 'u',
+    'Û': 'u',
+    'Ö': 'o',
+    'ö': 'o',
+    'Ç': 'c',
+    'ç': 'c',
+    'â': 'a',
+    'Â': 'a',
+    '’': "'",
+    '‘': "'",
+    'ʼ': "'",
   };
 
   /// Lowercases and strips Turkish letters/circumflexes one-to-one, so an
@@ -88,11 +109,88 @@ abstract final class SearchText {
   static String _compact(String folded) => folded.replaceAll("'", '');
 }
 
+/// A "sure + ayet" query: `furkan 69`, `Furkân Sûresi 69`, `25:69`, `25 69`.
+class QuranRef {
+  const QuranRef(this.surahId, this.ayahNo, this.name);
+
+  final int surahId;
+  final int ayahNo;
+
+  /// The surah name as typed, empty for numeric queries.
+  final String name;
+
+  static QuranRef? parse(String query) {
+    final raw = query.trim();
+    final numeric =
+        RegExp(r'^(\d{1,3})\s*[:./\s]\s*(\d{1,3})$').firstMatch(raw);
+    if (numeric != null) {
+      final id = int.parse(numeric.group(1)!);
+      if (id < 1 || id > kSurahNames.length) return null;
+      return QuranRef(id, int.parse(numeric.group(2)!), '');
+    }
+    final named = RegExp(r'^(.*?\D)\s*(\d{1,3})$').firstMatch(raw);
+    if (named == null) return null;
+    final name = named.group(1)!.trim();
+    final id = _resolveSurah(name);
+    if (id == null) return null;
+    return QuranRef(id, int.parse(named.group(2)!), name);
+  }
+
+  /// Folded, without spaces and punctuation: `Âl-i İmrân` → `aliimran`.
+  static String nameKey(String text) =>
+      SearchText.fold(text).replaceAll(RegExp(r"[\s'\-.]"), '');
+
+  static int? _resolveSurah(String name) {
+    final key = nameKey(name).replaceFirst(RegExp(r'suresi$'), '');
+    if (key.length < 2) return null;
+    final keys = [for (final n in kSurahNames) nameKey(n)];
+    final exact = keys.indexOf(key);
+    if (exact >= 0) return exact + 1;
+    if (key.length < 3) return null;
+    final starts = [
+      for (var i = 0; i < keys.length; i++)
+        if (keys[i].startsWith(key)) i + 1,
+    ];
+    return starts.length == 1 ? starts.first : null;
+  }
+}
+
 List<SearchHit> searchEntries(
   List<SearchEntry> entries,
   String query, {
   SearchKind? kind,
 }) {
+  final ref = QuranRef.parse(query);
+  if (ref != null && (kind == null || kind == SearchKind.quran)) {
+    SearchEntry? ayah;
+    SearchEntry? surah;
+    for (final entry in entries) {
+      if (entry.kind != SearchKind.quran || entry.surahId != ref.surahId) {
+        continue;
+      }
+      if (entry.ayahNo == ref.ayahNo) ayah = entry;
+      if (entry.ayahNo == null) surah = entry;
+    }
+    if (ayah != null) {
+      final pinned = ayah;
+      return [
+        SearchHit(pinned, pinned.subtitle, 0),
+        if (ref.name.isEmpty && surah != null)
+          SearchHit(surah, surah.subtitle, 0)
+        else
+          ..._textSearch(entries, ref.name, kind)
+              .where((h) => h.entry != pinned),
+      ];
+    }
+  }
+  return _textSearch(entries, query, kind);
+}
+
+List<SearchHit> _textSearch(
+  List<SearchEntry> entries,
+  String query,
+  SearchKind? kind,
+) {
   final terms = SearchText.terms(query);
   if (terms.isEmpty) return const [];
   final hits = <SearchHit>[];
@@ -169,9 +267,8 @@ Future<List<SearchEntry>> _duas(ContentRepositories repos) async {
     return SearchEntry(
       kind: SearchKind.dua,
       title: dua.title,
-      subtitle: kind == 'prayer_dua'
-          ? 'Namaz duası'
-          : _join([dua.section, dua.when]),
+      subtitle:
+          kind == 'prayer_dua' ? 'Namaz duası' : _join([dua.section, dua.when]),
       body: _join([
         dua.section,
         dua.when,
@@ -268,8 +365,10 @@ Future<List<SearchEntry>> _basics(ContentRepositories repos) async {
       SearchEntry(
         kind: SearchKind.basics,
         title: item.title,
-        subtitle: _join(
-            [sectionOf[item.id] ?? 'Temel Dini Bilgiler', item.shortDescription]),
+        subtitle: _join([
+          sectionOf[item.id] ?? 'Temel Dini Bilgiler',
+          item.shortDescription
+        ]),
         body: _join([
           item.shortDescription,
           item.content,
@@ -315,6 +414,7 @@ Future<List<SearchEntry>> _quran(ContentRepositories repos) async {
         title: '${surahName(id)} Sûresi',
         subtitle: '$id. sûre',
         body: '',
+        surahId: id,
         page: (_) => QuranSurahPage(surahId: id),
       ),
     for (final ayah in ayahs)
@@ -323,6 +423,8 @@ Future<List<SearchEntry>> _quran(ContentRepositories repos) async {
         title: '${surahName(ayah.surahId)} Sûresi, ${ayah.ayahNo}. ayet',
         subtitle: _firstWords(ayah.meal, 110),
         body: ayah.meal,
+        surahId: ayah.surahId,
+        ayahNo: ayah.ayahNo,
         matchTitle: false,
         page: (_) =>
             QuranSurahPage(surahId: ayah.surahId, initialAyahNo: ayah.ayahNo),

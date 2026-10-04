@@ -468,7 +468,7 @@ class _QlCombineBoardState extends State<QlCombineBoard> {
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          textDirection: TextDirection.ltr,
+          textDirection: TextDirection.rtl,
           children: [
             for (var i = 0; i < _slots.length; i++)
               DragTarget<String>(

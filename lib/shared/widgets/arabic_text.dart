@@ -17,14 +17,14 @@ class ArabicText extends StatelessWidget {
   final double fontSize;
   final Color? color;
 
-  /// Kur'an ayetleri Diyanet'in Hamdullah mushaf fontuyla çizilir.
+  /// Kur'an ayetleri mushaf fontuyla (Abay) çizilir.
   final bool quran;
 
   @override
   Widget build(BuildContext context) {
     if (text.trim().isEmpty) return const SizedBox.shrink();
     return SelectableText(
-      quran ? QuranFont.encode(text) : text,
+      quran ? QuranFont.format(text) : text,
       textAlign: TextAlign.right,
       textDirection: TextDirection.rtl,
       style: TextStyle(

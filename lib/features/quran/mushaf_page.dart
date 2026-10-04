@@ -376,12 +376,16 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
                     });
                     _rememberLastPage();
                   },
-                  itemBuilder: (context, index) => _MushafLeaf(
-                    page: pages[index],
-                    fontSize: _fontSize,
-                    followEnabled: _fingerFollow,
-                    selectedAyahId: _followAyahId,
-                    onSelectAyah: (id) => setState(() => _followAyahId = id),
+                  itemBuilder: (context, index) => _FlipLeaf(
+                    controller: _controller!,
+                    index: index,
+                    child: _MushafLeaf(
+                      page: pages[index],
+                      fontSize: _fontSize,
+                      followEnabled: _fingerFollow,
+                      selectedAyahId: _followAyahId,
+                      onSelectAyah: (id) => setState(() => _followAyahId = id),
+                    ),
                   ),
                 ),
               ),
@@ -476,6 +480,69 @@ class _MushafReaderPageState extends State<MushafReaderPage> {
   }
 }
 
+class _FlipLeaf extends StatelessWidget {
+  const _FlipLeaf({
+    required this.controller,
+    required this.index,
+    required this.child,
+  });
+
+  final PageController controller;
+  final int index;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        var delta = 0.0;
+        if (controller.hasClients && controller.position.haveDimensions) {
+          delta = (controller.page ?? index.toDouble()) - index;
+        }
+        final t = delta.clamp(-1.0, 1.0);
+        final p = t.abs();
+        // Cilt sağda: sayfa sola kayıp hafif kalkar.
+        return Transform.translate(
+          offset: Offset(22.0 * t, -10.0 * p),
+          child: Transform.rotate(
+            angle: t * 0.05,
+            alignment: Alignment.centerRight,
+            child: Transform.scale(
+              scale: 1.0 - 0.02 * p,
+              alignment: Alignment.centerRight,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  child!,
+                  if (p > 0.02)
+                    IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          gradient: LinearGradient(
+                            stops: const [0, 0.16, 0.7, 1],
+                            colors: [
+                              Colors.black.withValues(alpha: 0.26 * p),
+                              Colors.transparent,
+                              Colors.transparent,
+                              Colors.black.withValues(alpha: 0.2 * p),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+      child: child,
+    );
+  }
+}
+
 class _MushafLeaf extends StatelessWidget {
   const _MushafLeaf({
     required this.page,
@@ -503,19 +570,22 @@ class _MushafLeaf extends StatelessWidget {
     }
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 4),
       child: DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          color: kMushafPage,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: kMushafPageBorder, width: 1.2),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.45),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
+              color: Colors.black.withValues(alpha: 0.35),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
-        child: MushafPageChrome(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(18),
           child: Column(
             children: [
               _PageHeader(page: page),
@@ -562,7 +632,7 @@ class _MushafLeaf extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: const EdgeInsets.fromLTRB(18, 4, 18, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: sections,
@@ -582,28 +652,17 @@ class _PageHeader extends StatelessWidget {
     final juz = page.juzNumber;
     final surah =
         page.verses.isEmpty ? '' : surahName(page.verses.first.surahId);
+    const style = TextStyle(
+      color: kMushafPageLabel,
+      fontSize: 12,
+      fontWeight: FontWeight.w600,
+    );
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 2, 8, 6),
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 2),
       child: Row(
         children: [
-          Expanded(
-            child: Text(
-              surah,
-              style: const TextStyle(
-                color: Color(0xFF5C3A1E),
-                fontSize: 11,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Text(
-            'Cüz $juz',
-            style: const TextStyle(
-              color: Color(0xFF5C3A1E),
-              fontSize: 11,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Expanded(child: Text(surah, style: style)),
+          Text('Cüz $juz', style: style),
         ],
       ),
     );
@@ -618,23 +677,42 @@ class _PageFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8, 4, 8, 2),
+      padding: const EdgeInsets.fromLTRB(16, 2, 16, 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('❧', style: TextStyle(color: kMushafGoldDeep)),
-          const SizedBox(width: 12),
-          Text(
-            '$pageNumber',
-            style: const TextStyle(
-              color: Color(0xFF5C3A1E),
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+          const Expanded(child: _FooterRule()),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Text(
+              '$pageNumber',
+              style: const TextStyle(
+                color: kMushafPageLabel,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
-          const SizedBox(width: 12),
-          const Text('❧', style: TextStyle(color: kMushafGoldDeep)),
+          const Expanded(child: _FooterRule()),
         ],
+      ),
+    );
+  }
+}
+
+class _FooterRule extends StatelessWidget {
+  const _FooterRule();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'ـ ✦ ـ ✦ ـ',
+      textAlign: TextAlign.center,
+      maxLines: 1,
+      overflow: TextOverflow.clip,
+      style: TextStyle(
+        color: Color(0xFFB9A57A),
+        fontSize: 9,
+        letterSpacing: 1,
       ),
     );
   }
@@ -683,74 +761,53 @@ class _AyahFlowBlock extends StatefulWidget {
 }
 
 class _AyahFlowBlockState extends State<_AyahFlowBlock> {
-  final GlobalKey _textKey = GlobalKey();
+  final _textKey = GlobalKey();
 
-  String _ayahMark(int n) => ' \u06DD${TurkishNumber.arabicIndic(n)} ';
+  /// Each ayah's end offset in the joined paragraph text.
+  List<int> _ends = const [];
 
   void _pickAt(Offset global) {
     if (!widget.followEnabled) return;
-    final box = _textKey.currentContext?.findRenderObject();
-    if (box is! RenderParagraph) return;
-    final local = box.globalToLocal(global);
-    final pos = box.getPositionForOffset(local).offset;
-    var cursor = 0;
-    for (final verse in widget.verses) {
-      final len = QuranFont.encode(verse.arabic).length +
-          _ayahMark(verse.ayahNo).length;
-      if (pos >= cursor && pos < cursor + len) {
-        if (verse.ayahId != widget.selectedAyahId) {
-          widget.onSelectAyah(verse.ayahId);
-        }
+    final paragraph = _textKey.currentContext?.findRenderObject();
+    if (paragraph is! RenderParagraph || !paragraph.hasSize) return;
+    final local = paragraph.globalToLocal(global);
+    if (local.dy < 0 || local.dy > paragraph.size.height) return;
+    final offset = paragraph.getPositionForOffset(local).offset;
+    for (var i = 0; i < _ends.length; i++) {
+      if (offset <= _ends[i]) {
+        final id = widget.verses[i].ayahId;
+        if (id != widget.selectedAyahId) widget.onSelectAyah(id);
         return;
       }
-      cursor += len;
-    }
-    if (widget.verses.isEmpty) return;
-    if (pos <= 0) {
-      widget.onSelectAyah(widget.verses.first.ayahId);
-    } else {
-      widget.onSelectAyah(widget.verses.last.ayahId);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final spans = <InlineSpan>[];
-    final highlight = Paint()..color = const Color(0x66C8A96E);
-
-    for (final verse in widget.verses) {
+    final ends = <int>[];
+    var length = 0;
+    for (var i = 0; i < widget.verses.length; i++) {
+      final verse = widget.verses[i];
+      if (i > 0) {
+        spans.add(const TextSpan(text: ' '));
+        length += 1;
+      }
+      final piece =
+          '${verse.arabic} \uFD3F${TurkishNumber.arabicIndic(verse.ayahNo)}\uFD3E';
       final selected =
           widget.followEnabled && verse.ayahId == widget.selectedAyahId;
-      final ink = verse.isSajdahAyah ? kMushafSajdahRed : kMushafInk;
-      final markColor =
-          verse.isSajdahAyah ? kMushafSajdahRed : const Color(0xFF8B4513);
-      spans.add(
-        TextSpan(
-          text: QuranFont.encode(verse.arabic),
-          style: TextStyle(
-            color: ink,
-            fontSize: widget.fontSize,
-            fontFamily: QuranFont.family,
-            fontFamilyFallback: QuranFont.fallback,
-            height: 2.2,
-            background: selected ? highlight : null,
-          ),
+      spans.add(TextSpan(
+        text: piece,
+        style: TextStyle(
+          color: verse.isSajdahAyah ? kMushafSajdahRed : null,
+          backgroundColor: selected ? const Color(0x66C8A96E) : null,
         ),
-      );
-      spans.add(
-        TextSpan(
-          text: _ayahMark(verse.ayahNo),
-          style: TextStyle(
-            color: markColor,
-            fontSize: widget.fontSize - 4,
-            fontFamily: QuranFont.family,
-            fontFamilyFallback: QuranFont.fallback,
-            height: 2.2,
-            background: selected ? highlight : null,
-          ),
-        ),
-      );
+      ));
+      length += piece.length;
+      ends.add(length);
     }
+    _ends = ends;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
@@ -760,9 +817,19 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
         onPointerMove: widget.followEnabled ? (e) => _pickAt(e.position) : null,
         child: RichText(
           key: _textKey,
-          textDirection: TextDirection.rtl,
           textAlign: TextAlign.justify,
-          text: TextSpan(children: spans),
+          textDirection: TextDirection.rtl,
+          textScaler: MediaQuery.textScalerOf(context),
+          text: TextSpan(
+            style: TextStyle(
+              color: kMushafInk,
+              fontSize: widget.fontSize,
+              fontFamily: QuranFont.family,
+              fontFamilyFallback: QuranFont.fallback,
+              height: 2.05,
+            ),
+            children: spans,
+          ),
         ),
       ),
     );

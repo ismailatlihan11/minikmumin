@@ -34,6 +34,7 @@ class _SearchPageState extends State<SearchPage> {
     'Hz. Musa',
     'Fâtiha',
     'Rahman',
+    'Bakara 255',
   ];
 
   final _controller = TextEditingController();
@@ -178,7 +179,8 @@ class _SearchPageState extends State<SearchPage> {
           for (final query in _recent)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: Icon(Icons.history_rounded, color: MinikColors.textMuted),
+              leading:
+                  Icon(Icons.history_rounded, color: MinikColors.textMuted),
               title: Text(query),
               trailing: Icon(Icons.north_west_rounded,
                   size: 18, color: MinikColors.textMuted),
@@ -203,7 +205,8 @@ class _SearchPageState extends State<SearchPage> {
         const SizedBox(height: AppSpacing.lg),
         Text(
           'Dualar, Kur\'an mealleri, hadisler, peygamberler, kıssalar, '
-          'güzel ahlak, dini bilgiler ve Esmaül Hüsna içinde arar.',
+          'güzel ahlak, dini bilgiler ve Esmaül Hüsna içinde arar. '
+          'Bir ayete gitmek için “Furkan 69” ya da “25:69” yaz.',
           style: Theme.of(context)
               .textTheme
               .bodySmall
@@ -368,16 +371,22 @@ class _SearchPageState extends State<SearchPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text.rich(
-                    _highlight(entry.title, terms,
-                        theme.titleMedium?.copyWith(color: MinikColors.darkGreen)),
+                    _highlight(
+                        entry.title,
+                        terms,
+                        theme.titleMedium
+                            ?.copyWith(color: MinikColors.darkGreen)),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   if (hit.snippet.trim().isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text.rich(
-                      _highlight(hit.snippet, terms,
-                          theme.bodySmall?.copyWith(color: MinikColors.textMuted)),
+                      _highlight(
+                          hit.snippet,
+                          terms,
+                          theme.bodySmall
+                              ?.copyWith(color: MinikColors.textMuted)),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),

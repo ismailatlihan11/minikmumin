@@ -7,8 +7,164 @@
   "rate": 0.9,
   "pitch": 8.0,
   "cartoon_semitones": 5.0,
-  "generated_at": "2026-10-03T19:04:37.879274+00:00",
+  "generated_at": "2026-10-04T17:54:27.168854+00:00",
   "items": [
+    {
+      "id": "tajweed_12_3",
+      "category": "tajweed_example",
+      "arabic": "فٖیهِ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_12_3.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "9e20e708ca54f71f8c4d634aa7759745d6ef6fa82293daa317075b768e1bbf32",
+      "generated_at": "2026-10-04T17:54:18.354514+00:00"
+    },
+    {
+      "id": "tajweed_10_1",
+      "category": "tajweed_example",
+      "arabic": "الرَّحٖیمِ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_10_1.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "a6b8b8833d52991f2aa8a5ee1f07669d6c1183f8e49c190631b7422f3f298aec",
+      "generated_at": "2026-10-04T17:54:19.025971+00:00"
+    },
+    {
+      "id": "tajweed_10_2",
+      "category": "tajweed_example",
+      "arabic": "الْعَالَمٖینَ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_10_2.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "47563d758d2a5dd0cee6d4a25dac6f6304a5e0e00032443ec96aea13dedba0b1",
+      "generated_at": "2026-10-04T17:54:19.932168+00:00"
+    },
+    {
+      "id": "tajweed_08_5",
+      "category": "tajweed_example",
+      "arabic": "مِنْ سِجّٖیلٍ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_08_5.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "41dff2d56bd368b9d1a663d5928d20ec85851f4d088bb23dcd4070435ceeddfa",
+      "generated_at": "2026-10-04T17:54:20.686437+00:00"
+    },
+    {
+      "id": "tajweed_07_3",
+      "category": "tajweed_example",
+      "arabic": "فَوَیْلٌ لِلْمُصَلّٖینَ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_07_3.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "a967789035925ea67eb91c3ca724e719f1fa2cd7df03448c959c1d05a2ad05bc",
+      "generated_at": "2026-10-04T17:54:21.648273+00:00"
+    },
+    {
+      "id": "tajweed_07_4",
+      "category": "tajweed_example",
+      "arabic": "مِنْ رَبِّهٖ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_07_4.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "b059c19b690c5dc97524eb024ebd0dc53d9e6c0468528b6587b892beab1d3ecf",
+      "generated_at": "2026-10-04T17:54:22.286822+00:00"
+    },
+    {
+      "id": "tajweed_15_4",
+      "category": "tajweed_example",
+      "arabic": "اِنْ نَسٖینَٓا",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_15_4.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "ea8ece74a0043a9361428bc20c0354638d50cc93e3a9ce5d4ee14cd7034cfbf1",
+      "generated_at": "2026-10-04T17:54:22.943364+00:00"
+    },
+    {
+      "id": "tajweed_09_2",
+      "category": "tajweed_example",
+      "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_09_2.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "7ef63d8e7cb224579e87a5daf5441a4acb31064d91e8f5d39ef37fa775f0cd29",
+      "generated_at": "2026-10-04T17:54:23.715209+00:00"
+    },
+    {
+      "id": "tajweed_01_4",
+      "category": "tajweed_example",
+      "arabic": "الْعَالَمٖینَ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_01_4.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "a181c6974a9153b38de7aaa153d14c4a8301a5aa9a99b7e8b69a81f7f021f2a5",
+      "generated_at": "2026-10-04T17:54:24.394590+00:00"
+    },
+    {
+      "id": "tajweed_22_1",
+      "category": "tajweed_example",
+      "arabic": "الضَّٓالّٖینَ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_22_1.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "e57a9083b132606d4287114ad869b8542f3f8af293072e3b53837a82671ef54f",
+      "generated_at": "2026-10-04T17:54:25.123113+00:00"
+    },
+    {
+      "id": "tajweed_22_2",
+      "category": "tajweed_example",
+      "arabic": "الْعَالَمٖینَ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_22_2.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "a181c6974a9153b38de7aaa153d14c4a8301a5aa9a99b7e8b69a81f7f021f2a5",
+      "generated_at": "2026-10-04T17:54:25.886707+00:00"
+    },
+    {
+      "id": "tajweed_21_1",
+      "category": "tajweed_example",
+      "arabic": "الْعَالَمٖینَۙ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_21_1.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "a181c6974a9153b38de7aaa153d14c4a8301a5aa9a99b7e8b69a81f7f021f2a5",
+      "generated_at": "2026-10-04T17:54:26.534289+00:00"
+    },
+    {
+      "id": "tajweed_21_3",
+      "category": "tajweed_example",
+      "arabic": "رَیْبَۚۛ فٖیهِۚۛ",
+      "path": "assets/audio/quran_learn/tajweed/tajweed_21_3.mp3",
+      "voice": "ar-XA-Chirp3-HD-Fenrir",
+      "language": "ar-XA",
+      "rate": 0.86,
+      "format": "mp3",
+      "sha256": "443071745a68da37831313cf2130575342eee80be23bc890a330a008110a96ba",
+      "generated_at": "2026-10-04T17:54:27.168724+00:00"
+    },
     {
       "id": "tajweed_12_1",
       "category": "tajweed_example",
@@ -1174,18 +1330,6 @@
       "generated_at": "2026-09-07T19:26:28.240622+00:00"
     },
     {
-      "id": "tajweed_12_3",
-      "category": "tajweed_example",
-      "arabic": "فٖیهِ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_12_3.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c1ffda70d54f0ef8d0521a05f9e7c98e9cac6c22d41cdabf80aee1c2d5f6ac39",
-      "generated_at": "2026-09-01T14:44:39.571432+00:00"
-    },
-    {
       "id": "tajweed_12_4",
       "category": "tajweed_example",
       "arabic": "اِلَیْهِ",
@@ -1198,42 +1342,6 @@
       "generated_at": "2026-09-01T14:44:40.112526+00:00"
     },
     {
-      "id": "tajweed_10_1",
-      "category": "tajweed_example",
-      "arabic": "الرَّحٖیمِ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_10_1.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "38629a51d766c53fe9a0e3b56225f5c846f36df5306494094c0990be28572efe",
-      "generated_at": "2026-09-01T14:44:41.361096+00:00"
-    },
-    {
-      "id": "tajweed_10_2",
-      "category": "tajweed_example",
-      "arabic": "الْعَالَمٖینَ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_10_2.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "d8b16c66c5f4901d35dc83f63554b3a92cea76942f536c4607bf52727de208e3",
-      "generated_at": "2026-09-01T14:44:42.964505+00:00"
-    },
-    {
-      "id": "tajweed_21_1",
-      "category": "tajweed_example",
-      "arabic": "الْعَالَمٖینَۙ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_21_1.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "8a1d9885c284563a9b3eaa4bed8ebe41498f02a7bfb20d2d5616fea70b196b04",
-      "generated_at": "2026-09-01T14:44:44.643849+00:00"
-    },
-    {
       "id": "tajweed_21_2",
       "category": "tajweed_example",
       "arabic": "عَلَیْهِمْۙ",
@@ -1244,18 +1352,6 @@
       "format": "mp3",
       "sha256": "080faf5f005ea0b7b0a55b185ed51f28f21e1b48336709939af05e66f77fa548",
       "generated_at": "2026-09-01T14:44:45.225450+00:00"
-    },
-    {
-      "id": "tajweed_21_3",
-      "category": "tajweed_example",
-      "arabic": "رَیْبَۚۛ فٖیهِۚۛ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_21_3.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c1d05d1d383030ea06c590003b72da11acb7fc11950226e67e62d137aadb7a9a",
-      "generated_at": "2026-09-01T14:44:45.983954+00:00"
     },
     {
       "id": "tajweed_13_1",
@@ -1366,18 +1462,6 @@
       "generated_at": "2026-09-01T14:44:51.054130+00:00"
     },
     {
-      "id": "tajweed_08_5",
-      "category": "tajweed_example",
-      "arabic": "مِنْ سِجّٖیلٍ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_08_5.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "86e9e284f6b657936bbf60623467584132948b4734bdeee90b05b205b5818a29",
-      "generated_at": "2026-09-01T14:44:52.493052+00:00"
-    },
-    {
       "id": "tajweed_08_6",
       "category": "tajweed_example",
       "arabic": "مِنْ جُوعٍ",
@@ -1450,30 +1534,6 @@
       "generated_at": "2026-09-01T14:44:55.801605+00:00"
     },
     {
-      "id": "tajweed_07_3",
-      "category": "tajweed_example",
-      "arabic": "فَوَیْلٌ لِلْمُصَلّٖینَ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_07_3.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "79a50431d0c8da96092707e0e8289d51d0e762dc07b623fb1b977239944dbf18",
-      "generated_at": "2026-09-01T14:44:57.647484+00:00"
-    },
-    {
-      "id": "tajweed_07_4",
-      "category": "tajweed_example",
-      "arabic": "مِنْ رَبِّهٖ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_07_4.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "746736ab84f878f3b9ff349d197f7075ffdd7a1354e66cf0487718f27422e4c3",
-      "generated_at": "2026-09-01T14:44:58.553020+00:00"
-    },
-    {
       "id": "tajweed_15_1",
       "category": "tajweed_example",
       "arabic": "فَمَنْ یَعْمَلْ",
@@ -1508,18 +1568,6 @@
       "format": "mp3",
       "sha256": "084a2b8fe50afa4e0b8e285f0ae13eea8d93ea43e74746eab278f9c9f4148476",
       "generated_at": "2026-09-01T14:45:00.043134+00:00"
-    },
-    {
-      "id": "tajweed_15_4",
-      "category": "tajweed_example",
-      "arabic": "اِنْ نَسٖینَٓا",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_15_4.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "bd7d56999cc03850ea016f4c86acc825496c575122896507ef3bf47e9929b4bb",
-      "generated_at": "2026-09-01T14:45:00.873351+00:00"
     },
     {
       "id": "tajweed_15_5",
@@ -1592,18 +1640,6 @@
       "format": "mp3",
       "sha256": "032d94f37a63bab380c012c0db69847a5cdad0a622b11e2426d97ab2db082b10",
       "generated_at": "2026-09-01T14:45:05.605404+00:00"
-    },
-    {
-      "id": "tajweed_09_2",
-      "category": "tajweed_example",
-      "arabic": "تَرْمٖیهِمْ بِحِجَارَةٍ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_09_2.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "6fb786a06a966a3aef15421c4a862592c4e38c7db5bebfa61da5c684b81c3815",
-      "generated_at": "2026-09-01T14:45:06.986265+00:00"
     },
     {
       "id": "tajweed_06_1",
@@ -1714,18 +1750,6 @@
       "generated_at": "2026-09-01T14:45:11.582222+00:00"
     },
     {
-      "id": "tajweed_01_4",
-      "category": "tajweed_example",
-      "arabic": "الْعَالَمٖینَ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_01_4.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "2c517a173e9e4d872ab35140bf2e2311888c85658772336a7af8a0e49b341e2c",
-      "generated_at": "2026-09-01T14:45:13.062472+00:00"
-    },
-    {
       "id": "tajweed_01_5",
       "category": "tajweed_example",
       "arabic": "الشِّتَٓاءِ",
@@ -1736,30 +1760,6 @@
       "format": "mp3",
       "sha256": "de81ba5b3e74a88b843a3bcf0c25c0c4d68af4908bdcb6e4e3de00a31d76f73a",
       "generated_at": "2026-09-01T14:45:13.579271+00:00"
-    },
-    {
-      "id": "tajweed_22_1",
-      "category": "tajweed_example",
-      "arabic": "الضَّٓالّٖینَ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_22_1.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "c952a91e2ac66a82fd7e8ff4501d6075886f13d4af0a923ae06a0ab944327a25",
-      "generated_at": "2026-09-01T14:45:15.129741+00:00"
-    },
-    {
-      "id": "tajweed_22_2",
-      "category": "tajweed_example",
-      "arabic": "الْعَالَمٖینَ",
-      "path": "assets/audio/quran_learn/tajweed/tajweed_22_2.mp3",
-      "voice": "ar-XA-Chirp3-HD-Fenrir",
-      "language": "ar-XA",
-      "rate": 0.86,
-      "format": "mp3",
-      "sha256": "2c517a173e9e4d872ab35140bf2e2311888c85658772336a7af8a0e49b341e2c",
-      "generated_at": "2026-09-01T14:45:16.569768+00:00"
     },
     {
       "id": "tajweed_22_3",
