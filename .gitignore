@@ -53,3 +53,7 @@ app.*.map.json
 # Google Cloud local credential files (never commit)
 google-cloud-credentials.json
 
+
+# Release builds
+*.apk
+*.aab
