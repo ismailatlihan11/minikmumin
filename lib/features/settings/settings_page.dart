@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_spacing.dart';
 import '../../app/theme/theme_controller.dart';
+import '../../core/share/app_share.dart';
 import '../../core/storage/local_progress_store.dart';
 import '../../features/elifba_adventure/elifba_progress.dart';
 import '../../features/quran_learn/quran_learn_progress.dart';
@@ -132,6 +133,21 @@ class _SettingsPageState extends State<SettingsPage> {
                 );
                 setState(() => _unlockLessons = value);
               },
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          MinikCard(
+            child: Builder(
+              builder: (context) => ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.share_rounded, color: MinikColors.green),
+                title: const Text('Uygulamayı paylaş'),
+                subtitle: const Text(
+                  'Minik Mümin’i aileni ve arkadaşlarınla paylaş.',
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => AppShare.shareApp(context),
+              ),
             ),
           ),
         ],
