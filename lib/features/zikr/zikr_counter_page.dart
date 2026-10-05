@@ -70,38 +70,35 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
   Future<void> _onCompleted(Dhikr dhikr) async {
     _burst.forward(from: 0);
     if (!mounted) return;
+    final store = context.read<DhikrStore>();
+    final next = _nextAfter(store.items, widget.dhikrId);
     final choice = await showDialog<String>(
       context: context,
       barrierColor: const Color(0x66000000),
-      builder: (context) => AlertDialog(
-        title: const Text('Çok güzel.'),
-        content: Text('Bugünkü zikrini tamamladın. ${dhikr.title}'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'again'),
-            child: const Text('Bir kez daha'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'new'),
-            child: const Text('Yeni zikir'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, 'ok'),
-            child: const Text('Tamam'),
-          ),
-        ],
-      ),
+      builder: (context) => _CompletedDialog(dhikr: dhikr, next: next),
     );
     if (!mounted) return;
     _burst.reset();
-    final store = context.read<DhikrStore>();
     if (choice == 'again' || choice == 'ok') {
       await store.startAgain(widget.dhikrId);
     } else if (choice == 'new') {
       await store.startAgain(widget.dhikrId);
       if (!mounted) return;
       Navigator.pop(context);
+    } else if (choice == 'next' && next != null) {
+      await store.startAgain(widget.dhikrId);
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => ZikrCounterPage(dhikrId: next.id)),
+      );
     }
+  }
+
+  static Dhikr? _nextAfter(List<Dhikr> items, String id) {
+    final index = items.indexWhere((item) => item.id == id);
+    if (index < 0 || index + 1 >= items.length) return null;
+    return items[index + 1];
   }
 
   Future<void> _confirmReset() async {
@@ -467,6 +464,92 @@ class _RoundControl extends StatelessWidget {
           child: Icon(icon, color: MinikColors.darkGreen),
         ),
       ),
+    );
+  }
+}
+
+class _CompletedDialog extends StatefulWidget {
+  const _CompletedDialog({required this.dhikr, required this.next});
+
+  final Dhikr dhikr;
+  final Dhikr? next;
+
+  @override
+  State<_CompletedDialog> createState() => _CompletedDialogState();
+}
+
+class _CompletedDialogState extends State<_CompletedDialog> {
+  static const _countdown = 3;
+  var _left = _countdown;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.next == null) return;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return;
+      if (_left <= 1) {
+        timer.cancel();
+        Navigator.pop(context, 'next');
+        return;
+      }
+      setState(() => _left--);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _close(String choice) {
+    _timer?.cancel();
+    Navigator.pop(context, choice);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final next = widget.next;
+    return AlertDialog(
+      title: const Text('Çok güzel.'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Bugünkü zikrini tamamladın. ${widget.dhikr.title}'),
+          if (next != null) ...[
+            const SizedBox(height: AppSpacing.md),
+            Text(
+              '$_left saniye sonra sıradaki zikre geçiliyor: ${next.title}',
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            LinearProgressIndicator(value: _left / _countdown),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => _close('again'),
+          child: const Text('Bir kez daha'),
+        ),
+        TextButton(
+          onPressed: () => _close('new'),
+          child: const Text('Yeni zikir'),
+        ),
+        if (next != null)
+          FilledButton(
+            onPressed: () => _close('next'),
+            child: const Text('Sıradaki'),
+          )
+        else
+          FilledButton(
+            onPressed: () => _close('ok'),
+            child: const Text('Tamam'),
+          ),
+      ],
     );
   }
 }
