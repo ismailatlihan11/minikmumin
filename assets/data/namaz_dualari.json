@@ -4,7 +4,7 @@
   "description": "Çocuklara namazda öğrenilecek ifadeleri, sûreleri ve duaları kullanıcının belirlediği sırayla öğreten içerik listesi.",
   "language": "tr",
   "ordered": true,
-  "itemCount": 28,
+  "itemCount": 30,
   "learningAlgorithm": {
     "type": "strict_order",
     "rule": "Bir içerik tamamlanmadan sonraki order değerine geçilmez.",
@@ -674,6 +674,28 @@
       "transliteration": "Rabbenâ ve lekel-hamd.",
       "meaning": "Ey Rabbimiz! Her türlü övgü sana mahsustur.",
       "usage": "Rükûdan doğrulup kıyamda durunca okunur.",
+      "source": "Diyanet Namaz İlmihali"
+    },
+    {
+      "order": 28,
+      "id": "kunut_1",
+      "type": "prayer_dua",
+      "title": "Kunut Duası 1",
+      "arabic": "اَللّٰهُمَّ إِنَّا نَسْتَعِينُكَ وَنَسْتَغْفِرُكَ وَنَسْتَهْدِيكَ وَنُؤْمِنُ بِكَ وَنَتُوبُ إِلَيْكَ وَنَتَوَكَّلُ عَلَيْكَ وَنُثْنِي عَلَيْكَ الْخَيْرَ كُلَّهُ نَشْكُرُكَ وَلَا نَكْفُرُكَ وَنَخْلَعُ وَنَتْرُكُ مَنْ يَفْجُرُكَ",
+      "transliteration": "Allâhümme innâ nesteînüke ve nestağfirüke ve nestehdîk. Ve nü'minü bike ve netûbü ileyk. Ve netevekkelü aleyke ve nüsnî aleykel-hayra küllehû neşkürüke ve lâ nekfürüke ve nahleu ve netrukü men yefcürük.",
+      "meaning": "Allah'ım! Senden yardım isteriz, bağışlanmayı ve doğru yolu isteriz. Sana inanırız, sana tövbe ederiz ve sana güveniriz. Bütün iyiliklerle seni överiz, sana şükrederiz, nimetlerini inkâr etmeyiz. Sana karşı geleni bırakırız.",
+      "usage": "Vitir namazının 3. rekâtında, sureden sonra tekbir alınıp okunur.",
+      "source": "Diyanet Namaz İlmihali"
+    },
+    {
+      "order": 29,
+      "id": "kunut_2",
+      "type": "prayer_dua",
+      "title": "Kunut Duası 2",
+      "arabic": "اَللّٰهُمَّ إِيَّاكَ نَعْبُدُ وَلَكَ نُصَلِّي وَنَسْجُدُ وَإِلَيْكَ نَسْعٰى وَنَحْفِدُ نَرْجُو رَحْمَتَكَ وَنَخْشٰى عَذَابَكَ إِنَّ عَذَابَكَ بِالْكُفَّارِ مُلْحِقٌ",
+      "transliteration": "Allâhümme iyyâke na'büdü ve leke nüsallî ve nescüdü ve ileyke nes'â ve nahfidü nercû rahmeteke ve nahşâ azâbeke inne azâbeke bil-küffâri mülhık.",
+      "meaning": "Allah'ım! Yalnız sana kulluk ederiz. Yalnız senin için namaz kılar, sana secde ederiz. Sana koşar, sana yaklaştıran işlere çalışırız. Rahmetini umar, azabından korkarız. Şüphesiz senin azabın inkâr edenlere ulaşır.",
+      "usage": "Vitir namazının 3. rekâtında, birinci Kunut duasından sonra okunur.",
       "source": "Diyanet Namaz İlmihali"
     }
   ]

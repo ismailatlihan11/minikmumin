@@ -1,0 +1,1484 @@
+{
+  "version": 1,
+  "madhhab": "hanafi",
+  "source": "Diyanet İşleri Başkanlığı namaz ilmihali esas alınmıştır.",
+  "groups": [
+    {
+      "id": "sabah",
+      "title": "Sabah",
+      "emoji": "🌅"
+    },
+    {
+      "id": "ogle",
+      "title": "Öğle",
+      "emoji": "☀️"
+    },
+    {
+      "id": "ikindi",
+      "title": "İkindi",
+      "emoji": "🌤️"
+    },
+    {
+      "id": "aksam",
+      "title": "Akşam",
+      "emoji": "🌇"
+    },
+    {
+      "id": "yatsi",
+      "title": "Yatsı",
+      "emoji": "🌙"
+    }
+  ],
+  "steps": {
+    "niyet": {
+      "title": "Niyet",
+      "emoji": "🤍",
+      "visual": "niyet",
+      "kind": "sart",
+      "say": "Hangi namazı kılacağına kalbinden niyet et.",
+      "how": "Kıbleye dön ve ayakta dur. Kalbinden hangi namazı kılacağını düşün. İstersen niyetini dilinle de söyleyebilirsin."
+    },
+    "iftitah_tekbiri": {
+      "title": "İftitah Tekbiri",
+      "emoji": "🙌",
+      "visual": "tekbir",
+      "kind": "farz",
+      "duaIds": [
+        "iftitah_tekbir"
+      ],
+      "caption": "Allahu ekber",
+      "say": "Ellerini kaldır ve “Allahu ekber” diyerek namaza başla.",
+      "how": "Erkekler başparmaklarını kulak memelerine değdirir, kızlar ellerini omuz hizasına kaldırır. Tekbirden sonra ellerini bağlarsın."
+    },
+    "subhaneke": {
+      "title": "Sübhaneke",
+      "emoji": "🤲",
+      "visual": "subhaneke",
+      "kind": "sunnet",
+      "duaIds": [
+        "subhaneke"
+      ],
+      "say": "Şimdi Sübhaneke duasını oku.",
+      "how": "Ellerin bağlı, gözlerin secde yerinde. Sübhaneke duasını içinden, sessizce okursun."
+    },
+    "euzu_besmele": {
+      "title": "Eûzü Besmele",
+      "emoji": "📖",
+      "visual": "euzu",
+      "kind": "sunnet",
+      "duaIds": [
+        "euzu_besmele"
+      ],
+      "say": "Şimdi Eûzü Besmele çek.",
+      "how": "Önce “Eûzü billâhi mineşşeytânirracîm”, sonra “Bismillâhirrahmânirrahîm” dersin."
+    },
+    "besmele": {
+      "title": "Besmele",
+      "emoji": "📖",
+      "visual": "euzu",
+      "kind": "sunnet",
+      "duaIds": [
+        "besmele"
+      ],
+      "say": "Fâtiha’dan önce Besmele çek.",
+      "how": "“Bismillâhirrahmânirrahîm” dersin. Bu rekâtta Sübhaneke okunmaz."
+    },
+    "fatiha": {
+      "title": "Fâtiha Suresi",
+      "emoji": "📖",
+      "visual": "fatiha",
+      "kind": "vacip",
+      "duaIds": [
+        "surah_1"
+      ],
+      "say": "Şimdi Fâtiha suresini oku.",
+      "how": "Ayakta, ellerin bağlıyken Fâtiha suresini baştan sona okursun."
+    },
+    "sure": {
+      "title": "Zamm-ı Sûre",
+      "emoji": "📗",
+      "visual": "sure",
+      "kind": "vacip",
+      "say": "Fâtiha’dan sonra bir sure oku.",
+      "how": "Fâtiha bitince ezbere bildiğin kısa bir sure okursun. Buna zamm-ı sûre denir."
+    },
+    "ruku": {
+      "title": "Rükû",
+      "emoji": "↘️",
+      "visual": "ruku",
+      "kind": "farz",
+      "duaIds": [
+        "ruku"
+      ],
+      "caption": "Sübhâne rabbiye’l-azîm",
+      "say": "“Allahu ekber” diyerek rükûya eğil. 3 kere “Sübhâne rabbiye’l-azîm” de.",
+      "how": "Ellerini dizlerine koy, sırtını düz tut. Başın sırtınla aynı hizada olsun."
+    },
+    "kavme": {
+      "title": "Kavme",
+      "emoji": "🧍",
+      "visual": "ruku_rise",
+      "kind": "vacip",
+      "duaIds": [
+        "qiyam_after_ruku",
+        "rabbena_lekel_hamd"
+      ],
+      "caption": "Semi‘allâhü limen hamideh",
+      "say": "“Semi‘allâhü limen hamideh” diyerek doğrul. Dik durunca “Rabbenâ lekel-hamd” de.",
+      "how": "Rükûdan kalkıp tam dik durursun. Acele etmeden bir an beklersin."
+    },
+    "secde_1": {
+      "title": "1. Secde",
+      "emoji": "⬇️",
+      "visual": "secde1",
+      "kind": "farz",
+      "duaIds": [
+        "sujud"
+      ],
+      "caption": "Sübhâne rabbiye’l-a‘lâ",
+      "say": "“Allahu ekber” diyerek secdeye git. 3 kere “Sübhâne rabbiye’l-a‘lâ” de.",
+      "how": "Önce dizlerin, sonra ellerin, sonra alnın ve burnun yere değer. Ayak parmakların kıbleye bakar."
+    },
+    "secde_2": {
+      "title": "2. Secde",
+      "emoji": "⬇️",
+      "visual": "secde2",
+      "kind": "farz",
+      "duaIds": [
+        "sujud"
+      ],
+      "caption": "Sübhâne rabbiye’l-a‘lâ",
+      "say": "“Allahu ekber” diyerek secdeden kalk ve biraz otur. Sonra yine “Allahu ekber” diyerek ikinci secdeye git. 3 kere “Sübhâne rabbiye’l-a‘lâ” de.",
+      "how": "İki secde arasında kısa bir süre oturursun; buna celse denir. Sonra ikinci secdeyi yaparsın."
+    },
+    "kalkis": {
+      "title": "Ayağa Kalk",
+      "emoji": "⬆️",
+      "visual": "ikinci_rekata_kalkis",
+      "kind": "farz",
+      "duaIds": [
+        "iftitah_tekbir"
+      ],
+      "caption": "Allahu ekber",
+      "say": "“Allahu ekber” diyerek ayağa kalk ve ellerini bağla.",
+      "how": "Kalkarken önce alnını, sonra ellerini, en son dizlerini yerden kaldırırsın."
+    },
+    "ilk_oturus": {
+      "title": "İlk Oturuş",
+      "emoji": "🪑",
+      "visual": "oturus",
+      "kind": "vacip",
+      "say": "İkinci secdeden sonra “Allahu ekber” diyerek otur. Bu ilk oturuş; namaz daha bitmedi.",
+      "how": "Ellerini dizlerinin üzerine koyarsın. Erkekler sol ayağının üzerine oturur, kızlar ayaklarını sağ tarafa çıkarır."
+    },
+    "son_oturus": {
+      "title": "Son Oturuş",
+      "emoji": "🪑",
+      "visual": "oturus",
+      "kind": "farz",
+      "say": "Son secdeden sonra “Allahu ekber” diyerek otur. Bu son oturuş; namaz birazdan bitecek.",
+      "how": "Ellerini dizlerinin üzerine koyarsın. Erkekler sol ayağının üzerine oturur, kızlar ayaklarını sağ tarafa çıkarır."
+    },
+    "ettehiyyatu": {
+      "title": "Ettehiyyâtü",
+      "emoji": "🤲",
+      "visual": "oturus",
+      "kind": "vacip",
+      "duaIds": [
+        "tahiyyat"
+      ],
+      "say": "Şimdi oturdun. Ettehiyyâtü duasını oku.",
+      "how": "Oturuşta, ellerin dizlerinin üzerindeyken Ettehiyyâtü duasını okursun."
+    },
+    "salli": {
+      "title": "Allahümme Salli",
+      "emoji": "🤲",
+      "visual": "salli",
+      "kind": "sunnet",
+      "duaIds": [
+        "allahumme_salli"
+      ],
+      "say": "Şimdi Allahümme Salli duasını oku.",
+      "how": "Ettehiyyâtü’den sonra oturmaya devam ederek Salli duasını okursun."
+    },
+    "barik": {
+      "title": "Allahümme Bârik",
+      "emoji": "🤲",
+      "visual": "salli",
+      "kind": "sunnet",
+      "duaIds": [
+        "allahumme_barik"
+      ],
+      "say": "Şimdi Allahümme Bârik duasını oku.",
+      "how": "Salli’den sonra oturmaya devam ederek Bârik duasını okursun."
+    },
+    "rabbenalar": {
+      "title": "Rabbenâ Duaları",
+      "emoji": "🤲",
+      "visual": "rabbena",
+      "kind": "sunnet",
+      "duaIds": [
+        "rabbena_atina",
+        "rabbena_gfirli"
+      ],
+      "say": "Şimdi Rabbenâ dualarını oku.",
+      "how": "Önce “Rabbenâ âtinâ”, sonra “Rabbenağfirlî” duasını okursun."
+    },
+    "selam_sag": {
+      "title": "Sağa Selam",
+      "emoji": "👉",
+      "visual": "selam_sag",
+      "kind": "vacip",
+      "caption": "Esselâmü aleyküm ve rahmetullâh",
+      "say": "Başını sağa çevir ve “Esselâmü aleyküm ve rahmetullâh” de.",
+      "how": "Başını sağa çevirirken gözünle sağ omzuna bakarsın."
+    },
+    "selam_sol": {
+      "title": "Sola Selam",
+      "emoji": "👈",
+      "visual": "selam_sol",
+      "kind": "vacip",
+      "caption": "Esselâmü aleyküm ve rahmetullâh",
+      "say": "Başını sola çevir ve “Esselâmü aleyküm ve rahmetullâh” de.",
+      "how": "Başını sola çevirirken gözünle sol omzuna bakarsın."
+    },
+    "kunut_tekbiri": {
+      "title": "Kunut Tekbiri",
+      "emoji": "🙌",
+      "visual": "tekbir",
+      "kind": "vacip",
+      "duaIds": [
+        "iftitah_tekbir"
+      ],
+      "caption": "Allahu ekber",
+      "say": "Sure bitti. Rükûya gitmeden ellerini kaldır ve “Allahu ekber” de. Sonra ellerini tekrar bağla.",
+      "how": "Ellerini iftitah tekbirindeki gibi kaldırırsın. Bu tekbir sadece vitirin 3. rekâtında alınır."
+    },
+    "kunut_dualari": {
+      "title": "Kunut Duaları",
+      "emoji": "🤲",
+      "visual": "subhaneke",
+      "kind": "vacip",
+      "duaIds": [
+        "kunut_1",
+        "kunut_2"
+      ],
+      "say": "Şimdi Kunut dualarını oku.",
+      "how": "Ayakta, ellerin bağlıyken önce birinci, sonra ikinci Kunut duasını okursun."
+    }
+  },
+  "prayers": [
+    {
+      "id": "sabah_sunnet",
+      "group": "sabah",
+      "name": "Sabah Namazı",
+      "shortName": "Sabah Sünneti",
+      "part": "2 Rekât Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 2,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü sabah namazının sünnetini kılmaya.",
+      "intro": "Bu namazı 2 rekât olarak öğreneceğiz.",
+      "info": [
+        "Sabah sünneti, sünnetlerin en kuvvetlisidir."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 109
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "2 rekâtlık namazda ikinci rekâttaki oturuş son oturuştur. Ettehiyyâtü, Salli, Barik ve Rabbenâ duaları okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sabah_farz",
+      "group": "sabah",
+      "name": "Sabah Namazı",
+      "shortName": "Sabah Farzı",
+      "part": "2 Rekât Farz",
+      "type": "farz",
+      "typeLabel": "Farz",
+      "notice": "Bu bir FARZ namazıdır.",
+      "rakats": 2,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü sabah namazının farzını kılmaya.",
+      "intro": "Bu namazı 2 rekât olarak öğreneceğiz.",
+      "info": [],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 105
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 106,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "2 rekâtlık namazda ikinci rekâttaki oturuş son oturuştur. Ettehiyyâtü, Salli, Barik ve Rabbenâ duaları okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ogle_ilk_sunnet",
+      "group": "ogle",
+      "name": "Öğle Namazı",
+      "shortName": "Öğle İlk Sünnet",
+      "part": "4 Rekât İlk Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü öğle namazının ilk sünnetini kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Öğle ilk sünnetinde ilk oturuşta yalnız Ettehiyyâtü okunur. Üçüncü rekâta Besmele ile başlanır."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 103
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 108,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Öğle ilk sünnetinde ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra “Allahu ekber” diyerek hemen ayağa kalkılır."
+            }
+          ],
+          "whys": [
+            {
+              "step": "ilk_oturus",
+              "question": "Burada neden Salli ve Barik okumuyoruz?",
+              "answer": "Bu sünnet dört rekâtlık tek bir namaz gibi kılınır. İlk oturuşta sadece Ettehiyyâtü okunur; Salli ve Barik son oturuşa kalır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 110,
+          "banner": [
+            "3. rekâta kalktın.",
+            "Öğle ilk sünnetinde 3. rekâta Besmele ile başlanır, Sübhaneke okunmaz."
+          ],
+          "tips": [
+            {
+              "step": "sure",
+              "text": "Sünnet namazlarda her rekâtta Fâtiha’dan sonra bir sure okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Sonunda son oturuş yapılır."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ogle_farz",
+      "group": "ogle",
+      "name": "Öğle Namazı",
+      "shortName": "Öğle Farzı",
+      "part": "4 Rekât Farz",
+      "type": "farz",
+      "typeLabel": "Farz",
+      "notice": "Bu bir FARZ namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü öğle namazının farzını kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 105
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 106,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Farz namazlarda ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra ayağa kalkılır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "banner": [
+            "3. rekâta kalktın.",
+            "Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+          ],
+          "whys": [
+            {
+              "step": "fatiha",
+              "question": "Neden burada sure okumuyoruz?",
+              "answer": "Farz namazlarda Fâtiha’dan sonra sure ilk iki rekâtta okunur. 3. ve 4. rekâtlarda sadece Fâtiha okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Yine sadece Fâtiha okunur, sonra son oturuşa geçilir."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ogle_son_sunnet",
+      "group": "ogle",
+      "name": "Öğle Namazı",
+      "shortName": "Öğle Son Sünnet",
+      "part": "2 Rekât Son Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 2,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü öğle namazının son sünnetini kılmaya.",
+      "intro": "Bu namazı 2 rekât olarak öğreneceğiz.",
+      "info": [],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 108
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "2 rekâtlık namazda ikinci rekâttaki oturuş son oturuştur. Ettehiyyâtü, Salli, Barik ve Rabbenâ duaları okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ikindi_sunnet",
+      "group": "ikindi",
+      "name": "İkindi Namazı",
+      "shortName": "İkindi Sünneti",
+      "part": "4 Rekât Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü ikindi namazının sünnetini kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: İkindi sünnetinde ikinci rekâttaki oturuşta Salli ve Barik okunur. Üçüncü rekâta kalkınca Sübhaneke okunur."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 103
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "kalkis"
+          ],
+          "surah": 108,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "salli",
+              "text": "İkindi sünnetinde bu ilk oturuşta Salli ve Barik de okunur."
+            },
+            {
+              "step": "kalkis",
+              "text": "Rabbenâ duaları okunmaz, selam verilmez. Ayağa kalkıp 3. rekâta geçeriz."
+            }
+          ],
+          "whys": [
+            {
+              "step": "salli",
+              "question": "Burada neden Salli ve Barik okuyoruz?",
+              "answer": "Bu sünnet, iki rekâtlık iki namaz gibi kılınır. Bu yüzden ilk oturuşta da Salli ve Barik okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 110,
+          "banner": [
+            "3. rekâta kalktın.",
+            "Bu namaz 4 rekâtlık sünnet olduğu için burada Sübhaneke okunur."
+          ],
+          "whys": [
+            {
+              "step": "subhaneke",
+              "question": "3. rekâta neden Sübhaneke ile başladık?",
+              "answer": "Bu sünnetin ikinci yarısı yeni bir namaza başlar gibi kılınır. Bu yüzden önce Sübhaneke okunur, sonra Eûzü Besmele çekilir."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Sonunda son oturuş yapılır."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ikindi_farz",
+      "group": "ikindi",
+      "name": "İkindi Namazı",
+      "shortName": "İkindi Farzı",
+      "part": "4 Rekât Farz",
+      "type": "farz",
+      "typeLabel": "Farz",
+      "notice": "Bu bir FARZ namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü ikindi namazının farzını kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 107
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 108,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Farz namazlarda ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra ayağa kalkılır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "banner": [
+            "3. rekâta kalktın.",
+            "Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+          ],
+          "whys": [
+            {
+              "step": "fatiha",
+              "question": "Neden burada sure okumuyoruz?",
+              "answer": "Farz namazlarda Fâtiha’dan sonra sure ilk iki rekâtta okunur. 3. ve 4. rekâtlarda sadece Fâtiha okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Yine sadece Fâtiha okunur, sonra son oturuşa geçilir."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aksam_farz",
+      "group": "aksam",
+      "name": "Akşam Namazı",
+      "shortName": "Akşam Farzı",
+      "part": "3 Rekât Farz",
+      "type": "farz",
+      "typeLabel": "Farz",
+      "notice": "Bu bir FARZ namazıdır.",
+      "rakats": 3,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü akşam namazının farzını kılmaya.",
+      "intro": "Bu namazı 3 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Akşam farzı 3 rekâttır. 2. rekâtta ilk oturuş, 3. rekâtta son oturuş yapılır."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 113
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 114,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Farz namazlarda ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra ayağa kalkılır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "banner": [
+            "3. rekâta kalktın.",
+            "Bu son rekât. Sadece Fâtiha okunur, sure okunmaz."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "Akşam farzı 3 rekâttır. Üçüncü rekâttan sonra son oturuş yapılır."
+            }
+          ],
+          "whys": [
+            {
+              "step": "fatiha",
+              "question": "Neden burada sure okumuyoruz?",
+              "answer": "Farz namazlarda Fâtiha’dan sonra sure ilk iki rekâtta okunur. Üçüncü rekâtta sadece Fâtiha okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aksam_son_sunnet",
+      "group": "aksam",
+      "name": "Akşam Namazı",
+      "shortName": "Akşam Son Sünnet",
+      "part": "2 Rekât Son Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 2,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü akşam namazının sünnetini kılmaya.",
+      "intro": "Bu namazı 2 rekât olarak öğreneceğiz.",
+      "info": [],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 109
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "2 rekâtlık namazda ikinci rekâttaki oturuş son oturuştur. Ettehiyyâtü, Salli, Barik ve Rabbenâ duaları okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yatsi_ilk_sunnet",
+      "group": "yatsi",
+      "name": "Yatsı Namazı",
+      "shortName": "Yatsı İlk Sünnet",
+      "part": "4 Rekât İlk Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü yatsı namazının ilk sünnetini kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Yatsı ilk sünnetinde ikinci rekâttaki oturuşta Salli ve Barik okunur. Üçüncü rekâta kalkınca Sübhaneke okunur."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 103
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "kalkis"
+          ],
+          "surah": 108,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "salli",
+              "text": "Yatsı ilk sünnetinde bu ilk oturuşta Salli ve Barik de okunur."
+            },
+            {
+              "step": "kalkis",
+              "text": "Rabbenâ duaları okunmaz, selam verilmez. Ayağa kalkıp 3. rekâta geçeriz."
+            }
+          ],
+          "whys": [
+            {
+              "step": "salli",
+              "question": "Burada neden Salli ve Barik okuyoruz?",
+              "answer": "Bu sünnet, iki rekâtlık iki namaz gibi kılınır. Bu yüzden ilk oturuşta da Salli ve Barik okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 110,
+          "banner": [
+            "3. rekâta kalktın.",
+            "Bu namaz 4 rekâtlık sünnet olduğu için burada Sübhaneke okunur."
+          ],
+          "whys": [
+            {
+              "step": "subhaneke",
+              "question": "3. rekâta neden Sübhaneke ile başladık?",
+              "answer": "Bu sünnetin ikinci yarısı yeni bir namaza başlar gibi kılınır. Bu yüzden önce Sübhaneke okunur, sonra Eûzü Besmele çekilir."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Sonunda son oturuş yapılır."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yatsi_farz",
+      "group": "yatsi",
+      "name": "Yatsı Namazı",
+      "shortName": "Yatsı Farzı",
+      "part": "4 Rekât Farz",
+      "type": "farz",
+      "typeLabel": "Farz",
+      "notice": "Bu bir FARZ namazıdır.",
+      "rakats": 4,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü yatsı namazının farzını kılmaya.",
+      "intro": "Bu namazı 4 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 110
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 111,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Farz namazlarda ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra ayağa kalkılır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "banner": [
+            "3. rekâta kalktın.",
+            "Farz namazın 3. ve 4. rekâtlarında Fâtiha’dan sonra sure okunmaz."
+          ],
+          "whys": [
+            {
+              "step": "fatiha",
+              "question": "Neden burada sure okumuyoruz?",
+              "answer": "Farz namazlarda Fâtiha’dan sonra sure ilk iki rekâtta okunur. 3. ve 4. rekâtlarda sadece Fâtiha okunur."
+            }
+          ]
+        },
+        {
+          "rakah": 4,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "banner": [
+            "4. rekâta kalktın.",
+            "Bu son rekât. Yine sadece Fâtiha okunur, sonra son oturuşa geçilir."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "yatsi_son_sunnet",
+      "group": "yatsi",
+      "name": "Yatsı Namazı",
+      "shortName": "Yatsı Son Sünnet",
+      "part": "2 Rekât Son Sünnet",
+      "type": "sunnet",
+      "typeLabel": "Sünnet",
+      "notice": "Bu bir SÜNNET namazıdır.",
+      "rakats": 2,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için bugünkü yatsı namazının son sünnetini kılmaya.",
+      "intro": "Bu namazı 2 rekât olarak öğreneceğiz.",
+      "info": [],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 108
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "son_oturus",
+              "text": "2 rekâtlık namazda ikinci rekâttaki oturuş son oturuştur. Ettehiyyâtü, Salli, Barik ve Rabbenâ duaları okunur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vitir",
+      "group": "yatsi",
+      "name": "Vitir Namazı",
+      "shortName": "Vitir",
+      "part": "3 Rekât Vacip",
+      "type": "vacip",
+      "typeLabel": "Vacip",
+      "notice": "Vitir VACİP bir namazdır.",
+      "rakats": 3,
+      "madhhab": "hanafi",
+      "niyet": "Niyet ettim Allah rızası için vitir namazını kılmaya.",
+      "intro": "Bu namazı 3 rekât olarak öğreneceğiz.",
+      "info": [
+        "Bilgi: Vitir yatsı namazından sonra kılınır. 3. rekâtta sureden sonra tekbir alınır ve Kunut duaları okunur."
+      ],
+      "rakahDetails": [
+        {
+          "rakah": 1,
+          "steps": [
+            "niyet",
+            "iftitah_tekbiri",
+            "subhaneke",
+            "euzu_besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "kalkis"
+          ],
+          "surah": 108
+        },
+        {
+          "rakah": 2,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "ilk_oturus",
+            "ettehiyyatu",
+            "kalkis"
+          ],
+          "surah": 109,
+          "banner": [
+            "2. rekâta kalktın.",
+            "İkinci rekâtta Sübhaneke okunmaz; Besmele ile başlarız."
+          ],
+          "tips": [
+            {
+              "step": "ettehiyyatu",
+              "text": "Vitirde ilk oturuşta yalnız Ettehiyyâtü okunur. Sonra 3. rekâta kalkılır."
+            }
+          ]
+        },
+        {
+          "rakah": 3,
+          "steps": [
+            "besmele",
+            "fatiha",
+            "sure",
+            "kunut_tekbiri",
+            "kunut_dualari",
+            "ruku",
+            "kavme",
+            "secde_1",
+            "secde_2",
+            "son_oturus",
+            "ettehiyyatu",
+            "salli",
+            "barik",
+            "rabbenalar",
+            "selam_sag",
+            "selam_sol"
+          ],
+          "surah": 112,
+          "banner": [
+            "3. rekâta kalktın.",
+            "Vitirin 3. rekâtında sureden sonra tekbir alınır ve Kunut duaları okunur."
+          ],
+          "tips": [
+            {
+              "step": "sure",
+              "text": "Vitirin her rekâtında Fâtiha’dan sonra bir sure okunur."
+            },
+            {
+              "step": "ruku",
+              "text": "Kunut dualarından sonra “Allahu ekber” diyerek rükûya gideriz."
+            }
+          ],
+          "whys": [
+            {
+              "step": "kunut_tekbiri",
+              "question": "Rükûdan önce neden tekbir alıyoruz?",
+              "answer": "Vitir namazının 3. rekâtında, sure bittikten sonra Kunut duaları okunur. Kunuta başlamadan önce eller kaldırılıp tekbir alınır."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

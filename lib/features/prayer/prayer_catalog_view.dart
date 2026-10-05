@@ -16,6 +16,7 @@ import '../../shared/widgets/minik_coloring_page.dart';
 import '../../shared/widgets/minik_image.dart';
 import '../../shared/widgets/minik_ui.dart';
 import '../../shared/widgets/topic_footer.dart';
+import 'learning/prayer_learning_pages.dart';
 import 'prayer_visual_catalog.dart';
 
 class PrayerCatalogView extends StatefulWidget {
@@ -244,6 +245,8 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
               onChanged: _setGirlLearner,
             ),
           ),
+          const SizedBox(height: 12),
+          const _AllPrayersCard(),
           const SizedBox(height: 12),
           Align(
             alignment: Alignment.centerLeft,
@@ -492,6 +495,10 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
           MinikCard(
             color: MinikColors.card,
             padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const PrayerPlanListPage()),
+            ),
             child: Column(
               children: [
                 for (var i = 0; i < _rakats.length; i++) ...[
@@ -564,6 +571,54 @@ class _PrayerCatalogViewState extends State<PrayerCatalogView> {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AllPrayersCard extends StatelessWidget {
+  const _AllPrayersCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return MinikCard(
+      color: MinikColors.of(const Color(0xFFE3F1E8), const Color(0xFF1F3327)),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const PrayerPlanListPage()),
+      ),
+      child: Row(
+        children: [
+          const Text('🕌', style: TextStyle(fontSize: 34)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Vakit Namazlarını Öğren',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: MinikColors.darkGreen,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'Sabahtan vitire kadar her namazı rekât rekât öğren.',
+                  style: TextStyle(
+                    fontFamily: 'NotoSans',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: MinikColors.textMuted,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(Icons.chevron_right_rounded, color: MinikColors.darkGreen),
         ],
       ),
     );
