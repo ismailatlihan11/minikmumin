@@ -380,6 +380,32 @@ License: public recitation CDN. A separate commercial license document was not i
 - Status: MANUAL_REVIEW_REQUIRED
 - Note: Pre-existing local file. License was not verified; file was not replaced.
 
+### `assets/audio/prayer/kunut_1.mp3`
+
+- Content: Kunut Duası 1 (Allâhümme innâ nesteînüke…)
+- Surah / ayah: —
+- Reader: Tecvid.org dua reader (same recording family as `subhaneke.mp3`, byte-identical source)
+- Source: Tecvid.org `kunutduasi.mp3`, first dua only (0.70–34.85 s)
+- Source URL: https://tecvid.org/wp-content/uploads/sesler/dualar/kunutduasi.mp3
+- License: UNVERIFIED (same Tecvid.org collection as Sübhaneke)
+- Download date: 2026-10-08
+- Size: ~401 KB (~34.2 s)
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. Whisper transcript matches `namaz_dualari.json` kunut_1.
+
+### `assets/audio/prayer/kunut_2.mp3`
+
+- Content: Kunut Duası 2 (Allâhümme iyyâke na'büdü…)
+- Surah / ayah: —
+- Reader: Tecvid.org dua reader (same as `kunut_1.mp3` / `subhaneke.mp3`)
+- Source: Tecvid.org `kunutduasi.mp3`, second dua only (36.10–61.00 s)
+- Source URL: https://tecvid.org/wp-content/uploads/sesler/dualar/kunutduasi.mp3
+- License: UNVERIFIED (same Tecvid.org collection as Sübhaneke)
+- Download date: 2026-10-08
+- Size: ~293 KB (~24.9 s)
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS. Whisper transcript matches `namaz_dualari.json` kunut_2.
+
 ### `assets/audio/prayer/rabbena_gfirli.mp3`
 
 - Content: Rabbenâğfir Lî (İbrâhîm 14:41)
@@ -444,3 +470,76 @@ License: public recitation CDN. A separate commercial license document was not i
 - Size: 40.9 KB
 - Status: MANUAL_REVIEW_REQUIRED
 - Note: Pre-existing local file. License was not verified; file was not replaced.
+
+## Quran.com kelime kelime kayıtları (tecvid düzeltmesi)
+
+TTS med/gunne uzunluğunu tutturamadığı kayıtlar, quran.com kelime kelime (wbw) insan kayıtlarıyla değiştirildi. Ses seviyesi -16 LUFS'e eşitlendi.
+
+### `assets/audio/quran_learn/words/word_11.mp3`
+
+- Content: إِيَّاكَ (1:5, mushaf: إِيَّاكَ)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/001_005_001.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; replaces a TTS clip whose madd was too short.
+
+### `assets/audio/quran_learn/tajweed/tajweed_01_2.mp3`
+
+- Content: جَاءَ (110:1, mushaf: جَآءَ)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/110_001_002.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; replaces a TTS clip whose madd was too short.
+
+### `assets/audio/quran_learn/tajweed/tajweed_01_5.mp3`
+
+- Content: الشِّتَاءِ (106:2, mushaf: ٱلشِّتَآءِ)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/106_002_003.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; replaces a TTS clip whose madd was too short.
+
+### `assets/audio/quran_learn/tajweed/tajweed_22_1.mp3`
+
+- Content: الضَّالِّينَ (1:7, mushaf: ٱلضَّآلِّينَ)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/001_007_009.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; replaces a TTS clip whose madd was too short.
+
+### `assets/audio/elifba/words/ed_dallin.mp3`
+
+- Content: الضَّالِّينَ (1:7, mushaf: ٱلضَّآلِّينَ)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/001_007_009.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; replaces a TTS clip whose madd was too short.
+### `assets/audio/quran_learn/tajweed/tajweed_05_2.mp3`
+
+- Content: ثُمَّ (audio from 102:4; lesson shows reference 2:28, same word)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/102_004_001.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; ghunna on the doubled letter is held. The 2:28 / 2:3 word clips were mis-mapped or carried a prefix (وَ), so the same word was taken from another ayah.
+
+### `assets/audio/quran_learn/tajweed/tajweed_16_1.mp3`
+
+- Content: مِمَّا (audio from 2:23; lesson shows reference 2:3, same word)
+- Reader: Quran.com word-by-word recitation
+- Source URL: https://audio.qurancdn.com/wbw/002_023_005.mp3
+- License: UNVERIFIED (Quran.com audio CDN)
+- Download date: 2026-10-08
+- Status: DOWNLOADED
+- Note: Real recitation, not TTS; ghunna on the doubled letter is held. The 2:28 / 2:3 word clips were mis-mapped or carried a prefix (وَ), so the same word was taken from another ayah.

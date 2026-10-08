@@ -215,6 +215,8 @@ PRAYER_AUDIO_PATHS = {
     "sujud": "assets/audio/prayer/sujud_tesbihi.mp3",
     "iftitah_tekbir": "assets/audio/prayer/iftitah_tekbir.mp3",
     "rabbena_lekel_hamd": "assets/audio/prayer/rabbena_lekel_hamd.mp3",
+    "kunut_1": "assets/audio/prayer/kunut_1.mp3",
+    "kunut_2": "assets/audio/prayer/kunut_2.mp3",
 }
 
 # Human recitations now live at these paths. --replace-old must not
@@ -1001,6 +1003,19 @@ def _is_madd_carrier(letter: str, marks: str) -> bool:
     return False
 
 
+def _is_lam_tarif_alif(clusters: list[tuple[str, str]], pos: int) -> bool:
+    """وَالْ / فَالشَّ: elif vasl hemzesidir, med değildir; okunmaz."""
+    letter = clusters[pos][0]
+    if letter not in "اٱ" or pos + 1 >= len(clusters):
+        return False
+    next_letter, next_marks = clusters[pos + 1]
+    if next_letter != "ل":
+        return False
+    if _has_mark(next_marks, "ْ"):
+        return True
+    return pos + 2 < len(clusters) and _has_mark(clusters[pos + 2][1], "ّ")
+
+
 def _madd_kind_for_previous(letter: str, prev_marks: str) -> str | None:
     if letter in "اآى":
         if _has_mark(prev_marks, "ً"):
@@ -1114,6 +1129,8 @@ def apply_tajweed_madd(phrase: str) -> str:
         for pos in range(1, len(clusters)):
             letter, marks = clusters[pos]
             if not _is_madd_carrier(letter, marks):
+                continue
+            if _is_lam_tarif_alif(clusters, pos):
                 continue
             if _madd_kind_for_previous(letter, clusters[pos - 1][1]):
                 madd_indexes.append(pos)

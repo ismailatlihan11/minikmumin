@@ -580,12 +580,6 @@ class _PrayerPlanFlowPageState extends State<PrayerPlanFlowPage> {
                               style: _text(20, weight: FontWeight.w800),
                             ),
                           ),
-                          _Chip(
-                            label: step.kindLabel,
-                            color: _typeColor(
-                              step.kind == 'sart' ? 'farz' : step.kind,
-                            ),
-                          ),
                         ],
                       ),
                       if (visual != null) ...[

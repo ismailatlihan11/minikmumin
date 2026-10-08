@@ -11,6 +11,7 @@ import 'package:minik_kalpler/features/elifba_adventure/elifba_reading.dart';
 /// Elifbâ derslerindeki her "Dinle" düğmesinin hangi kaydı istediğini bulur
 /// ve dosyası olmayanları listeler. Üretim planı `--plan` ile JSON olarak
 /// yazılır: `dart run tool/audit_elifba_audio.dart --plan > /tmp/audio_plan.json`
+/// `--all` aynı biçimde var olanlar dahil bütün kayıtları yazar (ses kontrolü için).
 void main(List<String> args) {
   final pack = _loadPack();
   final wanted = <String, _Need>{};
@@ -24,8 +25,10 @@ void main(List<String> args) {
   for (final lesson in pack.contentLessons) {
     // Harf adı kartları
     for (final letter in lesson.letters) {
-      final stem = elifbaLetterStem(letter.name.isEmpty ? letter.letter : letter.name);
-      if (stem != null) need(elifbaNamePath(stem), 'harf adı', letter.letter, letter.name);
+      final stem =
+          elifbaLetterStem(letter.name.isEmpty ? letter.letter : letter.name);
+      if (stem != null)
+        need(elifbaNamePath(stem), 'harf adı', letter.letter, letter.name);
     }
 
     // Harf tabloları: ekranda hangi tablo görünüyorsa o (JSON'da tablolar
@@ -61,7 +64,10 @@ void main(List<String> args) {
 
     // Kelimeler: kayıtlı dosyası olmayanlar için yeni kayıt gerekir.
     for (final word in lesson.wordExamples) {
-      if (word.audio.isNotEmpty && File(word.audio).existsSync()) continue;
+      if (word.audio.isNotEmpty && File(word.audio).existsSync()) {
+        need(word.audio, 'kelime (kayıtlı)', word.text, word.text, voice: 'ar');
+        continue;
+      }
       final path = elifbaWordPath(word.reading);
       if (path != null) {
         need(path, 'kelime', word.text, word.text, voice: 'ar');
@@ -73,7 +79,11 @@ void main(List<String> args) {
       ...lesson.practice,
     ]) {
       if (_letterCount(example.text) < 2) continue;
-      if (example.audio.isNotEmpty && File(example.audio).existsSync()) continue;
+      if (example.audio.isNotEmpty && File(example.audio).existsSync()) {
+        need(example.audio, 'kelime (kayıtlı)', example.text, example.text,
+            voice: 'ar');
+        continue;
+      }
       final path = elifbaWordPath(example.reading);
       if (path != null) {
         need(path, 'kelime', example.text, example.text, voice: 'ar');
@@ -100,9 +110,10 @@ void main(List<String> args) {
       .where((item) => !File(item.path).existsSync())
       .toList(growable: false);
 
-  if (args.contains('--plan')) {
+  if (args.contains('--plan') || args.contains('--all')) {
+    final items = args.contains('--all') ? wanted.values : missing;
     stdout.writeln(const JsonEncoder.withIndent('  ').convert([
-      for (final item in missing)
+      for (final item in items)
         {
           'path': item.path,
           'say': item.say,
@@ -125,7 +136,8 @@ void main(List<String> args) {
     }
     if (entry.value.length > 6) stdout.writeln('   ...');
   }
-  stdout.writeln('\nistenen kayıt: ${wanted.length} · eksik: ${missing.length}');
+  stdout
+      .writeln('\nistenen kayıt: ${wanted.length} · eksik: ${missing.length}');
 }
 
 int _letterCount(String text) {
