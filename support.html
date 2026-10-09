@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#146b50">
+  <meta name="description" content="Minik Mümin uygulaması için destek, iletişim ve sık sorulan sorular.">
+  <title>Destek | Minik Mümin</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --green: #146b50;
+      --green-dark: #0d4c3a;
+      --mint: #e8f7ef;
+      --ink: #192b25;
+      --muted: #5b6c64;
+      --line: #dce9e1;
+      --surface: #ffffff;
+      --page: #f5faf6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #e8f7ef 0, var(--page) 300px);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+    }
+    main { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 36px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--green-dark); font-weight: 800; letter-spacing: .2px; }
+    .brand-mark { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; background: var(--green); color: white; font-size: 23px; }
+    header { padding: 8px 4px 28px; }
+    h1 { margin: 24px 0 10px; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.13; letter-spacing: -1px; }
+    .intro { color: var(--muted); font-size: 1.08rem; max-width: 620px; margin: 0; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: clamp(20px, 4vw, 30px); margin: 16px 0; box-shadow: 0 8px 28px rgba(20, 70, 49, .045); }
+    h2 { margin: 0 0 8px; font-size: 1.25rem; line-height: 1.35; }
+    p { margin: 8px 0 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 46px; padding: 11px 17px; border: 1px solid var(--green); border-radius: 12px; background: var(--green); color: #fff; text-decoration: none; font-weight: 700; overflow-wrap: anywhere; }
+    .button.secondary { background: #fff; color: var(--green-dark); }
+    a { color: var(--green-dark); }
+    .note { color: var(--muted); font-size: .94rem; }
+    .faq { padding: 16px 0; border-top: 1px solid var(--line); }
+    .faq:first-of-type { border-top: 0; }
+    .faq h3 { margin: 0; font-size: 1rem; }
+    .faq p { color: var(--muted); }
+    footer { padding: 24px 4px 0; color: var(--muted); font-size: .9rem; text-align: center; }
+    footer a { margin: 0 7px; }
+    @media (max-width: 520px) {
+      main { padding-top: 28px; }
+      .actions { flex-direction: column; }
+      .button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">🌙</span><span>Minik Mümin</span></div>
+      <h1>Yardım mı lazım, minik dostum?</h1>
+      <p class="intro">Minik Mümin'i kullanırken bir sorunla karşılaştıysan veya bir önerin varsa bize ulaşabilirsin. Sana yardımcı olmaktan mutluluk duyarız!</p>
+    </header>
+
+    <section class="card" aria-labelledby="contact-title">
+      <h2 id="contact-title">Bize ulaş</h2>
+      <p>Uygulamayla ilgili soruların, hata bildirimlerin veya geliştirme önerilerin için e-posta gönderebilir ya da GitHub üzerinden bir sorun bildirebilirsin.</p>
+      <div class="actions">
+        <a class="button" href="mailto:ismail.atlihan11@gmail.com?subject=Minik%20M%C3%BCmin%20Destek">E-posta gönder</a>
+        <a class="button secondary" href="https://github.com/ismailatlihan11/minikmumin/issues" target="_blank" rel="noopener noreferrer">Sorun bildir (GitHub)</a>
+      </div>
+      <p class="note">E-posta: <a href="mailto:ismail.atlihan11@gmail.com">ismail.atlihan11@gmail.com</a></p>
+    </section>
+
+    <section class="card" aria-labelledby="faq-title">
+      <h2 id="faq-title">Sık sorulan sorular</h2>
+      <div class="faq">
+        <h3>Minik Mümin internet olmadan çalışır mı?</h3>
+        <p>Uygulamanın çevrimdışı kullanılabilen içerikleri internet bağlantısı olmadan açılabilir. Bir bağlantı sorunu yaşarsan uygulamanın güncel sürümünü kullandığını kontrol et.</p>
+      </div>
+      <div class="faq">
+        <h3>Uygulama ilerlememi nerede saklar?</h3>
+        <p>Favoriler ve öğrenme ilerlemesi gibi bilgiler, uygulamanın mevcut tasarımında cihazında yerel olarak saklanabilir.</p>
+      </div>
+      <div class="faq">
+        <h3>Gizlilik politikası nerede?</h3>
+        <p>Uygulamanın gizlilik uygulamaları hakkında ayrıntılı bilgiye <a href="https://ismailatlihan11.github.io/minikmumin/privacy-policy.html">Gizlilik Politikası</a> sayfasından ulaşabilirsin.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Minik Mümin · Çocuklar ve aileler için</p>
+      <p><a href="https://ismailatlihan11.github.io/minikmumin/privacy-policy.html">Gizlilik Politikası</a> · <a href="https://github.com/ismailatlihan11/minikmumin">GitHub deposu</a></p>
+      <p>© 2026 Minik Mümin</p>
+    </footer>
+  </main>
+</body>
+</html>
