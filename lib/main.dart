@@ -10,7 +10,6 @@ import 'core/audio/asset_catalog.dart';
 import 'core/storage/local_progress_store.dart';
 import 'data/repositories/content_repositories.dart';
 import 'features/zikr/dhikr_store.dart';
-import 'shared/widgets/wide_screen_frame.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,8 +46,8 @@ class MinikKalplerApp extends StatelessWidget {
             darkTheme: MinikTheme.current(),
             // The palette, not the system setting, decides light or dark.
             themeMode: controller.isDark ? ThemeMode.dark : ThemeMode.light,
-            builder: (context, child) => WideScreenFrame(
-              child: MinikTheme.themed(child ?? const SizedBox.shrink()),
+            builder: (context, child) => MinikTheme.themed(
+              child ?? const SizedBox.shrink(),
             ),
             home: const MinikShell(),
             routes: minikRoutes(),

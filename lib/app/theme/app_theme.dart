@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../shared/widgets/wide_screen_frame.dart';
 import 'app_colors.dart';
 import 'app_radius.dart';
 
@@ -15,6 +16,7 @@ abstract final class MinikTheme {
       useMaterial3: true,
       brightness: brightness,
       fontFamily: _font,
+      pageTransitionsTheme: wideScreenPageTransitionsTheme(),
       scaffoldBackgroundColor: MinikColors.cream,
       canvasColor: MinikColors.cream,
       dividerColor: MinikColors.border,
@@ -56,9 +58,8 @@ abstract final class MinikTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: dark ? MinikColors.creamDark : null,
-        contentTextStyle: dark
-            ? TextStyle(fontFamily: _font, color: MinikColors.text)
-            : null,
+        contentTextStyle:
+            dark ? TextStyle(fontFamily: _font, color: MinikColors.text) : null,
       ),
       iconTheme: IconThemeData(color: MinikColors.darkGreen),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -99,16 +100,16 @@ abstract final class MinikTheme {
         filled: true,
         fillColor: MinikColors.surface,
         hintStyle: TextStyle(color: MinikColors.textMuted),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.lg),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.lg),
-          borderSide: dark
-              ? BorderSide(color: MinikColors.border)
-              : BorderSide.none,
+          borderSide:
+              dark ? BorderSide(color: MinikColors.border) : BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.lg),

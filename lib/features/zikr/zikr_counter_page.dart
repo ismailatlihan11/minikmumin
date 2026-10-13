@@ -133,46 +133,14 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
     }
   }
 
-  Future<void> _handlePop(bool didPop) async {
-    if (didPop) return;
-    final store = context.read<DhikrStore>();
+  void _pauseIfUnfinished(DhikrStore store) {
     final dhikr = store.byId(widget.dhikrId);
     if (dhikr == null ||
         dhikr.currentCount <= 0 ||
         dhikr.currentCount >= dhikr.targetCount) {
-      if (mounted) Navigator.pop(context);
       return;
     }
-    final choice = await showModalBottomSheet<String>(
-      context: context,
-      builder: (context) => Padding(
-        padding: AppSpacing.page,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Zikri yarım bırakmak ister misin?',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: AppSpacing.md),
-            PrimaryButton(
-              label: 'Devam et',
-              onPressed: () => Navigator.pop(context, 'stay'),
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            SecondaryButton(
-              label: 'Sonra devam et',
-              onPressed: () => Navigator.pop(context, 'pause'),
-            ),
-          ],
-        ),
-      ),
-    );
-    if (choice == 'pause') {
-      await store.pause(widget.dhikrId);
-      if (mounted) Navigator.pop(context);
-    }
+    store.pause(widget.dhikrId);
   }
 
   @override
@@ -182,11 +150,10 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
     if (dhikr == null) {
       return const Scaffold(body: Center(child: Text('Zikir bulunamadı.')));
     }
-    final needsConfirm =
-        dhikr.currentCount > 0 && dhikr.currentCount < dhikr.targetCount;
     return PopScope(
-      canPop: !needsConfirm,
-      onPopInvokedWithResult: (didPop, _) => _handlePop(didPop),
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) _pauseIfUnfinished(store);
+      },
       child: Scaffold(
         appBar: AppBar(
           title: Text(dhikr.title),

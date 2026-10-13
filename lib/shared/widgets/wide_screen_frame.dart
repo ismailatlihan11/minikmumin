@@ -36,3 +36,51 @@ class WideScreenFrame extends StatelessWidget {
     );
   }
 }
+
+/// Sayfayı [WideScreenFrame] içine alır. Çerçeve geçişin içinde kaldığı için
+/// sayfa tam ekran olur ve iOS'ta kenardan kaydırarak geri dönme ekranın
+/// kenarından çalışır.
+class WideScreenPageTransitionsBuilder extends PageTransitionsBuilder {
+  const WideScreenPageTransitionsBuilder(this.inner);
+
+  final PageTransitionsBuilder inner;
+
+  @override
+  Duration get transitionDuration => inner.transitionDuration;
+
+  @override
+  Duration get reverseTransitionDuration => inner.reverseTransitionDuration;
+
+  @override
+  DelegatedTransitionBuilder? get delegatedTransition =>
+      inner.delegatedTransition;
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return inner.buildTransitions(
+      route,
+      context,
+      animation,
+      secondaryAnimation,
+      WideScreenFrame(child: child),
+    );
+  }
+}
+
+PageTransitionsTheme wideScreenPageTransitionsTheme() {
+  const defaults = PageTransitionsTheme();
+  return PageTransitionsTheme(
+    builders: {
+      for (final platform in TargetPlatform.values)
+        platform: WideScreenPageTransitionsBuilder(
+          defaults.builders[platform] ?? const ZoomPageTransitionsBuilder(),
+        ),
+    },
+  );
+}
