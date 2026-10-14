@@ -24,12 +24,15 @@ class QuranVerse {
 
   factory QuranVerse.fromJson(Map<String, dynamic> json) {
     final text = JsonMap.object(json['metin']);
+    final surahId = JsonMap.integer(json['sure_id']);
+    final ayahNo = JsonMap.integer(json['ayet_no']);
     return QuranVerse(
       ayahId: JsonMap.integer(json['ayet_id']),
-      surahId: JsonMap.integer(json['sure_id']),
-      ayahNo: JsonMap.integer(json['ayet_no']),
+      surahId: surahId,
+      ayahNo: ayahNo,
       page: JsonMap.integer(json['sayfa']),
-      arabic: QuranFont.format(JsonMap.str(text['arapca'])),
+      arabic: QuranFont.format(JsonMap.str(text['arapca']),
+          sure: surahId, ayah: ayahNo),
       meal: JsonMap.str(text['meal']),
     );
   }

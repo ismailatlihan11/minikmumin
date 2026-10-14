@@ -68,6 +68,9 @@ flutter:
     - family: Abay
       fonts:
         - asset: assets/fonts/KuranKerimFontAbay.ttf
+    - family: AbayRenkli
+      fonts:
+        - asset: assets/fonts/KuranKerimFontAbayRenkli.ttf
     - family: NotoSans
       fonts:
         - asset: assets/fonts/NotoSans-Regular.ttf

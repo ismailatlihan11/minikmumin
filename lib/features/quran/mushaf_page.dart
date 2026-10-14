@@ -12,6 +12,7 @@ import '../../shared/widgets/async_body.dart';
 import 'mushaf_decor.dart';
 import 'mushaf_reading.dart';
 import '../../core/utils/quran_font.dart';
+import '../../core/utils/quran_highlight.dart';
 
 class MushafReaderPage extends StatefulWidget {
   const MushafReaderPage({
@@ -798,7 +799,8 @@ class _AyahFlowBlockState extends State<_AyahFlowBlock> {
       final selected =
           widget.followEnabled && verse.ayahId == widget.selectedAyahId;
       spans.add(TextSpan(
-        text: piece,
+        children: quranHighlightSpans(piece, kQuranRed,
+            sure: verse.surahId, ayah: verse.ayahNo),
         style: TextStyle(
           color: verse.isSajdahAyah ? kMushafSajdahRed : null,
           backgroundColor: selected ? const Color(0x66C8A96E) : null,

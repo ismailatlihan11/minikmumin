@@ -6,13 +6,13 @@ import 'package:minik_kalpler/core/utils/quran_font.dart';
 import 'package:minik_kalpler/data/models/quran_verse.dart';
 
 void main() {
-  test('format moves maddah after its carrier and keeps Quranic marks', () {
+  test('format keeps maddah over the haraka before its carrier and keeps Quranic marks', () {
     const enam5 =
         'فَقَدْ كَذَّبُوا بِالْحَقِّ لَمَّا جَٓاءَهُمْؕ فَسَوْفَ یَاْتٖیهِمْ اَنْبٰٓؤُ\u08D1ا مَا كَانُوا بِهٖ یَسْتَهْزِؤُ\u08D2نَ';
     final text = QuranFont.format(enam5);
-    expect(text, contains('جَا\u0653ءَهُمْ'));
-    expect(text, contains('اَنْبٰٓؤُ\u08D1ا'));
-    expect(text, contains('يَسْتَهْزِؤُ\u08D2نَ'));
+    expect(text, contains('ج\u064E\u0653اء\u064Eه\u064Fم\u0652'));
+    expect(text, contains('اَنْبٰٓؤُ\u06ECا'));
+    expect(text, contains('يَسْتَهْزِؤُ\u06EBنَ'));
     expect(text, contains('\u0656'));
     expect(text, contains('\u0615'));
     expect(text.contains('\u06CC'), isFalse);
@@ -73,6 +73,6 @@ void main() {
       'sayfa': 127,
       'metin': {'arapca': 'جَٓاءَكَ فٖی', 'meal': 'test'},
     });
-    expect(verse.arabic, 'جَا\u0653ءَكَ فٖي');
+    expect(verse.arabic, 'ج\u064E\u0653اء\u064Eك\u064E ف\u0656ي');
   });
 }

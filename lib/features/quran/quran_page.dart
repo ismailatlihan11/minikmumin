@@ -527,6 +527,8 @@ class _QuranSurahPageState extends State<QuranSurahPage> {
                     ArabicText(
                       verse.arabic,
                       quran: true,
+                      sure: verse.surahId,
+                      ayah: verse.ayahNo,
                       color: verse.isSajdahAyah ? kMushafSajdahRed : null,
                     ),
                     if (verse.hasMeal) ...[
