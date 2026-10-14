@@ -4,7 +4,7 @@
       "ayet_id": 1,
       "metin": {
         "arapca": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحٖیمِ",
-        "meal": "Rahmân ve rahîm olan Allah'ın adıyla..._"
+        "meal": "Rahmân ve rahîm olan Allah'ın adıyla"
       },
       "sure_id": 1,
       "ayet_no": 1,
@@ -11784,7 +11784,7 @@
       "ayet_id": 1179,
       "metin": {
         "arapca": "اِنْ تَسْتَفْتِحُوا فَقَدْ جَٓاءَكُمُ الْفَتْحُۚ وَاِنْ تَنْتَهُوا فَهُوَ خَيْرٌ لَكُمْۚ وَاِنْ تَعُودُوا نَعُدْۚ وَلَنْ تُغْنِيَ عَنْكُمْ فِئَتُكُمْ شَيْـًٔا وَلَوْ كَثُرَتْۙ وَاَنَّ اللّٰهَ مَعَ الْمُؤْمِن۪ينَ۟",
-        "meal": "Feth istiyorsanız (ey kâfirler) işte size fetih, ve eğer vaz geçerseniz hakkınızda daha hayırlı olur, yok döner yine başlarsanız biz de başlarız, o vakit askeriniz çok da olsa size zerre kadar faide vermez, çünkü Allah mü'minlerle beraberdir."
+        "meal": "(Ey kâfirler!) Eğer siz fetih istiyorsanız, işte size fetih geldi! (Yenelim derken yenildiniz.) Ve eğer (inkardan) vazgeçerseniz bu sizin için daha iyidir. Yine (Peygamber'e düşmanlığa) dönerseniz, biz de (ona) yardıma döneriz. Topluluğunuz çok bile olsa, sizden hiçbir şeyi savamaz. Çünkü Allah müminlerle beraberdir."
       },
       "sure_id": 8,
       "ayet_no": 19,
@@ -11824,7 +11824,7 @@
       "ayet_id": 1183,
       "metin": {
         "arapca": "وَلَوْ عَلِمَ اللّٰهُ ف۪يهِمْ خَيْرًا لَاَسْمَعَهُمْۜ وَلَوْ اَسْمَعَهُمْ لَتَوَلَّوْا وَهُمْ مُعْرِضُونَ",
-        "meal": "Allah onlarda bir hayır görse idi elbette kulaklarına sokardı ve bu hallerinde kulaklarına soksa idi yine aldırmazlar döner giderlerdi."
+        "meal": "Allah onlarda bir hayır görseydi elbette onlara işittirirdi. Fakat işittirseydi bile yine onlar yüz çevirerek dönerlerdi."
       },
       "sure_id": 8,
       "ayet_no": 23,
@@ -11834,7 +11834,7 @@
       "ayet_id": 1184,
       "metin": {
         "arapca": "يَٓا اَيُّهَا الَّذ۪ينَ اٰمَنُوا اسْتَج۪يبُوا لِلّٰهِ وَلِلرَّسُولِ اِذَا دَعَاكُمْ لِمَا يُحْي۪يكُمْۚ وَاعْلَمُٓوا اَنَّ اللّٰهَ يَحُولُ بَيْنَ الْمَرْءِ وَقَلْبِه۪ وَاَنَّهُٓ اِلَيْهِ تُحْشَرُونَ",
-        "meal": "Ey o bütün iman edenler! Sizi kendinize hayat verecek şeylere davet ettiği zaman Resuliyle Allah’a icabet edin ve bilin ki Allah hakikaten kişi ile kalbinin arasına girer, ve siz hakikaten hep ona haşrolunacaksınız."
+        "meal": "Ey inananlar! Hayat verecek şeylere sizi çağırdığı zaman, Allah ve Resûlüne uyun. Ve bilin ki, Allah kişi ile onun kalbi arasına girer ve siz mutlaka onun huzurunda toplanacaksınız."
       },
       "sure_id": 8,
       "ayet_no": 24,
@@ -30651,6 +30651,16 @@
       "sayfa": 371
     },
     {
+      "ayet_id": 3066,
+      "metin": {
+        "arapca": "وَجَنَّاتٍ وَعُيُونٍۚ",
+        "meal": "Bildiğiniz şeyleri size veren, size davarlar, oğullar, bağlar, pınarlar ihsan eden (Allah'a karşı gelmek) den sakının."
+      },
+      "sure_id": 26,
+      "ayet_no": 134,
+      "sayfa": 371
+    },
+    {
       "ayet_id": 3067,
       "metin": {
         "arapca": "اِنّ۪ٓي اَخَافُ عَلَيْكُمْ عَذَابَ يَوْمٍ عَظ۪يمٍۜ",
@@ -34124,7 +34134,7 @@
       "ayet_id": 3414,
       "metin": {
         "arapca": "بِنَصْرِ اللّٰهِۜ يَنْصُرُ مَنْ يَشَٓاءُۜ وَهُوَ الْعَز۪يزُ الرَّح۪يمُ",
-        "meal": "Allah’ın nusretiyle,  O kimi dilerse muzaffer kılar ve Aziz odur, Rahim O."
+        "meal": "Allah’ın nusretiyle, O kimi dilerse muzaffer kılar ve Aziz odur, Rahim O."
       },
       "sure_id": 30,
       "ayet_no": 5,
@@ -61994,7 +62004,7 @@
       "ayet_id": 6201,
       "metin": {
         "arapca": "فَوَيْلٌ لِلْمُصَلّ۪ينَۙ",
-        "meal": "Yazıklar olsun o namaz kılanlara ki, onlar namazlarını ciddiye almazlar."
+        "meal": "Yazıklar olsun o namaz kılanlara ki,"
       },
       "sure_id": 107,
       "ayet_no": 4,
@@ -62004,7 +62014,7 @@
       "ayet_id": 6202,
       "metin": {
         "arapca": "اَلَّذ۪ينَ هُمْ عَنْ صَلَاتِهِمْ سَاهُونَۙ",
-        "meal": "Namazlarından yanılmaktadırlar."
+        "meal": "Onlar namazlarını ciddiye almazlar."
       },
       "sure_id": 107,
       "ayet_no": 5,
@@ -62014,7 +62024,7 @@
       "ayet_id": 6203,
       "metin": {
         "arapca": "اَلَّذ۪ينَ هُمْ يُرَٓاؤُ۫نَۙ",
-        "meal": "Onlar ki müraîlik ederler."
+        "meal": "Onlar gösteriş yapanlardır."
       },
       "sure_id": 107,
       "ayet_no": 6,
@@ -62024,7 +62034,7 @@
       "ayet_id": 6204,
       "metin": {
         "arapca": "وَيَمْنَعُونَ الْمَاعُونَ",
-        "meal": "Onlar gösteriş yapanlardır; hayra da mâni olurlar."
+        "meal": "Hayra da mâni olurlar."
       },
       "sure_id": 107,
       "ayet_no": 7,
@@ -62204,7 +62214,7 @@
       "ayet_id": 6222,
       "metin": {
         "arapca": "قُلْ هُوَ اللّٰهُ اَحَدٌۚ",
-        "meal": "De ki: O, Allah'tır, bir tektir."
+        "meal": "De ki: O, Allah birdir."
       },
       "sure_id": 112,
       "ayet_no": 1,
@@ -62214,7 +62224,7 @@
       "ayet_id": 6223,
       "metin": {
         "arapca": "اَللّٰهُ الصَّمَدُۚ",
-        "meal": "Allah Samed'dir. (Her şey O'na muhtaçtır, O, hiçbir şeye muhtaç değildir.)"
+        "meal": "Allah sameddir."
       },
       "sure_id": 112,
       "ayet_no": 2,
@@ -62224,7 +62234,7 @@
       "ayet_id": 6224,
       "metin": {
         "arapca": "لَمْ يَلِدْ وَلَمْ يُولَدْۙ",
-        "meal": "Ondan çocuk olmamıştır (Kimsenin babası değildir). Kendisi de doğmamıştır (kimsenin çocuğu değildir)."
+        "meal": "O, doğurmamış ve doğmamıştır."
       },
       "sure_id": 112,
       "ayet_no": 3,
@@ -62234,7 +62244,7 @@
       "ayet_id": 6225,
       "metin": {
         "arapca": "وَلَمْ يَكُنْ لَهُ كُفُوًا اَحَدٌ",
-        "meal": "Hiçbir şey O'na denk ve benzer değildir."
+        "meal": "Onun hiçbir dengi yoktur."
       },
       "sure_id": 112,
       "ayet_no": 4,

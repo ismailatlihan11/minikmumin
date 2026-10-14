@@ -22,9 +22,11 @@ void main() {
   final font = File('assets/fonts/KuranKerimFontAbay.ttf').readAsBytesSync();
 
   test('Abay stacks waqf marks on dammatan as low as on other harakat', () {
-    // GPOS lookup 7 dammatan mark2 anchor (format 1, -28, 1096). Daha yüksek
-    // değer ۘ / ۟ işaretlerini bir üst satıra aitmiş gibi gösterir.
-    expect(_containsWords(font, [1, -28, 1096]), isTrue);
+    // GPOS lookup 7 mark2 anchor'ları (format 1, x, y): dammatan (-28, 1004),
+    // fatha (14, 893). Daha yüksek değer ۘ / ۟ / ۚ işaretlerini harekeden
+    // kopuk, bir üst satıra aitmiş gibi gösterir.
+    expect(_containsWords(font, [1, -28, 1004]), isTrue);
+    expect(_containsWords(font, [1, 14, 893]), isTrue);
   });
 
   test('Abay runs mark-to-mark lookups in mkmk, not mark', () {
