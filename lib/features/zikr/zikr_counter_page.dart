@@ -31,6 +31,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
   var _locked = false;
   var _showDetails = false;
   late final AnimationController _burst;
+  final _textScroll = ScrollController();
 
   @override
   void initState() {
@@ -48,6 +49,7 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
   @override
   void dispose() {
     _burst.dispose();
+    _textScroll.dispose();
     _phraseAudio.dispose();
     super.dispose();
   }
@@ -187,59 +189,86 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
                 ListView(
                   padding: AppSpacing.page,
                   children: [
-                    if (dhikr.transliteration.isNotEmpty)
-                      Text(
-                        dhikr.transliteration,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              color: MinikColors.darkGreen,
-                              height: 1.35,
+                    _cappedText(
+                      context,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (_titleOverflows(context, dhikr.title))
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 6),
+                              child: Text(
+                                dhikr.title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'NotoSans',
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                  color: MinikColors.textMuted,
+                                ),
+                              ),
                             ),
-                      )
-                    else if (dhikr.arabic.isNotEmpty)
-                      ArabicText(dhikr.arabic, fontSize: 32),
-                    if (_hasDetails(dhikr)) ...[
-                      const SizedBox(height: AppSpacing.sm),
-                      Center(
-                        child: TextButton.icon(
-                          onPressed: () =>
-                              setState(() => _showDetails = !_showDetails),
-                          icon: Icon(
-                            _showDetails
-                                ? Icons.expand_less_rounded
-                                : Icons.expand_more_rounded,
-                          ),
-                          label: Text(_showDetails
-                              ? 'Detayları gizle'
-                              : 'Detay göster'),
-                        ),
+                          if (dhikr.transliteration.isNotEmpty)
+                            Text(
+                              dhikr.transliteration,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                    color: MinikColors.darkGreen,
+                                    height: 1.35,
+                                  ),
+                            )
+                          else if (dhikr.arabic.isNotEmpty)
+                            ArabicText(dhikr.arabic, fontSize: 32),
+                          if (_hasDetails(dhikr)) ...[
+                            const SizedBox(height: AppSpacing.sm),
+                            Center(
+                              child: TextButton.icon(
+                                onPressed: () => setState(
+                                    () => _showDetails = !_showDetails),
+                                icon: Icon(
+                                  _showDetails
+                                      ? Icons.expand_less_rounded
+                                      : Icons.expand_more_rounded,
+                                ),
+                                label: Text(_showDetails
+                                    ? 'Detayları gizle'
+                                    : 'Detay göster'),
+                              ),
+                            ),
+                            AnimatedSize(
+                              duration: const Duration(milliseconds: 240),
+                              curve: Curves.easeOutCubic,
+                              alignment: Alignment.topCenter,
+                              child: _showDetails
+                                  ? Column(
+                                      children: [
+                                        if (dhikr.arabic.isNotEmpty) ...[
+                                          const SizedBox(height: AppSpacing.xs),
+                                          ArabicText(dhikr.arabic,
+                                              fontSize: 28),
+                                        ],
+                                        if (dhikr.meaning.isNotEmpty) ...[
+                                          const SizedBox(height: AppSpacing.xs),
+                                          SelectableText(
+                                            dhikr.meaning,
+                                            textAlign: TextAlign.center,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                          ),
+                                        ],
+                                      ],
+                                    )
+                                  : const SizedBox.shrink(),
+                            ),
+                          ],
+                        ],
                       ),
-                      AnimatedSize(
-                        duration: const Duration(milliseconds: 240),
-                        curve: Curves.easeOutCubic,
-                        alignment: Alignment.topCenter,
-                        child: _showDetails
-                            ? Column(
-                                children: [
-                                  if (dhikr.arabic.isNotEmpty) ...[
-                                    const SizedBox(height: AppSpacing.xs),
-                                    ArabicText(dhikr.arabic, fontSize: 28),
-                                  ],
-                                  if (dhikr.meaning.isNotEmpty) ...[
-                                    const SizedBox(height: AppSpacing.xs),
-                                    SelectableText(
-                                      dhikr.meaning,
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
-                                    ),
-                                  ],
-                                ],
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                    ],
+                    ),
                     ListenButton(
                         audio: _phraseAudio, path: store.audioFor(dhikr)),
                     const SizedBox(height: AppSpacing.md),
@@ -404,6 +433,43 @@ class _ZikrCounterPageState extends State<ZikrCounterPage>
       context,
       MaterialPageRoute(builder: (_) => ZikrFormPage(existing: dhikr)),
     );
+  }
+
+  /// Uzun zikirde tesbih ekranda kalsın: metin ekranın en fazla %35'ini
+  /// kaplar, kalanı kutu içinde kaydırılır.
+  Widget _cappedText(BuildContext context, Widget child) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * 0.35,
+      ),
+      child: Scrollbar(
+        controller: _textScroll,
+        thumbVisibility: true,
+        child: SingleChildScrollView(
+          controller: _textScroll,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: child,
+        ),
+      ),
+    );
+  }
+
+  bool _titleOverflows(BuildContext context, String title) {
+    final theme = Theme.of(context);
+    final style =
+        theme.appBarTheme.titleTextStyle ?? theme.textTheme.titleLarge;
+    // Geri düğmesi + başlık boşlukları + favori ve kopyala düğmeleri.
+    final available =
+        MediaQuery.sizeOf(context).width - kToolbarHeight - 32 - 2 * 48;
+    final painter = TextPainter(
+      text: TextSpan(text: title, style: style),
+      textDirection: TextDirection.ltr,
+      textScaler: MediaQuery.textScalerOf(context),
+      maxLines: 1,
+    )..layout(maxWidth: available.clamp(1.0, double.infinity));
+    final result = painter.didExceedMaxLines;
+    painter.dispose();
+    return result;
   }
 
   bool _hasDetails(Dhikr dhikr) {
