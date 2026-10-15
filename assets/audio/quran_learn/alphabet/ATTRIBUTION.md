@@ -18,3 +18,7 @@ furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
+## lam_elif.mp3
+
+Derived from Al Qaida Al Nooraniya (Qamar Apps, Mufti Mohammed Ghiyas Mohiuddin), CC BY-SA 4.0. See `../QAMAR_ATTRIBUTION.md`.

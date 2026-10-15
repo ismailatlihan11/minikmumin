@@ -504,9 +504,9 @@
           "focus": "ض kalın"
         },
         {
-          "text": "طَيِّب",
-          "reading": "tayyib",
-          "focus": "ط kalın"
+          "text": "طَبَقًا",
+          "reading": "tabakan",
+          "focus": "ط ve ق kalın"
         },
         {
           "text": "قَالَ",
@@ -524,9 +524,9 @@
           "focus": "غ kalın"
         },
         {
-          "text": "رَحْمَٰن",
-          "reading": "Rahmân",
-          "focus": "رَ kalın örneği"
+          "text": "صُحُفًا",
+          "reading": "suhufen",
+          "focus": "ص kalın"
         },
         {
           "text": "رُسُل",
@@ -822,9 +822,9 @@
           "focus": "ب ve س ince"
         },
         {
-          "text": "تِين",
-          "reading": "tîn",
-          "focus": "ت ince"
+          "text": "جَعَلَ",
+          "reading": "ce'ale",
+          "focus": "ج ve ل ince"
         },
         {
           "text": "كِتَاب",
@@ -832,9 +832,9 @@
           "focus": "ك ince"
         },
         {
-          "text": "نَاس",
-          "reading": "nâs",
-          "focus": "ن ve س ince"
+          "text": "حَسَدَ",
+          "reading": "hasede",
+          "focus": "ح ve س ince"
         },
         {
           "text": "مَلِك",
@@ -842,9 +842,9 @@
           "focus": "م ve ل ince"
         },
         {
-          "text": "فِيل",
-          "reading": "fîl",
-          "focus": "ف ince"
+          "text": "عِنَبًا",
+          "reading": "ineben",
+          "focus": "ع, ن ve ب ince"
         },
         {
           "text": "جَنَّة",
@@ -2389,10 +2389,10 @@
           "focus": "ذ peltek okunur."
         },
         {
-          "word": "جَلَسَ",
-          "reading": "celese",
-          "meaning": "oturdu",
-          "focus": "جَ لَ سَ."
+          "word": "جَمَعَ",
+          "reading": "ceme'a",
+          "meaning": "topladı",
+          "focus": "جَ مَ عَ."
         },
         {
           "word": "خَلَقَ",
@@ -2407,16 +2407,16 @@
           "focus": "دَ خَ لَ."
         },
         {
-          "word": "عَلَمَ",
-          "reading": "aleme",
-          "meaning": "öğrendi/bildi",
+          "word": "عَدَلَ",
+          "reading": "adele",
+          "meaning": "adaletli davrandı",
           "focus": "عَ başlangıç çalışması."
         },
         {
-          "word": "نَصَرَ",
-          "reading": "nasara",
-          "meaning": "yardım etti",
-          "focus": "ص kalın."
+          "word": "قَدَرَ",
+          "reading": "kadera",
+          "meaning": "ölçüyle takdir etti",
+          "focus": "ق kalın, د ince."
         },
         {
           "word": "ذَكَرَ",
@@ -2431,34 +2431,34 @@
           "focus": "فَ تَ حَ."
         },
         {
-          "word": "سَجَدَ",
-          "reading": "secede",
-          "meaning": "secde etti",
-          "focus": "سَ جَ دَ."
+          "word": "فَعَلَ",
+          "reading": "fe'ale",
+          "meaning": "yaptı",
+          "focus": "فَ عَ لَ."
         },
         {
-          "word": "دَرَسَ",
-          "reading": "derese",
-          "meaning": "ders yaptı/çalıştı",
-          "focus": "دَ رَ سَ."
+          "word": "رَفَعَ",
+          "reading": "rafe'a",
+          "meaning": "yükseltti",
+          "focus": "رَ kalın okunur."
         },
         {
-          "word": "حَمَدَ",
-          "reading": "hamede",
-          "meaning": "hamdetti",
-          "focus": "حَ مَ دَ."
+          "word": "حَشَرَ",
+          "reading": "haşera",
+          "meaning": "bir araya topladı",
+          "focus": "ح boğazdan çıkar."
         },
         {
-          "word": "عَبَدَ",
-          "reading": "abede",
-          "meaning": "kulluk etti",
-          "focus": "عَ بَ دَ."
+          "word": "عَبَسَ",
+          "reading": "abese",
+          "meaning": "yüzünü ekşitti",
+          "focus": "عَ بَ سَ."
         },
         {
-          "word": "طَلَبَ",
-          "reading": "talebe",
-          "meaning": "istedi",
-          "focus": "ط kalın."
+          "word": "وَهَبَ",
+          "reading": "vehebe",
+          "meaning": "bağışladı",
+          "focus": "وَ هَ بَ."
         }
       ],
       "word_section_title": "Fetha ile Kelime Okuma",
@@ -2875,10 +2875,10 @@
           "focus": "مِ + نْ."
         },
         {
-          "word": "فِيل",
-          "reading": "fîl",
-          "meaning": "fil",
-          "focus": "فِ + med ya."
+          "word": "أَذِنَ",
+          "reading": "ezine",
+          "meaning": "izin verdi",
+          "focus": "ذِ esreli okunur."
         },
         {
           "word": "كَبِير",
@@ -2899,10 +2899,10 @@
           "focus": "دِ + ya med."
         },
         {
-          "word": "سِرَاج",
-          "reading": "sirâc",
-          "meaning": "lamba",
-          "focus": "سِ başlangıç örneği."
+          "word": "خَشِيَ",
+          "reading": "haşiye",
+          "meaning": "saygıyla korktu",
+          "focus": "شِ esreli okunur."
         },
         {
           "word": "حِكْمَة",
@@ -2917,10 +2917,10 @@
           "focus": "عِ ile başlayan kelime."
         },
         {
-          "word": "مِيزَان",
-          "reading": "mîzân",
-          "meaning": "mizan/ölçü",
-          "focus": "مِ + ya med."
+          "word": "بَخِلَ",
+          "reading": "bahile",
+          "meaning": "cimrilik etti",
+          "focus": "خِ esreli okunur."
         },
         {
           "word": "كِتَاب",
@@ -3128,28 +3128,28 @@
           "focus": "مُ + لْ."
         },
         {
-          "word": "كُفْر",
-          "reading": "küfr",
-          "meaning": "inkâr",
-          "focus": "كُ + فْ."
+          "word": "كُتُبٌ",
+          "reading": "kütübün",
+          "meaning": "kitaplar",
+          "focus": "كُ ve تُ ötreli."
         },
         {
-          "word": "شُكْر",
-          "reading": "şükr",
-          "meaning": "şükür",
-          "focus": "شُ + كْ."
+          "word": "سُرُرٌ",
+          "reading": "sürurun",
+          "meaning": "tahtlar",
+          "focus": "سُ ve رُ ötreli."
         },
         {
-          "word": "غُفْرَان",
-          "reading": "ğufrân",
-          "meaning": "bağışlanma",
-          "focus": "غُ ile başlayan kelime."
+          "word": "خُلِقَ",
+          "reading": "hulika",
+          "meaning": "yaratıldı",
+          "focus": "خُ ötreli okunur."
         },
         {
-          "word": "حُسْن",
-          "reading": "hüsn",
-          "meaning": "güzellik",
-          "focus": "حُ + سْ."
+          "word": "هُدًى",
+          "reading": "hüden",
+          "meaning": "doğru yol",
+          "focus": "هُ ötreli okunur."
         },
         {
           "word": "مُؤْمِن",
@@ -4738,13 +4738,13 @@
           "focus": "مَّ = şedde + üstün"
         },
         {
-          "text": "مُمَّا",
-          "reading": "mum-mâ",
+          "text": "مِمَّ",
+          "reading": "mimme",
           "focus": "Şeddeli mim örneği"
         },
         {
-          "text": "رُبُّ",
-          "reading": "rubbu",
+          "text": "مُرُّوا",
+          "reading": "mürrû",
           "focus": "بُّ = şedde + ötre"
         }
       ],
@@ -4810,15 +4810,15 @@
           "focus": "مَّ: şedde + üstün"
         },
         {
-          "word": "مُعَلِّم",
-          "reading": "muallim",
-          "meaning": "öğretmen",
+          "word": "عِلِّيِّينَ",
+          "reading": "illiyyîn",
+          "meaning": "yüce makam",
           "focus": "لِّ: şedde + esre"
         },
         {
-          "word": "أُمِّي",
-          "reading": "ümmî",
-          "meaning": "ümmi",
+          "word": "الْمُزَّمِّلُ",
+          "reading": "el-müzzemmil",
+          "meaning": "örtüsüne bürünen",
           "focus": "مِّ: şedde + esre"
         }
       ],
@@ -4877,11 +4877,10 @@
           "reference": "İhlâs 1"
         },
         {
-          "word": "صَمَدٌ",
-          "reading": "samedun",
-          "meaning": "hiçbir şeye muhtaç olmayan",
-          "focus": "Sonda iki ötre: دٌ",
-          "reference": "İhlâs 2"
+          "word": "قَسَمٌ",
+          "reading": "kasemun",
+          "meaning": "yemin",
+          "focus": "Sonda iki ötre: مٌ"
         },
         {
           "word": "كُفُوًا",
@@ -6147,7 +6146,8 @@
           "note": "Nun sesi açık okunur."
         },
         {
-          "text": "مَنْ هَادَ",
+          "text": "مَنْ هَاجَرَ",
+          "reading": "men hâcera",
           "focus": "نْ + ه",
           "note": "Nun sesi açık okunur."
         },
@@ -6164,8 +6164,8 @@
           "rule": "İzhâr"
         },
         {
-          "text": "يَنْأَوْنَ",
-          "reading": "yen'evne",
+          "text": "وَيَنْأَوْنَ",
+          "reading": "ve yen'evne",
           "focus": "نْ + ء",
           "note": "Hemzeden önce nun açık okunur.",
           "rule": "İzhâr"
@@ -6210,7 +6210,7 @@
           "answer": "ح"
         },
         {
-          "question": "مَنْ هَادَ ifadesinde hangi hüküm vardır?",
+          "question": "مَنْ هَاجَرَ ifadesinde hangi hüküm vardır?",
           "options": [
             "İzhâr",
             "İklâb",
@@ -6686,7 +6686,7 @@
           "مِنْ بَعْدِ",
           "أَنْبِئْهُمْ",
           "سَمِيعٌ بَصِيرٌ",
-          "أَنْبَتَ",
+          "بِذَنْبِهِمْ",
           "مِنْ بَيْنِ"
         ]
       },
@@ -6829,8 +6829,8 @@
           "rule": "İklâb"
         },
         {
-          "text": "أَنْبَتَ",
-          "reading": "embete",
+          "text": "بِذَنْبِهِمْ",
+          "reading": "bizembihim",
           "focus": "نْ + ب",
           "note": "Dudaklar mim sesine hazırlanır.",
           "rule": "İklâb"
@@ -6928,7 +6928,7 @@
           "أَنْفُسَكُمْ",
           "مِنْ صَلْصَالٍ",
           "مِنْ ضَرٍّ",
-          "مِنْ طَيِّبٍ",
+          "مِنْ طِينٍ",
           "مِنْ ظُلُمَاتٍ",
           "مِنْ فَضْلٍ",
           "مِنْ قَبْلُ",
@@ -7129,7 +7129,7 @@
           "answer": "Yok, izhâr var"
         },
         {
-          "pair": "أَنْبَتَ",
+          "pair": "بِذَنْبِهِمْ",
           "question": "Dudaklar hangi sese hazırlanır?",
           "answers": [
             "م",
@@ -7295,7 +7295,7 @@
         "repeat_instruction": "Her örnek en az iki kez gösterilsin. İlkinde doğru okunuş, ikincisinde öğrencinin tekrar etmesi beklenmeli.",
         "example_items": [
           "تَرْمِيهِمْ بِحِجَارَةٍ",
-          "لَهُمْ بِهَا",
+          "هُمْ بِهِ",
           "هُمْ مَا",
           "لَهُمْ مَا",
           "عَلَيْهِمْ غَيْرِ",
@@ -7407,8 +7407,8 @@
           "rule": "İhfâ"
         },
         {
-          "text": "مِنْ طَيِّبٍ",
-          "reading": "min tayyibin",
+          "text": "مِنْ طِينٍ",
+          "reading": "min tîn",
           "focus": "نْ + ط",
           "note": "Nun gizli okunur.",
           "rule": "İhfâ"
@@ -7635,7 +7635,7 @@
           "note": "Mim sâkinden sonra ب gelirse dudaklar hafif kapanır, ses burunda gizlenir.",
           "examples": [
             "تَرْمِيهِمْ بِحِجَارَةٍ",
-            "هُمْ بِهَا"
+            "هُمْ بِهِ"
           ]
         },
         {
@@ -7694,8 +7694,8 @@
           "rule": "İhfâ-i Şefevî"
         },
         {
-          "text": "هُمْ بِهَا",
-          "reading": "hüm bihâ",
+          "text": "هُمْ بِهِ",
+          "reading": "hüm bihî",
           "focus": "مْ + ب",
           "note": "Mim gizlenir, gunne vardır.",
           "rule": "İhfâ-i Şefevî"
@@ -7738,8 +7738,8 @@
           "rule": "İdğam-ı Şefevî"
         },
         {
-          "text": "رَبُّهُمْ بِهِمْ",
-          "reading": "rabbühüm bihim",
+          "text": "رَبَّهُمْ بِهِمْ",
+          "reading": "rabbehüm bihim",
           "focus": "مْ + ب",
           "note": "Mim gizlenir.",
           "rule": "İhfâ-i Şefevî"
@@ -7777,7 +7777,7 @@
           "answer": "لَهُمْ مَا"
         },
         {
-          "pair": "هُمْ بِهَا",
+          "pair": "هُمْ بِهِ",
           "question": "Mim nasıl okunur?",
           "answers": [
             "Gizli, gunne ile",
@@ -9771,14 +9771,14 @@
           "note": "Ağzın dolduğu yer değişiyor."
         },
         {
-          "text": "قَلْب / كَلْب",
-          "reading": "kalb / kelb",
+          "text": "قَسَمٌ / كَسَبَ",
+          "reading": "kasemun / kesebe",
           "focus": "ق kalın · ك ince",
-          "note": "Anlam da değişir: kalp - köpek."
+          "note": "Anlam da değişir: yemin - kazandı."
         },
         {
-          "text": "حَمْد / هُدَى",
-          "reading": "hamd / hüdâ",
+          "text": "حَسَدَ / هُدًى",
+          "reading": "hasede / hüden",
           "focus": "ح boğaz ortası · ه boğaz dibi",
           "note": "Sesi nereden çıkardığına dikkat et."
         }
@@ -9794,13 +9794,13 @@
           "answer": "صَلَاة"
         },
         {
-          "pair": "قَلْب / كَلْب",
+          "pair": "قَسَمٌ / كَسَبَ",
           "question": "Hangisi dil kökünden çıkar?",
           "answers": [
-            "قَلْب",
-            "كَلْب"
+            "قَسَمٌ",
+            "كَسَبَ"
           ],
-          "answer": "قَلْب"
+          "answer": "قَسَمٌ"
         },
         {
           "pair": "ذ / ز",
@@ -9840,13 +9840,13 @@
           "focus": "Med"
         },
         {
-          "text": "مُسْلِم",
-          "reading": "Müslim",
+          "text": "مُسْلِمًا",
+          "reading": "müslimen",
           "focus": "Cezm"
         },
         {
-          "text": "حَمْد",
-          "reading": "Hamd",
+          "text": "الْحَمْدُ",
+          "reading": "el-hamdü",
           "focus": "Cezm"
         },
         {
@@ -10042,8 +10042,8 @@
           "note": "Vav uzatma harfi: \"nûr\"."
         },
         {
-          "text": "مُسْلِم",
-          "reading": "müslim",
+          "text": "مُسْلِمًا",
+          "reading": "müslimen",
           "focus": "Cezm",
           "note": "Sin sâkin okunur."
         },

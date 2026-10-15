@@ -21,9 +21,21 @@ String elifbaNamePath(String stem) =>
 String elifbaSyllablePath(String stem, String haraka) =>
     'assets/audio/elifba/exercises/${stem}_$haraka.mp3';
 
-/// Şeddeli hecelerin ("bbe", "tti") seslendirmesi doğal çıkmadığı için bu
-/// heceler kayıtsız bırakıldı; kartlarda ses düğmesi gösterilmez.
-bool elifbaSyllableHasRecording(String haraka) => !haraka.startsWith('shadda');
+/// Şeddeli heceler doğal seslendirilemediği için kayıtsız. Qaida'da sükûn
+/// hecesi olmayan bazı harfler (ع غ ف ق ك ل ه ي) için de düğme gizlenir.
+const elifbaSukunWithoutRecording = {
+  'ayn', 'ghayn', 'fa', 'qaf', 'kaf', 'lam', 'hah', 'ya',
+};
+
+bool elifbaSyllableHasRecording(String haraka, [String? stem]) {
+  if (haraka.startsWith('shadda')) return false;
+  if (haraka == 'sukun' &&
+      stem != null &&
+      elifbaSukunWithoutRecording.contains(stem)) {
+    return false;
+  }
+  return true;
+}
 
 /// Kelime ve ifade kaydı. Dosya adı okunuştan türetilir ("rabbenâ" →
 /// rabbena.mp3), böylece aynı kelime iki kez üretilmez.

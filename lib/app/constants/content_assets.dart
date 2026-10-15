@@ -40,7 +40,7 @@ abstract final class ContentAssets {
   };
 
   static String quranRecitation(int surahId) =>
-      'assets/audio/quran/surah_${surahId.toString().padLeft(3, '0')}.mp3';
+      'assets/audio/quran_learn/surahs/surah_${surahId.toString().padLeft(3, '0')}.mp3';
 
   /// Per-ayah Dosari clip for ezber (Everyayah SSS_AAA naming).
   static String ayahAudio(int surahNumber, int ayahNo) =>

@@ -505,33 +505,33 @@
                     },
                     {
                         "parts": [
-                            "م",
+                            "ج",
                             "ْ"
                         ],
-                        "combined": "مْ",
-                        "reading": "m (sakin)",
+                        "combined": "جْ",
+                        "reading": "c (sakin)",
                         "note": null,
-                        "audio": "assets/audio/quran_learn/sukun/mim_sukun.mp3"
+                        "audio": "assets/audio/quran_learn/sukun/jim_sukun.mp3"
                     },
                     {
                         "parts": [
-                            "ن",
+                            "س",
                             "ْ"
                         ],
-                        "combined": "نْ",
-                        "reading": "n (sakin)",
+                        "combined": "سْ",
+                        "reading": "s (sakin)",
                         "note": null,
-                        "audio": "assets/audio/quran_learn/sukun/nun_sukun.mp3"
+                        "audio": "assets/audio/quran_learn/sukun/sin_sukun.mp3"
                     },
                     {
                         "parts": [
-                            "ل",
+                            "ر",
                             "ْ"
                         ],
-                        "combined": "لْ",
-                        "reading": "l (sakin)",
+                        "combined": "رْ",
+                        "reading": "r (sakin)",
                         "note": null,
-                        "audio": "assets/audio/quran_learn/sukun/lam_sukun.mp3"
+                        "audio": "assets/audio/quran_learn/sukun/ra_sukun.mp3"
                     },
                     {
                         "parts": [
@@ -963,9 +963,9 @@
                         "audio": "assets/audio/quran_learn/sukun/ba_sukun.mp3"
                     },
                     {
-                        "arabic": "قْ",
-                        "reading": "k (sakin)",
-                        "audio": "assets/audio/quran_learn/sukun/qaf_sukun.mp3"
+                        "arabic": "جْ",
+                        "reading": "c (sakin)",
+                        "audio": "assets/audio/quran_learn/sukun/jim_sukun.mp3"
                     },
                     {
                         "arabic": "دْ",
@@ -973,9 +973,9 @@
                         "audio": "assets/audio/quran_learn/sukun/dal_sukun.mp3"
                     },
                     {
-                        "arabic": "لْ",
-                        "reading": "l (sakin)",
-                        "audio": "assets/audio/quran_learn/sukun/lam_sukun.mp3"
+                        "arabic": "ذْ",
+                        "reading": "z (sakin)",
+                        "audio": "assets/audio/quran_learn/sukun/dhal_sukun.mp3"
                     }
                 ],
                 "audio": "assets/audio/quran_learn/sukun/sukun.mp3"
@@ -988,28 +988,28 @@
                 "reading_rule": "Harfin iki kez/kuvvetli okunacağını gösterir; ilk bölüm sakin, ikinci bölüm harekelidir.",
                 "examples": [
                     {
-                        "arabic": "رَبِّ",
-                        "reading": "rabbi",
+                        "arabic": "رَبِّي",
+                        "reading": "rabbî",
                         "audio": "assets/audio/quran_learn/shadda/ra_shadda.mp3"
                     },
                     {
-                        "arabic": "بَّ",
-                        "reading": "bbe",
+                        "arabic": "تَبَّتْ",
+                        "reading": "tebbet",
                         "audio": "assets/audio/quran_learn/shadda/ba_shadda.mp3"
                     },
                     {
-                        "arabic": "نَّ",
-                        "reading": "nne",
+                        "arabic": "فَإِنَّ الْجَنَّةَ",
+                        "reading": "fe innel cennete",
                         "audio": "assets/audio/quran_learn/shadda/nun_shadda.mp3"
                     },
                     {
-                        "arabic": "مَّ",
-                        "reading": "mme",
+                        "arabic": "مِمَّ",
+                        "reading": "mimme",
                         "audio": "assets/audio/quran_learn/shadda/mim_shadda.mp3"
                     },
                     {
-                        "arabic": "لَّ",
-                        "reading": "lle",
+                        "arabic": "وَاللَّيْلِ",
+                        "reading": "velleyli",
                         "audio": "assets/audio/quran_learn/shadda/lam_shadda.mp3"
                     }
                 ],
@@ -1998,7 +1998,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_10_2.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_10_1.mp3"
             },
             {
                 "id": "tajweed_13",
@@ -2094,7 +2094,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_08_6.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/ihfa.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_08_1.mp3"
             },
             {
                 "id": "tajweed_11",
@@ -2122,7 +2122,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_11_3.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/izhar.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_11_1.mp3"
             },
             {
                 "id": "tajweed_07",
@@ -2156,7 +2156,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_07_4.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_07_1.mp3"
             },
             {
                 "id": "tajweed_15",
@@ -2196,7 +2196,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_15_5.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/idgham.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_15_1.mp3"
             },
             {
                 "id": "tajweed_16",
@@ -2240,7 +2240,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_09_2.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/iqlab.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_09_1.mp3"
             },
             {
                 "id": "tajweed_18",
@@ -2471,7 +2471,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_21_3.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/tajweed/waqf.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_21_1.mp3"
             },
             {
                 "id": "tajweed_02",
@@ -2515,7 +2515,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_03_2.mp3"
                     }
                 ],
-                "audio": "assets/audio/quran_learn/sukun/lam_sukun.mp3"
+                "audio": "assets/audio/quran_learn/tajweed/tajweed_03_1.mp3"
             },
             {
                 "id": "tajweed_05",
