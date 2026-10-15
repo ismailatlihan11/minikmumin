@@ -30,12 +30,12 @@ void main() {
   });
 
   test('Abay runs mark-to-mark lookups in mkmk, not mark', () {
-    // mkmk feature: FeatureParams 0, LookupCount 9, lookups 6, 7, 8, 9, 11
+    // mkmk feature: FeatureParams 0, LookupCount 10, lookups 6, 7, 8, 9, 11
     // ve bağlamsal düzeltmeler 14, 18, 20 (lam-elif tenvin, elif boşluğu,
-    // medde + vakıf), 29 (medde harekenin / şeddenin üstünde). mark içinde
-    // kalırlarsa vakıf işaretleri tenvinin çok
-    // üstüne çıkar.
-    expect(_containsWords(font, [0, 9, 6, 7, 8, 9, 11, 14, 18, 20, 29]), isTrue);
+    // medde + vakıf), 29 (medde harekenin / şeddenin üstünde), 111 (art arda
+    // vakıf işaretleri yan yana: صلا, قف∴). mark içinde kalırlarsa vakıf
+    // işaretleri tenvinin çok üstüne çıkar.
+    expect(_containsWords(font, [0, 10, 6, 7, 8, 9, 11, 14, 18, 20, 29, 111]), isTrue);
   });
 
   test('Abay lifts lam-alef madda above the harakah on lam', () {

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -590,7 +592,7 @@ class _MushafLeaf extends StatelessWidget {
           child: Column(
             children: [
               _PageHeader(page: page),
-              Expanded(child: _buildContent()),
+              Expanded(child: _buildContent(context)),
               _PageFooter(pageNumber: page.jsonPage),
             ],
           ),
@@ -599,7 +601,7 @@ class _MushafLeaf extends StatelessWidget {
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     final sections = <Widget>[];
     var prevSurah = 0;
     final current = <QuranVerse>[];
@@ -630,10 +632,15 @@ class _MushafLeaf extends StatelessWidget {
     }
     flush();
 
+    // Abay'da yığılı işaretler (ج + ∴, هُٓۙ) satır kutusunun ~0,5 em
+    // üstüne, alt işaretler ~0,13 em altına, satır sonundaki vakıf
+    // işaretleri (ۙۖ) ~0,6 em soluna taşar; kaydırma alanı keser.
+    final em = MediaQuery.textScalerOf(context).scale(fontSize);
+    final side = math.max(18.0, em * 0.6);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(18, 4, 18, 0),
+        padding: EdgeInsets.fromLTRB(side, 4 + em * 0.5, side, em * 0.15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: sections,

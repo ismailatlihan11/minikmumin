@@ -46,14 +46,18 @@ class ArabicText extends StatelessWidget {
         style: style,
       );
     }
-    return SelectableText.rich(
-      TextSpan(
-        children: quranHighlightSpans(QuranFont.format(text), kQuranRed,
-            sure: sure, ayah: ayah),
+    // SelectableText satır kutusunun dışını keser; ilk satırın üstüne taşan
+    // yığılı vakıf işaretleri (ج + ∴) büyük yazıda kaybolur. Text kesmez.
+    return SelectionArea(
+      child: Text.rich(
+        TextSpan(
+          children: quranHighlightSpans(QuranFont.format(text), kQuranRed,
+              sure: sure, ayah: ayah),
+        ),
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        style: style,
       ),
-      textAlign: TextAlign.right,
-      textDirection: TextDirection.rtl,
-      style: style,
     );
   }
 }
