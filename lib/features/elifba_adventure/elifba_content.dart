@@ -25,47 +25,41 @@ String elifbaVowelLabel(String marked) {
 }
 
 /// 📖 Kelime kartı: Arapça · okunuş · anlam · dikkat · dinle · tekrar · favori.
-class ElifbaWordCard extends StatefulWidget {
+class ElifbaWordCard extends StatelessWidget {
   const ElifbaWordCard({
     super.key,
     required this.word,
     required this.audio,
     this.color,
+    this.allowListen = false,
   });
 
   final ElifbaWordExample word;
   final AudioPlayerService audio;
   final Color? color;
 
-  @override
-  State<ElifbaWordCard> createState() => _ElifbaWordCardState();
-}
-
-class _ElifbaWordCardState extends State<ElifbaWordCard> {
-  var _sayNow = false;
-
-  String? get _path => ElifbaAudio.forExample(
-        widget.word.text,
-        audio: widget.word.audio,
-        reading: widget.word.reading,
-      );
-
-  Future<void> _play() async {
-    await ElifbaAudio.play(widget.audio, _path);
-    if (mounted) setState(() => _sayNow = true);
-  }
+  /// Kelime okuma kartlarında varsayılan ses yok; çocuk kendisi okur.
+  final bool allowListen;
 
   @override
   Widget build(BuildContext context) {
-    final word = widget.word;
+    final path = allowListen
+        ? ElifbaAudio.forExample(
+            word.text,
+            audio: word.audio,
+            reading: word.reading,
+          )
+        : null;
     return ElifbaSoftCard(
-      color: widget.color ?? MinikColors.card,
+      color: color ?? MinikColors.card,
       child: Column(
         children: [
           ElifbaArabicTap(
             text: word.text,
             fontSize: 44,
-            onTap: _path == null ? null : _play,
+            onTap: path == null
+                ? null
+                : () => ElifbaAudio.play(audio, path),
           ),
           if (word.reading.isNotEmpty) ...[
             const SizedBox(height: 4),
@@ -101,26 +95,25 @@ class _ElifbaWordCardState extends State<ElifbaWordCard> {
               ),
             ),
           ],
-          if (_sayNow)
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: Text('Şimdi sen oku!'),
-            ),
           const SizedBox(height: 10),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: [
-              ElifbaListenButton(audio: widget.audio, path: _path),
-              SizedBox(
-                height: 48,
-                child: OutlinedButton.icon(
-                  onPressed: _path == null ? null : _play,
-                  icon: const Icon(Icons.replay_rounded),
-                  label: const Text('Tekrar Et'),
+              if (allowListen) ...[
+                ElifbaListenButton(audio: audio, path: path),
+                SizedBox(
+                  height: 48,
+                  child: OutlinedButton.icon(
+                    onPressed: path == null
+                        ? null
+                        : () => ElifbaAudio.play(audio, path),
+                    icon: const Icon(Icons.replay_rounded),
+                    label: const Text('Tekrar Et'),
+                  ),
                 ),
-              ),
+              ],
               FavoriteButton(
                 kind: 'elifba_example',
                 id: word.text,
@@ -176,17 +169,16 @@ class ElifbaWordSection extends StatelessWidget {
 }
 
 /// Kalın / ince / peltek derslerinde harfin fetha-esre-ötre hâlleri bir arada.
+/// Bu tabloda ses yok; sadece görsel okuma.
 class ElifbaTripleFormTable extends StatelessWidget {
   const ElifbaTripleFormTable({
     super.key,
     required this.rows,
-    required this.audio,
     this.title = '',
     this.note = '',
   });
 
   final List<ElifbaLetterRow> rows;
-  final AudioPlayerService audio;
   final String title;
   final String note;
 
@@ -200,7 +192,7 @@ class ElifbaTripleFormTable extends StatelessWidget {
         for (final row in rows)
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
-            child: _TripleFormCard(row: row, audio: audio),
+            child: _TripleFormCard(row: row),
           ),
       ],
     );
@@ -208,20 +200,19 @@ class ElifbaTripleFormTable extends StatelessWidget {
 }
 
 class _TripleFormCard extends StatelessWidget {
-  const _TripleFormCard({required this.row, required this.audio});
+  const _TripleFormCard({required this.row});
 
   final ElifbaLetterRow row;
-  final AudioPlayerService audio;
 
   @override
   Widget build(BuildContext context) {
     final forms = <_FormCell>[
       if (row.fatha.isNotEmpty)
-        _FormCell('Fetha (Üstün)', row.fatha, row.fathaReading, 'fatha'),
+        _FormCell('Fetha (Üstün)', row.fatha, row.fathaReading),
       if (row.kasra.isNotEmpty)
-        _FormCell('Esre', row.kasra, row.kasraReading, 'kasra'),
+        _FormCell('Esre', row.kasra, row.kasraReading),
       if (row.damma.isNotEmpty)
-        _FormCell('Ötre', row.damma, row.dammaReading, 'damma'),
+        _FormCell('Ötre', row.damma, row.dammaReading),
     ];
     return ElifbaSoftCard(
       child: Column(
@@ -235,11 +226,6 @@ class _TripleFormCard extends StatelessWidget {
                   ElifbaArabicTap(
                     text: row.letter,
                     fontSize: 44,
-                    onTap: () => ElifbaAudio.play(
-                      audio,
-                      ElifbaAudio.letterName(row.name) ??
-                          ElifbaAudio.letterGlyph(row.letter),
-                    ),
                   ),
                 ],
               ),
@@ -262,8 +248,7 @@ class _TripleFormCard extends StatelessWidget {
             textDirection: TextDirection.ltr,
             alignment: WrapAlignment.center,
             children: [
-              for (final form in forms)
-                _FormTile(row: row, form: form, audio: audio),
+              for (final form in forms) _FormTile(form: form),
             ],
           ),
           if (row.compare.isNotEmpty) ...[
@@ -284,29 +269,20 @@ class _TripleFormCard extends StatelessWidget {
 }
 
 class _FormCell {
-  const _FormCell(this.label, this.text, this.reading, this.haraka);
+  const _FormCell(this.label, this.text, this.reading);
 
   final String label;
   final String text;
   final String reading;
-  final String haraka;
 }
 
 class _FormTile extends StatelessWidget {
-  const _FormTile({
-    required this.row,
-    required this.form,
-    required this.audio,
-  });
+  const _FormTile({required this.form});
 
-  final ElifbaLetterRow row;
   final _FormCell form;
-  final AudioPlayerService audio;
 
   @override
   Widget build(BuildContext context) {
-    final path = ElifbaAudio.letterSound(row.name, haraka: form.haraka) ??
-        ElifbaAudio.letterSound(row.letter, haraka: form.haraka);
     return Container(
       width: 108,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
@@ -320,7 +296,6 @@ class _FormTile extends StatelessWidget {
           ElifbaArabicTap(
             text: form.text,
             fontSize: 36,
-            onTap: () => ElifbaAudio.play(audio, path),
           ),
           if (form.reading.isNotEmpty)
             Text(
@@ -329,13 +304,6 @@ class _FormTile extends StatelessWidget {
               textDirection: TextDirection.ltr,
               style: const TextStyle(fontWeight: FontWeight.w700),
             ),
-          const SizedBox(height: 4),
-          IconButton(
-            tooltip: 'Dinle',
-            onPressed:
-                path == null ? null : () => ElifbaAudio.play(audio, path),
-            icon: const Icon(Icons.volume_up_rounded),
-          ),
         ],
       ),
     );

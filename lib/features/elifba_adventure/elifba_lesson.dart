@@ -493,7 +493,6 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           cue: 'Önce harfin adını söyle, sonra fetha–esre–ötre hâllerini oku.',
           builder: (state) => ElifbaTripleFormTable(
             rows: triple,
-            audio: state._audio,
             title: lesson.tableTitle.isEmpty
                 ? 'Harfler, İsimleri ve Okunuşları'
                 : lesson.tableTitle,
@@ -581,8 +580,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
       steps.add(
         _FlowStep(
           cue: table.first.marked.isEmpty
-              ? 'Bu kuralın harflerine dokun.'
-              : 'Harfin adı ile okunuşunu karıştırma. Önce adı, sonra sesi.',
+              ? 'Bu kuralın harflerine bak.'
+              : 'Harfin adı ile okunuşunu karıştırma. Önce adı, sonra okunuşu.',
           builder: (state) => Column(
             children: [
               if (extraNote.isNotEmpty)
@@ -603,6 +602,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                     : widget.pack.teachingTitleFor(lesson),
                 instruction: widget.pack.teachingInstructionFor(lesson),
                 allowFavorite: lesson.uiPattern.allowFavorite,
+                allowListen: false,
               ),
             ],
           ),
@@ -614,7 +614,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (words.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Şimdi kelime okuma zamanı! Önce dinle, sonra sen oku.',
+          cue: 'Şimdi kelime okuma zamanı! Kelimeleri kendin oku.',
           builder: (state) => ElifbaWordSection(
             words: words,
             audio: state._audio,
@@ -680,7 +680,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.examples.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Örneklere dokun, dinle, tekrarla.',
+          cue: 'Örnekleri kendin oku.',
           builder: (state) => Column(
             children: [
               for (final example in lesson.examples)
@@ -718,7 +718,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.practice.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Şimdi sen dene.',
+          cue: 'Şimdi sen dene. Örnekleri kendin oku.',
           builder: (state) => ElifbaExampleList(
             examples: lesson.practice,
             audio: state._audio,
@@ -746,7 +746,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.types.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Kartlara dokun, tenvin sesini duy.',
+          cue: 'Tenvin kartlarına bak, okunuşunu kendin söyle.',
           builder: (state) => ElifbaTenvinCards(
             types: lesson.types,
             audio: state._audio,
