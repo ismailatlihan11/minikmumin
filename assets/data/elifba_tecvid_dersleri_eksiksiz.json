@@ -2881,19 +2881,19 @@
           "focus": "ذِ esreli okunur."
         },
         {
-          "word": "كَبِير",
+          "word": "كَبِيرٌ",
           "reading": "kebirun",
           "meaning": "büyük",
           "focus": "بِ + ya med."
         },
         {
-          "word": "رِزْق",
+          "word": "رِزْقٌ",
           "reading": "rizkun",
           "meaning": "rızık",
-          "focus": "رِ + زْ + ق."
+          "focus": "رِ + زْ + قٌ"
         },
         {
-          "word": "دِين",
+          "word": "دِينِ",
           "reading": "dini",
           "meaning": "din",
           "focus": "دِ + ya med."
@@ -2905,15 +2905,15 @@
           "focus": "شِ esreli okunur."
         },
         {
-          "word": "حِكْمَة",
+          "word": "حِكْمَةٌ",
           "reading": "hikmetun",
           "meaning": "hikmet",
           "focus": "حِ başlangıç örneği."
         },
         {
-          "word": "عِبَاد",
+          "word": "عِبَادَة",
           "reading": "ibade",
-          "meaning": "kullar",
+          "meaning": "ibadet",
           "focus": "عِ ile başlayan kelime."
         },
         {
@@ -2929,8 +2929,8 @@
           "focus": "كِ başlangıç örneği."
         },
         {
-          "word": "لِسَان",
-          "reading": "lissani",
+          "word": "لِسَانِي",
+          "reading": "lisani",
           "meaning": "dil",
           "focus": "لِ başlangıç örneği."
         }
@@ -3092,10 +3092,10 @@
       },
       "word_examples": [
         {
-          "word": "كُتُب",
-          "reading": "kutub",
-          "meaning": "kitaplar",
-          "focus": "كُ تُ ب."
+          "word": "كُتِبَ",
+          "reading": "kutibe",
+          "meaning": "yazıldı",
+          "focus": "كُ تِ بَ."
         },
         {
           "word": "رُسُلُ",
@@ -3104,14 +3104,14 @@
           "focus": "رُ ve سُ ötreli."
         },
         {
-          "word": "نُور",
-          "reading": "nûr",
+          "word": "نُورٌ",
+          "reading": "nurun",
           "meaning": "nur/ışık",
           "focus": "نُ + vav med."
         },
         {
-          "word": "رُوح",
-          "reading": "rûh",
+          "word": "رُوحُ",
+          "reading": "ruhu",
           "meaning": "ruh",
           "focus": "رُ + vav med."
         },
@@ -3122,8 +3122,8 @@
           "focus": "قُ + لْ."
         },
         {
-          "word": "مُلْك",
-          "reading": "mulk",
+          "word": "مُلْكِ",
+          "reading": "mulki",
           "meaning": "mülk",
           "focus": "مُ + لْ."
         },
@@ -3152,14 +3152,14 @@
           "focus": "هُ ötreli okunur."
         },
         {
-          "word": "مُؤْمِن",
-          "reading": "mü'min",
+          "word": "مُؤْمِنٌ",
+          "reading": "muhminun",
           "meaning": "mümin",
           "focus": "مُ başlangıç örneği."
         },
         {
-          "word": "يُوسُف",
-          "reading": "Yûsuf",
+          "word": "يُوسُفَ",
+          "reading": "yusufe",
           "meaning": "Yusuf",
           "focus": "يُ + و med."
         }
@@ -4782,31 +4782,31 @@
           "focus": "مَّ: şedde + üstün"
         },
         {
-          "word": "النَّاس",
+          "word": "اَلنَّاسُ",
           "reading": "en-nâs",
           "meaning": "insanlar",
           "focus": "نَّ: şedde + üstün"
         },
         {
-          "word": "الرَّحْمَٰن",
+          "word": "اَلرَّحْمٰنُ",
           "reading": "er-Rahmân",
           "meaning": "Rahmân",
           "focus": "رَّ: şedde + üstün"
         },
         {
-          "word": "الرَّحِيم",
+          "word": "اَلرَّحِيمُ",
           "reading": "er-Rahîm",
           "meaning": "Rahîm",
           "focus": "رَّ: şedde + üstün"
         },
         {
-          "word": "الضَّالِّينَ",
+          "word": "اَلضَّالِّينَ",
           "reading": "ed-dâllîn",
           "meaning": "sapanlar",
           "focus": "ضَّ ve لِّ: şedde ile birlikte hareke"
         },
         {
-          "word": "الْحَقِّ",
+          "word": "اَلْحَقِّ",
           "reading": "el-hakk",
           "meaning": "hak",
           "focus": "قِّ: şedde + esre"
@@ -4824,7 +4824,7 @@
           "focus": "لِّ: şedde + esre"
         },
         {
-          "word": "الْمُزَّمِّلُ",
+          "word": "اَلْمُزَّمِّلُ",
           "reading": "el-müzzemmil",
           "meaning": "örtüsüne bürünen",
           "focus": "مِّ: şedde + esre"
@@ -5525,7 +5525,7 @@
           "audio": "assets/audio/quran_learn/tajweed/tajweed_06_3.mp3"
         },
         {
-          "word": "الْأَبْتَرُ",
+          "word": "اَلْأَبْتَرُ",
           "reading": "el-ebter",
           "meaning": "soyu kesik",
           "focus": "Yankılanan harf: بْ",
@@ -5547,13 +5547,6 @@
           "focus": "Yankılanan harf: بْ",
           "reference": "Asr 3",
           "audio": "assets/audio/quran_learn/tajweed/tajweed_06_6.mp3"
-        },
-        {
-          "word": "اقْرَأْ",
-          "reading": "ikra'",
-          "meaning": "oku",
-          "focus": "Yankılanan harf: قْ",
-          "reference": "Alak 1"
         },
         {
           "word": "قَدْ",
@@ -8445,7 +8438,7 @@
       "important_note": "Bu ders başlangıç düzeyidir. Ra'nın bütün tecvid hükümleri burada tüketilmez. Özellikle sâkin Ra'nın hükümleri ve vakıf sonrası durumlar ileri düzeyde ayrıca işlenmelidir.",
       "practice": [
         {
-          "text": "الرَّحْمَٰن",
+          "text": "اَلرَّحْمَٰن",
           "reading": "er-rahmân",
           "focus": "رَّ",
           "note": "Üstünlü ra: kalın.",
@@ -8916,7 +8909,7 @@
       },
       "examples": [
         {
-          "text": "نَسْتَعِينُ",
+          "text": "نَسْتَعِين",
           "reading": "nestaîn",
           "focus": "Durunca son harf sâkin",
           "note": "Ötre düşer, nun sâkin okunur.",
@@ -8957,7 +8950,7 @@
           "audio": "assets/audio/quran_learn/words/word_05.mp3"
         },
         {
-          "text": "الرَّحِيمِ",
+          "text": "اَلرَّحِيمِ",
           "reading": "er-rahîm",
           "focus": "Durunca son harf sâkin",
           "note": "Esre düşer, mim sâkin okunur.",
@@ -8991,7 +8984,7 @@
           "answer": "h"
         },
         {
-          "pair": "الرَّحِيمِ",
+          "pair": "اَلرَّحِيمِ",
           "question": "Durunca sondaki esre ne olur?",
           "answers": [
             "Düşer, harf sâkin olur",
@@ -10315,7 +10308,7 @@
       },
       "practice": [
         {
-          "text": "الرَّحْمَٰنِ",
+          "text": "اَلرَّحْمَٰنِ",
           "reading": "er-rahmâni",
           "focus": "Şedde + med",
           "note": "Lâm okunmaz, ra şeddelidir; med işareti uzatılır.",

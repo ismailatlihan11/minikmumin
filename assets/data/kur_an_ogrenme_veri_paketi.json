@@ -621,7 +621,7 @@
                             "حَمْ",
                             "دُ"
                         ],
-                        "combined": "الْحَمْدُ",
+                        "combined": "اَلْحَمْدُ",
                         "reading": "el-hamdu",
                         "note": "Kur'an'da geçen gerçek kelime; elif-lâm ve cezm örneği.",
                         "audio": "assets/audio/quran_learn/words/word_03.mp3"
@@ -828,9 +828,9 @@
                 "reading_rule": "Kelime sonunda ince harfleri 'in', kalın harfleri 'ın' sesiyle okutur.",
                 "examples": [
                     {
-                        "arabic": "عَلِيمٍ",
-                        "reading": "alîmin",
-                        "audio": "assets/audio/quran_learn/tanwin/alimin.mp3"
+                        "arabic": "حَاسِدٍ",
+                        "reading": "hâsidin",
+                        "audio": "assets/audio/quran_learn/tanwin/hasidin.mp3"
                     },
                     {
                         "arabic": "بٍ",
@@ -2306,7 +2306,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_3.mp3"
                     },
                     {
-                        "arabic": "الْاَبْتَرُ",
+                        "arabic": "اَلْاَبْتَرُ",
                         "reference": "108:3",
                         "focus": "بْ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_4.mp3"
@@ -2567,7 +2567,7 @@
             },
             {
                 "id": "word_03",
-                "arabic": "الْحَمْدُ",
+                "arabic": "اَلْحَمْدُ",
                 "reading": "el-hamdu",
                 "meaning_tr": "hamd / övgü",
                 "quran_reference": "1:2",
@@ -2585,7 +2585,7 @@
             },
             {
                 "id": "word_05",
-                "arabic": "الْعَالَمِينَ",
+                "arabic": "اَلْعَالَمِينَ",
                 "reading": "el-âlemîn",
                 "meaning_tr": "âlemler",
                 "quran_reference": "1:2",
@@ -2594,7 +2594,7 @@
             },
             {
                 "id": "word_06",
-                "arabic": "الرَّحْمَٰنِ",
+                "arabic": "اَلرَّحْمَٰنِ",
                 "reading": "er-rahmâni",
                 "meaning_tr": "Rahmân",
                 "quran_reference": "1:3",
@@ -2603,7 +2603,7 @@
             },
             {
                 "id": "word_07",
-                "arabic": "الرَّحِيمِ",
+                "arabic": "اَلرَّحِيمِ",
                 "reading": "er-rahîmi",
                 "meaning_tr": "Rahîm",
                 "quran_reference": "1:3",
@@ -2630,7 +2630,7 @@
             },
             {
                 "id": "word_10",
-                "arabic": "الدِّينِ",
+                "arabic": "اَلدِّينِ",
                 "reading": "ed-dîni",
                 "meaning_tr": "din / karşılık günü",
                 "quran_reference": "1:4",
@@ -2666,8 +2666,8 @@
             },
             {
                 "id": "word_14",
-                "arabic": "نَسْتَعِينُ",
-                "reading": "nesta'înu",
+                "arabic": "نَسْتَعِين",
+                "reading": "nesta'în",
                 "meaning_tr": "yardım isteriz",
                 "quran_reference": "1:5",
                 "teaching_note": "Med örneği.",
@@ -2675,7 +2675,7 @@
             },
             {
                 "id": "word_15",
-                "arabic": "اهْدِنَا",
+                "arabic": "إِهْدِنَا",
                 "reading": "ihdinâ",
                 "meaning_tr": "bizi hidayete eriştir",
                 "quran_reference": "1:6",
@@ -2684,8 +2684,8 @@
             },
             {
                 "id": "word_16",
-                "arabic": "الصِّرَاطَ",
-                "reading": "es-sırâta",
+                "arabic": "اَلصِّرَاط",
+                "reading": "es-sırât",
                 "meaning_tr": "yol",
                 "quran_reference": "1:6",
                 "teaching_note": "Şedde ve kalın harf örneği.",
@@ -2693,7 +2693,7 @@
             },
             {
                 "id": "word_17",
-                "arabic": "الْمُسْتَقِيمَ",
+                "arabic": "اَلْمُسْتَقِيمَ",
                 "reading": "el-mustakîme",
                 "meaning_tr": "dosdoğru",
                 "quran_reference": "1:6",
@@ -2729,7 +2729,7 @@
             },
             {
                 "id": "word_21",
-                "arabic": "الصَّمَدُ",
+                "arabic": "اَلصَّمَد",
                 "reading": "es-samed",
                 "meaning_tr": "Samed",
                 "quran_reference": "112:2",

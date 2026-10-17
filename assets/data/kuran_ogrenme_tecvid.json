@@ -493,15 +493,15 @@
           "audio": "assets/audio/quran_learn/words/word_20.mp3"
         },
         {
-          "arabic": "الْحَمْدُ",
+          "arabic": "اَلْحَمْدُ",
           "reference": "1:2",
-          "focus": "الْ",
+          "focus": "اَلْ",
           "audio": "assets/audio/quran_learn/words/word_03.mp3"
         },
         {
-          "arabic": "اهْدِنَا",
+          "arabic": "إِهْدِنَا",
           "reference": "1:6",
-          "focus": "اهْ",
+          "focus": "إِهْ",
           "audio": "assets/audio/quran_learn/words/word_15.mp3"
         }
       ],
