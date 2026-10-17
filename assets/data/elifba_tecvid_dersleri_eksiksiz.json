@@ -495,7 +495,7 @@
         },
         {
           "text": "صَبَرَ",
-          "reading": "sabara",
+          "reading": "sabera",
           "focus": "ص kalın"
         },
         {
@@ -979,7 +979,7 @@
           "focus": "ذ"
         },
         {
-          "text": "الَّذِي",
+          "text": "أَلَّذِي",
           "reading": "ellezî",
           "focus": "ذ"
         },
@@ -989,7 +989,7 @@
           "focus": "ظ"
         },
         {
-          "text": "عَظِيم",
+          "text": "عَظِيمْ",
           "reading": "azîm",
           "focus": "ظ"
         }
@@ -1650,7 +1650,7 @@
           "answer": "ba"
         },
         {
-          "question": "Bu örnekte hangi hareke var?",
+          "question": "بَ harfinde hangi hareke var?",
           "options": [
             "Üstün",
             "Esre",
@@ -2053,7 +2053,7 @@
           "answer": "bi"
         },
         {
-          "question": "Bu örnekte hangi hareke var?",
+          "question": "بِ harfinde hangi hareke var?",
           "options": [
             "Üstün",
             "Esre",
@@ -2158,7 +2158,7 @@
       ],
       "audio_plan": {
         "teacher_audio": true,
-        "example_audio": true,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -2371,8 +2371,8 @@
         "show_letter_name": true,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
       },
       "word_examples": [
@@ -2535,7 +2535,7 @@
           "answer": "bu"
         },
         {
-          "question": "Bu örnekte hangi hareke var?",
+          "question": "بُ harfinde hangi hareke var?",
           "options": [
             "Üstün",
             "Esre",
@@ -2644,7 +2644,7 @@
       ],
       "audio_plan": {
         "teacher_audio": true,
-        "example_audio": true,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -2857,8 +2857,8 @@
         "show_letter_name": true,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
       },
       "word_examples": [
@@ -2882,19 +2882,19 @@
         },
         {
           "word": "كَبِير",
-          "reading": "kebîr",
+          "reading": "kebirun",
           "meaning": "büyük",
           "focus": "بِ + ya med."
         },
         {
           "word": "رِزْق",
-          "reading": "rizq",
+          "reading": "rizkun",
           "meaning": "rızık",
           "focus": "رِ + زْ + ق."
         },
         {
           "word": "دِين",
-          "reading": "dîn",
+          "reading": "dini",
           "meaning": "din",
           "focus": "دِ + ya med."
         },
@@ -2906,13 +2906,13 @@
         },
         {
           "word": "حِكْمَة",
-          "reading": "hikme",
+          "reading": "hikmetun",
           "meaning": "hikmet",
           "focus": "حِ başlangıç örneği."
         },
         {
           "word": "عِبَاد",
-          "reading": "ibâd",
+          "reading": "ibade",
           "meaning": "kullar",
           "focus": "عِ ile başlayan kelime."
         },
@@ -2930,7 +2930,7 @@
         },
         {
           "word": "لِسَان",
-          "reading": "lisân",
+          "reading": "lissani",
           "meaning": "dil",
           "focus": "لِ başlangıç örneği."
         }
@@ -3072,8 +3072,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -3086,8 +3086,8 @@
         "show_letter_name": true,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
       },
       "word_examples": [
@@ -3313,8 +3313,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -3526,8 +3526,8 @@
         "show_letter_name": true,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
       }
     },
@@ -3679,8 +3679,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -3892,9 +3892,17 @@
         "show_letter_name": true,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
+      },
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
       }
     },
     {
@@ -4026,8 +4034,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -4040,8 +4048,8 @@
         "show_letter_name": false,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
       },
       "important_note": "Uygulama şeddeyi tek başına 'بّ' şeklinde ana örnek olarak göstermemeli. Çocuk her zaman بَّ / بِّ / بُّ gibi harekeli şeddeyi görmeli.",
@@ -4827,7 +4835,15 @@
         "Sonra şeddeyi bul.",
         "Şeddeli harfi güçlü/çift değerli oku.",
         "Kelimeyi bütün olarak tekrar et."
-      ]
+      ],
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
+      }
     },
     {
       "id": 13,
@@ -5053,8 +5069,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -5111,9 +5127,17 @@
         "show_letter_name": false,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
+      },
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
       }
     },
     {
@@ -5281,8 +5305,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -5295,9 +5319,17 @@
         "show_letter_name": false,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
+      },
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
       }
     },
     {
@@ -5641,8 +5673,8 @@
         "Mini testi tamamla."
       ],
       "audio_plan": {
-        "teacher_audio": true,
-        "example_audio": true,
+        "teacher_audio": false,
+        "example_audio": false,
         "repeat_pause_seconds": 2
       },
       "mastery": {
@@ -5663,9 +5695,17 @@
         "show_letter_name": false,
         "show_reading": true,
         "show_examples_before_quiz": true,
-        "show_audio_button": true,
-        "show_repeat_button": true,
+        "show_audio_button": false,
+        "show_repeat_button": false,
         "allow_favorite_example": true
+      },
+      "word_card_format": {
+        "show_arabic": true,
+        "show_turkish_reading": true,
+        "show_meaning_when_available": true,
+        "show_focus_note": true,
+        "audio_button": true,
+        "repeat_button": true
       }
     },
     {

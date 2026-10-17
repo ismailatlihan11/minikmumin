@@ -76,6 +76,14 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     });
   }
 
+  void _prev() {
+    if (_step <= 0) return;
+    setState(() {
+      _step -= 1;
+      _mascot = _steps[_step].cue;
+    });
+  }
+
   void _answered({required bool correct}) {
     _scored(correct: correct);
     if (correct) {
@@ -154,8 +162,27 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
             const SizedBox(height: AppSpacing.md),
             current.builder(this),
             const SizedBox(height: AppSpacing.lg),
-            if (current.showContinue)
-              PrimaryButton(label: 'Devam', onPressed: _next),
+            if (_step > 0 || current.showContinue)
+              Row(
+                children: [
+                  if (_step > 0)
+                    Expanded(
+                      child: SecondaryButton(
+                        label: 'Geri',
+                        onPressed: _prev,
+                      ),
+                    ),
+                  if (_step > 0 && current.showContinue)
+                    const SizedBox(width: 12),
+                  if (current.showContinue)
+                    Expanded(
+                      child: PrimaryButton(
+                        label: 'Devam',
+                        onPressed: _next,
+                      ),
+                    ),
+                ],
+              ),
           ],
         ),
       ),
@@ -548,6 +575,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                     child: ElifbaExampleCard(
                       example: example,
                       audio: state._audio,
+                      allowListen: false,
                     ),
                   ),
               ],
@@ -602,6 +630,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                     : widget.pack.teachingTitleFor(lesson),
                 instruction: widget.pack.teachingInstructionFor(lesson),
                 allowFavorite: lesson.uiPattern.allowFavorite,
+                // Harf adı/okunuş tablosu: ses yok; kelime kartlarında Dinle kalır.
+                allowListen: false,
               ),
             ],
           ),
@@ -679,7 +709,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.examples.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Örneklere dokun, dinle, tekrarla.',
+          cue: 'Örnekleri oku; harfin sesini kendin söyle.',
           builder: (state) => Column(
             children: [
               for (final example in lesson.examples)
@@ -688,6 +718,8 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
                   child: ElifbaExampleCard(
                     example: example,
                     audio: state._audio,
+                    // Hece örnekleri sessiz; kelime kartlarında Dinle kalır.
+                    allowListen: false,
                   ),
                 ),
             ],
@@ -745,10 +777,11 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
     if (lesson.types.isNotEmpty) {
       steps.add(
         _FlowStep(
-          cue: 'Kartlara dokun, tenvin sesini duy.',
+          cue: 'Üç tenvin türünü tanı: iki üstün, iki esre, iki ötre.',
           builder: (state) => ElifbaTenvinCards(
             types: lesson.types,
             audio: state._audio,
+            allowListen: false,
           ),
         ),
       );
@@ -761,6 +794,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           builder: (state) => ElifbaMedCompare(
             items: lesson.medLetters,
             audio: state._audio,
+            allowListen: false,
           ),
         ),
       );
@@ -774,6 +808,7 @@ class _ElifbaLessonFlowPageState extends State<ElifbaLessonFlowPage> {
           builder: (state) => ElifbaMedTableView(
             rows: medRows,
             audio: state._audio,
+            allowListen: false,
           ),
         ),
       );

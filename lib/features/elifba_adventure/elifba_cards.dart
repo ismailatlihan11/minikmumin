@@ -123,7 +123,8 @@ class ElifbaLetterCard extends StatefulWidget {
     required this.audio,
     this.compact = false,
     this.allowFavorite = true,
-    this.allowListen = true,
+    // Harf tabloları sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final ElifbaLetterRow row;
@@ -223,9 +224,21 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
             if (row.marked.isNotEmpty) ...[
               const SizedBox(height: 6),
               Text(row.markedCaption, textDirection: TextDirection.ltr),
-              GestureDetector(
-                onTap: _tapMarked,
-                child: Text(
+              if (widget.allowListen)
+                GestureDetector(
+                  onTap: _tapMarked,
+                  child: Text(
+                    row.marked,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontFamily: AssetPaths.arabicFontFamily,
+                      fontSize: arabicSize + 4,
+                      color: MinikColors.green,
+                    ),
+                  ),
+                )
+              else
+                Text(
                   row.marked,
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
@@ -234,7 +247,6 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
                     color: MinikColors.green,
                   ),
                 ),
-              ),
             ],
             if (row.reading.isNotEmpty) ...[
               const Text('Okunuşu', textDirection: TextDirection.ltr),
@@ -318,7 +330,8 @@ class ElifbaLetterTable extends StatefulWidget {
     this.title = '',
     this.instruction = '',
     this.allowFavorite = true,
-    this.allowListen = true,
+    // Harf adı/okunuş tabloları sessiz; kelime kartlarında Dinle ayrı kalır.
+    this.allowListen = false,
   });
 
   final List<ElifbaLetterRow> rows;
@@ -520,19 +533,26 @@ class ElifbaExampleCard extends StatelessWidget {
     required this.example,
     required this.audio,
     this.highlight = '',
+    // Hece/örnek kartları sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final ElifbaExample example;
   final AudioPlayerService audio;
   final String highlight;
 
+  /// Hece/örnek kartlarında ses; kelime kartları (ElifbaWordCard) ayrı kalır.
+  final bool allowListen;
+
   @override
   Widget build(BuildContext context) {
-    final path = ElifbaAudio.forExample(
-      example.text,
-      audio: example.audio,
-      reading: example.reading,
-    );
+    final path = allowListen
+        ? ElifbaAudio.forExample(
+            example.text,
+            audio: example.audio,
+            reading: example.reading,
+          )
+        : null;
     return ElifbaSoftCard(
       child: Column(
         children: [
@@ -542,7 +562,9 @@ class ElifbaExampleCard extends StatelessWidget {
                 child: ElifbaArabicTap(
                   text: example.text,
                   fontSize: 36,
-                  onTap: () => ElifbaAudio.play(audio, path),
+                  onTap: path == null
+                      ? null
+                      : () => ElifbaAudio.play(audio, path),
                 ),
               ),
               FavoriteButton(
@@ -585,8 +607,10 @@ class ElifbaExampleCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-          const SizedBox(height: 8),
-          ElifbaAudioButton(audio: audio, path: path),
+          if (allowListen) ...[
+            const SizedBox(height: 8),
+            ElifbaAudioButton(audio: audio, path: path),
+          ],
         ],
       ),
     );
@@ -867,17 +891,24 @@ class ElifbaMedCompare extends StatelessWidget {
     super.key,
     required this.items,
     required this.audio,
+    // Med karşılaştırma sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final List<ElifbaMedLetter> items;
   final AudioPlayerService audio;
+  final bool allowListen;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         for (final item in items) ...[
-          ElifbaMedCard(item: item, audio: audio),
+          ElifbaMedCard(
+            item: item,
+            audio: audio,
+            allowListen: allowListen,
+          ),
           const SizedBox(height: 8),
           ElifbaComparisonCard(
             left: _shortOf(item.example),
@@ -915,10 +946,13 @@ class ElifbaMedTableView extends StatelessWidget {
     super.key,
     required this.rows,
     required this.audio,
+    // Med tablosu sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final List<ElifbaMedRow> rows;
   final AudioPlayerService audio;
+  final bool allowListen;
 
   @override
   Widget build(BuildContext context) {
@@ -957,10 +991,12 @@ class ElifbaMedTableView extends StatelessWidget {
                               fontFamily: AssetPaths.arabicFontFamily,
                             ),
                           ),
-                          onPressed: () => ElifbaAudio.play(
-                            audio,
-                            ElifbaAudio.forExample(example),
-                          ),
+                          onPressed: allowListen
+                              ? () => ElifbaAudio.play(
+                                    audio,
+                                    ElifbaAudio.forExample(example),
+                                  )
+                              : null,
                         ),
                     ],
                   ),

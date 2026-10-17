@@ -29,7 +29,8 @@ const kQuranMedLabel = '\u08DA';
 /// Ekran shaping'i için Unicode birleşim sırası. JSON dosyası değişmez.
 /// Kur'an işaretleri (U+0653, U+0670, U+06EA/EB/EC, U+06DA) başka karaktere
 /// çevrilmez — istisna: Hafs etiketleri, Abay'da olmayan işaretler
-/// (`_abayMarkAliases`) ve mushafla farklı ayetler (`_pdfMarkFixes`).
+/// (`_abayMarkAliases`), elif+çeker+medde (`_fixAlefDaggerMaddah`) ve
+/// mushafla farklı ayetler (`_pdfMarkFixes`).
 ///
 /// U+0653 medde: mushafta med, önceki harfin üst harekesinin (şedde
 /// yığını dahil) hemen üstünde durur ve taşıyıcıya doğru uzanır. Medde
@@ -51,6 +52,7 @@ String formatQuranArabic(String text, {int sure = 0, int ayah = 0}) {
   for (final e in _abayMarkAliases.entries) {
     text = text.replaceAll(e.key, e.value);
   }
+  text = _fixAlefDaggerMaddah(text);
   final hasMaddah = text.contains('\u0653');
   final hasFarsiYeh = text.contains('\u06CC');
   if (!hasMaddah && !hasFarsiYeh) return text;
@@ -87,6 +89,20 @@ final _maddAfterCarrier = RegExp(
   '([\u064B\u064C\u064E\u064F\u0651\u0652\u0670][\u06EA\u0656]?)'
   '([\u0627\u0648\u064A\u0649])\u0653',
 );
+
+/// Elif + çeker (U+0670) + medde (U+0653): Unicode NFC bunu `آٰ` yapar.
+/// Abay `آ` (= alefmadda) glifinde çeker dy=-750 ile meddenin içine biner.
+/// Lam üstündeki `لٰٓ` doğru; elifte composition olmasın diye meddeyi
+/// Abay'ın `آ` içinde de kullandığı U+06E4 (smallmadda) ile değiştiririz.
+/// Kur'an'da 9 yer (Mâide 2 آمين, En'âm 143–144, …).
+String _fixAlefDaggerMaddah(String text) {
+  if (!text.contains('\u0670')) return text;
+  // NFC formu: آ + ٰ
+  text = text.replaceAll('\u0622\u0670', 'ا\u0670\u06E4');
+  // JSON / NFD formu: ا + ٰ + ٓ
+  text = text.replaceAll('ا\u0670\u0653', 'ا\u0670\u06E4');
+  return text;
+}
 
 /// Yusuf 11 işmam, Hûd 41 imâle, Fussilet 44 teshîl, Hûd 42 idğâm,
 /// Furkan 69 tek uzatılan `فيه` (`مد` etiketi he'nin altında).

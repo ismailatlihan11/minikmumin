@@ -598,19 +598,54 @@ class ElifbaChoiceRow extends StatelessWidget {
   final String answer;
   final ElifbaAnswer onAnswer;
 
+  /// Soru metnindeki Arapça örneği ayırır: "بُ harfinde …" → örnek + soru.
+  static (String arabic, String rest) _splitArabicExample(String prompt) {
+    final match = RegExp(
+      r'([\u0600-\u06FF][\u0600-\u06FF\s\u064B-\u0652\u0670\u0640]*)',
+    ).firstMatch(prompt.trim());
+    if (match == null) return ('', prompt);
+    final arabic = match.group(1)!.trim();
+    if (arabic.isEmpty) return ('', prompt);
+    final rest = prompt
+        .replaceFirst(match.group(0)!, '')
+        .replaceAll(RegExp(r'\s{2,}'), ' ')
+        .trim();
+    return (arabic, rest.isEmpty ? prompt : rest);
+  }
+
   @override
   Widget build(BuildContext context) {
     // Cevap harekeli/harekesiz yazılmış olabilir; şıklarla eşleştirip
     // hiçbir şık doğru olmadığında adımın kilitlenmesini önlüyoruz.
     final answer = elifbaResolveAnswer(options, this.answer);
     final choices = options.contains(answer) ? options : [...options, answer];
+    final (arabic, rest) = _splitArabicExample(prompt);
     return Column(
       children: [
-        Text(
-          prompt,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+        if (arabic.isNotEmpty) ...[
+          Text(
+            arabic,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.rtl,
+            style: TextStyle(
+              fontFamily: AssetPaths.arabicFontFamily,
+              fontSize: 44,
+              color: MinikColors.darkGreen,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            rest,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+        ] else
+          Text(
+            prompt,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
         const SizedBox(height: 12),
         for (final option in choices)
           Padding(
@@ -829,10 +864,13 @@ class ElifbaTenvinCards extends StatelessWidget {
     super.key,
     required this.types,
     required this.audio,
+    // Tenvin tür kartları sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final List<ElifbaType> types;
   final AudioPlayerService audio;
+  final bool allowListen;
 
   @override
   Widget build(BuildContext context) {
@@ -843,10 +881,15 @@ class ElifbaTenvinCards extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 10),
             child: ElifbaSoftCard(
               color: MinikColors.lavender,
-              onTap: () => ElifbaAudio.play(
-                audio,
-                ElifbaAudio.letterSound('be', haraka: _harakaFor(item.symbol)),
-              ),
+              onTap: allowListen
+                  ? () => ElifbaAudio.play(
+                        audio,
+                        ElifbaAudio.letterSound(
+                          'be',
+                          haraka: _harakaFor(item.symbol),
+                        ),
+                      )
+                  : null,
               child: Row(
                 children: [
                   Text(
@@ -889,10 +932,13 @@ class ElifbaMedCard extends StatelessWidget {
     super.key,
     required this.item,
     required this.audio,
+    // Med öğretim kartı sessiz; Dinle yalnızca kelime kartlarında.
+    this.allowListen = false,
   });
 
   final ElifbaMedLetter item;
   final AudioPlayerService audio;
+  final bool allowListen;
 
   @override
   Widget build(BuildContext context) {
@@ -904,10 +950,12 @@ class ElifbaMedCard extends StatelessWidget {
           ElifbaArabicTap(
             text: item.example,
             fontSize: 56,
-            onTap: () => ElifbaAudio.play(
-              audio,
-              ElifbaAudio.letterSound(_shortOf(item.example)),
-            ),
+            onTap: allowListen
+                ? () => ElifbaAudio.play(
+                      audio,
+                      ElifbaAudio.letterSound(_shortOf(item.example)),
+                    )
+                : null,
           ),
           Text(
             item.reading,
@@ -955,17 +1003,10 @@ class ElifbaExampleList extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(
+                        // Hece/örnek listesi sessiz; Dinle yalnızca kelime kartlarında.
                         child: ElifbaArabicTap(
                           text: example.text,
                           fontSize: 36,
-                          onTap: () => ElifbaAudio.play(
-                            audio,
-                            ElifbaAudio.forExample(
-                              example.text,
-                              audio: example.audio,
-                              reading: example.reading,
-                            ),
-                          ),
                         ),
                       ),
                       FavoriteButton(
@@ -982,11 +1023,6 @@ class ElifbaExampleList extends StatelessWidget {
                             : example.reading,
                         prompt:
                             'Bu örneği boya. Renkleri karıştırıp yeni renk bul!',
-                        audio: ElifbaAudio.forExample(
-                          example.text,
-                          audio: example.audio,
-                          reading: example.reading,
-                        ),
                         celebrationSubtitle: 'Örneği boyadın.',
                       ),
                     ],
@@ -1016,8 +1052,6 @@ class ElifbaExampleList extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(example.subtitle),
                     ),
-                  if (ElifbaAudio.resolve(example.audio) != null)
-                    ElifbaListenButton(audio: audio, path: example.audio),
                 ],
               ),
             ),
