@@ -123,7 +123,7 @@ class ElifbaLetterCard extends StatefulWidget {
     required this.audio,
     this.compact = false,
     this.allowFavorite = true,
-    this.allowListen = false,
+    this.allowListen = true,
   });
 
   final ElifbaLetterRow row;
@@ -131,7 +131,8 @@ class ElifbaLetterCard extends StatefulWidget {
   final bool compact;
   final bool allowFavorite;
 
-  /// Harf tablolarında varsayılan ses yok; çocuk kartı kendisi okur.
+  /// Kaydı olmayan ya da kaydı iyi çıkmayan bölümlerde ses düğmeleri
+  /// gösterilmez; çocuk kartı kendisi okur.
   final bool allowListen;
 
   @override
@@ -223,7 +224,7 @@ class _ElifbaLetterCardState extends State<ElifbaLetterCard> {
               const SizedBox(height: 6),
               Text(row.markedCaption, textDirection: TextDirection.ltr),
               GestureDetector(
-                onTap: widget.allowListen ? _tapMarked : null,
+                onTap: _tapMarked,
                 child: Text(
                   row.marked,
                   textDirection: TextDirection.rtl,
@@ -317,7 +318,7 @@ class ElifbaLetterTable extends StatefulWidget {
     this.title = '',
     this.instruction = '',
     this.allowFavorite = true,
-    this.allowListen = false,
+    this.allowListen = true,
   });
 
   final List<ElifbaLetterRow> rows;
@@ -325,8 +326,6 @@ class ElifbaLetterTable extends StatefulWidget {
   final String title;
   final String instruction;
   final bool allowFavorite;
-
-  /// Fetha/esre/ötre harf tablolarında ses yok; çocuk kartı kendisi okur.
   final bool allowListen;
 
   static const groups = <List<String>>[
@@ -529,6 +528,11 @@ class ElifbaExampleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final path = ElifbaAudio.forExample(
+      example.text,
+      audio: example.audio,
+      reading: example.reading,
+    );
     return ElifbaSoftCard(
       child: Column(
         children: [
@@ -538,6 +542,7 @@ class ElifbaExampleCard extends StatelessWidget {
                 child: ElifbaArabicTap(
                   text: example.text,
                   fontSize: 36,
+                  onTap: () => ElifbaAudio.play(audio, path),
                 ),
               ),
               FavoriteButton(
@@ -580,6 +585,8 @@ class ElifbaExampleCard extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
+          const SizedBox(height: 8),
+          ElifbaAudioButton(audio: audio, path: path),
         ],
       ),
     );

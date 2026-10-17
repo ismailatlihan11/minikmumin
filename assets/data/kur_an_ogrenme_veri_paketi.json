@@ -806,6 +806,16 @@
                         "arabic": "طِي",
                         "reading": "tî (kalın)",
                         "audio": "assets/audio/quran_learn/madd/ta_heavy_madd_ya.mp3"
+                    },
+                    {
+                        "arabic": "صِي",
+                        "reading": "sî (kalın)",
+                        "audio": "assets/audio/quran_learn/madd/sad_madd_ya.mp3"
+                    },
+                    {
+                        "arabic": "قِي",
+                        "reading": "kî (kalın)",
+                        "audio": "assets/audio/quran_learn/madd/qaf_madd_ya.mp3"
                     }
                 ],
                 "audio": "assets/audio/quran_learn/madd/ba_madd_ya.mp3"

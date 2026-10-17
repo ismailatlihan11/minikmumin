@@ -843,6 +843,10 @@ class ElifbaTenvinCards extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 10),
             child: ElifbaSoftCard(
               color: MinikColors.lavender,
+              onTap: () => ElifbaAudio.play(
+                audio,
+                ElifbaAudio.letterSound('be', haraka: _harakaFor(item.symbol)),
+              ),
               child: Row(
                 children: [
                   Text(
@@ -871,6 +875,12 @@ class ElifbaTenvinCards extends StatelessWidget {
           ),
       ],
     );
+  }
+
+  String _harakaFor(String symbol) {
+    if (symbol.contains('ً')) return 'fathatayn';
+    if (symbol.contains('ٍ')) return 'kasratayn';
+    return 'dammatayn';
   }
 }
 
@@ -948,6 +958,14 @@ class ElifbaExampleList extends StatelessWidget {
                         child: ElifbaArabicTap(
                           text: example.text,
                           fontSize: 36,
+                          onTap: () => ElifbaAudio.play(
+                            audio,
+                            ElifbaAudio.forExample(
+                              example.text,
+                              audio: example.audio,
+                              reading: example.reading,
+                            ),
+                          ),
                         ),
                       ),
                       FavoriteButton(
@@ -964,16 +982,15 @@ class ElifbaExampleList extends StatelessWidget {
                             : example.reading,
                         prompt:
                             'Bu örneği boya. Renkleri karıştırıp yeni renk bul!',
+                        audio: ElifbaAudio.forExample(
+                          example.text,
+                          audio: example.audio,
+                          reading: example.reading,
+                        ),
                         celebrationSubtitle: 'Örneği boyadın.',
                       ),
                     ],
                   ),
-                  if (example.reading.isNotEmpty)
-                    Text(
-                      example.reading,
-                      textDirection: TextDirection.ltr,
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
                   if (example.focus.isNotEmpty)
                     Container(
                       margin: const EdgeInsets.only(top: 6),
@@ -999,6 +1016,8 @@ class ElifbaExampleList extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 4),
                       child: Text(example.subtitle),
                     ),
+                  if (ElifbaAudio.resolve(example.audio) != null)
+                    ElifbaListenButton(audio: audio, path: example.audio),
                 ],
               ),
             ),

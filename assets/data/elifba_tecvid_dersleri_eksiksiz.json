@@ -519,8 +519,8 @@
           "focus": "ظ peltek ve kalın"
         },
         {
-          "text": "غَفُور",
-          "reading": "ğafûr",
+          "text": "غَفُورٌ",
+          "reading": "ğafûrun",
           "focus": "غ kalın"
         },
         {
@@ -529,8 +529,8 @@
           "focus": "ص kalın"
         },
         {
-          "text": "رُسُل",
-          "reading": "rusul",
+          "text": "رُسُلُ",
+          "reading": "rusulu",
           "focus": "رُ kalın örneği"
         }
       ],
@@ -827,8 +827,8 @@
           "focus": "ج ve ل ince"
         },
         {
-          "text": "كِتَاب",
-          "reading": "kitâb",
+          "text": "كِتَابٌ",
+          "reading": "kitâbun",
           "focus": "ك ince"
         },
         {
@@ -837,8 +837,8 @@
           "focus": "ح ve س ince"
         },
         {
-          "text": "مَلِك",
-          "reading": "melik",
+          "text": "مَلِكِ",
+          "reading": "meliki",
           "focus": "م ve ل ince"
         },
         {
@@ -847,8 +847,8 @@
           "focus": "ع, ن ve ب ince"
         },
         {
-          "text": "جَنَّة",
-          "reading": "cenne",
+          "text": "جَنَّةٍ",
+          "reading": "cennetin",
           "focus": "ج ince"
         }
       ],
@@ -969,8 +969,8 @@
           "focus": "ث"
         },
         {
-          "text": "كَثِير",
-          "reading": "kesîr / kathîr",
+          "text": "كَثِيرٌ",
+          "reading": "kesîrun / kathîrun",
           "focus": "ث"
         },
         {
@@ -1609,8 +1609,8 @@
           "note": "Baştaki ve sondaki biçimlerin değişebildiğine dikkat et."
         },
         {
-          "text": "كِتَاب",
-          "reading": "kitâb"
+          "text": "كِتَابٌ",
+          "reading": "kitâbun"
         },
         {
           "text": "مَاء",
@@ -2592,8 +2592,8 @@
             "kutub"
           ],
           [
-            "رُسُل",
-            "rusul"
+            "رُسُلُ",
+            "rusulu"
           ],
           [
             "قُلْ",
@@ -2923,8 +2923,8 @@
           "focus": "خِ esreli okunur."
         },
         {
-          "word": "كِتَاب",
-          "reading": "kitâb",
+          "word": "كِتَابٌ",
+          "reading": "kitâbun",
           "meaning": "kitap",
           "focus": "كِ başlangıç örneği."
         },
@@ -3098,8 +3098,8 @@
           "focus": "كُ تُ ب."
         },
         {
-          "word": "رُسُل",
-          "reading": "rusul",
+          "word": "رُسُلُ",
+          "reading": "rusulu",
           "meaning": "elçiler",
           "focus": "رُ ve سُ ötreli."
         },
@@ -4741,6 +4741,11 @@
           "text": "مِمَّ",
           "reading": "mimme",
           "focus": "Şeddeli mim örneği"
+        },
+        {
+          "text": "مُرُّوا",
+          "reading": "mürrû",
+          "focus": "بُّ = şedde + ötre"
         }
       ],
       "word_examples": [
@@ -4799,8 +4804,8 @@
           "focus": "قِّ: şedde + esre"
         },
         {
-          "word": "مُحَمَّد",
-          "reading": "Muhammed",
+          "word": "مُحَمَّدٌ",
+          "reading": "Muhammedün",
           "meaning": "Muhammed",
           "focus": "مَّ: şedde + üstün"
         },
@@ -6415,28 +6420,28 @@
       "practice": [
         {
           "text": "كُفُوًا أَحَدٌ",
-          "reading": "küfüven ehad",
+          "reading": "küfüven ehadun",
           "focus": "tenvin + ء",
           "note": "Tenvinin nunu açık okunur.",
           "rule": "İzhâr"
         },
         {
           "text": "عَذَابٌ أَلِيمٌ",
-          "reading": "azâbün elîm",
+          "reading": "azâbün elîmun",
           "focus": "tenvin + ء",
           "note": "Tenvin gizlenmez.",
           "rule": "İzhâr"
         },
         {
           "text": "عَلِيمٌ خَبِيرٌ",
-          "reading": "alîmün habîr",
+          "reading": "alîmün habîrun",
           "focus": "tenvin + خ",
           "note": "Tenvin açık okunur.",
           "rule": "İzhâr"
         },
         {
           "text": "قَوْمٍ هَادٍ",
-          "reading": "kavmin hâd",
+          "reading": "kavmin hâdin",
           "focus": "tenvin + ه",
           "note": "Tenvin açık okunur.",
           "rule": "İzhâr"
@@ -7067,7 +7072,7 @@
         },
         {
           "text": "صُمٌّ بُكْمٌ",
-          "reading": "summum bükm",
+          "reading": "summum bükmun",
           "focus": "tenvin + ب",
           "note": "Tenvinin nunu mim olur.",
           "rule": "İklâb"
@@ -7410,14 +7415,14 @@
         },
         {
           "text": "رِيحًا صَرْصَرًا",
-          "reading": "rîhan sarsarâ",
+          "reading": "rîhan sarsaran",
           "focus": "tenvin + ص",
           "note": "Tenvinin nunu gizlenir.",
           "rule": "İhfâ"
         },
         {
           "text": "عَذَابًا شَدِيدًا",
-          "reading": "azâben şedîdâ",
+          "reading": "azâben şedîden",
           "focus": "tenvin + ش",
           "note": "Tenvinin nunu gizlenir.",
           "rule": "İhfâ"
@@ -7837,7 +7842,7 @@
         },
         {
           "text": "مُحَمَّدٌ",
-          "reading": "muhammed",
+          "reading": "muhammedün",
           "focus": "مّ",
           "note": "Şeddeli mim: gunne belirgindir."
         },
@@ -8309,8 +8314,8 @@
           "focus": "رَ → kalın"
         },
         {
-          "text": "رُسُل",
-          "reading": "rusul",
+          "text": "رُسُلُ",
+          "reading": "rusulu",
           "focus": "رُ → kalın"
         },
         {
@@ -8453,7 +8458,7 @@
         },
         {
           "text": "هُوَ اللّٰهُ أَحَدٌ",
-          "reading": "hüvallâhü ehad",
+          "reading": "hüvallâhü ehadun",
           "focus": "Üstünden sonra",
           "note": "Lâm kalın okunur.",
           "rule": "Kalın"
@@ -9830,8 +9835,8 @@
           "focus": "Şedde"
         },
         {
-          "text": "كِتَاب",
-          "reading": "Kitâb",
+          "text": "كِتَابٌ",
+          "reading": "Kitâbun",
           "focus": "Med"
         },
         {
@@ -10043,10 +10048,10 @@
           "note": "Sin sâkin okunur."
         },
         {
-          "text": "كِتَاب",
-          "reading": "kitâb",
+          "text": "كِتَابٌ",
+          "reading": "kitâbun",
           "focus": "Med",
-          "note": "Elif uzatma harfi: \"kitâb\"."
+          "note": "Elif uzatma harfi: \"kitâbun\"."
         }
       ],
       "comparison_pairs": [

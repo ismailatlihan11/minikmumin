@@ -413,6 +413,7 @@ abstract final class ElifbaPracticeBridge {
         'reading': word.reading,
         'meaning': word.meaningTr,
         'focus': 'Yankılanan harf: ${found.join(' · ')}',
+        'audio': word.audio ?? '',
       };
     }
     return rows.values.toList(growable: false);
