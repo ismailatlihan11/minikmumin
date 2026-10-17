@@ -2306,7 +2306,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_3.mp3"
                     },
                     {
-                        "arabic": "اَلْاَبْتَرُ",
+                        "arabic": "اَلْاَبْتَرْ",
                         "reference": "108:3",
                         "focus": "بْ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_4.mp3"
@@ -2318,7 +2318,7 @@
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_5.mp3"
                     },
                     {
-                        "arabic": "بِالصَّبْرِ",
+                        "arabic": "بِالصَّبْرْ",
                         "reference": "103:3",
                         "focus": "بْ",
                         "audio": "assets/audio/quran_learn/tajweed/tajweed_06_6.mp3"
@@ -2585,7 +2585,7 @@
             },
             {
                 "id": "word_05",
-                "arabic": "اَلْعَالَمِينَ",
+                "arabic": "اَلْعَالَمِينْ",
                 "reading": "el-âlemîn",
                 "meaning_tr": "âlemler",
                 "quran_reference": "1:2",
@@ -2603,8 +2603,8 @@
             },
             {
                 "id": "word_07",
-                "arabic": "اَلرَّحِيمِ",
-                "reading": "er-rahîmi",
+                "arabic": "اَلرَّحِيمْ",
+                "reading": "er-rahîm",
                 "meaning_tr": "Rahîm",
                 "quran_reference": "1:3",
                 "teaching_note": "Şedde ve med örneği.",
@@ -2630,8 +2630,8 @@
             },
             {
                 "id": "word_10",
-                "arabic": "اَلدِّينِ",
-                "reading": "ed-dîni",
+                "arabic": "اَلدِّينْ",
+                "reading": "ed-dîn",
                 "meaning_tr": "din / karşılık günü",
                 "quran_reference": "1:4",
                 "teaching_note": "Şedde örneği.",
@@ -2666,7 +2666,7 @@
             },
             {
                 "id": "word_14",
-                "arabic": "نَسْتَعِين",
+                "arabic": "نَسْتَعِينْ",
                 "reading": "nesta'în",
                 "meaning_tr": "yardım isteriz",
                 "quran_reference": "1:5",
@@ -2684,8 +2684,8 @@
             },
             {
                 "id": "word_16",
-                "arabic": "اَلصِّرَاط",
-                "reading": "es-sırât",
+                "arabic": "اَلصِّرَاطَ",
+                "reading": "es-sırâta",
                 "meaning_tr": "yol",
                 "quran_reference": "1:6",
                 "teaching_note": "Şedde ve kalın harf örneği.",
@@ -2693,8 +2693,8 @@
             },
             {
                 "id": "word_17",
-                "arabic": "اَلْمُسْتَقِيمَ",
-                "reading": "el-mustakîme",
+                "arabic": "اَلْمُسْتَقِيمْ",
+                "reading": "el-mustakîm",
                 "meaning_tr": "dosdoğru",
                 "quran_reference": "1:6",
                 "teaching_note": "Cezm ve med örneği.",
@@ -2729,7 +2729,7 @@
             },
             {
                 "id": "word_21",
-                "arabic": "اَلصَّمَد",
+                "arabic": "اَلصَّمَدْ",
                 "reading": "es-samed",
                 "meaning_tr": "Samed",
                 "quran_reference": "112:2",

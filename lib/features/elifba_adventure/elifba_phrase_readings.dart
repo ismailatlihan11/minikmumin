@@ -65,7 +65,7 @@ const _readings = <String, String>{
   'قل رب': 'kur rabbi',
   'قد تبين': 'kat tebeyyene',
   // İklâb
-  'انبءهم': "embi'hüm",
+  'انبءهم': 'en-bihum',
   'سميع بصير': 'semîum basîr',
   'ترميهم بحجاره': 'termîhim bihicârah',
   // İhfâ

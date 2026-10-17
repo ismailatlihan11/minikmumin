@@ -3007,11 +3007,11 @@
         {
           "question": "Üç kısa sesi karşılaştır: بَ - بِ - بُ",
           "options": [
-            "a-i-u",
-            "i-a-u",
-            "u-i-a"
+            "e-i-u",
+            "i-e-u",
+            "u-i-e"
           ],
-          "answer": "a-i-u"
+          "answer": "e-i-u"
         }
       ],
       "rich_content": {
@@ -3640,12 +3640,12 @@
             "summe"
           ],
           [
-            "النَّاس",
-            "en-nâs"
+            "النَّاسِ",
+            "en-nâsi"
           ],
           [
             "الْحَقِّ",
-            "el-hakk"
+            "el-hakki"
           ]
         ]
       },
@@ -4782,32 +4782,32 @@
           "focus": "مَّ: şedde + üstün"
         },
         {
-          "word": "اَلنَّاسُ",
-          "reading": "en-nâs",
+          "word": "اَلنَّاسِ",
+          "reading": "en-nâsi",
           "meaning": "insanlar",
           "focus": "نَّ: şedde + üstün"
         },
         {
-          "word": "اَلرَّحْمٰنُ",
-          "reading": "er-Rahmân",
+          "word": "اَلرَّحْمٰنِ",
+          "reading": "er-rahmâni",
           "meaning": "Rahmân",
           "focus": "رَّ: şedde + üstün"
         },
         {
-          "word": "اَلرَّحِيمُ",
+          "word": "اَلرَّحِيمْ",
           "reading": "er-Rahîm",
           "meaning": "Rahîm",
           "focus": "رَّ: şedde + üstün"
         },
         {
-          "word": "اَلضَّالِّينَ",
+          "word": "اَلضَّالِّينْ",
           "reading": "ed-dâllîn",
           "meaning": "sapanlar",
           "focus": "ضَّ ve لِّ: şedde ile birlikte hareke"
         },
         {
           "word": "اَلْحَقِّ",
-          "reading": "el-hakk",
+          "reading": "el-hakki",
           "meaning": "hak",
           "focus": "قِّ: şedde + esre"
         },
@@ -4818,14 +4818,14 @@
           "focus": "مَّ: şedde + üstün"
         },
         {
-          "word": "عِلِّيِّينَ",
+          "word": "عِلِّيِّينْ",
           "reading": "illiyyîn",
           "meaning": "yüce makam",
           "focus": "لِّ: şedde + esre"
         },
         {
           "word": "اَلْمُزَّمِّلُ",
-          "reading": "el-müzzemmil",
+          "reading": "el-müzzemmilu",
           "meaning": "örtüsüne bürünen",
           "focus": "مِّ: şedde + esre"
         }
@@ -4920,17 +4920,17 @@
           "reference": "Kadir 5"
         },
         {
-          "word": "عَظِيمٌ",
-          "reading": "azîmun",
+          "word": "عَظِيمْ",
+          "reading": "azîm",
           "meaning": "çok büyük",
-          "focus": "Sonda iki ötre: مٌ",
+          "focus": "Sonda sâkin: مْ",
           "reference": "Bakara 255"
         },
         {
-          "word": "خُسْرٍ",
-          "reading": "husrin",
+          "word": "خُسْرْ",
+          "reading": "husr",
           "meaning": "ziyan",
-          "focus": "Sonda iki esre: رٍ",
+          "focus": "Sonda sâkin: رْ",
           "reference": "Asr 2"
         },
         {
@@ -4998,7 +4998,7 @@
           "بَاب",
           "دَار",
           "يَقُولُ",
-          "نُور",
+          "نُورْ",
           "رَسُول",
           "يَكُونُ",
           "قِيلَ",
@@ -5352,7 +5352,7 @@
           "reading": "yekûlü"
         },
         {
-          "text": "نُور",
+          "text": "نُورْ",
           "reading": "nûr"
         }
       ],
@@ -5525,7 +5525,7 @@
           "audio": "assets/audio/quran_learn/tajweed/tajweed_06_3.mp3"
         },
         {
-          "word": "اَلْأَبْتَرُ",
+          "word": "اَلْأَبْتَرْ",
           "reading": "el-ebter",
           "meaning": "soyu kesik",
           "focus": "Yankılanan harf: بْ",
@@ -5541,7 +5541,7 @@
           "audio": "assets/audio/quran_learn/tajweed/tajweed_06_5.mp3"
         },
         {
-          "word": "بِالصَّبْرِ",
+          "word": "بِالصَّبْرْ",
           "reading": "bi's-sabr",
           "meaning": "sabır ile",
           "focus": "Yankılanan harf: بْ",
@@ -5843,7 +5843,7 @@
         },
         {
           "text": "أَنْبِئْهُمْ",
-          "reading": "embi'hum",
+          "reading": "en-bihum",
           "focus": "نْ + ب",
           "rule": "İklâb",
           "note": "Nun sesi mim sesine döndü.",
@@ -6846,6 +6846,7 @@
       "examples": [
         {
           "text": "أَنْبِئْهُمْ",
+          "reading": "en-bihum",
           "focus": "نْ + ب",
           "rule": "İklâb"
         },
@@ -7869,7 +7870,7 @@
         },
         {
           "text": "النَّاسِ",
-          "reading": "en-nâs",
+          "reading": "en-nâsi",
           "focus": "نّ",
           "note": "Şeddeli nun: gunne belirgindir."
         },
@@ -8342,8 +8343,8 @@
           "focus": "رَ → kalın"
         },
         {
-          "text": "رَسُول",
-          "reading": "rasûl",
+          "text": "رَسُولٌ",
+          "reading": "rasûlun",
           "focus": "رَ → kalın"
         },
         {
@@ -8352,22 +8353,22 @@
           "focus": "رُ → kalın"
         },
         {
-          "text": "رِزْق",
-          "reading": "rizq",
+          "text": "رِزْقْ",
+          "reading": "rizkun",
           "focus": "رِ → ince"
         },
         {
-          "text": "كَرِيم",
+          "text": "كَرِيمْ",
           "reading": "kerîm",
           "focus": "رِ → ince"
         },
         {
-          "text": "فِرْعَوْن",
-          "reading": "fir'avn",
+          "text": "فِرْعَوْنَ",
+          "reading": "fir'avne",
           "focus": "Ra ile ileri düzey çalışma"
         },
         {
-          "word": "رَحْمَة",
+          "word": "رَحْمَهْ",
           "reading": "rahmeh",
           "meaning": "merhamet",
           "focus": "رَ → kalın"
@@ -8909,14 +8910,14 @@
       },
       "examples": [
         {
-          "text": "نَسْتَعِين",
+          "text": "نَسْتَعِينْ",
           "reading": "nestaîn",
           "focus": "Durunca son harf sâkin",
           "note": "Ötre düşer, nun sâkin okunur.",
           "audio": "assets/audio/quran_learn/words/word_14.mp3"
         },
         {
-          "text": "الدِّينِ",
+          "text": "اَلدِّينْ",
           "reading": "ed-dîn",
           "focus": "Durunca son harf sâkin",
           "note": "Esre düşer, nun sâkin okunur.",
@@ -8943,14 +8944,14 @@
           "note": "Durunca te, \"h\" sesine döner."
         },
         {
-          "text": "الْعَالَمِينَ",
+          "text": "اَلْعَالَمِينْ",
           "reading": "el-âlemîn",
           "focus": "Durunca son harf sâkin",
           "note": "Üstün düşer, nun sâkin okunur.",
           "audio": "assets/audio/quran_learn/words/word_05.mp3"
         },
         {
-          "text": "اَلرَّحِيمِ",
+          "text": "اَلرَّحِيمْ",
           "reading": "er-rahîm",
           "focus": "Durunca son harf sâkin",
           "note": "Esre düşer, mim sâkin okunur.",
@@ -8984,7 +8985,7 @@
           "answer": "h"
         },
         {
-          "pair": "اَلرَّحِيمِ",
+          "pair": "اَلرَّحِيمْ",
           "question": "Durunca sondaki esre ne olur?",
           "answers": [
             "Düşer, harf sâkin olur",
@@ -9883,7 +9884,7 @@
           "focus": "Cezm"
         },
         {
-          "text": "نُور",
+          "text": "نُورْ",
           "reading": "Nûr",
           "focus": "Med"
         },
@@ -9902,7 +9903,7 @@
           "audio": "assets/audio/quran_learn/words/word_20.mp3"
         },
         {
-          "text": "الصَّمَدُ",
+          "text": "اَلصَّمَدْ",
           "reading": "es-samed",
           "focus": "Şedde + lâm-ı tarif",
           "note": "Lâm okunmaz, ص şeddeli okunur.",
@@ -10004,7 +10005,7 @@
           "رَبِّ",
           "النَّاس",
           "الْحَمْدُ",
-          "الصِّرَاط",
+          "اَلصِّرَاطَ",
           "الْكِتَاب",
           "الرَّحْمَٰن",
           "الرَّحِيم",
@@ -10069,7 +10070,7 @@
           "audio": "assets/audio/quran_learn/words/word_02.mp3"
         },
         {
-          "text": "نُور",
+          "text": "نُورْ",
           "reading": "nûr",
           "focus": "Med",
           "note": "Vav uzatma harfi: \"nûr\"."
@@ -10107,7 +10108,7 @@
           "answer": "Sâkin, kesik"
         },
         {
-          "pair": "الصَّمَدُ",
+          "pair": "اَلصَّمَدْ",
           "question": "Lâm-ı tarif okunur mu?",
           "answers": [
             "Okunmaz, ص şeddelenir",
@@ -10156,8 +10157,8 @@
           "audio": "assets/audio/quran_learn/words/word_03.mp3"
         },
         {
-          "text": "الصِّرَاط",
-          "reading": "es-sırât",
+          "text": "اَلصِّرَاطَ",
+          "reading": "es-sırâta",
           "focus": "Şedde/med"
         },
         {
@@ -10315,7 +10316,7 @@
           "audio": "assets/audio/quran_learn/words/word_06.mp3"
         },
         {
-          "text": "الْعَالَمِينَ",
+          "text": "اَلْعَالَمِينْ",
           "reading": "el-âlemîn",
           "focus": "Med",
           "note": "İki uzatma birden var.",
@@ -10329,8 +10330,8 @@
           "audio": "assets/audio/quran_learn/words/word_08.mp3"
         },
         {
-          "text": "الدِّينِ",
-          "reading": "ed-dîni",
+          "text": "اَلدِّينْ",
+          "reading": "ed-dîn",
           "focus": "Şedde",
           "note": "Lâm okunmaz, dal şeddelenir.",
           "audio": "assets/audio/quran_learn/words/word_10.mp3"
@@ -10356,7 +10357,7 @@
           "answer": "Evet, \"el-\" diye okunur"
         },
         {
-          "pair": "الْعَالَمِينَ",
+          "pair": "اَلْعَالَمِينْ",
           "question": "Kaç uzatma var?",
           "answers": [
             "İki",
@@ -10366,7 +10367,7 @@
           "answer": "İki"
         },
         {
-          "pair": "الدِّينِ",
+          "pair": "اَلدِّينْ",
           "question": "Şeddeli harf hangisi?",
           "answers": [
             "د",
@@ -10594,7 +10595,7 @@
           "answer": "Uzun med"
         },
         {
-          "pair": "الصِّرَاطَ",
+          "pair": "اَلصِّرَاطَ",
           "question": "Şeddeli harf hangisi?",
           "answers": [
             "ص",
